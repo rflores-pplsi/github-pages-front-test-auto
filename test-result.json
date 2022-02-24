@@ -1,0 +1,383 @@
+{
+  "config": {
+    "forbidOnly": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "C:/Users/bamch/pplsi/Automation/playwright-ts/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "name": "chromium",
+        "testDir": "C:/Users/bamch/pplsi/Automation/playwright-ts",
+        "testIgnore": [],
+        "testMatch": [
+          "**/?(*.)@(spec|test).*"
+        ],
+        "timeout": 30000
+      },
+      {
+        "outputDir": "C:/Users/bamch/pplsi/Automation/playwright-ts/test-results",
+        "repeatEach": 1,
+        "retries": 0,
+        "name": "",
+        "testDir": "C:/Users/bamch/pplsi/Automation/playwright-ts",
+        "testIgnore": [],
+        "testMatch": [
+          "tests/*.test.ts"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "reporter": [
+      [
+        "dot",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "test-result.json"
+        }
+      ],
+      [
+        "html",
+        {
+          "open": "always"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 15000
+    },
+    "rootDir": "C:/Users/bamch/pplsi/Automation/playwright-ts",
+    "quiet": false,
+    "shard": null,
+    "updateSnapshots": "missing",
+    "version": "1.18.1",
+    "workers": 8,
+    "webServer": null,
+    "__testGroupsCount": 1
+  },
+  "suites": [
+    {
+      "title": "tests\\account\\account-profile.spec.ts",
+      "file": "tests/account/account-profile.spec.ts",
+      "line": 0,
+      "column": 0,
+      "specs": [
+        {
+          "title": "Navigate to the Profile Name page by clicking the Name Edit button",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 7986,
+                  "stdout": [
+                    {
+                      "text": " - accountProfilePage.goToProfilePage\n"
+                    },
+                    {
+                      "text": " - loginPage.login\n"
+                    },
+                    {
+                      "text": "Test Case: Navigate to the Profile Name page by clicking the Name Edit button\n"
+                    },
+                    {
+                      "text": " - accountProfilePage.editNameBtn\n"
+                    },
+                    {
+                      "text": " - accountProfilePage.assertProfileNamePageUrl\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\bamch\\pplsi\\Automation\\playwright-ts\\test-results\\tests-account-account-profile-Navigate-to-the-Profile-Name-page-by-clicking-the-Name-Edit-button-chromium\\4f1569092367e726801e34fdb61fe41a.webm"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\bamch\\pplsi\\Automation\\playwright-ts\\test-results\\tests-account-account-profile-Navigate-to-the-Profile-Name-page-by-clicking-the-Name-Edit-button-chromium\\trace.zip"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\bamch\\pplsi\\Automation\\playwright-ts\\test-results\\tests-account-account-profile-Navigate-to-the-Profile-Name-page-by-clicking-the-Name-Edit-button-chromium\\test-finished-1.png"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "C:\\Users\\bamch\\pplsi\\Automation\\playwright-ts\\tests\\account\\account-profile-dob.spec.ts",
+                    "column": 26,
+                    "line": 19
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "file": "tests/account/account-profile.spec.ts",
+          "line": 15,
+          "column": 1
+        },
+        {
+          "title": "Navigate to the Profile Date of Birth page by clicking the Date of Birth Edit button",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 7496,
+                  "stdout": [
+                    {
+                      "text": " - accountProfilePage.goToProfilePage\n"
+                    },
+                    {
+                      "text": " - loginPage.login\n"
+                    },
+                    {
+                      "text": "Test Case: Navigate to the Profile Date of Birth page by clicking the Date of Birth Edit button\n"
+                    },
+                    {
+                      "text": " - accountProfilePage.editDateOfBirthBtn\n"
+                    },
+                    {
+                      "text": " - accountProfilePage.assertProfileDateOfBirthPageUrl\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\bamch\\pplsi\\Automation\\playwright-ts\\test-results\\tests-account-account-profile-Navigate-to-the-Profile-Date-of-Birth-page-by-clicking-the-Date-of-Birth-Edit-button-chromium\\16ae6fcb88f6efae5a6e55c68bd5860c.webm"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\bamch\\pplsi\\Automation\\playwright-ts\\test-results\\tests-account-account-profile-Navigate-to-the-Profile-Date-of-Birth-page-by-clicking-the-Date-of-Birth-Edit-button-chromium\\trace.zip"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\bamch\\pplsi\\Automation\\playwright-ts\\test-results\\tests-account-account-profile-Navigate-to-the-Profile-Date-of-Birth-page-by-clicking-the-Date-of-Birth-Edit-button-chromium\\test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "file": "tests/account/account-profile.spec.ts",
+          "line": 24,
+          "column": 1
+        },
+        {
+          "title": "Navigate to the Profile Phone Number page by clicking the Phone Number Edit button",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 9062,
+                  "stdout": [
+                    {
+                      "text": " - accountProfilePage.goToProfilePage\n"
+                    },
+                    {
+                      "text": " - loginPage.login\n"
+                    },
+                    {
+                      "text": "Test Case: Navigate to the Profile Phone Number page by clicking the Phone Number Edit button\n"
+                    },
+                    {
+                      "text": " - accountProfilePage.editPhoneBtn\n"
+                    },
+                    {
+                      "text": " - accountProfilePage.assertProfilePhonePageUrl\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\bamch\\pplsi\\Automation\\playwright-ts\\test-results\\tests-account-account-profile-Navigate-to-the-Profile-Phone-Number-page-by-clicking-the-Phone-Number-Edit-button-chromium\\78e8a2872a8c6adca72e16981b0a337b.webm"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\bamch\\pplsi\\Automation\\playwright-ts\\test-results\\tests-account-account-profile-Navigate-to-the-Profile-Phone-Number-page-by-clicking-the-Phone-Number-Edit-button-chromium\\trace.zip"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\bamch\\pplsi\\Automation\\playwright-ts\\test-results\\tests-account-account-profile-Navigate-to-the-Profile-Phone-Number-page-by-clicking-the-Phone-Number-Edit-button-chromium\\test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "file": "tests/account/account-profile.spec.ts",
+          "line": 33,
+          "column": 1
+        },
+        {
+          "title": "Navigate to the Profile Address page by clicking the Address Edit button",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 6579,
+                  "stdout": [
+                    {
+                      "text": " - accountProfilePage.goToProfilePage\n"
+                    },
+                    {
+                      "text": " - loginPage.login\n"
+                    },
+                    {
+                      "text": "Test Case: Navigate to the Profile Address page by clicking the Address Edit button\n"
+                    },
+                    {
+                      "text": " - accountProfilePage.editAddressBtn\n"
+                    },
+                    {
+                      "text": " - profileAddressPage.assertProfileAddressPageUrl\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\bamch\\pplsi\\Automation\\playwright-ts\\test-results\\tests-account-account-profile-Navigate-to-the-Profile-Address-page-by-clicking-the-Address-Edit-button-chromium\\ac46e79280e298b1bbdf653b27e97c25.webm"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\bamch\\pplsi\\Automation\\playwright-ts\\test-results\\tests-account-account-profile-Navigate-to-the-Profile-Address-page-by-clicking-the-Address-Edit-button-chromium\\trace.zip"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\bamch\\pplsi\\Automation\\playwright-ts\\test-results\\tests-account-account-profile-Navigate-to-the-Profile-Address-page-by-clicking-the-Address-Edit-button-chromium\\test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "file": "tests/account/account-profile.spec.ts",
+          "line": 42,
+          "column": 1
+        },
+        {
+          "title": "Navigate to the Profile Email Address page by clicking the Email Address Edit button",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectName": "chromium",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "status": "passed",
+                  "duration": 5641,
+                  "stdout": [
+                    {
+                      "text": " - accountProfilePage.goToProfilePage\n"
+                    },
+                    {
+                      "text": " - loginPage.login\n"
+                    },
+                    {
+                      "text": "Test Case: Navigate to the Profile Email Address page by clicking the Email Address Edit button\n"
+                    },
+                    {
+                      "text": " - accountProfilePage.editEmailBtn\n"
+                    },
+                    {
+                      "text": " - profileAddressPage.assertProfileEmailPageUrl\n"
+                    }
+                  ],
+                  "stderr": [],
+                  "retry": 0,
+                  "attachments": [
+                    {
+                      "name": "video",
+                      "contentType": "video/webm",
+                      "path": "C:\\Users\\bamch\\pplsi\\Automation\\playwright-ts\\test-results\\tests-account-account-profile-Navigate-to-the-Profile-Email-Address-page-by-clicking-the-Email-Address-Edit-button-chromium\\7c01fc89f0e9acee3b1f799fc5291d98.webm"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "C:\\Users\\bamch\\pplsi\\Automation\\playwright-ts\\test-results\\tests-account-account-profile-Navigate-to-the-Profile-Email-Address-page-by-clicking-the-Email-Address-Edit-button-chromium\\trace.zip"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "C:\\Users\\bamch\\pplsi\\Automation\\playwright-ts\\test-results\\tests-account-account-profile-Navigate-to-the-Profile-Email-Address-page-by-clicking-the-Email-Address-Edit-button-chromium\\test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "file": "tests/account/account-profile.spec.ts",
+          "line": 51,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": []

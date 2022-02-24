@@ -1,0 +1,5 @@
+PlanRow {
+  planName: [32m'Legal Plan Family'[39m,
+  numberOfMembers: [32m'2 Member(s)'[39m,
+  websiteLink: Locator@[type=button] >> nth=2
+}
