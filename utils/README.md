@@ -8,6 +8,7 @@
   - [Features:](#features)
   - [Browser/Device Support:](#browserdevice-support)
   - [Learning resources](#learning-resources-1)
+- [Setting up the project](#setting-up-the-project)
 - [Command Line](#command-line)
 - [Install](#install)
 - [Run tests](#run-tests)
@@ -73,6 +74,12 @@ Please follow the sequence to enhance your learning! <br>
 19. Jest Allure Report | Playwright - Part 19: https://www.youtube.com/watch?v=tjpSkaBq9c0
 20. Jest Allure Report | Playwright - Part 20: https://www.youtube.com/watch?v=xffrNccLIso
 21. Skip on failure | Playwright - Part 21: https://www.youtube.com/watch?v=4-IBKtbAxlg
+
+# Setting up the project
+1. Open VSCode (or other IDE)
+2. 
+3. Log in to github and navigate to: https://github.com/LegalShield/frontend-test-automation
+4. Click the green "Code" dropdown and select 
 
 # Command Line
 
