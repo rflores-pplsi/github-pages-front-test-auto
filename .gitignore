@@ -10,6 +10,7 @@ codeship.aes
 tests/load-tests/channels/ao_logins.js
 test_results
 docker-log.txt
-allure-report/
-allure-results/
+allure-report
+allure-results
 .prettierrc
+playwright-report
