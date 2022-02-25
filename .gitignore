@@ -13,4 +13,4 @@ docker-log.txt
 allure-report
 allure-results
 .prettierrc
-playwright-repot
+playwright-report
