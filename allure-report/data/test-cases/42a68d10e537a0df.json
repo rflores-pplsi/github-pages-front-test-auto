@@ -1,0 +1,222 @@
+{
+  "uid" : "42a68d10e537a0df",
+  "name" : "Can sign up as a new user",
+  "fullName" : "Can sign up as a new user",
+  "historyId" : "webkit tests\\login\\logincopy.spec.ts Login/Signup Can sign up as a new user",
+  "time" : {
+    "start" : 1642766331408,
+    "stop" : 1642766336694,
+    "duration" : 5286
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Before Hooks",
+      "time" : {
+        "start" : 1642766331408,
+        "stop" : 1642766332707,
+        "duration" : 1299
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "browserContext.newPage",
+        "time" : {
+          "start" : 1642766331428,
+          "stop" : 1642766331618,
+          "duration" : 190
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "shouldDisplayMessage" : false,
+        "attachmentsCount" : 0,
+        "hasContent" : false,
+        "stepsCount" : 0
+      }, {
+        "name" : "page.goto(https://login.dev-legalshield.com)",
+        "time" : {
+          "start" : 1642766331620,
+          "stop" : 1642766332707,
+          "duration" : 1087
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "shouldDisplayMessage" : false,
+        "attachmentsCount" : 0,
+        "hasContent" : false,
+        "stepsCount" : 0
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0,
+      "hasContent" : true,
+      "stepsCount" : 2
+    }, {
+      "name" : "page.fill([placeholder=\"Email address/Username\"])",
+      "time" : {
+        "start" : 1642766332708,
+        "stop" : 1642766333047,
+        "duration" : 339
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "page.fill([placeholder=\"Password\"])",
+      "time" : {
+        "start" : 1642766333049,
+        "stop" : 1642766333348,
+        "duration" : 299
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "locator.click(button[type=\"submit\"])",
+      "time" : {
+        "start" : 1642766333349,
+        "stop" : 1642766333822,
+        "duration" : 473
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "expect.toHaveURL",
+      "time" : {
+        "start" : 1642766333823,
+        "stop" : 1642766336546,
+        "duration" : 2723
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "After Hooks",
+      "time" : {
+        "start" : 1642766336546,
+        "stop" : 1642766336693,
+        "duration" : 147
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "browserContext.close",
+        "time" : {
+          "start" : 1642766336685,
+          "stop" : 1642766336690,
+          "duration" : 5
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "shouldDisplayMessage" : false,
+        "attachmentsCount" : 0,
+        "hasContent" : false,
+        "stepsCount" : 0
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0,
+      "hasContent" : true,
+      "stepsCount" : 1
+    } ],
+    "attachments" : [ {
+      "uid" : "85b7150a505a45f4",
+      "name" : "trace",
+      "source" : "85b7150a505a45f4.ZIP",
+      "type" : "application/zip",
+      "size" : 454755
+    }, {
+      "uid" : "377a41fc9ea110b3",
+      "name" : "screenshot",
+      "source" : "377a41fc9ea110b3.png",
+      "type" : "image/png",
+      "size" : 31037
+    }, {
+      "uid" : "b3f1e04dae83f0e1",
+      "name" : "stdout",
+      "source" : "b3f1e04dae83f0e1.txt",
+      "type" : "text/plain",
+      "size" : 15
+    }, {
+      "uid" : "32c7d35d623bbe4b",
+      "name" : "stdout",
+      "source" : "32c7d35d623bbe4b.txt",
+      "type" : "text/plain",
+      "size" : 15
+    }, {
+      "uid" : "ed402032dd96089a",
+      "name" : "stdout",
+      "source" : "ed402032dd96089a.txt",
+      "type" : "text/plain",
+      "size" : 18
+    } ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 5,
+    "hasContent" : true,
+    "stepsCount" : 9
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "language",
+    "value" : "JavaScript"
+  }, {
+    "name" : "framework",
+    "value" : "Playwright"
+  }, {
+    "name" : "parentSuite",
+    "value" : "webkit"
+  }, {
+    "name" : "suite",
+    "value" : "tests\\login\\logincopy.spec.ts"
+  }, {
+    "name" : "subSuite",
+    "value" : "Login/Signup"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "42a68d10e537a0df.json",
+  "parameterValues" : [ ]
+}

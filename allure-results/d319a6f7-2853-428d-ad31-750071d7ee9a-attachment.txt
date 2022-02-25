@@ -1,0 +1,17 @@
+[
+  PlanRow {
+    planName: [32m'IDShield for Business'[39m,
+    numberOfMembers: [32m'0 Member(s)'[39m,
+    websiteLink: Locator@[type=button] >> nth=0
+  },
+  PlanRow {
+    planName: [32m'Legal Plan Family'[39m,
+    numberOfMembers: [32m'0 Member(s)'[39m,
+    websiteLink: Locator@[type=button] >> nth=1
+  },
+  PlanRow {
+    planName: [32m'IDShield Individual'[39m,
+    numberOfMembers: [32m'0 Member(s)'[39m,
+    websiteLink: Locator@[type=button] >> nth=2
+  }
+]

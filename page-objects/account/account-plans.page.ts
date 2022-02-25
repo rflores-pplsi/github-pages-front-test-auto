@@ -1,0 +1,118 @@
+import { expect } from '@playwright/test';
+import UrlsUtils from '../../utils/urls.utils';
+import { LoginPage } from '../login/login.page';
+import { PlanRow } from './account-plans-page-helpers';
+import { PlansTable } from './account-plans-page-helpers';
+
+let url: string = UrlsUtils.legalshieldUrls.account.url + "/plans";
+
+// ========================== Selectors ==========================
+let hdrBody: string = 'h2';
+let txaPageSummary: string = 'p.description';
+
+export class AccountPlansPage extends LoginPage {
+
+  // ========================== Process Methods ========================== 
+  
+  createPlansTable = async (): Promise<PlansTable> => {
+    console.log(" - accountPlansPage.createPlansTable");
+    await this.page.waitForLoadState('networkidle');
+    const plansTable = new PlansTable();
+    const numberOfPlans = (await this.page.$$('.config-tab.p-5')).length;
+    for (var i:number = 0; i<numberOfPlans; i++) {
+      let row = await this.createPlanRow(i)
+      plansTable.addRow(row)
+    }
+    return plansTable;  
+  }
+
+  createPlanRow = async (i:number = 0): Promise<PlanRow> => {
+    console.log(" - accountPlansPage.createPlanRow");
+    await this.page.waitForLoadState('networkidle');
+    let planNameJsHandle = (await this.page.$$('h5.lsux-heading'))[i].getProperty('innerText');
+    let planNameText = await (await planNameJsHandle).jsonValue();
+    let membersJsHandle = (await this.page.$$('div.config-tab--data p'))[i].getProperty('innerText');
+    let membersText = await (await membersJsHandle). jsonValue();
+    let websiteLinkLocator = this.page.locator('[type=button]').nth(i);
+    const planRow = new PlanRow(planNameText, membersText, websiteLinkLocator);  
+    return planRow;
+  }
+
+  getPlanRowIndexFromPlanName = async (plansTable: PlansTable, planName: String): Promise<number> => {
+    let entries = Object.entries(plansTable.planRows);
+    // the '!' operator tells TS that I will assign the variable before using, there may be a better implementation
+    let planRowIndex!: number;
+    for (var entry of entries) {
+      if (entry[1].planName == planName) {
+        planRowIndex = Number(entry[0]);
+      }
+    }
+    // Throw an error if plan does not exist for this account
+    // TODO: add real exception
+    if (planRowIndex == null) {
+      console.log('ERROR: This account does not have an associated plan of type: ' + planName)
+    }
+    return planRowIndex;
+  }
+
+  // ========================== Navigate Methods ========================== 
+
+  loginToNavigateToAccountsPlanPage = async (emailOrUsername: string, password: string): Promise<void> => {
+    console.log(" - accountPlansPage.loginToNavigateToAccountsPlanPage");
+    await this.goTo(UrlsUtils.legalshieldUrls.account.url + "/plans");
+    await this.login(emailOrUsername,password);
+    await this.page.waitForURL(UrlsUtils.legalshieldUrls.account.url + "/plans?login_redirect=1");
+  }
+
+  // ========================== Click Methods ========================== 
+  
+  clickGoToWebsiteLink = async (plansTable: PlansTable, planName: String): Promise<void> => {
+    console.log(" - accountPlansPage.clickGoToWebsiteLink");
+    // Click go to website link for the 
+    let planRowIndex = await this.getPlanRowIndexFromPlanName(plansTable, planName );
+    await plansTable.planRows[planRowIndex].websiteLink.click();
+  }
+  
+  
+  // ========================== Assertion Methods ========================== 
+
+  assertBodyHeader = async (expectedHeader: string): Promise<void> => {
+    console.log(" - accountPlansPage.assertBodyHeader");
+    this.assertElementHasText(hdrBody,expectedHeader);
+  }
+
+  assertIdShieldForBusinessPageUrl = async (): Promise<void> => {
+    console.log(" - profileAddressPage.assertIdShieldForBusinessPageUrl");
+    // Confirm the IDShield For Business Page URL is reached
+    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.ids4b.url);
+    // Wait for document to load before subsequent steps
+    await this.page.waitForLoadState('domcontentloaded');
+  }
+
+  assertLegalPageUrl = async (): Promise<void> => {
+    console.log(" - profileAddressPage.assertLegalPageUrl");
+    // Confirm the Legal Page URL is reached
+    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.legal.url);
+    // Wait for document to load before subsequent steps
+    await this.page.waitForLoadState('domcontentloaded');
+  }
+
+  assertIdShieldPageUrl = async (): Promise<void> => {
+    console.log(" - profileAddressPage.assertIdShieldPageUrl");
+    // Confirm the ID Shield Page URL is reached
+    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.ids.url);
+    // Wait for document to load before subsequent steps
+    await this.page.waitForLoadState('domcontentloaded');
+  }
+
+  assertLaunchPageUrl = async (): Promise<void> => {
+    console.log(" - profileAddressPage.assertLaunchPageUrl");
+    // Confirm the Legal Page URL is reached
+    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.launch.url);
+    // Wait for document to load before subsequent steps
+    await this.page.waitForLoadState('domcontentloaded');
+  }
+
+  // ========================== Assertion Methods ========================== 
+     
+};

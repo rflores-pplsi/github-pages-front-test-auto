@@ -1,0 +1,1 @@
+Locator = > Locator@[type=button] >> nth=0

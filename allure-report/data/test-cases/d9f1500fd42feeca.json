@@ -1,0 +1,234 @@
+{
+  "uid" : "d9f1500fd42feeca",
+  "name" : "Can login with email",
+  "fullName" : "Can login with email",
+  "historyId" : "firefox tests\\login\\logincopy.spec.ts Login/Signup Can login with email",
+  "time" : {
+    "start" : 1642766319652,
+    "stop" : 1642766327743,
+    "duration" : 8091
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "Before Hooks",
+      "time" : {
+        "start" : 1642766319652,
+        "stop" : 1642766322794,
+        "duration" : 3142
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "browserContext.newPage",
+        "time" : {
+          "start" : 1642766320910,
+          "stop" : 1642766321480,
+          "duration" : 570
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "shouldDisplayMessage" : false,
+        "attachmentsCount" : 0,
+        "hasContent" : false,
+        "stepsCount" : 0
+      }, {
+        "name" : "page.goto(https://login.dev-legalshield.com)",
+        "time" : {
+          "start" : 1642766321489,
+          "stop" : 1642766322794,
+          "duration" : 1305
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "shouldDisplayMessage" : false,
+        "attachmentsCount" : 0,
+        "hasContent" : false,
+        "stepsCount" : 0
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0,
+      "hasContent" : true,
+      "stepsCount" : 2
+    }, {
+      "name" : "page.fill([placeholder=\"Email address/Username\"])",
+      "time" : {
+        "start" : 1642766322797,
+        "stop" : 1642766322966,
+        "duration" : 169
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "page.fill([placeholder=\"Password\"])",
+      "time" : {
+        "start" : 1642766322966,
+        "stop" : 1642766323037,
+        "duration" : 71
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "locator.click(button[type=\"submit\"])",
+      "time" : {
+        "start" : 1642766323040,
+        "stop" : 1642766323154,
+        "duration" : 114
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "expect.toHaveText",
+      "time" : {
+        "start" : 1642766323157,
+        "stop" : 1642766327497,
+        "duration" : 4340
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0,
+      "hasContent" : false,
+      "stepsCount" : 0
+    }, {
+      "name" : "After Hooks",
+      "time" : {
+        "start" : 1642766327497,
+        "stop" : 1642766327743,
+        "duration" : 246
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "browserContext.close",
+        "time" : {
+          "start" : 1642766327728,
+          "stop" : 1642766327740,
+          "duration" : 12
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "shouldDisplayMessage" : false,
+        "attachmentsCount" : 0,
+        "hasContent" : false,
+        "stepsCount" : 0
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0,
+      "hasContent" : true,
+      "stepsCount" : 1
+    } ],
+    "attachments" : [ {
+      "uid" : "6bc4bce8adf398b3",
+      "name" : "trace",
+      "source" : "6bc4bce8adf398b3.ZIP",
+      "type" : "application/zip",
+      "size" : 765512
+    }, {
+      "uid" : "7f2904172f232b6b",
+      "name" : "screenshot",
+      "source" : "7f2904172f232b6b.png",
+      "type" : "image/png",
+      "size" : 25544
+    }, {
+      "uid" : "dcf67c44e870ff68",
+      "name" : "stdout",
+      "source" : "dcf67c44e870ff68.txt",
+      "type" : "text/plain",
+      "size" : 13
+    }, {
+      "uid" : "7f3b91fe81572054",
+      "name" : "stdout",
+      "source" : "7f3b91fe81572054.txt",
+      "type" : "text/plain",
+      "size" : 15
+    }, {
+      "uid" : "e5fd0039f5bfbd4c",
+      "name" : "stdout",
+      "source" : "e5fd0039f5bfbd4c.txt",
+      "type" : "text/plain",
+      "size" : 9
+    }, {
+      "uid" : "38fe02d02dc2ae4a",
+      "name" : "stdout",
+      "source" : "38fe02d02dc2ae4a.txt",
+      "type" : "text/plain",
+      "size" : 15
+    }, {
+      "uid" : "7756f961d0a120e7",
+      "name" : "stdout",
+      "source" : "7756f961d0a120e7.txt",
+      "type" : "text/plain",
+      "size" : 18
+    } ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : false,
+    "attachmentsCount" : 7,
+    "hasContent" : true,
+    "stepsCount" : 9
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "language",
+    "value" : "JavaScript"
+  }, {
+    "name" : "framework",
+    "value" : "Playwright"
+  }, {
+    "name" : "parentSuite",
+    "value" : "firefox"
+  }, {
+    "name" : "suite",
+    "value" : "tests\\login\\logincopy.spec.ts"
+  }, {
+    "name" : "subSuite",
+    "value" : "Login/Signup"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "d9f1500fd42feeca.json",
+  "parameterValues" : [ ]
+}

@@ -1,0 +1,275 @@
+{
+  "uid" : "f71b5c093a9df924",
+  "name" : "Payments page header is displayed",
+  "fullName" : "Payments page header is displayed",
+  "historyId" : "chromium tests\\account\\payments.spec.ts Navigation Links Payments page header is displayed",
+  "time" : {
+    "start" : 1642766250672,
+    "stop" : 1642766282710,
+    "duration" : 32038
+  },
+  "status" : "broken",
+  "statusMessage" : "page.waitForURL: Navigation failed because page was closed!\n=========================== logs ===========================\nwaiting for navigation to \"https://accountsv2.dev-legalshield.com/plans\" until \"load\"\n  navigated to \"https://accountsv2.dev-legalshield.com/?login_redirect=1\"\n  navigated to \"https://accountsv2.dev-legalshield.com/plans?login_redirect=1\"\n============================================================",
+  "statusTrace" : "page.waitForURL: Navigation failed because page was closed!\n=========================== logs ===========================\nwaiting for navigation to \"https://accountsv2.dev-legalshield.com/plans\" until \"load\"\n  navigated to \"https://accountsv2.dev-legalshield.com/?login_redirect=1\"\n  navigated to \"https://accountsv2.dev-legalshield.com/plans?login_redirect=1\"\n============================================================\n    at LoginPage.login (C:\\Users\\bamch\\pplsi\\Automation\\PPLSI-Project\\page-objects\\login\\login.page.ts:44:23)\n    at C:\\Users\\bamch\\pplsi\\Automation\\PPLSI-Project\\tests\\account\\payments.spec.ts:18:5",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ ],
+  "testStage" : {
+    "status" : "broken",
+    "statusMessage" : "page.waitForURL: Navigation failed because page was closed!\n=========================== logs ===========================\nwaiting for navigation to \"https://accountsv2.dev-legalshield.com/plans\" until \"load\"\n  navigated to \"https://accountsv2.dev-legalshield.com/?login_redirect=1\"\n  navigated to \"https://accountsv2.dev-legalshield.com/plans?login_redirect=1\"\n============================================================",
+    "statusTrace" : "page.waitForURL: Navigation failed because page was closed!\n=========================== logs ===========================\nwaiting for navigation to \"https://accountsv2.dev-legalshield.com/plans\" until \"load\"\n  navigated to \"https://accountsv2.dev-legalshield.com/?login_redirect=1\"\n  navigated to \"https://accountsv2.dev-legalshield.com/plans?login_redirect=1\"\n============================================================\n    at LoginPage.login (C:\\Users\\bamch\\pplsi\\Automation\\PPLSI-Project\\page-objects\\login\\login.page.ts:44:23)\n    at C:\\Users\\bamch\\pplsi\\Automation\\PPLSI-Project\\tests\\account\\payments.spec.ts:18:5",
+    "steps" : [ {
+      "name" : "Before Hooks",
+      "time" : {
+        "start" : 1642766250673,
+        "stop" : 1642766281137,
+        "duration" : 30464
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "browserContext.newPage",
+        "time" : {
+          "start" : 1642766251156,
+          "stop" : 1642766251254,
+          "duration" : 98
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "shouldDisplayMessage" : false,
+        "attachmentsCount" : 0,
+        "hasContent" : false,
+        "stepsCount" : 0
+      }, {
+        "name" : "page.goto(https://login.dev-legalshield.com)",
+        "time" : {
+          "start" : 1642766251263,
+          "stop" : 1642766252074,
+          "duration" : 811
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "shouldDisplayMessage" : false,
+        "attachmentsCount" : 0,
+        "hasContent" : false,
+        "stepsCount" : 0
+      }, {
+        "name" : "locator.isVisible(a:has-text(\"Sign in\"))",
+        "time" : {
+          "start" : 1642766252075,
+          "stop" : 1642766252101,
+          "duration" : 26
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "shouldDisplayMessage" : false,
+        "attachmentsCount" : 0,
+        "hasContent" : false,
+        "stepsCount" : 0
+      }, {
+        "name" : "locator.fill([placeholder=\"Email address/Username\"])",
+        "time" : {
+          "start" : 1642766252102,
+          "stop" : 1642766252197,
+          "duration" : 95
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "shouldDisplayMessage" : false,
+        "attachmentsCount" : 0,
+        "hasContent" : false,
+        "stepsCount" : 0
+      }, {
+        "name" : "locator.fill([placeholder=\"Password\"])",
+        "time" : {
+          "start" : 1642766252197,
+          "stop" : 1642766252226,
+          "duration" : 29
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "shouldDisplayMessage" : false,
+        "attachmentsCount" : 0,
+        "hasContent" : false,
+        "stepsCount" : 0
+      }, {
+        "name" : "locator.click(button[type=\"submit\"])",
+        "time" : {
+          "start" : 1642766252227,
+          "stop" : 1642766252307,
+          "duration" : 80
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "shouldDisplayMessage" : false,
+        "attachmentsCount" : 0,
+        "hasContent" : false,
+        "stepsCount" : 0
+      }, {
+        "name" : "page.waitForURL",
+        "time" : {
+          "start" : 1642766252310,
+          "stop" : 1642766281032,
+          "duration" : 28722
+        },
+        "status" : "failed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "shouldDisplayMessage" : false,
+        "attachmentsCount" : 0,
+        "hasContent" : false,
+        "stepsCount" : 0
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0,
+      "hasContent" : true,
+      "stepsCount" : 7
+    }, {
+      "name" : "After Hooks",
+      "time" : {
+        "start" : 1642766280685,
+        "stop" : 1642766282710,
+        "duration" : 2025
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "browserContext.close",
+        "time" : {
+          "start" : 1642766281028,
+          "stop" : 1642766282642,
+          "duration" : 1614
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "shouldDisplayMessage" : false,
+        "attachmentsCount" : 0,
+        "hasContent" : false,
+        "stepsCount" : 0
+      }, {
+        "name" : "browserContext.newPage",
+        "time" : {
+          "start" : 1642766281040,
+          "stop" : 1642766281137,
+          "duration" : 97
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "shouldDisplayMessage" : false,
+        "attachmentsCount" : 0,
+        "hasContent" : false,
+        "stepsCount" : 0
+      }, {
+        "name" : "expect.toContainText",
+        "time" : {
+          "start" : 1642766281140,
+          "stop" : 1642766281146,
+          "duration" : 6
+        },
+        "status" : "failed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ ],
+        "shouldDisplayMessage" : false,
+        "attachmentsCount" : 0,
+        "hasContent" : false,
+        "stepsCount" : 0
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "shouldDisplayMessage" : false,
+      "attachmentsCount" : 0,
+      "hasContent" : true,
+      "stepsCount" : 3
+    } ],
+    "attachments" : [ {
+      "uid" : "5d9fba373cd0db3e",
+      "name" : "video",
+      "source" : "5d9fba373cd0db3e.webm",
+      "type" : "video/webm",
+      "size" : 289945
+    }, {
+      "uid" : "e23e9c8fb9a68431",
+      "name" : "trace",
+      "source" : "e23e9c8fb9a68431.ZIP",
+      "type" : "application/zip",
+      "size" : 2203
+    }, {
+      "uid" : "cebfd60e4efbd898",
+      "name" : "screenshot",
+      "source" : "cebfd60e4efbd898.png",
+      "type" : "image/png",
+      "size" : 5320
+    }, {
+      "uid" : "cfdefc899e8fc015",
+      "name" : "trace",
+      "source" : "cfdefc899e8fc015.ZIP",
+      "type" : "application/zip",
+      "size" : 854591
+    }, {
+      "uid" : "b4fe15080d32e819",
+      "name" : "screenshot",
+      "source" : "b4fe15080d32e819.png",
+      "type" : "image/png",
+      "size" : 50190
+    } ],
+    "parameters" : [ ],
+    "shouldDisplayMessage" : true,
+    "attachmentsCount" : 5,
+    "hasContent" : true,
+    "stepsCount" : 12
+  },
+  "afterStages" : [ ],
+  "labels" : [ {
+    "name" : "language",
+    "value" : "JavaScript"
+  }, {
+    "name" : "framework",
+    "value" : "Playwright"
+  }, {
+    "name" : "parentSuite",
+    "value" : "chromium"
+  }, {
+    "name" : "suite",
+    "value" : "tests\\account\\payments.spec.ts"
+  }, {
+    "name" : "subSuite",
+    "value" : "Navigation Links"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Test defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "f71b5c093a9df924.json",
+  "parameterValues" : [ ]
+}
