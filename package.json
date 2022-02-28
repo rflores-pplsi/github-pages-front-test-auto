@@ -16,8 +16,6 @@
     "@playwright/test": "^1.18.1",
     "@types/faker": "^5.5.9",
     "@types/zipcodes": "^8.0.2",
-    "allure-commandline": "^2.13.8",
-    "allure-playwright": "^2.0.0-beta.14",
     "chai": "^4.3.4",
     "faker": "^5.5.3",
     "jest": "^27.4.5",
