@@ -12,3 +12,4 @@ docker-log.txt
 .prettierrc
 playwright-report
 test_result.json
+test-results
