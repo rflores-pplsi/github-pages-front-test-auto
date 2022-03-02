@@ -18,12 +18,7 @@ export class AccountProfileNamePage extends AccountProfilePage{
  
   //accoutNavigationPage = new AccountNavigationPage(this.page);
 
-  goToProfileNamePage = async (): Promise<void> => {
-    console.log(" - accountProfilePage.goToProfileNamePage")
-    await this.goToProfilePage();
-    await this.clickEditNameButton();
-    
-  }
+
 
   // ========================== Process Methods ========================== 
   // Edit Name Page text boxes
@@ -38,7 +33,14 @@ export class AccountProfileNamePage extends AccountProfilePage{
 
   }
   // ========================== Navigate Methods ========================== 
-
+  
+  // Navigate to Profile Name page
+  navigateToProfileNamePage = async (): Promise<void> => {
+    console.log(" - accountProfilePage.goToProfileNamePage")
+    await this.navigateToProfilePage();
+    await this.clickEditNameButton();
+    
+  }
   // ========================== Click Methods ========================== 
   // Edit First Name text box
   clickEditFirstNameTxtBox = async (): Promise<void> =>{
