@@ -23,7 +23,7 @@ export class AccountProfileDoBPage extends AccountProfilePage{
   navigateProfileDateOfBirthPage = async (): Promise<void> => {
     console.log(" - accountProfilePage.navigateProfileDateOfBirthPage")
     //navigate Profile page
-    await this.goToProfilePage();
+    await this.NavigateToProfilePage();
     //Click on Date of Birth page edit button
     await this.clickEditDateOfBirthButton();
     

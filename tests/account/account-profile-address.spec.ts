@@ -8,9 +8,7 @@ let accountProfileAddressPage: AccountProfileAddressPage;
   test.beforeEach(async ({page}) => {
     accountProfileAddressPage = new AccountProfileAddressPage(page);
     //Navigate to Profile page
-    accountProfileAddressPage.goToProfilePage();
-    // Clicking the Name Edit button
-    await accountProfileAddressPage.clickEditAddressButton();
+    accountProfileAddressPage.NavigateToProfileAddressPage();
 
   });
   

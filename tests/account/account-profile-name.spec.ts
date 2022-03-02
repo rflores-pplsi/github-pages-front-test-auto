@@ -7,7 +7,7 @@ let accountprofileNamePage: AccountProfileNamePage;
   // Setup environment before each test
   test.beforeEach(async ({page}) => {
     accountprofileNamePage = new AccountProfileNamePage(page);
-    accountprofileNamePage.goToProfileNamePage();
+    accountprofileNamePage.NavigateToProfileNamePage();
 
   });
   

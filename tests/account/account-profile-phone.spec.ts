@@ -7,7 +7,7 @@ let accountProfilePhonePage: AccountProfilePhonePage;
   // Setup environment before each test
   test.beforeEach(async ({page}) => {
     accountProfilePhonePage = new AccountProfilePhonePage(page);
-    accountProfilePhonePage.goToProfilePhoneNumberPage();
+    accountProfilePhonePage.NavigateToProfilePhoneNumberPage();
 
   });
   // Add a new Phone Number 
