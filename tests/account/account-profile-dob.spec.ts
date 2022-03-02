@@ -7,8 +7,10 @@ let accountProfileDoBPage: AccountProfileDoBPage;
 
   // Setup environment before each test
   test.beforeEach(async ({page}) => {
+    //Initialize an instaence of AccountProfileDoBPage class
     accountProfileDoBPage = new AccountProfileDoBPage(page);
-    accountProfileDoBPage.goToProfileDateOfBirthPage();
+    //Navigate to Profile page
+    accountProfileDoBPage.navigateProfileDateOfBirthPage();
 
   });
   
@@ -19,6 +21,6 @@ let accountProfileDoBPage: AccountProfileDoBPage;
     await accountProfileDoBPage.editDateOfBirthTxtBox();
     // Click on save button 
     await accountProfileDoBPage.saveDateOfBirthbtn();
-    // Verify the landing on the Profile Name page
-    await accountProfileDoBPage.assertProfileNamePageUrl();
+    // Verify that the date of birth is updated
+    await accountProfileDoBPage.assertProfileDateOfBirthPageUrl();
   });

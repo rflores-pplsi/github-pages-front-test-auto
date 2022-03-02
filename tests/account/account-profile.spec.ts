@@ -8,7 +8,7 @@ let accountProfilePage: AccountProfilePage;
 // Setup environment before each test
 test.beforeEach(async ({page}) => {
   accountProfilePage = new AccountProfilePage(page);
-  await accountProfilePage.goToProfilePage();
+  await accountProfilePage.navigateToProfilePage();
 });
 
 // Navigate to the Profile Name page 
@@ -17,7 +17,7 @@ test('Navigate to the Profile Name page by clicking the Name Edit button', async
   // Clicking the Name Edit button
   await accountProfilePage.clickEditNameButton();
   // Verify the landing on the Profile Name page
-  await accountProfilePage.assertProfileNamePageUrl();
+  await accountProfilePage.assertProfileNamePage();
 });
 
 // Navigate to the Profile Date of Birth page 
