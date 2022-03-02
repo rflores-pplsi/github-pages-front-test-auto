@@ -8,7 +8,6 @@
   - [Features:](#features)
   - [Browser/Device Support:](#browserdevice-support)
   - [Learning resources](#learning-resources-1)
-- [Setting up the project](#setting-up-the-project)
 - [Command Line](#command-line)
 - [Install](#install)
 - [Run tests](#run-tests)
@@ -19,6 +18,13 @@
   - [Anatomy of a Page Object](#anatomy-of-a-page-object)
   - [Template](#template)
   - [Selectors](#selectors)
+- [Test Specification Files (spec)](#test-specification-files-spec)
+  - [Naming a Test File file](#naming-a-test-file-file)
+  - [In which test file (spec) does my test case belong?](#in-which-test-file-spec-does-my-test-case-belong)
+  - [Test File Best Practices](#test-file-best-practices)
+    - [<ins>Reliability</ins>](#insreliabilityins)
+    - [<ins>Readability</ins>](#insreadabilityins)
+    - [<ins>Atomicity</ins>](#insatomicityins)
   
 # Typescript
 ## Overview
@@ -37,7 +43,7 @@ Playwright by Microsoft started as a fork of Google's Puppeteer. Puppeteer is a 
 - Emulate mobile devices, geolocation, permissions
 - Native input events for mouse and keyboard
 - Upload & -download support
-- Playwright enables fast, reliable, and capable automation across all - - - modern browsers
+- Playwright enables fast, reliable, and capable automation across all modern browsers
 - Headless and headful
 - Fast and reliable execution
 - Auto-wait APIs (clicks, types, etc)
@@ -74,12 +80,6 @@ Please follow the sequence to enhance your learning! <br>
 19. Jest Allure Report | Playwright - Part 19: https://www.youtube.com/watch?v=tjpSkaBq9c0
 20. Jest Allure Report | Playwright - Part 20: https://www.youtube.com/watch?v=xffrNccLIso
 21. Skip on failure | Playwright - Part 21: https://www.youtube.com/watch?v=4-IBKtbAxlg
-
-# Setting up the project
-1. Open VSCode (or other IDE)
-2. 
-3. Log in to github and navigate to: https://github.com/LegalShield/frontend-test-automation
-4. Click the green "Code" dropdown and select 
 
 # Command Line
 
@@ -277,41 +277,72 @@ export class PageName extends LoginPage {
 
 ```
 ## Selectors
-If this list does not include a UI/Control Type that you are implementing, use your best judgement for creating a new abbreviation, using readability and clarity as guidance. Add any new prefix to the list for future use. 
+If this list does not include a UI/Control Type that you are implementing, use your best judgement for creating a new abbreviation, using readability and clarity as guidance. Add any new prefix to the list for future use. Organized alphabetically. 
 
-Category | UI/Control type | Prefix | Example |
-:--------: | :-------- | :-------- | :--------
-| Basic | Button | btn | btnExit |
-| Basic | Check box | chk | chkReadOnly |
-| Basic | Combo box | cbo | cboEnglish |
-| Basic | Common dialog | dlg | dlgFileOpen |
-| Basic | Date picker | dtp | dtpPublished |
-| Basic | Dropdown List / Select tag | ddl | ddlCountry |
-| Basic | Form | frm | frmEntry |
-| Basic | Frame | fra | fraLanguage |
-| Basic | Image | img | imgIcon |
-| Basic | Label | lbl | lblHelpMessage |
-| Basic | Links/Anchor Tags | lnk | lnkForgotPwd |
-| Basic | List box | lst | lstPolicyCodes |
-| Basic | Menu | mnu | mnuFileOpen |
-| Basic | Radio button / group | rdo | rdoGender |
-| Basic | RichTextBox | rtf | rtfReport |
-| Basic | Table | tbl | tblCustomer |
-| Basic | TabStrip | tab | tabOptions |
-| Basic | Text Area | txa | txaDescription |
-| Basic | Text box | txt | txtLastName |
-| Complex | Chevron | chv | chvProtocol |
-| Complex | Data grid | dgd | dgdTitles |
-| Complex | Data list | dbl | dblPublisher |
-| Complex | Directory list box | dir | dirSource |
-| Complex | Drive list box | drv | drvTarget |
-| Complex | File list box | fil | filSource |
-| Complex | Panel/Fieldset | pnl | pnlGroup |
-| Complex | ProgressBar | prg | prgLoadFile |
-| Complex | Slider | sld | sldScale |
-| Complex | Spinner | spn | spnPages |
-| Complex | StatusBar | sta | staDateTime |
-| Complex | Timer | tmr | tmrAlarm |
-| Complex | Toolbar | tlb | tlbActions |
-| Complex | TreeView | tre | treOrganization |
+| UI/Control type | Prefix | Example |
+| :-------- | :-------- | :--------
+| Button | btn | btnExit |
+| Check box | chk | chkReadOnly |
+| Chevron | chv | chvProtocol |
+| Combo box | cbo | cboEnglish |
+| Common dialog | dlg | dlgFileOpen |
+| Data grid | dgd | dgdTitles |
+| Data list | dbl | dblPublisher |
+| Date picker | dtp | dtpPublished |
+| Directory list box | dir | dirSource |
+| Drive list box | drv | drvTarget |
+| Dropdown List / Select tag | ddl | ddlCountry |
+| File list box | fil | filSource |
+| Form | frm | frmEntry |
+| Frame | fra | fraLanguage |
+| Image | img | imgIcon |
+| Label | lbl | lblHelpMessage |
+| Links/Anchor Tags | lnk | lnkForgotPwd |
+| List box | lst | lstPolicyCodes |
+| Menu | mnu | mnuFileOpen |
+| Message | msg | msgSuccess |
+| Panel/Fieldset | pnl | pnlGroup |
+| ProgressBar | prg | prgLoadFile |
+| Radio button / group | rdo | rdoGender |
+| RichTextBox | rtf | rtfReport |
+| Slider | sld | sldScale |
+| Spinner | spn | spnPages |
+| StatusBar | sta | staDateTime |
+| Step | stp | stpEnterCode |
+| Table | tbl | tblCustomer |
+| TabStrip | tab | tabOptions |
+| Text Area | txa | txaDescription |
+| Text box | txt | txtLastName |
+| Timer | tmr | tmrAlarm |
+| Toolbar | tlb | tlbActions |
+| TreeView | tre | treOrganization |
 
+# Test Specification Files (spec)
+## Naming a Test File file
+A test file should be named according to the same format for naming our Page Object files, except that instead of ending the file with ".page.ts" these files will end with ".spec.ts"
+
+Format:  [service name]-[page name]-[sub pagename (optional)].spec.ts <br>
+Example: account-profile-phone.spec.ts
+
+## In which test file (spec) does my test case belong?
+It is not always straightforward which test file you should put your test case in, as test cases will commonly span multiple pages. Following this one rule should  
+```
+Rule:
+A test case belongs in the spec file that corresponds to the page where the ultimate assertion will be performed. 
+``` 
+```
+Example:
+I have a test case that has the intention to confirm that I am on the accounts/plans page after logging in, that test would *not* belong in a test file for the login service (i.e. 'login.spec.ts'), even though the test will navigate through the login flow. It would instead belong in the test file for the account/plans page (account-plans.spec.ts), as that is where I ultimately confirm the behavior that indicates that the test case has passed.
+```  
+
+## Test File Best Practices
+
+### <ins>Reliability</ins> 
+Unreliable tests are often worse than no tests at all, as it erodes trust in automation and costs time as the team searches for the root cause of false failures. We want to do our best to keep our spec files free of flaky and outdated test, so that tests only fail when they encounter a bug in the application (i.e. a true positive). If a test is failling for other reasons (the application has changed, unforeseen timing issues) then the spec file should be updated to account for any changes as soon as possible. If the test cannot be updated immediatley, you can make use of Playwright Annotations to skip tests in various ways. Manual running of skipped tests should then be considered when performing test plans that include automation. <br> (see -  https://playwright.dev/docs/test-annotations)
+### <ins>Readability</ins>
+As much as possible, we want our spec file test cases to read as close to english as possible. One way to do this, we will favor method names that clearly describe what the method will do, even as the method names grow in length. 
+
+###  <ins>Atomicity</ins>
+Atomic testing refers to the writing tests that have a singular purpose. This is a common philosophy in unit and integration tests, but can also be a guiding principle for UI regression. Whenever possible, we want to avoid writing lenghty end-to-end tests that have multiple assertions. <br>
+* additional explanation
+https://medium.com/swlh/creating-fast-reliable-focused-ui-automation-with-atomic-tests-582e4318c0bb 
