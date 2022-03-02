@@ -18,26 +18,27 @@ let txtAddress='//h5[text()="Address"]/following-sibling::p'
 let btnEditAddress='//h5[text()="Address"]/../../button'
 let txtEmail='//h5[text()="Email Address"]/following-sibling::p'
 let btnEditEmail='//h5[text()="Email Address"]/../../button'
-let txtnameH3Txt = 'h3.lsux-heading.lsux-heading--t20';
-let txtdobH3Txt = 'h3.lsux-heading.lsux-heading--t20';
-let txtphoneNumberH3Txt = 'h3.lsux-heading.lsux-heading--t20';
-let txtaddressH3Txt = 'h3.lsux-heading.lsux-heading--t20';
-let txtemailH3Txt = 'h3.lsux-heading.lsux-heading--t20';
+let txtNameH3 = 'h3.lsux-heading.lsux-heading--t20';
+let txtDobH3 = 'h3.lsux-heading.lsux-heading--t20';
+let txtPhoneNumberH3 = 'h3.lsux-heading.lsux-heading--t20';
+let txtAddressH3 = 'h3.lsux-heading.lsux-heading--t20';
+let txtEmailH3 = 'h3.lsux-heading.lsux-heading--t20';
 
 export class AccountProfilePage extends LoginPage {
 
   // ========================== Page Instances ========================== 
   accoutNavigationPage = new AccountNavigationPage(this.page);
 
-  goToProfilePage = async (): Promise<void> => {
+  
+  // ========================== Process Methods ========================== 
+  
+  // ========================== Navigate Methods ========================== 
+
+  NavigateToProfilePage = async (): Promise<void> => {
     console.log(" - accountProfilePage.goToProfilePage")
     await this.page.goto(url, { waitUntil: 'networkidle' });
     await this.login('mattfeeqa@gmail.com','Password10!');
   }
-
-  // ========================== Process Methods ========================== 
-  
-  // ========================== Navigate Methods ========================== 
 
   // ========================== Click Methods ========================== 
   
@@ -46,7 +47,7 @@ export class AccountProfilePage extends LoginPage {
     console.log(" - accountProfilePage.editNameBtn")
     await this.clickOnElement(btnEditName);
     // Wait for document to load before subsequent steps
-    await this.page.waitForSelector(txtnameH3Txt);
+    await this.page.waitForSelector(txtNameH3);
   }
   
   // Clicking on the Date of Birth Edit button
@@ -55,7 +56,7 @@ export class AccountProfilePage extends LoginPage {
     await this.clickOnElement(btnEditDateOfBirth);
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
-    await this.page.waitForSelector(txtdobH3Txt);
+    await this.page.waitForSelector(txtDobH3);
   }
 
   // Clicking on the Phone Number Edit button
@@ -64,7 +65,7 @@ export class AccountProfilePage extends LoginPage {
     await this.clickOnElement(btnEditPhone);
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
-    await this.page.waitForSelector(txtphoneNumberH3Txt);
+    await this.page.waitForSelector(txtPhoneNumberH3);
   }
 
   // Clicking on the Address Edit button
@@ -73,7 +74,7 @@ export class AccountProfilePage extends LoginPage {
     await this.clickOnElement(btnEditAddress);
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
-    await this.page.waitForSelector(txtaddressH3Txt);
+    await this.page.waitForSelector(txtAddressH3);
   }
 
   // Clicking on the Email Edit button
@@ -82,7 +83,7 @@ export class AccountProfilePage extends LoginPage {
     await this.clickOnElement(btnEditEmail);
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
-    await this.page.waitForSelector(txtemailH3Txt);
+    await this.page.waitForSelector(txtEmailH3);
   } 
 
   // ========================== Assertion Methods ========================== 
@@ -90,7 +91,7 @@ export class AccountProfilePage extends LoginPage {
   assertProfileNamePage = async (): Promise<void> => {
     console.log(" - accountProfilePage.assertProfileNamePageUrl");
     // Confirm the landing on Profile Name Page 
-    const pageName = await this.page.locator(txtnameH3Txt).innerText();
+    const pageName = await this.page.locator(txtNameH3).innerText();
     expect(pageName).toBe('Name');
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
@@ -99,7 +100,7 @@ export class AccountProfilePage extends LoginPage {
   assertProfileDateOfBirthPageUrl = async (): Promise<void> => {
     console.log(" - accountProfilePage.assertProfileDateOfBirthPageUrl");
     // Confirm the landing on Profile Date of Birth Page 
-    const pageDob = await this.page.locator(txtdobH3Txt).innerText();
+    const pageDob = await this.page.locator(txtDobH3).innerText();
     expect(pageDob).toBe('Date of birth');
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
@@ -108,7 +109,7 @@ export class AccountProfilePage extends LoginPage {
   assertProfilePhoneNumberPageUrl = async (): Promise<void> => {
     console.log(" - accountProfilePage.assertProfilePhonePageUrl");
     // Confirm the landing on Profile Phone Number Page 
-    const pagePhone = await this.page.locator(txtphoneNumberH3Txt).innerText();
+    const pagePhone = await this.page.locator(txtPhoneNumberH3).innerText();
     expect(pagePhone).toBe('Phone number');
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
@@ -117,7 +118,7 @@ export class AccountProfilePage extends LoginPage {
   assertProfileAddressPageUrl = async (): Promise<void> => {
     console.log(" - profileAddressPage.assertProfileAddressPageUrl");
     // Confirm the landing on Profile Address Page 
-    const pageAddress = await this.page.locator(txtaddressH3Txt).innerText();
+    const pageAddress = await this.page.locator(txtAddressH3).innerText();
     expect(pageAddress).toBe('Address');
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
@@ -126,7 +127,7 @@ export class AccountProfilePage extends LoginPage {
   assertProfileEmailPageUrl = async (): Promise<void> => {
     console.log(" - profileAddressPage.assertProfileEmailPageUrl");
      // Confirm the landing on Profile Email Page 
-     const pageEmail = await this.page.locator(txtemailH3Txt).innerText();
+     const pageEmail = await this.page.locator(txtEmailH3).innerText();
      expect(pageEmail).toBe('Email Addresses');   
      // Wait for document to load before subsequent steps
      await this.page.waitForLoadState('domcontentloaded');

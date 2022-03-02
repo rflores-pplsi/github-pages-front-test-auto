@@ -21,7 +21,7 @@ export class AccountProfileDoBPage extends AccountProfilePage{
   // ========================== Navigate Methods ========================== 
 
   navigateProfileDateOfBirthPage = async (): Promise<void> => {
-    console.log(" - accountProfilePage.goToProfileNamePage")
+    console.log(" - accountProfilePage.navigateProfileDateOfBirthPage")
     //navigate Profile page
     await this.goToProfilePage();
     //Click on Date of Birth page edit button
