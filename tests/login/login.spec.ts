@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
 import { LoginPage }  from '../../page-objects/login/login.page'
 import UrlsUtils from '../../utils/urls.utils';
-import { basicUser } from '../../utils/user.utils';
+import { basicUser, withUsername } from '../../utils/user.utils';
 
 // Declare Page Variable for This Page
 let loginPage: LoginPage;
@@ -33,10 +33,10 @@ test('Login by submitting form with Enter key', async ({ page }) => {
 
 // TODO: Get an account with a username and add it to .env
 // Login Page test using username
-test('Login with username', async ({ page }) => {
+test.only('Login with username', async ({ page }) => {
   console.log("Test Case: Login with username");
   // Log in with a basic user account with a username
-  await loginPage.login("test.aa07@ls.com","Password10");
+  await loginPage.login(withUsername.email,withUsername.password);
   // Confirm that login is successful by asserting the login url
   await loginPage.assertAccountsPlanPageUrl();
 });
