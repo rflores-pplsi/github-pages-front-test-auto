@@ -32,10 +32,10 @@ export class AccountProfileAddressPage extends AccountProfilePage{
   }
   // ========================== Navigate Methods ========================== 
   
-  NavigateToProfileAddressPage = async (): Promise<void> => {
+  navigateToProfileAddressPage = async (): Promise<void> => {
     console.log(" - accountProfilePage.goToProfilePage")
     // Navigate to Profile page
-    await this.NavigateToProfilePage();
+    await this.navigateToProfilePage();
     // Click on Address edit button
     await this.clickEditAddressButton();
 

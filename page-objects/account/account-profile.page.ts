@@ -34,7 +34,7 @@ export class AccountProfilePage extends LoginPage {
   
   // ========================== Navigate Methods ========================== 
 
-  NavigateToProfilePage = async (): Promise<void> => {
+  navigateToProfilePage = async (): Promise<void> => {
     console.log(" - accountProfilePage.goToProfilePage")
     await this.page.goto(url, { waitUntil: 'networkidle' });
     await this.login('mattfeeqa@gmail.com','Password10!');

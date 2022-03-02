@@ -138,9 +138,9 @@ deletePhoneNumberFun = async (phone:string): Promise<void> =>{
   }
   // ========================== Navigate Methods ========================== 
   // Navigate to Profile Phone page
-  NavigateToProfilePhoneNumberPage = async (): Promise<void> => {
+  navigateToProfilePhoneNumberPage = async (): Promise<void> => {
     console.log(" - accountProfilePage.goToProfileNamePage")
-    await this.NavigateToProfilePage();
+    await this.navigateToProfilePage();
     await this.clickEditPhoneNumberButton();
         
     }

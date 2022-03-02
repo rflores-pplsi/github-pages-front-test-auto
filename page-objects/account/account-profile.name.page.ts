@@ -35,9 +35,9 @@ export class AccountProfileNamePage extends AccountProfilePage{
   // ========================== Navigate Methods ========================== 
   
   // Navigate to Profile Name page
-  NavigateToProfileNamePage = async (): Promise<void> => {
+  navigateToProfileNamePage = async (): Promise<void> => {
     console.log(" - accountProfilePage.goToProfileNamePage")
-    await this.NavigateToProfilePage();
+    await this.navigateToProfilePage();
     await this.clickEditNameButton();
     
   }
