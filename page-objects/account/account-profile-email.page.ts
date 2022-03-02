@@ -103,9 +103,9 @@ deleteEmailAddressFun = async (email:string): Promise<void> =>{
 }
     
   // ========================== Navigate Methods ========================== 
-    NavigateToProfileEmailPage = async (): Promise<void> => {
+    navigateToProfileEmailPage = async (): Promise<void> => {
     console.log(" - accountProfilePage.goToProfileNamePage")
-    await this.goToProfilePage();
+    await this.navigateToProfilePage();
     await this.clickEditEmailButton();
         
     }

@@ -7,7 +7,7 @@ let accountProfileEmailPage: AccountProfileEmailPage;
   // Setup environment before each test
   test.beforeEach(async ({page}) => {
     accountProfileEmailPage = new AccountProfileEmailPage(page);
-    accountProfileEmailPage.NavigateToProfileEmailPage();
+    accountProfileEmailPage.navigateToProfileEmailPage();
 
   });
   // Add a new Email Address 
