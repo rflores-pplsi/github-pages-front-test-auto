@@ -17,7 +17,7 @@ test('Navigate to the Profile Name page by clicking the Name Edit button', async
   // Clicking the Name Edit button
   await accountProfilePage.clickEditNameButton();
   // Verify the landing on the Profile Name page
-  await accountProfilePage.assertProfileNamePageUrl();
+  await accountProfilePage.assertProfileNamePage();
 });
 
 // Navigate to the Profile Date of Birth page 

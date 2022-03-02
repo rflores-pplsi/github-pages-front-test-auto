@@ -13,34 +13,32 @@ let btnSavebtn = 'button:has-text("Save")';
 export class AccountProfileDoBPage extends AccountProfilePage{
 
 // Page Instances
-  // Page Instances
 
-  //accoutNavigationPage = new AccountNavigationPage(this.page);
 
-  goToProfileDateOfBirthPage = async (): Promise<void> => {
-    console.log(" - accountProfilePage.goToProfileNamePage")
-    await this.goToProfilePage();
-    await this.clickEditDateOfBirthButton();
-    await this.page.waitForLoadState('networkidle');
-    
-  }
 
   // ========================== Process Methods ========================== 
 
   // ========================== Navigate Methods ========================== 
 
+  navigateProfileDateOfBirthPage = async (): Promise<void> => {
+    console.log(" - accountProfilePage.goToProfileNamePage")
+    //navigate Profile page
+    await this.goToProfilePage();
+    //Click on Date of Birth page edit button
+    await this.clickEditDateOfBirthButton();
+    
+  }
   // ========================== Click Methods ========================== 
   // Edit First Name text box
   editDateOfBirthTxtBox = async (): Promise<void> =>{
     console.log(" - accountProfilePage.editDateOfBirthTxtBox")
-    await this.typeTextBox(txtBoxEditDateOfBirth,"12302000");
+    //Update the date of birth text box
+    await this.typeTextBox(txtBoxEditDateOfBirth,"10301990");
     await this.page.press('[placeholder="Date\\ of\\ birth"]', 'Tab');
-    //await this.page.press('[placeholder="Date\\ of\\ birth"]', 'Tab');
-    //await this.page.press('[placeholder="Date\\ of\\ birth"]', 'Enter');
-    //await this.keyboardTextBox('');
   }
   saveDateOfBirthbtn = async (): Promise<void> =>{
     console.log(" - accountProfilePage.editDateOfBirthbtn")
+    // Click on save button
     await this.clickOnElement(btnSavebtn);
   }
 
@@ -48,7 +46,12 @@ export class AccountProfileDoBPage extends AccountProfilePage{
   // ========================== Assertion Methods ========================== 
   assertProfileDateOfBirthPageUrl = async (): Promise<void> => {
     console.log(" - accountProfilePage.assertProfileDateOfBirthPageUrl");
-    // Confirm the Profile Date of Birth Page URL is reached
+    //Click on Edit date of birth button
+    await this.clickEditDateOfBirthButton();
+    // Confirm the Profile Date of Birth text box is updated
+    await this.page.waitForSelector(txtBoxEditDateOfBirth);
+    let updatedDoB = await this.page.locator(txtBoxEditDateOfBirth).getAttribute('value');
+    expect(updatedDoB).toBe('1990-10-30');
     await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.account.url + '/profile/birth');
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
