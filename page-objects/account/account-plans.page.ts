@@ -1,8 +1,8 @@
 import { expect } from '@playwright/test';
 import UrlsUtils from '../../utils/urls.utils';
 import { LoginPage } from '../login/login.page';
-import { PlanRow } from './account-plans-page-helpers';
-import { PlansTable } from './account-plans-page-helpers';
+import { PlanRow } from './account.helpers';
+import { PlansTable } from './account.helpers';
 
 let url: string = UrlsUtils.legalshieldUrls.account.url + "/plans";
 

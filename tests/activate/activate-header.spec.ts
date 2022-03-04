@@ -25,7 +25,7 @@ test('Navigate to plans page in by clicking the Legalshield/IDShield logo', asyn
 });
 
 test('Reveal help information by clicking help button', async () => {
-  test.fixme(); // UAT and DEV discrepency, dev ticket in progress
+  test.fixme(); // UAT and DEV discrepency, follow up with peyton/joe
   console.log("Test Case: Reveal help information by clicking help button");
   // Click help button to reveal support numbers
   await activateHeaderPage.clickHelpButton();

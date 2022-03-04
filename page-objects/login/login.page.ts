@@ -95,7 +95,7 @@ export class LoginPage extends BasePage {
   }
 
   clickSignUpLink = async (): Promise<void> => {
-    console.log(" - loginPage.clickForgotPasswordLink");
+    console.log(" - loginPage.clickSignUpLink");
     // Click on the Forgot Password Link
     await this.clickOnElement(lnkSignUp);
     // Wait for document to load before subsequent steps
