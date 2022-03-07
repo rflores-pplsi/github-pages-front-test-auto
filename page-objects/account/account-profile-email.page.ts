@@ -22,6 +22,7 @@ export class AccountProfileEmailPage extends AccountProfilePage{
   accoutNavigationPage = new AccountNavigationPage(this.page);
 
 
+  
 
   // ========================== Process Methods ========================== 
   

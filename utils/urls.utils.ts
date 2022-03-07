@@ -37,6 +37,9 @@ export default class UrlsUtils {
     forms: {
       'url': `https://forms.${envUrlString}legalshield.com/`
     },
+    shieldAtWork: {
+        'url': `https://login.${envUrlString}shieldatwork.com/login?app=work&impact=Low&path=%2f`
+    }
   };
 
   static readonly legalshieldInternalUrls = {

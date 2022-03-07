@@ -1,8 +1,11 @@
 import { test, expect } from '@playwright/test';
+import urlsUtils from '../../utils/urls.utils';
 import { BasePage } from '../base.page';
+import { LoginPage } from '../login/login.page';
 
 // ========================== Selectors ==========================
-let url = 'https://login.dev-shieldatwork.com/login?app=work&impact=Low&path=%2f';
+//let url = 'https://login.dev-shieldatwork.com/login?app=work&impact=Low&path=%2f';
+let url = urlsUtils.legalshieldUrls.shieldAtWork.url;
 let txtEmail = '[placeholder="Email address/Username"]';
 let txtPassword = '[placeholder="Password"]';
 let btnSignIn = '#root button > span';
@@ -12,7 +15,7 @@ let groupTxt = '#root  .lsux-container--flex-items-center.mb-2 > h3';
 
 
 
-export class LsWorkLoginPage extends BasePage {
+export class LsWorkLoginPage extends LoginPage {
 
 
     // ========================== Process Methods ========================== 
