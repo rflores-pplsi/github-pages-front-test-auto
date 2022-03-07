@@ -4,7 +4,7 @@ import { BasePage } from '../base.page';
 import { LoginPage } from '../login/login.page';
 
 // ========================== Selectors ==========================
-//let url = 'https://login.dev-shieldatwork.com/login?app=work&impact=Low&path=%2f';
+
 let url = urlsUtils.legalshieldUrls.shieldAtWork.url;
 let txtEmail = '[placeholder="Email address/Username"]';
 let txtPassword = '[placeholder="Password"]';
