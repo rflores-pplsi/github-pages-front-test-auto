@@ -7,18 +7,19 @@ let lsWorkLoginPage: LsWorkLoginPage;
 
 test.beforeEach(async ({ page }) => {
     lsWorkLoginPage = new LsWorkLoginPage(page)
-    await lsWorkLoginPage.navigateToLsAtWork();
+    await lsWorkLoginPage.navigateToShieldAtWork();
 
 });
 
 test('Login with credentials', async ({ page }) => {
     // Login with your credentials
     await lsWorkLoginPage.loginWithCredentials();
-
+    // Verify that the login was successful
+    await lsWorkLoginPage.assertTextGroupManagment();
 });
 
 test('Search group by group number', async ({ page }) => {
-    test.setTimeout(120000);
+    //test.setTimeout(120000);
     // Login with your credentials
     await lsWorkLoginPage.loginWithCredentials();
     // Type in the search field 111452 group number and click on Search button
