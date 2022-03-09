@@ -13,7 +13,7 @@
   "keywords": [],
   "author": "",
   "devDependencies": {
-    "@playwright/test": "^1.18.1",
+    "@playwright/test": "^1.19.2",
     "@types/faker": "^5.5.9",
     "@types/zipcodes": "^8.0.2",
     "chai": "^4.3.4",

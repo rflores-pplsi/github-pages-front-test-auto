@@ -24,11 +24,6 @@ export class AccountProfileAddressPage extends AccountProfilePage{
 
 // Page Instances
 
-  goToProfilePage = async (): Promise<void> => {
-    console.log(" - accountProfilePage.goToProfilePage")
-    await this.page.goto(url, { waitUntil: 'networkidle' });
-    await this.login('mattfeeqa@gmail.com','Password10!');
-  }
 
   // ========================== Process Methods ========================== 
   addressForm = async (address1:string,zip:string) => {
@@ -36,7 +31,15 @@ export class AccountProfileAddressPage extends AccountProfilePage{
     await this.zipPostalEdittxtBox(zip);
   }
   // ========================== Navigate Methods ========================== 
+  
+  navigateToProfileAddressPage = async (): Promise<void> => {
+    console.log(" - accountProfilePage.goToProfilePage")
+    // Navigate to Profile page
+    await this.navigateToProfilePage();
+    // Click on Address edit button
+    await this.clickEditAddressButton();
 
+  }
   // ========================== Click Methods ============================= 
 
   // Click on save button

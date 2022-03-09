@@ -26,12 +26,6 @@ export class AccountProfilePhonePage extends AccountProfilePage{
 accountProfilePage = new AccountProfilePage(this.page);
 accoutNavigationPage = new AccountNavigationPage(this.page);
 
-goToProfilePhoneNumberPage = async (): Promise<void> => {
-console.log(" - accountProfilePage.goToProfileNamePage")
-await this.goToProfilePage();
-await this.clickEditPhoneNumberButton();
-    
-}
 
   // ========================== Process Methods ========================== 
 
@@ -143,7 +137,13 @@ deletePhoneNumberFun = async (phone:string): Promise<void> =>{
     await this.page.waitForLoadState('domcontentloaded');
   }
   // ========================== Navigate Methods ========================== 
-
+  // Navigate to Profile Phone page
+  navigateToProfilePhoneNumberPage = async (): Promise<void> => {
+    console.log(" - accountProfilePage.goToProfileNamePage")
+    await this.navigateToProfilePage();
+    await this.clickEditPhoneNumberButton();
+        
+    }
   // ========================== Click Methods ========================== 
 
 // Clicking the Add Phone button

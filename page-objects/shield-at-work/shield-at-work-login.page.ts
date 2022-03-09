@@ -12,6 +12,7 @@ let txtGroup = '#root  .lsux-container--flex-items-center.mb-2 > h3';
 let txtGroupManagment = 'h2:has-text("Group management")';
 
 
+
 export class LsWorkLoginPage extends LoginPage {
 
     // ========================== Process Methods ========================== 
@@ -23,6 +24,7 @@ export class LsWorkLoginPage extends LoginPage {
         await this.page.click(btnSignIn);
         await this.page.waitForTimeout(1000);
     }
+
 
 
     // ========================== Navigate Methods ==========================
@@ -47,4 +49,5 @@ export class LsWorkLoginPage extends LoginPage {
 
     }
      
-}
+
+
