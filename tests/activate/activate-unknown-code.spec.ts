@@ -10,13 +10,20 @@ let activateUnknowCodePage: ActivateUnkownCodePage;
 test.beforeEach(async ({page}) => {
   // Create instance of This Page Object
   activateUnknowCodePage  = new ActivateUnkownCodePage (page);
-  await activateUnknowCodePage.goTo(UrlsUtils.legalshieldUrls.activate.url);
+  // Attemt to reach Activate application
+  await activateUnknowCodePage.navigateToActivatePage();
+  // Login using LoginPage.login method
+  await activateUnknowCodePage.login(basicUser.email,basicUser.password);
+  // Click "Don't know your code?" link to navigate to unknown code page
+  await activateUnknowCodePage.clickDontKnowYourCodeLink();
 });
  
 test('Invalid email address triggers hint', async ({page}) => {
-  console.log("Test Case: Login from Activate app and confirm redirect");
-  // Login with basic account after being redirected to Login application
-  await activateUnknowCodePage.login(basicUser.email,basicUser.password);
-  // Confirm that login is successful by asserting the Activate url
-  await activateUnknowCodePage.assertActivatePageLoginRedirectUrl();
+  console.log("Test Case: Invalid email address triggers hint");
+  // Enter invalid email to trigger hint
+  await activateUnknowCodePage.enterEmail("invalidemail");
+  // Confirm email hint displayed when email is invalid
+  await activateUnknowCodePage.assertInvalidEmailAddressHintDisplayed();
+  // Confirm Send Code button is disabled
+  await activateUnknowCodePage.assertSendCodeButtonDisabled();
 });

@@ -62,6 +62,16 @@ export class BasePage{
         expect(locator).toHaveAttribute(attribute, value)
     }
 
+    assertElementIsEnabled = async (ele: string) : Promise<void> => {
+        const locator = this.page.locator(ele);
+        expect(locator).toBeEnabled();
+    }
+
+    assertElementIsDisabled = async (ele: string) : Promise<void> => {
+        const locator = this.page.locator(ele);
+        expect(locator).toBeDisabled();
+    }
+
     locateElement = async (ele:string) :Promise<void> => {
         await this.page.locator(ele);
     }

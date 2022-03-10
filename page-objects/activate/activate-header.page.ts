@@ -4,13 +4,13 @@ import { expect } from '@playwright/test';
 
 // ========================== Selectors ========================== 
 
-let imgSmallLogo= '#lsdsSmallLogoId';
-let imgLargeLogo = '#lsdsLargeLogoId';
-let txtTitle = '#lsux-page-title';
-let btnHelp = '#helpButton';
-let ddName = '#myButton';
-let lnkSignOut = 'div#myDropdown a:has-text("Sign out")';
-let ddHelp: string = '#helpDropdown';
+let imgSmallLogo : string= '#lsdsSmallLogoId';
+let imgLargeLogo : string = '#lsdsLargeLogoId';
+let txtTitle : string = '#lsux-page-title';
+let btnHelp : string = '#helpButton';
+let ddName : string = '#myButton';
+let lnkSignOut : string = 'div#myDropdown a:has-text("Sign out")';
+let ddHelp : string = '#helpDropdown';
 
 
 export class ActivateHeaderPage extends LoginPage {
