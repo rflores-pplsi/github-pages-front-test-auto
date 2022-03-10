@@ -14,17 +14,9 @@ test.beforeEach(async ({ page }) => {
 test('Login with credentials', async ({ page }) => {
     // Login with your credentials
     await lsWorkLoginPage.loginWithCredentials();
-    // Verify that the login was successful
-    await lsWorkLoginPage.assertTextGroupManagment();
-});
-
-test('Search group by group number', async ({ page }) => {
-    //test.setTimeout(120000);
-    // Login with your credentials
-    await lsWorkLoginPage.loginWithCredentials();
-    // Type in the search field 111452 group number and click on Search button
-    await lsWorkLoginPage.groupSearchByGroupNumber();
-    // Verify that the group is displayed on the group management page
+    // Verify that group management is displayed
     await lsWorkLoginPage.assertTextGroup();
 
 });
+
+
