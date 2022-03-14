@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
 import { AccountPlansPage } from '../../page-objects/account/account-plans.page';
 import { LoginPage } from '../../page-objects/login/Login.page';
-import { PlansTable } from '../../page-objects/account/account-plans-page-helpers';
+import { PlansTable } from '../../page-objects/account/account.helpers';
 import { withPlans } from '../../utils/user.utils';
 
 // Define Pages

@@ -9,7 +9,7 @@
   - [Browser/Device Support:](#browserdevice-support)
   - [Learning resources](#learning-resources-1)
 - [Command Line](#command-line)
-- [Install](#install)
+- [Project Setup](#project-setup)
 - [Run tests](#run-tests)
 - [Generate report](#generate-report)
 - [Page Object Model (POM)](#page-object-model-pom)
@@ -129,7 +129,11 @@ npx playwright codegen https://www.google.com
 Run test case with tag
 npx playwright test --grep @tagName --headed --browser=firefox
 ```
-# Install
+# Project Setup
+
+1. Clone the playwright repo
+    - asdfasd
+2. 
 
 npm i -D allure-playwright
 
@@ -144,10 +148,6 @@ npx playwright test \tests\login\login-header.spec.ts --reporter=html
 
 Run the HTML report:
 npx playwright show-report
-
-Generate HTML Allure report:
-
-allure generate ./allure-results --clean && allure open ./allure-report
 
 # Page Object Model (POM)
 ## File Structure

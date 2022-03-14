@@ -33,7 +33,7 @@ test('Login by submitting form with Enter key', async ({ page }) => {
 
 // TODO: Get an account with a username and add it to .env
 // Login Page test using username
-test.only('Login with username', async ({ page }) => {
+test('Login with username', async ({ page }) => {
   console.log("Test Case: Login with username");
   // Log in with a basic user account with a username
   await loginPage.login(withUsername.email,withUsername.password);
