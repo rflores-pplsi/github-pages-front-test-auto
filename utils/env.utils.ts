@@ -1,5 +1,11 @@
+/**
+ * @class EnvironmentUtil
+ */
 class EnvironmentUtil {
-
+  /**
+   * @return {*}
+   * @memberof EnvironmentUtil
+   */
   getEnv() {
     let env = null;
 
@@ -14,6 +20,12 @@ class EnvironmentUtil {
     return env;
   }
 
+  /**
+   *
+   *
+   * @return {*}
+   * @memberof EnvironmentUtil
+   */
   getEnvUrlString() {
     let envUrlString = null;
     const env = this.getEnv();
@@ -28,31 +40,42 @@ class EnvironmentUtil {
       case 'prod':
         envUrlString = '';
         break;
-    }   
+    }
 
     return envUrlString;
   }
 
+  /**
+   *
+   *
+   * @return {*}
+   * @memberof EnvironmentUtil
+   */
   getLaunchUrlString() {
-      let envLaunchUrlString = null;
-      const env = this.getEnv();
-  
-      switch (env) {
-        case 'dev':
-          envLaunchUrlString = 'lsusdev';
-          break;
-        case 'uat':
-          envLaunchUrlString = 'uat';
-          break;
-        case 'prod':
-          envLaunchUrlString = 'prod';
-          break;
-      }   
-  
-      return envLaunchUrlString;
+    let envLaunchUrlString = null;
+    const env = this.getEnv();
 
+    switch (env) {
+      case 'dev':
+        envLaunchUrlString = 'lsusdev';
+        break;
+      case 'uat':
+        envLaunchUrlString = 'uat';
+        break;
+      case 'prod':
+        envLaunchUrlString = 'prod';
+        break;
+    }
+
+    return envLaunchUrlString;
   }
 
+  /**
+   *
+   *
+   * @return {*}
+   * @memberof EnvironmentUtil
+   */
   getWordpessEnvURLString() {
     let wordPressEnvUrlString = null;
     const env = this.getEnv();
@@ -71,9 +94,14 @@ class EnvironmentUtil {
     }
 
     return wordPressEnvUrlString;
-
   }
 
+  /**
+   *
+   *
+   * @return {*}
+   * @memberof EnvironmentUtil
+   */
   getEnvUrlWPString() {
     let envUrlString = null;
     const env = this.getEnv();
