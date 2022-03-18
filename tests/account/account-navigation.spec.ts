@@ -5,17 +5,17 @@ import { AccountNavigationPage } from '../../page-objects/account/account-naviga
 // Page Definition
 let accountNavigationPage: AccountNavigationPage;
 
-test.beforeEach(async ({page}) => {
-  //Create instance of this page
+test.beforeEach(async ({ page }) => {
+  // Create instance of this page
   accountNavigationPage = new AccountNavigationPage(page);
   await accountNavigationPage.navigateToAccountPlansPage();
-  await accountNavigationPage.login(basicUser.email,basicUser.password);
-    // Wait for page to finish loading
+  await accountNavigationPage.login(basicUser.email, basicUser.password);
+  // Wait for page to finish loading
 });
 
 // Navigate to Plans Page from Account Navigation
 test('Navigate to plans page', async ({ page }) => {
-  console.log("Test Case: Navigate to plans page");
+  console.log('Test Case: Navigate to plans page');
   // Click Plans Link
   await accountNavigationPage.clickPlansLink();
   // Confirm URL of the Profile Page
@@ -24,7 +24,7 @@ test('Navigate to plans page', async ({ page }) => {
 
 // Navigate to Profile Page from Account Navigation
 test('Navigate to profile page', async ({ page }) => {
-  console.log("Test Case: Navigate to profile page");
+  console.log('Test Case: Navigate to profile page');
   // Click Profile Link
   await accountNavigationPage.clickProfileLink();
   // Confirm URL of the Profile Page
@@ -33,27 +33,27 @@ test('Navigate to profile page', async ({ page }) => {
 
 // Navigate to Payments Page from Account Navigation
 test('Navigate to payments page', async ({ page }) => {
-  console.log("Test Case: Navigate to payments page");
+  console.log('Test Case: Navigate to payments page');
   // Click Payments Link
   await accountNavigationPage.clickPaymentsLink();
   // Confirm URL of the Profile Page
   await accountNavigationPage.assertAccountPaymentsUrl();
-});  
+});
 
 // Navigate to Security Page from Account Navigation
 test('Navigate to security page', async ({ page }) => {
-  console.log("Test Case: Navigate to security page");
+  console.log('Test Case: Navigate to security page');
   // Click Security Link
   await accountNavigationPage.clickSecurityLink();
   // Confirm URL of the Profile Page
   await accountNavigationPage.assertAccountSecurityUrl();
-});  
+});
 
 // Navigate to Resources Page from Account Navigation
 test('Navigate to resources page', async ({ page }) => {
-  console.log("Test Case: Navigate to resources page");
+  console.log('Test Case: Navigate to resources page');
   // Click Resources Link
   await accountNavigationPage.clickResourcesLink();
   // Confirm URL of the Profile Page
   await accountNavigationPage.assertAccountResourcesUrl();
-});  
+});
