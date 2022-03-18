@@ -1,45 +1,50 @@
 import EnvironmentUtil from './env.utils';
-require ('dotenv').config();
+require('dotenv').config();
 
 let envUrlString = EnvironmentUtil.getEnvUrlString();
 let envLaunchUrlString = EnvironmentUtil.getLaunchUrlString();
 
+/**
+ *
+ *
+ * @export
+ * @class UrlsUtils
+ */
 export default class UrlsUtils {
-  
   static readonly legalshieldUrls = {
     account: {
-      'url': `https://accountsv2.${envUrlString}legalshield.com`,
+      url: `https://accountsv2.${envUrlString}legalshield.com`,
     },
     login: {
-      'url': `https://login.${envUrlString}legalshield.com`,
+      url: `https://login.${envUrlString}legalshield.com`,
     },
     status: {
-      'url': `https://status.${envUrlString}legalshield.com`,
+      url: `https://status.${envUrlString}legalshield.com`,
     },
     activate: {
-      'url': `https://activate.${envUrlString}legalshield.com`,
+      url: `https://activate.${envUrlString}legalshield.com`,
     },
     checkout: {
-      'url': `https://checkoutv3.${envUrlString}legalshield.com`,
+      url: `https://checkoutv3.${envUrlString}legalshield.com`,
     },
     ids: {
-      'url': `https://ids.${envUrlString}legalshield.com/`,
-    }, 
+      url: `https://ids.${envUrlString}legalshield.com/`,
+    },
     ids4b: {
-      'url': `https://ids4b.${envUrlString}legalshield.com/`,
-    }, 
+      url: `https://ids4b.${envUrlString}legalshield.com/`,
+    },
     legal: {
-      'url': `https://legal.${envUrlString}legalshield.com/`
-    }, 
+      url: `https://legal.${envUrlString}legalshield.com/`,
+    },
     launch: {
-      'url': `https://mybusiness.${envUrlString}legalshield.com/`
+      url: `https://mybusiness.${envUrlString}legalshield.com/`,
     },
     forms: {
-      'url': `https://forms.${envUrlString}legalshield.com/`
+      url: `https://forms.${envUrlString}legalshield.com/`,
     },
     shieldAtWork: {
-        'url': `https://login.${envUrlString}shieldatwork.com/login?app=work&impact=Low&path=%2f`
-    }
+      url: `https://login.${envUrlString}shieldatwork.com/login?app=work&impact=Low&path=%2f`,
+    },
   };
 
   static readonly legalshieldInternalUrls = {
@@ -49,7 +54,7 @@ export default class UrlsUtils {
     // },
     
     member_search: {
-      'url': `https://member-search.${envUrlString}legalshieldinternal.com`,
+      url: `https://member-search.${envUrlString}legalshieldinternal.com`,
     },
     planalyzer: {
       'url': `https://planalyzer.${envUrlString}legalshieldinternal.com/triage-tool/csr-checkout`,
@@ -58,37 +63,37 @@ export default class UrlsUtils {
 
   static readonly pplsiUrls = {
     home: {
-      'url': 'https://www.pplsi.com',
+      url: 'https://www.pplsi.com',
     },
     termsOfService: {
-      'url': 'https://www.legalshield.com/terms-service?',
-    }
+      url: 'https://www.legalshield.com/terms-service?',
+    },
   };
 
   static readonly memberPerksUrls = {
     login: {
-      'url': 'https://legalshield.perkspot.com/login',
+      url: 'https://legalshield.perkspot.com/login',
     },
   };
-  
+
   static readonly launchUrls = {
     prodUrl: {
-      'url': 'https://legalshield.com/start-a-business/legal-support//',
+      url: 'https://legalshield.com/start-a-business/legal-support//',
     },
     devUrl: {
-      'url': 'https://'+ envLaunchUrlString +'.wpengine.com/start-a-business/legal-support/',
+      url: 'https://' + envLaunchUrlString + '.wpengine.com/start-a-business/legal-support/',
     },
     uatUrl: {
-      'url': 'https://'+ envLaunchUrlString +'-legalshield.com/start-a-business/legal-support/',
-    }
+      url: 'https://' + envLaunchUrlString + '-legalshield.com/start-a-business/legal-support/',
+    },
   };
-  
+
   static readonly walsUrls = {
     devUrl: {
-      'url': ' https://lspro.dev.wearelegalshield.com/launch',
+      url: ' https://lspro.dev.wearelegalshield.com/launch',
     },
     uatUrl: {
-      'url': 'https://lspro.stage.wearelegalshield.com/launch',
-    }
+      url: 'https://lspro.stage.wearelegalshield.com/launch',
+    },
   };
 }
