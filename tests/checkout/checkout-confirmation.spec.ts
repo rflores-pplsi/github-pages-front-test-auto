@@ -7,14 +7,14 @@ import { CheckoutConfirmationPage } from '../../page-objects/checkout/checkout-c
 let checkoutConfirmationPage:CheckoutConfirmationPage;
 
 // Setup environment before each test
-test.beforeEach(async ({page}) => {
+test.beforeEach( async ({page}) => {
     checkoutConfirmationPage = new CheckoutConfirmationPage(page);
     await checkoutConfirmationPage.navigateToPlanalyzerOktaLogin();
+    await checkoutConfirmationPage.loginThroughOkta();
 })
 
 //Purchase Legal Plan for Oklahoma
 test.only('Purchase Legal Plan for Oklahoma',async ({page}) =>{
-
-await checkoutConfirmationPage.loginThroughOkta();  
+  await page.pause();
 
 })

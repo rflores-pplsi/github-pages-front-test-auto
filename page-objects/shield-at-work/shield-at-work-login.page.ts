@@ -50,4 +50,4 @@ export class LsWorkLoginPage extends LoginPage {
     }
      
 
-
+}
