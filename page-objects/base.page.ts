@@ -1,73 +1,163 @@
-import { expect, Locator,BrowserContext, Page } from '@playwright/test';
+import { expect, BrowserContext, Page } from '@playwright/test';
 
-
-let page:Page;
 let context: BrowserContext;
-let plansElement = '.lsux-heading.mx-auto.lsux-heading--t26';
-let plansTxt = 'Plans';
 
-export class BasePage{
-    context: BrowserContext
-    page:Page;
-    constructor(page:Page){
-        this.page = page;
-        this.context = context;
-    }
-    
-    goTo  = async  (url:string):Promise<void>  => {
-        await this.page.goto(url, { waitUntil: 'networkidle' });
-    }
+/**
+ * @export
+ * @class BasePage
+ */
+export class BasePage {
+  context: BrowserContext;
+  page: Page;
+  /**
+   * Creates an instance of BasePage.
+   * @param {Page} page
+   * @memberof BasePage
+   */
+  constructor(page: Page) {
+    this.page = page;
+    this.context = context;
+  }
 
-    isElementVisible = async (ele:string):Promise<boolean> => {
-         let visibility = await this.page.isVisible(ele);
-         return visibility;
-    }
+  /**
+   * @param {string} url
+   * @memberof BasePage
+   */
+  goTo = async (url: string): Promise<void> => {
+    await this.page.goto(url, { waitUntil: 'networkidle' });
+  };
 
-    clickOnElement = async (ele:string):Promise<void> => {
-         await this.page.locator(ele).click();
-    }
+  /**
+   * @param {string} ele
+   * @memberof BasePage
+   */
+  isElementVisible = async (ele: string): Promise<boolean> => {
+    const visibility = await this.page.isVisible(ele);
+    return visibility;
+  };
 
-    fillTextBox = async (ele:string, txt:string):Promise<void> => {
-        await this.page.fill(ele, txt);
-    }
+  /**
+   * @param {string} ele
+   * @memberof BasePage
+   */
+  clickOnElement = async (ele: string): Promise<void> => {
+    await this.page.locator(ele).click();
+  };
 
-    typeTextBox = async (ele:string, txt:string):Promise<void> => {
-        await this.page.type(ele, txt);
-    }
+  /**
+   * @param {string} ele
+   * @param {string} txt
+   * @memberof BasePage
+   */
+  fillTextBox = async (ele: string, txt: string): Promise<void> => {
+    await this.page.fill(ele, txt);
+  };
 
-    keyboardTextBox = async (txt:string):Promise<void> => {
-        await this.page.keyboard.insertText(txt);
-    }
+  /**
+   * @param {string} ele
+   * @param {string} txt
+   * @memberof BasePage
+   */
+  typeTextBox = async (ele: string, txt: string): Promise<void> => {
+    await this.page.type(ele, txt);
+  };
 
-    assertElementHasText = async (ele:string,txt:string):Promise<void> => {
-        await expect(this.page.locator(ele)).toHaveText(txt);
-    }
+  /**
+   * @param {string} txt
+   * @memberof BasePage
+   */
+  keyboardTextBox = async (txt: string): Promise<void> => {
+    await this.page.keyboard.insertText(txt);
+  };
 
-    assertElementContainsText = async (selector:string,txt:string):Promise<void> => {
-        let locator = this.page.locator(selector);
-        await expect(locator).toContainText(txt);
-    }
+  /**
+   * @param {string} ele
+   * @param {string} txt
+   * @memberof BasePage
+   */
+  assertElementHasText = async (ele: string, txt: string): Promise<void> => {
+    await expect(this.page.locator(ele)).toHaveText(txt);
+  };
 
-    assertUrl = async (page:Page, url:string) :Promise<void> => {
-        await expect(page).toHaveURL(url);
-    }
+  /**
+   * @param {string} selector
+   * @param {string} txt
+   * @memberof BasePage
+   */
+  assertElementContainsText = async (selector: string, txt: string): Promise<void> => {
+    const locator = this.page.locator(selector);
+    await expect(locator).toContainText(txt);
+  };
 
-    assertElementIsVisible = async (ele:string) : Promise<void> => {
-        const locator = this.page.locator(ele);
-        await expect(locator).toBeVisible();
-    }
+  /**
+   * @param {Page} page
+   * @param {string} url
+   * @memberof BasePage
+   */
+  assertUrl = async (page: Page, url: string): Promise<void> => {
+    await expect(page).toHaveURL(url);
+  };
 
-    locateElement = async (ele:string) :Promise<void> => {
-        await this.page.locator(ele);
-    }
+  /**
+   * @param {string} ele
+   * @memberof BasePage
+   */
+  assertElementIsVisible = async (ele: string): Promise<void> => {
+    const locator = this.page.locator(ele);
+    await expect(locator).toBeVisible();
+  };
 
-    createRandomInt = async (max = 10000): Promise<number> => {
-        return Math.floor(Math.random() * max);
-    }
-    
-    selectFromDropDownMenu = async (ele:string, label:string): Promise<void> => {
-        await this.page.selectOption(ele, { label:label });
-    }    
-    
+  /**
+   * @param {string} ele
+   * @param {string} attribute
+   * @param {string} value
+   * @memberof BasePage
+   */
+  assertElementAttributeValue = async (ele: string, attribute: string, value: string): Promise<void> => {
+    const locator = this.page.locator(ele);
+    expect(locator).toHaveAttribute(attribute, value);
+  };
+
+  /**
+   * @param {string} ele
+   * @memberof BasePage
+   */
+  assertElementIsEnabled = async (ele: string): Promise<void> => {
+    const locator = this.page.locator(ele);
+    expect(locator).toBeEnabled();
+  };
+
+  /**
+   * @param {string} ele
+   * @memberof BasePage
+   */
+  assertElementIsDisabled = async (ele: string): Promise<void> => {
+    const locator = this.page.locator(ele);
+    expect(locator).toBeDisabled();
+  };
+
+  /**
+   * @param {string} ele
+   * @memberof BasePage
+   */
+  locateElement = async (ele: string): Promise<void> => {
+    await this.page.locator(ele);
+  };
+
+  /**
+   * @param {number} [max=10000]
+   * @memberof BasePage
+   */
+  createRandomInt = async (max = 10000): Promise<number> => {
+    return Math.floor(Math.random() * max);
+  };
+
+  /**
+   * @param {string} ele
+   * @param {string} label
+   * @memberof BasePage
+   */
+  selectFromDropDownMenu = async (ele: string, label: string): Promise<void> => {
+    await this.page.selectOption(ele, { label: label });
+  };
 }
-

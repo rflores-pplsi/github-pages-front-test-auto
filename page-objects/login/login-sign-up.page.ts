@@ -1,41 +1,38 @@
-import { expect } from '@playwright/test';
-import UrlsUtils from '../../utils/urls.utils';
-import { LoginPage }  from './login.page'
-require ('dotenv').config;
+import { LoginPage } from './login.page';
 
-let url: string = UrlsUtils.legalshieldUrls.login.url + '/sign-up';
+// ========================== Selectors ==========================
+const txtEmail: string = '[placeholder="Email"]';
+const txtPassword: string = '[placeholder="Password"]';
+const txtConfirmPassword: string = '[placeholder="Re-enter Password"]';
+const btnSignUp: string = 'button:has-text("Sign up")';
 
-// ========================== Selectors ========================== 
-let txtEmail: string = '[placeholder="Email"]';
-let txtPassword: string ='[placeholder="Password"]';
-let txtConfirmPassword: string = '[placeholder="Re-enter Password"]';
-let btnSignUp: string = 'button:has-text("Sign up")';
-let lnkSignIn: string = 'a:has-text("Sign in")';
-
+/**
+ * @export
+ * @class LoginSignUpPage
+ * @extends {LoginPage}
+ */
 export class LoginSignUpPage extends LoginPage {
- 
-// ========================== Process Methods ========================== 
-  
+  // ========================== Process Methods ==========================
+
   signUp = async (): Promise<void> => {
-    console.log(" - loginSignUpPage.signUp")
+    console.log(' - loginSignUpPage.signUp');
     // generate random number to append to new email
-    const randomEmail = 'qatesting+' + await this.createRandomInt() + '@yopmail.com';
+    const randomEmail = 'qatesting+' + (await this.createRandomInt()) + '@yopmail.com';
     // Enter email or username into input
-    await this.fillTextBox(txtEmail,randomEmail);
+    await this.fillTextBox(txtEmail, randomEmail);
     // Enter password into input
-    await this.fillTextBox(txtPassword,"Password10!");
+    await this.fillTextBox(txtPassword, 'Password10!');
     // Enter password into input to confirm password
-    await this.fillTextBox(txtConfirmPassword,"Password10!");
+    await this.fillTextBox(txtConfirmPassword, 'Password10!');
     // Click on Sign In to submit login form
     await this.clickOnElement(btnSignUp);
     // Wait for page to finish loading
     await this.page.waitForLoadState('networkidle');
-  } 
+  };
 
-  // ========================== Navigate Methods ========================== 
- 
-  // ========================== Click Methods ========================== 
+  // ========================== Navigate Methods ==========================
 
-  // ========================== Assertion Methods ========================== 
+  // ========================== Click Methods ==========================
 
+  // ========================== Assertion Methods ==========================
 }
