@@ -45,6 +45,25 @@ class EnvironmentUtil {
     return envUrlString;
   }
 
+  getDropDownEnvironmentOptions() {
+    let envDropDownString = "";
+    const env = this.getEnv();
+
+    // This is to convert Environment varibale set in the command line to a format usable by planalyzer dropdown
+    switch (env) {
+      case 'dev':
+        envDropDownString = 'STG';
+        break;
+      case 'uat':
+        envDropDownString = 'UAT';
+        break;
+      case 'prod':
+        envDropDownString = 'PROD';
+        break;
+    }
+
+    return envDropDownString;
+  }
   /**
    *
    *

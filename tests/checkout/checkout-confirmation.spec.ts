@@ -1,7 +1,7 @@
 //To get this page: 
 //Okta login, V3 login, Checkout Personal Info Page, Payment Page, Confirmation Page
 import { test } from '@playwright/test';
-import { CheckoutConfirmationPage } from '../../page-objects/checkout/checkout-confirmation-page';
+import { CheckoutConfirmationPage } from '../../page-objects/checkout/checkout-confirmation.page';
 
 // create instance of Page
 let checkoutConfirmationPage:CheckoutConfirmationPage;
@@ -15,6 +15,6 @@ test.beforeEach( async ({page}) => {
 
 //Purchase Legal Plan for Oklahoma
 test.only('Purchase Legal Plan for Oklahoma',async ({page}) =>{
-  await page.pause();
+  await checkoutConfirmationPage.createOrderRedirectToCheckout("D2C","LegalShield","Oklahoma","en-US","","",["Legal Plan"]);
 
 })
