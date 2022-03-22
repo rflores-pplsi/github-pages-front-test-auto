@@ -17,8 +17,6 @@ export class PlanalyzerGroupCheckoutPage extends OktaPage {
 
 // ========================== Click Methods ============================== 
 
-
-  }
 // ========================== Assertion Methods ==========================
 
-}
+

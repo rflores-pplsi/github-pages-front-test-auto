@@ -37,10 +37,10 @@ loginThroughOkta = async ():Promise<void> => {
     await this.page.waitForLoadState('networkidle');
   }
 
-  navigateToPlanalyzerOktaLogin = async ():Promise<void> => {
+  navigateToPlanalyzerCsrCheckoutOktaLogin = async ():Promise<void> => {
     console.log(" - loginPage.navigateToPlanalyzerSearchOktaLogin");    
     // Navigate to Okta
-    await this.goTo(UrlsUtils.legalshieldInternalUrls.planalyzer.url);
+    await this.goTo(UrlsUtils.legalshieldInternalUrls.planalyzer_csr_checkout.url);
     // Wait for page to finish loading
     await this.page.waitForLoadState('networkidle');
   }

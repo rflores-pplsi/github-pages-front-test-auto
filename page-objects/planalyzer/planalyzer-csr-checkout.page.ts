@@ -11,7 +11,7 @@ let ddlRegion: string = 'text=RegionChoose RegionAlabamaAlaskaArizonaArkansasCal
 let ddlMarketLocal: string = 'text=MarketLocaleChoose MarketLocaleen-CAen-USes-USfr-CA >> select';
 let txtPrepaidMonth: string = '[placeholder="Pre-paid\ months"]';
 let txtCouponCode: string = '[placeholder="Coupon\ code"]';
-let btnShowReults: string = 'button:has-text("Show Results")';
+let btnShowResults: string = 'button:has-text("Show Results")';
 let chkLegalPlan: string = 'id=LPUS21';
 // let txtEmailOrUsername: string = '';
 
@@ -97,7 +97,7 @@ clickPlanCheckbox = async (plans: Array<string>): Promise<void> => {
 clickShowResults = async (): Promise<void> => {
     console.log(" - planalyzerCsrCheckoutPage.clickShowResults");
     // Click on the Search Results Button
-    await this.clickOnElement(btnShowReults);
+    await this.clickOnElement(btnShowResults);
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   }

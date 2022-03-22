@@ -9,7 +9,7 @@ let checkoutConfirmationPage:CheckoutConfirmationPage;
 // Setup environment before each test
 test.beforeEach( async ({page}) => {
     checkoutConfirmationPage = new CheckoutConfirmationPage(page);
-    await checkoutConfirmationPage.navigateToPlanalyzerOktaLogin();
+    await checkoutConfirmationPage.navigateToPlanalyzerCsrCheckoutOktaLogin();
     await checkoutConfirmationPage.loginThroughOkta();
 })
 
