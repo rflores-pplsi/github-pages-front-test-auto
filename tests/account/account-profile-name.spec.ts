@@ -11,7 +11,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 // Navigate to the Profile Name page
-test.only('Edit Names', async ({ page }) => {
+test('Edit Names', async ({ page }) => {
   console.log('Test Case: Edit Names');
   // Edit First Name Text Box
   await accountProfileNamePage.editNameForm();
