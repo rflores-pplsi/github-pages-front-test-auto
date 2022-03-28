@@ -4,7 +4,6 @@ import { PlanalyzerCsrCheckoutPage } from '../planalyzer/planalyzer-csr-checkout
 import EnvironmentUtil from '../../utils/env.utils';
 
 // ========================== Selectors ==================================
-let ddlEnvironment: string = 'text=EnvironmentUATSTGPROD >> select';
 
 export class CheckoutConfirmationPage extends PlanalyzerCsrCheckoutPage {
 
