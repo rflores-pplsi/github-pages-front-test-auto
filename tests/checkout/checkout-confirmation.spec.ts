@@ -16,5 +16,6 @@ test.beforeEach( async ({page}) => {
 //Purchase Legal Plan for Oklahoma
 test.only('Purchase Legal Plan for Oklahoma',async ({page}) =>{
   await checkoutConfirmationPage.createOrderRedirectToCheckout("D2C","LegalShield","Oklahoma","en-US","","",["Legal Plan"]);
+  await page.pause();
 
 })

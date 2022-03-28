@@ -1,26 +1,44 @@
-import { expect } from '@playwright/test';        // import expect functionality from playwright
-import UrlsUtils from '../../utils/urls.utils';   // import class of Urls
-import { OktaPage } from '../okta/okta.page';  // import the OktaPage for extension
+import { OktaPage } from '../okta/okta.page';
 import EnvironmentUtil from '../../utils/env.utils';
-
 // ========================== Selectors ==================================
-let ddlEnvironment: string = 'text=EnvironmentUATSTGPROD >> select';
-let ddlChannel: string = 'text=ChannelChoose ChannelD2CNetworkSolutions >> select';
-let ddlSubChannel: string = 'text=SubchannelChoose SubchannelLegalShieldIDShield >> select';
-let ddlRegion: string = 'text=RegionChoose RegionAlabamaAlaskaArizonaArkansasCaliforniaColoradoConnecticutDela >> select';
-let ddlMarketLocal: string = 'text=MarketLocaleChoose MarketLocaleen-CAen-USes-USfr-CA >> select';
-let txtPrepaidMonth: string = '[placeholder="Pre-paid\ months"]';
-let txtCouponCode: string = '[placeholder="Coupon\ code"]';
-let btnShowResults: string = 'button:has-text("Show Results")';
-let chkLegalPlan: string = 'id=LPUS21';
-// let txtEmailOrUsername: string = '';
-
-
+const ddlEnvironment: string = 'text=EnvironmentUATSTGPROD >> select';
+const ddlChannel: string = 'text=ChannelChoose ChannelD2CNetworkSolutions >> select';
+const ddlSubChannel: string = 'text=SubchannelChoose SubchannelLegalShieldIDShield >> select';
+const ddlRegion: string = 'text=RegionChoose RegionAlabamaAlaskaArizonaArkansasCaliforniaColoradoConnecticutDela >> select';
+const ddlMarketLocal: string = 'text=MarketLocaleChoose MarketLocaleen-CAen-USes-USfr-CA >> select';
+const txtPrepaidMonth: string = '[placeholder="Pre-paid months"]';
+const txtCouponCode: string = '[placeholder="Coupon code"]';
+const btnShowResults: string = 'button:has-text("Show Results")';
+const btnGoToCheckout: string = 'button:has-text("GO TO CHECKOUT")';
+// eslint-disable-next-line valid-jsdoc
+/**
+ *
+ * @export
+ * @class PlanalyzerCsrCheckoutPage
+ * @extends {OktaPage}
+ */
 export class PlanalyzerCsrCheckoutPage extends OktaPage {
-
-// ========================== Process Methods ============================
-createOrderRedirectToCheckout = async (channel : string, subChannel: string, region : string, marketLocale : string, prepaidMonths : string = "", couponCode : string = "", plans : Array<string> ): Promise<void> => { 
-    console.log(" - planalyzerCsrCheckoutPage.createLegalPlanOklahomaOrderRedirectToCheckout");
+  // ========================== Process Methods ============================
+  /**
+   * @param {string} channel
+   * @param {string} subChannel
+   * @param {string} region
+   * @param {string} marketLocale
+   * @param {string} [prepaidMonths='']
+   * @param {string} [couponCode='']
+   * @param {Array<string>} plans
+   * @memberof PlanalyzerCsrCheckoutPage
+   */
+  createOrderRedirectToCheckout = async (
+    channel: string,
+    subChannel: string,
+    region: string,
+    marketLocale: string,
+    prepaidMonths: string = '',
+    couponCode: string = '',
+    plans: Array<string>
+  ): Promise<void> => {
+    console.log(' - planalyzerCsrCheckoutPage.createLegalPlanOklahomaOrderRedirectToCheckout');
     await this.selectEnvironment();
     await this.selectChannel(channel);
     await this.selectSubChannel(subChannel);
@@ -30,84 +48,61 @@ createOrderRedirectToCheckout = async (channel : string, subChannel: string, reg
     await this.enterCouponCode(couponCode);
     await this.clickShowResults();
     await this.clickPlanCheckbox(plans);
-}
-
-selectEnvironment = async (): Promise<void> => { 
-    console.log(" - planalyzerCsrCheckoutPage.selectEnvironment");
+    await this.clickGoToCheckout();
+  };
+  selectEnvironment = async (): Promise<void> => {
+    console.log(' - planalyzerCsrCheckoutPage.selectEnvironment');
     const environmentDropDownString = EnvironmentUtil.getDropDownEnvironmentOptions();
     await this.selectFromDropDownMenu(ddlEnvironment, environmentDropDownString);
-}
-
-selectChannel = async (channel: string): Promise<void> => { 
-    console.log(" - planalyzerCsrCheckoutPage.selectChannel");
-    await this.selectFromDropDownMenu(ddlChannel, channel );
-}
-
-selectSubChannel = async (subChannel: string): Promise<void> => { 
-    console.log(" - planalyzerCsrCheckoutPage.selectSubChannel");
+  };
+  selectChannel = async (channel: string): Promise<void> => {
+    console.log(' - planalyzerCsrCheckoutPage.selectChannel');
+    await this.selectFromDropDownMenu(ddlChannel, channel);
+  };
+  selectSubChannel = async (subChannel: string): Promise<void> => {
+    console.log(' - planalyzerCsrCheckoutPage.selectSubChannel');
     await this.selectFromDropDownMenu(ddlSubChannel, subChannel);
-}
-
-selectRegion = async (region: string): Promise<void> => { 
-    console.log(" - planalyzerCsrCheckoutPage.selectRegion");
+  };
+  selectRegion = async (region: string): Promise<void> => {
+    console.log(' - planalyzerCsrCheckoutPage.selectRegion');
     await this.selectFromDropDownMenu(ddlRegion, region);
-}
-
-selectMarketLocale = async (marketLocale: string): Promise<void> => { 
-    console.log(" - planalyzerCsrCheckoutPage.selectMarketLocale");
+  };
+  selectMarketLocale = async (marketLocale: string): Promise<void> => {
+    console.log(' - planalyzerCsrCheckoutPage.selectMarketLocale');
     await this.selectFromDropDownMenu(ddlMarketLocal, marketLocale);
-}
-
-enterPrepaidMonths = async (prepaidMonths: string): Promise<void> => { 
-    console.log(" - planalyzerCsrCheckoutPage.enterPrepaidMonths");
+  };
+  enterPrepaidMonths = async (prepaidMonths: string): Promise<void> => {
+    console.log(' - planalyzerCsrCheckoutPage.enterPrepaidMonths');
     await this.fillTextBox(txtPrepaidMonth, prepaidMonths);
-}
-
-enterCouponCode = async (couponCode: string): Promise<void> => { 
-    console.log(" - planalyzerCsrCheckoutPage.enterCouponCode");
+  };
+  enterCouponCode = async (couponCode: string): Promise<void> => {
+    console.log(' - planalyzerCsrCheckoutPage.enterCouponCode');
     await this.fillTextBox(txtCouponCode, couponCode);
-}
-
-
-
-
-// ========================== Navigate Methods ===========================
-
-// ========================== Click Methods ============================== 
-
-clickPlanCheckbox = async (plans: Array<string>): Promise<void> => { 
-    console.log(" - planalyzerCsrCheckoutPage.clickPlanCheckbox");
+  };
+  // ========================== Navigate Methods ===========================
+  // ========================== Click Methods ==============================
+  /**
+   * @param {Array<string>} plans
+   * @memberof PlanalyzerCsrCheckoutPage
+   */
+  clickPlanCheckbox = async (plans: Array<string>): Promise<void> => {
+    console.log(' - planalyzerCsrCheckoutPage.clickPlanCheckbox');
     const longName = plans[0];
-    let ele: string = "";
-    switch (longName) {
-        case 'Legal Plan':
-          ele = chkLegalPlan;
-          break;
-        case 'uat':
-          ele = 'UAT';
-          break;
-        case 'prod':
-          ele = 'PROD';
-          break;
-      }
-  
-    await this.clickOnElement(ele);
-}
-
-clickShowResults = async (): Promise<void> => {
-    console.log(" - planalyzerCsrCheckoutPage.clickShowResults");
+    await this.clickOnElement(`//div[contains(@class, 'product-name') and starts-with(.,'${longName}')]`);
+  };
+  clickShowResults = async (): Promise<void> => {
+    console.log(' - planalyzerCsrCheckoutPage.clickShowResults');
     // Click on the Search Results Button
     await this.clickOnElement(btnShowResults);
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
-  }
+  };
   clickGoToCheckout = async (): Promise<void> => {
-    console.log(" - planalyzerCsrCheckoutPage.clickGoToCheckout");
+    console.log(' - planalyzerCsrCheckoutPage.clickGoToCheckout');
     // Click on the Search Results Button
     await this.clickOnElement(btnGoToCheckout);
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
-  }
-// ========================== Assertion Methods ==========================
-
+  };
+  // ========================== Assertion Methods ==========================
 }
