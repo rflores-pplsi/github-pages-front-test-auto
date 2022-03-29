@@ -46,6 +46,14 @@ export class BasePage {
 
   /**
    * @param {string} ele
+   * @memberof BasePage
+   */
+  hoverElement = async (ele: string): Promise<void> => {
+    await this.page.locator(ele).hover();
+  };
+
+  /**
+   * @param {string} ele
    * @param {string} txt
    * @memberof BasePage
    */

@@ -317,6 +317,7 @@ If this list does not include a UI/Control Type that you are implementing, use y
 | Chevron                    | chv    | chvProtocol     |
 | Combo box                  | cbo    | cboEnglish      |
 | Common dialog              | dlg    | dlgFileOpen     |
+| Container                  | con    | conSupportInfo  |
 | Data grid                  | dgd    | dgdTitles       |
 | Data list                  | dbl    | dblPublisher    |
 | Date picker                | dtp    | dtpPublished    |

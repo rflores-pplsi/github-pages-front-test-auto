@@ -55,6 +55,9 @@ export default class UrlsUtils {
     member_search: {
       url: `https://member-search.${envUrlString}legalshieldinternal.com`,
     },
+    planalyzer_csr_checkout: {
+      url: `https://planalyzer.${envUrlString}legalshieldinternal.com/triage-tool/csr-checkout`,
+    },
   };
 
   static readonly pplsiUrls = {
