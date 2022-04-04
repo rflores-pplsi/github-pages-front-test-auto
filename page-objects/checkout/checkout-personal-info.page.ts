@@ -52,6 +52,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @param {string} postalCode
    * @memberof CheckoutPersonalInfoPage
    */
+  // Completes the entire personal info form without pressing enter
   completePersonalInfoForm = async (
     firstName: string,
     lastName: string,
@@ -76,6 +77,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @param {string} postalCode
    * @memberof CheckoutPersonalInfoPage
    */
+  // Update only the address in the personal information form, useful when iterating through different regions as the address needs to match
   changeAddress = async (homeAddress: string, city: string, postalCode: string): Promise<void> => {
     await this.enterHomeAddress(homeAddress);
     await this.enterCity(city);
@@ -236,6 +238,12 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
 
   // ========================== Navigate Methods ===========================n
 
+  /**
+   * @param {(string | undefined)} emailOrUsername
+   * @param {(string | undefined)} password
+   * @memberof CheckoutPersonalInfoPage
+   */
+  // Navigate to the personal info page and scrapes the order summary to be used in assertions
   navigatePersonalInfoPageFromLogin = async (emailOrUsername: string | undefined, password: string | undefined) => {
     console.log(' - checkoutPersonalInfoPage.navigatePersonalInfoPageFromLogin');
     await this.login(emailOrUsername, password);
@@ -248,7 +256,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   clickChangeStateLink = async () => {
     console.log(' - checkoutPersonalInfoPage.clickChangeStateLink');
-    // Click on Plans Link from Accounts Navigation
+    // Click on Change State link
     await this.clickOnElement(lnkChangeState);
   };
 
@@ -257,7 +265,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   clickSaveAndContinueButton = async () => {
     console.log(' - checkoutPersonalInfoPage.clickSaveAndContinueButton');
-    // Click on Plans Link from Accounts Navigation
+    // Click the Save and Continue button
     await this.clickOnElement(btnSaveAndContinue);
   };
 
@@ -277,6 +285,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @param {string} region
    * @memberof CheckoutPersonalInfoPage
    */
+  // Confirm the tool tip displays after hovering over the help icon
   assertToolTipIsVisible = async (region: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.assertToolTipIsVisible');
     // Confirm region is correct
@@ -286,6 +295,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   /**
    * @memberof CheckoutPersonalInfoPage
    */
+  // Confirm that the stepper displays the step 2 - personal info as the current step
   assertPersonalInfoStepIsCurrent = async (): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.assertPersonalInfoStepIsCurrent');
     await this.assertElementIsVisible(stpPersonalInfoCurrent);
@@ -294,6 +304,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   /**
    * @memberof CheckoutPersonalInfoPage
    */
+  // Confirm that the help information card is displayed
   assertSupportCardIsDisplayed = async (): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.assertSupportCardIsDisplayed');
     await this.assertElementIsVisible(conSupportInfo);
@@ -302,6 +313,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   /**
    * @memberof CheckoutPersonalInfoPage
    */
+  // Confirm that the Call Support button is displayed
   assertCallSupportButtonIsDisplayed = async (): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.assertCallSupportButtonIsDisplayed');
     await this.assertElementIsVisible(btnCallSupport);

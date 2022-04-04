@@ -29,7 +29,6 @@ export class AccountPlansPage extends LoginPage {
       const row = await this.createPlanRow(i);
       plansTable.addRow(row);
     }
-    // return plansTable;
   };
 
   /**

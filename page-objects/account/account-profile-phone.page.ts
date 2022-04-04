@@ -19,13 +19,6 @@ let txtBoxAddPhone = '[pattern="^[0-9]*$"]';
 let txtAlertUpdatedSuccessfully = '.lsux-text.lsux-text--body.lsux-alert__text ml-3 ';
 let selectPhoneType = '[name="phoneType"]';
 
-/**
- *
- *
- * @export
- * @class AccountProfilePhonePage
- * @extends {AccountProfilePage}
- */
 export class AccountProfilePhonePage extends AccountProfilePage {
   // Page Instances
   accountProfilePage = new AccountProfilePage(this.page);
