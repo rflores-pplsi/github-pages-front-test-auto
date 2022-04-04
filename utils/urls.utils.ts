@@ -1,8 +1,8 @@
 import EnvironmentUtil from './env.utils';
 require('dotenv').config();
 
-let envUrlString = EnvironmentUtil.getEnvUrlString();
-let envLaunchUrlString = EnvironmentUtil.getLaunchUrlString();
+const envUrlString = EnvironmentUtil.getEnvUrlString();
+const envLaunchUrlString = EnvironmentUtil.getLaunchUrlString();
 
 /**
  *
@@ -52,12 +52,12 @@ export default class UrlsUtils {
     // status: {
     //   'url': `https://status.${envUrlString}legalshieldinternal.com`,
     // },
-    
+
     member_search: {
       url: `https://member-search.${envUrlString}legalshieldinternal.com`,
     },
     planalyzer_csr_checkout: {
-      'url': `https://planalyzer.${envUrlString}legalshieldinternal.com/triage-tool/csr-checkout`,
+      url: `https://planalyzer.${envUrlString}legalshieldinternal.com/triage-tool/csr-checkout`,
     },
   };
 
