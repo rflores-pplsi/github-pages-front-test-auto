@@ -312,11 +312,13 @@ If this list does not include a UI/Control Type that you are implementing, use y
 
 | UI/Control type            | Prefix | Example         |
 | :------------------------- | :----- | :-------------- |
+| Array of Elements          | arr    | arrExit         |
 | Button                     | btn    | btnExit         |
 | Check box                  | chk    | chkReadOnly     |
 | Chevron                    | chv    | chvProtocol     |
 | Combo box                  | cbo    | cboEnglish      |
 | Common dialog              | dlg    | dlgFileOpen     |
+| Container                  | con    | conSupportInfo  |
 | Data grid                  | dgd    | dgdTitles       |
 | Data list                  | dbl    | dblPublisher    |
 | Date picker                | dtp    | dtpPublished    |

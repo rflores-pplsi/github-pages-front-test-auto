@@ -6,6 +6,10 @@ import { PlansTable } from './account.helpers';
 
 // ========================== Selectors ==========================
 const hdrBody: string = 'h2';
+
+// Instantiations
+const plansTable = new PlansTable();
+
 /**
  * @export
  * @class AccountPlansPage
@@ -14,16 +18,17 @@ const hdrBody: string = 'h2';
 export class AccountPlansPage extends LoginPage {
   // ========================== Process Methods ==========================
 
-  createPlansTable = async (): Promise<PlansTable> => {
+  /**
+   * @memberof AccountPlansPage
+   */
+  createPlansTable = async (): Promise<void> => {
     console.log(' - accountPlansPage.createPlansTable');
     await this.page.waitForLoadState('networkidle');
-    const plansTable = new PlansTable();
     const numberOfPlans = (await this.page.$$('.config-tab.p-5')).length;
     for (let i: number = 0; i < numberOfPlans; i++) {
       const row = await this.createPlanRow(i);
       plansTable.addRow(row);
     }
-    return plansTable;
   };
 
   /**
@@ -41,6 +46,7 @@ export class AccountPlansPage extends LoginPage {
     const planRow = new PlanRow(planNameText, membersText, websiteLinkLocator);
     return planRow;
   };
+
   /**
    * @param {PlansTable} plansTable
    * @param {String} planName
@@ -65,7 +71,10 @@ export class AccountPlansPage extends LoginPage {
 
   // ========================== Navigate Methods ==========================
 
-  loginToNavigateToAccountsPlanPage = async (emailOrUsername: string, password: string): Promise<void> => {
+  loginToNavigateToAccountsPlanPage = async (
+    emailOrUsername: string | undefined,
+    password: string | undefined
+  ): Promise<void> => {
     console.log(' - accountPlansPage.loginToNavigateToAccountsPlanPage');
     await this.goTo(UrlsUtils.legalshieldUrls.account.url + '/plans');
     await this.login(emailOrUsername, password);
@@ -75,11 +84,10 @@ export class AccountPlansPage extends LoginPage {
   // ========================== Click Methods ==========================
 
   /**
-   * @param {PlansTable} plansTable
    * @param {String} planName
    * @memberof AccountPlansPage
    */
-  clickGoToWebsiteLink = async (plansTable: PlansTable, planName: String): Promise<void> => {
+  clickGoToWebsiteLink = async (planName: String): Promise<void> => {
     console.log(' - accountPlansPage.clickGoToWebsiteLink');
     // Click go to website link for the
     const planRowIndex = await this.getPlanRowIndexFromPlanName(plansTable, planName);

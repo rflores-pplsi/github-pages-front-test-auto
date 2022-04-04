@@ -10,7 +10,7 @@ const txtPrepaidMonth: string = '[placeholder="Pre-paid months"]';
 const txtCouponCode: string = '[placeholder="Coupon code"]';
 const btnShowResults: string = 'button:has-text("Show Results")';
 const btnGoToCheckout: string = 'button:has-text("GO TO CHECKOUT")';
-// eslint-disable-next-line valid-jsdoc
+
 /**
  *
  * @export
@@ -47,49 +47,96 @@ export class PlanalyzerCsrCheckoutPage extends OktaPage {
     await this.enterPrepaidMonths(prepaidMonths);
     await this.enterCouponCode(couponCode);
     await this.clickShowResults();
-    await this.clickPlanCheckbox(plans);
+    await this.clickPlanCheckboxes(plans);
     await this.clickGoToCheckout();
   };
+
+  /**
+   *
+   *
+   * @memberof PlanalyzerCsrCheckoutPage
+   */
   selectEnvironment = async (): Promise<void> => {
     console.log(' - planalyzerCsrCheckoutPage.selectEnvironment');
     const environmentDropDownString = EnvironmentUtil.getDropDownEnvironmentOptions();
     await this.selectFromDropDownMenu(ddlEnvironment, environmentDropDownString);
   };
+
+  /**
+   * @param {string} channel
+   * @memberof PlanalyzerCsrCheckoutPage
+   */
   selectChannel = async (channel: string): Promise<void> => {
     console.log(' - planalyzerCsrCheckoutPage.selectChannel');
     await this.selectFromDropDownMenu(ddlChannel, channel);
   };
+
+  /**
+   * @param {string} subChannel
+   * @memberof PlanalyzerCsrCheckoutPage
+   */
   selectSubChannel = async (subChannel: string): Promise<void> => {
     console.log(' - planalyzerCsrCheckoutPage.selectSubChannel');
     await this.selectFromDropDownMenu(ddlSubChannel, subChannel);
   };
+
+  /**
+   * @param {string} region
+   * @memberof PlanalyzerCsrCheckoutPage
+   */
   selectRegion = async (region: string): Promise<void> => {
     console.log(' - planalyzerCsrCheckoutPage.selectRegion');
     await this.selectFromDropDownMenu(ddlRegion, region);
   };
+
+  /**
+   * @param {string} marketLocale
+   * @memberof PlanalyzerCsrCheckoutPage
+   */
   selectMarketLocale = async (marketLocale: string): Promise<void> => {
     console.log(' - planalyzerCsrCheckoutPage.selectMarketLocale');
     await this.selectFromDropDownMenu(ddlMarketLocal, marketLocale);
   };
+
+  /**
+   * @param {string} prepaidMonths
+   * @memberof PlanalyzerCsrCheckoutPage
+   */
   enterPrepaidMonths = async (prepaidMonths: string): Promise<void> => {
     console.log(' - planalyzerCsrCheckoutPage.enterPrepaidMonths');
     await this.fillTextBox(txtPrepaidMonth, prepaidMonths);
   };
+
+  /**
+   * @param {string} couponCode
+   * @memberof PlanalyzerCsrCheckoutPage
+   */
   enterCouponCode = async (couponCode: string): Promise<void> => {
     console.log(' - planalyzerCsrCheckoutPage.enterCouponCode');
     await this.fillTextBox(txtCouponCode, couponCode);
   };
+
   // ========================== Navigate Methods ===========================
+
   // ========================== Click Methods ==============================
+
   /**
    * @param {Array<string>} plans
    * @memberof PlanalyzerCsrCheckoutPage
    */
-  clickPlanCheckbox = async (plans: Array<string>): Promise<void> => {
-    console.log(' - planalyzerCsrCheckoutPage.clickPlanCheckbox');
-    const longName = plans[0];
-    await this.clickOnElement(`//div[contains(@class, 'product-name') and starts-with(.,'${longName}')]`);
+  clickPlanCheckboxes = async (plans: Array<string>): Promise<void> => {
+    console.log(' - planalyzerCsrCheckoutPage.clickPlanCheckboxes');
+    plans.forEach(async (longName) => {
+      await this.clickOnElement(`//div[contains(@class, 'product-name') and starts-with(.,'${longName}')]`);
+      // TODO: Need to research why automation can select multiple plans in planalyzer, but one of the plans does not get passed to checkout service about 60% of the time(?)
+      // Leaving these changes in here for now, as it provides some value
+      // await this.page.waitForSelector(`//div[contains(@class,'MuiBox-root') and contains(.,'${longName}')]`);
+    });
   };
+
+  /**
+   * @memberof PlanalyzerCsrCheckoutPage
+   */
   clickShowResults = async (): Promise<void> => {
     console.log(' - planalyzerCsrCheckoutPage.clickShowResults');
     // Click on the Search Results Button
@@ -97,6 +144,10 @@ export class PlanalyzerCsrCheckoutPage extends OktaPage {
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };
+
+  /**
+   * @memberof PlanalyzerCsrCheckoutPage
+   */
   clickGoToCheckout = async (): Promise<void> => {
     console.log(' - planalyzerCsrCheckoutPage.clickGoToCheckout');
     // Click on the Search Results Button
