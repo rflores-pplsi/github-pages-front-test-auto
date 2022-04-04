@@ -1,4 +1,4 @@
-import EnvironmentUtil from './env.utils';
+import EnvironmentUtil from "./env.utils";
 
 const env = EnvironmentUtil.getEnv();
 
@@ -33,8 +33,10 @@ export const associateLegacy = {
 };
 
 export const associateAdvantagePlus = {
-  username: process.env[`ASSOCIATE_ADVANTAGE_PLUS_USERNAME_${env.toUpperCase()}`],
-  password: process.env[`ASSOCIATE_ADVANTAGE_PLUS_PASSWORD_${env.toUpperCase()}`],
+  username:
+    process.env[`ASSOCIATE_ADVANTAGE_PLUS_USERNAME_${env.toUpperCase()}`],
+  password:
+    process.env[`ASSOCIATE_ADVANTAGE_PLUS_PASSWORD_${env.toUpperCase()}`],
 };
 
 export const dependentUser = {
@@ -58,8 +60,10 @@ export const withPlans = {
 };
 
 export const associateReportsCommissions = {
-  username: process.env[`ASSOCIATE_REPORTS_COMMISSIONS_USERNAME_${env.toUpperCase()}`],
-  password: process.env[`ASSOCIATE_REPORTS_COMMISSIONS_PASSWORD_${env.toUpperCase()}`],
+  username:
+    process.env[`ASSOCIATE_REPORTS_COMMISSIONS_USERNAME_${env.toUpperCase()}`],
+  password:
+    process.env[`ASSOCIATE_REPORTS_COMMISSIONS_PASSWORD_${env.toUpperCase()}`],
 };
 
 export const canadianUser = {
@@ -68,6 +72,8 @@ export const canadianUser = {
 };
 
 export const associateReportsCommissions2 = {
-  username: process.env[`ASSOCIATE_REPORTS_COMMISSIONS_USERNAME2_${env.toUpperCase()}`],
-  password: process.env[`ASSOCIATE_REPORTS_COMMISSIONS_PASSWORD2_${env.toUpperCase()}`],
+  username:
+    process.env[`ASSOCIATE_REPORTS_COMMISSIONS_USERNAME2_${env.toUpperCase()}`],
+  password:
+    process.env[`ASSOCIATE_REPORTS_COMMISSIONS_PASSWORD2_${env.toUpperCase()}`],
 };

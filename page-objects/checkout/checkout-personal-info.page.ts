@@ -1,10 +1,11 @@
-import { CheckoutOrderSummaryComponent } from './checkout-order-summary.component';
+import { CheckoutOrderSummaryComponent } from "./checkout-order-summary.component";
 
 // ========================== Selectors ==================================
 const btnSaveAndContinue: string = 'button:has-text("Save & Continue")';
 
 // ========================== Personal Info Selectors ====================
-const stpPersonalInfoCurrent: string = '//div[contains(@class,"step-circle--current") and contains(.,"2")]';
+const stpPersonalInfoCurrent: string =
+  '//div[contains(@class,"step-circle--current") and contains(.,"2")]';
 const txtFirstName: string = '[name="firstName"]';
 const txtLastName: string = '[name="lastName"]';
 const txtPhoneNumber: string = '[name="phoneNumber"]';
@@ -15,10 +16,12 @@ const txtPostalCode: string = '[name="postalCode"]';
 const txtRegion: string = '//span[contains(@class, "contact-region")]';
 const lnkChangeState: string = 'a:has-text("Change")';
 const imgStateChangeInformationIcon: string = '[alt="info"';
-const txaStageChangeToolTip: string = '//div[contains(@class,"info-tooltip-text")]';
+const txaStageChangeToolTip: string =
+  '//div[contains(@class,"info-tooltip-text")]';
 
 // ========================== Support Card Selectors ======================
-const conSupportInfo: string = '//div[contains(@class, "support-card-container")]';
+const conSupportInfo: string =
+  '//div[contains(@class, "support-card-container")]';
 const btnCallSupport: string = 'button:has-text("Call (833)-951-2754")';
 
 // ========================== Security Info Selectors ======================
@@ -78,7 +81,11 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @memberof CheckoutPersonalInfoPage
    */
   // Update only the address in the personal information form, useful when iterating through different regions as the address needs to match
-  changeAddress = async (homeAddress: string, city: string, postalCode: string): Promise<void> => {
+  changeAddress = async (
+    homeAddress: string,
+    city: string,
+    postalCode: string
+  ): Promise<void> => {
     await this.enterHomeAddress(homeAddress);
     await this.enterCity(city);
     await this.enterPostalCode(postalCode);
@@ -89,7 +96,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @memberof CheckoutPersonalInfoPage
    */
   enterFirstName = async (firstName: string): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.enterFirstName');
+    console.log(" - checkoutPersonalInfoPage.enterFirstName");
     await this.fillTextBox(txtFirstName, firstName);
   };
 
@@ -98,7 +105,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @memberof CheckoutPersonalInfoPage
    */
   enterLastName = async (lastName: string): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.enterLastName');
+    console.log(" - checkoutPersonalInfoPage.enterLastName");
     await this.fillTextBox(txtLastName, lastName);
   };
 
@@ -107,7 +114,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @memberof CheckoutPersonalInfoPage
    */
   enterPhoneNumber = async (phoneNumber: string): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.enterPhoneNumber');
+    console.log(" - checkoutPersonalInfoPage.enterPhoneNumber");
     await this.fillTextBox(txtPhoneNumber, phoneNumber);
   };
 
@@ -116,7 +123,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @memberof CheckoutPersonalInfoPage
    */
   enterPhoneType = async (phoneType: string): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.enterPhoneType');
+    console.log(" - checkoutPersonalInfoPage.enterPhoneType");
     await this.fillTextBox(txtPhoneType, phoneType);
   };
 
@@ -125,7 +132,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @memberof CheckoutPersonalInfoPage
    */
   enterHomeAddress = async (homeAddress: string): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.enterHomeAddress');
+    console.log(" - checkoutPersonalInfoPage.enterHomeAddress");
     await this.fillTextBox(txtHomeAddress, homeAddress);
   };
 
@@ -134,7 +141,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @memberof CheckoutPersonalInfoPage
    */
   enterCity = async (city: string): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.enterCity');
+    console.log(" - checkoutPersonalInfoPage.enterCity");
     await this.fillTextBox(txtCity, city);
   };
 
@@ -143,7 +150,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @memberof CheckoutPersonalInfoPage
    */
   enterPostalCode = async (postalCode: string): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.enterPostalCode');
+    console.log(" - checkoutPersonalInfoPage.enterPostalCode");
     await this.fillTextBox(txtPostalCode, postalCode);
   };
 
@@ -151,7 +158,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @memberof CheckoutPersonalInfoPage
    */
   hoverInformationIcon = async (): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.enterPostalCode');
+    console.log(" - checkoutPersonalInfoPage.enterPostalCode");
     await this.hoverElement(imgStateChangeInformationIcon);
   };
 
@@ -160,7 +167,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @memberof CheckoutPersonalInfoPage
    */
   enterMonth = async (month: string): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.enterMonth');
+    console.log(" - checkoutPersonalInfoPage.enterMonth");
     await this.fillTextBox(txtBirthMonth, month);
   };
 
@@ -169,7 +176,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @memberof CheckoutPersonalInfoPage
    */
   enterDay = async (day: string): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.enterDay');
+    console.log(" - checkoutPersonalInfoPage.enterDay");
     await this.fillTextBox(txtBirthDay, day);
   };
 
@@ -178,7 +185,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @memberof CheckoutPersonalInfoPage
    */
   enterYear = async (year: string): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.enterYear');
+    console.log(" - checkoutPersonalInfoPage.enterYear");
     await this.fillTextBox(txtBirthYear, year);
   };
 
@@ -186,8 +193,10 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @param {string} socialSecurityNumber
    * @memberof CheckoutPersonalInfoPage
    */
-  enterSocialSecurityNumber = async (socialSecurityNumber: string): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.enterSocialSecurityNumber');
+  enterSocialSecurityNumber = async (
+    socialSecurityNumber: string
+  ): Promise<void> => {
+    console.log(" - checkoutPersonalInfoPage.enterSocialSecurityNumber");
     await this.fillTextBox(txtSocialSecurityNumber, socialSecurityNumber);
   };
 
@@ -196,7 +205,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @memberof CheckoutPersonalInfoPage
    */
   enterBusinessName = async (businessName: string): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.enterBusinessName');
+    console.log(" - checkoutPersonalInfoPage.enterBusinessName");
     await this.fillTextBox(txtBusinessName, businessName);
   };
 
@@ -205,7 +214,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @memberof CheckoutPersonalInfoPage
    */
   enterIncorporationMonth = async (Month: string): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.enterIncorporationMonth');
+    console.log(" - checkoutPersonalInfoPage.enterIncorporationMonth");
     await this.fillTextBox(txtIncorporationMonth, Month);
   };
 
@@ -214,7 +223,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @memberof CheckoutPersonalInfoPage
    */
   enterIncorporationDay = async (day: string): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.enterIncorporationDay');
+    console.log(" - checkoutPersonalInfoPage.enterIncorporationDay");
     await this.fillTextBox(txtIncorporationDay, day);
   };
 
@@ -223,7 +232,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @memberof CheckoutPersonalInfoPage
    */
   enterIncorporationYear = async (Year: string): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.enterIncorporationYear');
+    console.log(" - checkoutPersonalInfoPage.enterIncorporationYear");
     await this.fillTextBox(txtIncorporationYear, Year);
   };
 
@@ -232,7 +241,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @memberof CheckoutPersonalInfoPage
    */
   enterTaxId = async (taxId: string): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.enterTaxId');
+    console.log(" - checkoutPersonalInfoPage.enterTaxId");
     await this.fillTextBox(txtTaxId, taxId);
   };
 
@@ -244,8 +253,13 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @memberof CheckoutPersonalInfoPage
    */
   // Navigate to the personal info page and scrapes the order summary to be used in assertions
-  navigatePersonalInfoPageFromLogin = async (emailOrUsername: string | undefined, password: string | undefined) => {
-    console.log(' - checkoutPersonalInfoPage.navigatePersonalInfoPageFromLogin');
+  navigatePersonalInfoPageFromLogin = async (
+    emailOrUsername: string | undefined,
+    password: string | undefined
+  ) => {
+    console.log(
+      " - checkoutPersonalInfoPage.navigatePersonalInfoPageFromLogin"
+    );
     await this.login(emailOrUsername, password);
     await this.createOrderSummary();
   };
@@ -255,7 +269,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @memberof CheckoutPersonalInfoPage
    */
   clickChangeStateLink = async () => {
-    console.log(' - checkoutPersonalInfoPage.clickChangeStateLink');
+    console.log(" - checkoutPersonalInfoPage.clickChangeStateLink");
     // Click on Change State link
     await this.clickOnElement(lnkChangeState);
   };
@@ -264,7 +278,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @memberof CheckoutPersonalInfoPage
    */
   clickSaveAndContinueButton = async () => {
-    console.log(' - checkoutPersonalInfoPage.clickSaveAndContinueButton');
+    console.log(" - checkoutPersonalInfoPage.clickSaveAndContinueButton");
     // Click the Save and Continue button
     await this.clickOnElement(btnSaveAndContinue);
   };
@@ -276,7 +290,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @memberof CheckoutPersonalInfoPage
    */
   assertState = async (region: string): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.assertState');
+    console.log(" - checkoutPersonalInfoPage.assertState");
     // Confirm region is correct
     await this.assertElementHasText(txtRegion, region);
   };
@@ -287,7 +301,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   // Confirm the tool tip displays after hovering over the help icon
   assertToolTipIsVisible = async (region: string): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.assertToolTipIsVisible');
+    console.log(" - checkoutPersonalInfoPage.assertToolTipIsVisible");
     // Confirm region is correct
     await this.assertElementIsVisible(txaStageChangeToolTip);
   };
@@ -297,7 +311,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   // Confirm that the stepper displays the step 2 - personal info as the current step
   assertPersonalInfoStepIsCurrent = async (): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.assertPersonalInfoStepIsCurrent');
+    console.log(" - checkoutPersonalInfoPage.assertPersonalInfoStepIsCurrent");
     await this.assertElementIsVisible(stpPersonalInfoCurrent);
   };
 
@@ -306,7 +320,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   // Confirm that the help information card is displayed
   assertSupportCardIsDisplayed = async (): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.assertSupportCardIsDisplayed');
+    console.log(" - checkoutPersonalInfoPage.assertSupportCardIsDisplayed");
     await this.assertElementIsVisible(conSupportInfo);
   };
 
@@ -315,7 +329,9 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   // Confirm that the Call Support button is displayed
   assertCallSupportButtonIsDisplayed = async (): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.assertCallSupportButtonIsDisplayed');
+    console.log(
+      " - checkoutPersonalInfoPage.assertCallSupportButtonIsDisplayed"
+    );
     await this.assertElementIsVisible(btnCallSupport);
   };
 }
