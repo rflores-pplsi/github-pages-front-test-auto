@@ -13,8 +13,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '2021 Park Pl',
         city: 'Birmingham',
-        zip: '35203',
+        postalCode: '35203',
       },
+      priority: false,
     },
     {
       name: 'Alaska',
@@ -22,8 +23,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '1110 John Kalinas Rd',
         city: 'Fairbanks',
-        zip: '99712',
+        postalCode: '99712',
       },
+      priority: false,
     },
     {
       name: 'Arizona',
@@ -31,8 +33,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '4400 S Rural Rd',
         city: 'Tempe',
-        zip: '85282',
+        postalCode: '85282',
       },
+      priority: false,
     },
     {
       name: 'Arkansas',
@@ -40,8 +43,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '2630 W Clark Rd',
         city: 'Clarksville',
-        zip: '72830',
+        postalCode: '72830',
       },
+      priority: false,
     },
     {
       name: 'California',
@@ -49,8 +53,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '750 Kearny St',
         city: 'San Francisco',
-        zip: '94108',
+        postalCode: '94108',
       },
+      priority: true,
     },
     {
       name: 'Colorado',
@@ -58,8 +63,9 @@ export default class RegionsUtils {
       validAddress: {
         street: ' 1050 Plaza Dr',
         city: 'Highlands Ranch',
-        zip: '80126',
+        postalCode: '80126',
       },
+      priority: false,
     },
     {
       name: 'Connecticut',
@@ -67,8 +73,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '351 Pitkin St',
         city: 'East Hartford',
-        zip: '06108',
+        postalCode: '06108',
       },
+      priority: false,
     },
     {
       name: 'Delaware',
@@ -76,8 +83,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '22871 Sussex Hwy',
         city: 'Seaford',
-        zip: '19973',
+        postalCode: '19973',
       },
+      priority: false,
     },
     {
       name: 'District of Columbia',
@@ -85,8 +93,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '1525 15th St NW',
         city: 'Washington',
-        zip: '20005',
+        postalCode: '20005',
       },
+      priority: false,
     },
     {
       name: 'Florida',
@@ -94,8 +103,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '3550 NW 74th Ave',
         city: 'Miami',
-        zip: '33122',
+        postalCode: '33122',
       },
+      priority: true,
     },
     {
       name: 'Georgia',
@@ -103,8 +113,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '251 Avalon Ct',
         city: 'McDonough',
-        zip: '30253',
+        postalCode: '30253',
       },
+      priority: true,
     },
     {
       name: 'Hawaii',
@@ -112,8 +123,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '3900 Wailea Alanui Dr',
         city: 'Kihei',
-        zip: '96753',
+        postalCode: '96753',
       },
+      priority: false,
     },
     {
       name: 'Idaho',
@@ -121,8 +133,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '5750 E Franklin Rd',
         city: 'Nampa',
-        zip: '83687',
+        postalCode: '83687',
       },
+      priority: false,
     },
     {
       name: 'Illinois',
@@ -130,8 +143,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '370 Eastgate Dr',
         city: 'Danville',
-        zip: '61834',
+        postalCode: '61834',
       },
+      priority: false,
     },
     {
       name: 'Indiana',
@@ -139,8 +153,9 @@ export default class RegionsUtils {
       validAddress: {
         street: ' 200 Prosperity Dr',
         city: 'Warsaw',
-        zip: '46580',
+        postalCode: '46580',
       },
+      priority: false,
     },
     {
       name: 'Iowa',
@@ -148,8 +163,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '255 E Court St',
         city: 'Iowa City',
-        zip: '52240',
+        postalCode: '52240',
       },
+      priority: false,
     },
     {
       name: 'Kansas',
@@ -157,8 +173,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '17250 Midland Dr',
         city: 'Shawnee',
-        zip: '66217',
+        postalCode: '66217',
       },
+      priority: false,
     },
     {
       name: 'Kentucky',
@@ -166,8 +183,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '120 W 2nd St',
         city: 'Lexington',
-        zip: '40507',
+        postalCode: '40507',
       },
+      priority: false,
     },
     {
       name: 'Louisiana',
@@ -175,8 +193,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '555 Canal St',
         city: 'New Orleans',
-        zip: '70130',
+        postalCode: '70130',
       },
+      priority: false,
     },
     {
       name: 'Maine',
@@ -184,8 +203,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '1050 Westbrook St',
         city: 'Portland',
-        zip: '04102',
+        postalCode: '04102',
       },
+      priority: false,
     },
     {
       name: 'Maryland',
@@ -193,8 +213,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '6600 Coastal Hwy',
         city: 'Ocean City',
-        zip: '21842',
+        postalCode: '21842',
       },
+      priority: false,
     },
     {
       name: 'Massachusetts',
@@ -202,8 +223,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '40 Berkeley St',
         city: 'Boston',
-        zip: '02116',
+        postalCode: '02116',
       },
+      priority: false,
     },
     {
       name: 'Michigan',
@@ -211,8 +233,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '3600 Village Harbor Dr',
         city: 'Bay Harbor',
-        zip: '49770',
+        postalCode: '49770',
       },
+      priority: false,
     },
     {
       name: 'Minnesota',
@@ -220,8 +243,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '19 N 8th St',
         city: 'Minneapolis',
-        zip: '55403',
+        postalCode: '55403',
       },
+      priority: false,
     },
     {
       name: 'Mississippi',
@@ -229,8 +253,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '493 Springridge Rd',
         city: 'Clinton',
-        zip: '39056',
+        postalCode: '39056',
       },
+      priority: false,
     },
     {
       name: 'Missouri',
@@ -238,8 +263,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '315 Chestnut St',
         city: 'St. Louis',
-        zip: '63102',
+        postalCode: '63102',
       },
+      priority: false,
     },
     {
       name: 'Montana',
@@ -247,8 +273,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '1380 Wisconsin Ave',
         city: 'Whitefish',
-        zip: '59937',
+        postalCode: '59937',
       },
+      priority: false,
     },
     {
       name: 'Nebraska',
@@ -256,8 +283,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '10220 Regency Cir',
         city: 'Omaha',
-        zip: '68114',
+        postalCode: '68114',
       },
+      priority: false,
     },
     {
       name: 'Nevada',
@@ -265,8 +293,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '3900 S Las Vegas Blvd',
         city: 'Las Vegas',
-        zip: '89119',
+        postalCode: '89119',
       },
+      priority: false,
     },
     {
       name: 'New Hampshire',
@@ -274,8 +303,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '72 Common Ct',
         city: 'North Conway',
-        zip: '03860',
+        postalCode: '03860',
       },
+      priority: false,
     },
     {
       name: 'New Jersey',
@@ -283,8 +313,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '2831 Boardwalk',
         city: 'Atlantic City',
-        zip: '08401',
+        postalCode: '08401',
       },
+      priority: false,
     },
     {
       name: 'New Mexico',
@@ -292,8 +323,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '6150 Iliff Rd NW',
         city: 'Albuquerque',
-        zip: '87121',
+        postalCode: '87121',
       },
+      priority: false,
     },
     {
       name: 'New York',
@@ -301,8 +333,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '234 W 48th St',
         city: 'New York',
-        zip: '10036',
+        postalCode: '10036',
       },
+      priority: true,
     },
     {
       name: 'North Carolina',
@@ -310,8 +343,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '3415 Wake Forest Rd',
         city: 'Raleigh',
-        zip: '27609',
+        postalCode: '27609',
       },
+      priority: false,
     },
     {
       name: 'North Dakota',
@@ -319,8 +353,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '3316 13th Ave S',
         city: 'Fargo',
-        zip: '58103',
+        postalCode: '58103',
       },
+      priority: false,
     },
     {
       name: 'Ohio',
@@ -328,8 +363,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '631 S Main St',
         city: 'Findlay',
-        zip: '45840',
+        postalCode: '45840',
       },
+      priority: false,
     },
     {
       name: 'Oklahoma',
@@ -337,8 +373,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '741 N Phillips Ave',
         city: 'Oklahoma City',
-        zip: '73104',
+        postalCode: '73104',
       },
+      priority: false,
     },
     {
       name: 'Oregon',
@@ -346,8 +383,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '203 NW 3rd Ave',
         city: 'Portland',
-        zip: '97209',
+        postalCode: '97209',
       },
+      priority: false,
     },
     {
       name: 'Pennsylvania',
@@ -355,8 +393,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '8000 Jonestown Rd',
         city: 'Harrisburg',
-        zip: '17112',
+        postalCode: '17112',
       },
+      priority: false,
     },
     {
       name: 'Rhode Island',
@@ -364,8 +403,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '1 Wave Ave',
         city: 'Middletown',
-        zip: '02842',
+        postalCode: '02842',
       },
+      priority: false,
     },
     {
       name: 'South Carolina',
@@ -373,8 +413,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '1735 Stokes Rd',
         city: 'Florence',
-        zip: '29501',
+        postalCode: '29501',
       },
+      priority: false,
     },
     {
       name: 'South Dakota',
@@ -382,8 +423,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '1314 N Elk Vale Rd',
         city: 'Rapid City',
-        zip: '57703',
+        postalCode: '57703',
       },
+      priority: false,
     },
     {
       name: 'Tennessee',
@@ -391,8 +433,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '2800 Opryland Dr',
         city: 'Nashville',
-        zip: '37214',
+        postalCode: '37214',
       },
+      priority: false,
     },
     {
       name: 'Texas',
@@ -400,8 +443,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '3000 Gulf Fwy',
         city: 'Texas City',
-        zip: '77591',
+        postalCode: '77591',
       },
+      priority: true,
     },
     {
       name: 'Utah',
@@ -409,8 +453,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '30 N 100 E',
         city: 'Bryce Canyon City',
-        zip: '84764',
+        postalCode: '84764',
       },
+      priority: false,
     },
     {
       name: 'Vermont',
@@ -418,8 +463,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '870 Williston Rd',
         city: 'South Burlington',
-        zip: '05403',
+        postalCode: '05403',
       },
+      priority: false,
     },
     {
       name: 'Virginia',
@@ -427,8 +473,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '16250 International St',
         city: 'Doswell',
-        zip: '23047',
+        postalCode: '23047',
       },
+      priority: false,
     },
     {
       name: 'Washington',
@@ -436,8 +483,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '3100 S 192nd St',
         city: 'Seattle',
-        zip: '98188',
+        postalCode: '98188',
       },
+      priority: false,
     },
     {
       name: 'West Virginia',
@@ -445,8 +493,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '417 Hurricane Creek Rd',
         city: 'Hurricane',
-        zip: '25526',
+        postalCode: '25526',
       },
+      priority: false,
     },
     {
       name: 'Wisconsin',
@@ -454,8 +503,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '1001 Wisconsin Pl',
         city: 'Madison',
-        zip: '53703',
+        postalCode: '53703',
       },
+      priority: false,
     },
     {
       name: 'Wyoming',
@@ -463,8 +513,9 @@ export default class RegionsUtils {
       validAddress: {
         street: '1055 Wild Horse Canyon Rd',
         city: 'Green River',
-        zip: '82935',
+        postalCode: '82935',
       },
+      priority: false,
     },
   ];
 

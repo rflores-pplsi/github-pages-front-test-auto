@@ -1,8 +1,8 @@
 import EnvironmentUtil from './env.utils';
 require('dotenv').config();
 
-let envUrlString = EnvironmentUtil.getEnvUrlString();
-let envLaunchUrlString = EnvironmentUtil.getLaunchUrlString();
+const envUrlString = EnvironmentUtil.getEnvUrlString();
+const envLaunchUrlString = EnvironmentUtil.getLaunchUrlString();
 
 /**
  *

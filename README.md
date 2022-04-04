@@ -312,6 +312,7 @@ If this list does not include a UI/Control Type that you are implementing, use y
 
 | UI/Control type            | Prefix | Example         |
 | :------------------------- | :----- | :-------------- |
+| Array of Elements          | arr    | btnExit         |
 | Button                     | btn    | btnExit         |
 | Check box                  | chk    | chkReadOnly     |
 | Chevron                    | chv    | chvProtocol     |

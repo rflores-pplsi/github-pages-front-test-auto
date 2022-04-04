@@ -98,6 +98,18 @@ export class BasePage {
   };
 
   /**
+   * @param {string} selector
+   * @param {number} index
+   * @param {string} txt
+   * @memberof BasePage
+   */
+  assertElementFromAnArrayHasText = async (selector: string, index: number, txt: string): Promise<void> => {
+    const locator = this.page.locator(selector);
+    const textArray = await locator.allInnerTexts();
+    expect(textArray[index]).toEqual(txt);
+  };
+
+  /**
    * @param {Page} page
    * @param {string} url
    * @memberof BasePage
@@ -167,5 +179,23 @@ export class BasePage {
    */
   selectFromDropDownMenu = async (ele: string, label: string): Promise<void> => {
     await this.page.selectOption(ele, { label: label });
+  };
+
+  /**
+   * @param {string} string1
+   * @param {string} string2
+   * @memberof BasePage
+   */
+  assertStringMatch = async (string1: string, string2: string): Promise<void> => {
+    expect(string1).toEqual(string2);
+  };
+
+  /**
+   * @param {boolean} value1
+   * @param {boolean} value2
+   * @memberof BasePage
+   */
+  assertBoolean = async (value1: boolean, value2: boolean): Promise<void> => {
+    expect(value1).toEqual(value2);
   };
 }
