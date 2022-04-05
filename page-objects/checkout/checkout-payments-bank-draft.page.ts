@@ -33,9 +33,9 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsPage {
     console.log(await welcome.allTextContents());
   };
   // ========================== Navigate Methods ===========================
-  navigateToPaymentsBankDraftPage = async (): Promise<void> => {
+  navigateToPaymentsBankDraftPage = async (state: string): Promise<void> => {
     console.log(" - checkoutPaymentPage.navigateToPaymentsBankDraftPage");
-    await this.navigateToPaymentsPage();
+    await this.navigateToPaymentsPage(state);
     // await this.clickBankDraftBtn();
   };
   // ========================== fill Text Box Methods ======================

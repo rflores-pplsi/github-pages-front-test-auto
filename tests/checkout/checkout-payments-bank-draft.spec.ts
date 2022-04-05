@@ -4,8 +4,9 @@ let checkoutPaymentsBankDraftPage: CheckoutPaymentsBankDraftPage;
 
 test.beforeEach(async ({ page }) => {
   test.slow();
+
   checkoutPaymentsBankDraftPage = new CheckoutPaymentsBankDraftPage(page);
-  await checkoutPaymentsBankDraftPage.navigateToPaymentsPage();
+  await checkoutPaymentsBankDraftPage.navigateToPaymentsPage("Alabama");
 });
 
 test("Payments page header is displayed", async ({ page }) => {

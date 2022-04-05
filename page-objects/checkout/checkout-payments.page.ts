@@ -1,4 +1,5 @@
 import { expect } from "@playwright/test";
+import RegionsUtils from "../../utils/regions.utils";
 import UsersUtils from "../../utils/user.utils";
 import { CheckoutPersonalInfoPage } from "./checkout-personal-info.page";
 
@@ -15,14 +16,14 @@ export class CheckoutPaymentsPage extends CheckoutPersonalInfoPage {
   // ========================== Process Methods ============================
 
   // ========================== Navigate Methods ===========================
-  navigateToPaymentsPage = async (): Promise<void> => {
+  navigateToPaymentsPage = async (state: string): Promise<void> => {
     console.log(" - accountPaymentPage.goToPaymentsPage");
     await this.navigateToPlanalyzerCsrCheckoutOktaLogin();
     await this.loginThroughOkta();
     await this.createOrderRedirectToCheckout(
       "D2C",
       "LegalShield",
-      "Alabama",
+      state,
       "en-US",
       "",
       "",
@@ -32,7 +33,17 @@ export class CheckoutPaymentsPage extends CheckoutPersonalInfoPage {
       UsersUtils.basicUser.email,
       UsersUtils.basicUser.password
     );
-    await this.changeAddress("2021 Park Pl", "Birmingham", "35203");
+    const regionObj = RegionsUtils.usStates;
+    const stateObj = state;
+    for (const obj of regionObj) {
+      if (obj.name == stateObj)
+        await this.changeAddress(
+          obj.validAddress.street,
+          obj.validAddress.city,
+          obj.validAddress.postalCode
+        );
+    }
+
     await this.clickSaveAndContinueButton();
     await this.page.waitForTimeout(3500);
     await this.clickBankDraftBtn();

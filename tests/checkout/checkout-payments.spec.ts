@@ -5,7 +5,7 @@ let checkoutPaymentsPage: CheckoutPaymentsPage;
 
 test.beforeEach(async ({ page }) => {
   checkoutPaymentsPage = new CheckoutPaymentsPage(page);
-  await checkoutPaymentsPage.navigateToPaymentsPage();
+  await checkoutPaymentsPage.navigateToPaymentsPage("Virginia");
 });
 
 test("Payments page header is displayed", async ({ page }) => {
