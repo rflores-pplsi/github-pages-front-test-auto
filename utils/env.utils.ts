@@ -8,13 +8,16 @@ class EnvironmentUtil {
    */
   getEnv() {
     let env = null;
-    if (process.env.USE_PROD == 'true' || process.env.USE_PRODUCTION == 'true') {
-      env = 'prod';
-    } else if (process.env.USE_UAT == 'true') {
-      env = 'uat';
-    } else if (process.env.USE_STAGE == 'true') {
-      env = 'stage';
-    } else env = 'dev';
+    if (
+      process.env.USE_PROD == "true" ||
+      process.env.USE_PRODUCTION == "true"
+    ) {
+      env = "prod";
+    } else if (process.env.USE_UAT == "true") {
+      env = "uat";
+    } else if (process.env.USE_STAGE == "true") {
+      env = "stage";
+    } else env = "dev";
     return env;
   }
   /**
@@ -27,14 +30,14 @@ class EnvironmentUtil {
     let envUrlString = null;
     const env = this.getEnv();
     switch (env) {
-      case 'dev':
-        envUrlString = 'dev-';
+      case "dev":
+        envUrlString = "dev-";
         break;
-      case 'uat':
-        envUrlString = 'uat-';
+      case "uat":
+        envUrlString = "uat-";
         break;
-      case 'prod':
-        envUrlString = '';
+      case "prod":
+        envUrlString = "";
         break;
     }
     return envUrlString;
@@ -46,18 +49,18 @@ class EnvironmentUtil {
    * @memberof EnvironmentUtil
    */
   getDropDownEnvironmentOptions() {
-    let envDropDownString = '';
+    let envDropDownString = "";
     const env = this.getEnv();
     // This is to convert Environment varibale set in the command line to a format usable by planalyzer dropdown
     switch (env) {
-      case 'dev':
-        envDropDownString = 'STG';
+      case "dev":
+        envDropDownString = "STG";
         break;
-      case 'uat':
-        envDropDownString = 'UAT';
+      case "uat":
+        envDropDownString = "UAT";
         break;
-      case 'prod':
-        envDropDownString = 'PROD';
+      case "prod":
+        envDropDownString = "PROD";
         break;
     }
     return envDropDownString;
@@ -73,14 +76,14 @@ class EnvironmentUtil {
     let envLaunchUrlString = null;
     const env = this.getEnv();
     switch (env) {
-      case 'dev':
-        envLaunchUrlString = 'lsusdev';
+      case "dev":
+        envLaunchUrlString = "lsusdev";
         break;
-      case 'uat':
-        envLaunchUrlString = 'uat';
+      case "uat":
+        envLaunchUrlString = "uat";
         break;
-      case 'prod':
-        envLaunchUrlString = 'prod';
+      case "prod":
+        envLaunchUrlString = "prod";
         break;
     }
     return envLaunchUrlString;
@@ -99,11 +102,11 @@ class EnvironmentUtil {
       // case 'dev':
       //   envUrlString = 'dev-';
       //   break;
-      case 'uat':
-        wordPressEnvUrlString = 'stg';
+      case "uat":
+        wordPressEnvUrlString = "stg";
         break;
-      case 'prod':
-        wordPressEnvUrlString = 'prod';
+      case "prod":
+        wordPressEnvUrlString = "prod";
         break;
     }
     return wordPressEnvUrlString;
@@ -118,11 +121,11 @@ class EnvironmentUtil {
     let envUrlString = null;
     const env = this.getEnv();
     switch (env) {
-      case 'stage':
-        envUrlString = 'stg';
+      case "stage":
+        envUrlString = "stg";
         break;
-      case 'prod':
-        envUrlString = 'prod';
+      case "prod":
+        envUrlString = "prod";
         break;
     }
     return envUrlString;

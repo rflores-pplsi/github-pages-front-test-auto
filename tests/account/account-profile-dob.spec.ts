@@ -1,5 +1,5 @@
-import { test } from '@playwright/test';
-import { AccountProfileDoBPage } from '../../page-objects/account/account-profile-dob.page';
+import { test } from "@playwright/test";
+import { AccountProfileDoBPage } from "../../page-objects/account/account-profile-dob.page";
 
 // create instance of Page
 let accountProfileDoBPage: AccountProfileDoBPage;
@@ -13,8 +13,8 @@ test.beforeEach(async ({ page }) => {
 });
 
 // Edit Date Of Birth
-test('Edit Date of Birth', async ({ page }) => {
-  console.log('Test Case: Edit Date of Birth');
+test("Edit Date of Birth", async ({ page }) => {
+  console.log("Test Case: Edit Date of Birth");
   // Edit Date of Birth Text Box
   await accountProfileDoBPage.editDateOfBirthTxtBox();
   // Click on save button

@@ -1,5 +1,5 @@
-import { test } from '@playwright/test';
-import { AccountProfilePage } from '../../page-objects/account/account-profile.page';
+import { test } from "@playwright/test";
+import { AccountProfilePage } from "../../page-objects/account/account-profile.page";
 
 // create instance of Page
 let accountProfilePage: AccountProfilePage;
@@ -11,8 +11,12 @@ test.beforeEach(async ({ page }) => {
 });
 
 // Navigate to the Profile Name page
-test('Navigate to the Profile Name page by clicking the Name Edit button', async ({ page }) => {
-  console.log('Test Case: Navigate to the Profile Name page by clicking the Name Edit button');
+test("Navigate to the Profile Name page by clicking the Name Edit button", async ({
+  page,
+}) => {
+  console.log(
+    "Test Case: Navigate to the Profile Name page by clicking the Name Edit button"
+  );
   // Clicking the Name Edit button
   await accountProfilePage.clickEditNameButton();
   // Verify the landing on the Profile Name page
@@ -20,8 +24,12 @@ test('Navigate to the Profile Name page by clicking the Name Edit button', async
 });
 
 // Navigate to the Profile Date of Birth page
-test('Navigate to the Profile Date of Birth page by clicking the Date of Birth Edit button', async ({ page }) => {
-  console.log('Test Case: Navigate to the Profile Date of Birth page by clicking the Date of Birth Edit button');
+test("Navigate to the Profile Date of Birth page by clicking the Date of Birth Edit button", async ({
+  page,
+}) => {
+  console.log(
+    "Test Case: Navigate to the Profile Date of Birth page by clicking the Date of Birth Edit button"
+  );
   // Clicking the Date of Birth Edit button
   await accountProfilePage.clickEditDateOfBirthButton();
   // Verify the landing on the Profile Date of Birth page
@@ -29,8 +37,12 @@ test('Navigate to the Profile Date of Birth page by clicking the Date of Birth E
 });
 
 // Navigate to the Profile Phone Number page
-test('Navigate to the Profile Phone Number page by clicking the Phone Number Edit button', async ({ page }) => {
-  console.log('Test Case: Navigate to the Profile Phone Number page by clicking the Phone Number Edit button');
+test("Navigate to the Profile Phone Number page by clicking the Phone Number Edit button", async ({
+  page,
+}) => {
+  console.log(
+    "Test Case: Navigate to the Profile Phone Number page by clicking the Phone Number Edit button"
+  );
   // Clicking the Phone Number button
   await accountProfilePage.clickEditPhoneNumberButton();
   // Verify the landing on the Profile Phone Number page
@@ -38,8 +50,12 @@ test('Navigate to the Profile Phone Number page by clicking the Phone Number Edi
 });
 
 // Navigate to the Profile Address page
-test('Navigate to the Profile Address page by clicking the Address Edit button', async ({ page }) => {
-  console.log('Test Case: Navigate to the Profile Address page by clicking the Address Edit button');
+test("Navigate to the Profile Address page by clicking the Address Edit button", async ({
+  page,
+}) => {
+  console.log(
+    "Test Case: Navigate to the Profile Address page by clicking the Address Edit button"
+  );
   // Clicking the Address button
   await accountProfilePage.clickEditAddressButton();
   // Verify the landing on the Profile Address page
@@ -47,8 +63,12 @@ test('Navigate to the Profile Address page by clicking the Address Edit button',
 });
 
 // Navigate to the Profile Email page
-test('Navigate to the Profile Email Address page by clicking the Email Address Edit button', async ({ page }) => {
-  console.log('Test Case: Navigate to the Profile Email Address page by clicking the Email Address Edit button');
+test("Navigate to the Profile Email Address page by clicking the Email Address Edit button", async ({
+  page,
+}) => {
+  console.log(
+    "Test Case: Navigate to the Profile Email Address page by clicking the Email Address Edit button"
+  );
   // Clicking the Email button
   await accountProfilePage.clickEditEmailButton();
   // Verify the landing on the Profile Email page

@@ -1,13 +1,13 @@
-import { expect } from '@playwright/test';
-import { LoginPage } from '../login/login.page';
-import UrlsUtils from '../../utils/urls.utils';
+import { expect } from "@playwright/test";
+import { LoginPage } from "../login/login.page";
+import UrlsUtils from "../../utils/urls.utils";
 
 // ========================== Selectors ==========================
-const imgLargeLogo = '#lsdsLargeLogoId';
-const btnHelp = '#helpButton';
-const ddName = '#myButton';
+const imgLargeLogo = "#lsdsLargeLogoId";
+const btnHelp = "#helpButton";
+const ddName = "#myButton";
 const lnkSignOut = 'div#myDropdown a:has-text("Sign out")';
-const ddMemberServices = '#helpContentDefault';
+const ddMemberServices = "#helpContentDefault";
 
 /**
  * @export
@@ -18,7 +18,7 @@ export class AccountHeaderPage extends LoginPage {
   // ========================== Process Methods ==========================
 
   logout = async (): Promise<void> => {
-    console.log(' - accountHeaderPage.logout');
+    console.log(" - accountHeaderPage.logout");
     // Click name dropdown to reveal signout link
     await this.clickOnElement(ddName);
     // Click signout link to log out of account
@@ -31,34 +31,39 @@ export class AccountHeaderPage extends LoginPage {
 
   clickLargeLogo = async (): Promise<void> => {
     // Click large logo that is displayed when viewport width is > 639px
-    console.log(' - accountHeaderPage.clickLargeLogo');
+    console.log(" - accountHeaderPage.clickLargeLogo");
     await this.page.click(imgLargeLogo);
   };
 
   clickHelpButton = async (): Promise<void> => {
     // Click help button
-    console.log(' - accountHeaderPage.clickHelpButton');
+    console.log(" - accountHeaderPage.clickHelpButton");
     await this.page.click(btnHelp);
   };
 
   // ========================== Assertion Methods ==========================
 
   assertHelpDropdownInformation = async (): Promise<void> => {
-    console.log(' - accountHeaderPage.assertHelpDropdownInformation');
+    console.log(" - accountHeaderPage.assertHelpDropdownInformation");
     // Confirm Member Services dropdown displays
     await this.assertElementIsVisible(ddMemberServices);
     // Confirm Member Services phone number link is displayed
-    await this.assertElementContainsText(ddMemberServices, 'Sales and Customer Service');
-    await this.assertElementContainsText(ddMemberServices, '800-654-7757');
-    await this.assertElementContainsText(ddMemberServices, 'Associate Support');
-    await this.assertElementContainsText(ddMemberServices, '580-436-7424');
+    await this.assertElementContainsText(
+      ddMemberServices,
+      "Sales and Customer Service"
+    );
+    await this.assertElementContainsText(ddMemberServices, "800-654-7757");
+    await this.assertElementContainsText(ddMemberServices, "Associate Support");
+    await this.assertElementContainsText(ddMemberServices, "580-436-7424");
   };
 
   assertLoggedOutPageUrl = async (): Promise<void> => {
-    console.log(' - accountHeaderPage.assertLoggedOutPageUrl');
+    console.log(" - accountHeaderPage.assertLoggedOutPageUrl");
     // Confirm the Accounts Plan Page URL is reached
-    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.login.url + '/logged-out');
+    await expect(this.page).toHaveURL(
+      UrlsUtils.legalshieldUrls.login.url + "/logged-out"
+    );
     // Wait for document to load before subsequent steps
-    await this.page.waitForLoadState('domcontentloaded');
+    await this.page.waitForLoadState("domcontentloaded");
   };
 }

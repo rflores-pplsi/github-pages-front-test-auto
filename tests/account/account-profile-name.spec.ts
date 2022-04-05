@@ -1,5 +1,5 @@
-import { test } from '@playwright/test';
-import { AccountProfileNamePage } from '../../page-objects/account/account-profile.name.page';
+import { test } from "@playwright/test";
+import { AccountProfileNamePage } from "../../page-objects/account/account-profile.name.page";
 
 // create instance of Page
 let accountProfileNamePage: AccountProfileNamePage;
@@ -11,8 +11,8 @@ test.beforeEach(async ({ page }) => {
 });
 
 // Navigate to the Profile Name page
-test('Edit Names', async ({ page }) => {
-  console.log('Test Case: Edit Names');
+test("Edit Names", async ({ page }) => {
+  console.log("Test Case: Edit Names");
   // Edit First Name Text Box
   await accountProfileNamePage.editNameForm();
   // Verify the landing on the Profile Name page

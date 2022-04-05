@@ -1,6 +1,6 @@
-import { test } from '@playwright/test';
-import { basicUser } from '../../utils/user.utils';
-import { AccountNavigationPage } from '../../page-objects/account/account-navigation.page';
+import { test } from "@playwright/test";
+import { basicUser } from "../../utils/user.utils";
+import { AccountNavigationPage } from "../../page-objects/account/account-navigation.page";
 
 // Page Definition
 let accountNavigationPage: AccountNavigationPage;
@@ -14,8 +14,8 @@ test.beforeEach(async ({ page }) => {
 });
 
 // Navigate to Plans Page from Account Navigation
-test('Navigate to plans page', async ({ page }) => {
-  console.log('Test Case: Navigate to plans page');
+test("Navigate to plans page", async ({ page }) => {
+  console.log("Test Case: Navigate to plans page");
   // Click Plans Link
   await accountNavigationPage.clickPlansLink();
   // Confirm URL of the Profile Page
@@ -23,8 +23,8 @@ test('Navigate to plans page', async ({ page }) => {
 });
 
 // Navigate to Profile Page from Account Navigation
-test('Navigate to profile page', async ({ page }) => {
-  console.log('Test Case: Navigate to profile page');
+test("Navigate to profile page", async ({ page }) => {
+  console.log("Test Case: Navigate to profile page");
   // Click Profile Link
   await accountNavigationPage.clickProfileLink();
   // Confirm URL of the Profile Page
@@ -32,8 +32,8 @@ test('Navigate to profile page', async ({ page }) => {
 });
 
 // Navigate to Payments Page from Account Navigation
-test('Navigate to payments page', async ({ page }) => {
-  console.log('Test Case: Navigate to payments page');
+test("Navigate to payments page", async ({ page }) => {
+  console.log("Test Case: Navigate to payments page");
   // Click Payments Link
   await accountNavigationPage.clickPaymentsLink();
   // Confirm URL of the Profile Page
@@ -41,8 +41,8 @@ test('Navigate to payments page', async ({ page }) => {
 });
 
 // Navigate to Security Page from Account Navigation
-test('Navigate to security page', async ({ page }) => {
-  console.log('Test Case: Navigate to security page');
+test("Navigate to security page", async ({ page }) => {
+  console.log("Test Case: Navigate to security page");
   // Click Security Link
   await accountNavigationPage.clickSecurityLink();
   // Confirm URL of the Profile Page
@@ -50,8 +50,8 @@ test('Navigate to security page', async ({ page }) => {
 });
 
 // Navigate to Resources Page from Account Navigation
-test('Navigate to resources page', async ({ page }) => {
-  console.log('Test Case: Navigate to resources page');
+test("Navigate to resources page", async ({ page }) => {
+  console.log("Test Case: Navigate to resources page");
   // Click Resources Link
   await accountNavigationPage.clickResourcesLink();
   // Confirm URL of the Profile Page

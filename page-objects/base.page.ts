@@ -1,4 +1,4 @@
-import { expect, BrowserContext, Page } from '@playwright/test';
+import { expect, BrowserContext, Page } from "@playwright/test";
 
 let context: BrowserContext;
 
@@ -24,7 +24,7 @@ export class BasePage {
    * @memberof BasePage
    */
   goTo = async (url: string): Promise<void> => {
-    await this.page.goto(url, { waitUntil: 'networkidle' });
+    await this.page.goto(url, { waitUntil: "networkidle" });
   };
 
   /**
@@ -92,7 +92,10 @@ export class BasePage {
    * @param {string} txt
    * @memberof BasePage
    */
-  assertElementContainsText = async (selector: string, txt: string): Promise<void> => {
+  assertElementContainsText = async (
+    selector: string,
+    txt: string
+  ): Promise<void> => {
     const locator = this.page.locator(selector);
     await expect(locator).toContainText(txt);
   };
@@ -103,7 +106,11 @@ export class BasePage {
    * @param {string} txt
    * @memberof BasePage
    */
-  assertElementFromAnArrayHasText = async (selector: string, index: number, txt: string): Promise<void> => {
+  assertElementFromAnArrayHasText = async (
+    selector: string,
+    index: number,
+    txt: string
+  ): Promise<void> => {
     const locator = this.page.locator(selector);
     const textArray = await locator.allInnerTexts();
     expect(textArray[index]).toEqual(txt);
@@ -133,7 +140,11 @@ export class BasePage {
    * @param {string} value
    * @memberof BasePage
    */
-  assertElementAttributeValue = async (ele: string, attribute: string, value: string): Promise<void> => {
+  assertElementAttributeValue = async (
+    ele: string,
+    attribute: string,
+    value: string
+  ): Promise<void> => {
     const locator = this.page.locator(ele);
     expect(locator).toHaveAttribute(attribute, value);
   };
@@ -177,7 +188,10 @@ export class BasePage {
    * @param {string} label
    * @memberof BasePage
    */
-  selectFromDropDownMenu = async (ele: string, label: string): Promise<void> => {
+  selectFromDropDownMenu = async (
+    ele: string,
+    label: string
+  ): Promise<void> => {
     await this.page.selectOption(ele, { label: label });
   };
 
@@ -186,7 +200,10 @@ export class BasePage {
    * @param {string} string2
    * @memberof BasePage
    */
-  assertStringMatch = async (string1: string, string2: string): Promise<void> => {
+  assertStringMatch = async (
+    string1: string,
+    string2: string
+  ): Promise<void> => {
     expect(string1).toEqual(string2);
   };
 

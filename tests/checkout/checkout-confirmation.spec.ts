@@ -1,5 +1,5 @@
-import { test } from '@playwright/test';
-import { CheckoutConfirmationPage } from '../../page-objects/checkout/checkout-confirmation.page';
+import { test } from "@playwright/test";
+import { CheckoutConfirmationPage } from "../../page-objects/checkout/checkout-confirmation.page";
 
 // create instance of Page
 let checkoutConfirmationPage: CheckoutConfirmationPage;
@@ -11,6 +11,14 @@ test.beforeEach(async ({ page }) => {
   await checkoutConfirmationPage.loginThroughOkta();
 });
 
-test('Test Case to test our page object', async ({ page }) => {
-  await checkoutConfirmationPage.createOrderRedirectToCheckout('D2C', 'LegalShield', 'Oklahoma', 'en-US', '', '', ['Legal Plan']);
+test("Test Case to test our page object", async ({ page }) => {
+  await checkoutConfirmationPage.createOrderRedirectToCheckout(
+    "D2C",
+    "LegalShield",
+    "Oklahoma",
+    "en-US",
+    "",
+    "",
+    ["Legal Plan"]
+  );
 });

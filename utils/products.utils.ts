@@ -1,6 +1,6 @@
-import request from 'then-request';
-import { Page } from '@playwright/test';
-import RegionsUtils from './regions.utils';
+import request from "then-request";
+import { Page } from "@playwright/test";
+import RegionsUtils from "./regions.utils";
 
 // Needs refactored or rewritten after pulling in from webdriverio project
 // export default class ProductsUtils {

@@ -1,7 +1,7 @@
-import { test } from '@playwright/test';
-import { StatusPage } from '../../page-objects/status/status.page';
-import UrlsUtils from '../../utils/urls.utils';
-import { basicUser } from '../../utils/user.utils';
+import { test } from "@playwright/test";
+import { StatusPage } from "../../page-objects/status/status.page";
+import UrlsUtils from "../../utils/urls.utils";
+import { basicUser } from "../../utils/user.utils";
 
 // Declare Page Variable for This Page
 let statusPage: StatusPage;
@@ -13,8 +13,8 @@ test.beforeEach(async ({ page }) => {
   await statusPage.goTo(UrlsUtils.legalshieldUrls.status.url);
 });
 
-test('Login from Status app and confirm redirect', async ({ page }) => {
-  console.log('Test Case: Login from Status app and confirm redirect');
+test("Login from Status app and confirm redirect", async ({ page }) => {
+  console.log("Test Case: Login from Status app and confirm redirect");
   // Click Sign In from the status header page to reach Login application
   await statusPage.clickSignInFromHeader();
   // Login with basic account
