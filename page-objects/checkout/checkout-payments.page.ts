@@ -34,6 +34,7 @@ export class CheckoutPaymentsPage extends CheckoutPersonalInfoPage {
     );
     await this.changeAddress("2021 Park Pl", "Birmingham", "35203");
     await this.clickSaveAndContinueButton();
+    await this.page.waitForTimeout(3500);
     await this.clickBankDraftBtn();
   };
   // ========================== Click Methods ==============================
