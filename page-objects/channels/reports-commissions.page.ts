@@ -25,8 +25,7 @@ export class ReportsCommissionsPage extends ChannelsHeaderPage {
     // ========================== Click Methods ==============================
     // ========================== Assertion Methods ==========================
     assertPageShow = async (): Promise<void> => {
-        console.log(' - ReportsCommissionsPage.assertPageTitle');
-        const strTitle = 'Organizational Business Report';
+        console.log(' - ReportsCommissionsPage.assertPageShow');
         await this.page.waitForSelector(txtBoxSearch);
         await this.assertElementIsVisible(txtBoxSearch);
       };
@@ -36,18 +35,15 @@ export class ReportsCommissionsPage extends ChannelsHeaderPage {
         const strTitle = 'Organizational Business Report';
         await this.page.waitForSelector(txtBoxSearch);
         //expect.stringMatching( strTitle.match(this.page.title.toString()) );
-        console.log(this.page.title())
       };
     
       assertBreadcrumbLinkIsDisplayed = async (): Promise<void> => {
-        console.log(' - ReportsCommissionsPage.assertPageTitle');
-        const strTitle = 'Organizational Business Report';
+        console.log(' - ReportsCommissionsPage.assertBreadcrumbLinkIsDisplayed');
         await this.page.waitForSelector(txtBoxSearch);
         await this.assertElementIsVisible(organizationalBusinessReportBreadcrumb);
       };
       assertOrganizationalBusinessReportTaIsDisplayed = async (): Promise<void> => {
-        console.log(' - ReportsCommissionsPage.assertPageTitle');
-        const strTitle = 'Organizational Business Report';
+        console.log(' - ReportsCommissionsPage.assertOrganizationalBusinessReportTaIsDisplayed');
         await this.page.waitForSelector(txtBoxSearch);
         await this.assertElementIsVisible(organizationalBusinessReportTabDisplayed);
       };
