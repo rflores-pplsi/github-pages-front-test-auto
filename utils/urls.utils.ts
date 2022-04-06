@@ -96,4 +96,13 @@ export default class UrlsUtils {
       url: 'https://lspro.stage.wearelegalshield.com/launch',
     },
   };
+
+  static readonly channelsUrls = {
+    businesscard: {
+      url: `https://associate-office.${envUrlString}legalshield.com/business-card`,
+    },
+    reportscommissions: {
+      url: `https://associate-office.${envUrlString}legalshield.com/reports/business/organizational`,
+    },
+  };
 }
