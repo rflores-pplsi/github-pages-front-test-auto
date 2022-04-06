@@ -14,7 +14,7 @@ export class BusinessSolutionsIdentityEnrollPage extends BasePage {
   // ========================== Click Methods ==============================
   clickEnrollNowButton = async () => {
     console.log(' - businessSolutionsIdentityEnrollPage.clickEnrollButton');
-    // Click on Plans Link from Accounts Navigation
+    // Click on Enroll Now button to reach the pricing page
     await this.clickOnElement(btnEnroll);
   };
   // ========================== Assertion Methods ==========================
