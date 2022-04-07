@@ -7,6 +7,8 @@ const txtBoxSearch: string = 'input[name="associateInputSearch"]';
 const organizationalBusinessReportBreadcrumb: string ='#root > div > div.lsux-content > div:nth-child(1) > div.lsux-crumbs > span';
 const organizationalBusinessReportTabDisplayed: string ='#root > div > div.lsux-content > div:nth-child(1) > div.lsux-tab--bar.lsux-tab--stretch > div.lsux-tab.active > div > h4';
 const txaAssociateNumber: string ='div.associate-info p';
+const txaSearchResult: string ='//*[@id="root"]/div/div[2]/div[1]/div[3]/div/div[1]/a/h2';
+const txaPersonal: string ='//*[@id="root"]/div/div[2]/div[1]/div[3]/div';
 /**
  *
  *
@@ -28,6 +30,11 @@ export class ReportsCommissionsPage extends ChannelsHeaderPage {
     // Click Terms of Service link
     console.log(' - ReportsCommissionsPage.clicktxtBoxSearch');
     await this.page.click(txtBoxSearch);
+  };
+  clickSearchResult = async (): Promise<void> => {
+    // Click Terms of Service link
+    console.log(' - ReportsCommissionsPage.clickSearchResult');
+    await this.page.click(txaSearchResult);
   };
   // ========================== Fill Methods ===============================
   /**
@@ -66,6 +73,11 @@ export class ReportsCommissionsPage extends ChannelsHeaderPage {
     console.log(' - ReportsCommissionsPage.assertTxaAssociateNumberIsDisplayed');
     await this.page.waitForSelector(txaAssociateNumber);
     await this.assertElementIsVisible(txaAssociateNumber);
+  };
+  assertTabPersonalBusinessReportIsDisplayed = async (): Promise<void> => {
+    console.log(' - ReportsCommissionsPage.assertTabPersonalBusinessReportIsDisplayed');
+    await this.page.waitForSelector(txaPersonal);
+    await this.assertElementIsVisible(txaPersonal);
   };
 }
      

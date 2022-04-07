@@ -24,3 +24,11 @@ test('SC-1305 - OBR - FE - Create Search Component', async ({ page }) => {
   await reportsCommissionsPage.fillTxtBoxSearch('AssociateIds');
   await reportsCommissionsPage.assertTxaAssociateNumberIsDisplayed();
 });
+
+test('SC-1306 - OBR - FE - Associate Name and Number Titles', async ({ page }) => {
+  await reportsCommissionsPage.assertPageShow();
+  await reportsCommissionsPage.fillTxtBoxSearch('AssociateIds');
+  await reportsCommissionsPage.assertTxaAssociateNumberIsDisplayed();
+  await reportsCommissionsPage.clickSearchResult();
+  await reportsCommissionsPage.assertTabPersonalBusinessReportIsDisplayed();
+});
