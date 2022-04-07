@@ -1,58 +1,56 @@
-import { expect, Locator, Page } from '@playwright/test';
+import { expect } from '@playwright/test';
 import UrlsUtils from '../../utils/urls.utils';
-import { LoginPage } from '../login/login.page';
-import { AccountNavigationPage } from './account-navigation.page';
 import { AccountProfilePage } from './account-profile.page';
-require ('dotenv').config;
 
 // ========================== Selectors ==========================
-let url= UrlsUtils.legalshieldUrls.account.url + "/profile";
-let txtBoxEditDateOfBirth = "input[name='birthDate']";
-let btnSavebtn = 'button:has-text("Save")';
+const txtBoxEditDateOfBirth = "input[name='birthDate']";
+const btnSave = 'button:has-text("Save")';
 
-export class AccountProfileDoBPage extends AccountProfilePage{
+/**
+ * @export
+ * @class AccountProfileDoBPage
+ * @extends {AccountProfilePage}
+ */
+export class AccountProfileDoBPage extends AccountProfilePage {
+  // ========================== Process Methods ==========================
 
-// Page Instances
-  // Page Instances
-
-  //accoutNavigationPage = new AccountNavigationPage(this.page);
-
-  goToProfileDateOfBirthPage = async (): Promise<void> => {
-    console.log(" - accountProfilePage.goToProfileNamePage")
-    await this.goToProfilePage();
-    await this.clickEditDateOfBirthButton();
-    await this.page.waitForLoadState('networkidle');
-    
-  }
-
-  // ========================== Process Methods ========================== 
-
-  // ========================== Navigate Methods ========================== 
-
-  // ========================== Click Methods ========================== 
   // Edit First Name text box
-  editDateOfBirthTxtBox = async (): Promise<void> =>{
-    console.log(" - accountProfilePage.editDateOfBirthTxtBox")
-    await this.typeTextBox(txtBoxEditDateOfBirth,"12302000");
+  editDateOfBirthTxtBox = async (): Promise<void> => {
+    console.log(' - accountProfileDoBPage.editDateOfBirthTxtBox');
+    // Update the date of birth text box
+    await this.typeTextBox(txtBoxEditDateOfBirth, '10301990');
     await this.page.press('[placeholder="Date\\ of\\ birth"]', 'Tab');
-    //await this.page.press('[placeholder="Date\\ of\\ birth"]', 'Tab');
-    //await this.page.press('[placeholder="Date\\ of\\ birth"]', 'Enter');
-    //await this.keyboardTextBox('');
-  }
-  saveDateOfBirthbtn = async (): Promise<void> =>{
-    console.log(" - accountProfilePage.editDateOfBirthbtn")
-    await this.clickOnElement(btnSavebtn);
-  }
+  };
 
-  
-  // ========================== Assertion Methods ========================== 
-  assertProfileDateOfBirthPageUrl = async (): Promise<void> => {
-    console.log(" - accountProfilePage.assertProfileDateOfBirthPageUrl");
-    // Confirm the Profile Date of Birth Page URL is reached
+  // ========================== Navigate Methods ==========================
+
+  navigateProfileDateOfBirthPage = async (): Promise<void> => {
+    console.log(' - accountProfileDoBPage.navigateProfileDateOfBirthPage');
+    // navigate Profile page
+    await this.navigateToProfilePage();
+    // Click on Date of Birth page edit button
+    await this.clickEditDateOfBirthButton();
+  };
+
+  // ========================== Click Methods ==========================
+
+  clickSaveDateOfBirthButton = async (): Promise<void> => {
+    console.log(' - accountProfileDoBPage.clickSaveDateOfBirthButton');
+    // Click on save button
+    await this.clickOnElement(btnSave);
+  };
+
+  // ========================== Assertion Methods ==========================
+  assertDateOfBirthOnProfileDOBPage = async (): Promise<void> => {
+    console.log(' - accountProfileDoBPage.assertDateOfBirthOnProfileDOBPage');
+    // Click on Edit date of birth button
+    await this.clickEditDateOfBirthButton();
+    // Confirm the Profile Date of Birth text box is updated
+    await this.page.waitForSelector(txtBoxEditDateOfBirth);
+    const updatedDoB = await this.page.locator(txtBoxEditDateOfBirth).getAttribute('value');
+    expect(updatedDoB).toBe('1990-10-30');
     await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.account.url + '/profile/birth');
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
-  }
-  
-
-};
+  };
+}

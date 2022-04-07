@@ -1,4 +1,5 @@
 # Table of Contents
+
 - [Table of Contents](#table-of-contents)
 - [Typescript](#typescript)
   - [Overview](#overview)
@@ -9,7 +10,7 @@
   - [Browser/Device Support:](#browserdevice-support)
   - [Learning resources](#learning-resources-1)
 - [Command Line](#command-line)
-- [Install](#install)
+- [Project Setup](#project-setup)
 - [Run tests](#run-tests)
 - [Generate report](#generate-report)
 - [Page Object Model (POM)](#page-object-model-pom)
@@ -25,19 +26,23 @@
     - [<ins>Reliability</ins>](#insreliabilityins)
     - [<ins>Readability</ins>](#insreadabilityins)
     - [<ins>Atomicity</ins>](#insatomicityins)
-  
+
 # Typescript
+
 ## Overview
+
 ## Learning Resources
 
 # Playwright
 
 ## Overview
+
 The playwright is a Node.js library to automate Chromium, Firefox, and WebKit with a single API. Playwright is built to enable cross-browser web testing.
 
 Playwright by Microsoft started as a fork of Google's Puppeteer. Puppeteer is a node library to automate the chromium browsers with the JavaScript API.
 
 ## Features:
+
 - Spans multiple pages, domains, and iframes
 - Intercept network activity for stubbing and mocking network requests
 - Emulate mobile devices, geolocation, permissions
@@ -53,10 +58,12 @@ Playwright by Microsoft started as a fork of Google's Puppeteer. Puppeteer is a 
 - Can handle single page application
 
 ## Browser/Device Support:
+
 Browsers: Chromium (google), Firefox, and WebKit (Safari)
 Mobile (device emulation)
 
 ## Learning resources
+
 Please follow the sequence to enhance your learning! <br>
 
 1. What is Playwright? | Playwright with Typescript & Jest - Part 1: https://www.youtube.com/watch?v=zY-IoTYcbWs
@@ -129,7 +136,29 @@ npx playwright codegen https://www.google.com
 Run test case with tag
 npx playwright test --grep @tagName --headed --browser=firefox
 ```
-# Install
+
+# Project Setup
+
+1. ## Clone the playwright repo
+2. Extensions:
+   1. Prettier
+      1. VSCODE -> Code -> Preferences -> settings
+         1. Search Bar -> "Formatter"
+            1. Editor: Default Formatter -> "Prettier"
+         2. Search Bar -> "Format"
+            1. Editor: Format On Paste
+            2. Editor: Format On Save
+   2. Back and Forth
+   3. ES6 Mocha Snippets
+   4. ESLint
+      1. VSCODE -> Code -> Preferences -> settings
+         1. Search Bar -> "eslint"
+         2. Eslint: Always Show Status
+         3. Eslint › Lint Task: Enable
+      2. Terminal: npx eslint . --ext .ts
+   5. Code Spell Checker
+   6. Document This
+3.
 
 npm i -D allure-playwright
 
@@ -145,16 +174,14 @@ npx playwright test \tests\login\login-header.spec.ts --reporter=html
 Run the HTML report:
 npx playwright show-report
 
-Generate HTML Allure report:
-
-allure generate ./allure-results --clean && allure open ./allure-report
-
 # Page Object Model (POM)
+
 ## File Structure
 
-Page Object files are organized by service. 
+Page Object files are organized by service.
 
 Example File Structure:
+
 - Page Objects
   - Account
     - account-footer.page.ts
@@ -163,20 +190,21 @@ Example File Structure:
   - Activate
   - etc.
 
-## Naming a Page Object Model file 
+## Naming a Page Object Model file
 
-Format:  [service name]-[page name]-[sub pagename (optional)].page.ts <br>
+Format: [service name]-[page name]-[sub pagename (optional)].page.ts <br>
 Example: account-profile-phone.page.ts (page object for URL - https://accountsv2.uat-legalshield.com/profile)
 
-## Anatomy of a Page Object 
+## Anatomy of a Page Object
+
 ```TSX
-// import Page Objects and other utility classes 
+// import Page Objects and other utility classes
 import { expect } from '@playwright/test';        // playwright test library - https://www.npmjs.com/package/@playwright/test
 import UrlsUtils from '../../utils/urls.utils';   // helper methods that are outside the scope of a page object
-import { BasePage } from '../base.page';          // import the BasePage in order to extend this page and to inherit BasePage methods 
+import { BasePage } from '../base.page';          // import the BasePage in order to extend this page and to inherit BasePage methods
 
 // ========================== Selectors ==========================
-/** 
+/**
  - declare page selectors as strings
  - selector names should follow the format [element abbreviation][description of element]
  - example: let btnPage: string = 'h2.lsux-heading';
@@ -188,13 +216,13 @@ For a list of most element abbreviations - see section Selector Names of this RE
 // For pages that need access to login service, extend LoginPage which extends BasePage
 export class LoginPage extends BasePage{
 
-  // ========================== Page Instances ========================== 
-  // new up any instances of other Page Object Models 
-  accoutNavigationPage = new AccountNavigationPage(this.page);
+  // ========================== Page Instances ==========================
+  // new up any instances of other Page Object Models
+  accountNavigationPage = new AccountNavigationPage(this.page);
 
   // The follow Method section should be included in each Page Object:
 
-  // ========================== Process Methods ========================== 
+  // ========================== Process Methods ==========================
   // Process Methods section will house all methods that do not belong in the sections below
 
   login = async (emailOrUsername: string, password: string):Promise<void> => {
@@ -209,23 +237,23 @@ export class LoginPage extends BasePage{
     await this.fillTextBox(txtPassword,password);
     // Click on Sign In to submit login form
     await this.clickOnElement(btnSignIn);
-    // Wait for page to finish loading 
+    // Wait for page to finish loading
     await this.page.waitForLoadState('networkidle');
   }
 
-  // ========================== Navigate Methods ========================== 
+  // ========================== Navigate Methods ==========================
   // - take you to a URL using the BasePage.goTo() method
   // - names should be prefixed with "navigation"
 
   navigateToLoginPage = async (): Promise<void> => {
-    console.log(" - loginPage.navigateToLoginPage");    
+    console.log(" - loginPage.navigateToLoginPage");
     // Navigate to Account Plans Page
     await this.goTo(UrlsUtils.legalshieldUrls.login.url);
     // Wait for page to finish loading
     await this.page.waitForLoadState('networkidle');
   }
 
-  // ========================== Click Methods ========================== 
+  // ========================== Click Methods ==========================
   // - click a specific element on this page using the BasePage.clickOnElement
   // - names should be prefixed with "click"
 
@@ -237,7 +265,7 @@ export class LoginPage extends BasePage{
     await this.page.waitForLoadState('domcontentloaded');
   }
 
-  // ========================== Assertion Methods ========================== 
+  // ========================== Assertion Methods ==========================
   // - used to verify the specific thing that the test case is intended for
   // - should *always* include an 'expect' function
   // - names should be prefixed with the word 'assertion'
@@ -255,7 +283,8 @@ export class LoginPage extends BasePage{
 
 ## Template
 
-Copy this unannotated template to create a new page object. Adjust as necessary, retaining Method section headers to organize future methods 
+Copy this unannotated template to create a new page object. Adjust as necessary, retaining Method section headers to organize future methods
+
 ```TSX
 import { expect } from '@playwright/test';        // import expect functionality from playwright
 import UrlsUtils from '../../utils/urls.utils';   // import class of Urls
@@ -269,80 +298,94 @@ export class PageName extends LoginPage {
 
 // ========================== Navigate Methods ===========================
 
-// ========================== Click Methods ============================== 
+// ========================== Click Methods ==============================
 
 // ========================== Assertion Methods ==========================
 
 }
 
 ```
-## Selectors
-If this list does not include a UI/Control Type that you are implementing, use your best judgement for creating a new abbreviation, using readability and clarity as guidance. Add any new prefix to the list for future use. Organized alphabetically. 
 
-| UI/Control type | Prefix | Example |
-| :-------- | :-------- | :--------
-| Button | btn | btnExit |
-| Check box | chk | chkReadOnly |
-| Chevron | chv | chvProtocol |
-| Combo box | cbo | cboEnglish |
-| Common dialog | dlg | dlgFileOpen |
-| Data grid | dgd | dgdTitles |
-| Data list | dbl | dblPublisher |
-| Date picker | dtp | dtpPublished |
-| Directory list box | dir | dirSource |
-| Drive list box | drv | drvTarget |
-| Dropdown List / Select tag | ddl | ddlCountry |
-| File list box | fil | filSource |
-| Form | frm | frmEntry |
-| Frame | fra | fraLanguage |
-| Image | img | imgIcon |
-| Label | lbl | lblHelpMessage |
-| Links/Anchor Tags | lnk | lnkForgotPwd |
-| List box | lst | lstPolicyCodes |
-| Menu | mnu | mnuFileOpen |
-| Message | msg | msgSuccess |
-| Panel/Fieldset | pnl | pnlGroup |
-| ProgressBar | prg | prgLoadFile |
-| Radio button / group | rdo | rdoGender |
-| RichTextBox | rtf | rtfReport |
-| Slider | sld | sldScale |
-| Spinner | spn | spnPages |
-| StatusBar | sta | staDateTime |
-| Step | stp | stpEnterCode |
-| Table | tbl | tblCustomer |
-| TabStrip | tab | tabOptions |
-| Text Area | txa | txaDescription |
-| Text box | txt | txtLastName |
-| Timer | tmr | tmrAlarm |
-| Toolbar | tlb | tlbActions |
-| TreeView | tre | treOrganization |
+## Selectors
+
+If this list does not include a UI/Control Type that you are implementing, use your best judgement for creating a new abbreviation, using readability and clarity as guidance. Add any new prefix to the list for future use. Organized alphabetically.
+
+| UI/Control type            | Prefix | Example         |
+| :------------------------- | :----- | :-------------- |
+| Array of Elements          | arr    | arrExit         |
+| Button                     | btn    | btnExit         |
+| Check box                  | chk    | chkReadOnly     |
+| Chevron                    | chv    | chvProtocol     |
+| Combo box                  | cbo    | cboEnglish      |
+| Common dialog              | dlg    | dlgFileOpen     |
+| Container                  | con    | conSupportInfo  |
+| Data grid                  | dgd    | dgdTitles       |
+| Data list                  | dbl    | dblPublisher    |
+| Date picker                | dtp    | dtpPublished    |
+| Directory list box         | dir    | dirSource       |
+| Drive list box             | drv    | drvTarget       |
+| Dropdown List / Select tag | ddl    | ddlCountry      |
+| File list box              | fil    | filSource       |
+| Form                       | frm    | frmEntry        |
+| Frame                      | fra    | fraLanguage     |
+| Image                      | img    | imgIcon         |
+| Label                      | lbl    | lblHelpMessage  |
+| Links/Anchor Tags          | lnk    | lnkForgotPwd    |
+| List box                   | lst    | lstPolicyCodes  |
+| Menu                       | mnu    | mnuFileOpen     |
+| Message                    | msg    | msgSuccess      |
+| Panel/Fieldset             | pnl    | pnlGroup        |
+| ProgressBar                | prg    | prgLoadFile     |
+| Radio button / group       | rdo    | rdoGender       |
+| RichTextBox                | rtf    | rtfReport       |
+| Slider                     | sld    | sldScale        |
+| Spinner                    | spn    | spnPages        |
+| StatusBar                  | sta    | staDateTime     |
+| Step                       | stp    | stpEnterCode    |
+| Table                      | tbl    | tblCustomer     |
+| TabStrip                   | tab    | tabOptions      |
+| Text Area                  | txa    | txaDescription  |
+| Text box                   | txt    | txtLastName     |
+| Timer                      | tmr    | tmrAlarm        |
+| Toolbar                    | tlb    | tlbActions      |
+| TreeView                   | tre    | treOrganization |
 
 # Test Specification Files (spec)
+
 ## Naming a Test File file
+
 A test file should be named according to the same format for naming our Page Object files, except that instead of ending the file with ".page.ts" these files will end with ".spec.ts"
 
-Format:  [service name]-[page name]-[sub pagename (optional)].spec.ts <br>
+Format: [service name]-[page name]-[sub pagename (optional)].spec.ts <br>
 Example: account-profile-phone.spec.ts
 
 ## In which test file (spec) does my test case belong?
-It is not always straightforward which test file you should put your test case in, as test cases will commonly span multiple pages. Following this one rule should  
+
+It is not always straightforward which test file you should put your test case in, as test cases will commonly span multiple pages. Following this one rule should
+
 ```
 Rule:
-A test case belongs in the spec file that corresponds to the page where the ultimate assertion will be performed. 
-``` 
+A test case belongs in the spec file that corresponds to the page where the ultimate assertion will be performed.
+```
+
 ```
 Example:
 I have a test case that has the intention to confirm that I am on the accounts/plans page after logging in, that test would *not* belong in a test file for the login service (i.e. 'login.spec.ts'), even though the test will navigate through the login flow. It would instead belong in the test file for the account/plans page (account-plans.spec.ts), as that is where I ultimately confirm the behavior that indicates that the test case has passed.
-```  
+```
 
 ## Test File Best Practices
 
-### <ins>Reliability</ins> 
-Unreliable tests are often worse than no tests at all, as it erodes trust in automation and costs time as the team searches for the root cause of false failures. We want to do our best to keep our spec files free of flaky and outdated test, so that tests only fail when they encounter a bug in the application (i.e. a true positive). If a test is failling for other reasons (the application has changed, unforeseen timing issues) then the spec file should be updated to account for any changes as soon as possible. If the test cannot be updated immediatley, you can make use of Playwright Annotations to skip tests in various ways. Manual running of skipped tests should then be considered when performing test plans that include automation. <br> (see -  https://playwright.dev/docs/test-annotations)
-### <ins>Readability</ins>
-As much as possible, we want our spec file test cases to read as close to english as possible. One way to do this, we will favor method names that clearly describe what the method will do, even as the method names grow in length. 
+### <ins>Reliability</ins>
 
-###  <ins>Atomicity</ins>
+Unreliable tests are often worse than no tests at all, as it erodes trust in automation and costs time as the team searches for the root cause of false failures. We want to do our best to keep our spec files free of flaky and outdated test, so that tests only fail when they encounter a bug in the application (i.e. a true positive). If a test is failling for other reasons (the application has changed, unforeseen timing issues) then the spec file should be updated to account for any changes as soon as possible. If the test cannot be updated immediatley, you can make use of Playwright Annotations to skip tests in various ways. Manual running of skipped tests should then be considered when performing test plans that include automation. <br> (see - https://playwright.dev/docs/test-annotations)
+
+### <ins>Readability</ins>
+
+As much as possible, we want our spec file test cases to read as close to english as possible. One way to do this, we will favor method names that clearly describe what the method will do, even as the method names grow in length.
+
+### <ins>Atomicity</ins>
+
 Atomic testing refers to the writing tests that have a singular purpose. This is a common philosophy in unit and integration tests, but can also be a guiding principle for UI regression. Whenever possible, we want to avoid writing lenghty end-to-end tests that have multiple assertions. <br>
-* additional explanation
-https://medium.com/swlh/creating-fast-reliable-focused-ui-automation-with-atomic-tests-582e4318c0bb 
+
+- additional explanation
+  https://medium.com/swlh/creating-fast-reliable-focused-ui-automation-with-atomic-tests-582e4318c0bb
