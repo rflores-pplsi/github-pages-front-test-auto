@@ -42,6 +42,7 @@ groupSearchByGroupNumber = async (): Promise<void> => {
 
     assertTextGroup = async (): Promise<void> => {
         console.log(" - accountShieldAtWorkPage.assertTextGroup")
+        // Verify that group name is displayed 
         await this.page.waitForSelector(txtGroup);
         const locator = this.page.locator(txtGroup);
         await expect(locator).toContainText('Barry University');
