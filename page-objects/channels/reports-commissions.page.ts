@@ -6,46 +6,66 @@ import { expect,Locator, Page } from '@playwright/test';
 const txtBoxSearch: string = 'input[name="associateInputSearch"]';
 const organizationalBusinessReportBreadcrumb: string ='#root > div > div.lsux-content > div:nth-child(1) > div.lsux-crumbs > span';
 const organizationalBusinessReportTabDisplayed: string ='#root > div > div.lsux-content > div:nth-child(1) > div.lsux-tab--bar.lsux-tab--stretch > div.lsux-tab.active > div > h4';
+const txaAssociateNumber: string ='div.associate-info p';
 /**
  *
  *
  * @export
- * @class BusinessCard
+ * @class ReportsCommissionsPage
  * @extends {ChannelsHeaderPage}
  */
 export class ReportsCommissionsPage extends ChannelsHeaderPage {
-    // ========================== Process Methods ============================
-    // ========================== Navigate Methods ===========================
-    navigateToReportsCommissionsPagePage = async (): Promise<void> => {
-        console.log(' - ReportsCommissionsPage.navigateToReportsCommissionsPagePage');
-        // Navigate to Business Solution  Page
-        await this.navigateToPage(UrlsUtils.channelsUrls.reportscommissions.url);
-        
-      };
-    // ========================== Click Methods ==============================
-    // ========================== Assertion Methods ==========================
-    assertPageShow = async (): Promise<void> => {
-        console.log(' - ReportsCommissionsPage.assertPageShow');
-        await this.page.waitForSelector(txtBoxSearch);
-        await this.assertElementIsVisible(txtBoxSearch);
-      };
+  // ========================== Process Methods ============================
+  // ========================== Navigate Methods ===========================
+  navigateToReportsCommissionsPagePage = async (): Promise<void> => {
+      console.log(' - ReportsCommissionsPage.navigateToReportsCommissionsPagePage');
+      // Navigate to Business Solution  Page
+      await this.navigateToPage(UrlsUtils.channelsUrls.reportscommissions.url);
+      
+    };
+  // ========================== Click Methods ==============================
+  clickTxtBoxSearch = async (): Promise<void> => {
+    // Click Terms of Service link
+    console.log(' - ReportsCommissionsPage.clicktxtBoxSearch');
+    await this.page.click(txtBoxSearch);
+  };
+  // ========================== Fill Methods ===============================
+  /**
+   * @param {string} txt
+   * @memberof ReportsCommissionsPage
+   */
+  fillTxtBoxSearch = async (txt: string): Promise<void> => {
+    await this.page.click(txtBoxSearch);
+    await this.page.fill(txtBoxSearch, txt);
+  };
+  // ========================== Assertion Methods ==========================
+  assertPageShow = async (): Promise<void> => {
+    console.log(' - ReportsCommissionsPage.assertPageShow');
+    await this.page.waitForSelector(txtBoxSearch);
+    await this.assertElementIsVisible(txtBoxSearch);
+  };
 
-      assertPageTitle = async (): Promise<void> => {
-        console.log(' - ReportsCommissionsPage.assertPageTitle');
-        const strTitle = 'Organizational Business Report';
-        await this.page.waitForSelector(txtBoxSearch);
-        //expect.stringMatching( strTitle.match(this.page.title.toString()) );
-      };
-    
-      assertBreadcrumbLinkIsDisplayed = async (): Promise<void> => {
-        console.log(' - ReportsCommissionsPage.assertBreadcrumbLinkIsDisplayed');
-        await this.page.waitForSelector(txtBoxSearch);
-        await this.assertElementIsVisible(organizationalBusinessReportBreadcrumb);
-      };
-      assertOrganizationalBusinessReportTaIsDisplayed = async (): Promise<void> => {
-        console.log(' - ReportsCommissionsPage.assertOrganizationalBusinessReportTaIsDisplayed');
-        await this.page.waitForSelector(txtBoxSearch);
-        await this.assertElementIsVisible(organizationalBusinessReportTabDisplayed);
-      };
+  assertPageTitle = async (): Promise<void> => {
+    console.log(' - ReportsCommissionsPage.assertPageTitle');
+    const strTitle = 'Organizational Business Report';
+    await this.page.waitForSelector(txtBoxSearch);
+    //expect.stringMatching( strTitle.match(this.page.title.toString()) );
+  };
+
+  assertBreadcrumbLinkIsDisplayed = async (): Promise<void> => {
+    console.log(' - ReportsCommissionsPage.assertBreadcrumbLinkIsDisplayed');
+    await this.page.waitForSelector(txtBoxSearch);
+    await this.assertElementIsVisible(organizationalBusinessReportBreadcrumb);
+  };
+  assertOrganizationalBusinessReportTaIsDisplayed = async (): Promise<void> => {
+    console.log(' - ReportsCommissionsPage.assertOrganizationalBusinessReportTaIsDisplayed');
+    await this.page.waitForSelector(txtBoxSearch);
+    await this.assertElementIsVisible(organizationalBusinessReportTabDisplayed);
+  };
+  assertTxaAssociateNumberIsDisplayed = async (): Promise<void> => {
+    console.log(' - ReportsCommissionsPage.assertTxaAssociateNumberIsDisplayed');
+    await this.page.waitForSelector(txaAssociateNumber);
+    await this.assertElementIsVisible(txaAssociateNumber);
+  };
 }
      

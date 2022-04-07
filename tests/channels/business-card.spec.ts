@@ -10,6 +10,14 @@ test.beforeEach(async ({ page }) => {
   await businessCard.navigateToBusinessCardPage();
 });
 
-test('Test Case to test our page object', async ({ page }) => {
-  await businessCard.assertPageTitle();
+test('SC-xxxx - Verify the base page is show', async ({ page }) => {
+  await businessCard.assertPageShow();
+});
+
+test('SC-1290 - Verify First Name, Last Name, Phone Number and Website Fields are displaying', async ({ page }) => {
+  await businessCard.assertPageShow();
+  await businessCard.assertFirstNameIsDisplayed();
+  await businessCard.assertLastNameIsDisplayed();
+  await businessCard.assertPhoneNumberIsDisplayed();
+  await businessCard.assertDisplayOnWebsite();
 });
