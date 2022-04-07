@@ -101,8 +101,11 @@ export default class UrlsUtils {
     businesscard: {
       url: `https://associate-office.${envUrlString}legalshield.com/business-card`,
     },
-    reportscommissions: {
+    reportsbusinessorganizational: {
       url: `https://associate-office.${envUrlString}legalshield.com/reports/business/organizational`,
+    },
+    reportscommissions: {
+      url: `https://associate-office.${envUrlString}legalshield.com/reports/commissions`,
     },
   };
 }

@@ -9,6 +9,9 @@ const organizationalBusinessReportTabDisplayed: string ='#root > div > div.lsux-
 const txaAssociateNumber: string ='div.associate-info p';
 const txaSearchResult: string ='//*[@id="root"]/div/div[2]/div[1]/div[3]/div/div[1]/a/h2';
 const txaPersonal: string ='//*[@id="root"]/div/div[2]/div[1]/div[3]/div';
+//Report -> Commissions
+const lblAssociateNumber: string ='.lsux-heading.lsux-heading--t28';
+const tabFastStartStatement: string ='//*[text()[contains(.,"Fast Start Statements")]]';
 /**
  *
  *
@@ -19,12 +22,18 @@ const txaPersonal: string ='//*[@id="root"]/div/div[2]/div[1]/div[3]/div';
 export class ReportsCommissionsPage extends ChannelsHeaderPage {
   // ========================== Process Methods ============================
   // ========================== Navigate Methods ===========================
-  navigateToReportsCommissionsPagePage = async (): Promise<void> => {
-      console.log(' - ReportsCommissionsPage.navigateToReportsCommissionsPagePage');
+  navigateToReportsBusinessOrganizationalPage = async (): Promise<void> => {
+      console.log(' - ReportsCommissionsPage.navigateToReportsBusinessOrganizationalPage');
       // Navigate to Business Solution  Page
-      await this.navigateToPage(UrlsUtils.channelsUrls.reportscommissions.url);
+      await this.navigateToPage(UrlsUtils.channelsUrls.reportsbusinessorganizational.url);
       
-    };
+  };
+  navigateToReportsCommissionsPage = async (): Promise<void> => {
+    console.log(' - ReportsCommissionsPage.navigateToReportsCommissionsPage');
+    // Navigate to Business Solution  Page
+    await this.navigateToPage(UrlsUtils.channelsUrls.reportscommissions.url);
+    
+  };
   // ========================== Click Methods ==============================
   clickTxtBoxSearch = async (): Promise<void> => {
     // Click Terms of Service link
@@ -46,19 +55,22 @@ export class ReportsCommissionsPage extends ChannelsHeaderPage {
     await this.page.fill(txtBoxSearch, txt);
   };
   // ========================== Assertion Methods ==========================
-  assertPageShow = async (): Promise<void> => {
-    console.log(' - ReportsCommissionsPage.assertPageShow');
+  assertReportsBusinessOrganizationalPageShow = async (): Promise<void> => {
+    console.log(' - ReportsCommissionsPage.assertReportsBusinessOrganizationalPageShow');
     await this.page.waitForSelector(txtBoxSearch);
     await this.assertElementIsVisible(txtBoxSearch);
   };
-
+  assertReportsReportsCommissionsPageShow = async (): Promise<void> => {
+    console.log(' - ReportsCommissionsPage.assertReportsReportsCommissionsPageShow');
+    await this.page.waitForSelector(lblAssociateNumber);
+    await this.assertElementIsVisible(lblAssociateNumber);
+  };
   assertPageTitle = async (): Promise<void> => {
     console.log(' - ReportsCommissionsPage.assertPageTitle');
     const strTitle = 'Organizational Business Report';
     await this.page.waitForSelector(txtBoxSearch);
     //expect.stringMatching( strTitle.match(this.page.title.toString()) );
   };
-
   assertBreadcrumbLinkIsDisplayed = async (): Promise<void> => {
     console.log(' - ReportsCommissionsPage.assertBreadcrumbLinkIsDisplayed');
     await this.page.waitForSelector(txtBoxSearch);
@@ -78,6 +90,11 @@ export class ReportsCommissionsPage extends ChannelsHeaderPage {
     console.log(' - ReportsCommissionsPage.assertTabPersonalBusinessReportIsDisplayed');
     await this.page.waitForSelector(txaPersonal);
     await this.assertElementIsVisible(txaPersonal);
+  };
+  assertTabFastStartStatementIsDisplayed = async (): Promise<void> => {
+    console.log(' - ReportsCommissionsPage.assertTabPersonalBusinessReportIsDisplayed');
+    await this.page.waitForSelector(tabFastStartStatement);
+    await this.assertElementIsVisible(tabFastStartStatement);
   };
 }
      

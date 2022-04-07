@@ -7,11 +7,11 @@ let reportsCommissionsPage: ReportsCommissionsPage;
 // Setup environment before each test
 test.beforeEach(async ({ page }) => {
   reportsCommissionsPage = new ReportsCommissionsPage(page);
-  await reportsCommissionsPage.navigateToReportsCommissionsPagePage();
+  await reportsCommissionsPage.navigateToReportsBusinessOrganizationalPage();
 });
 
 test('SC-xxxx - Verify the base page is show', async ({ page }) => {
-  await reportsCommissionsPage.assertPageShow();
+  await reportsCommissionsPage.assertReportsBusinessOrganizationalPageShow();
 });
 
 test('SC-1264 - OBR - FE - Routing', async ({ page }) => {
@@ -20,13 +20,13 @@ test('SC-1264 - OBR - FE - Routing', async ({ page }) => {
 });
 
 test('SC-1305 - OBR - FE - Create Search Component', async ({ page }) => {
-  await reportsCommissionsPage.assertPageShow();
+  await reportsCommissionsPage.assertReportsBusinessOrganizationalPageShow();
   await reportsCommissionsPage.fillTxtBoxSearch('AssociateIds');
   await reportsCommissionsPage.assertTxaAssociateNumberIsDisplayed();
 });
 
 test('SC-1306 - OBR - FE - Associate Name and Number Titles', async ({ page }) => {
-  await reportsCommissionsPage.assertPageShow();
+  await reportsCommissionsPage.assertReportsBusinessOrganizationalPageShow();
   await reportsCommissionsPage.fillTxtBoxSearch('AssociateIds');
   await reportsCommissionsPage.assertTxaAssociateNumberIsDisplayed();
   await reportsCommissionsPage.clickSearchResult();
