@@ -9,7 +9,6 @@ error-shots/*
 codeship.aes
 tests/load-tests/channels/ao_logins.js
 docker-log.txt
-.prettierrc
 playwright-report
 test-result.json
 test-results

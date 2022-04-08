@@ -1,7 +1,5 @@
 {
   "env": {
-    // Might change "browser"
-    "browser": true,
     "node": true,
     "es2021": true
   },
@@ -12,5 +10,8 @@
     "sourceType": "module"
   },
   "plugins": ["@typescript-eslint"],
-  "rules": {}
+  "rules": {
+    "camelcase": [2, { "properties": "always" }],
+    "prettier/prettier": ["error", { "endOfLine": "auto" }]
+  }
 }
