@@ -10,7 +10,7 @@ test.beforeEach(async ({ page }) => {
   await reportsCommissionsPage.navigateToReportsBusinessOrganizationalPage();
 });
 
-test('SC-xxxx - Verify the base page is show', async ({ page }) => {
+test('SC-xxxx - The Associate Office Report --> Organizational Business Report', async ({ page }) => {
   await reportsCommissionsPage.assertReportsBusinessOrganizationalPageShow();
 });
 

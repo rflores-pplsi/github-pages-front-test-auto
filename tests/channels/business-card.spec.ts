@@ -10,7 +10,7 @@ test.beforeEach(async ({ page }) => {
   await businessCard.navigateToBusinessCardPage();
 });
 
-test('SC-xxxx - Verify the base page is show', async ({ page }) => {
+test('SC-xxxx - The Business Card page functionality', async ({ page }) => {
   await businessCard.assertPageShow();
 });
 
