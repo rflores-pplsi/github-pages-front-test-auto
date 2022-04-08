@@ -73,6 +73,20 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   };
 
   /**
+   * @param {string} state
+   * @param {string} paymentFrequency
+   * @param {string} planName
+   * @memberof CheckoutPersonalInfoPage
+   */
+  selectPlanFromBusinessSolutionsIdentityPricingPage = async (
+    state: string,
+    paymentFrequency: string,
+    planName: string
+  ): Promise<void> => {
+    await this.selectPlanAndEnroll(state, paymentFrequency, planName);
+  };
+
+  /**
    * @param {string} firstName
    * @param {string} lastName
    * @param {string} phone
@@ -285,7 +299,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @memberof CheckoutPersonalInfoPage
    */
   navigateToBusinessSolutionsLegalEnrollPage = async (groupNumber: string) => {
-    console.log(' - accountNavigationPage.navigateToBusinessSolutionsLegalEnrollPage');
+    console.log(' - checkoutPersonalInfoPage.navigateToBusinessSolutionsLegalEnrollPage');
     // Navigate to enroll page
     await this.page.goto(UrlsUtils.shieldBenefits.home.url + '/' + groupNumber + '/overview');
   };
@@ -295,11 +309,31 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @memberof CheckoutPersonalInfoPage
    */
   navigateToBusinessSolutionsLegalPricingPage = async (groupNumber: string) => {
-    console.log(' - accountNavigationPage.navigateToBusinessSolutionsLegalPricingPage');
+    console.log(' - checkoutPersonalInfoPage.navigateToBusinessSolutionsLegalPricingPage');
     // Login with a basic user
     await this.page.goto(UrlsUtils.shieldBenefits.home.url + '/' + groupNumber + '/pricing');
   };
 
+  /**
+   * @param {string} groupNumber
+   * @memberof CheckoutPersonalInfoPage
+   */
+  navigateToBusinessSolutionsIdentityEnrollPage = async (groupNumber: string) => {
+    console.log(' - checkoutPersonalInfoPage.navigateToBusinessSolutionsIdentityEnrollPage');
+    // Navigate to enroll page
+    await this.page.goto(UrlsUtils.shieldBenefits.home.url + '/' + groupNumber + '/idshield');
+  };
+
+  /**
+   * @param {string} groupNumber
+   * @memberof CheckoutPersonalInfoPage
+   */
+  navigateToBusinessSolutionsIdentityPricingPage = async (groupNumber: string) => {
+    console.log(' - checkoutPersonalInfoPage.navigateToBusinessSolutionsIdentityPricingPage');
+    // Login with a basic user
+    await this.page.goto(UrlsUtils.shieldBenefits.home.url + '/' + groupNumber + '/pricing');
+    await this.page.pause();
+  };
   // ========================== Click Methods ==============================
   /**
    * @memberof CheckoutPersonalInfoPage
