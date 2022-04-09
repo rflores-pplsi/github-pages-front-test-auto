@@ -18,3 +18,14 @@ test('SC-1276 - Add tab for Revenue Report', async ({ page }) => {
     await reportsCommissionsPage.assertReportsReportsCommissionsPageShow();
     await reportsCommissionsPage.assertTabFastStartStatementIsDisplayed();
 });
+
+test('SC-1277 - Create Revenue Report Statement Selection List', async ({ page }) => {
+  await reportsCommissionsPage.assertSearchDatesIsDisplayed();
+  await reportsCommissionsPage.clickOnSearchDates();
+  await reportsCommissionsPage.selectDateFromSearchDates('2021','July');
+  await reportsCommissionsPage.clickOnSearchDatesDay5();
+  await reportsCommissionsPage.assertComboCountryIsEnable();
+  await reportsCommissionsPage.selectCountry('United States');
+  await reportsCommissionsPage.clickOnSearchButton();
+  await reportsCommissionsPage.assertAdvancedCommissionIsDisplayed();
+});
