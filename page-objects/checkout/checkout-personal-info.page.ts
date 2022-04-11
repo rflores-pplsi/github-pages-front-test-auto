@@ -48,11 +48,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @param {string} planName
    * @memberof CheckoutPersonalInfoPage
    */
-  selectPlanFromBusinessSolutionsLegalPricingPage = async (
-    state: string,
-    paymentFrequency: string,
-    planName: string
-  ): Promise<void> => {
+  selectPlanFromBusinessSolutionsLegalPricingPage = async (state: string, paymentFrequency: string, planName: string): Promise<void> => {
     await this.selectPlanAndEnroll(state, paymentFrequency, planName);
   };
 
@@ -74,15 +70,20 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
 
   /**
    * @param {string} state
+   * @param {string} planName
+   * @memberof CheckoutPersonalInfoPage
+   */
+  selectPlanFromBusinessSolutionsIdentityPricingPageFringe = async (state: string, planName: string): Promise<void> => {
+    await this.selectPlanAndEnroll(state, planName);
+  };
+
+  /**
+   * @param {string} state
    * @param {string} paymentFrequency
    * @param {string} planName
    * @memberof CheckoutPersonalInfoPage
    */
-  selectPlanFromBusinessSolutionsIdentityPricingPage = async (
-    state: string,
-    paymentFrequency: string,
-    planName: string
-  ): Promise<void> => {
+  selectPlanFromBusinessSolutionsIdentityPricingPage = async (state: string, paymentFrequency: string, planName: string): Promise<void> => {
     await this.selectPlanAndEnroll(state, paymentFrequency, planName);
   };
 
@@ -332,7 +333,6 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     console.log(' - checkoutPersonalInfoPage.navigateToBusinessSolutionsIdentityPricingPage');
     // Login with a basic user
     await this.page.goto(UrlsUtils.shieldBenefits.home.url + '/' + groupNumber + '/pricing');
-    await this.page.pause();
   };
   // ========================== Click Methods ==============================
   /**

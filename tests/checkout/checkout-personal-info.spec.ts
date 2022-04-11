@@ -11,13 +11,9 @@ test.beforeEach(async ({ page }) => {
   checkoutPersonalInfoPage = new CheckoutPersonalInfoPage(page);
 });
 
-for (const state of RegionsUtils.usStates.filter((state) => state.abbrv != 'MA' && state.priority == true)) {
-  test(`Select IDShield Individual and validate the order summary on the Checkout Personal Info page - ${state.name}`, async ({
-    page,
-  }) => {
-    console.log(
-      `Test Case: Select IDShield Individual and validate the order summary on the Checkout Personal Info page - ${state.name}`
-    );
+for (const state of RegionsUtils.usStates.filter((state) => state.abbrv == 'CA' && state.priority == true)) {
+  test(`Select IDShield Individual and validate the order summary on the Checkout Personal Info page - ${state.name}`, async ({ page }) => {
+    console.log(`Test Case: Select IDShield Individual and validate the order summary on the Checkout Personal Info page - ${state.name}`);
     await checkoutPersonalInfoPage.navigateToBusinessSolutionsLegalPricingPage('nnlegaltest7');
     await checkoutPersonalInfoPage.selectPlanFromBusinessSolutionsLegalPricingPage(state.name, 'Monthly', 'IDShield Individual');
     await checkoutPersonalInfoPage.navigatePersonalInfoPageFromLogin(basicUser.email, basicUser.password);
@@ -26,13 +22,9 @@ for (const state of RegionsUtils.usStates.filter((state) => state.abbrv != 'MA' 
   });
 }
 
-for (const state of RegionsUtils.usStates.filter((state) => state.abbrv != 'MA' && state.priority == true)) {
-  test(`Select Legal Plan Family and validate the order summary on the Checkout Personal Info page - ${state.name}`, async ({
-    page,
-  }) => {
-    console.log(
-      `Test Case: Select Legal Plan Family and validate the order summary on the Checkout Personal Info page - ${state.name}`
-    );
+for (const state of RegionsUtils.usStates.filter((state) => state.abbrv == 'CA' && state.priority == true)) {
+  test(`Select Legal Plan Family and validate the order summary on the Checkout Personal Info page - ${state.name}`, async ({ page }) => {
+    console.log(`Test Case: Select Legal Plan Family and validate the order summary on the Checkout Personal Info page - ${state.name}`);
     await checkoutPersonalInfoPage.navigateToBusinessSolutionsLegalPricingPage('nnlegaltest7');
     await checkoutPersonalInfoPage.selectPlanFromBusinessSolutionsLegalPricingPage(state.name, 'Monthly', 'Legal Plan Family');
     await checkoutPersonalInfoPage.navigatePersonalInfoPageFromLogin(basicUser.email, basicUser.password);
@@ -41,13 +33,9 @@ for (const state of RegionsUtils.usStates.filter((state) => state.abbrv != 'MA' 
   });
 }
 
-for (const state of RegionsUtils.usStates.filter((state) => state.abbrv != 'MA' && state.priority == true)) {
-  test(`Select IDShield Family and validate the order summary on the Checkout Personal Info page - ${state.name}`, async ({
-    page,
-  }) => {
-    console.log(
-      `Test Case: Select IDShield Family and validate the order summary on the Checkout Personal Info page - ${state.name}`
-    );
+for (const state of RegionsUtils.usStates.filter((state) => state.abbrv == 'CA' && state.priority == true)) {
+  test(`Select IDShield Family and validate the order summary on the Checkout Personal Info page - ${state.name}`, async ({ page }) => {
+    console.log(`Test Case: Select IDShield Family and validate the order summary on the Checkout Personal Info page - ${state.name}`);
     await checkoutPersonalInfoPage.navigateToBusinessSolutionsLegalPricingPage('nnlegaltest7');
     await checkoutPersonalInfoPage.selectPlanFromBusinessSolutionsLegalPricingPage(state.name, 'Monthly', 'IDShield Family');
     await checkoutPersonalInfoPage.navigatePersonalInfoPageFromLogin(basicUser.email, basicUser.password);
@@ -77,7 +65,7 @@ for (const state of RegionsUtils.usStates.filter((state) => state.abbrv == 'CA' 
   });
 }
 
-for (const state of RegionsUtils.usStates.filter((state) => state.abbrv != 'MA' && state.priority == true)) {
+for (const state of RegionsUtils.usStates.filter((state) => state.abbrv == 'CA' && state.priority == true)) {
   test(`Select Legal Plan Family/IDShield Individual Combination and validate the order summary on the Checkout Personal Info page - ${state.name}`, async ({
     page,
   }) => {
@@ -98,32 +86,20 @@ for (const state of RegionsUtils.usStates.filter((state) => state.abbrv != 'MA' 
   });
 }
 
-for (const state of RegionsUtils.usStates.filter((state) => state.abbrv != 'MA' && state.priority == true)) {
-  test(`Select IDShield Individual Plan and validate the order summary on the Checkout Personal Info page - ${state.name}`, async ({
-    page,
-  }) => {
-    console.log(
-      `Test Case: Select IDShield Individual Plan and validate the order summary on the Checkout Personal Info page - ${state.name}`
-    );
+for (const state of RegionsUtils.usStates.filter((state) => state.abbrv == 'CA' && state.priority == true)) {
+  test(`Select IDShield Individual Plan and validate the order summary on the Checkout Personal Info page - ${state.name}`, async ({ page }) => {
+    console.log(`Test Case: Select IDShield Individual Plan and validate the order summary on the Checkout Personal Info page - ${state.name}`);
     await checkoutPersonalInfoPage.navigateToBusinessSolutionsIdentityPricingPage('nnidstest3');
-    await checkoutPersonalInfoPage.selectPlanFromBusinessSolutionsIdentityPricingPage(
-      state.name,
-      'Monthly',
-      'IDShield Individual'
-    );
+    await checkoutPersonalInfoPage.selectPlanFromBusinessSolutionsIdentityPricingPage(state.name, 'Monthly', 'IDShield Individual');
     await checkoutPersonalInfoPage.navigatePersonalInfoPageFromLogin(basicUser.email, basicUser.password);
     await checkoutPersonalInfoPage.assertPlanNameAndCost('IDShield Individual', '$12.95');
     await checkoutPersonalInfoPage.assertPayPeriodTotal('$12.95');
   });
 }
 
-for (const state of RegionsUtils.usStates.filter((state) => state.abbrv != 'MA' && state.priority == true)) {
-  test(`Select IDShield Family Plan and validate the order summary on the Checkout Personal Info page - ${state.name}`, async ({
-    page,
-  }) => {
-    console.log(
-      `Test Case: Select IDShield Family Plan and validate the order summary on the Checkout Personal Info page - ${state.name}`
-    );
+for (const state of RegionsUtils.usStates.filter((state) => state.abbrv == 'CA' && state.priority == true)) {
+  test(`Select IDShield Family Plan and validate the order summary on the Checkout Personal Info page - ${state.name}`, async ({ page }) => {
+    console.log(`Test Case: Select IDShield Family Plan and validate the order summary on the Checkout Personal Info page - ${state.name}`);
     await checkoutPersonalInfoPage.navigateToBusinessSolutionsIdentityPricingPage('nnidstest3');
     await checkoutPersonalInfoPage.selectPlanFromBusinessSolutionsIdentityPricingPage(state.name, 'Monthly', 'IDShield Family');
     await checkoutPersonalInfoPage.navigatePersonalInfoPageFromLogin(basicUser.email, basicUser.password);

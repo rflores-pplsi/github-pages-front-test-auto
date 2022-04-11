@@ -1,4 +1,4 @@
-import { BusinessSolutionsLegalPricingPage } from '../business-solutions/business-solutions-legal-pricing.page';
+import { ShieldBenefitsLegalPricingPage } from '../shield-benefits/shield-benefits-legal-pricing.page';
 import { OrderSummary } from './checkout.helpers';
 import { OrderSummaryRow } from './checkout.helpers';
 
@@ -10,14 +10,11 @@ const lnkEditOrder: string = 'button:has-text("Edit")';
 const imgHideOrderSummaryChevron: string = 'img[alt="nav_chevron_single_up."]';
 const imgShowOrderSummaryChevron: string = 'img[alt="nav_chevron_single_down."]';
 const txtPlanNames: string = '//div[contains(@class,"plan-name-row")]';
-const txtPlanCosts: string =
-  '//div[contains(@class,"lsux-row half children2 content-row mb-4")]//div[contains(@class,"right-label-col")]//p';
+const txtPlanCosts: string = '//div[contains(@class,"lsux-row half children2 content-row mb-4")]//div[contains(@class,"right-label-col")]//p';
 const txtMonthlyTotalLabel: string = '//div[contains(@class,"left-label")]//p[contains(.,"Monthly Total:")]';
-const txtMonthlyTotalAmount: string =
-  '//div[contains(@class,"footer-row") and contains(.,"Monthly Total:")]//div[contains(@class,"right-label")]//p';
+const txtMonthlyTotalAmount: string = '//div[contains(@class,"footer-row") and contains(.,"Monthly Total:")]//div[contains(@class,"right-label")]//p';
 const txtAnnualTotalLabel: string = '//div[contains(@class,"left-label")]//p[contains(.,"Annual Total:")]';
-const txtAnnualTotalAmount: string =
-  '//div[contains(@class,"footer-row") and contains(.,"Annual Total:")]//div[contains(@class,"right-label")]//p';
+const txtAnnualTotalAmount: string = '//div[contains(@class,"footer-row") and contains(.,"Annual Total:")]//div[contains(@class,"right-label")]//p';
 const txtTotalDueTodayAmount: string =
   '//div[contains(@class, "footer-row") and contains(., "Total Due Today")]//div[contains(@class,"right-label")]//p';
 const txtPayPeriodTotalAmount: string =
@@ -27,7 +24,7 @@ const txtPayPeriodTotalAmount: string =
  * @class CheckoutOrderSummaryComponent
  * @extends {PlanalyzerCsrCheckoutPage}
  */
-export class CheckoutOrderSummaryComponent extends BusinessSolutionsLegalPricingPage {
+export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPage {
   // ========================== Process Methods ============================
 
   /**

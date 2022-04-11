@@ -7,19 +7,19 @@ const conAvailablePlans = '//div[contains (@class,"filters mt-5 mb-5") and conta
 
 /**
  * @export
- * @class BusinessSolutionsIdentityPricingPage
+ * @class ShieldBenefitsIdentityPricingPage
  * @extends {BasePage}
  */
-export class BusinessSolutionsIdentityPricingPage extends LoginPage {
+export class ShieldBenefitsIdentityPricingPage extends LoginPage {
   // ========================== Process Methods ============================
   /**
    * @param {string} state
    * @param {string} paymentFrequency
    * @param {string} planName
-   * @memberof BusinessSolutionsLegalPricingPage
+   * @memberof ShieldBenefitsLegalPricingPage
    */
   selectPlanAndEnroll = async (state: string, paymentFrequency: string, planName: string) => {
-    console.log(' - businessSolutionsLegalPricingPage.selectPlanAndEnroll');
+    console.log(' - shieldBenefitsLegalPricingPage.selectPlanAndEnroll');
     await this.clickOnElement(btnState);
     await this.clickOnElement(`//div[contains(@class,"lsux-link-content--menu") and contains (.,"${state}")]`);
     await this.clickOnElement(btnPaymentFrequency);
@@ -32,10 +32,10 @@ export class BusinessSolutionsIdentityPricingPage extends LoginPage {
   // ========================== Click Methods ==============================
   /**
    * @param {string} planName
-   * @memberof BusinessSolutionsLegalPricingPage
+   * @memberof ShieldBenefitsLegalPricingPage
    */
   clickIndividualPlanEnrollNowButton = async (planName: string) => {
-    console.log(' - businessSolutionsLegalPricingPage.clickIndividualPlanEnrollNowButton');
+    console.log(' - shieldBenefitsLegalPricingPage.clickIndividualPlanEnrollNowButton');
     // Click on Enroll Now button for selected Plan
     await this.clickOnElement(`//div[@class="groupTokenCard" and contains(.,"${planName}") ]//button`);
   };

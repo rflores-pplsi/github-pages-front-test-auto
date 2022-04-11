@@ -5,15 +5,15 @@ const btnEnroll = 'a:has-text("Enroll Now")';
 
 /**
  * @export
- * @class BusinessSolutionsIdentityEnrollPage
+ * @class ShieldBenefitsIdentityEnrollPage
  * @extends {BasePage}
  */
-export class BusinessSolutionsIdentityEnrollPage extends BasePage {
+export class ShieldBenefitsIdentityEnrollPage extends BasePage {
   // ========================== Process Methods ============================
   // ========================== Navigate Methods ===========================
   // ========================== Click Methods ==============================
   clickEnrollNowButton = async () => {
-    console.log(' - businessSolutionsIdentityEnrollPage.clickEnrollButton');
+    console.log(' - shieldBenefitsIdentityEnrollPage.clickEnrollButton');
     // Click on Enroll Now button to reach the pricing page
     await this.clickOnElement(btnEnroll);
   };
