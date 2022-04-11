@@ -198,4 +198,12 @@ export class BasePage {
   assertBoolean = async (value1: boolean, value2: boolean): Promise<void> => {
     expect(value1).toEqual(value2);
   };
+
+  /**
+   * @param {string} ele
+   * @memberof BasePage
+   */
+  waitForElementToBeVisible = async (ele: string): Promise<void> => {
+    this.page.waitForSelector(ele);
+  };
 }

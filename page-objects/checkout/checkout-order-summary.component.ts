@@ -1,4 +1,4 @@
-import { PlanalyzerCsrCheckoutPage } from '../planalyzer/planalyzer-csr-checkout.page';
+import { BusinessSolutionsLegalPricingPage } from '../business-solutions/business-solutions-legal-pricing.page';
 import { OrderSummary } from './checkout.helpers';
 import { OrderSummaryRow } from './checkout.helpers';
 
@@ -20,24 +20,25 @@ const txtAnnualTotalAmount: string =
   '//div[contains(@class,"footer-row") and contains(.,"Annual Total:")]//div[contains(@class,"right-label")]//p';
 const txtTotalDueTodayAmount: string =
   '//div[contains(@class, "footer-row") and contains(., "Total Due Today")]//div[contains(@class,"right-label")]//p';
-
+const txtPayPeriodTotalAmount: string =
+  '//div[contains(@class,"footer-row") and contains(.,"Pay Period Total:")]//div[contains(@class,"right-label")]//p';
 /**
  * @export
  * @class CheckoutOrderSummaryComponent
  * @extends {PlanalyzerCsrCheckoutPage}
  */
-export class CheckoutOrderSummaryComponent extends PlanalyzerCsrCheckoutPage {
+export class CheckoutOrderSummaryComponent extends BusinessSolutionsLegalPricingPage {
   // ========================== Process Methods ============================
 
   /**
    * @memberof CheckoutOrderSummaryComponent
    */
-  createOrderSummary = async (): Promise<void> => {
+  captureOrderSummary = async (): Promise<void> => {
     console.log(' - checkoutOrderSummaryComponent.createOrderSummary');
     await this.page.waitForLoadState('networkidle');
     const numberOfRows = (await this.page.$$('div.order-summary  div.content-row div.pl-0 p')).length;
     for (let i: number = 0; i < numberOfRows; i++) {
-      const row = await this.createOrderSummaryRow(i);
+      const row = await this.captureOrderSummaryRow(i);
       orderSummary.addRow(row);
     }
   };
@@ -46,7 +47,7 @@ export class CheckoutOrderSummaryComponent extends PlanalyzerCsrCheckoutPage {
    * @param {number} [i=0]
    * @memberof CheckoutOrderSummaryComponent
    */
-  createOrderSummaryRow = async (i: number = 0): Promise<OrderSummaryRow> => {
+  captureOrderSummaryRow = async (i: number = 0): Promise<OrderSummaryRow> => {
     console.log(' - checkoutOrderSummaryComponent.createOrderSummaryRow');
     const planNameJsHandle = (await this.page.$$(txtPlanNames))[i].getProperty('innerText');
     const planNameText = await (await planNameJsHandle).jsonValue();
@@ -141,5 +142,14 @@ export class CheckoutOrderSummaryComponent extends PlanalyzerCsrCheckoutPage {
   assertTotalDueToday = async (total: string): Promise<void> => {
     console.log(' - checkoutOrderSummaryComponent.assertTotalDueToday');
     await this.assertElementHasText(txtTotalDueTodayAmount, total);
+  };
+
+  /**
+   * @param {string} total
+   * @memberof CheckoutOrderSummaryComponent
+   */
+  assertPayPeriodTotal = async (total: string): Promise<void> => {
+    console.log(' - checkoutOrderSummaryComponent.assertPayPeriodTotal');
+    await this.assertElementHasText(txtPayPeriodTotalAmount, total);
   };
 }
