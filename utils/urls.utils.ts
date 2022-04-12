@@ -61,6 +61,12 @@ export default class UrlsUtils {
     },
   };
 
+  static readonly shieldBenefits = {
+    home: {
+      url: `https://www.${envUrlString}shieldbenefits.com`,
+    },
+  };
+
   static readonly pplsiUrls = {
     home: {
       url: "https://www.pplsi.com",
