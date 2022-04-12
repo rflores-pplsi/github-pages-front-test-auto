@@ -71,10 +71,7 @@ export class AccountPlansPage extends LoginPage {
 
   // ========================== Navigate Methods ==========================
 
-  loginToNavigateToAccountsPlanPage = async (
-    emailOrUsername: string | undefined,
-    password: string | undefined
-  ): Promise<void> => {
+  loginToNavigateToAccountsPlanPage = async (emailOrUsername: string | undefined, password: string | undefined): Promise<void> => {
     console.log(' - accountPlansPage.loginToNavigateToAccountsPlanPage');
     await this.goTo(UrlsUtils.legalshieldUrls.account.url + '/plans');
     await this.login(emailOrUsername, password);

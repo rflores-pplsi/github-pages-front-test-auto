@@ -1,4 +1,4 @@
-import { LoginPage } from '../login/login.page';
+import { PlanalyzerCsrCheckoutPage } from '../planalyzer/planalyzer-csr-checkout.page';
 
 // ========================== Selectors ==================================
 const btnState = '//div[contains(@class,"mr-5") and contains (.,"State")]//button';
@@ -10,7 +10,7 @@ const conAvailablePlans = '//div[contains (@class,"filters mt-5 mb-5") and conta
  * @class BusinessSolutionsLegalPricingPage
  * @extends {BasePage}
  */
-export class BusinessSolutionsLegalPricingPage extends LoginPage {
+export class BusinessSolutionsLegalPricingPage extends PlanalyzerCsrCheckoutPage {
   // ========================== Process Methods ============================
   /**
    * @param {string} state
@@ -65,9 +65,7 @@ export class BusinessSolutionsLegalPricingPage extends LoginPage {
   clickCombinationPlanEnrollNowButton = async (planName1: string, planName2: string) => {
     console.log(' - businessSolutionsLegalPricingPage.clickCombinationPlanEnrollNowButton');
     // Click on Enroll Now button for selected Plan
-    await this.clickOnElement(
-      `//div[@class="groupTokenCardCombine" and contains(.,"${planName1}") and contains(.,"${planName2}")]//button`
-    );
+    await this.clickOnElement(`//div[@class="groupTokenCardCombine" and contains(.,"${planName1}") and contains(.,"${planName2}")]//button`);
   };
   // ========================== Assertion Methods ==========================
 }

@@ -48,11 +48,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @param {string} planName
    * @memberof CheckoutPersonalInfoPage
    */
-  selectPlanFromBusinessSolutionsLegalPricingPage = async (
-    state: string,
-    paymentFrequency: string,
-    planName: string
-  ): Promise<void> => {
+  selectPlanFromBusinessSolutionsLegalPricingPage = async (state: string, paymentFrequency: string, planName: string): Promise<void> => {
     await this.selectPlanAndEnroll(state, paymentFrequency, planName);
   };
 
@@ -265,6 +261,23 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     console.log(' - checkoutPersonalInfoPage.enterTaxId');
     await this.fillTextBox(txtTaxId, taxId);
   };
+
+  // locatorpPlans = async (): Promise<string> => {
+  //   console.log(" - checkoutPersonalInfoPage.locatorpPlans");
+  //   return this.page.locator(pPlans).innerText();
+  // };
+  // locatorpPlansPrice = async (): Promise<string> => {
+  //   console.log(" - checkoutPersonalInfoPage.locatorpPlansPrice");
+  //   return this.page.locator(pPlanPrice).innerText();
+  // };
+  // locatortxtTotalLabel = async (): Promise<string> => {
+  //   console.log(" - checkoutPersonalInfoPage.locatortxtTotalLabel");
+  //   return this.page.locator(txtTotalLabel).innerText();
+  // };
+  // locatortxtTotalPriceLabel = async (): Promise<string> => {
+  //   console.log(" - checkoutPersonalInfoPage.locatortxtTotalPriceLabel");
+  //   return this.page.locator(txtTotalPriceLabel).innerText();
+  // };
 
   // ========================== Navigate Methods ===========================n
 

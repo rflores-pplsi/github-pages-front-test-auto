@@ -7,10 +7,13 @@ let checkoutConfirmationPage: CheckoutConfirmationPage;
 // Setup environment before each test
 test.beforeEach(async ({ page }) => {
   checkoutConfirmationPage = new CheckoutConfirmationPage(page);
-  await checkoutConfirmationPage.navigateToPlanalyzerCsrCheckoutOktaLogin();
-  await checkoutConfirmationPage.loginThroughOkta();
+  test.slow();
+  await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
 
-test('Test Case to test our page object', async ({ page }) => {
-  await checkoutConfirmationPage.createOrderRedirectToCheckout('D2C', 'LegalShield', 'Oklahoma', 'en-US', '', '', ['Legal Plan']);
+test('Welcome to Legal Shield Family Header is displayed', async ({ page }) => {
+  test.slow();
+  await checkoutConfirmationPage.assertWelcomeToLegalshiledFamilyPage();
+  await checkoutConfirmationPage.assertOrderSummaryPlanLabelConfirmationPage();
+  await checkoutConfirmationPage.assertOrderSummaryPlanPriceConfirmationPage();
 });
