@@ -1,7 +1,7 @@
-import { test } from "@playwright/test";
-import { ActivateUnknownCodePage } from "../../page-objects/activate/activate-unknown-code.page";
-import UrlsUtils from "../../utils/urls.utils";
-import { basicUser } from "../../utils/user.utils";
+import { test } from '@playwright/test';
+import { ActivateUnknownCodePage } from '../../page-objects/activate/activate-unknown-code.page';
+import UrlsUtils from '../../utils/urls.utils';
+import { basicUser } from '../../utils/user.utils';
 
 // Declare Page Variable for This Page
 let activateUnknownCodePage: ActivateUnknownCodePage;
@@ -18,10 +18,10 @@ test.beforeEach(async ({ page }) => {
   await activateUnknownCodePage.clickDontKnowYourCodeLink();
 });
 
-test("Invalid email address triggers hint", async ({ page }) => {
-  console.log("Test Case: Invalid email address triggers hint");
+test('Invalid email address triggers hint', async ({ page }) => {
+  console.log('Test Case: Invalid email address triggers hint');
   // Enter invalid email to trigger hint
-  await activateUnknownCodePage.enterEmail("invalidemail");
+  await activateUnknownCodePage.enterEmail('invalidemail');
   // Confirm email hint displayed when email is invalid
   await activateUnknownCodePage.assertInvalidEmailAddressHintDisplayed();
   // Confirm Send Code button is disabled

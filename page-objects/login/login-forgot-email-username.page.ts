@@ -1,5 +1,5 @@
-import { expect } from "@playwright/test";
-import { LoginPage } from "../login/login.page";
+import { expect } from '@playwright/test';
+import { LoginPage } from '../login/login.page';
 
 // ========================== Selectors ==========================
 const lnkCustomerService: string = '#root :text("1-800-654-7757")';
@@ -20,9 +20,7 @@ export class LoginForgotEmailUsernamePage extends LoginPage {
   // ========================== Assertion Methods ==========================
 
   assertSupportNumbers = async (): Promise<void> => {
-    console.log(
-      " - loginForgotEmailUsernamePage.assertSupportNumbers_LoginForgotEmailOrUsernamePage"
-    );
+    console.log(' - loginForgotEmailUsernamePage.assertSupportNumbers_LoginForgotEmailOrUsernamePage');
     // Confirm that the Customer Service phone number is displayed
     expect(await this.page.isVisible(lnkCustomerService)).toBeTruthy();
     // Confirm that the Associate Support phone number is displayed

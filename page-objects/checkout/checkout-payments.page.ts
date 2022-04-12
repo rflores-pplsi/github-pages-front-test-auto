@@ -1,5 +1,5 @@
-import { expect } from "@playwright/test";
-import RegionsUtils from "../../utils/regions.utils";
+import { expect } from '@playwright/test';
+import RegionsUtils from '../../utils/regions.utils';
 import { basicUser } from '../../utils/user.utils';
 import { CheckoutPersonalInfoPage } from './checkout-personal-info.page';
 

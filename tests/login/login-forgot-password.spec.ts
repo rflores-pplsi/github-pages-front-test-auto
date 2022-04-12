@@ -1,5 +1,5 @@
-import { test } from "@playwright/test";
-import { LoginForgotPasswordPage } from "../../page-objects/login/login-forgot-password.page";
+import { test } from '@playwright/test';
+import { LoginForgotPasswordPage } from '../../page-objects/login/login-forgot-password.page';
 
 // Declare Page Variable for This Page
 let loginForgotPasswordPage: LoginForgotPasswordPage;
@@ -12,8 +12,8 @@ test.beforeEach(async ({ page }) => {
   await loginForgotPasswordPage.navigateToLoginPage();
 });
 
-test("Request a password reset", async ({ page }) => {
-  console.log("Test Case: Request a password reset");
+test('Request a password reset', async ({ page }) => {
+  console.log('Test Case: Request a password reset');
   // Click Forgot Password link and submit email address on the Login Forgot Password page
   await loginForgotPasswordPage.requestPasswordResetEmail();
   // Confirm that the success banner is displayed after requesting a password reset email

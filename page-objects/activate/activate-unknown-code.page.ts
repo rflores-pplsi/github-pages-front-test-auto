@@ -1,11 +1,11 @@
-import { LoginPage } from "../login/login.page";
+import { LoginPage } from '../login/login.page';
 
 // ========================== Selectors ==========================
 const lnkBack: string = 'a:has-text("Back")';
 const btnSendCode: string = 'button:has-text("Send code")';
 const txtEmail: string = '[placeholder="Email"]';
-const lnkDontKnowYourCode: string = "text=know your code?";
-const msgInvalidEmailAddress: string = "text=Invalid email address.";
+const lnkDontKnowYourCode: string = 'text=know your code?';
+const msgInvalidEmailAddress: string = 'text=Invalid email address.';
 
 /**
  * @export
@@ -20,7 +20,7 @@ export class ActivateUnknownCodePage extends LoginPage {
    * @memberof ActivateUnknownCodePage
    */
   enterEmail = async (email: string): Promise<void> => {
-    console.log(" - activateUnknownCodePage.enterEmailAndSendCode");
+    console.log(' - activateUnknownCodePage.enterEmailAndSendCode');
     // Enter email address
     await this.fillTextBox(txtEmail, email);
   };
@@ -30,7 +30,7 @@ export class ActivateUnknownCodePage extends LoginPage {
    * @memberof ActivateUnknownCodePage
    */
   enterEmailAndSendCode = async (email: string): Promise<void> => {
-    console.log(" - activateUnknownCodePage.enterEmailAndSendCode");
+    console.log(' - activateUnknownCodePage.enterEmailAndSendCode');
     // Enter email address
     await this.fillTextBox(txtEmail, email);
     // Click Send Code to submit email
@@ -42,19 +42,19 @@ export class ActivateUnknownCodePage extends LoginPage {
   // ========================== Click Methods ==========================
 
   clickBackLink = async (): Promise<void> => {
-    console.log(" - activateUnknownCodePage.clickBackLink");
+    console.log(' - activateUnknownCodePage.clickBackLink');
     // Click back button
     await this.clickOnElement(lnkBack);
   };
 
   clickSendCodeButton = async (): Promise<void> => {
-    console.log(" - activateUnknownCodePage.clickSendCodeButton");
+    console.log(' - activateUnknownCodePage.clickSendCodeButton');
     // Click Send Code button
     await this.clickOnElement(btnSendCode);
   };
 
   clickDontKnowYourCodeLink = async (): Promise<void> => {
-    console.log(" - activateUnknownCodePage.clickDontKnowYourCodeLink");
+    console.log(' - activateUnknownCodePage.clickDontKnowYourCodeLink');
     // Click Dont Know Your Code link
     await this.clickOnElement(lnkDontKnowYourCode);
   };
@@ -62,15 +62,13 @@ export class ActivateUnknownCodePage extends LoginPage {
   // ========================== Assertion Methods ==========================
 
   assertInvalidEmailAddressHintDisplayed = async (): Promise<void> => {
-    console.log(
-      " - activateUnknownCodePage.assertInvalidEmailAddressHintDisplayed"
-    );
+    console.log(' - activateUnknownCodePage.assertInvalidEmailAddressHintDisplayed');
     // Click Dont Know Your Code link
     await this.assertElementIsVisible(msgInvalidEmailAddress);
   };
 
   assertSendCodeButtonDisabled = async (): Promise<void> => {
-    console.log(" - activateUnknownCodePage.assertSendCodeButtonDisabled");
+    console.log(' - activateUnknownCodePage.assertSendCodeButtonDisabled');
     // Click Dont Know Your Code link
     await this.assertElementIsDisabled(btnSendCode);
   };

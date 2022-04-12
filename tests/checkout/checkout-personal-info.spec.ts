@@ -1,6 +1,6 @@
-import { test } from "@playwright/test";
-import RegionsUtils from "../../utils/regions.utils";
-import { CheckoutPersonalInfoPage } from "../../page-objects/checkout/checkout-personal-info.page";
+import { test } from '@playwright/test';
+import RegionsUtils from '../../utils/regions.utils';
+import { CheckoutPersonalInfoPage } from '../../page-objects/checkout/checkout-personal-info.page';
 import { basicUser } from '../../utils/user.utils';
 
 // create instance of Page

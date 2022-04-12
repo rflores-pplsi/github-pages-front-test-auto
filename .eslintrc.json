@@ -10,21 +10,8 @@
     "sourceType": "module"
   },
   "plugins": ["@typescript-eslint"],
-<<<<<<< HEAD
-  "rules": {      "prettier/prettier": [
-
-  "error",
-
-  {
-
-    "endOfLine": "auto"
-
-  }
-  ]}
-=======
   "rules": {
     "camelcase": [2, { "properties": "always" }],
     "prettier/prettier": ["error", { "endOfLine": "auto" }]
   }
->>>>>>> main
 }

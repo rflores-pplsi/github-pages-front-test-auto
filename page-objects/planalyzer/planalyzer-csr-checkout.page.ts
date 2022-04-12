@@ -1,15 +1,11 @@
-import { OktaPage } from "../okta/okta.page";
-import EnvironmentUtil from "../../utils/env.utils";
+import { OktaPage } from '../okta/okta.page';
+import EnvironmentUtil from '../../utils/env.utils';
 // ========================== Selectors ==================================
-const ddlEnvironment: string = "text=EnvironmentUATSTGPROD >> select";
-const ddlChannel: string =
-  "text=ChannelChoose ChannelD2CNetworkSolutions >> select";
-const ddlSubChannel: string =
-  "text=SubchannelChoose SubchannelLegalShieldIDShield >> select";
-const ddlRegion: string =
-  "text=RegionChoose RegionAlabamaAlaskaArizonaArkansasCaliforniaColoradoConnecticutDela >> select";
-const ddlMarketLocal: string =
-  "text=MarketLocaleChoose MarketLocaleen-CAen-USes-USfr-CA >> select";
+const ddlEnvironment: string = 'text=EnvironmentUATSTGPROD >> select';
+const ddlChannel: string = 'text=ChannelChoose ChannelD2CNetworkSolutions >> select';
+const ddlSubChannel: string = 'text=SubchannelChoose SubchannelLegalShieldIDShield >> select';
+const ddlRegion: string = 'text=RegionChoose RegionAlabamaAlaskaArizonaArkansasCaliforniaColoradoConnecticutDela >> select';
+const ddlMarketLocal: string = 'text=MarketLocaleChoose MarketLocaleen-CAen-USes-USfr-CA >> select';
 const txtPrepaidMonth: string = '[placeholder="Pre-paid months"]';
 const txtCouponCode: string = '[placeholder="Coupon code"]';
 const btnShowResults: string = 'button:has-text("Show Results")';
@@ -38,13 +34,11 @@ export class PlanalyzerCsrCheckoutPage extends OktaPage {
     subChannel: string,
     region: string,
     marketLocale: string,
-    prepaidMonths: string = "",
-    couponCode: string = "",
+    prepaidMonths: string = '',
+    couponCode: string = '',
     plans: Array<string>
   ): Promise<void> => {
-    console.log(
-      " - planalyzerCsrCheckoutPage.createLegalPlanOklahomaOrderRedirectToCheckout"
-    );
+    console.log(' - planalyzerCsrCheckoutPage.createLegalPlanOklahomaOrderRedirectToCheckout');
     await this.selectEnvironment();
     await this.selectChannel(channel);
     await this.selectSubChannel(subChannel);
@@ -63,13 +57,9 @@ export class PlanalyzerCsrCheckoutPage extends OktaPage {
    * @memberof PlanalyzerCsrCheckoutPage
    */
   selectEnvironment = async (): Promise<void> => {
-    console.log(" - planalyzerCsrCheckoutPage.selectEnvironment");
-    const environmentDropDownString =
-      EnvironmentUtil.getDropDownEnvironmentOptions();
-    await this.selectFromDropDownMenu(
-      ddlEnvironment,
-      environmentDropDownString
-    );
+    console.log(' - planalyzerCsrCheckoutPage.selectEnvironment');
+    const environmentDropDownString = EnvironmentUtil.getDropDownEnvironmentOptions();
+    await this.selectFromDropDownMenu(ddlEnvironment, environmentDropDownString);
   };
 
   /**
@@ -77,7 +67,7 @@ export class PlanalyzerCsrCheckoutPage extends OktaPage {
    * @memberof PlanalyzerCsrCheckoutPage
    */
   selectChannel = async (channel: string): Promise<void> => {
-    console.log(" - planalyzerCsrCheckoutPage.selectChannel");
+    console.log(' - planalyzerCsrCheckoutPage.selectChannel');
     await this.selectFromDropDownMenu(ddlChannel, channel);
   };
 
@@ -86,7 +76,7 @@ export class PlanalyzerCsrCheckoutPage extends OktaPage {
    * @memberof PlanalyzerCsrCheckoutPage
    */
   selectSubChannel = async (subChannel: string): Promise<void> => {
-    console.log(" - planalyzerCsrCheckoutPage.selectSubChannel");
+    console.log(' - planalyzerCsrCheckoutPage.selectSubChannel');
     await this.selectFromDropDownMenu(ddlSubChannel, subChannel);
   };
 
@@ -95,7 +85,7 @@ export class PlanalyzerCsrCheckoutPage extends OktaPage {
    * @memberof PlanalyzerCsrCheckoutPage
    */
   selectRegion = async (region: string): Promise<void> => {
-    console.log(" - planalyzerCsrCheckoutPage.selectRegion");
+    console.log(' - planalyzerCsrCheckoutPage.selectRegion');
     await this.selectFromDropDownMenu(ddlRegion, region);
   };
 
@@ -104,7 +94,7 @@ export class PlanalyzerCsrCheckoutPage extends OktaPage {
    * @memberof PlanalyzerCsrCheckoutPage
    */
   selectMarketLocale = async (marketLocale: string): Promise<void> => {
-    console.log(" - planalyzerCsrCheckoutPage.selectMarketLocale");
+    console.log(' - planalyzerCsrCheckoutPage.selectMarketLocale');
     await this.selectFromDropDownMenu(ddlMarketLocal, marketLocale);
   };
 
@@ -113,7 +103,7 @@ export class PlanalyzerCsrCheckoutPage extends OktaPage {
    * @memberof PlanalyzerCsrCheckoutPage
    */
   enterPrepaidMonths = async (prepaidMonths: string): Promise<void> => {
-    console.log(" - planalyzerCsrCheckoutPage.enterPrepaidMonths");
+    console.log(' - planalyzerCsrCheckoutPage.enterPrepaidMonths');
     await this.fillTextBox(txtPrepaidMonth, prepaidMonths);
   };
 
@@ -122,7 +112,7 @@ export class PlanalyzerCsrCheckoutPage extends OktaPage {
    * @memberof PlanalyzerCsrCheckoutPage
    */
   enterCouponCode = async (couponCode: string): Promise<void> => {
-    console.log(" - planalyzerCsrCheckoutPage.enterCouponCode");
+    console.log(' - planalyzerCsrCheckoutPage.enterCouponCode');
     await this.fillTextBox(txtCouponCode, couponCode);
   };
 
@@ -135,11 +125,9 @@ export class PlanalyzerCsrCheckoutPage extends OktaPage {
    * @memberof PlanalyzerCsrCheckoutPage
    */
   clickPlanCheckboxes = async (plans: Array<string>): Promise<void> => {
-    console.log(" - planalyzerCsrCheckoutPage.clickPlanCheckboxes");
+    console.log(' - planalyzerCsrCheckoutPage.clickPlanCheckboxes');
     plans.forEach(async (longName) => {
-      await this.clickOnElement(
-        `//div[contains(@class, 'product-name') and starts-with(.,'${longName}')]`
-      );
+      await this.clickOnElement(`//div[contains(@class, 'product-name') and starts-with(.,'${longName}')]`);
       // TODO: Need to research why automation can select multiple plans in planalyzer, but one of the plans does not get passed to checkout service about 60% of the time(?)
       // Leaving these changes in here for now, as it provides some value
       // await this.page.waitForSelector(`//div[contains(@class,'MuiBox-root') and contains(.,'${longName}')]`);
@@ -150,22 +138,22 @@ export class PlanalyzerCsrCheckoutPage extends OktaPage {
    * @memberof PlanalyzerCsrCheckoutPage
    */
   clickShowResults = async (): Promise<void> => {
-    console.log(" - planalyzerCsrCheckoutPage.clickShowResults");
+    console.log(' - planalyzerCsrCheckoutPage.clickShowResults');
     // Click on the Search Results Button
     await this.clickOnElement(btnShowResults);
     // Wait for document to load before subsequent steps
-    await this.page.waitForLoadState("domcontentloaded");
+    await this.page.waitForLoadState('domcontentloaded');
   };
 
   /**
    * @memberof PlanalyzerCsrCheckoutPage
    */
   clickGoToCheckout = async (): Promise<void> => {
-    console.log(" - planalyzerCsrCheckoutPage.clickGoToCheckout");
+    console.log(' - planalyzerCsrCheckoutPage.clickGoToCheckout');
     // Click on the Search Results Button
     await this.clickOnElement(btnGoToCheckout);
     // Wait for document to load before subsequent steps
-    await this.page.waitForLoadState("domcontentloaded");
+    await this.page.waitForLoadState('domcontentloaded');
   };
   // ========================== Assertion Methods ==========================
 }

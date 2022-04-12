@@ -1,4 +1,3 @@
-import { LoginPage } from '../login/login.page';
 import { PlanalyzerCsrCheckoutPage } from '../planalyzer/planalyzer-csr-checkout.page';
 
 // ========================== Selectors ==================================

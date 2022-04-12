@@ -1,6 +1,6 @@
-import { test } from "@playwright/test";
-import { AccountResourcesPage } from "../../page-objects/account/account-resources.page";
-import { withPlans } from "../../utils/user.utils";
+import { test } from '@playwright/test';
+import { AccountResourcesPage } from '../../page-objects/account/account-resources.page';
+import { withPlans } from '../../utils/user.utils';
 
 // Define Pages
 let accountResourcesPage: AccountResourcesPage;
@@ -14,48 +14,40 @@ test.beforeEach(async ({ page }) => {
   await accountResourcesPage.login(withPlans.email, withPlans.password);
 });
 
-test("Forms Logo is displayed", async ({ page }) => {
-  console.log("Test Case: Forms Logo is displayed");
+test('Forms Logo is displayed', async ({ page }) => {
+  console.log('Test Case: Forms Logo is displayed');
   // Confirm Forms Logo is displayed
   await accountResourcesPage.assertFormsLogoIsDisplayed();
 });
 
-test("Forms label is displayed", async ({ page }) => {
-  console.log("Test Case: Forms label is displayed");
+test('Forms label is displayed', async ({ page }) => {
+  console.log('Test Case: Forms label is displayed');
   // Confirm Forms Label is displayed
   await accountResourcesPage.assertFormsLabelIsDisplayed();
 });
 
-test("Click website link for Forms resources and redirect to Forms application", async ({
-  page,
-}) => {
-  console.log(
-    "Test Case: Click website link for Forms resources and redirect to Forms application"
-  );
+test('Click website link for Forms resources and redirect to Forms application', async ({ page }) => {
+  console.log('Test Case: Click website link for Forms resources and redirect to Forms application');
   // Click on the website link for Forms resources
   await accountResourcesPage.clickFormsGoToWebsiteLink();
   // Confirm redirect to Forms application
   await accountResourcesPage.assertFormsPageUrl();
 });
 
-test("Member Perks Logo is displayed", async ({ page }) => {
-  console.log("Test Case: Member Perks Logo is displayed");
+test('Member Perks Logo is displayed', async ({ page }) => {
+  console.log('Test Case: Member Perks Logo is displayed');
   // Confirm Member Perks Logo is displayed
   await accountResourcesPage.assertMemberPerksLogoIsDisplayed();
 });
 
-test("Member Perks label is displayed", async ({ page }) => {
-  console.log("Test Case: Member Perks label is displayed");
+test('Member Perks label is displayed', async ({ page }) => {
+  console.log('Test Case: Member Perks label is displayed');
   // Confirm Member Perks Logo is displayed
   await accountResourcesPage.assertMemberPerksLabelIsDisplayed();
 });
 
-test("Click website link for Member Perks resources and redirect to Member Perks application", async ({
-  page,
-}) => {
-  console.log(
-    "Test Case: Click website link for Member Perks resources and redirect to Member Perks application"
-  );
+test('Click website link for Member Perks resources and redirect to Member Perks application', async ({ page }) => {
+  console.log('Test Case: Click website link for Member Perks resources and redirect to Member Perks application');
   // Click on the website link based for Member Perks
   await accountResourcesPage.clickMemberPerksGoToWebsiteLink();
   // Confirm redirect to IDShield App

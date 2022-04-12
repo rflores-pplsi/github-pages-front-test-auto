@@ -1,5 +1,5 @@
-import { test } from "@playwright/test";
-import { LoginSignUpPage } from "../../page-objects/login/login-sign-up.page";
+import { test } from '@playwright/test';
+import { LoginSignUpPage } from '../../page-objects/login/login-sign-up.page';
 
 // Declare Page Variable for This Page
 let loginSignUpPage: LoginSignUpPage;
@@ -12,8 +12,8 @@ test.beforeEach(async ({ page }) => {
 });
 
 // Signup as a new user
-test("Sign up as a new user", async ({ page }) => {
-  console.log("Test Case: Sign up as a new user");
+test('Sign up as a new user', async ({ page }) => {
+  console.log('Test Case: Sign up as a new user');
   // Sign up a new random user
   await loginSignUpPage.signUp();
   // Confirm that login is successful by asserting the login url

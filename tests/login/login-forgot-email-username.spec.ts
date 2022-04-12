@@ -1,5 +1,5 @@
-import { test } from "@playwright/test";
-import { LoginForgotEmailUsernamePage } from "../../page-objects/login/login-forgot-email-username.page";
+import { test } from '@playwright/test';
+import { LoginForgotEmailUsernamePage } from '../../page-objects/login/login-forgot-email-username.page';
 
 // Declare Page Variable for This Page
 let loginForgotEmailUsernamePage: LoginForgotEmailUsernamePage;
@@ -13,12 +13,8 @@ test.beforeEach(async ({ page }) => {
   await loginForgotEmailUsernamePage.navigateToLoginPage();
 });
 
-test("Find contact numbers to obtain forgotten Email/Username", async ({
-  page,
-}) => {
-  console.log(
-    "Test Case: Find contact numbers to obtain forgotten Email/Username"
-  );
+test('Find contact numbers to obtain forgotten Email/Username', async ({ page }) => {
+  console.log('Test Case: Find contact numbers to obtain forgotten Email/Username');
   // Click on Forgot Email/Username to navigate to Forgot Username Or Email Page
   await loginForgotEmailUsernamePage.navigateToLoginForgotUsernameOrEmailPage();
   // Confirm that the Customer Service and Associate Support phone numbers are displayed

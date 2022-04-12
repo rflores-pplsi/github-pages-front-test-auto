@@ -1,18 +1,17 @@
-import { expect } from "@playwright/test";
-import { AccountProfilePage } from "./account-profile.page";
+import { expect } from '@playwright/test';
+import { AccountProfilePage } from './account-profile.page';
 
 // ========================== Selectors ==========================
 const txtBoxAddress1 = '[name="address1"]';
-const txtBoxAddress1Option = "//ul/li";
+const txtBoxAddress1Option = '//ul/li';
 const txtBoxAddress2 = '[name="address2"]';
 const txtBoxCity = '[name="locality"]';
 const selectState = '[name="administrativeArea"]';
 const txtBoxZipPostal = '[name="postalCode"]';
-const txtBoxZipPostalOption =
-  '//div[@class="lsux-container lsux-container--white        lsux-options-list"]//following::li[1]';
+const txtBoxZipPostalOption = '//div[@class="lsux-container lsux-container--white        lsux-options-list"]//following::li[1]';
 const selectCountry = '[name="country"]';
 const btnSaveAddress = '//span[text()="Save"]';
-const txtBoxFillAddress = "p.item-editable";
+const txtBoxFillAddress = 'p.item-editable';
 
 /**
  * @export
@@ -32,7 +31,7 @@ export class AccountProfileAddressPage extends AccountProfilePage {
   // ========================== Navigate Methods ==========================
 
   navigateToProfileAddressPage = async (): Promise<void> => {
-    console.log(" - accountProfilePage.goToProfilePage");
+    console.log(' - accountProfilePage.goToProfilePage');
     // Navigate to Profile page
     await this.navigateToProfilePage();
     // Click on Address edit button
@@ -107,7 +106,7 @@ export class AccountProfileAddressPage extends AccountProfilePage {
     const opt = await this.page.$$(txtBoxZipPostalOption);
     for (let ele = 0; ele < opt.length; ele++) {
       const zip = await opt[ele].innerHTML();
-      if (zip == "20147") {
+      if (zip == '20147') {
         await opt[ele].click();
       }
     }
@@ -120,8 +119,8 @@ export class AccountProfileAddressPage extends AccountProfilePage {
    */
   assertAddress1HasText = async (txt: string): Promise<void> => {
     const address1txt = await this.page.$(txtBoxAddress1);
-    console.log(await address1txt?.getAttribute("value"));
-    expect(txt).toBe(await address1txt?.getAttribute("value"));
+    console.log(await address1txt?.getAttribute('value'));
+    expect(txt).toBe(await address1txt?.getAttribute('value'));
   };
 
   /**
@@ -139,7 +138,7 @@ export class AccountProfileAddressPage extends AccountProfilePage {
    */
   assertCityHasText = async (txt: string): Promise<void> => {
     const citytxt = await this.page.$(txtBoxCity);
-    expect(txt).toBe(await citytxt?.getAttribute("value"));
+    expect(txt).toBe(await citytxt?.getAttribute('value'));
   };
 
   /**
@@ -148,7 +147,7 @@ export class AccountProfileAddressPage extends AccountProfilePage {
    */
   assertStateHasText = async (txt: string): Promise<void> => {
     const statetxt = await this.page.$(selectState);
-    expect(txt).toBe(await statetxt?.getAttribute("value"));
+    expect(txt).toBe(await statetxt?.getAttribute('value'));
   };
 
   /**
@@ -157,7 +156,7 @@ export class AccountProfileAddressPage extends AccountProfilePage {
    */
   assertZipPostalHasText = async (txt: string): Promise<void> => {
     const zipPortaltxt = await this.page.$(txtBoxZipPostal);
-    expect(txt).toBe(await zipPortaltxt?.getAttribute("value"));
+    expect(txt).toBe(await zipPortaltxt?.getAttribute('value'));
   };
 
   /**

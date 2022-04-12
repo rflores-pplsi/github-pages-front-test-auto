@@ -1,7 +1,7 @@
-import { test } from "@playwright/test";
-import { basicUser } from "../../utils/user.utils";
-import { AccountFooterPage } from "../../page-objects/account/account-footer.page";
-import UrlsUtils from "../../utils/urls.utils";
+import { test } from '@playwright/test';
+import { basicUser } from '../../utils/user.utils';
+import { AccountFooterPage } from '../../page-objects/account/account-footer.page';
+import UrlsUtils from '../../utils/urls.utils';
 
 let accountFooterPage: AccountFooterPage;
 
@@ -13,21 +13,21 @@ test.beforeEach(async ({ page }) => {
   await accountFooterPage.login(basicUser.email, basicUser.password);
 });
 
-test("Navigate to Terms of Service page", async () => {
+test('Navigate to Terms of Service page', async () => {
   test.fixme(); // resolve context issues for the new tabs
-  console.log("Test Case: Navigate to Terms of Service page");
+  console.log('Test Case: Navigate to Terms of Service page');
   const newPage = await accountFooterPage.clickTermsOfServiceLink();
   await accountFooterPage.assertTermsOfServicePageUrlInNewTab(newPage);
 });
 
-test("Navigate to Privacy Ploicy page", async () => {
+test('Navigate to Privacy Ploicy page', async () => {
   test.fixme(); // resolve context issues for the new tabs
-  console.log("Test Case: Navigate to Privacy Ploicy page");
+  console.log('Test Case: Navigate to Privacy Ploicy page');
   const newPage = await accountFooterPage.clickPrivacyPolicyLink();
 });
 
-test("Navigate to Legal Disclaimer page", async ({ page }) => {
+test('Navigate to Legal Disclaimer page', async ({ page }) => {
   test.fixme(); // resolve context issues for the new tabs
-  console.log("Test Case: Navigate to Legal Disclaimer page");
+  console.log('Test Case: Navigate to Legal Disclaimer page');
   const newPage = await accountFooterPage.clickDisclaimerLink();
 });

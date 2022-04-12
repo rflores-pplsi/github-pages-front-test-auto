@@ -1,5 +1,5 @@
-import EnvironmentUtil from "./env.utils";
-require("dotenv").config();
+import EnvironmentUtil from './env.utils';
+require('dotenv').config();
 
 const envUrlString = EnvironmentUtil.getEnvUrlString();
 const envLaunchUrlString = EnvironmentUtil.getLaunchUrlString();
@@ -69,43 +69,37 @@ export default class UrlsUtils {
 
   static readonly pplsiUrls = {
     home: {
-      url: "https://www.pplsi.com",
+      url: 'https://www.pplsi.com',
     },
     termsOfService: {
-      url: "https://www.legalshield.com/terms-service?",
+      url: 'https://www.legalshield.com/terms-service?',
     },
   };
 
   static readonly memberPerksUrls = {
     login: {
-      url: "https://legalshield.perkspot.com/login",
+      url: 'https://legalshield.perkspot.com/login',
     },
   };
 
   static readonly launchUrls = {
     prodUrl: {
-      url: "https://legalshield.com/start-a-business/legal-support//",
+      url: 'https://legalshield.com/start-a-business/legal-support//',
     },
     devUrl: {
-      url:
-        "https://" +
-        envLaunchUrlString +
-        ".wpengine.com/start-a-business/legal-support/",
+      url: 'https://' + envLaunchUrlString + '.wpengine.com/start-a-business/legal-support/',
     },
     uatUrl: {
-      url:
-        "https://" +
-        envLaunchUrlString +
-        "-legalshield.com/start-a-business/legal-support/",
+      url: 'https://' + envLaunchUrlString + '-legalshield.com/start-a-business/legal-support/',
     },
   };
 
   static readonly walsUrls = {
     devUrl: {
-      url: " https://lspro.dev.wearelegalshield.com/launch",
+      url: ' https://lspro.dev.wearelegalshield.com/launch',
     },
     uatUrl: {
-      url: "https://lspro.stage.wearelegalshield.com/launch",
+      url: 'https://lspro.stage.wearelegalshield.com/launch',
     },
   };
 }

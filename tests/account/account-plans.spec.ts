@@ -1,6 +1,6 @@
-import { test } from "@playwright/test";
-import { AccountPlansPage } from "../../page-objects/account/account-plans.page";
-import { withPlans } from "../../utils/user.utils";
+import { test } from '@playwright/test';
+import { AccountPlansPage } from '../../page-objects/account/account-plans.page';
+import { withPlans } from '../../utils/user.utils';
 
 // Define Pages
 let accountPlansPage: AccountPlansPage;
@@ -9,59 +9,40 @@ let accountPlansPage: AccountPlansPage;
 test.beforeEach(async ({ page }) => {
   accountPlansPage = new AccountPlansPage(page);
   // Login with accounts that have all necessary plans and navigate to accounts plan page
-  await accountPlansPage.loginToNavigateToAccountsPlanPage(
-    withPlans.email,
-    withPlans.password
-  );
+  await accountPlansPage.loginToNavigateToAccountsPlanPage(withPlans.email, withPlans.password);
   // Capture a table of available plans for the account logged in
   await accountPlansPage.createPlansTable();
 });
 
 // Click website link for a ID Shield for Business plan and redirect to IDS4B page
-test("Click website link for an ID Shield for Business plan and redirect to IDS4B application", async ({
-  page,
-}) => {
-  console.log(
-    "Test Case: Click website link for an ID Shield for Business plan and redirect to IDS4B application"
-  );
+test('Click website link for an ID Shield for Business plan and redirect to IDS4B application', async ({ page }) => {
+  console.log('Test Case: Click website link for an ID Shield for Business plan and redirect to IDS4B application');
   // Click on the website link based on the plan name
-  await accountPlansPage.clickGoToWebsiteLink("IDShield for Business");
+  await accountPlansPage.clickGoToWebsiteLink('IDShield for Business');
   // Confirm redirect to IDShield for Business App
   await accountPlansPage.assertIdShieldForBusinessPageUrl();
 });
 
-test("Click website link for a Legal Plan Family plan and redirect to Legal application", async ({
-  page,
-}) => {
-  console.log(
-    "Test Case: Click website link for a ID Shield for Business plan and redirect to the Legal application"
-  );
+test('Click website link for a Legal Plan Family plan and redirect to Legal application', async ({ page }) => {
+  console.log('Test Case: Click website link for a ID Shield for Business plan and redirect to the Legal application');
   // Click on the website link based on the plan name
-  await accountPlansPage.clickGoToWebsiteLink("Legal Plan Family");
+  await accountPlansPage.clickGoToWebsiteLink('Legal Plan Family');
   // Confirm redirect to Legal App
   await accountPlansPage.assertLegalPageUrl();
 });
 
-test("Click website link for a IDShield Individual plan and redirect to IDS application", async ({
-  page,
-}) => {
-  console.log(
-    "Test Case: Click website link for a IDShield Individual plan and redirect to the IDS application"
-  );
+test('Click website link for a IDShield Individual plan and redirect to IDS application', async ({ page }) => {
+  console.log('Test Case: Click website link for a IDShield Individual plan and redirect to the IDS application');
   // Click on the website link based on the plan name
-  await accountPlansPage.clickGoToWebsiteLink("IDShield Individual");
+  await accountPlansPage.clickGoToWebsiteLink('IDShield Individual');
   // Confirm redirect to IDShield App
   await accountPlansPage.assertIdShieldPageUrl();
 });
 
-test("Click website link for a Launch plan and redirect to mybusiness application", async ({
-  page,
-}) => {
-  console.log(
-    "Test Case: Click website link for a Launch plan and redirect to mybusiness application"
-  );
+test('Click website link for a Launch plan and redirect to mybusiness application', async ({ page }) => {
+  console.log('Test Case: Click website link for a Launch plan and redirect to mybusiness application');
   // Click on the website link based on the plan name
-  await accountPlansPage.clickGoToWebsiteLink("Launch");
+  await accountPlansPage.clickGoToWebsiteLink('Launch');
   // Confirm redirect to My Business App
   await accountPlansPage.assertLaunchPageUrl();
 });
