@@ -1,3 +1,4 @@
+import UrlsUtils from '../../utils/urls.utils';
 import { CheckoutOrderSummaryComponent } from './checkout-order-summary.component';
 
 // ========================== Selectors ==================================
@@ -41,6 +42,35 @@ const txtTaxId: string = '[placeholder="EIN / TIN"]';
  */
 export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   // ========================== Process Methods ============================
+  /**
+   * @param {string} state
+   * @param {string} paymentFrequency
+   * @param {string} planName
+   * @memberof CheckoutPersonalInfoPage
+   */
+  selectPlanFromBusinessSolutionsLegalPricingPage = async (
+    state: string,
+    paymentFrequency: string,
+    planName: string
+  ): Promise<void> => {
+    await this.selectPlanAndEnroll(state, paymentFrequency, planName);
+  };
+
+  /**
+   * @param {string} state
+   * @param {string} paymentFrequency
+   * @param {string} planName1
+   * @param {string} planName2
+   * @memberof CheckoutPersonalInfoPage
+   */
+  selectCombinationPlanFromBusinessSolutionsLegalPricingPage = async (
+    state: string,
+    paymentFrequency: string,
+    planName1: string,
+    planName2: string
+  ): Promise<void> => {
+    await this.selectCombinationPlanAndEnroll(state, paymentFrequency, planName1, planName2);
+  };
 
   /**
    * @param {string} firstName
@@ -247,7 +277,27 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   navigatePersonalInfoPageFromLogin = async (emailOrUsername: string | undefined, password: string | undefined) => {
     console.log(' - checkoutPersonalInfoPage.navigatePersonalInfoPageFromLogin');
     await this.login(emailOrUsername, password);
-    await this.createOrderSummary();
+    await this.captureOrderSummary();
+  };
+
+  /**
+   * @param {string} groupNumber
+   * @memberof CheckoutPersonalInfoPage
+   */
+  navigateToBusinessSolutionsLegalEnrollPage = async (groupNumber: string) => {
+    console.log(' - accountNavigationPage.navigateToBusinessSolutionsLegalEnrollPage');
+    // Navigate to enroll page
+    await this.page.goto(UrlsUtils.shieldBenefits.home.url + '/' + groupNumber + '/overview');
+  };
+
+  /**
+   * @param {string} groupNumber
+   * @memberof CheckoutPersonalInfoPage
+   */
+  navigateToBusinessSolutionsLegalPricingPage = async (groupNumber: string) => {
+    console.log(' - accountNavigationPage.navigateToBusinessSolutionsLegalPricingPage');
+    // Login with a basic user
+    await this.page.goto(UrlsUtils.shieldBenefits.home.url + '/' + groupNumber + '/pricing');
   };
 
   // ========================== Click Methods ==============================
