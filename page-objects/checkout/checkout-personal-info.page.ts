@@ -245,6 +245,23 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     await this.fillTextBox(txtTaxId, taxId);
   };
 
+  // locatorpPlans = async (): Promise<string> => {
+  //   console.log(" - checkoutPersonalInfoPage.locatorpPlans");
+  //   return this.page.locator(pPlans).innerText();
+  // };
+  // locatorpPlansPrice = async (): Promise<string> => {
+  //   console.log(" - checkoutPersonalInfoPage.locatorpPlansPrice");
+  //   return this.page.locator(pPlanPrice).innerText();
+  // };
+  // locatortxtTotalLabel = async (): Promise<string> => {
+  //   console.log(" - checkoutPersonalInfoPage.locatortxtTotalLabel");
+  //   return this.page.locator(txtTotalLabel).innerText();
+  // };
+  // locatortxtTotalPriceLabel = async (): Promise<string> => {
+  //   console.log(" - checkoutPersonalInfoPage.locatortxtTotalPriceLabel");
+  //   return this.page.locator(txtTotalPriceLabel).innerText();
+  // };
+
   // ========================== Navigate Methods ===========================n
 
   /**

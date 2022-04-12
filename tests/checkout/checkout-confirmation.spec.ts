@@ -8,10 +8,12 @@ let checkoutConfirmationPage: CheckoutConfirmationPage;
 test.beforeEach(async ({ page }) => {
   checkoutConfirmationPage = new CheckoutConfirmationPage(page);
   test.slow();
-  await checkoutConfirmationPage.navigateToCheckoutConfirmationPage("Virginia");
+  await checkoutConfirmationPage.navigateToCheckoutConfirmationPage("Alaska");
 });
 
 test("Welcome to Legal Shield Family Header is displayed", async ({ page }) => {
   test.slow();
   await checkoutConfirmationPage.assertWelcomeToLegalshiledFamilyPage();
+  await checkoutConfirmationPage.assertOrderSummaryPlanLabelConfirmationPage();
+  await checkoutConfirmationPage.assertOrderSummaryPlanPriceConfirmationPage();
 });

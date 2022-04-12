@@ -9,6 +9,15 @@ const txtBankName = "[placeholder='Bank Name']";
 const btnPurchase = "#savebd";
 const txtWelcomeToLegalshiledFamily =
   "h1.lsux-heading.confirmation-title.lsux-heading--t28";
+// const conPlans =
+//   "//div[@class='lsux-row half children2 content-row mb-4 mt-4 first-plan']";
+const pPlans =
+  "//div[@class='lsux-row half children2 content-row mb-4 mt-4 first-plan']/div/div/div/p";
+const pPlanPrice =
+  "//div[@class='lsux-row half children2 content-row mb-4 mt-4 first-plan']/div[@class='lsux-col pr-0 right-label-col']/div/p";
+const txtTotalLabel = "//p[contains(text(),'Monthly Total:')]";
+const txtTotalPriceLabel =
+  "//div[@class='lsux-row eight-four children2 footer-row mb-0 py-4']/div[@class='lsux-col pr-0 right-label-col']/div/p";
 
 // create instance of Page
 
@@ -29,8 +38,34 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsPage {
     await this.page.keyboard.press("Tab");
     await this.clickPurchaseBtn();
     // await this.page.waitForTimeout(60000);
-    const welcome = await this.page.locator(txtWelcomeToLegalshiledFamily);
-    console.log(await welcome.allTextContents());
+    // const welcome = await this.page.locator(txtWelcomeToLegalshiledFamily);
+    // console.log(await welcome.allTextContents());
+  };
+  fillOrderSummarypPlanValue = async (): Promise<string> => {
+    console.log(" - checkoutPaymentBankDraftPage.fillOrderSummarypPlanValue");
+    // Fillout the Bank Draft form
+    return this.page.locator(pPlans).innerText();
+  };
+  fillOrderSummarypPlanPriceValue = async (): Promise<string> => {
+    console.log(
+      " - checkoutPaymentBankDraftPage.fillOrderSummarypPlanPriceValue"
+    );
+    // Fillout the Bank Draft form
+    return this.page.locator(pPlanPrice).innerText();
+  };
+  fillOrderSummarytxtTotalLabelValue = async (): Promise<string> => {
+    console.log(
+      " - checkoutPaymentBankDraftPage.fillOrderSummarytxtTotalLabelValue"
+    );
+    // Fillout the Bank Draft form
+    return this.page.locator(txtTotalLabel).innerText();
+  };
+  fillOrderSummarytxtTotalPriceLabelValue = async (): Promise<string> => {
+    console.log(
+      " - checkoutPaymentBankDraftPage.fillOrderSummarytxtTotalPriceLabelValue"
+    );
+    // Fillout the Bank Draft form
+    return this.page.locator(txtTotalPriceLabel).innerText();
   };
   // ========================== Navigate Methods ===========================
   navigateToPaymentsBankDraftPage = async (state: string): Promise<void> => {
