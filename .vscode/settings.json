@@ -1,0 +1,28 @@
+{
+  "eslint.alwaysShowStatus": true,
+  "eslint.lintTask.enable": true,
+  "editor.tabSize": 2,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "terminal.integrated.scrollback": 10000,
+  "cSpell.words": [
+    "camelcase",
+    "checkoutv",
+    "domcontentloaded",
+    "endregion",
+    "idsca",
+    "idshield",
+    "IDSUS",
+    "LSCA",
+    "lsus",
+    "NITROPACK",
+    "pplsi"
+  ]
+}
