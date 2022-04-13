@@ -30,6 +30,19 @@ export class ShieldBenefitsLegalPricingPage extends PlanalyzerCsrCheckoutPage {
 
   /**
    * @param {string} state
+   * @param {string} planName
+   * @memberof ShieldBenefitsLegalPricingPage
+   */
+  selectPlanAndEnrollNoPaymentFrequency = async (state: string, planName: string) => {
+    console.log(' - shieldBenefitsLegalPricingPage.selectPlanAndEnroll');
+    await this.clickOnElement(btnState);
+    await this.clickOnElement(`//div[contains(@class,"lsux-link-content--menu") and contains (.,"${state}")]`);
+    await this.waitForElementToBeVisible(conAvailablePlans);
+    await this.clickIndividualPlanEnrollNowButton(planName);
+  };
+
+  /**
+   * @param {string} state
    * @param {string} paymentFrequency
    * @param {string} planName1
    * @param {string} planName2
