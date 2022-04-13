@@ -30,8 +30,8 @@ export class LoginPage extends BasePage {
     if (emailOrUsername && password) {
       // If statement exists because depending on the application you came from, you may be on signup or signin pages
       // Sign in element is hidden by a span, so the isHidden check still indicates I need to get to sign in page
-      if ((await this.isElementVisible(lnkSignIn)) == false) {
-        await this.clickOnElement(lnkSignIn);
+      if ((await this.isElementVisible(lnkSignIn)) == true) {
+        await this.page.locator(lnkSignIn).click({ force: true });
       }
       // Enter email or username into input
       await this.fillTextBox(txtEmailOrUsername, emailOrUsername);

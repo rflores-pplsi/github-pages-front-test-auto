@@ -3,8 +3,7 @@ import { LoginPage } from '../login/login.page';
 import { expect } from '@playwright/test';
 
 // ========================== Selectors ==========================
-const stpConfirm: string =
-  '//div[contains(@class, "step-container") and contains(.,"Confirm")]//div[contains(@class,"step-circle--current")]';
+const stpConfirm: string = '//div[contains(@class, "step-container") and contains(.,"Confirm")]//div[contains(@class,"step-circle--current")]';
 const btnContinueToYourBenefits: string = 'button:has-text("Continue to your benefits")';
 /**
  *

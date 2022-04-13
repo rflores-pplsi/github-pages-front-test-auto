@@ -1,4 +1,4 @@
-import { LoginPage } from '../login/login.page';
+import { PlanalyzerCsrCheckoutPage } from '../planalyzer/planalyzer-csr-checkout.page';
 
 // ========================== Selectors ==================================
 const btnState = '//div[contains(@class,"mr-5") and contains (.,"State")]//button';
@@ -10,7 +10,7 @@ const conAvailablePlans = '//div[contains (@class,"filters mt-5 mb-5") and conta
  * @class ShieldBenefitsLegalPricingPage
  * @extends {BasePage}
  */
-export class ShieldBenefitsLegalPricingPage extends LoginPage {
+export class BusinessSolutionsLegalPricingPage extends PlanalyzerCsrCheckoutPage {
   // ========================== Process Methods ============================
   /**
    * @param {string} state
