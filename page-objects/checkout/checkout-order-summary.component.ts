@@ -1,4 +1,4 @@
-import { BusinessSolutionsLegalPricingPage } from '../business-solutions/business-solutions-legal-pricing.page';
+import { ShieldBenefitsLegalPricingPage } from '../shield-benefits/shield-benefits-legal-pricing.page';
 import { OrderSummary } from './checkout.helpers';
 import { OrderSummaryRow } from './checkout.helpers';
 
@@ -9,6 +9,7 @@ const orderSummary = new OrderSummary();
 const lnkEditOrder: string = 'button:has-text("Edit")';
 const imgHideOrderSummaryChevron: string = 'img[alt="nav_chevron_single_up."]';
 const imgShowOrderSummaryChevron: string = 'img[alt="nav_chevron_single_down."]';
+const conOrderSummary: string = '//div[contains(@class,"order-summary")]';
 const txtPlanNames: string = '//div[contains(@class,"plan-name-row")]';
 const txtPlanCosts: string = '//div[contains(@class,"lsux-row half children2 content-row mb-4")]//div[contains(@class,"right-label-col")]//p';
 const txtMonthlyTotalLabel: string = '//div[contains(@class,"left-label")]//p[contains(.,"Monthly Total:")]';
@@ -24,7 +25,7 @@ const txtPayPeriodTotalAmount: string =
  * @class CheckoutOrderSummaryComponent
  * @extends {PlanalyzerCsrCheckoutPage}
  */
-export class CheckoutOrderSummaryComponent extends BusinessSolutionsLegalPricingPage {
+export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPage {
   // ========================== Process Methods ============================
 
   /**
@@ -148,5 +149,14 @@ export class CheckoutOrderSummaryComponent extends BusinessSolutionsLegalPricing
   assertPayPeriodTotal = async (total: string): Promise<void> => {
     console.log(' - checkoutOrderSummaryComponent.assertPayPeriodTotal');
     await this.assertElementHasText(txtPayPeriodTotalAmount, total);
+  };
+
+  /**
+   * @param {string} planName
+   * @memberof CheckoutOrderSummaryComponent
+   */
+  assertPlanNameDisplayedInSummary = async (planName: string): Promise<void> => {
+    console.log(' - checkoutOrderSummaryComponent.assertPlanNameDisplayedInSummary');
+    await this.assertElementContainsText(conOrderSummary, planName);
   };
 }
