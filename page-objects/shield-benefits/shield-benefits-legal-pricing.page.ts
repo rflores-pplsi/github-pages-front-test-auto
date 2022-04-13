@@ -10,7 +10,7 @@ const conAvailablePlans = '//div[contains (@class,"filters mt-5 mb-5") and conta
  * @class ShieldBenefitsLegalPricingPage
  * @extends {BasePage}
  */
-export class BusinessSolutionsLegalPricingPage extends PlanalyzerCsrCheckoutPage {
+export class ShieldBenefitsLegalPricingPage extends PlanalyzerCsrCheckoutPage {
   // ========================== Process Methods ============================
   /**
    * @param {string} state
