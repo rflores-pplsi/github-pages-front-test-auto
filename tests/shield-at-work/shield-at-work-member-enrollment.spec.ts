@@ -1,5 +1,5 @@
-import { test } from "@playwright/test";
-import { ShieldAtWorkMemberEnrollment } from "../../page-objects/shield-at-work/shield-at-work-member-enrollment.page";
+import { test } from '@playwright/test';
+import { ShieldAtWorkMemberEnrollment } from '../../page-objects/shield-at-work/shield-at-work-member-enrollment.page';
 
 let shieldAtWorkMemberEnrollment: ShieldAtWorkMemberEnrollment;
 
@@ -8,9 +8,7 @@ test.beforeEach(async ({ page }) => {
   await shieldAtWorkMemberEnrollment.navigateToShieldAtWork();
 });
 
-test("Edit button for contact information should be enabled", async ({
-  page,
-}) => {
+test('Edit button for contact information should be enabled', async ({ page }) => {
   // Login with your credentials
   await shieldAtWorkMemberEnrollment.loginWithCredentials();
   // Click on Enroll new member button

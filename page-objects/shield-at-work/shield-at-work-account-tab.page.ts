@@ -1,17 +1,19 @@
-import { expect } from "@playwright/test";
-import urlsUtils from "../../utils/urls.utils";
-import { LsWorkLoginPage } from "../shield-at-work/shield-at-work-login.page";
+import { expect } from '@playwright/test';
+import urlsUtils from '../../utils/urls.utils';
+import { LsWorkLoginPage } from '../shield-at-work/shield-at-work-login.page';
 
 // ========================== Selectors ==================================
 const url = urlsUtils.legalshieldUrls.shieldAtWork.url;
 const txtSearch = '[placeholder="Search by name or group number"]';
 const btnSearch = '[id="searchButton"]';
-const txtGroup = "#root  .lsux-container--flex-items-center.mb-2 > h3";
+const txtGroup = '#root  .lsux-container--flex-items-center.mb-2 > h3';
 const btnViewGroup = '[class="lsux-button  lsux-button--standard      ml-4"]';
-const txtCompanyInformation =
-  "div:nth-child(2) > div:nth-child(1) > div.lsux-container.lsux-container--flexbox h3";
-const txtAvaiablePlanofferings = ".lsux-col._3xFlevALZd1DdNKVRhaliI > div > h3";
-const txtBusinessSolutions = '[id="lsdsTitle"]';
+const txtCompanyInformation = 'div:nth-child(2) > div:nth-child(1) > div.lsux-container.lsux-container--flexbox h3';
+const txtAvailablePlanOfferings = '.lsux-col._3xFlevALZd1DdNKVRhaliI > div > h3';
+const txtContactInformation = '.lsux-content div:nth-child(2) > div:nth-child(2) > div h3';
+const txtAddress = '.lsux-content  div:nth-child(2) > div:nth-child(3)  h3';
+const btnState = '.lsux-form-field-container._3CcWh8AqBHYFBJD2ZPGeEk > div > select';
+
 /**
  * @export
  * @class ShieldAtWorkAccountTab
@@ -19,19 +21,27 @@ const txtBusinessSolutions = '[id="lsdsTitle"]';
  */
 export class ShieldAtWorkAccountTab extends LsWorkLoginPage {
   // ========================== Process Methods ============================
+
   groupSearchByGroupNumber = async (): Promise<void> => {
-    console.log(" - accountShieldAtWorkPage.groupSearchByGroupNumber");
+    console.log(' - accountShieldAtWorkPage.groupSearchByGroupNumber');
     // Type in the search field the group number
-    await this.page.fill(txtSearch, "111452");
+    await this.page.fill(txtSearch, '111452');
     // Click on search button
     await this.page.click(btnSearch);
     // Wait for the group name is displayed
     await this.page.waitForSelector(txtGroup);
   };
+
+  selectState = async (): Promise<void> => {
+    console.log(' - accountShieldAtWorkPage.selectState');
+    // Select TX state from drop down on account tab
+    await this.page.selectOption(btnState, { label: 'TX' });
+  };
+
   // ========================== Click Methods ==============================
 
   clickViewGroup = async (): Promise<void> => {
-    console.log(" - accountShieldAtWorkPage.verifyAccountInformation");
+    console.log(' - accountShieldAtWorkPage.verifyAccountInformation');
     // Click on View Group button
     await this.page.click(btnViewGroup);
     // await this.page.waitForSelector(txtAccountTab);
@@ -40,28 +50,48 @@ export class ShieldAtWorkAccountTab extends LsWorkLoginPage {
   // ========================== Navigate Methods ===========================
 
   navigateToShieldAtWorkAccountTab = async (): Promise<void> => {
-    console.log(" - accountShieldAtWorkPage.navigateToShieldAtWorkAccountTab");
+    console.log(' - accountShieldAtWorkPage.navigateToShieldAtWorkAccountTab');
     // Navigate to Url
     await this.page.goto(url);
     // Login to ShieldAtWork
     await this.loginWithCredentials();
+    // Search group by group number
+    await this.groupSearchByGroupNumber();
+    // Click on View group button
+    await this.clickViewGroup();
   };
 
   // ========================== Assertion Methods ==========================
 
-  assertAccountInformation = async (): Promise<void> => {
-    console.log(" - accountShieldAtWorkPage.assertAccountInformation");
+  assertCompanyInformation = async (): Promise<void> => {
+    console.log(' - accountShieldAtWorkPage.assertCompanyInformation');
     // Verify that company information  is displayed
     await this.page.waitForSelector(txtCompanyInformation);
     const information = this.page.locator(txtCompanyInformation);
-    await expect(information).toContainText("Company information");
+    await expect(information).toContainText('Company information');
+  };
+
+  assertContactInformation = async (): Promise<void> => {
+    console.log(' - accountShieldAtWork.assertContactInformation');
+    // Verify that contact information page is displayed
+    await this.page.waitForSelector(txtContactInformation);
+    const locator = this.page.locator(txtContactInformation);
+    await expect(locator).toContainText('Contact information');
+  };
+
+  assertAddress = async (): Promise<void> => {
+    console.log(' - accountShieldAtWork.assertAddress');
+    // Verify that contact information page is displayed
+    await this.page.waitForSelector(txtAddress);
+    const locator = this.page.locator(txtAddress);
+    await expect(locator).toContainText('Address');
+  };
+
+  assertAvailablePlanOfferings = async (): Promise<void> => {
+    console.log(' - accountShieldAtWork.assertAvailablePlanOfferings');
     // Verify that available plan offerings is displayed
-    await this.page.waitForSelector(txtAvaiablePlanofferings);
-    const locator = this.page.locator(txtAvaiablePlanofferings);
-    await expect(locator).toContainText("Available plan offerings");
-    // Verify that Business Solutions text is displayed
-    await this.page.waitForSelector(txtBusinessSolutions);
-    const text = this.page.locator(txtBusinessSolutions);
-    await expect(text).toContainText("Business Solutions");
+    await this.page.waitForSelector(txtAvailablePlanOfferings);
+    const locator = this.page.locator(txtAvailablePlanOfferings);
+    await expect(locator).toContainText('Available plan offerings');
   };
 }

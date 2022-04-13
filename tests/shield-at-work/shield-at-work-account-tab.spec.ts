@@ -1,6 +1,6 @@
-import { test } from "@playwright/test";
+import { test } from '@playwright/test';
 
-import { ShieldAtWorkAccountTab } from "../../page-objects/shield-at-work/shield-at-work-account-tab.page";
+import { ShieldAtWorkAccountTab } from '../../page-objects/shield-at-work/shield-at-work-account-tab.page';
 
 let shieldAtWorkAccountTab: ShieldAtWorkAccountTab;
 
@@ -9,15 +9,32 @@ test.beforeEach(async ({ page }) => {
   await shieldAtWorkAccountTab.navigateToShieldAtWorkAccountTab();
 });
 
-test("Account information is displayed on the account tab", async ({
-  page,
-}) => {
-  // Type in the search field 111452 group number and click on Search button
+test('Company information is displayed on account tab', async ({ page }) => {
   await shieldAtWorkAccountTab.navigateToShieldAtWorkAccountTab();
-  // Find group 111452
-  await shieldAtWorkAccountTab.groupSearchByGroupNumber();
-  // Click on View Group button
-  await shieldAtWorkAccountTab.clickViewGroup();
-  // Verify that account information is displayed
-  await shieldAtWorkAccountTab.assertAccountInformation();
+  // Verify that company information  is displayed
+  await shieldAtWorkAccountTab.assertCompanyInformation();
+});
+
+test('Contact information is displayed on account tab', async ({ page }) => {
+  await shieldAtWorkAccountTab.navigateToShieldAtWorkAccountTab();
+  // Verify that contact information  is displayed
+  await shieldAtWorkAccountTab.assertContactInformation();
+});
+
+test('Address is displayed on account tab', async ({ page }) => {
+  await shieldAtWorkAccountTab.navigateToShieldAtWorkAccountTab();
+  // Verify that address is displayed
+  await shieldAtWorkAccountTab.assertAddress();
+});
+
+test('Available Plan Offerings is displayed on account tab', async ({ page }) => {
+  await shieldAtWorkAccountTab.navigateToShieldAtWorkAccountTab();
+  // Verify that available plan offerings is displayed
+  await shieldAtWorkAccountTab.assertAvailablePlanOfferings();
+});
+
+test('State drop down is selectable on account tab', async ({ page }) => {
+  await shieldAtWorkAccountTab.navigateToShieldAtWorkAccountTab();
+  // Verify that TX state is selectable from drop down
+  await shieldAtWorkAccountTab.selectState();
 });
