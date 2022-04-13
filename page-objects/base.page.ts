@@ -222,7 +222,6 @@ export class BasePage {
   // Truthiness means that it just has a value
   assertInnerTextIsTruthy = async (ele: string): Promise<void> => {
     const innerText = await this.page.innerText(ele);
-    console.log(innerText);
     expect(innerText).toBeTruthy();
   };
 }
