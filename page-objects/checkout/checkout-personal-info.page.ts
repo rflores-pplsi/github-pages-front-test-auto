@@ -48,8 +48,22 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @param {string} planName
    * @memberof CheckoutPersonalInfoPage
    */
-  selectPlanFromBusinessSolutionsLegalPricingPage = async (state: string, paymentFrequency: string, planName: string): Promise<void> => {
+  selectPlanFromShieldBenefitsPricingPage = async (state: string, paymentFrequency: string, planName: string): Promise<void> => {
     await this.selectPlanAndEnroll(state, paymentFrequency, planName);
+  };
+
+  /**
+   * @param {string} state
+   * @param {string} paymentFrequency
+   * @param {string} planName
+   * @memberof CheckoutPersonalInfoPage
+   */
+  selectPlanWithoutPaymentFrequencyFromShieldBenefitsPricingPage = async (
+    state: string,
+    paymentFrequency: string,
+    planName: string
+  ): Promise<void> => {
+    await this.selectPlanAndEnrollNoPaymentFrequency(state, planName);
   };
 
   /**
@@ -59,7 +73,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @param {string} planName2
    * @memberof CheckoutPersonalInfoPage
    */
-  selectCombinationPlanFromBusinessSolutionsLegalPricingPage = async (
+  selectCombinationPlanFromShieldBenefitsPricingPage = async (
     state: string,
     paymentFrequency: string,
     planName1: string,
@@ -290,7 +304,6 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   navigatePersonalInfoPageFromLogin = async (emailOrUsername: string | undefined, password: string | undefined) => {
     console.log(' - checkoutPersonalInfoPage.navigatePersonalInfoPageFromLogin');
     await this.login(emailOrUsername, password);
-    await this.captureOrderSummary();
   };
 
   /**
@@ -298,7 +311,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @memberof CheckoutPersonalInfoPage
    */
   navigateToBusinessSolutionsLegalEnrollPage = async (groupNumber: string) => {
-    console.log(' - accountNavigationPage.navigateToBusinessSolutionsLegalEnrollPage');
+    console.log(' - checkoutPersonalInfoPage.navigateToBusinessSolutionsLegalEnrollPage');
     // Navigate to enroll page
     await this.page.goto(UrlsUtils.shieldBenefits.home.url + '/' + groupNumber + '/overview');
   };
@@ -307,12 +320,31 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @param {string} groupNumber
    * @memberof CheckoutPersonalInfoPage
    */
-  navigateToBusinessSolutionsLegalPricingPage = async (groupNumber: string) => {
-    console.log(' - accountNavigationPage.navigateToBusinessSolutionsLegalPricingPage');
+  navigateToShieldBenefitsPricingPage = async (groupNumber: string) => {
+    console.log(' - checkoutPersonalInfoPage.navigateToBusinessSolutionsLegalPricingPage');
     // Login with a basic user
     await this.page.goto(UrlsUtils.shieldBenefits.home.url + '/' + groupNumber + '/pricing');
   };
 
+  /**
+   * @param {string} groupNumber
+   * @memberof CheckoutPersonalInfoPage
+   */
+  navigateToBusinessSolutionsIdentityEnrollPage = async (groupNumber: string) => {
+    console.log(' - checkoutPersonalInfoPage.navigateToBusinessSolutionsIdentityEnrollPage');
+    // Navigate to enroll page
+    await this.page.goto(UrlsUtils.shieldBenefits.home.url + '/' + groupNumber + '/idshield');
+  };
+
+  // /**
+  //  * @param {string} groupNumber
+  //  * @memberof CheckoutPersonalInfoPage
+  //  */
+  // navigateToBusinessSolutionsIdentityPricingPage = async (groupNumber: string) => {
+  //   console.log(' - checkoutPersonalInfoPage.navigateToBusinessSolutionsIdentityPricingPage');
+  //   // Login with a basic user
+  //   await this.page.goto(UrlsUtils.shieldBenefits.home.url + '/' + groupNumber + '/pricing');
+  // };
   // ========================== Click Methods ==============================
   /**
    * @memberof CheckoutPersonalInfoPage
