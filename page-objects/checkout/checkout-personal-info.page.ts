@@ -1,3 +1,4 @@
+import UrlsUtils from '../../utils/urls.utils';
 import { CheckoutOrderSummaryComponent } from './checkout-order-summary.component';
 
 // ========================== Selectors ==================================
@@ -41,6 +42,45 @@ const txtTaxId: string = '[placeholder="EIN / TIN"]';
  */
 export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   // ========================== Process Methods ============================
+  /**
+   * @param {string} state
+   * @param {string} paymentFrequency
+   * @param {string} planName
+   * @memberof CheckoutPersonalInfoPage
+   */
+  selectPlanFromShieldBenefitsPricingPage = async (state: string, paymentFrequency: string, planName: string): Promise<void> => {
+    await this.selectPlanAndEnroll(state, paymentFrequency, planName);
+  };
+
+  /**
+   * @param {string} state
+   * @param {string} paymentFrequency
+   * @param {string} planName
+   * @memberof CheckoutPersonalInfoPage
+   */
+  selectPlanWithoutPaymentFrequencyFromShieldBenefitsPricingPage = async (
+    state: string,
+    paymentFrequency: string,
+    planName: string
+  ): Promise<void> => {
+    await this.selectPlanAndEnrollNoPaymentFrequency(state, planName);
+  };
+
+  /**
+   * @param {string} state
+   * @param {string} paymentFrequency
+   * @param {string} planName1
+   * @param {string} planName2
+   * @memberof CheckoutPersonalInfoPage
+   */
+  selectCombinationPlanFromShieldBenefitsPricingPage = async (
+    state: string,
+    paymentFrequency: string,
+    planName1: string,
+    planName2: string
+  ): Promise<void> => {
+    await this.selectCombinationPlanAndEnroll(state, paymentFrequency, planName1, planName2);
+  };
 
   /**
    * @param {string} firstName
@@ -236,6 +276,23 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     await this.fillTextBox(txtTaxId, taxId);
   };
 
+  // locatorpPlans = async (): Promise<string> => {
+  //   console.log(" - checkoutPersonalInfoPage.locatorpPlans");
+  //   return this.page.locator(pPlans).innerText();
+  // };
+  // locatorpPlansPrice = async (): Promise<string> => {
+  //   console.log(" - checkoutPersonalInfoPage.locatorpPlansPrice");
+  //   return this.page.locator(pPlanPrice).innerText();
+  // };
+  // locatortxtTotalLabel = async (): Promise<string> => {
+  //   console.log(" - checkoutPersonalInfoPage.locatortxtTotalLabel");
+  //   return this.page.locator(txtTotalLabel).innerText();
+  // };
+  // locatortxtTotalPriceLabel = async (): Promise<string> => {
+  //   console.log(" - checkoutPersonalInfoPage.locatortxtTotalPriceLabel");
+  //   return this.page.locator(txtTotalPriceLabel).innerText();
+  // };
+
   // ========================== Navigate Methods ===========================n
 
   /**
@@ -247,9 +304,47 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   navigatePersonalInfoPageFromLogin = async (emailOrUsername: string | undefined, password: string | undefined) => {
     console.log(' - checkoutPersonalInfoPage.navigatePersonalInfoPageFromLogin');
     await this.login(emailOrUsername, password);
-    await this.createOrderSummary();
   };
 
+  /**
+   * @param {string} groupNumber
+   * @memberof CheckoutPersonalInfoPage
+   */
+  navigateToBusinessSolutionsLegalEnrollPage = async (groupNumber: string) => {
+    console.log(' - checkoutPersonalInfoPage.navigateToBusinessSolutionsLegalEnrollPage');
+    // Navigate to enroll page
+    await this.page.goto(UrlsUtils.shieldBenefits.home.url + '/' + groupNumber + '/overview');
+  };
+
+  /**
+   * @param {string} groupNumber
+   * @memberof CheckoutPersonalInfoPage
+   */
+  navigateToShieldBenefitsPricingPage = async (groupNumber: string) => {
+    console.log(' - checkoutPersonalInfoPage.navigateToBusinessSolutionsLegalPricingPage');
+    // Login with a basic user
+    await this.page.goto(UrlsUtils.shieldBenefits.home.url + '/' + groupNumber + '/pricing');
+  };
+
+  /**
+   * @param {string} groupNumber
+   * @memberof CheckoutPersonalInfoPage
+   */
+  navigateToBusinessSolutionsIdentityEnrollPage = async (groupNumber: string) => {
+    console.log(' - checkoutPersonalInfoPage.navigateToBusinessSolutionsIdentityEnrollPage');
+    // Navigate to enroll page
+    await this.page.goto(UrlsUtils.shieldBenefits.home.url + '/' + groupNumber + '/idshield');
+  };
+
+  // /**
+  //  * @param {string} groupNumber
+  //  * @memberof CheckoutPersonalInfoPage
+  //  */
+  // navigateToBusinessSolutionsIdentityPricingPage = async (groupNumber: string) => {
+  //   console.log(' - checkoutPersonalInfoPage.navigateToBusinessSolutionsIdentityPricingPage');
+  //   // Login with a basic user
+  //   await this.page.goto(UrlsUtils.shieldBenefits.home.url + '/' + groupNumber + '/pricing');
+  // };
   // ========================== Click Methods ==============================
   /**
    * @memberof CheckoutPersonalInfoPage

@@ -198,4 +198,30 @@ export class BasePage {
   assertBoolean = async (value1: boolean, value2: boolean): Promise<void> => {
     expect(value1).toEqual(value2);
   };
+
+  /**
+   * @param {string} ele
+   * @memberof BasePage
+   */
+  waitForElementToBeVisible = async (ele: string): Promise<void> => {
+    this.page.waitForSelector(ele);
+  };
+
+  /**
+   * @param {string} ele
+   * @memberof BasePage
+   */
+  checkCheckbox = async (ele: string): Promise<void> => {
+    this.page.setChecked(ele, true, { force: true });
+  };
+
+  /**
+   * @param {string} ele
+   * @memberof BasePage
+   */
+  // Truthiness means that it just has a value
+  assertInnerTextIsTruthy = async (ele: string): Promise<void> => {
+    const innerText = await this.page.innerText(ele);
+    expect(innerText).toBeTruthy();
+  };
 }

@@ -3,8 +3,7 @@ import { LoginPage } from '../login/login.page';
 import { expect } from '@playwright/test';
 
 // ========================== Selectors ==========================
-const stpEnterCode: string =
-  '//div[contains(@class, "step-container") and contains(.,"Enter Code")]//div[contains(@class,"step-circle--current")]';
+const stpEnterCode: string = '//div[contains(@class, "step-container") and contains(.,"Enter Code")]//div[contains(@class,"step-circle--current")]';
 const txtAccountCode: string = '[placeholder="123456"]';
 const btnCreateAccount: string = 'button:has-text("Create Account")';
 const lnkDontKnowCode: string = 'a:has-text("know your code?")';

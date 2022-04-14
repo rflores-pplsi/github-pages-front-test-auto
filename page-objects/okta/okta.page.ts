@@ -1,4 +1,4 @@
-import UrlsUtils from '../../utils/urls.utils';
+import UrlsUtils from "../../utils/urls.utils";
 import { oktaUser } from '../../utils/user.utils';
 import { LoginPage } from '../login/login.page';
 

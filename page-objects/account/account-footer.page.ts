@@ -1,16 +1,11 @@
-import { expect, Page, BrowserContext } from '@playwright/test';
-import UrlsUtils from '../../utils/urls.utils';
+/* eslint-disable require-jsdoc */
+import { expect, Page } from '@playwright/test';
 import { LoginPage } from '../login/login.page';
 
-let url: string = UrlsUtils.legalshieldUrls.account.url;
-let page: Page;
-let context: BrowserContext;
-
 // ========================== Selectors ==========================
-let lnkTermsOfService = 'a:has-text("Terms of Service")';
-let lnkPrivacyPolicy = 'a:has-text("Privacy Policy")';
-let lnkLegalDisclaimer = 'a:has-text("Legal")';
-let txtCopyright = 'span:has-text("© PPLSI 2021")';
+const lnkTermsOfService = 'a:has-text("Terms of Service")';
+const lnkPrivacyPolicy = 'a:has-text("Privacy Policy")';
+const lnkLegalDisclaimer = 'a:has-text("Legal")';
 
 export class AccountFooterPage extends LoginPage {
   // ========================== Process Methods ==========================
@@ -22,10 +17,7 @@ export class AccountFooterPage extends LoginPage {
   clickTermsOfServiceLink = async (): Promise<Page> => {
     // Click Terms of Service link
     console.log(' - accountFooterPage.clickTermsOfServiceLink');
-    const [newPage] = await Promise.all([
-      this.context.waitForEvent('page'),
-      await this.page.click('a:has-text("Terms of Service")'),
-    ]);
+    const [newPage] = await Promise.all([this.context.waitForEvent('page'), await this.page.click('a:has-text("Terms of Service")')]);
     await newPage.waitForLoadState();
     await this.page.click(lnkTermsOfService);
     return newPage;
@@ -50,10 +42,7 @@ export class AccountFooterPage extends LoginPage {
   };
 
   assertPrivacyPolicyPageUrlInNewTab = async (): Promise<Page> => {
-    const [newPage] = await Promise.all([
-      this.context.waitForEvent('page'),
-      await this.page.click('a:has-text("Privacy Policy")'),
-    ]);
+    const [newPage] = await Promise.all([this.context.waitForEvent('page'), await this.page.click('a:has-text("Privacy Policy")')]);
     await newPage.waitForLoadState();
     await expect(newPage).toHaveTitle('Privacy Policy - PPLSI');
     return newPage;

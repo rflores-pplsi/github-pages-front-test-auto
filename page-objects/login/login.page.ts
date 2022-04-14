@@ -5,9 +5,9 @@ import { BasePage } from '../base.page';
 // ========================== Selectors ==========================
 const txtEmailOrUsername: string = '[placeholder="Email address/Username"]';
 const txtPassword: string = '[placeholder="Password"]';
-const btnSignIn: string = 'button[type="submit"]';
+const btnSignIn: string = '//button[contains(@class,"lsux-button--primary")]/span[contains(.,"Sign in")]';
 const lnkSignUp: string = 'a:has-text("Sign up")';
-const lnkSignIn: string = 'a:has-text("Sign in")';
+const lnkSignIn: string = '//div[@class="content"]//a[contains(.,"Sign in")]';
 const lnkForgotPassword: string = 'a:has-text("Forgot Password?")';
 const lnkForgotEmailUsername: string = 'a:has-text("Forgot Email/Username?")';
 
@@ -29,8 +29,10 @@ export class LoginPage extends BasePage {
     console.log(' - loginPage.login');
     if (emailOrUsername && password) {
       // If statement exists because depending on the application you came from, you may be on signup or signin pages
-      if ((await this.isElementVisible(lnkSignIn)) == true) {
-        await this.clickOnElement(lnkSignIn);
+      // Sign in element is hidden by a span, so the isHidden check still indicates I need to get to sign in page
+      const title = await this.page.title();
+      if (title != 'Welcome back! Sign in to your account.') {
+        await this.page.locator(lnkSignIn).click();
       }
       // Enter email or username into input
       await this.fillTextBox(txtEmailOrUsername, emailOrUsername);

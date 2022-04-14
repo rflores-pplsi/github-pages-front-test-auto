@@ -1,4 +1,4 @@
-import { PlanalyzerCsrCheckoutPage } from '../planalyzer/planalyzer-csr-checkout.page';
+import { ShieldBenefitsLegalPricingPage } from '../shield-benefits/shield-benefits-legal-pricing.page';
 import { OrderSummary } from './checkout.helpers';
 import { OrderSummaryRow } from './checkout.helpers';
 
@@ -9,35 +9,34 @@ const orderSummary = new OrderSummary();
 const lnkEditOrder: string = 'button:has-text("Edit")';
 const imgHideOrderSummaryChevron: string = 'img[alt="nav_chevron_single_up."]';
 const imgShowOrderSummaryChevron: string = 'img[alt="nav_chevron_single_down."]';
+const conOrderSummary: string = '//div[contains(@class,"order-summary")]';
 const txtPlanNames: string = '//div[contains(@class,"plan-name-row")]';
-const txtPlanCosts: string =
-  '//div[contains(@class,"lsux-row half children2 content-row mb-4")]//div[contains(@class,"right-label-col")]//p';
+const txtPlanCosts: string = '//div[contains(@class,"lsux-row half children2 content-row mb-4")]//div[contains(@class,"right-label-col")]//p';
 const txtMonthlyTotalLabel: string = '//div[contains(@class,"left-label")]//p[contains(.,"Monthly Total:")]';
-const txtMonthlyTotalAmount: string =
-  '//div[contains(@class,"footer-row") and contains(.,"Monthly Total:")]//div[contains(@class,"right-label")]//p';
+const txtMonthlyTotalAmount: string = '//div[contains(@class,"footer-row") and contains(.,"Monthly Total:")]//div[contains(@class,"right-label")]//p';
 const txtAnnualTotalLabel: string = '//div[contains(@class,"left-label")]//p[contains(.,"Annual Total:")]';
-const txtAnnualTotalAmount: string =
-  '//div[contains(@class,"footer-row") and contains(.,"Annual Total:")]//div[contains(@class,"right-label")]//p';
+const txtAnnualTotalAmount: string = '//div[contains(@class,"footer-row") and contains(.,"Annual Total:")]//div[contains(@class,"right-label")]//p';
 const txtTotalDueTodayAmount: string =
   '//div[contains(@class, "footer-row") and contains(., "Total Due Today")]//div[contains(@class,"right-label")]//p';
-
+const txtPayPeriodTotalAmount: string =
+  '//div[contains(@class,"footer-row") and contains(.,"Pay Period Total:")]//div[contains(@class,"right-label")]//p';
 /**
  * @export
  * @class CheckoutOrderSummaryComponent
  * @extends {PlanalyzerCsrCheckoutPage}
  */
-export class CheckoutOrderSummaryComponent extends PlanalyzerCsrCheckoutPage {
+export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPage {
   // ========================== Process Methods ============================
 
   /**
    * @memberof CheckoutOrderSummaryComponent
    */
-  createOrderSummary = async (): Promise<void> => {
+  captureOrderSummary = async (): Promise<void> => {
     console.log(' - checkoutOrderSummaryComponent.createOrderSummary');
     await this.page.waitForLoadState('networkidle');
     const numberOfRows = (await this.page.$$('div.order-summary  div.content-row div.pl-0 p')).length;
     for (let i: number = 0; i < numberOfRows; i++) {
-      const row = await this.createOrderSummaryRow(i);
+      const row = await this.captureOrderSummaryRow(i);
       orderSummary.addRow(row);
     }
   };
@@ -46,7 +45,7 @@ export class CheckoutOrderSummaryComponent extends PlanalyzerCsrCheckoutPage {
    * @param {number} [i=0]
    * @memberof CheckoutOrderSummaryComponent
    */
-  createOrderSummaryRow = async (i: number = 0): Promise<OrderSummaryRow> => {
+  captureOrderSummaryRow = async (i: number = 0): Promise<OrderSummaryRow> => {
     console.log(' - checkoutOrderSummaryComponent.createOrderSummaryRow');
     const planNameJsHandle = (await this.page.$$(txtPlanNames))[i].getProperty('innerText');
     const planNameText = await (await planNameJsHandle).jsonValue();
@@ -141,5 +140,23 @@ export class CheckoutOrderSummaryComponent extends PlanalyzerCsrCheckoutPage {
   assertTotalDueToday = async (total: string): Promise<void> => {
     console.log(' - checkoutOrderSummaryComponent.assertTotalDueToday');
     await this.assertElementHasText(txtTotalDueTodayAmount, total);
+  };
+
+  /**
+   * @param {string} total
+   * @memberof CheckoutOrderSummaryComponent
+   */
+  assertPayPeriodTotal = async (total: string): Promise<void> => {
+    console.log(' - checkoutOrderSummaryComponent.assertPayPeriodTotal');
+    await this.assertElementHasText(txtPayPeriodTotalAmount, total);
+  };
+
+  /**
+   * @param {string} planName
+   * @memberof CheckoutOrderSummaryComponent
+   */
+  assertPlanNameDisplayedInSummary = async (planName: string): Promise<void> => {
+    console.log(' - checkoutOrderSummaryComponent.assertPlanNameDisplayedInSummary');
+    await this.assertElementContainsText(conOrderSummary, planName);
   };
 }
