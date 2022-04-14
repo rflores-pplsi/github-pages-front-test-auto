@@ -7,10 +7,6 @@ const url = urlsUtils.legalshieldUrls.shieldAtWork.url;
 const txtSearch = '[placeholder="Search by name or group number"]';
 const btnSearch = '[id="searchButton"]';
 const txtGroup = '#root  .lsux-container--flex-items-center.mb-2 > h3';
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 /**
  * @export
  * @class ShieldAtWorkGroupManagement
