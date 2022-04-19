@@ -20,7 +20,7 @@ export class ClassicShieldAtWork extends LoginPage {
     await this.page.fill(txtUsername, 'admin@test.com');
     await this.page.fill(txtPassword, 'Testpass1');
     await this.page.click(btnSignIn);
-    await this.page.waitForTimeout(3000);
+    await this.page.waitForTimeout(1000);
   };
 
   // ========================== Navigate Methods ==========================
