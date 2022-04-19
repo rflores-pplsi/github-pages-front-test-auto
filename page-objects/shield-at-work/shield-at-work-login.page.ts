@@ -21,7 +21,7 @@ export class LsWorkLoginPage extends LoginPage {
     console.log(' - accountShieldAtWorkPage.loginWithCredentials');
     await this.page.fill(txtEmail, 'rossbrockhoff@pplsi.com');
     await this.page.fill(txtPassword, 'Br0ck!Ro$$');
-    await this.page.click(btnSignIn);
+    await this.clickOnElement(btnSignIn);
     await this.page.waitForTimeout(1000);
   };
 

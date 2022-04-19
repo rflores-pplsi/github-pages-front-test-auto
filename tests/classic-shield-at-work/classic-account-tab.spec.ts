@@ -12,3 +12,8 @@ test('Security page is displayed on the account information page', async ({ page
   await classicShieldAtWorkAccountTab.loginWithCredentials();
   await classicShieldAtWorkAccountTab.assertSecurityPage();
 });
+
+test.only('Edit Employee button redirects to the correct page to update the number of employees', async ({ page }) => {
+  await classicShieldAtWorkAccountTab.loginWithCredentials();
+  await classicShieldAtWorkAccountTab.assertEditEmployeePage();
+});

@@ -8,6 +8,8 @@ const btnView = '#franList > tbody > tr:nth-child(1) > td:nth-child(1) > a';
 const btnMenu = '[id="header-menu-button"]';
 const btnSecurity = '#dropdownRightId > a:nth-child(2) > div';
 const txtSecurity = 'body > div > div.content > div > div:nth-child(1)';
+const btnEditEmployee = 'div:nth-child(2) > #submitButton > .lsux-button';
+const txtNumberOfEmployees = '[class="nfSpacerW230"]';
 
 /**
  * @export
@@ -42,6 +44,12 @@ export class ClassicShieldAtWorkAccountTab extends ClassicShieldAtWork {
     await this.clickOnElement(btnSecurity);
   };
 
+  clickEditEmployeeBtn = async (): Promise<void> => {
+    console.log(' - accountClassicShieldAtWorkPage.clickSecurityBtn');
+    // Click on Edit Employee button
+    await this.clickOnElement(btnEditEmployee);
+  };
+
   // ========================== Assertion Methods ==========================
 
   assertSecurityPage = async (): Promise<void> => {
@@ -55,5 +63,16 @@ export class ClassicShieldAtWorkAccountTab extends ClassicShieldAtWork {
     // Verify that Security page is displayed on the account tab
     const locator = this.page.locator(txtSecurity);
     await expect(locator).toContainText('Security');
+  };
+
+  assertEditEmployeePage = async (): Promise<void> => {
+    console.log(' - accountShieldAtWorkPage.assertEditEmployeePage');
+    // Click on View button
+    await this.clickViewBtn();
+    // Click on Edit Employee button
+    await this.clickEditEmployeeBtn();
+    // Verify that Edit Employee button redirects to the correct page to update the number of employees
+    const locator = this.page.locator(txtNumberOfEmployees);
+    await expect(locator).toContainText('Number of Employees: ');
   };
 }
