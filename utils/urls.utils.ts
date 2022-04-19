@@ -45,6 +45,9 @@ export default class UrlsUtils {
     shieldAtWork: {
       url: `https://login.${envUrlString}shieldatwork.com/login?app=work&impact=Low&path=%2f`,
     },
+    classicShieldAtWork: {
+      url: 'https://classic.dev-shieldatwork.com/',
+    },
   };
 
   static readonly legalshieldInternalUrls = {
