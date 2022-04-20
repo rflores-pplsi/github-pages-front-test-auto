@@ -4,7 +4,7 @@ import { ClassicShieldAtWork } from './classic-login.page';
 
 // ========================== Selectors ==================================
 const url = urlsUtils.legalshieldUrls.classicShieldAtWork.url;
-const btnView = '#franList > tbody > tr:nth-child(1) > td:nth-child(1) > a';
+const btnViewGroupStateOfAlabama = '#franList > tbody > tr:nth-child(1) > td:nth-child(1) > a';
 const btnEnrollment = '[id="enrollment"]';
 const txtLastNameFirstName = '#ackList > thead > tr > th:nth-child(2)';
 const btnEnrollNewMember = '#submitButton > button';
@@ -12,7 +12,7 @@ const txtEnrollNewMember = '#form1 > div > div.container.em-container > h2';
 
 /**
  * @export
- * @class ShieldAtWorkAccountTab
+ * @class ClassicShieldAtWorkEnrollmentTab
  * @extends {LsWorkLoginPage}
  */
 export class ClassicShieldAtWorkEnrollmentTab extends ClassicShieldAtWork {
@@ -28,7 +28,7 @@ export class ClassicShieldAtWorkEnrollmentTab extends ClassicShieldAtWork {
   clickViewBtn = async (): Promise<void> => {
     console.log(' - accountClassicShieldAtWorkPage.clickViewBtn');
     // Click on View Group button
-    await this.clickOnElement(btnView);
+    await this.clickOnElement(btnViewGroupStateOfAlabama);
   };
 
   clickEnrollmentTab = async (): Promise<void> => {

@@ -1,3 +1,4 @@
+import { expect } from '@playwright/test';
 import urlsUtils from '../../utils/urls.utils';
 import { LoginPage } from '../login/login.page';
 
@@ -7,6 +8,7 @@ const url = urlsUtils.legalshieldUrls.classicShieldAtWork.url;
 const txtUsername = '[id="login"]';
 const txtPassword = '[id="Password"]';
 const btnSignIn = '#submitButton > button';
+const btnSignUp = 'body > div > div.content > div > div > div > a';
 
 /**
  * @export
@@ -32,5 +34,20 @@ export class ClassicShieldAtWork extends LoginPage {
 
   // ========================== Click Methods ==========================
 
+  clickSignUp = async (): Promise<void> => {
+    console.log(' - accountClassicShieldAtWorkPage.clickReports');
+    // Click on Sign Up button
+    await this.clickOnElement(btnSignUp);
+  };
+
   // ========================== Assertion Methods ==========================
+
+  assertTypeFormPageUrl = async (): Promise<void> => {
+    console.log(' - activateEnterCodePage.assertTypeFormPageUrl');
+    await this.clickSignUp();
+    // Confirm the Type Form Page URL is displayed
+    await expect(this.page).toHaveURL(urlsUtils.legalshieldUrls.typeForm.url);
+    // Wait for document to load before subsequent steps
+    await this.page.waitForLoadState('domcontentloaded');
+  };
 }

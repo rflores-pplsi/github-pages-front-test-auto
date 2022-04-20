@@ -48,6 +48,9 @@ export default class UrlsUtils {
     classicShieldAtWork: {
       url: 'https://classic.dev-shieldatwork.com/',
     },
+    typeForm: {
+      url: 'https://legalshield.typeform.com/to/lJtBMp?typeform-source=classic.dev-shieldatwork.com',
+    },
   };
 
   static readonly legalshieldInternalUrls = {

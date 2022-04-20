@@ -9,6 +9,9 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('Login with credentials', async ({ page }) => {
-  // Login with your credentials
   await classicShieldAtWork.loginWithCredentials();
+});
+
+test('Type Form Url is displayed after clicking on Sign Up link', async ({ page }) => {
+  await classicShieldAtWork.assertTypeFormPageUrl();
 });
