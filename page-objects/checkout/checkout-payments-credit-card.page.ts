@@ -1,12 +1,13 @@
 /* eslint-disable valid-jsdoc */
-import { CheckoutPaymentsCreditCardPage } from './checkout-payments-credit-card.page';
+import { CheckoutPaymentsPage } from './checkout-payments.page';
 
 // ========================== Selectors ==================================
-const txtAccountNumber = "[placeholder='Account Number']";
-const txtRoutingNumber = "[placeholder='Routing Number']";
-const txtAccountHolderName = "[placeholder='Account Holder Name']";
-const txtBankName = "[placeholder='Bank Name']";
-const btnPurchase = '#savebd';
+const txtCardNumber = '#card_number';
+const txtExpirationDate = '#expiration_date';
+const txtCardholderName = '[placeholder="Name on Card"]';
+const txtSecurityCode = 'input[name="security_code"]';
+const txtPostalCode = '[placeholder="Billing Postal Code"]';
+const btnPurchase = '#savecc';
 const txtWelcomeToLegalshiledFamily = 'h1.lsux-heading.confirmation-title.lsux-heading--t28';
 // const conPlans =
 //   "//div[@class='lsux-row half children2 content-row mb-4 mt-4 first-plan']";
@@ -21,16 +22,21 @@ const txtTotalPriceLabel = "//div[@class='lsux-row eight-four children2 footer-r
  * @export
  * @class AccountPaymentsBankDraftPage
  */
-export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPage {
+export class CheckoutPaymentsCreditCardPage extends CheckoutPaymentsPage {
   // ========================== Process Methods ============================
-  fillBankDraftForm = async () => {
-    console.log(' - checkoutPaymentPage.fillBankDraftForm');
-    // Fillout the Bank Draft form
-    await this.fillAccountNumberTxt('1000123546');
+  fillCreditCardForm = async () => {
+    console.log(' - checkoutPaymentPage.fillCreditCardForm');
+    // Fillout the Credit Card form
+    await this.fillCreditCardNumberTxt('4444333322221111');
     await this.page.keyboard.press('Tab');
-    await this.fillRoutingNumberTxt('103000648');
+    await this.fillExpirationDateTxt('01/23');
     await this.page.keyboard.press('Tab');
-    await this.fillAccountHolderNameTxt('Automation Tester');
+    await this.fillSecurityCodeTxt('111');
+    await this.page.keyboard.press('Tab');
+    await this.page.keyboard.press('Tab');
+    await this.fillCardholderNameTxt('Automation Tester');
+    await this.page.keyboard.press('Tab');
+    await this.fillPostalCodeTxt('20147');
     await this.page.keyboard.press('Tab');
     await this.clickPurchaseBtn();
     // await this.page.waitForTimeout(60000);
@@ -58,53 +64,65 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
     return this.page.locator(txtTotalPriceLabel).innerText();
   };
   // ========================== Navigate Methods ===========================
-  navigateToPaymentsBankDraftPage = async (state: string): Promise<void> => {
-    console.log(' - checkoutPaymentPage.navigateToPaymentsBankDraftPage');
+  navigateToPaymentsCreditCardPage = async (state: string): Promise<void> => {
+    console.log(' - checkoutPaymentPage.navigateToPaymentsCreditCardPage');
     await this.navigateToPaymentsPage(state);
-    await this.clickBankDraftBtn();
+    // await this.clickCreditCardBtn();
+    // await this.clickCreditCardBtn();
   };
   // ========================== fill Text Box Methods ======================
-  // Fill  Account Number Method
-  fillAccountNumberTxt = async (account: string) => {
+  // Fill  Credit Card Number Method
+  fillCreditCardNumberTxt = async (number: string) => {
     const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
-    console.log(' i am here inside fillAccountNumberTxt');
+    console.log(' i am here inside fillCreditCardAccountNumberTxt');
     // Fill  Account Number
-    const txtAccountNumbertst1 = await frmPayment.locator(txtAccountNumber);
-    await txtAccountNumbertst1.type('1000123546');
+    const txtCreditCardNumber = await frmPayment.locator(txtCardNumber);
+    await txtCreditCardNumber.type(number);
     // await this.fillTextBox(txtAccountNumber, account);
   };
-  // Fill  Routing Number Method
-  fillRoutingNumberTxt = async (routing: string) => {
-    console.log(' i am here inside fillRoutingNumberTxt');
+  // Fill  Expiration Date Method
+  fillExpirationDateTxt = async (expdate: string) => {
+    console.log(' i am here inside fillExpirationDateTxt');
     // Switch to frame
     const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
     if (frmPayment != null) {
-      // Fill  Routing Number
-      const txtRoutingNumberTxt = await frmPayment.locator(txtRoutingNumber);
-      await txtRoutingNumberTxt.type('103000648');
-      // await this.fillTextBox(txtRoutingNumber, routing);
-    } else throw new Error('No such fram');
+      // Fill  Expiration Date
+      const txtExpDateTxt = frmPayment.locator(txtExpirationDate);
+      await txtExpDateTxt.type(expdate);
+    } else throw new Error('No such frame');
   };
-  fillAccountHolderNameTxt = async (accountholdrname: string) => {
-    console.log(' i am here inside fillAccountHolderNameTxt');
+  fillSecurityCodeTxt = async (code: string) => {
+    console.log(' i am here inside fillSecurityCodeTxt');
     // Switch to frame
     const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
     if (frmPayment != null) {
-      // Fill  Account Holder Name
-      const txtAccountHolderNameTxt = await frmPayment.locator(txtAccountHolderName);
-      await txtAccountHolderNameTxt.type('Automation Tester');
+      // Fill  Security Code
+      const txtExpDateTxt = frmPayment.locator(txtSecurityCode);
+      await txtExpDateTxt.type(code);
+    } else throw new Error('No such frame');
+  };
+  fillCardholderNameTxt = async (credicardholdrname: string) => {
+    console.log(' i am here inside fillCardholderNameTxt');
+    // Switch to frame
+    const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
+    if (frmPayment != null) {
+      // Fill  Credit Card Holder Name
+      const txtCreditCardHolderNameTxt = frmPayment.locator(txtCardholderName);
+      await txtCreditCardHolderNameTxt.type(credicardholdrname);
       // await this.fillTextBox(txtAccountHolderName, accountholdrname);
-    } else throw new Error('No such fram');
+    } else throw new Error('No such frame');
   };
-  fillBankNameTxt = async (bankname: string) => {
-    console.log(' i am here inside fillBankNameTxt');
+  fillPostalCodeTxt = async (postalcode: string) => {
+    console.log(' i am here inside fillPostalCodeTxt');
     // Switch to frame
     const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
     if (frmPayment != null) {
-      // Fill  Bank Name
-      await this.fillTextBox(txtBankName, bankname);
-    } else throw new Error('No such fram');
+      // Fill  Postal Code
+      const txtCreditCardHolderNameTxt = frmPayment.locator(txtPostalCode);
+      await txtCreditCardHolderNameTxt.type(postalcode);
+    } else throw new Error('No such frame');
   };
+
   // ========================== Click Methods ==============================
   clickPurchaseBtn = async () => {
     console.log(' i am here inside clickPurchaseBtn');
@@ -113,7 +131,7 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
     if (frmPayment != null) {
       // Click on Purchase button
       await frmPayment.locator(btnPurchase).click();
-    } else throw new Error('No such fram');
+    } else throw new Error('No such frame');
   };
   // ========================== Assertion Methods ==========================
   assertWelcomeToLegalshiledFamilyPage = async () => {

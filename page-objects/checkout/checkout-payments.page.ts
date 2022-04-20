@@ -6,6 +6,7 @@ import { CheckoutPersonalInfoPage } from './checkout-personal-info.page';
 // ========================== Selectors ==================================
 const txtHowWouldYouLikeToPay = 'h1.translate.checkout-v3-h2';
 const btnBankDraft = 'span.options.right.translate';
+const btnCreditCard = 'span.options.left.translate';
 
 // create instance of Page
 /**
@@ -30,7 +31,6 @@ export class CheckoutPaymentsPage extends CheckoutPersonalInfoPage {
 
     await this.clickSaveAndContinueButton();
     await this.page.waitForTimeout(3500);
-    await this.clickBankDraftBtn();
   };
   // ========================== Click Methods ==============================
   clickBankDraftBtn = async () => {
@@ -41,7 +41,16 @@ export class CheckoutPaymentsPage extends CheckoutPersonalInfoPage {
     if (frame != null) {
       // Click on Add Payment button
       await frame.locator(btnBankDraft).click();
-    } else throw new Error('No such fram');
+    } else throw new Error('No such frame');
+  };
+  clickCreditCardBtn = async () => {
+    // Switch to frame
+    await this.page.frameLocator("//iframe[@title='payment iframe']");
+    const frame = this.page.frameLocator("//iframe[@title='payment iframe']");
+    if (frame != null) {
+      // Click on Add Payment button
+      await frame.locator(btnCreditCard).click();
+    } else throw new Error('No such frame');
   };
   // ========================== Assertion Methods ==========================
   assertAccoutPaymentsPage = async () => {
@@ -51,7 +60,7 @@ export class CheckoutPaymentsPage extends CheckoutPersonalInfoPage {
       // Click on Add Payment button
       const locator = frame.locator(txtHowWouldYouLikeToPay);
       await expect(locator).toContainText('How would you like to pay?');
-    } else throw new Error('No such fram');
+    } else throw new Error('No such frame');
   };
 }
 // iframe
