@@ -4,6 +4,7 @@ import { CheckoutPaymentsPage } from '../../page-objects/checkout/checkout-payme
 let checkoutPaymentsPage: CheckoutPaymentsPage;
 
 test.beforeEach(async ({ page }) => {
+  test.slow();
   checkoutPaymentsPage = new CheckoutPaymentsPage(page);
   await checkoutPaymentsPage.navigateToPaymentsPage('Virginia');
 });

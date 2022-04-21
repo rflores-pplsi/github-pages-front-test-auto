@@ -30,13 +30,13 @@ export class CheckoutPaymentsPage extends CheckoutPersonalInfoPage {
     }
 
     await this.clickSaveAndContinueButton();
-    await this.page.waitForTimeout(3500);
+    // await this.page.waitForTimeout(3500);
   };
   // ========================== Click Methods ==============================
   clickBankDraftBtn = async () => {
     // Force a wait time
     // Switch to frame
-    await this.page.frameLocator("//iframe[@title='payment iframe']");
+    this.page.frameLocator("//iframe[@title='payment iframe']");
     const frame = this.page.frameLocator("//iframe[@title='payment iframe']");
     if (frame != null) {
       // Click on Add Payment button

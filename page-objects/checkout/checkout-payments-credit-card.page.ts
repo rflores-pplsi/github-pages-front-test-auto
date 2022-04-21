@@ -39,9 +39,8 @@ export class CheckoutPaymentsCreditCardPage extends CheckoutPaymentsPage {
     await this.fillPostalCodeTxt('20147');
     await this.page.keyboard.press('Tab');
     await this.clickPurchaseBtn();
-    // await this.page.waitForTimeout(60000);
-    // const welcome = await this.page.locator(txtWelcomeToLegalshiledFamily);
-    // console.log(await welcome.allTextContents());
+    const welcome = this.page.locator(txtWelcomeToLegalshiledFamily);
+    console.log(await welcome.allTextContents());
   };
   fillOrderSummarypPlanValue = async (): Promise<string> => {
     console.log(' - checkoutPaymentBankDraftPage.fillOrderSummarypPlanValue');
@@ -138,6 +137,6 @@ export class CheckoutPaymentsCreditCardPage extends CheckoutPaymentsPage {
     console.log(' - checkoutPaymentPage.assertWelcomeToLegalshiledFamilyPage');
     const welcome = await this.page.waitForSelector(txtWelcomeToLegalshiledFamily);
     console.log(welcome.innerText());
-    await this.assertElementContainsText(txtWelcomeToLegalshiledFamily, 'Welcome to the LegalShield family!');
+    await this.assertElementContainsText(txtWelcomeToLegalshiledFamily, 'Welcome!');
   };
 }

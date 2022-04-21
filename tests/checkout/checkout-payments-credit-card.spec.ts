@@ -13,5 +13,6 @@ test('Payments page header is displayed', async ({ page }) => {
   test.slow(); // Easy way to triple the default timeout
   console.log(page.title);
   await checkoutPaymentsCreditCardPage.fillCreditCardForm();
+  console.log(page.title);
   await checkoutPaymentsCreditCardPage.assertWelcomeToLegalshiledFamilyPage();
 });

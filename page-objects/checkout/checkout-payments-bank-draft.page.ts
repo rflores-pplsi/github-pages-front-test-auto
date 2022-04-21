@@ -33,9 +33,8 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
     await this.fillAccountHolderNameTxt('Automation Tester');
     await this.page.keyboard.press('Tab');
     await this.clickPurchaseBtn();
-    // await this.page.waitForTimeout(60000);
-    // const welcome = await this.page.locator(txtWelcomeToLegalshiledFamily);
-    // console.log(await welcome.allTextContents());
+    const welcome = await this.page.locator(txtWelcomeToLegalshiledFamily);
+    console.log(await welcome.allTextContents());
   };
   fillOrderSummarypPlanValue = async (): Promise<string> => {
     console.log(' - checkoutPaymentBankDraftPage.fillOrderSummarypPlanValue');
@@ -103,7 +102,7 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
     if (frmPayment != null) {
       // Fill  Bank Name
       await this.fillTextBox(txtBankName, bankname);
-    } else throw new Error('No such fram');
+    } else throw new Error('No such frame');
   };
   // ========================== Click Methods ==============================
   clickPurchaseBtn = async () => {
@@ -113,13 +112,13 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
     if (frmPayment != null) {
       // Click on Purchase button
       await frmPayment.locator(btnPurchase).click();
-    } else throw new Error('No such fram');
+    } else throw new Error('No such frame');
   };
   // ========================== Assertion Methods ==========================
   assertWelcomeToLegalshiledFamilyPage = async () => {
     console.log(' - checkoutPaymentPage.assertWelcomeToLegalshiledFamilyPage');
     const welcome = await this.page.waitForSelector(txtWelcomeToLegalshiledFamily);
     console.log(welcome.innerText());
-    await this.assertElementContainsText(txtWelcomeToLegalshiledFamily, 'Welcome to the LegalShield family!');
+    await this.assertElementContainsText(txtWelcomeToLegalshiledFamily, 'Welcome!');
   };
 }
