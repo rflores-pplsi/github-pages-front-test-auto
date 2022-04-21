@@ -66,7 +66,7 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
   // Fill  Account Number Method
   fillAccountNumberTxt = async (account: string) => {
     const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
-    console.log(' i am here inside fillAccountNumberTxt');
+    console.log(' - checkoutPaymentPage.fillAccountNumberTxt');
     // Fill  Account Number
     const txtAccountNumbertst1 = await frmPayment.locator(txtAccountNumber);
     await txtAccountNumbertst1.type('1000123546');
@@ -74,7 +74,7 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
   };
   // Fill  Routing Number Method
   fillRoutingNumberTxt = async (routing: string) => {
-    console.log(' i am here inside fillRoutingNumberTxt');
+    console.log(' - checkoutPaymentPage.fillRoutingNumberTxt');
     // Switch to frame
     const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
     if (frmPayment != null) {
@@ -85,7 +85,7 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
     } else throw new Error('No such fram');
   };
   fillAccountHolderNameTxt = async (accountholdrname: string) => {
-    console.log(' i am here inside fillAccountHolderNameTxt');
+    console.log(' - checkoutPaymentPage.fillAccountHolderNameTxt');
     // Switch to frame
     const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
     if (frmPayment != null) {
@@ -96,7 +96,7 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
     } else throw new Error('No such fram');
   };
   fillBankNameTxt = async (bankname: string) => {
-    console.log(' i am here inside fillBankNameTxt');
+    console.log(' - checkoutPaymentPage.fillBankNameTxt');
     // Switch to frame
     const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
     if (frmPayment != null) {
@@ -106,7 +106,7 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
   };
   // ========================== Click Methods ==============================
   clickPurchaseBtn = async () => {
-    console.log(' i am here inside clickPurchaseBtn');
+    console.log(' - checkoutPaymentPage.clickPurchaseBtn');
     // Switch to frame
     const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
     if (frmPayment != null) {
