@@ -3,8 +3,8 @@
  * @class OrderSummaryRow
  */
 export class OrderSummaryRow {
-  planName: string;
-  planCost: string;
+  planName: string | null;
+  planCost: string | null;
 
   /**
    * Creates an instance of OrderSummaryRow.
@@ -12,7 +12,7 @@ export class OrderSummaryRow {
    * @param {string} planCost
    * @memberof PlanRow
    */
-  constructor(planName: string, planCost: string) {
+  constructor(planName: string | null, planCost: string | null) {
     this.planName = planName;
     this.planCost = planCost;
   }

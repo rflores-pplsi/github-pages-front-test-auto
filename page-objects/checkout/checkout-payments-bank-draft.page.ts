@@ -14,6 +14,7 @@ const pPlans = "//div[@class='lsux-row half children2 content-row mb-4 mt-4 firs
 const pPlanPrice = "//div[@class='lsux-row half children2 content-row mb-4 mt-4 first-plan']/div[@class='lsux-col pr-0 right-label-col']/div/p";
 const txtTotalLabel = "//p[contains(text(),'Monthly Total:')]";
 const txtTotalPriceLabel = "//div[@class='lsux-row eight-four children2 footer-row mb-0 py-4']/div[@class='lsux-col pr-0 right-label-col']/div/p";
+const conMembershipWrapper = '//div[contains(@class,"membership-wrapper")]';
 
 // create instance of Page
 
@@ -33,10 +34,8 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsPage {
     await this.fillAccountHolderNameTxt('Automation Tester');
     await this.page.keyboard.press('Tab');
     await this.clickPurchaseBtn();
-    // await this.page.waitForTimeout(60000);
-    // const welcome = await this.page.locator(txtWelcomeToLegalshiledFamily);
-    // console.log(await welcome.allTextContents());
   };
+
   fillOrderSummarypPlanValue = async (): Promise<string> => {
     console.log(' - checkoutPaymentBankDraftPage.fillOrderSummarypPlanValue');
     // Fillout the Bank Draft form
@@ -63,6 +62,12 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsPage {
     await this.navigateToPaymentsPage(state);
     // await this.clickBankDraftBtn();
   };
+
+  navigateFromPersonalInfoPageToPaymentPage = async (): Promise<void> => {
+    await this.clickSaveAndContinueButton();
+    await this.captureOrderSummary();
+  };
+
   // ========================== fill Text Box Methods ======================
   // Fill  Account Number Method
   fillAccountNumberTxt = async (account: string) => {
@@ -114,6 +119,7 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsPage {
       // Click on Purchase button
       await frmPayment.locator(btnPurchase).click();
     } else throw new Error('No such fram');
+    await this.page.waitForSelector(conMembershipWrapper, { timeout: 50000 });
   };
   // ========================== Assertion Methods ==========================
   assertWelcomeToLegalshiledFamilyPage = async () => {

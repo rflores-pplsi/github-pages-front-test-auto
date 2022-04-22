@@ -129,6 +129,15 @@ export class BasePage {
 
   /**
    * @param {string} ele
+   * @memberof BasePage
+   */
+  assertElementIsHidden = async (ele: string): Promise<void> => {
+    const locator = this.page.locator(ele);
+    await expect(locator).toBeHidden();
+  };
+
+  /**
+   * @param {string} ele
    * @param {string} attribute
    * @param {string} value
    * @memberof BasePage
@@ -197,6 +206,10 @@ export class BasePage {
    */
   assertBoolean = async (value1: boolean, value2: boolean): Promise<void> => {
     expect(value1).toEqual(value2);
+  };
+
+  assertElementNotOnPage = async (ele: string): Promise<void> => {
+    expect(await this.page.$$(ele)).toHaveLength(0);
   };
 
   /**

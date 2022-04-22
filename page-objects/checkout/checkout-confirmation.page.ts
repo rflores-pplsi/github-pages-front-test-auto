@@ -5,12 +5,16 @@ import { CheckoutPaymentsBankDraftPage } from './checkout-payments-bank-draft.pa
 const txtWelcomeToLegalshiledFamily = 'h1.lsux-heading.confirmation-title.lsux-heading--t28';
 const btnCompleteEnrollment = 'button:has-text("COMPLETE ENROLLMENT")';
 const chkAgreement = '//div[contains(@class,"lsux-cb-container__cb   margin-right")]';
-const txtMemberNumber = '//div[contains(@class,"membership-header-row")]//following::p[contains(@class,"member-id")]';
+const lblMemberNumber = '//h3[contains(@class,"member-number") and contains(.,"Member number")]';
+const conMembershipWrapper = '//div[contains(@class,"membership-wrapper")]';
+const txaDisclaimer = '//div[contains(@class,"group-auth")]//span[string-length(text()) > 0]';
+const txaTermsOfServiceLanguage = '//span[contains(@class,"tos-disclaimer")]';
+const lnkTermsOfService = '//a[contains(@class,"tos-link")]';
 
 /**
  * @export
  * @class CheckoutConfirmationPage
- * @extends {PlanalyzerCsrCheckoutPage}
+ * @extends {CheckoutPaymentsBankDraftPage}
  */
 export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   static pPlan: string;
@@ -19,6 +23,10 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   static txtTotalPriceLabel: string;
   // ========================== Process Methods ============================
   // ========================== Navigate Methods ===========================
+  /**
+   * @param {string} state
+   * @memberof CheckoutConfirmationPage
+   */
   navigateToCheckoutConfirmationPage = async (state: string): Promise<void> => {
     console.log(' - checkoutPaymentPage.navigateToCheckoutConfirmationPage');
     await this.navigateToPaymentsBankDraftPage(state);
@@ -32,6 +40,18 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
     console.log(CheckoutConfirmationPage.txtTotalPriceLabel);
     await this.fillBankDraftForm();
   };
+
+  navigateFromPaymentBankDraftPageToConfirmationPage = async (): Promise<void> => {
+    await this.clickBankDraftBtn();
+    await this.fillBankDraftForm();
+  };
+
+  navigateFromPaymentAgreementPageToConfirmationPage = async (): Promise<void> => {
+    await this.clickAgreementCheckbox();
+    await this.clickCompleteEnrollmentButton();
+    await this.page.waitForSelector(conMembershipWrapper, { timeout: 50000 });
+  };
+
   // ========================== Click Methods ==============================
   /**
    * @memberof CheckoutConfirmationPage
@@ -58,6 +78,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
     console.log(welcome.innerText());
     await this.assertElementContainsText(txtWelcomeToLegalshiledFamily, 'Welcome to the LegalShield family!');
   };
+
   assertOrderSummaryPlanPriceConfirmationPage = async () => {
     console.log(' - checkoutConfirmationPage.assertOrderSummaryPlanPriceConfirmationPage');
     const planPrice = this.page.locator('div.lsux-card--inset.p-6 h3.lsux-heading.plan-price.lsux-heading--t20');
@@ -84,28 +105,110 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
     await expect(lblplan).toHaveText('Monthly Subscription');
   };
 
-  assertMemberNumberDisplayed = async () => {
-    console.log(' - checkoutConfirmationPage.assertMemberNumberDisplayed');
-    await this.assertInnerTextIsTruthy(txtMemberNumber);
+  assertNoMemberNumbersAreDisplayed = async () => {
+    console.log(' - checkoutConfirmationPage.assertNoMemberNumbersAreDisplayed');
+    await this.assertElementNotOnPage(lblMemberNumber);
+  };
+
+  assertIdShieldMembershipIsDisplayed = async () => {
+    console.log(' - checkoutConfirmationPage.assertIdShieldMembershipIsDisplayed');
+    const ele = '//h2[contains(@class,"membership-title") and contains (.,"IDShield Membership")]';
+    await this.assertElementIsVisible(ele);
+  };
+
+  assertLegalShieldMembershipIsDisplayed = async () => {
+    console.log(' - checkoutConfirmationPage.assertLegalShieldMembershipIsDisplayed');
+    const ele = '//h2[contains(@class,"membership-title") and contains (.,"LegalShield Membership")]';
+    await this.assertElementIsVisible(ele);
   };
 
   /**
    * @param {string} planName
    * @memberof CheckoutConfirmationPage
    */
-  assertPlanNameDisplayed = async (planName: string) => {
-    console.log(' - checkoutConfirmationPage.assertPlanNameDisplayed');
+  assertPlanNameDisplayedInConfirmationPageOrderSummary = async (planName: string) => {
+    console.log(' - checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary');
     const ele = `//div[contains(@class,"plan-details-card") and contains(.,"${planName}")]`;
-    await this.assertInnerTextIsTruthy(ele);
+    await this.page.waitForSelector(conMembershipWrapper, { timeout: 50000 });
+    await this.assertElementIsVisible(ele);
   };
 
   /**
    * @param {string} planName
    * @memberof CheckoutConfirmationPage
    */
-  assertPlanCostDisplayed = async (planName: string) => {
-    console.log(' - checkoutConfirmationPage.assertPlanCostDisplayed');
+  assertPlanCostIsNotDisplayedInConfirmationPageOrderSummaryForPlanName = async (planName: string) => {
+    console.log(' - checkoutConfirmationPage.assertPlanCostIsNotDisplayedInConfirmationPageOrderSummaryForPlanName');
+    const ele = `//div[contains(@class,"plan-details-card") and contains(.,"${planName}")]//h3[contains(@class,"plan-price")]`;
+    await this.assertElementIsHidden(ele);
+  };
+
+  assertNoPlanCostsAreDisplayedInConfirmationPageOrderSummary = async () => {
+    console.log(' - checkoutConfirmationPage.assertNoPlanCostsAreDisplayedInConfirmationPageOrderSummary');
+    const ele = `//div[contains(@class,"plan-details-card")]//h3[contains(@class,"plan-price")]`;
+    await this.assertElementNotOnPage(ele);
+  };
+
+  /**
+   * @param {string} planName
+   * @memberof CheckoutConfirmationPage
+   */
+  assertPlanCostNotEmpty = async (planName: string) => {
+    console.log(' - checkoutConfirmationPage.assertPlanCostNotEmpty');
     const ele = `//div[contains(@class,"plan-details-card") and contains(.,"${planName}")]//h3[contains(@class,"plan-price")]`;
     await this.assertInnerTextIsTruthy(ele);
+  };
+
+  /**
+   * @param {string} planName
+   * @memberof CheckoutConfirmationPage
+   */
+  assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName = async (planName: string) => {
+    console.log(' - checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName ');
+    const ele = `//div[contains(@class,"plan-details-card") and contains(.,"${planName}")]//h3[contains(@class,"plan-price")]`;
+    await this.assertElementIsVisible(ele);
+  };
+
+  /**
+   * @param {string} planName
+   * @memberof CheckoutConfirmationPage
+   */
+  assertPlanCostIsHidden = async (planName: string) => {
+    console.log(' - checkoutConfirmationPage.assertPlanCostIsHidden');
+    const ele = `//div[contains(@class,"plan-details-card") and contains(.,"${planName}")]//h3[contains(@class,"plan-price")]`;
+    await this.assertElementIsHidden(ele);
+  };
+
+  /**
+   * @param {string} groupPayConfig
+   * @param {string} totalCost
+   * @memberof CheckoutConfirmationPage
+   */
+  assertDisclaimerLanguage = async (groupPayConfig: string, totalCost: string) => {
+    console.log(' - checkoutConfirmationPage.assertDisclaimerLanguage');
+    await this.page.waitForSelector(txaDisclaimer, { timeout: 100000 });
+    switch (groupPayConfig) {
+      case 'Payroll Deduct':
+        await this.assertElementContainsText(
+          txaDisclaimer,
+          `to deduct ${totalCost} per pay period from my earnings for my membership and to remit such amount directly to PPLSI. I agree that the company is not responsible or liable for my decision to purchase a membership from PPLSI nor the services provided through my membership and the company’s sole responsibility is to withhold and pay my membership fee to PPLSI.`
+        );
+        break;
+      case 'Fringe':
+        await this.assertElementContainsText(txaDisclaimer, '');
+        break;
+      case 'Partial Fringe':
+        await this.assertElementContainsText(
+          txaDisclaimer,
+          `to deduct ${totalCost} per pay period from my earnings for my membership and to remit such amount directly to PPLSI. I agree that the company is not responsible or liable for my decision to purchase a membership from PPLSI nor the services provided through my membership and the company’s sole responsibility is to withhold and pay my membership fee to PPLSI.`
+        );
+        break;
+    }
+  };
+
+  assertTermsOfServiceLanguageAndLink = async () => {
+    console.log(' - checkoutConfirmationPage.assertTermsOfServiceLanguageAndLink');
+    await this.assertElementIsVisible(txaTermsOfServiceLanguage);
+    await this.assertElementIsVisible(lnkTermsOfService);
   };
 }
