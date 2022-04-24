@@ -11,11 +11,10 @@ const txtPassword: string = '[placeholder="Password"]';
  *
  * @export
  * @class ChannelsHeaderPage
- * @extends 
+ * @extends
  */
 export class ChannelsHeaderPage extends LoginPage {
   loginPage = new LoginPage(this.page);
-  
 
   // ========================== Process Methods ============================
   // ========================== Navigate Methods ===========================
@@ -23,13 +22,10 @@ export class ChannelsHeaderPage extends LoginPage {
     console.log(' - ChannelsHeaderPage.navigateToPage');
     // Navigate to Account Plans Page
     await this.goTo(url);
-    // login with Okta
     await this.loginPage.loginWithEnterKey(associateAdvantagePlus.username, associateAdvantagePlus.password);
     // Wait for page to finish loading
     await this.page.waitForLoadState('networkidle');
-    
   };
   // ========================== Click Methods ==============================
   // ========================== Assertion Methods ==========================
 }
-
