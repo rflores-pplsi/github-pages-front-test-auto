@@ -20,7 +20,6 @@ test.beforeEach(async ({ page }) => {
 //   await checkoutConfirmationPage.assertOrderSummaryPlanPriceConfirmationPage();
 // });
 
-test.describe('', () => {});
 for (const state of RegionsUtils.usStates.filter((state) => state.abbrv == 'NY' && state.priority == true)) {
   const groupPayConfig = 'Self-Pay';
   const groupNumber = 'nnlegaltest7';
@@ -292,6 +291,318 @@ for (const state of RegionsUtils.usStates.filter((state) => state.abbrv == 'NY' 
     await checkoutConfirmationPage.assertNoMemberNumbersAreDisplayed();
     await checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary(planName);
     await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName(planName);
+  });
+}
+
+for (const state of RegionsUtils.usStates.filter((state) => state.abbrv == 'NY' && state.priority == true)) {
+  const groupPayConfig = 'Self-Pay';
+  const groupNumber = 'test48';
+  const planName = 'IDShield for Business - Essentials';
+  const payFrequency = 'Monthly';
+  const planCost = '$79.95';
+  const totalCost = '$79.95';
+  test(`${groupPayConfig} (${planName}) - ${state.name}`, async ({ page }) => {
+    console.log(`Test Case: ${groupPayConfig} (${planName}) - ${state.name}`);
+    await checkoutConfirmationPage.navigateToPersonalInfoPageSinglePlan(
+      basicUser.email,
+      basicUser.password,
+      groupNumber,
+      groupPayConfig,
+      state.name,
+      payFrequency,
+      planName,
+      state.validAddress.street,
+      state.validAddress.city,
+      state.validAddress.postalCode
+    );
+    // Personal Info Assertions
+    await checkoutConfirmationPage.assertPlanNameAndCost(planName, planCost);
+    await checkoutConfirmationPage.assertPayPeriodTotal(totalCost);
+    await checkoutConfirmationPage.navigateFromPersonalInfoPageToPaymentPage(groupPayConfig);
+    // Payment Assertions
+    await checkoutConfirmationPage.assertPlanNameAndCost(planName, planCost);
+    await checkoutConfirmationPage.assertPayPeriodTotal(totalCost);
+    await checkoutConfirmationPage.navigateFromPaymentBankDraftPageToConfirmationPage();
+    // Confirmation Assertions
+    await checkoutConfirmationPage.assertIdShieldMembershipIsDisplayed();
+    await checkoutConfirmationPage.assertNoMemberNumbersAreDisplayed();
+    await checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary(planName);
+    await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName(planName);
+  });
+}
+
+for (const state of RegionsUtils.usStates.filter((state) => state.abbrv == 'NY' && state.priority == true)) {
+  const groupPayConfig = 'Self-Pay';
+  const groupNumber = 'test48';
+  const planName = 'Commercial Drivers Legal Plan';
+  const payFrequency = 'Monthly';
+  const planCost = '$29.95';
+  const totalCost = '$29.95';
+  test.only(`${groupPayConfig} (${planName}) - ${state.name}`, async ({ page }) => {
+    console.log(`Test Case: ${groupPayConfig} (${planName}) - ${state.name}`);
+    await checkoutConfirmationPage.navigateToPersonalInfoPageSinglePlan(
+      basicUser.email,
+      basicUser.password,
+      groupNumber,
+      groupPayConfig,
+      state.name,
+      payFrequency,
+      planName,
+      state.validAddress.street,
+      state.validAddress.city,
+      state.validAddress.postalCode
+    );
+    // Personal Info Assertions
+    await checkoutConfirmationPage.assertPlanNameAndCost(planName, planCost);
+    await checkoutConfirmationPage.assertPayPeriodTotal(totalCost);
+    await checkoutConfirmationPage.navigateFromPersonalInfoPageToPaymentPage(groupPayConfig);
+    // Payment Assertions
+    await checkoutConfirmationPage.assertPlanNameAndCost(planName, planCost);
+    await checkoutConfirmationPage.assertPayPeriodTotal(totalCost);
+    await checkoutConfirmationPage.navigateFromPaymentBankDraftPageToConfirmationPage();
+    // Confirmation Assertions
+    await checkoutConfirmationPage.assertIdShieldMembershipIsDisplayed();
+    await checkoutConfirmationPage.assertNoMemberNumbersAreDisplayed();
+    await checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary(planName);
+    await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName(planName);
+  });
+}
+
+for (const state of RegionsUtils.usStates.filter((state) => state.abbrv == 'NY' && state.priority == true)) {
+  const groupPayConfig = 'Self-Pay';
+  const groupNumber = 'test48';
+  const planName = 'Small Business - Small Business Plus';
+  const payFrequency = 'Monthly';
+  const planCost = '$99.00';
+  const totalCost = '$99.00';
+  test(`${groupPayConfig} (${planName}) - ${state.name}`, async ({ page }) => {
+    console.log(`Test Case: ${groupPayConfig} (${planName}) - ${state.name}`);
+    await checkoutConfirmationPage.navigateToPersonalInfoPageSinglePlan(
+      basicUser.email,
+      basicUser.password,
+      groupNumber,
+      groupPayConfig,
+      state.name,
+      payFrequency,
+      planName,
+      state.validAddress.street,
+      state.validAddress.city,
+      state.validAddress.postalCode
+    );
+    // Personal Info Assertions
+    await checkoutConfirmationPage.assertPlanNameAndCost(planName, planCost);
+    await checkoutConfirmationPage.assertPayPeriodTotal(totalCost);
+    await checkoutConfirmationPage.navigateFromPersonalInfoPageToPaymentPage(groupPayConfig);
+    // Payment Assertions
+    await checkoutConfirmationPage.assertPlanNameAndCost(planName, planCost);
+    await checkoutConfirmationPage.assertPayPeriodTotal(totalCost);
+    await checkoutConfirmationPage.navigateFromPaymentBankDraftPageToConfirmationPage();
+    // Confirmation Assertions
+    await checkoutConfirmationPage.assertIdShieldMembershipIsDisplayed();
+    await checkoutConfirmationPage.assertNoMemberNumbersAreDisplayed();
+    await checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary(planName);
+    await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName(planName);
+  });
+}
+
+for (const state of RegionsUtils.usStates.filter((state) => state.abbrv == 'NY' && state.priority == true)) {
+  const groupPayConfig = 'Self-Pay';
+  const groupNumber = 'test48';
+  const planName = 'Small Business - Small Business Essentials';
+  const payFrequency = 'Monthly';
+  const planCost = '$49.00';
+  const totalCost = '$49.00';
+  test(`${groupPayConfig} (${planName}) - ${state.name}`, async ({ page }) => {
+    console.log(`Test Case: ${groupPayConfig} (${planName}) - ${state.name}`);
+    await checkoutConfirmationPage.navigateToPersonalInfoPageSinglePlan(
+      basicUser.email,
+      basicUser.password,
+      groupNumber,
+      groupPayConfig,
+      state.name,
+      payFrequency,
+      planName,
+      state.validAddress.street,
+      state.validAddress.city,
+      state.validAddress.postalCode
+    );
+    // Personal Info Assertions
+    await checkoutConfirmationPage.assertPlanNameAndCost(planName, planCost);
+    await checkoutConfirmationPage.assertPayPeriodTotal(totalCost);
+    await checkoutConfirmationPage.navigateFromPersonalInfoPageToPaymentPage(groupPayConfig);
+    // Payment Assertions
+    await checkoutConfirmationPage.assertPlanNameAndCost(planName, planCost);
+    await checkoutConfirmationPage.assertPayPeriodTotal(totalCost);
+    await checkoutConfirmationPage.navigateFromPaymentBankDraftPageToConfirmationPage();
+    // Confirmation Assertions
+    await checkoutConfirmationPage.assertIdShieldMembershipIsDisplayed();
+    await checkoutConfirmationPage.assertNoMemberNumbersAreDisplayed();
+    await checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary(planName);
+    await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName(planName);
+  });
+}
+
+for (const state of RegionsUtils.usStates.filter((state) => state.abbrv == 'NY' && state.priority == true)) {
+  const groupPayConfig = 'Self-Pay';
+  const groupNumber = 'test48';
+  const planName = 'Small Business - Small Business Pro';
+  const payFrequency = 'Monthly';
+  const planCost = '$169.00';
+  const totalCost = '$169.00';
+  test(`${groupPayConfig} (${planName}) - ${state.name}`, async ({ page }) => {
+    console.log(`Test Case: ${groupPayConfig} (${planName}) - ${state.name}`);
+    await checkoutConfirmationPage.navigateToPersonalInfoPageSinglePlan(
+      basicUser.email,
+      basicUser.password,
+      groupNumber,
+      groupPayConfig,
+      state.name,
+      payFrequency,
+      planName,
+      state.validAddress.street,
+      state.validAddress.city,
+      state.validAddress.postalCode
+    );
+    // Personal Info Assertions
+    await checkoutConfirmationPage.assertPlanNameAndCost(planName, planCost);
+    await checkoutConfirmationPage.assertPayPeriodTotal(totalCost);
+    await checkoutConfirmationPage.navigateFromPersonalInfoPageToPaymentPage(groupPayConfig);
+    // Payment Assertions
+    await checkoutConfirmationPage.assertPlanNameAndCost(planName, planCost);
+    await checkoutConfirmationPage.assertPayPeriodTotal(totalCost);
+    await checkoutConfirmationPage.navigateFromPaymentBankDraftPageToConfirmationPage();
+    // Confirmation Assertions
+    await checkoutConfirmationPage.assertIdShieldMembershipIsDisplayed();
+    await checkoutConfirmationPage.assertNoMemberNumbersAreDisplayed();
+    await checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary(planName);
+    await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName(planName);
+  });
+}
+
+for (const state of RegionsUtils.usStates.filter((state) => state.abbrv == 'NY' && state.priority == true)) {
+  const groupPayConfig = 'Self-Pay';
+  const groupNumber = 'test48';
+  const planName = 'IDShield for Business - Plus';
+  const payFrequency = 'Monthly';
+  const planCost = '$149.95';
+  const totalCost = '$149.95';
+  test(`${groupPayConfig} (${planName}) - ${state.name}`, async ({ page }) => {
+    console.log(`Test Case: ${groupPayConfig} (${planName}) - ${state.name}`);
+    await checkoutConfirmationPage.navigateToPersonalInfoPageSinglePlan(
+      basicUser.email,
+      basicUser.password,
+      groupNumber,
+      groupPayConfig,
+      state.name,
+      payFrequency,
+      planName,
+      state.validAddress.street,
+      state.validAddress.city,
+      state.validAddress.postalCode
+    );
+    // Personal Info Assertions
+    await checkoutConfirmationPage.assertPlanNameAndCost(planName, planCost);
+    await checkoutConfirmationPage.assertPayPeriodTotal(totalCost);
+    await checkoutConfirmationPage.navigateFromPersonalInfoPageToPaymentPage(groupPayConfig);
+    // Payment Assertions
+    await checkoutConfirmationPage.assertPlanNameAndCost(planName, planCost);
+    await checkoutConfirmationPage.assertPayPeriodTotal(totalCost);
+    await checkoutConfirmationPage.navigateFromPaymentBankDraftPageToConfirmationPage();
+    // Confirmation Assertions
+    await checkoutConfirmationPage.assertIdShieldMembershipIsDisplayed();
+    await checkoutConfirmationPage.assertNoMemberNumbersAreDisplayed();
+    await checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary(planName);
+    await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName(planName);
+  });
+}
+
+for (const state of RegionsUtils.usStates.filter((state) => state.abbrv == 'NY' && state.priority == true)) {
+  const groupPayConfig = 'Self-Pay';
+  const groupNumber = 'test48';
+  const planName = 'Commercial Drivers Legal Plan';
+  const plan2Name = 'IDShield Individual';
+  const planCost = '$42.90';
+  const plan2Cost = '$19.95';
+  const totalCost = '$62.85';
+  const payFrequency = 'Monthly';
+  test(`Legal/ID Config ${groupPayConfig} (${planName}/${plan2Name}) - ${state.name}`, async ({ page }) => {
+    console.log(`Test Case: Legal/ID Config${groupPayConfig} (${planName}/${plan2Name}) - ${state.name}`);
+    await checkoutConfirmationPage.navigateToPersonalInfoPageComboPlan(
+      basicUser.email,
+      basicUser.password,
+      groupNumber,
+      groupPayConfig,
+      state.name,
+      payFrequency,
+      planName,
+      plan2Name,
+      state.validAddress.street,
+      state.validAddress.city,
+      state.validAddress.postalCode
+    );
+    // Personal Info Assertions
+    await checkoutConfirmationPage.assertPlanNameAndCost(planName, planCost);
+    await checkoutConfirmationPage.assertPlanNameAndCost(plan2Name, plan2Cost);
+    await checkoutConfirmationPage.assertPayPeriodTotal(totalCost);
+    await checkoutConfirmationPage.navigateFromPersonalInfoPageToPaymentPage(groupPayConfig);
+    // Payment Assertions
+    await checkoutConfirmationPage.assertPlanNameAndCost(planName, planCost);
+    await checkoutConfirmationPage.assertPlanNameAndCost(plan2Name, plan2Cost);
+    await checkoutConfirmationPage.assertPayPeriodTotal(totalCost);
+    await checkoutConfirmationPage.navigateFromPaymentBankDraftPageToConfirmationPage();
+    // Confirmation Assertions
+    await checkoutConfirmationPage.assertIdShieldMembershipIsDisplayed();
+    await checkoutConfirmationPage.assertLegalShieldMembershipIsDisplayed();
+    await checkoutConfirmationPage.assertNoMemberNumbersAreDisplayed();
+    await checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary(planName);
+    await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName(planName);
+    await checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary(plan2Name);
+    await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName(plan2Name);
+  });
+}
+
+for (const state of RegionsUtils.usStates.filter((state) => state.abbrv == 'NY' && state.priority == true)) {
+  const groupPayConfig = 'Self-Pay';
+  const groupNumber = 'test48';
+  const planName = 'Commercial Drivers Legal Plan';
+  const plan2Name = 'IDShield Family';
+  const planCost = '$34.90';
+  const plan2Cost = '$19.95';
+  const totalCost = '$54.85';
+  const payFrequency = 'Monthly';
+  test(`Legal/ID Config ${groupPayConfig} (${planName}/${plan2Name}) - ${state.name}`, async ({ page }) => {
+    console.log(`Test Case: Legal/ID Config${groupPayConfig} (${planName}/${plan2Name}) - ${state.name}`);
+    await checkoutConfirmationPage.navigateToPersonalInfoPageComboPlan(
+      basicUser.email,
+      basicUser.password,
+      groupNumber,
+      groupPayConfig,
+      state.name,
+      payFrequency,
+      planName,
+      plan2Name,
+      state.validAddress.street,
+      state.validAddress.city,
+      state.validAddress.postalCode
+    );
+    // Personal Info Assertions
+    await checkoutConfirmationPage.assertPlanNameAndCost(planName, planCost);
+    await checkoutConfirmationPage.assertPlanNameAndCost(plan2Name, plan2Cost);
+    await checkoutConfirmationPage.assertPayPeriodTotal(totalCost);
+    await checkoutConfirmationPage.navigateFromPersonalInfoPageToPaymentPage(groupPayConfig);
+    // Payment Assertions
+    await checkoutConfirmationPage.assertPlanNameAndCost(planName, planCost);
+    await checkoutConfirmationPage.assertPlanNameAndCost(plan2Name, plan2Cost);
+    await checkoutConfirmationPage.assertPayPeriodTotal(totalCost);
+    await checkoutConfirmationPage.navigateFromPaymentBankDraftPageToConfirmationPage();
+    // Confirmation Assertions
+    await checkoutConfirmationPage.assertIdShieldMembershipIsDisplayed();
+    await checkoutConfirmationPage.assertLegalShieldMembershipIsDisplayed();
+    await checkoutConfirmationPage.assertNoMemberNumbersAreDisplayed();
+    await checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary(planName);
+    await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName(planName);
+    await checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary(plan2Name);
+    await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName(plan2Name);
   });
 }
 
