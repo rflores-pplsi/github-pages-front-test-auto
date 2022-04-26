@@ -41,3 +41,44 @@ export class OrderSummary {
     this.orderSummaryRows.push(row);
   };
 }
+
+/**
+ * @export
+ * @class OrderSummaryWithoutCosts
+ */
+export class OrderSummaryWithoutCosts {
+  orderSummaryRows: OrderSummaryRowWithoutCost[];
+
+  /**
+   * Creates an instance of OrderSummaryWithoutCosts.
+   * @memberof OrderSummaryWithoutCosts
+   */
+  constructor() {
+    this.orderSummaryRows = [];
+  }
+
+  /**
+   * @param {OrderSummaryRow} row
+   * @memberof OrderSummary
+   */
+  addRow = async (row: OrderSummaryRowWithoutCost): Promise<void> => {
+    this.orderSummaryRows.push(row);
+  };
+}
+
+/**
+ * @export
+ * @class OrderSummaryRowWithoutCost
+ */
+export class OrderSummaryRowWithoutCost {
+  planName: string | null;
+
+  /**
+   * Creates an instance of OrderSummaryRowWithoutCost.
+   * @param {(string | null)} planName
+   * @memberof OrderSummaryRowWithoutCost
+   */
+  constructor(planName: string | null) {
+    this.planName = planName;
+  }
+}

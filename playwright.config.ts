@@ -11,16 +11,16 @@ const config: PlaywrightTestConfig = {
       use: { ...devices['Desktop Chrome'], screenshot: 'on', video: 'on', trace: 'on' },
     },
     { testMatch: ['tests/*.test.ts'] },
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'], screenshot: 'on', video: 'on', trace: 'on' },
-    },
-    { testMatch: ['tests/*.test.ts'] },
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'], screenshot: 'on', video: 'on', trace: 'on' },
-    },
-    { testMatch: ['tests/*.test.ts'] },
+    // {
+    //   name: 'firefox',
+    //   use: { ...devices['Desktop Firefox'], screenshot: 'on', video: 'on', trace: 'on' },
+    // },
+    // { testMatch: ['tests/*.test.ts'] },
+    // {
+    //   name: 'webkit',
+    //   use: { ...devices['Desktop Safari'], screenshot: 'on', video: 'on', trace: 'on' },
+    // },
+    // { testMatch: ['tests/*.test.ts'] },
   ],
   reporter: [['dot'], ['json', { outputFile: 'test-result.json' }], ['html', { open: 'always' }]],
   retries: 1,

@@ -63,9 +63,13 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsPage {
     // await this.clickBankDraftBtn();
   };
 
-  navigateFromPersonalInfoPageToPaymentPage = async (): Promise<void> => {
+  /**
+   * @param {string} groupPayConfig
+   * @memberof CheckoutPaymentsBankDraftPage
+   */
+  navigateFromPersonalInfoPageToPaymentPage = async (groupPayConfig: string): Promise<void> => {
     await this.clickSaveAndContinueButton();
-    await this.captureOrderSummary();
+    await this.captureOrderSummary(groupPayConfig);
   };
 
   // ========================== fill Text Box Methods ======================
