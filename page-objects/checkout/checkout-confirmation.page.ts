@@ -7,6 +7,7 @@ const btnCompleteEnrollment = 'button:has-text("COMPLETE ENROLLMENT")';
 const chkAgreement = '//div[contains(@class,"lsux-cb-container__cb   margin-right")]';
 const txtMemberNumber = '//div[contains(@class,"membership-header-row")]//following::p[contains(@class,"member-id")]';
 
+// eslint-disable-next-line valid-jsdoc
 /**
  * @export
  * @class CheckoutConfirmationPage
@@ -19,9 +20,8 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   static txtTotalPriceLabel: string;
   // ========================== Process Methods ============================
   // ========================== Navigate Methods ===========================
-  navigateToCheckoutConfirmationPage = async (state: string): Promise<void> => {
-    console.log(' - checkoutPaymentPage.navigateToCheckoutConfirmationPage');
-    await this.navigateToPaymentsBankDraftPage(state);
+  navigateToCheckoutConfirmationPageUsingPlanalyzer = async (state: string, paymentMethod: string): Promise<void> => {
+    await this.navigateToPaymentsPage(state);
     CheckoutConfirmationPage.pPlan = await this.fillOrderSummarypPlanValue();
     console.log(CheckoutConfirmationPage.pPlan);
     CheckoutConfirmationPage.pPlanPrice = await this.fillOrderSummarypPlanPriceValue();
@@ -30,7 +30,15 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
     console.log(CheckoutConfirmationPage.txtTotalLabel);
     CheckoutConfirmationPage.txtTotalPriceLabel = await this.fillOrderSummarytxtTotalPriceLabelValue();
     console.log(CheckoutConfirmationPage.txtTotalPriceLabel);
-    await this.fillBankDraftForm();
+    if (paymentMethod.toUpperCase() == 'BD') {
+      console.log(' - checkoutPaymentPage.navigateToCheckoutConfirmationPage');
+      await this.clickBankDraftBtn();
+      await this.fillBankDraftForm();
+    } else if (paymentMethod.toUpperCase() == 'CC') {
+      // await this.clickBankDraftBtn();
+      // await this.clickCreditCardBtn();
+      await this.fillCreditCardForm();
+    }
   };
   // ========================== Click Methods ==============================
   /**
@@ -56,7 +64,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
     console.log(' - checkoutConfirmationPage.assertWelcomeToLegalshiledFamilyPage');
     const welcome = await this.page.waitForSelector(txtWelcomeToLegalshiledFamily);
     console.log(welcome.innerText());
-    await this.assertElementContainsText(txtWelcomeToLegalshiledFamily, 'Welcome to the LegalShield family!');
+    await this.assertElementContainsText(txtWelcomeToLegalshiledFamily, 'Welcome!');
   };
   assertOrderSummaryPlanPriceConfirmationPage = async () => {
     console.log(' - checkoutConfirmationPage.assertOrderSummaryPlanPriceConfirmationPage');

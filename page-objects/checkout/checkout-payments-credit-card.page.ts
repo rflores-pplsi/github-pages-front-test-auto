@@ -7,7 +7,7 @@ const txtExpirationDate = '#expiration_date';
 const txtCardholderName = '[placeholder="Name on Card"]';
 const txtSecurityCode = 'input[name="security_code"]';
 const txtPostalCode = '[placeholder="Billing Postal Code"]';
-const btnPurchase = '#savecc';
+const btnCreditCardPurchase = '#savecc';
 const txtWelcomeToLegalshiledFamily = 'h1.lsux-heading.confirmation-title.lsux-heading--t28';
 // const conPlans =
 //   "//div[@class='lsux-row half children2 content-row mb-4 mt-4 first-plan']";
@@ -38,9 +38,7 @@ export class CheckoutPaymentsCreditCardPage extends CheckoutPaymentsPage {
     await this.page.keyboard.press('Tab');
     await this.fillPostalCodeTxt('20147');
     await this.page.keyboard.press('Tab');
-    await this.clickPurchaseBtn();
-    const welcome = this.page.locator(txtWelcomeToLegalshiledFamily);
-    console.log(await welcome.allTextContents());
+    await this.clickCreditCardPurchaseBtn();
   };
   fillOrderSummarypPlanValue = async (): Promise<string> => {
     console.log(' - checkoutPaymentBankDraftPage.fillOrderSummarypPlanValue');
@@ -123,13 +121,13 @@ export class CheckoutPaymentsCreditCardPage extends CheckoutPaymentsPage {
   };
 
   // ========================== Click Methods ==============================
-  clickPurchaseBtn = async () => {
+  clickCreditCardPurchaseBtn = async () => {
     console.log(' i am here inside clickPurchaseBtn');
     // Switch to frame
-    const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
-    if (frmPayment != null) {
+    const frmCCPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
+    if (frmCCPayment != null) {
       // Click on Purchase button
-      await frmPayment.locator(btnPurchase).click();
+      await frmCCPayment.locator(btnCreditCardPurchase).click({ force: true });
     } else throw new Error('No such frame');
   };
   // ========================== Assertion Methods ==========================

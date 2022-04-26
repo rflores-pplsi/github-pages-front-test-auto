@@ -33,8 +33,6 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
     await this.fillAccountHolderNameTxt('Automation Tester');
     await this.page.keyboard.press('Tab');
     await this.clickPurchaseBtn();
-    const welcome = await this.page.locator(txtWelcomeToLegalshiledFamily);
-    console.log(await welcome.allTextContents());
   };
   fillOrderSummarypPlanValue = async (): Promise<string> => {
     console.log(' - checkoutPaymentBankDraftPage.fillOrderSummarypPlanValue');
@@ -82,7 +80,7 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
       const txtRoutingNumberTxt = await frmPayment.locator(txtRoutingNumber);
       await txtRoutingNumberTxt.type('103000648');
       // await this.fillTextBox(txtRoutingNumber, routing);
-    } else throw new Error('No such fram');
+    } else throw new Error('No such frame');
   };
   fillAccountHolderNameTxt = async (accountholdrname: string) => {
     console.log(' - checkoutPaymentPage.fillAccountHolderNameTxt');
@@ -93,7 +91,7 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
       const txtAccountHolderNameTxt = await frmPayment.locator(txtAccountHolderName);
       await txtAccountHolderNameTxt.type('Automation Tester');
       // await this.fillTextBox(txtAccountHolderName, accountholdrname);
-    } else throw new Error('No such fram');
+    } else throw new Error('No such frame');
   };
   fillBankNameTxt = async (bankname: string) => {
     console.log(' - checkoutPaymentPage.fillBankNameTxt');
