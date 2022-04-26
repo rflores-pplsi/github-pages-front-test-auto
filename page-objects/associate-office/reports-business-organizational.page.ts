@@ -1,15 +1,14 @@
-import { ChannelsHeaderPage } from '../../page-objects/channels/channels-header.page';
+import { ChannelsHeaderPage } from './reports-commissions.page';
 import UrlsUtils from '../../utils/urls.utils';
 import { expect, Locator, Page, test } from '@playwright/test';
 import { matchers } from 'expect-playwright';
 // ========================== Selectors ==================================
 const txtBoxSearch: string = 'input[name="associateInputSearch"]';
-const organizationalBusinessReportBreadcrumb: string = '#root > div > div.lsux-content > div:nth-child(1) > div.lsux-crumbs > span';
-const organizationalBusinessReportTabDisplayed: string =
-  '#root > div > div.lsux-content > div:nth-child(1) > div.lsux-tab--bar.lsux-tab--stretch > div.lsux-tab.active > div > h4';
+const organizationalBusinessReportBreadcrumb: string = 'span.lsux-crumbs__crumb--leaf';
+const organizationalBusinessReportTabDisplayed: string = '//*[@id="root"]/div/div[2]/div[1]/div/div[2]/div[1]/div/h4';
 const txaAssociateNumber: string = 'div.associate-info p';
-const txaSearchResult: string = '//*[@id="root"]/div/div[2]/div[1]/div[3]/div/div[1]/a/h2';
-const txaPersonal: string = '//*[@id="root"]/div/div[2]/div[1]/div[3]/div';
+const txaSearchResult: string = 'h2.lsux-heading.associate-name.lsux-heading--t26';
+const txaPersonal: string = '//*[@id="root"]/div/div[2]/div[1]/div/div[2]/div[2]/div';
 //Report -> Commissions
 const lblAssociateNumber: string = '.lsux-heading.lsux-heading--t28';
 const tabFastStartStatement: string = '//*[text()[contains(.,"Fast Start Statements")]]';

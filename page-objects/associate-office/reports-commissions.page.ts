@@ -1,4 +1,4 @@
-import { LoginPage } from '../../page-objects/login/login.page';
+import { LoginPage } from '../login/login.page';
 import EnvironmentUtil from '../../utils/env.utils';
 import { Locator, Page } from '@playwright/test';
 import { BasePage } from '../base.page';

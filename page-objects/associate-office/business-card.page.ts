@@ -1,4 +1,4 @@
-import { ChannelsHeaderPage } from '../../page-objects/channels/channels-header.page';
+import { ChannelsHeaderPage } from './reports-commissions.page';
 import UrlsUtils from '../../utils/urls.utils';
 import { expect, Locator, Page } from '@playwright/test';
 // ========================== Selectors ==================================

@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { BusinessCard } from '../../page-objects/channels/business-card.page';
+import { BusinessCard } from '../../page-objects/associate-office/business-card.page';
 
 // create instance of Page
 let businessCard: BusinessCard;
