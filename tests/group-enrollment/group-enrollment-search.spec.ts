@@ -7,7 +7,7 @@ test.beforeEach(async ({ page }) => {
   groupEnrollmentSearchPage = new GroupEnrollmentSearchPage(page);
 });
 
-test('Newity group phase 5', async ({ page }) => {
+test('Newity group is displayed though the group enrollment search page', async ({ page }) => {
   // Login with your credentials
   await groupEnrollmentSearchPage.navigateToGroupEnrollmentSearchPage();
   await groupEnrollmentSearchPage.searchNewityGroup();

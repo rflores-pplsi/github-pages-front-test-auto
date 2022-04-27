@@ -19,11 +19,16 @@ export class GroupEnrollmentSearchPage extends OktaPage {
 
   searchNewityGroup = async (): Promise<void> => {
     console.log(' - groupEnrollmentSearch.searchGroup');
+    // Type in the search field group 99645
     await this.page.fill(txtSearch, '99645');
+    // Click on Group Search button
     await this.page.click(btnSearchGroup);
+    // Click on Edit button
     await this.page.click(btnEdit);
+    // Copy link and paste in a another browser tab
     await this.page.click(btnCopyLink);
     await this.page.waitForTimeout(1000);
+    // Verify that Newity group is displayed
     await this.page.goto('https://www.uat-shieldbenefits.com/ytiwen/overview');
   };
 
@@ -32,6 +37,7 @@ export class GroupEnrollmentSearchPage extends OktaPage {
   navigateToGroupEnrollmentSearchPage = async (): Promise<void> => {
     console.log(' - groupEnrollmentSearchPage.navigateToGroupEnrollmentSearchPage');
     await this.page.goto(url);
+    // Login through Okta page to be redirected to Group Enrollment Search Page
     await this.oktaLoginGroupEnrollmentSearchPage();
   };
   // ========================== Click Methods ==============================
