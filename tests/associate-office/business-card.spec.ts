@@ -11,11 +11,11 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('SC-xxxx - The Business Card page functionality', async ({ page }) => {
-  await businessCard.assertPageShow();
+  await businessCard.assertBusinessCardPageContentHasLoaded();
 });
 
 test('SC-1290 - Verify First Name, Last Name, Phone Number and Website Fields are displaying', async ({ page }) => {
-  await businessCard.assertPageShow();
+  await businessCard.assertBusinessCardPageContentHasLoaded();
   await businessCard.assertFirstNameIsDisplayed();
   await businessCard.assertLastNameIsDisplayed();
   await businessCard.assertPhoneNumberIsDisplayed();

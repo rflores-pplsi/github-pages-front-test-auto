@@ -1,6 +1,7 @@
 import { ChannelsHeaderPage } from './reports-commissions.page';
 import UrlsUtils from '../../utils/urls.utils';
 import { expect, Locator, Page } from '@playwright/test';
+import { associateAdvantagePlus } from '../../utils/user.utils';
 // ========================== Selectors ==================================
 const lblTitleMarketingWebsitePreferences: string = 'h1.lsux-heading.lsux-heading--t28';
 const txtFirstName: string = '[name="firstName"]';
@@ -20,16 +21,18 @@ export class BusinessCard extends ChannelsHeaderPage {
   navigateToBusinessCardPage = async (): Promise<void> => {
     console.log(' - BusinessCard.navigateToBusinessCardPage');
     // Navigate to Business Solution  Page
-    await this.navigateToPage(UrlsUtils.channelsUrls.businesscard.url);
+    await this.goTo(UrlsUtils.channelsUrls.businesscard.url);
+    await this.login(associateAdvantagePlus.username, associateAdvantagePlus.password);
   };
   // ========================== Click Methods ==============================
   // ========================== Assertion Methods ==========================
-  assertPageShow = async (): Promise<void> => {
+
+  assertBusinessCardPageContentHasLoaded = async (): Promise<void> => {
     console.log(' - BusinessCard.assertPageShow');
     await this.page.waitForSelector(lblTitleMarketingWebsitePreferences);
     await this.assertElementIsVisible(lblTitleMarketingWebsitePreferences);
   };
-  assertPageTitle = async (): Promise<void> => {
+  assertBusinessCardPageShowTitle = async (): Promise<void> => {
     console.log(' - BusinessCard.assertPageTitle');
     const strTitle = 'Marketing Website Preferences';
     await this.page.waitForSelector(lblTitleMarketingWebsitePreferences);
