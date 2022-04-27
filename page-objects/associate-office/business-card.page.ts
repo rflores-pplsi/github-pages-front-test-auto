@@ -23,39 +23,35 @@ export class BusinessCard extends ChannelsHeaderPage {
     // Navigate to Business Solution  Page
     await this.goTo(UrlsUtils.channelsUrls.businesscard.url);
     await this.login(associateAdvantagePlus.username, associateAdvantagePlus.password);
+    await this.page.waitForSelector(lblTitleMarketingWebsitePreferences);
+    await this.page.waitForLoadState('networkidle');
   };
   // ========================== Click Methods ==============================
   // ========================== Assertion Methods ==========================
 
   assertBusinessCardPageContentHasLoaded = async (): Promise<void> => {
-    console.log(' - BusinessCard.assertPageShow');
-    await this.page.waitForSelector(lblTitleMarketingWebsitePreferences);
+    console.log(' - BusinessCard.assertBusinessCardPageContentHasLoaded');
     await this.assertElementIsVisible(lblTitleMarketingWebsitePreferences);
   };
   assertBusinessCardPageShowTitle = async (): Promise<void> => {
-    console.log(' - BusinessCard.assertPageTitle');
+    console.log(' - BusinessCard.assertBusinessCardPageShowTitle');
     const strTitle = 'Marketing Website Preferences';
-    await this.page.waitForSelector(lblTitleMarketingWebsitePreferences);
     await this.assertElementHasText(lblTitleMarketingWebsitePreferences, strTitle);
   };
-  assertFirstNameIsDisplayed = async (): Promise<void> => {
-    console.log(' - BusinessCard.assertBreadcrumbLinkIsDisplayed');
-    await this.page.waitForSelector(lblTitleMarketingWebsitePreferences);
+  assertBusinessCardPageFirstNameIsDisplayed = async (): Promise<void> => {
+    console.log(' - BusinessCard.assertBusinessCardPageFirstNameIsDisplayed');
     await this.assertElementIsVisible(txtFirstName);
   };
-  assertLastNameIsDisplayed = async (): Promise<void> => {
-    console.log(' - BusinessCard.assertOrganizationalBusinessReportTaIsDisplayed');
-    await this.page.waitForSelector(lblTitleMarketingWebsitePreferences);
+  assertBusinessCardPageLastNameIsDisplayed = async (): Promise<void> => {
+    console.log(' - BusinessCard.assertBusinessCardPageLastNameIsDisplayed');
     await this.assertElementIsVisible(txtLastName);
   };
-  assertPhoneNumberIsDisplayed = async (): Promise<void> => {
-    console.log(' - BusinessCard.assertOrganizationalBusinessReportTaIsDisplayed');
-    await this.page.waitForSelector(lblTitleMarketingWebsitePreferences);
+  assertBusinessCardPagePhoneNumberIsDisplayed = async (): Promise<void> => {
+    console.log(' - BusinessCard.assertBusinessCardPagePhoneNumberIsDisplayed');
     await this.assertElementIsVisible(txtPhoneNumber);
   };
-  assertDisplayOnWebsite = async (): Promise<void> => {
-    console.log(' - BusinessCard.assertOrganizationalBusinessReportTaIsDisplayed');
-    await this.page.waitForSelector(lblTitleMarketingWebsitePreferences);
+  assertBusinessCardPageDisplayOnWebsite = async (): Promise<void> => {
+    console.log(' - BusinessCard.assertBusinessCardPageDisplayOnWebsite');
     await this.assertElementIsVisible(chkDisplayOnWebsite);
   };
 }
