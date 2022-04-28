@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import request from 'then-request';
 import { Page } from '@playwright/test';
 import RegionsUtils from './regions.utils';

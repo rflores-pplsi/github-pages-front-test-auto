@@ -1,6 +1,5 @@
 import { test } from '@playwright/test';
 import { ActivateUnknownCodePage } from '../../page-objects/activate/activate-unknown-code.page';
-import UrlsUtils from '../../utils/urls.utils';
 import { basicUser } from '../../utils/user.utils';
 
 // Declare Page Variable for This Page

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable require-jsdoc */
 import { expect } from '@playwright/test';
 import { AccountNavigationPage } from './account-navigation.page';
@@ -24,7 +25,7 @@ export class AccountProfileEmailPage extends AccountProfilePage {
     await this.page.waitForSelector(txtBoxEditEmailAddress);
     const emailAddressAdd = await this.page.$$(txtBoxEditEmailAddress);
     console.log(emailAddressAdd.length);
-    for (const {} of emailAddressAdd) {
+    for (const emailAddress of emailAddressAdd) {
       // console.log(await emailEle.getAttribute('value'));
     }
     // Click on the edit button by creating an array then selecting the corresponding Btn

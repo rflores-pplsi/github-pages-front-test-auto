@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable require-jsdoc */
 import { expect } from '@playwright/test';
 import UrlsUtils from '../../utils/urls.utils';

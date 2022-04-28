@@ -11,6 +11,7 @@ const txaDisclaimer = '//div[contains(@class,"group-auth")]//span[string-length(
 const txaTermsOfServiceLanguage = '//span[contains(@class,"tos-disclaimer")]';
 const lnkTermsOfService = '//a[contains(@class,"tos-link")]';
 
+// eslint-disable-next-line valid-jsdoc
 /**
  * @export
  * @class CheckoutConfirmationPage
@@ -23,13 +24,8 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   static txtTotalPriceLabel: string;
   // ========================== Process Methods ============================
   // ========================== Navigate Methods ===========================
-  /**
-   * @param {string} state
-   * @memberof CheckoutConfirmationPage
-   */
-  navigateToCheckoutConfirmationPage = async (state: string): Promise<void> => {
-    console.log(' - checkoutPaymentPage.navigateToCheckoutConfirmationPage');
-    await this.navigateToPaymentsBankDraftPage(state);
+  navigateToCheckoutConfirmationPageUsingPlanalyzer = async (state: string, paymentMethod: string): Promise<void> => {
+    await this.navigateToPaymentsPage(state);
     CheckoutConfirmationPage.pPlan = await this.fillOrderSummarypPlanValue();
     console.log(CheckoutConfirmationPage.pPlan);
     CheckoutConfirmationPage.pPlanPrice = await this.fillOrderSummarypPlanPriceValue();
@@ -38,7 +34,15 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
     console.log(CheckoutConfirmationPage.txtTotalLabel);
     CheckoutConfirmationPage.txtTotalPriceLabel = await this.fillOrderSummarytxtTotalPriceLabelValue();
     console.log(CheckoutConfirmationPage.txtTotalPriceLabel);
-    await this.fillBankDraftForm();
+    if (paymentMethod.toUpperCase() == 'BD') {
+      console.log(' - checkoutPaymentPage.navigateToCheckoutConfirmationPage');
+      await this.clickBankDraftBtn();
+      await this.fillBankDraftForm();
+    } else if (paymentMethod.toUpperCase() == 'CC') {
+      // await this.clickBankDraftBtn();
+      // await this.clickCreditCardBtn();
+      await this.fillCreditCardForm();
+    }
   };
 
   navigateFromPaymentBankDraftPageToConfirmationPage = async (): Promise<void> => {
@@ -76,7 +80,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
     console.log(' - checkoutConfirmationPage.assertWelcomeToLegalshiledFamilyPage');
     const welcome = await this.page.waitForSelector(txtWelcomeToLegalshiledFamily);
     console.log(welcome.innerText());
-    await this.assertElementContainsText(txtWelcomeToLegalshiledFamily, 'Welcome to the LegalShield family!');
+    await this.assertElementContainsText(txtWelcomeToLegalshiledFamily, 'Welcome!');
   };
 
   assertOrderSummaryPlanPriceConfirmationPage = async () => {
