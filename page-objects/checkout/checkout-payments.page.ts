@@ -8,7 +8,6 @@ const txtHowWouldYouLikeToPay = 'h1.translate.checkout-v3-h2';
 const btnBankDraft = 'span.options.right.translate';
 const btnCreditCard = 'span.options.left.translate';
 const lnkTermsOfService = '#cc_form >> text=Terms of Service';
-const txttextHaveQuestions = 'text=Have questions?';
 
 // create instance of Page
 /**

@@ -11,7 +11,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 // Navigate to the Profile Name page
-test('Navigate to the Profile Name page by clicking the Name Edit button', async ({ page }) => {
+test('Navigate to the Profile Name page by clicking the Name Edit button @smoke', async ({ page }) => {
   console.log('Test Case: Navigate to the Profile Name page by clicking the Name Edit button');
   // Clicking the Name Edit button
   await accountProfilePage.clickEditNameButton();
@@ -20,7 +20,7 @@ test('Navigate to the Profile Name page by clicking the Name Edit button', async
 });
 
 // Navigate to the Profile Date of Birth page
-test('Navigate to the Profile Date of Birth page by clicking the Date of Birth Edit button', async ({ page }) => {
+test('Navigate to the Profile Date of Birth page by clicking the Date of Birth Edit button @smoke', async ({ page }) => {
   console.log('Test Case: Navigate to the Profile Date of Birth page by clicking the Date of Birth Edit button');
   // Clicking the Date of Birth Edit button
   await accountProfilePage.clickEditDateOfBirthButton();
@@ -29,7 +29,7 @@ test('Navigate to the Profile Date of Birth page by clicking the Date of Birth E
 });
 
 // Navigate to the Profile Phone Number page
-test('Navigate to the Profile Phone Number page by clicking the Phone Number Edit button', async ({ page }) => {
+test('Navigate to the Profile Phone Number page by clicking the Phone Number Edit button @smoke', async ({ page }) => {
   console.log('Test Case: Navigate to the Profile Phone Number page by clicking the Phone Number Edit button');
   // Clicking the Phone Number button
   await accountProfilePage.clickEditPhoneNumberButton();
@@ -38,7 +38,7 @@ test('Navigate to the Profile Phone Number page by clicking the Phone Number Edi
 });
 
 // Navigate to the Profile Address page
-test('Navigate to the Profile Address page by clicking the Address Edit button', async ({ page }) => {
+test('Navigate to the Profile Address page by clicking the Address Edit button @smoke', async ({ page }) => {
   console.log('Test Case: Navigate to the Profile Address page by clicking the Address Edit button');
   // Clicking the Address button
   await accountProfilePage.clickEditAddressButton();
@@ -47,7 +47,7 @@ test('Navigate to the Profile Address page by clicking the Address Edit button',
 });
 
 // Navigate to the Profile Email page
-test('Navigate to the Profile Email Address page by clicking the Email Address Edit button', async ({ page }) => {
+test('Navigate to the Profile Email Address page by clicking the Email Address Edit button @smoke', async ({ page }) => {
   console.log('Test Case: Navigate to the Profile Email Address page by clicking the Email Address Edit button');
   // Clicking the Email button
   await accountProfilePage.clickEditEmailButton();
