@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { BusinessCard } from '../../page-objects/associate-office/business-card.page';
+import { BusinessCard } from '../../page-objects/associate/associate-office-business-card.page';
 
 // create instance of Page
 let businessCard: BusinessCard;
@@ -10,11 +10,11 @@ test.beforeEach(async ({ page }) => {
   await businessCard.navigateToBusinessCardPage();
 });
 
-test('SC-xxxx - The Business Card page functionality', async ({ page }) => {
+test('The Business Card page Load', async ({ page }) => {
   await businessCard.assertBusinessCardPageContentHasLoaded();
 });
 
-test('SC-1290 - Verify First Name, Last Name, Phone Number and Website Fields are displaying', async ({ page }) => {
+test('Verify First Name, Last Name, Phone Number and Website Fields are displaying', async ({ page }) => {
   await businessCard.assertBusinessCardPageContentHasLoaded();
   await businessCard.assertBusinessCardPageFirstNameIsDisplayed();
   await businessCard.assertBusinessCardPageLastNameIsDisplayed();

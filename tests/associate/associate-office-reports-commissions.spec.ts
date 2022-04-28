@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { ReportsCommissionsPage } from '../../page-objects/associate-office/reports-commissions.page';
+import { ReportsCommissionsPage } from '../../page-objects/associate/associate-office-reports-commissions.page';
 
 // create instance of Page
 let reportsCommissionsPage: ReportsCommissionsPage;
@@ -10,16 +10,12 @@ test.beforeEach(async ({ page }) => {
   await reportsCommissionsPage.navigateToReportsCommissionsPage();
 });
 
-test('SC-xxxx - The Revenue Report Statements functionality:', async ({ page }) => {
-  await reportsCommissionsPage.assertReportsReportsCommissionsPageShow();
-});
-
-test('SC-1276 - Add tab for Revenue Report', async ({ page }) => {
+test('Add tab for Revenue Report', async ({ page }) => {
   await reportsCommissionsPage.assertReportsReportsCommissionsPageShow();
   await reportsCommissionsPage.assertTabFastStartStatementIsDisplayed();
 });
 
-test('SC-1277 - Create Revenue Report Statement Selection List', async ({ page }) => {
+test('Create Revenue Report Statement Selection List', async ({ page }) => {
   await reportsCommissionsPage.assertSearchDatesIsDisplayed();
   await reportsCommissionsPage.clickOnSearchDates();
   await reportsCommissionsPage.selectDateFromSearchDates('2021', 'July');
