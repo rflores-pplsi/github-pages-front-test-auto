@@ -1,6 +1,5 @@
-import { ChannelsHeaderPage } from './reports-commissions.page';
+import { LoginPage } from '../login/login.page';
 import UrlsUtils from '../../utils/urls.utils';
-import { expect, Locator, Page } from '@playwright/test';
 import { associateAdvantagePlus } from '../../utils/user.utils';
 // ========================== Selectors ==================================
 const lblTitleMarketingWebsitePreferences: string = 'h1.lsux-heading.lsux-heading--t28';
@@ -15,7 +14,7 @@ const chkDisplayOnWebsite: string = 'label.lsux-cb-container';
  * @class BusinessCard
  * @extends {ChannelsHeaderPage}
  */
-export class BusinessCard extends ChannelsHeaderPage {
+export class BusinessCard extends LoginPage {
   // ========================== Process Methods ============================
   // ========================== Navigate Methods ===========================
   navigateToBusinessCardPage = async (): Promise<void> => {
