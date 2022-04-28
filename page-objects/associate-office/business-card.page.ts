@@ -24,7 +24,6 @@ export class BusinessCard extends ChannelsHeaderPage {
     await this.goTo(UrlsUtils.channelsUrls.businesscard.url);
     await this.login(associateAdvantagePlus.username, associateAdvantagePlus.password);
     await this.page.waitForSelector(lblTitleMarketingWebsitePreferences);
-    await this.page.waitForLoadState('networkidle');
   };
   // ========================== Click Methods ==============================
   // ========================== Assertion Methods ==========================

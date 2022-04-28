@@ -1,4 +1,5 @@
-import { ChannelsHeaderPage } from './reports-commissions.page';
+import { LoginPage } from '../login/login.page';
+import { associateAdvantagePlus } from '../../utils/user.utils';
 import UrlsUtils from '../../utils/urls.utils';
 import { expect, Locator, Page, test } from '@playwright/test';
 import { matchers } from 'expect-playwright';
@@ -31,7 +32,7 @@ const lblAdvancedCommission: string =
  * @class ReportsCommissionsPage
  * @extends {ChannelsHeaderPage}
  */
-export class ReportsCommissionsPage extends ChannelsHeaderPage {
+export class ReportsBusinessOrganizationalPage extends LoginPage {
   // ========================== Process Methods ============================
   /**
    * pick month and year from date picker
@@ -40,7 +41,7 @@ export class ReportsCommissionsPage extends ChannelsHeaderPage {
    * @memberof ReportsCommissionsPage
    */
   selectDateFromSearchDates = async (year: string, month: string): Promise<void> => {
-    console.log(' - ReportsCommissionsPage.selectDateFromSearchDates');
+    console.log(' - ReportsBusinessOrganizationalPage.selectDateFromSearchDates');
     await this.selectFromDropDownMenu(dtpMonth, month);
     await this.selectFromDropDownMenu(dtpYear, year);
   };
@@ -50,54 +51,52 @@ export class ReportsCommissionsPage extends ChannelsHeaderPage {
    * @memberof ReportsCommissionsPage
    */
   selectCountry = async (country: string): Promise<void> => {
-    console.log(' - ReportsCommissionsPage.selectCountry');
+    console.log(' - ReportsBusinessOrganizationalPage.selectCountry');
     await this.selectFromDropDownMenu(cboCountry, country);
   };
   // ========================== Navigate Methods ===========================
   navigateToReportsBusinessOrganizationalPage = async (): Promise<void> => {
-    console.log(' - ReportsCommissionsPage.navigateToReportsBusinessOrganizationalPage');
+    console.log(' - ReportsBusinessOrganizationalPage.navigateToReportsBusinessOrganizationalPage');
     // Navigate to Business Organizational Page
-    await this.navigateToPage(UrlsUtils.channelsUrls.reportsbusinessorganizational.url);
+    await this.goTo(UrlsUtils.channelsUrls.reportsbusinessorganizational.url);
+    await this.login(associateAdvantagePlus.username, associateAdvantagePlus.password);
+    await this.page.waitForSelector(txtBoxSearch);
   };
-  navigateToReportsCommissionsPage = async (): Promise<void> => {
-    console.log(' - ReportsCommissionsPage.navigateToReportsCommissionsPage');
-    // Navigate to Business Report Commission Page
-    await this.navigateToPage(UrlsUtils.channelsUrls.reportscommissions.url);
-  };
+
   // ========================== Click Methods ==============================
   clickTxtBoxSearch = async (): Promise<void> => {
     // Click on text box for search
-    console.log(' - ReportsCommissionsPage.clicktxtBoxSearch');
+    console.log(' - ReportsBusinessOrganizationalPage.clicktxtBoxSearch');
     await this.page.click(txtBoxSearch);
   };
   clickSearchResult = async (): Promise<void> => {
     // Click on a search result
-    console.log(' - ReportsCommissionsPage.clickSearchResult');
+    console.log(' - ReportsBusinessOrganizationalPage.clickSearchResult');
     await this.page.click(txaSearchResult);
   };
   clickOnSearchDates = async (): Promise<void> => {
     // Click on data picker
-    console.log(' - ReportsCommissionsPage.clickOnSearchDates');
+    console.log(' - ReportsBusinessOrganizationalPage.clickOnSearchDates');
     await this.page.click(dtpSearchDates);
   };
   clickOnCalendarDate = async (): Promise<void> => {
     // Click  on Calendar
-    console.log(' - ReportsCommissionsPage.clickOnCalendarDate');
+    console.log(' - ReportsBusinessOrganizationalPage.clickOnCalendarDate');
     await this.page.click(dtpCalendar);
   };
   clickOnSearchDatesYear = async (): Promise<void> => {
     // Click on year combo
-    console.log(' - ReportsCommissionsPage.clickOnSearchDatesYear');
+    console.log(' - ReportsBusinessOrganizationalPage.clickOnSearchDatesYear');
     await this.page.click(dtpYear);
   };
   clickOnSearchDatesMonth = async (): Promise<void> => {
     // Click on month combo
-    console.log(' - ReportsCommissionsPage.clickOnSearchDatesMonth');
+    console.log(' - ReportsBusinessOrganizationalPage.clickOnSearchDatesMonth');
     await this.page.click(dtpMonth);
   };
   clickOnSearchDatesDay5 = async (): Promise<void> => {
     // Click on day 5 from calendar
-    console.log(' - ReportsCommissionsPage.clickOnSearchDatesDay');
+    console.log(' - ReportsBusinessOrganizationalPage.clickOnSearchDatesDay');
     await this.assertElementIsEnabled(dtpDay5th);
     const locator = this.page.locator("(//div[contains(@class,'react-datepicker__day--005')])[1]");
     await expect(locator).toBeEnabled();
@@ -105,7 +104,7 @@ export class ReportsCommissionsPage extends ChannelsHeaderPage {
   };
   clickOnSearchButton = async (): Promise<void> => {
     // Click on Search button
-    console.log(' - ReportsCommissionsPage.clickOnSearchButton');
+    console.log(' - ReportsBusinessOrganizationalPage.clickOnSearchButton');
     await this.page.click(btnSearch);
   };
   // ========================== Fill Methods ===============================
@@ -114,63 +113,53 @@ export class ReportsCommissionsPage extends ChannelsHeaderPage {
    * @memberof ReportsCommissionsPage
    */
   fillTxtBoxSearch = async (txt: string): Promise<void> => {
-    await this.page.click(txtBoxSearch);
     await this.page.fill(txtBoxSearch, txt);
   };
   // ========================== Assertion Methods ==========================
   assertReportsBusinessOrganizationalPageShow = async (): Promise<void> => {
-    console.log(' - ReportsCommissionsPage.assertReportsBusinessOrganizationalPageShow');
-    await this.page.waitForSelector(txtBoxSearch);
+    console.log(' - ReportsBusinessOrganizationalPage.assertReportsBusinessOrganizationalPageShow');
     await this.assertElementIsVisible(txtBoxSearch);
   };
   assertReportsReportsCommissionsPageShow = async (): Promise<void> => {
-    console.log(' - ReportsCommissionsPage.assertReportsReportsCommissionsPageShow');
-    await this.page.waitForSelector(lblAssociateNumber);
+    console.log(' - ReportsBusinessOrganizationalPage.assertReportsReportsCommissionsPageShow');
     await this.assertElementIsVisible(lblAssociateNumber);
   };
   assertPageTitle = async (): Promise<void> => {
-    console.log(' - ReportsCommissionsPage.assertPageTitle');
+    console.log(' - ReportsBusinessOrganizationalPage.assertPageTitle');
     const strTitle = 'Organizational Business Report';
     await this.page.waitForSelector(txtBoxSearch);
     //expect.stringMatching( strTitle.match(this.page.title.toString()) );
   };
   assertBreadcrumbLinkIsDisplayed = async (): Promise<void> => {
-    console.log(' - ReportsCommissionsPage.assertBreadcrumbLinkIsDisplayed');
-    await this.page.waitForSelector(txtBoxSearch);
+    console.log(' - ReportsBusinessOrganizationalPage.assertBreadcrumbLinkIsDisplayed');
     await this.assertElementIsVisible(organizationalBusinessReportBreadcrumb);
   };
   assertOrganizationalBusinessReportTaIsDisplayed = async (): Promise<void> => {
-    console.log(' - ReportsCommissionsPage.assertOrganizationalBusinessReportTaIsDisplayed');
-    await this.page.waitForSelector(txtBoxSearch);
+    console.log(' - ReportsBusinessOrganizationalPage.assertOrganizationalBusinessReportTaIsDisplayed');
     await this.assertElementIsVisible(organizationalBusinessReportTabDisplayed);
   };
   assertTxaAssociateNumberIsDisplayed = async (): Promise<void> => {
-    console.log(' - ReportsCommissionsPage.assertTxaAssociateNumberIsDisplayed');
-    await this.page.waitForSelector(txaAssociateNumber);
+    console.log(' - ReportsBusinessOrganizationalPage.assertTxaAssociateNumberIsDisplayed');
     await this.assertElementIsVisible(txaAssociateNumber);
   };
   assertTabPersonalBusinessReportIsDisplayed = async (): Promise<void> => {
-    console.log(' - ReportsCommissionsPage.assertTabPersonalBusinessReportIsDisplayed');
-    await this.page.waitForSelector(txaPersonal);
+    console.log(' - ReportsCoReportsBusinessOrganizationalPagemmissionsPage.assertTabPersonalBusinessReportIsDisplayed');
     await this.assertElementIsVisible(txaPersonal);
   };
   assertTabFastStartStatementIsDisplayed = async (): Promise<void> => {
-    console.log(' - ReportsCommissionsPage.assertTabPersonalBusinessReportIsDisplayed');
-    await this.page.waitForSelector(tabFastStartStatement);
+    console.log(' - ReportsBusinessOrganizationalPage.assertTabPersonalBusinessReportIsDisplayed');
     await this.assertElementIsVisible(tabFastStartStatement);
   };
   assertSearchDatesIsDisplayed = async (): Promise<void> => {
-    console.log(' - ReportsCommissionsPage.assertSearchDatesIsDisplayed');
-    await this.page.waitForSelector(dtpSearchDates);
+    console.log(' - ReportsBusinessOrganizationalPage.assertSearchDatesIsDisplayed');
     await this.assertElementIsVisible(dtpSearchDates);
   };
   assertComboCountryIsEnable = async (): Promise<void> => {
-    console.log(' - ReportsCommissionsPage.assertComboCountryIsEnable');
+    console.log(' - ReportsBusinessOrganizationalPage.assertComboCountryIsEnable');
     await this.assertElementIsEnabled(cboCountry);
   };
   assertAdvancedCommissionIsDisplayed = async (): Promise<void> => {
-    console.log(' - ReportsCommissionsPage.assertAdvancedCommissionIsDisplayed');
-    await this.page.waitForSelector(lblAdvancedCommission);
+    console.log(' - ReportsBusinessOrganizationalPage.assertAdvancedCommissionIsDisplayed');
     await this.assertElementIsVisible(lblAdvancedCommission);
   };
 }
