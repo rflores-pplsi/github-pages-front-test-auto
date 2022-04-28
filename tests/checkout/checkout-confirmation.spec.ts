@@ -130,14 +130,14 @@ for (const state of RegionsUtils.usStates.filter((state) => state.abbrv == 'NY' 
     await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName(planName);
   });
 }
-test.only('Self-Pay (IDShield Individual) using Planalyzer and Bank Draft', async ({ page }) => {
+test('Self-Pay (IDShield Individual) using Planalyzer and Bank Draft', async ({ page }) => {
   test.slow();
   await checkoutConfirmationPage.navigateToCheckoutConfirmationPageUsingPlanalyzer('Virginia', 'BD');
   await checkoutConfirmationPage.assertWelcomeToLegalshiledFamilyPage();
   await checkoutConfirmationPage.assertOrderSummaryPlanLabelConfirmationPage('Legal Plan');
   await checkoutConfirmationPage.assertOrderSummaryPlanPriceConfirmationPage();
 });
-test.only('Self-Pay (IDShield Individual) using Planalyzer and Credit Card', async ({ page }) => {
+test('Self-Pay (IDShield Individual) using Planalyzer and Credit Card', async ({ page }) => {
   test.slow();
   await checkoutConfirmationPage.navigateToCheckoutConfirmationPageUsingPlanalyzer('Virginia', 'CC');
   await checkoutConfirmationPage.assertWelcomeToLegalshiledFamilyPage();
@@ -352,7 +352,7 @@ for (const state of RegionsUtils.usStates.filter((state) => state.abbrv == 'NY' 
   const payFrequency = 'Monthly';
   const planCost = '$29.95';
   const totalCost = '$29.95';
-  test.only(`${groupPayConfig} (${planName}) - ${state.name}`, async ({ page }) => {
+  test(`${groupPayConfig} (${planName}) - ${state.name}`, async ({ page }) => {
     console.log(`Test Case: ${groupPayConfig} (${planName}) - ${state.name}`);
     await checkoutConfirmationPage.navigateToPersonalInfoPageSinglePlan(
       basicUser.email,
