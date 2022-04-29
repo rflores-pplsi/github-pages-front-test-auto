@@ -48,6 +48,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   navigateFromPaymentBankDraftPageToConfirmationPage = async (): Promise<void> => {
     await this.clickBankDraftBtn();
     await this.fillBankDraftForm();
+    await this.page.waitForSelector(conMembershipWrapper, { timeout: 50000 });
   };
 
   navigateFromPaymentAgreementPageToConfirmationPage = async (): Promise<void> => {
@@ -120,9 +121,19 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
     await this.assertElementIsVisible(ele);
   };
 
-  assertLegalShieldMembershipIsDisplayed = async () => {
+  /**
+   * @param {string} planType
+   * @memberof CheckoutConfirmationPage
+   */
+  assertLegalShieldMembershipIsDisplayed = async (planType: string) => {
     console.log(' - checkoutConfirmationPage.assertLegalShieldMembershipIsDisplayed');
-    const ele = '//h2[contains(@class,"membership-title") and contains (.,"LegalShield Membership")]';
+    const ele = `//h2[contains(@class,"membership-title") and contains (.,"${planType} Membership")]`;
+    await this.assertElementIsVisible(ele);
+  };
+
+  assertMembershipTileIsDisplayed = async (planType: string) => {
+    console.log(' - checkoutConfirmationPage.assertMembershipTileIsDisplayed');
+    const ele = `//h2[contains(@class,"membership-title") and contains (.,"${planType} Membership")]`;
     await this.assertElementIsVisible(ele);
   };
 
