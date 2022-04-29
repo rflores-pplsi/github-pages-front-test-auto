@@ -8,6 +8,8 @@ const txtSearch = '[placeholder="Search"]';
 const btnSearchGroup = '#root div:nth-child(2) > div > form > button > span';
 const btnEdit = '#root  div > div > div.group-item-controls > div:nth-child(3) > a > span';
 const btnCopyLink = '.lsux-grid > div > div > div:nth-child(4) > div > div > form > div:nth-child(1) > div > button > span';
+const tabSmallBusiness = '#root > div > nav > div > div > ul > li:nth-child(1) > a';
+const txtDisclaimer = '#root > div > footer > div > div.rightWrapper > div > p';
 
 /**
  * @export
@@ -42,4 +44,11 @@ export class GroupEnrollmentSearchPage extends OktaPage {
   };
   // ========================== Click Methods ==============================
   // ========================== Assertion Methods ==========================
+
+  assertGroupEnrollmentSearchPageSmallBusinessTab = async (): Promise<void> => {
+    console.log(' - GroupEnrollmentSearchPage.assertGroupEnrollmentSearchPagePageSmallBusinessTab');
+    await this.page.waitForSelector(txtDisclaimer);
+    // Verify that Small Business tab is displayed for Newity group
+    await this.assertElementIsVisible(tabSmallBusiness);
+  };
 }
