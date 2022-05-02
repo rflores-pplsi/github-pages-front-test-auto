@@ -12,7 +12,7 @@ test.beforeEach(async ({ page }) => {
 test('Payments page header is displayed', async ({ page }) => {
   await checkoutPaymentsPage.assertAccoutPaymentsPage();
 });
-test.only('Payments page Terms of Service Link is Clickable', async ({ page }) => {
+test('Payments page Terms of Service Link is Clickable', async ({ page }) => {
   await checkoutPaymentsPage.clickTermsOfServiceLnk();
   await checkoutPaymentsPage.assertTermsOfServiceNewTab();
 });
