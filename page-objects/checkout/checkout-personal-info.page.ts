@@ -17,7 +17,6 @@ const txtRegion: string = '//span[contains(@class, "contact-region")]';
 const lnkChangeState: string = 'a:has-text("Change")';
 const imgStateChangeInformationIcon: string = '[alt="info"';
 const txaStageChangeToolTip: string = '//div[contains(@class,"info-tooltip-text")]';
-
 // ========================== Support Card Selectors ======================
 const conSupportInfo: string = '//div[contains(@class, "support-card-container")]';
 const btnCallSupport: string = 'button:has-text("Call (833)-951-2754")';
@@ -29,11 +28,11 @@ const txtBirthYear: string = '[name="dobYear"]';
 const txtSocialSecurityNumber: string = '[placeholder="Last 4 SSN or SIN"]';
 
 // ========================== Business Info Selectors ======================
-const txtBusinessName: string = '[placeholder="Last 4 SSN or SIN"]';
-const txtIncorporationMonth: string = '[placeholder="Business Name"]';
-const txtIncorporationDay: string = '[placeholder="Last 4 SSN or SIN"]';
-const txtIncorporationYear: string = '[placeholder="Last 4 SSN or SIN"]';
-const txtTaxId: string = '[placeholder="EIN / TIN"]';
+const txtBusinessName: string = '[name="businessName"]';
+const txtIncorporationMonth: string = '[name="doiMonth"]';
+const txtIncorporationDay: string = '[name="doiDay"]';
+const txtIncorporationYear: string = '[name="doiYear"]';
+const txtTaxId: string = '[name="taxId"]';
 
 /**
  * @export
@@ -104,6 +103,14 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     await this.enterHomeAddress(homeAddress);
     await this.enterCity(city);
     await this.enterPostalCode(postalCode);
+  };
+
+  completeBusinessInfoForm = async (): Promise<void> => {
+    await this.enterBusinessName('test business');
+    await this.enterIncorporationMonth('01');
+    await this.enterIncorporationDay('01');
+    await this.enterIncorporationYear('2020');
+    await this.enterTaxId('123456789');
   };
 
   /**

@@ -38,6 +38,7 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
    */
   captureOrderSummary = async (groupPayConfig: string): Promise<void> => {
     console.log(' - checkoutOrderSummaryComponent.createOrderSummary');
+    await this.page.waitForSelector(txtPayPeriodTotalAmount);
     await this.page.waitForLoadState('networkidle');
     const numberOfRows = (await this.page.$$('div.order-summary  div.content-row div.pl-0 p')).length;
     for (let i: number = 0; i < numberOfRows; i++) {
@@ -136,6 +137,10 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
    */
   assertPlanNameAndCost = async (expectedPlanName: string, expectedPlanCost: string): Promise<void> => {
     console.log(' - checkoutOrderSummaryComponent.assertPlanNameAndCost');
+    if (expectedPlanName.includes('-')) {
+      const splitString = expectedPlanName.split(' - ');
+      expectedPlanName = splitString[0];
+    }
     let found: boolean = false;
     orderSummary.orderSummaryRows.forEach(async (row) => {
       const name = row.planName;

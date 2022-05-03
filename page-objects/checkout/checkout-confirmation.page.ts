@@ -143,6 +143,10 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
    */
   assertPlanNameDisplayedInConfirmationPageOrderSummary = async (planName: string) => {
     console.log(' - checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary');
+    if (planName.includes('-')) {
+      const splitString = planName.split(' - ');
+      planName = splitString[0];
+    }
     const ele = `//div[contains(@class,"plan-details-card") and contains(.,"${planName}")]`;
     await this.page.waitForSelector(conMembershipWrapper, { timeout: 50000 });
     await this.assertElementIsVisible(ele);
@@ -154,6 +158,10 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
    */
   assertPlanCostIsNotDisplayedInConfirmationPageOrderSummaryForPlanName = async (planName: string) => {
     console.log(' - checkoutConfirmationPage.assertPlanCostIsNotDisplayedInConfirmationPageOrderSummaryForPlanName');
+    if (planName.includes('-')) {
+      const splitString = planName.split(' - ');
+      planName = splitString[0];
+    }
     const ele = `//div[contains(@class,"plan-details-card") and contains(.,"${planName}")]//h3[contains(@class,"plan-price")]`;
     await this.assertElementIsHidden(ele);
   };
@@ -180,6 +188,10 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
    */
   assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName = async (planName: string) => {
     console.log(' - checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName ');
+    if (planName.includes('-')) {
+      const splitString = planName.split(' - ');
+      planName = splitString[0];
+    }
     const ele = `//div[contains(@class,"plan-details-card") and contains(.,"${planName}")]//h3[contains(@class,"plan-price")]`;
     await this.assertElementIsVisible(ele);
   };

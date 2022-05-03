@@ -67,7 +67,10 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
    * @param {string} groupPayConfig
    * @memberof CheckoutPaymentsBankDraftPage
    */
-  navigateFromPersonalInfoPageToPaymentPage = async (groupPayConfig: string): Promise<void> => {
+  navigateFromPersonalInfoPageToPaymentPage = async (groupPayConfig: string, planName: string): Promise<void> => {
+    if (planName.includes('Business')) {
+      await this.completeBusinessInfoForm();
+    }
     await this.clickSaveAndContinueButton();
     await this.captureOrderSummary(groupPayConfig);
   };

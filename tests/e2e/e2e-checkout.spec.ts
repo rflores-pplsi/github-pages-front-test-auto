@@ -2,7 +2,7 @@ import { test } from '@playwright/test';
 import { CheckoutConfirmationPage } from '../../page-objects/checkout/checkout-confirmation.page';
 import RegionsUtils from '../../utils/regions.utils';
 import { basicUser } from '../../utils/user.utils';
-import testCases from '../../data/e2e2-checkout-group-self-pay.json';
+import testCases from '../e2e/data/e2e2-checkout-group-self-pay.json';
 
 // create instance of Page
 let checkoutConfirmationPage: CheckoutConfirmationPage;
@@ -14,9 +14,44 @@ test.beforeEach(async ({ page }) => {
   test.slow();
 });
 
-for (const tc of testCases) {
+// Self-Pay Non-Small Business Plans
+for (const tc of testCases.filter((tc) => tc.run == true)) {
   for (const state of RegionsUtils.usStates.filter((state) => state.abbrv == 'NY' && state.priority == true)) {
     test.only(`${tc.testCaseName} ${tc.groupPayConfig} (${tc.planName}) - ${state.name}`, async ({ page }) => {
+      console.log(`Test Case: ${tc.testCaseName} - ${state.name}`);
+      await checkoutConfirmationPage.navigateToPersonalInfoPageSinglePlan(
+        basicUser.email,
+        basicUser.password,
+        tc.groupNumber,
+        tc.groupPayConfig,
+        state.name,
+        tc.payFrequency,
+        tc.planName,
+        state.validAddress.street,
+        state.validAddress.city,
+        state.validAddress.postalCode
+      );
+      // Personal Info Assertions
+      await checkoutConfirmationPage.assertPlanNameAndCost(tc.planName, tc.planCost);
+      await checkoutConfirmationPage.assertPayPeriodTotal(tc.totalCost);
+      await checkoutConfirmationPage.navigateFromPersonalInfoPageToPaymentPage(tc.groupPayConfig, tc.planName);
+      // Payment Assertions
+      await checkoutConfirmationPage.assertPlanNameAndCost(tc.planName, tc.planCost);
+      await checkoutConfirmationPage.assertPayPeriodTotal(tc.totalCost);
+      await checkoutConfirmationPage.navigateFromPaymentBankDraftPageToConfirmationPage();
+      // Confirmation Assertions
+      await checkoutConfirmationPage.assertMembershipTileIsDisplayed(tc.planType);
+      await checkoutConfirmationPage.assertNoMemberNumbersAreDisplayed();
+      await checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary(tc.planName);
+      await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName(tc.planName);
+    });
+  }
+}
+
+// Self-Pay Small Business Plans
+for (const tc of testCases.filter((tc) => tc.run == true)) {
+  for (const state of RegionsUtils.usStates.filter((state) => state.abbrv == 'NY' && state.priority == true)) {
+    test(`${tc.testCaseName} ${tc.groupPayConfig} (${tc.planName}) - ${state.name}`, async ({ page }) => {
       console.log(`Test Case: ${tc.testCaseName} - ${state.name}`);
       await checkoutConfirmationPage.navigateToPersonalInfoPageSinglePlan(
         basicUser.email,
