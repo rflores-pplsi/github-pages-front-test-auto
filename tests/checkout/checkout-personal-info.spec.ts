@@ -12,7 +12,7 @@ test.beforeEach(async ({ page }) => {
   checkoutPersonalInfoPage = new CheckoutPersonalInfoPage(page);
 });
 
-test.only('Verify Personal Information Section Header Displays', async ({ page }) => {
+test('Verify Personal Information Section Header Displays', async ({ page }) => {
   console.log('Test Case: Verify Personal Information Section Header Displays');
   await checkoutPersonalInfoPage.navigateToPersonalInfoPageFromPlanalyzer();
   await checkoutPersonalInfoPage.assertPersonalInfoHeaderIsDisplayed();
