@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import EnvironmentUtil from './env.utils';
 require('dotenv').config();
 

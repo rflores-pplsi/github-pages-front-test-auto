@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { Locator, Page } from '@playwright/test';
 import { retryAsync } from 'ts-retry';
 
