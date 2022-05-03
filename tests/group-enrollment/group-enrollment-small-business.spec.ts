@@ -37,3 +37,13 @@ test('Verify functionality on the small business page - App Store link connected
   // Confirm App store url displays
   await groupEnrollmentSmallBusinessPage.assertAppStoreUrl();
 });
+
+test('Verify functionality on the small business page - Back to top button takes users to top of page', async ({ page }) => {
+  console.log('Test Case: Verify functionality on the small business page - Back to top button takes users to top of page');
+  // Navigate to the small business page
+  await groupEnrollmentSmallBusinessPage.navigateToGroupEnrollmentSmallBusinessPage();
+  // Click on Back to top button
+  await groupEnrollmentSmallBusinessPage.clickBtnBackToTop();
+  // Confirm top of page is displayed
+  await groupEnrollmentSmallBusinessPage.assertGroupEnrollmentSearchPageSmallBusinessTab();
+});

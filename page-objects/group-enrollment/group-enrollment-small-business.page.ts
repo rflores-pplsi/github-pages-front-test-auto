@@ -20,6 +20,7 @@ const btnSearchLawFirm = 'button:nth-child(4)';
 const txtLawResults = '[class="header"]';
 const txtLawFirmName = '.results > p:nth-child(2)';
 const lnkAppStore = '.lsux-grid.container a:nth-child(1) > img';
+const btnBackToTop = 'main > div > div > button > span';
 
 /**
  * @export
@@ -100,6 +101,12 @@ export class GroupEnrollmentSmallBusinessPage extends OktaPage {
     console.log(' - groupEnrollmentSearchPage.clickAppStoreLink');
     // Click on AppStore link
     await this.page.click(lnkAppStore);
+  };
+
+  clickBtnBackToTop = async (): Promise<void> => {
+    console.log(' - groupEnrollmentSearchPage.clickAppStoreLink');
+    // Click on Back to top button
+    await this.page.click(btnBackToTop);
   };
 
   // ========================== Assertion Methods ==========================
