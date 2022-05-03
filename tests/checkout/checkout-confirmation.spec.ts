@@ -1,5 +1,4 @@
 import { test } from '@playwright/test';
-import { check } from 'prettier';
 import { CheckoutConfirmationPage } from '../../page-objects/checkout/checkout-confirmation.page';
 import RegionsUtils from '../../utils/regions.utils';
 import { basicUser } from '../../utils/user.utils';
@@ -15,9 +14,18 @@ test.beforeEach(async ({ page }) => {
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
 
-test.skip('Welcome to Legal Shield Family Header is displayed', async ({ page }) => {
+test.only('Self-Pay (IDShield Individual) using Planalyzer and Bank Draft', async ({ page }) => {
+  test.slow();
+  await checkoutConfirmationPage.navigateToCheckoutConfirmationPageUsingPlanalyzer('Virginia', 'BD');
   await checkoutConfirmationPage.assertWelcomeToLegalshiledFamilyPage();
-  await checkoutConfirmationPage.assertOrderSummaryPlanLabelConfirmationPage('IDShield Individual');
+  await checkoutConfirmationPage.assertOrderSummaryPlanLabelConfirmationPage('Legal Plan');
+  await checkoutConfirmationPage.assertOrderSummaryPlanPriceConfirmationPage();
+});
+test.only('Self-Pay (IDShield Individual) using Planalyzer and Credit Card', async ({ page }) => {
+  test.slow();
+  await checkoutConfirmationPage.navigateToCheckoutConfirmationPageUsingPlanalyzer('Virginia', 'CC');
+  await checkoutConfirmationPage.assertWelcomeToLegalshiledFamilyPage();
+  await checkoutConfirmationPage.assertOrderSummaryPlanLabelConfirmationPage('Legal Plan');
   await checkoutConfirmationPage.assertOrderSummaryPlanPriceConfirmationPage();
 });
 

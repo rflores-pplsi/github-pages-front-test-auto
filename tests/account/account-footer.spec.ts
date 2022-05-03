@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { test } from '@playwright/test';
 import { basicUser } from '../../utils/user.utils';
 import { AccountFooterPage } from '../../page-objects/account/account-footer.page';

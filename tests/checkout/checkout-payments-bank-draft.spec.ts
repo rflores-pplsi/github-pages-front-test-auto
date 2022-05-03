@@ -6,12 +6,12 @@ test.beforeEach(async ({ page }) => {
   test.slow();
 
   checkoutPaymentsBankDraftPage = new CheckoutPaymentsBankDraftPage(page);
-  await checkoutPaymentsBankDraftPage.navigateToPaymentsPage('Virginia');
+  await checkoutPaymentsBankDraftPage.navigateToPaymentsBankDraftPage('Virginia');
 });
 
 test('Payments page header is displayed', async ({ page }) => {
-  test.slow(); // Easy way to triple the default timeout
   console.log(page.title);
   await checkoutPaymentsBankDraftPage.fillBankDraftForm();
+  test.slow(); // Easy way to triple the default timeout
   await checkoutPaymentsBankDraftPage.assertWelcomeToLegalshiledFamilyPage();
 });
