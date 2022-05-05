@@ -59,13 +59,13 @@ export class ShieldAtWorkMemberEnrollment extends LsWorkLoginPage {
   clickEnrollNewMember = async (): Promise<void> => {
     // Click on Enroll new member button
     console.log(' - navigateToShieldAtWorkMemberEnrollement.clickEnrollNewMember');
-    await this.page.click(btnEnrollNewMember);
+    await this.clickOnElement(btnEnrollNewMember);
   };
 
   clickContinueButtonContactInfo = async (): Promise<void> => {
     // Click on Continue button
     console.log(' - navigateToShieldAtWorkMemberEnrollement.clickContinueButtonContactInfo');
-    await this.page.click(btnContinueContactInfo);
+    await this.clickOnElement(btnContinueContactInfo);
   };
 
   // ========================== Assertion Methods ==========================

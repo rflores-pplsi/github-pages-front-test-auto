@@ -27,7 +27,7 @@ export class ShieldAtWorkAccountTab extends LsWorkLoginPage {
     // Type in the search field the group number
     await this.page.fill(txtSearch, '111452');
     // Click on search button
-    await this.page.click(btnSearch);
+    await this.clickOnElement(btnSearch);
     // Wait for the group name is displayed
     await this.page.waitForSelector(txtGroup);
   };
@@ -43,7 +43,7 @@ export class ShieldAtWorkAccountTab extends LsWorkLoginPage {
   clickViewGroup = async (): Promise<void> => {
     console.log(' - accountShieldAtWorkPage.verifyAccountInformation');
     // Click on View Group button
-    await this.page.click(btnViewGroup);
+    await this.clickOnElement(btnViewGroup);
     // await this.page.waitForSelector(txtAccountTab);
   };
 

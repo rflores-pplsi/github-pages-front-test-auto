@@ -19,9 +19,9 @@ export class LsWorkLoginPage extends LoginPage {
   // ========================== Process Methods ==========================
   loginWithCredentials = async (): Promise<void> => {
     console.log(' - accountShieldAtWorkPage.loginWithCredentials');
-    await this.page.fill(txtEmail, 'testy.g.tester@email.com');
-    await this.page.fill(txtPassword, 'Password10!');
-    await this.page.click(btnSignIn);
+    await this.page.fill(txtEmail, 'rossbrockhoff@pplsi.com');
+    await this.page.fill(txtPassword, 'Br0ck!Ro$$');
+    await this.clickOnElement(btnSignIn);
     await this.page.waitForTimeout(1000);
   };
 
