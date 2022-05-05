@@ -29,7 +29,7 @@ export class PlanalyzerCsrCheckoutPage extends OktaPage {
    * @param {Array<string>} plans
    * @memberof PlanalyzerCsrCheckoutPage
    */
-  createOrderRedirectToCheckout = async (
+  createOrderRedirectToCheckoutFromPlanalyzer = async (
     channel: string,
     subChannel: string,
     region: string,
@@ -38,7 +38,7 @@ export class PlanalyzerCsrCheckoutPage extends OktaPage {
     couponCode: string = '',
     plans: Array<string>
   ): Promise<void> => {
-    console.log(' - planalyzerCsrCheckoutPage.createLegalPlanOklahomaOrderRedirectToCheckout');
+    console.log(' - planalyzerCsrCheckoutPage.createOrderRedirectToCheckoutFromPlanalyzer');
     await this.selectEnvironment();
     await this.selectChannel(channel);
     await this.selectSubChannel(subChannel);
