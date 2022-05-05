@@ -1,0 +1,35 @@
+[
+  {
+    "testCaseName": "Partial Fringe (IDShield Individual)",
+    "groupPayConfig": "partial fringe",
+    "groupNumber": "nnidstest27 ",
+    "planName": "IDShield Individual",
+    "planType": "IDShield",
+    "payFrequency": "Monthly",
+    "planCost": "$12.95",
+    "totalCost": "$12.95",
+    "run": true
+  },
+  {
+    "testCaseName": "Partial Fringe (IDShield Family)",
+    "groupPayConfig": "partial fringe",
+    "groupNumber": "nnidstest27",
+    "planName": "IDShield Family",
+    "planType": "IDShield",
+    "payFrequency": "Monthly",
+    "planCost": "$22.95",
+    "totalCost": "$22.95",
+    "run": true
+  },
+  {
+    "testCaseName": "Partial Fringe (Legal Plan Family)",
+    "groupPayConfig": "partial fringe",
+    "groupNumber": "nnlegaltest31 ",
+    "planName": "Legal Plan Family",
+    "planType": "LegalShield",
+    "payFrequency": "Monthly",
+    "planCost": "$21.95",
+    "totalCost": "$21.95",
+    "run": true
+  }
+]

@@ -23,7 +23,7 @@ const config: PlaywrightTestConfig = {
     // { testMatch: ['tests/*.test.ts'] },
   ],
   reporter: [['dot'], ['json', { outputFile: 'test-result.json' }], ['html', { open: 'always' }]],
-  retries: 0,
+  retries: 1,
   // setting workers to '1' disables parallel running, workers can also be set at runtime in the command line
   workers: 1,
 };

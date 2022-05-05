@@ -37,8 +37,8 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
    * @memberof CheckoutOrderSummaryComponent
    */
   captureOrderSummary = async (groupPayConfig: string): Promise<void> => {
-    console.log(' - checkoutOrderSummaryComponent.createOrderSummary');
-    await this.page.waitForSelector(txtPayPeriodTotalAmount);
+    console.log(' - checkoutOrderSummaryComponent.captureOrderSummary');
+    await this.page.waitForSelector(lnkEditOrder);
     await this.page.waitForLoadState('networkidle');
     const numberOfRows = (await this.page.$$('div.order-summary  div.content-row div.pl-0 p')).length;
     for (let i: number = 0; i < numberOfRows; i++) {
@@ -57,7 +57,7 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
    * @memberof CheckoutOrderSummaryComponent
    */
   captureOrderSummaryRow = async (i: number = 0): Promise<OrderSummaryRow> => {
-    console.log(' - checkoutOrderSummaryComponent.createOrderSummaryRow');
+    console.log(' - checkoutOrderSummaryComponent.captureOrderSummaryRow');
     const planNameJsHandle = (await this.page.$$(txtPlanNames))[i].getProperty('innerText');
     const planNameText = await (await planNameJsHandle).jsonValue();
     const planCostJsHandle = (await this.page.$$(txtPlanCosts))[i].getProperty('innerText');
@@ -71,7 +71,7 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
    * @memberof CheckoutOrderSummaryComponent
    */
   captureOrderSummaryRowWithoutCost = async (i: number = 0): Promise<OrderSummaryRowWithoutCost> => {
-    console.log(' - checkoutOrderSummaryComponent.createOrderSummaryRow');
+    console.log(' - checkoutOrderSummaryComponent.captureOrderSummaryRowWithoutCost');
     const planNameJsHandle = (await this.page.$$(txtPlanNames))[i].getProperty('innerText');
     const planNameText = await (await planNameJsHandle).jsonValue();
     const planRow = new OrderSummaryRowWithoutCost(planNameText);
