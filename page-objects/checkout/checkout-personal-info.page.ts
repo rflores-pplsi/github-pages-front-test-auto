@@ -1,4 +1,5 @@
 import UrlsUtils from '../../utils/urls.utils';
+import { basicUser } from '../../utils/user.utils';
 import { CheckoutOrderSummaryComponent } from './checkout-order-summary.component';
 
 // ========================== Selectors ==================================
@@ -6,6 +7,8 @@ const btnSaveAndContinue: string = 'button:has-text("Save & Continue")';
 
 // ========================== Personal Info Selectors ====================
 const stpPersonalInfoCurrent: string = '//div[contains(@class,"step-circle--current") and contains(.,"2")]';
+const hdrPersonalInfoHeader: string = 'text = Tell us about yourself';
+
 const txtFirstName: string = '[name="firstName"]';
 const txtLastName: string = '[name="lastName"]';
 const txtPhoneNumber: string = '[name="phoneNumber"]';
@@ -426,7 +429,16 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     // Navigate to enroll page
     await this.page.goto(UrlsUtils.shieldBenefits.home.url + '/' + groupNumber + '/idshield');
   };
-
+  /**
+   * @param {string} navigateToPersonalInfoPageFromPlanalyzer
+   * @memberof CheckoutPersonalInfoPage
+   */
+  navigateToPersonalInfoPageFromPlanalyzer = async () => {
+    await this.navigateToPlanalyzerCsrCheckoutOktaLogin();
+    await this.loginThroughOkta();
+    await this.createOrderRedirectToCheckoutFromPlanalyzer('D2C', 'LegalShield', 'Colorado', 'en-US', '', '', ['Legal Plan']);
+    await this.login(basicUser.email, basicUser.password);
+  };
   // /**
   //  * @param {string} groupNumber
   //  * @memberof CheckoutPersonalInfoPage
@@ -503,5 +515,14 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   assertCallSupportButtonIsDisplayed = async (): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.assertCallSupportButtonIsDisplayed');
     await this.assertElementIsVisible(btnCallSupport);
+  };
+
+  /**
+   * @memberof CheckoutPersonalInfoPage
+   */
+  // Confirm that the Header displays: Tell us about you
+  assertPersonalInfoHeaderIsDisplayed = async (): Promise<void> => {
+    console.log(' - checkoutPersonalInfoPage.assertPersonalInfoHeaderIsDisplayed');
+    await this.assertElementIsVisible(hdrPersonalInfoHeader);
   };
 }

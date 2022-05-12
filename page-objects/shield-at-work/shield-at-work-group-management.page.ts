@@ -7,7 +7,6 @@ const url = urlsUtils.legalshieldUrls.shieldAtWork.url;
 const txtSearch = '[placeholder="Search by name or group number"]';
 const btnSearch = '[id="searchButton"]';
 const txtGroup = '#root  .lsux-container--flex-items-center.mb-2 > h3';
-
 /**
  * @export
  * @class ShieldAtWorkGroupManagement
@@ -20,7 +19,7 @@ export class ShieldAtWorkGroupManagement extends LsWorkLoginPage {
     // Type in the search field the group number
     await this.page.fill(txtSearch, '111452');
     // Click on search button
-    await this.page.click(btnSearch);
+    await this.clickOnElement(btnSearch);
     // Wait for the group name is displayed
     await this.page.waitForSelector(txtGroup);
   };

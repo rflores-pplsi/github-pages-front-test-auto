@@ -1,4 +1,4 @@
-import UrlsUtils from "../../utils/urls.utils";
+import UrlsUtils from '../../utils/urls.utils';
 import { oktaUser } from '../../utils/user.utils';
 import { LoginPage } from '../login/login.page';
 
@@ -35,6 +35,17 @@ export class OktaPage extends LoginPage {
     } else {
       throw new Error('Email or Password parameters are undefined');
     }
+  };
+  loginThroughOktaGroupEnrollment = async (): Promise<void> => {
+    console.log(' - OktaPage.oktaLoginGroupEnrollment');
+    // Enter email
+    await this.fillTextBox(txtEmailAddres, 'qatesting@legalshieldcorp.com ');
+    // Enter password into input
+    await this.fillTextBox(txtPassword, 'fJ733ye8qb&q');
+    // Click on Sign In to submit login form
+    await this.clickOnElement(btnSignIn);
+    // Wait for page to finish loading
+    await this.page.waitForLoadState('load');
   };
 
   // ========================== Navigate Methods ==========================
