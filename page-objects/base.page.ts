@@ -63,6 +63,14 @@ export class BasePage {
 
   /**
    * @param {string} ele
+   * @memberof BasePage
+   */
+  clearTextBox = async (ele: string): Promise<void> => {
+    await this.page.fill(ele, '');
+  };
+
+  /**
+   * @param {string} ele
    * @param {string} txt
    * @memberof BasePage
    */
