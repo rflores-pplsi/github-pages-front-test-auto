@@ -290,8 +290,8 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   /**
    * @memberof CheckoutPersonalInfoPage
    */
-  clearAllFieldsOnPersonalInfoPage = async (): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.clearAllFieldsOnPersonalInfoPage');
+  clearAllFieldsOnPersonalInfoPageAndSave = async (): Promise<void> => {
+    console.log(' - checkoutPersonalInfoPage.clearAllFieldsOnPersonalInfoPageAndSave');
     await this.clearTextBox(txtFirstName);
     await this.clearTextBox(txtLastName);
     await this.clearTextBox(txtPhoneNumber);
