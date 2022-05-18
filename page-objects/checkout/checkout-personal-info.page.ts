@@ -1,6 +1,7 @@
 import UrlsUtils from '../../utils/urls.utils';
 import { basicUser } from '../../utils/user.utils';
 import { CheckoutOrderSummaryComponent } from './checkout-order-summary.component';
+import RegionsUtils from '../../utils/regions.utils';
 
 // ========================== Selectors ==================================
 const btnSaveAndContinue: string = '[type=submit]';
@@ -34,6 +35,12 @@ const conSupportInfo: string = '//div[contains(@class, "support-card-container")
 const btnCallSupport: string = 'button:has-text("Call (833)-951-2754")';
 
 // ========================== Security Info Selectors ======================
+const msgBirthMonthValidation: string = 'text = Please enter a valid date in the MM/DD/YYYY format';
+const msgBirthDayValidation: string = 'text = Please enter a valid date in the MM/DD/YYYY format';
+// const msgBirthYearValidation: string = 'text = Please enter a valid date in the MM/DD/YYYY format';
+const msgBirthMonthDayYearValidation: string = 'text = Must provide date of birth';
+const msgSocialSecurityValidation: string = 'text = Must provide SSN or SIN';
+
 const txtBirthMonth: string = '[name="dobMonth"]';
 const txtBirthDay: string = '[name="dobDay"]';
 const txtBirthYear: string = '[name="dobYear"]';
@@ -302,6 +309,24 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     await this.clickSaveAndContinueButton();
   };
 
+  /**
+   * @memberof CheckoutPersonalInfoPageSecurityInfo
+   */
+  clearAllFieldsInSecurityInfoSectionPersonalInfoPage = async (): Promise<void> => {
+    console.log(' - checkoutPersonalInfoPage.clearAllFieldsInSecurityInfoSectionPersonalInfoPage');
+    await this.page.pause();
+    await this.clearTextBox(txtBirthMonth);
+    await this.page.pause();
+    await this.clearTextBox(txtBirthDay);
+    await this.page.pause();
+    await this.clearTextBox(txtBirthYear);
+    await this.page.pause();
+    // await this.clearTextBox(txtBirthMonth, txtBirthDay, txtBirthYear);
+    await this.clearTextBox(txtSocialSecurityNumber);
+    await this.clickSaveAndContinueButton();
+    await this.page.pause();
+  };
+
   // locatorpPlans = async (): Promise<string> => {
   //   console.log(" - checkoutPersonalInfoPage.locatorpPlans");
   //   return this.page.locator(pPlans).innerText();
@@ -371,6 +396,16 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     await this.createOrderRedirectToCheckoutFromPlanalyzer('D2C', 'LegalShield', 'Colorado', 'en-US', '', '', ['Legal Plan']);
     await this.login(basicUser.email, basicUser.password);
   };
+  /**
+   * @param {string} navigateToPersonalInfoPageFromPlanalyzer
+   * @memberof CheckoutPersonalInfoPage
+   */
+  navigateToPersonalInfoPageForIdsCaFromPlanalyzer = async () => {
+    await this.navigateToPlanalyzerCsrCheckoutOktaLogin();
+    await this.loginThroughOkta();
+    await this.createOrderRedirectToCheckoutFromPlanalyzer('D2C', 'IDShield', 'Ontario', 'en-CA', '', 'F30', ['IDShield Individual']);
+    await this.login(basicUser.email, basicUser.password);
+  };
   // /**
   //  * @param {string} groupNumber
   //  * @memberof CheckoutPersonalInfoPage
@@ -380,6 +415,21 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   //   // Login with a basic user
   //   await this.page.goto(UrlsUtils.shieldBenefits.home.url + '/' + groupNumber + '/pricing');
   // };
+  navigateToPaymentsPageForF30IdsCa = async (state: string): Promise<void> => {
+    console.log(' - accountPaymentPage.goToPaymentsPageForF30IdsCa');
+    await this.navigateToPlanalyzerCsrCheckoutOktaLogin();
+    await this.loginThroughOkta();
+    await this.createOrderRedirectToCheckoutFromPlanalyzer('D2C', 'IDShield', 'Ontario', 'en-CA', '', 'F30', ['IDShield Individual']);
+    await this.navigatePersonalInfoPageFromLogin(basicUser.email, basicUser.password);
+    const regionObj = RegionsUtils.caProvinces;
+    const stateObj = state;
+    for (const obj of regionObj) {
+      if (obj.name == stateObj) await this.changeAddress(obj.validAddress.street, obj.validAddress.city, obj.validAddress.postalCode);
+    }
+
+    await this.clickSaveAndContinueButton();
+    // await this.page.waitForTimeout(3500);
+  };
   // ========================== Click Methods ==============================
   /**
    * @memberof CheckoutPersonalInfoPage
@@ -471,5 +521,18 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     await this.assertElementIsVisible(msgHomeAddressValidation);
     await this.assertElementIsVisible(msgCityValidation);
     await this.assertElementIsVisible(msgPostalCodeValidation);
+  };
+
+  /**
+   * @memberof CheckoutPersonalInfoErrorSecuritySectionAreDisplayed
+   */
+  // Confirm that the Header displays: Tell us about you
+  assertPersonalInfoPageErrorsSecuritySectionAreDisplayed = async (): Promise<void> => {
+    console.log(' - checkoutPersonalInfoPage.assertPersonalInfoPageErrorsSecuritySectionAreDisplayed');
+    // await this.assertElementIsVisible(msgBirthMonthValidation);
+    // await this.assertElementIsVisible(msgBirthDayValidation);
+    // await this.assertElementIsVisible(msgBirthYearValidation);
+    await this.assertElementIsVisible(msgBirthMonthDayYearValidation);
+    await this.assertElementIsVisible(msgSocialSecurityValidation);
   };
 }

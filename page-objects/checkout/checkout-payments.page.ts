@@ -34,6 +34,21 @@ export class CheckoutPaymentsPage extends CheckoutPersonalInfoPage {
     await this.clickSaveAndContinueButton();
     // await this.page.waitForTimeout(3500);
   };
+  // navigateToPaymentsPageForF30IdsCa = async (state: string): Promise<void> => {
+  //   console.log(' - accountPaymentPage.goToPaymentsPageForF30IdsCa');
+  //   await this.navigateToPlanalyzerCsrCheckoutOktaLogin();
+  //   await this.loginThroughOkta();
+  //   await this.createOrderRedirectToCheckoutFromPlanalyzer('D2C', 'IDShield', 'Ontario', 'en-CA', '', 'F30', ['IDShield Individual']);
+  //   await this.navigatePersonalInfoPageFromLogin(basicUser.email, basicUser.password);
+  //   const regionObj = RegionsUtils.caProvinces;
+  //   const stateObj = state;
+  //   for (const obj of regionObj) {
+  //     if (obj.name == stateObj) await this.changeAddress(obj.validAddress.street, obj.validAddress.city, obj.validAddress.postalCode);
+  //   }
+
+  //   await this.clickSaveAndContinueButton();
+  //   // await this.page.waitForTimeout(3500);
+  // };
   // ========================== Click Methods ==============================
   clickBankDraftBtn = async () => {
     // Force a wait time
