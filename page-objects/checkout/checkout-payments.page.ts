@@ -34,6 +34,7 @@ export class CheckoutPaymentsPage extends CheckoutPersonalInfoPage {
     await this.clickSaveAndContinueButton();
     // await this.page.waitForTimeout(3500);
   };
+
   // ========================== Click Methods ==============================
   clickBankDraftBtn = async () => {
     // Force a wait time

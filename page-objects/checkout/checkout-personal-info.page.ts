@@ -57,15 +57,10 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
 
   /**
    * @param {string} state
-   * @param {string} paymentFrequency
    * @param {string} planName
    * @memberof CheckoutPersonalInfoPage
    */
-  selectPlanWithoutPaymentFrequencyFromShieldBenefitsPricingPage = async (
-    state: string,
-    paymentFrequency: string,
-    planName: string
-  ): Promise<void> => {
+  selectPlanWithoutPaymentFrequencyFromShieldBenefitsPricingPage = async (state: string, planName: string): Promise<void> => {
     await this.selectPlanAndEnrollNoPaymentFrequency(state, planName);
   };
 
@@ -298,15 +293,111 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
 
   // ========================== Navigate Methods ===========================n
 
+  // Navigate to the personal info page and scrapes the order summary to be used in assertions
+
   /**
    * @param {(string | undefined)} emailOrUsername
    * @param {(string | undefined)} password
+   * @param {string} groupNumber
+   * @param {string} groupPayConfig
+   * @param {string} stateName
+   * @param {string} payTerm
+   * @param {string} planName
+   * @param {string} street
+   * @param {string} city
+   * @param {string} postalCode
    * @memberof CheckoutPersonalInfoPage
    */
-  // Navigate to the personal info page and scrapes the order summary to be used in assertions
-  navigatePersonalInfoPageFromLogin = async (emailOrUsername: string | undefined, password: string | undefined) => {
+  navigateToPersonalInfoPageSinglePlan = async (
+    emailOrUsername: string | undefined,
+    password: string | undefined,
+    groupNumber: string,
+    groupPayConfig: string,
+    stateName: string,
+    payTerm: string,
+    planName: string,
+    street: string,
+    city: string,
+    postalCode: string
+  ) => {
     console.log(' - checkoutPersonalInfoPage.navigatePersonalInfoPageFromLogin');
+    // await this.navigateToLoginPage();
+    await this.navigateToShieldBenefitsPricingPage(groupNumber);
+    if (groupPayConfig == 'Fringe') {
+      await this.selectPlanWithoutPaymentFrequencyFromShieldBenefitsPricingPage(stateName, planName);
+    } else {
+      await this.selectPlanFromShieldBenefitsPricingPage(stateName, payTerm, planName);
+    }
     await this.login(emailOrUsername, password);
+    await this.changeAddress(street, city, postalCode);
+    await this.captureOrderSummary(groupPayConfig);
+  };
+
+  /**
+   * @param {(string | undefined)} emailOrUsername
+   * @param {(string | undefined)} password
+   * @param {string} groupNumber
+   * @param {string} groupPayConfig
+   * @param {string} stateName
+   * @param {string} planName
+   * @param {string} street
+   * @param {string} city
+   * @param {string} postalCode
+   * @memberof CheckoutPersonalInfoPage
+   */
+  navigateToPersonalInfoPageSinglePlanNoPaymentFrequency = async (
+    emailOrUsername: string | undefined,
+    password: string | undefined,
+    groupNumber: string,
+    groupPayConfig: string,
+    stateName: string,
+    planName: string,
+    street: string,
+    city: string,
+    postalCode: string
+  ) => {
+    console.log(' - checkoutPersonalInfoPage.navigatePersonalInfoPageFromLogin');
+    await this.navigateToShieldBenefitsPricingPage(groupNumber);
+    await this.selectPlanWithoutPaymentFrequencyFromShieldBenefitsPricingPage(stateName, planName);
+    await this.login(emailOrUsername, password);
+    await this.changeAddress(street, city, postalCode);
+    await this.captureOrderSummary(groupPayConfig);
+  };
+
+  // Navigate to the personal info page and scrapes the order summary to be used in assertions
+  /**
+   * @param {(string | undefined)} emailOrUsername
+   * @param {(string | undefined)} password
+   * @param {string} groupNumber
+   * @param {string} groupPayConfig
+   * @param {string} stateName
+   * @param {string} payTerm
+   * @param {string} planName
+   * @param {string} plan2Name
+   * @param {string} street
+   * @param {string} city
+   * @param {string} postalCode
+   * @memberof CheckoutPersonalInfoPage
+   */
+  navigateToPersonalInfoPageComboPlan = async (
+    emailOrUsername: string | undefined,
+    password: string | undefined,
+    groupNumber: string,
+    groupPayConfig: string,
+    stateName: string,
+    payTerm: string,
+    planName: string,
+    plan2Name: string,
+    street: string,
+    city: string,
+    postalCode: string
+  ) => {
+    console.log(' - checkoutPersonalInfoPage.navigatePersonalInfoPageFromLogin');
+    await this.navigateToShieldBenefitsPricingPage(groupNumber);
+    await this.selectCombinationPlanFromShieldBenefitsPricingPage(stateName, payTerm, planName, plan2Name);
+    await this.login(emailOrUsername, password);
+    await this.changeAddress(street, city, postalCode);
+    await this.captureOrderSummary(groupPayConfig);
   };
 
   /**
