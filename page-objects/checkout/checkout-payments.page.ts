@@ -53,7 +53,8 @@ export class CheckoutPaymentsPage extends CheckoutPersonalInfoPage {
       await frame.locator(btnCreditCard).click();
     } else throw new Error('No such frame');
   };
-  clickTermsOfServiceLnk = async () => {
+  
+   = async() => {
     // Switch to frame
     await this.page.frameLocator("//iframe[@title='payment iframe']");
     const frame = this.page.frameLocator("//iframe[@title='payment iframe']");

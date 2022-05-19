@@ -2,7 +2,8 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "strict": true,
-    "target": "es2021"
+    "target": "es2021",
+    "types": ["node", "webdriverio/async", "@wdio/cucumber-framework", "expect-webdriverio"]
   },
   "exclude": ["node_modules"]
 }

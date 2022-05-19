@@ -15,7 +15,7 @@ const config: PlaywrightTestConfig = {
         trace: 'on',
       },
     },
-    // { testMatch: ['tests/*.test.ts'] },
+    { testMatch: ['tests/*/*.spec.ts'] },
     // {
     //   name: 'firefox',
     //   use: { ...devices['Desktop Firefox'],

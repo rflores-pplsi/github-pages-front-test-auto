@@ -14,14 +14,14 @@ test.beforeEach(async ({ page }) => {
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
 
-test.only('Self-Pay (IDShield Individual) using Planalyzer and Bank Draft', async ({ page }) => {
+test('Self-Pay (IDShield Individual) using Planalyzer and Bank Draft', async ({ page }) => {
   test.slow();
   await checkoutConfirmationPage.navigateToCheckoutConfirmationPageUsingPlanalyzer('Virginia', 'BD');
   await checkoutConfirmationPage.assertWelcomeToLegalshiledFamilyPage();
   await checkoutConfirmationPage.assertOrderSummaryPlanLabelConfirmationPage('Legal Plan');
   await checkoutConfirmationPage.assertOrderSummaryPlanPriceConfirmationPage();
 });
-test.only('Self-Pay (IDShield Individual) using Planalyzer and Credit Card', async ({ page }) => {
+test('Self-Pay (IDShield Individual) using Planalyzer and Credit Card', async ({ page }) => {
   test.slow();
   await checkoutConfirmationPage.navigateToCheckoutConfirmationPageUsingPlanalyzer('Virginia', 'CC');
   await checkoutConfirmationPage.assertWelcomeToLegalshiledFamilyPage();
