@@ -3,11 +3,19 @@ import { basicUser } from '../../utils/user.utils';
 import { CheckoutOrderSummaryComponent } from './checkout-order-summary.component';
 
 // ========================== Selectors ==================================
-const btnSaveAndContinue: string = 'button:has-text("Save & Continue")';
+const btnSaveAndContinue: string = '[type=submit]';
+// const btnSaveAndContinue: string = 'button:has-text("Save & Continue")';
 
 // ========================== Personal Info Selectors ====================
 const stpPersonalInfoCurrent: string = '//div[contains(@class,"step-circle--current") and contains(.,"2")]';
 const hdrPersonalInfoHeader: string = 'text = Tell us about yourself';
+const msgFirstNameValidation: string = 'text = Must provide first name';
+const msgLastNameValidation: string = 'text = Must provide last name';
+const msgPhoneNumberValidation: string = 'text = Must provide phone number';
+const msgPhoneTypeValidation: string = 'text = Must select phone type';
+const msgHomeAddressValidation: string = 'text = Must provide home address';
+const msgCityValidation: string = 'text = Must include name of city';
+const msgPostalCodeValidation: string = 'text = Must provide valid postal code';
 
 const txtFirstName: string = '[name="firstName"]';
 const txtLastName: string = '[name="lastName"]';
@@ -286,6 +294,21 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     await this.fillTextBox(txtTaxId, taxId);
   };
 
+  /**
+   * @memberof CheckoutPersonalInfoPage
+   */
+  clearAllFieldsOnPersonalInfoPageAndSave = async (): Promise<void> => {
+    console.log(' - checkoutPersonalInfoPage.clearAllFieldsOnPersonalInfoPageAndSave');
+    await this.clearTextBox(txtFirstName);
+    await this.clearTextBox(txtLastName);
+    await this.clearTextBox(txtPhoneNumber);
+    await this.selectFromDropDownMenu(txtPhoneType, 'Select Type');
+    await this.clearTextBox(txtHomeAddress);
+    await this.clearTextBox(txtCity);
+    await this.clearTextBox(txtPostalCode);
+    await this.clickSaveAndContinueButton();
+  };
+
   // locatorpPlans = async (): Promise<string> => {
   //   console.log(" - checkoutPersonalInfoPage.locatorpPlans");
   //   return this.page.locator(pPlans).innerText();
@@ -539,5 +562,20 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   assertPersonalInfoHeaderIsDisplayed = async (): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.assertPersonalInfoHeaderIsDisplayed');
     await this.assertElementIsVisible(hdrPersonalInfoHeader);
+  };
+
+  /**
+   * @memberof CheckoutPersonalInfoErrorFirstNameIsDisplayed
+   */
+  // Confirm that the Header displays: Tell us about you
+  assertPersonalInfoPageErrorsAreDisplayed = async (): Promise<void> => {
+    console.log(' - checkoutPersonalInfoPage.assertPersonalInfoPageErrorIsDisplayed');
+    await this.assertElementIsVisible(msgFirstNameValidation);
+    await this.assertElementIsVisible(msgLastNameValidation);
+    await this.assertElementIsVisible(msgPhoneNumberValidation);
+    await this.assertElementIsVisible(msgPhoneTypeValidation);
+    await this.assertElementIsVisible(msgHomeAddressValidation);
+    await this.assertElementIsVisible(msgCityValidation);
+    await this.assertElementIsVisible(msgPostalCodeValidation);
   };
 }
