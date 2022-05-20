@@ -48,6 +48,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   navigateFromPaymentBankDraftPageToConfirmationPage = async (): Promise<void> => {
     await this.clickBankDraftBtn();
     await this.fillBankDraftForm();
+    await this.page.waitForSelector(conMembershipWrapper, { timeout: 50000 });
   };
 
   navigateFromPaymentAgreementPageToConfirmationPage = async (): Promise<void> => {
@@ -120,9 +121,19 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
     await this.assertElementIsVisible(ele);
   };
 
-  assertLegalShieldMembershipIsDisplayed = async () => {
+  /**
+   * @param {string} planType
+   * @memberof CheckoutConfirmationPage
+   */
+  assertLegalShieldMembershipIsDisplayed = async (planType: string) => {
     console.log(' - checkoutConfirmationPage.assertLegalShieldMembershipIsDisplayed');
-    const ele = '//h2[contains(@class,"membership-title") and contains (.,"LegalShield Membership")]';
+    const ele = `//h2[contains(@class,"membership-title") and contains (.,"${planType} Membership")]`;
+    await this.assertElementIsVisible(ele);
+  };
+
+  assertMembershipTileIsDisplayed = async (planType: string) => {
+    console.log(' - checkoutConfirmationPage.assertMembershipTileIsDisplayed');
+    const ele = `//h2[contains(@class,"membership-title") and contains (.,"${planType} Membership")]`;
     await this.assertElementIsVisible(ele);
   };
 
@@ -132,6 +143,10 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
    */
   assertPlanNameDisplayedInConfirmationPageOrderSummary = async (planName: string) => {
     console.log(' - checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary');
+    if (planName.includes('-')) {
+      const splitString = planName.split(' - ');
+      planName = splitString[0];
+    }
     const ele = `//div[contains(@class,"plan-details-card") and contains(.,"${planName}")]`;
     await this.page.waitForSelector(conMembershipWrapper, { timeout: 50000 });
     await this.assertElementIsVisible(ele);
@@ -143,6 +158,10 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
    */
   assertPlanCostIsNotDisplayedInConfirmationPageOrderSummaryForPlanName = async (planName: string) => {
     console.log(' - checkoutConfirmationPage.assertPlanCostIsNotDisplayedInConfirmationPageOrderSummaryForPlanName');
+    if (planName.includes('-')) {
+      const splitString = planName.split(' - ');
+      planName = splitString[0];
+    }
     const ele = `//div[contains(@class,"plan-details-card") and contains(.,"${planName}")]//h3[contains(@class,"plan-price")]`;
     await this.assertElementIsHidden(ele);
   };
@@ -169,6 +188,10 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
    */
   assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName = async (planName: string) => {
     console.log(' - checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName ');
+    if (planName.includes('-')) {
+      const splitString = planName.split(' - ');
+      planName = splitString[0];
+    }
     const ele = `//div[contains(@class,"plan-details-card") and contains(.,"${planName}")]//h3[contains(@class,"plan-price")]`;
     await this.assertElementIsVisible(ele);
   };

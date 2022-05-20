@@ -1,0 +1,38 @@
+[
+  {
+    "testCaseName": "Fringe (Legal Plan Family)",
+    "groupPayConfig": "Fringe",
+    "groupNumber": "nnlegaltest23",
+    "planName": "Legal Plan Family",
+    "tierName": "",
+    "planType": "LegalShield",
+    "payFrequency": "Monthly",
+    "planCost": "$23.95",
+    "totalCost": "$23.95",
+    "run": true
+  },
+  {
+    "testCaseName": "Fringe (IDShield Individual)",
+    "groupPayConfig": "Fringe",
+    "groupNumber": "idshieldtest19",
+    "planName": "IDShield Individual",
+    "tierName": "1 Bureau Credit Monitoring",
+    "planType": "IDShield",
+    "payFrequency": "Monthly",
+    "planCost": "$12.95",
+    "totalCost": "$12.95",
+    "run": true
+  },
+  {
+    "testCaseName": "Fringe (IDShield Family)",
+    "groupPayConfig": "Fringe",
+    "groupNumber": "idshieldtest19",
+    "planName": "IDShield Family",
+    "tierName": "1 Bureau Credit Monitoring",
+    "planType": "IDShield",
+    "payFrequency": "Monthly",
+    "planCost": "$22.95",
+    "totalCost": "$22.95",
+    "run": true
+  }
+]
