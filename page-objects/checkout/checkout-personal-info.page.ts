@@ -387,13 +387,27 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     await this.page.goto(UrlsUtils.shieldBenefits.home.url + '/' + groupNumber + '/idshield');
   };
   /**
-   * @param {string} navigateToPersonalInfoPageFromPlanalyzer
+   * @param {string} channel
+   * @param {string} subChannel
+   * @param {string} region
+   * @param {string} marketLocale
+   * @param {string} [prepaidMonths='']
+   * @param {string} [couponCode='']
+   * @param {Array<string>} plans
    * @memberof CheckoutPersonalInfoPage
    */
-  navigateToPersonalInfoPageFromPlanalyzer = async () => {
+  navigateToPersonalInfoPageFromPlanalyzer = async (
+    channel: string,
+    subChannel: string,
+    region: string,
+    marketLocale: string,
+    prepaidMonths: string = '',
+    couponCode: string = '',
+    plans: Array<string>
+  ) => {
     await this.navigateToPlanalyzerCsrCheckoutOktaLogin();
     await this.loginThroughOkta();
-    await this.createOrderRedirectToCheckoutFromPlanalyzer('D2C', 'LegalShield', 'Colorado', 'en-US', '', '', ['Legal Plan']);
+    await this.createOrderRedirectToCheckoutFromPlanalyzer(channel, subChannel, region, marketLocale, prepaidMonths, couponCode, plans);
     await this.login(basicUser.email, basicUser.password);
   };
   /**

@@ -60,6 +60,22 @@ export class CheckoutPaymentsCreditCardPage extends CheckoutPaymentsPage {
     // Fillout the Bank Draft form
     return this.page.locator(txtTotalPriceLabel).innerText();
   };
+  fillCreditCardFormForCa = async () => {
+    console.log(' - checkoutPaymentPage.fillCreditCardFormForCa');
+    // Fillout the Credit Card form
+    await this.fillCreditCardNumberTxt('4444333322221111');
+    await this.page.keyboard.press('Tab');
+    await this.fillExpirationDateTxt('01/23');
+    await this.page.keyboard.press('Tab');
+    await this.fillSecurityCodeTxt('111');
+    await this.page.keyboard.press('Tab');
+    await this.page.keyboard.press('Tab');
+    await this.fillCardholderNameTxt('Automation Tester');
+    await this.page.keyboard.press('Tab');
+    await this.fillPostalCodeTxt('L2G3V9');
+    await this.page.keyboard.press('Tab');
+    await this.clickCreditCardPurchaseBtn();
+  };
   // ========================== Navigate Methods ===========================
   navigateToPaymentsCreditCardPage = async (state: string): Promise<void> => {
     console.log(' - checkoutPaymentPage.navigateToPaymentsCreditCardPage');

@@ -33,15 +33,6 @@ test('Verify Error for all fields in Security Info Section Displays', async ({ p
   await checkoutPersonalInfoPage.assertPersonalInfoPageErrorsSecuritySectionAreDisplayed();
 });
 
-test.only('Verify FreeTrial purchase on IDS Canada ', async ({ page }) => {
-  console.log('Test Case: Verify Error for all fields on Personal Info Page Displays');
-  await checkoutPersonalInfoPage.navigateToPaymentsPageForF30IdsCa('Ontario');
-  // await checkoutPersonalInfoPage.navigateToPersonalInfoPageForIdsCaFromPlanalyzer();
-  // await checkoutPersonalInfoPage.clearAllFieldsOnPersonalInfoPage();
-  // await checkoutPersonalInfoPage.assertPersonalInfoPageErrorsAreDisplayed();
-  await checkoutPersonalInfoPage.page.pause();
-});
-
 for (const state of RegionsUtils.usStates.filter((state) => state.abbrv == 'CA' && state.priority == true)) {
   test(`Select IDShield Individual and validate the order summary on the Checkout Personal Info page - ${state.name}`, async ({ page }) => {
     console.log(`Test Case: Select IDShield Individual and validate the order summary on the Checkout Personal Info page - ${state.name}`);
