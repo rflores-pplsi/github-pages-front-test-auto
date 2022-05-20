@@ -1,9 +1,10 @@
 [
   {
-    "testCaseName": "Self-Pay ID/Legal (IDShield Individual)",
+    "testCaseName": "Payroll Deduct (IDShield Individual)",
     "groupPayConfig": "payroll deduct",
     "groupNumber": "test11",
     "planName": "IDShield Individual",
+    "tierName": "1 Bureau Credit Monitoring",
     "planType": "IDShield",
     "payFrequency": "Monthly",
     "planCost": "$12.95",
@@ -11,10 +12,11 @@
     "run": true
   },
   {
-    "testCaseName": "Self-Pay (Legal Plan Family)",
+    "testCaseName": "Payroll Deduct (Legal Plan Family)",
     "groupPayConfig": "payroll deduct",
     "groupNumber": "test11",
     "planName": "Legal Plan Family",
+    "tierName": "",
     "planType": "LegalShield",
     "payFrequency": "Monthly",
     "planCost": "$21.95",
@@ -22,10 +24,11 @@
     "run": true
   },
   {
-    "testCaseName": "Self-Pay (IDShield Family)",
+    "testCaseName": "Payroll Deduct (IDShield Family)",
     "groupPayConfig": "payroll deduct",
     "groupNumber": "test11",
     "planName": "IDShield Family",
+    "tierName": "1 Bureau Credit Monitoring",
     "planType": "IDShield",
     "payFrequency": "Monthly",
     "planCost": "$22.95",
@@ -33,10 +36,11 @@
     "run": true
   },
   {
-    "testCaseName": "Self-Pay ID Only (IDShield Individual)",
+    "testCaseName": "Payroll Deduct  (Legal Plan Family/IDShield Family)",
     "groupPayConfig": "payroll deduct",
     "groupNumber": "test11",
     "planName": "Legal Plan Family/IDShield Family",
+    "tierName": "",
     "planType": "IDShield",
     "payFrequency": "Monthly",
     "planCost": "$12.95",
@@ -44,10 +48,11 @@
     "run": false
   },
   {
-    "testCaseName": "Self-Pay ID Only (IDShield Family)",
+    "testCaseName": "Payroll Deduct  (Legal Plan Family/IDShield Individual)",
     "groupPayConfig": "payroll deduct",
     "groupNumber": "test11",
     "planName": "Legal Plan Family/IDShield Individual",
+    "tierName": "",
     "planType": "IDShield",
     "payFrequency": "Monthly",
     "planCost": "$22.95",

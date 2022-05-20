@@ -44,23 +44,28 @@ const txtTaxId: string = '[name="taxId"]';
  */
 export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   // ========================== Process Methods ============================
+
   /**
+   *
+   *
    * @param {string} state
    * @param {string} paymentFrequency
    * @param {string} planName
+   * @param {string} tierName
    * @memberof CheckoutPersonalInfoPage
    */
-  selectPlanFromShieldBenefitsPricingPage = async (state: string, paymentFrequency: string, planName: string): Promise<void> => {
-    await this.selectPlanAndEnroll(state, paymentFrequency, planName);
+  selectPlanFromShieldBenefitsPricingPage = async (state: string, paymentFrequency: string, planName: string, tierName: string): Promise<void> => {
+    await this.selectPlanAndEnroll(state, paymentFrequency, planName, tierName);
   };
 
   /**
    * @param {string} state
    * @param {string} planName
+   * @param {string} tierName
    * @memberof CheckoutPersonalInfoPage
    */
-  selectPlanWithoutPaymentFrequencyFromShieldBenefitsPricingPage = async (state: string, planName: string): Promise<void> => {
-    await this.selectPlanAndEnrollNoPaymentFrequency(state, planName);
+  selectPlanWithoutPaymentFrequencyFromShieldBenefitsPricingPage = async (state: string, planName: string, tierName: string): Promise<void> => {
+    await this.selectPlanAndEnrollNoPaymentFrequency(state, planName, tierName);
   };
 
   /**
@@ -310,6 +315,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @param {string} stateName
    * @param {string} payTerm
    * @param {string} planName
+   * @param {string} tierName
    * @param {string} street
    * @param {string} city
    * @param {string} postalCode
@@ -323,17 +329,17 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     stateName: string,
     payTerm: string,
     planName: string,
+    tierName: string,
     street: string,
     city: string,
     postalCode: string
   ) => {
     console.log(' - checkoutPersonalInfoPage.navigatePersonalInfoPageFromLogin');
-    // await this.navigateToLoginPage();
     await this.navigateToShieldBenefitsPricingPage(groupNumber);
     if (groupPayConfig == 'Fringe') {
-      await this.selectPlanWithoutPaymentFrequencyFromShieldBenefitsPricingPage(stateName, planName);
+      await this.selectPlanWithoutPaymentFrequencyFromShieldBenefitsPricingPage(stateName, planName, tierName);
     } else {
-      await this.selectPlanFromShieldBenefitsPricingPage(stateName, payTerm, planName);
+      await this.selectPlanFromShieldBenefitsPricingPage(stateName, payTerm, planName, tierName);
     }
     await this.login(emailOrUsername, password);
     await this.changeAddress(street, city, postalCode);
@@ -347,6 +353,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @param {string} groupPayConfig
    * @param {string} stateName
    * @param {string} planName
+   * @param {string} tierName
    * @param {string} street
    * @param {string} city
    * @param {string} postalCode
@@ -359,13 +366,14 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     groupPayConfig: string,
     stateName: string,
     planName: string,
+    tierName: string,
     street: string,
     city: string,
     postalCode: string
   ) => {
     console.log(' - checkoutPersonalInfoPage.navigatePersonalInfoPageFromLogin');
     await this.navigateToShieldBenefitsPricingPage(groupNumber);
-    await this.selectPlanWithoutPaymentFrequencyFromShieldBenefitsPricingPage(stateName, planName);
+    await this.selectPlanWithoutPaymentFrequencyFromShieldBenefitsPricingPage(stateName, planName, tierName);
     await this.login(emailOrUsername, password);
     await this.changeAddress(street, city, postalCode);
     await this.captureOrderSummary(groupPayConfig);

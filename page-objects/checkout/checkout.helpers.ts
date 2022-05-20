@@ -4,16 +4,20 @@
  */
 export class OrderSummaryRow {
   planName: string | null;
+  tierName: string | null;
   planCost: string | null;
 
   /**
    * Creates an instance of OrderSummaryRow.
    * @param {string} planName
+   * @param {string} tierName
    * @param {string} planCost
+
    * @memberof PlanRow
    */
-  constructor(planName: string | null, planCost: string | null) {
+  constructor(planName: string | null, tierName: string | null, planCost: string | null) {
     this.planName = planName;
+    this.tierName = tierName;
     this.planCost = planCost;
   }
 }
@@ -72,13 +76,16 @@ export class OrderSummaryWithoutCosts {
  */
 export class OrderSummaryRowWithoutCost {
   planName: string | null;
+  tierName: string | null;
 
   /**
    * Creates an instance of OrderSummaryRowWithoutCost.
    * @param {(string | null)} planName
+   * @param {(string | null)} tierName
    * @memberof OrderSummaryRowWithoutCost
    */
-  constructor(planName: string | null) {
+  constructor(planName: string | null, tierName: string | null) {
     this.planName = planName;
+    this.tierName = tierName;
   }
 }
