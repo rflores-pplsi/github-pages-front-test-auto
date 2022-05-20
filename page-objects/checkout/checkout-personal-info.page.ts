@@ -35,9 +35,6 @@ const conSupportInfo: string = '//div[contains(@class, "support-card-container")
 const btnCallSupport: string = 'button:has-text("Call (833)-951-2754")';
 
 // ========================== Security Info Selectors ======================
-const msgBirthMonthValidation: string = 'text = Please enter a valid date in the MM/DD/YYYY format';
-const msgBirthDayValidation: string = 'text = Please enter a valid date in the MM/DD/YYYY format';
-// const msgBirthYearValidation: string = 'text = Please enter a valid date in the MM/DD/YYYY format';
 const msgBirthMonthDayYearValidation: string = 'text = Must provide date of birth';
 const msgSocialSecurityValidation: string = 'text = Must provide SSN or SIN';
 
@@ -314,17 +311,12 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   clearAllFieldsInSecurityInfoSectionPersonalInfoPage = async (): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.clearAllFieldsInSecurityInfoSectionPersonalInfoPage');
-    await this.page.pause();
     await this.clearTextBox(txtBirthMonth);
-    await this.page.pause();
     await this.clearTextBox(txtBirthDay);
-    await this.page.pause();
     await this.clearTextBox(txtBirthYear);
-    await this.page.pause();
     // await this.clearTextBox(txtBirthMonth, txtBirthDay, txtBirthYear);
     await this.clearTextBox(txtSocialSecurityNumber);
     await this.clickSaveAndContinueButton();
-    await this.page.pause();
   };
 
   // locatorpPlans = async (): Promise<string> => {

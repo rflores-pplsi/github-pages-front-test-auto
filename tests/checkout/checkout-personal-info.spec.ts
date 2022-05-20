@@ -23,7 +23,6 @@ test('Verify Error for all fields on Personal Info Page Displays', async ({ page
   await checkoutPersonalInfoPage.navigateToPersonalInfoPageFromPlanalyzer();
   await checkoutPersonalInfoPage.clearAllFieldsOnPersonalInfoPage();
   await checkoutPersonalInfoPage.assertPersonalInfoPageErrorsAreDisplayed();
-  await checkoutPersonalInfoPage.page.pause();
 });
 
 test('Verify Error for all fields in Security Info Section Displays', async ({ page }) => {
