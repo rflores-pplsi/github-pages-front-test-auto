@@ -29,7 +29,6 @@ const txtRegion: string = '//span[contains(@class, "contact-region")]';
 const lnkChangeState: string = 'a:has-text("Change")';
 const imgStateChangeInformationIcon: string = '[alt="info"';
 const txaStageChangeToolTip: string = '//div[contains(@class,"info-tooltip-text")]';
-
 // ========================== Support Card Selectors ======================
 const conSupportInfo: string = '//div[contains(@class, "support-card-container")]';
 const btnCallSupport: string = 'button:has-text("Call (833)-951-2754")';
@@ -44,11 +43,11 @@ const txtBirthYear: string = '[name="dobYear"]';
 const txtSocialSecurityNumber: string = '[placeholder="Last 4 SSN or SIN"]';
 
 // ========================== Business Info Selectors ======================
-const txtBusinessName: string = '[placeholder="Last 4 SSN or SIN"]';
-const txtIncorporationMonth: string = '[placeholder="Business Name"]';
-const txtIncorporationDay: string = '[placeholder="Last 4 SSN or SIN"]';
-const txtIncorporationYear: string = '[placeholder="Last 4 SSN or SIN"]';
-const txtTaxId: string = '[placeholder="EIN / TIN"]';
+const txtBusinessName: string = '[name="businessName"]';
+const txtIncorporationMonth: string = '[name="doiMonth"]';
+const txtIncorporationDay: string = '[name="doiDay"]';
+const txtIncorporationYear: string = '[name="doiYear"]';
+const txtTaxId: string = '[name="taxId"]';
 
 /**
  * @export
@@ -57,28 +56,28 @@ const txtTaxId: string = '[placeholder="EIN / TIN"]';
  */
 export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   // ========================== Process Methods ============================
+
   /**
+   *
+   *
    * @param {string} state
    * @param {string} paymentFrequency
    * @param {string} planName
+   * @param {string} tierName
    * @memberof CheckoutPersonalInfoPage
    */
-  selectPlanFromShieldBenefitsPricingPage = async (state: string, paymentFrequency: string, planName: string): Promise<void> => {
-    await this.selectPlanAndEnroll(state, paymentFrequency, planName);
+  selectPlanFromShieldBenefitsPricingPage = async (state: string, paymentFrequency: string, planName: string, tierName: string): Promise<void> => {
+    await this.selectPlanAndEnroll(state, paymentFrequency, planName, tierName);
   };
 
   /**
    * @param {string} state
-   * @param {string} paymentFrequency
    * @param {string} planName
+   * @param {string} tierName
    * @memberof CheckoutPersonalInfoPage
    */
-  selectPlanWithoutPaymentFrequencyFromShieldBenefitsPricingPage = async (
-    state: string,
-    paymentFrequency: string,
-    planName: string
-  ): Promise<void> => {
-    await this.selectPlanAndEnrollNoPaymentFrequency(state, planName);
+  selectPlanWithoutPaymentFrequencyFromShieldBenefitsPricingPage = async (state: string, planName: string, tierName: string): Promise<void> => {
+    await this.selectPlanAndEnrollNoPaymentFrequency(state, planName, tierName);
   };
 
   /**
@@ -124,6 +123,14 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     await this.enterHomeAddress(homeAddress);
     await this.enterCity(city);
     await this.enterPostalCode(postalCode);
+  };
+
+  completeBusinessInfoForm = async (): Promise<void> => {
+    await this.enterBusinessName('test business');
+    await this.enterIncorporationMonth('01');
+    await this.enterIncorporationDay('01');
+    await this.enterIncorporationYear('2020');
+    await this.enterTaxId('123456789');
   };
 
   /**
@@ -294,8 +301,8 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   /**
    * @memberof CheckoutPersonalInfoPage
    */
-  clearAllFieldsOnPersonalInfoPage = async (): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.clearAllFieldsOnPersonalInfoPage');
+  clearAllFieldsOnPersonalInfoPageAndSave = async (): Promise<void> => {
+    console.log(' - checkoutPersonalInfoPage.clearAllFieldsOnPersonalInfoPageAndSave');
     await this.clearTextBox(txtFirstName);
     await this.clearTextBox(txtLastName);
     await this.clearTextBox(txtPhoneNumber);
@@ -338,15 +345,114 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
 
   // ========================== Navigate Methods ===========================n
 
+  // Navigate to the personal info page and scrapes the order summary to be used in assertions
+
   /**
    * @param {(string | undefined)} emailOrUsername
    * @param {(string | undefined)} password
+   * @param {string} groupNumber
+   * @param {string} groupPayConfig
+   * @param {string} stateName
+   * @param {string} payTerm
+   * @param {string} planName
+   * @param {string} tierName
+   * @param {string} street
+   * @param {string} city
+   * @param {string} postalCode
    * @memberof CheckoutPersonalInfoPage
    */
-  // Navigate to the personal info page and scrapes the order summary to be used in assertions
-  navigatePersonalInfoPageFromLogin = async (emailOrUsername: string | undefined, password: string | undefined) => {
+  navigateToPersonalInfoPageSinglePlan = async (
+    emailOrUsername: string | undefined,
+    password: string | undefined,
+    groupNumber: string,
+    groupPayConfig: string,
+    stateName: string,
+    payTerm: string,
+    planName: string,
+    tierName: string,
+    street: string,
+    city: string,
+    postalCode: string
+  ) => {
     console.log(' - checkoutPersonalInfoPage.navigatePersonalInfoPageFromLogin');
+    await this.navigateToShieldBenefitsPricingPage(groupNumber);
+    if (groupPayConfig == 'Fringe') {
+      await this.selectPlanWithoutPaymentFrequencyFromShieldBenefitsPricingPage(stateName, planName, tierName);
+    } else {
+      await this.selectPlanFromShieldBenefitsPricingPage(stateName, payTerm, planName, tierName);
+    }
     await this.login(emailOrUsername, password);
+    await this.changeAddress(street, city, postalCode);
+    await this.captureOrderSummary(groupPayConfig);
+  };
+
+  /**
+   * @param {(string | undefined)} emailOrUsername
+   * @param {(string | undefined)} password
+   * @param {string} groupNumber
+   * @param {string} groupPayConfig
+   * @param {string} stateName
+   * @param {string} planName
+   * @param {string} tierName
+   * @param {string} street
+   * @param {string} city
+   * @param {string} postalCode
+   * @memberof CheckoutPersonalInfoPage
+   */
+  navigateToPersonalInfoPageSinglePlanNoPaymentFrequency = async (
+    emailOrUsername: string | undefined,
+    password: string | undefined,
+    groupNumber: string,
+    groupPayConfig: string,
+    stateName: string,
+    planName: string,
+    tierName: string,
+    street: string,
+    city: string,
+    postalCode: string
+  ) => {
+    console.log(' - checkoutPersonalInfoPage.navigatePersonalInfoPageFromLogin');
+    await this.navigateToShieldBenefitsPricingPage(groupNumber);
+    await this.selectPlanWithoutPaymentFrequencyFromShieldBenefitsPricingPage(stateName, planName, tierName);
+    await this.login(emailOrUsername, password);
+    await this.changeAddress(street, city, postalCode);
+    await this.captureOrderSummary(groupPayConfig);
+  };
+
+  // Navigate to the personal info page and scrapes the order summary to be used in assertions
+  /**
+   * @param {(string | undefined)} emailOrUsername
+   * @param {(string | undefined)} password
+   * @param {string} groupNumber
+   * @param {string} groupPayConfig
+   * @param {string} stateName
+   * @param {string} payTerm
+   * @param {string} planName
+   * @param {string} plan2Name
+   * @param {string} street
+   * @param {string} city
+   * @param {string} postalCode
+   * @memberof CheckoutPersonalInfoPage
+   */
+  navigateToPersonalInfoPageComboPlan = async (
+    emailOrUsername: string | undefined,
+    password: string | undefined,
+    groupNumber: string,
+    groupPayConfig: string,
+    stateName: string,
+    payTerm: string,
+    planName: string,
+    plan2Name: string,
+    street: string,
+    city: string,
+    postalCode: string
+  ) => {
+    console.log(' - checkoutPersonalInfoPage.navigatePersonalInfoPageFromLogin');
+    await this.navigateToShieldBenefitsPricingPage(groupNumber);
+    await this.selectCombinationPlanFromShieldBenefitsPricingPage(stateName, payTerm, planName, plan2Name);
+    await this.login(emailOrUsername, password);
+    await this.changeAddress(street, city, postalCode);
+    await this.captureOrderSummary(groupPayConfig);
   };
 
   /**

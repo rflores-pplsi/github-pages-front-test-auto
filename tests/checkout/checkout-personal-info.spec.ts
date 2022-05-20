@@ -21,7 +21,7 @@ test('Verify Personal Information Section Header Displays', async ({ page }) => 
 test('Verify Error for all fields on Personal Info Page Displays', async ({ page }) => {
   console.log('Test Case: Verify Error for all fields on Personal Info Page Displays');
   await checkoutPersonalInfoPage.navigateToPersonalInfoPageFromPlanalyzer();
-  await checkoutPersonalInfoPage.clearAllFieldsOnPersonalInfoPage();
+  await checkoutPersonalInfoPage.clearAllFieldsOnPersonalInfoPageAndSave();
   await checkoutPersonalInfoPage.assertPersonalInfoPageErrorsAreDisplayed();
 });
 
