@@ -14,6 +14,7 @@ const pPlans = "//div[@class='lsux-row half children2 content-row mb-4 mt-4 firs
 const pPlanPrice = "//div[@class='lsux-row half children2 content-row mb-4 mt-4 first-plan']/div[@class='lsux-col pr-0 right-label-col']/div/p";
 const txtTotalLabel = "//p[contains(text(),'Monthly Total:')]";
 const txtTotalPriceLabel = "//div[@class='lsux-row eight-four children2 footer-row mb-0 py-4']/div[@class='lsux-col pr-0 right-label-col']/div/p";
+const conMembershipWrapper = '//div[contains(@class,"membership-wrapper")]';
 
 // create instance of Page
 
@@ -34,6 +35,7 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
     await this.page.keyboard.press('Tab');
     await this.clickPurchaseBtn();
   };
+
   fillOrderSummarypPlanValue = async (): Promise<string> => {
     console.log(' - checkoutPaymentBankDraftPage.fillOrderSummarypPlanValue');
     // Fillout the Bank Draft form
@@ -60,6 +62,19 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
     await this.navigateToPaymentsPage(state);
     await this.clickBankDraftBtn();
   };
+
+  /**
+   * @param {string} groupPayConfig
+   * @memberof CheckoutPaymentsBankDraftPage
+   */
+  navigateFromPersonalInfoPageToPaymentPage = async (groupPayConfig: string, planName: string): Promise<void> => {
+    if (planName.includes('Business')) {
+      await this.completeBusinessInfoForm();
+    }
+    await this.clickSaveAndContinueButton();
+    await this.captureOrderSummary(groupPayConfig);
+  };
+
   // ========================== fill Text Box Methods ======================
   // Fill  Account Number Method
   fillAccountNumberTxt = async (account: string) => {

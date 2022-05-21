@@ -44,7 +44,16 @@ export default class UrlsUtils {
       url: `https://forms.${envUrlString}legalshield.com/`,
     },
     shieldAtWork: {
-      url: `https://login.${envUrlString}shieldatwork.com/login?app=work&impact=Low&path=%2f`,
+      url: `https://login.${envUrlString}shieldatwork.com/`,
+    },
+    groupEnrollment: {
+      url: `https://groupenrollment.${envUrlString}legalshieldinternal.com/`,
+    },
+    classicShieldAtWork: {
+      url: 'https://classic.dev-shieldatwork.com/',
+    },
+    typeForm: {
+      url: 'https://legalshield.typeform.com/to/lJtBMp?typeform-source=classic.dev-shieldatwork.com',
     },
   };
 
@@ -101,6 +110,18 @@ export default class UrlsUtils {
     },
     uatUrl: {
       url: 'https://lspro.stage.wearelegalshield.com/launch',
+    },
+  };
+
+  static readonly channelsUrls = {
+    businesscard: {
+      url: `https://associate-office.${envUrlString}legalshield.com/business-card`,
+    },
+    reportsbusinessorganizational: {
+      url: `https://associate-office.${envUrlString}legalshield.com/reports/business/organizational`,
+    },
+    reportscommissions: {
+      url: `https://associate-office.${envUrlString}legalshield.com/reports/commissions`,
     },
   };
 }

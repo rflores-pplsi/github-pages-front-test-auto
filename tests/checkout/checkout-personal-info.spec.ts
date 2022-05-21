@@ -3,13 +3,26 @@ import RegionsUtils from '../../utils/regions.utils';
 import { CheckoutPersonalInfoPage } from '../../page-objects/checkout/checkout-personal-info.page';
 import { basicUser } from '../../utils/user.utils';
 
-// create instance of Page
+// define the instance of Page declaration
 let checkoutPersonalInfoPage: CheckoutPersonalInfoPage;
 
 // Setup environment before each test
 test.beforeEach(async ({ page }) => {
   test.slow();
   checkoutPersonalInfoPage = new CheckoutPersonalInfoPage(page);
+});
+
+test('Verify Personal Information Section Header Displays', async ({ page }) => {
+  console.log('Test Case: Verify Personal Information Section Header Displays');
+  await checkoutPersonalInfoPage.navigateToPersonalInfoPageFromPlanalyzer();
+  await checkoutPersonalInfoPage.assertPersonalInfoHeaderIsDisplayed();
+});
+
+test.only('Verify Error for all fields on Personal Info Page Displays', async ({ page }) => {
+  console.log('Test Case: Verify Error for all fields on Personal Info Page Displays');
+  await checkoutPersonalInfoPage.navigateToPersonalInfoPageFromPlanalyzer();
+  await checkoutPersonalInfoPage.clearAllFieldsOnPersonalInfoPageAndSave();
+  await checkoutPersonalInfoPage.assertPersonalInfoPageErrorsAreDisplayed();
 });
 
 for (const state of RegionsUtils.usStates.filter((state) => state.abbrv == 'CA' && state.priority == true)) {

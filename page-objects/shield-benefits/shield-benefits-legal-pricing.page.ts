@@ -12,33 +12,36 @@ const conAvailablePlans = '//div[contains (@class,"filters mt-5 mb-5") and conta
  */
 export class ShieldBenefitsLegalPricingPage extends PlanalyzerCsrCheckoutPage {
   // ========================== Process Methods ============================
+
   /**
    * @param {string} state
    * @param {string} paymentFrequency
    * @param {string} planName
+   * @param {string} tierName
    * @memberof ShieldBenefitsLegalPricingPage
    */
-  selectPlanAndEnroll = async (state: string, paymentFrequency: string, planName: string) => {
+  selectPlanAndEnroll = async (state: string, paymentFrequency: string, planName: string, tierName: string) => {
     console.log(' - shieldBenefitsLegalPricingPage.selectPlanAndEnroll');
     await this.clickOnElement(btnState);
     await this.clickOnElement(`//div[contains(@class,"lsux-link-content--menu") and contains (.,"${state}")]`);
     await this.clickOnElement(btnPaymentFrequency);
     await this.clickOnElement(`//div[contains(@class,"lsux-link-content--menu") and contains (.,"${paymentFrequency}")]`);
     await this.waitForElementToBeVisible(conAvailablePlans);
-    await this.clickIndividualPlanEnrollNowButton(planName);
+    await this.clickIndividualPlanEnrollNowButton(planName, tierName);
   };
 
   /**
    * @param {string} state
    * @param {string} planName
+   * @param {string} tierName
    * @memberof ShieldBenefitsLegalPricingPage
    */
-  selectPlanAndEnrollNoPaymentFrequency = async (state: string, planName: string) => {
+  selectPlanAndEnrollNoPaymentFrequency = async (state: string, planName: string, tierName: string) => {
     console.log(' - shieldBenefitsLegalPricingPage.selectPlanAndEnroll');
     await this.clickOnElement(btnState);
     await this.clickOnElement(`//div[contains(@class,"lsux-link-content--menu") and contains (.,"${state}")]`);
     await this.waitForElementToBeVisible(conAvailablePlans);
-    await this.clickIndividualPlanEnrollNowButton(planName);
+    await this.clickIndividualPlanEnrollNowButton(planName, tierName);
   };
 
   /**
@@ -60,14 +63,16 @@ export class ShieldBenefitsLegalPricingPage extends PlanalyzerCsrCheckoutPage {
 
   // ========================== Navigate Methods ===========================
   // ========================== Click Methods ==============================
+
   /**
    * @param {string} planName
+   * @param {string} tierName
    * @memberof ShieldBenefitsLegalPricingPage
    */
-  clickIndividualPlanEnrollNowButton = async (planName: string) => {
+  clickIndividualPlanEnrollNowButton = async (planName: string, tierName: string) => {
     console.log(' - shieldBenefitsLegalPricingPage.clickIndividualPlanEnrollNowButton');
     // Click on Enroll Now button for selected Plan
-    await this.clickOnElement(`//div[@class="groupTokenCard" and contains(.,"${planName}") ]//button`);
+    await this.clickOnElement(`//div[@class="groupTokenCard" and contains(.,"${planName}") and contains(.,"${tierName}")]//button`);
   };
 
   /**

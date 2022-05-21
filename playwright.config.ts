@@ -8,31 +8,22 @@ const config: PlaywrightTestConfig = {
   projects: [
     {
       name: 'chromium',
-      use: {
-        ...devices['Desktop Chrome'],
-        screenshot: 'on',
-        video: 'on',
-        trace: 'on',
-      },
+      use: { ...devices['Desktop Chrome'], screenshot: 'on', video: 'on', trace: 'on' },
     },
     { testMatch: ['tests/*/*.spec.ts'] },
     // {
     //   name: 'firefox',
-    //   use: { ...devices['Desktop Firefox'],
-    //   screenshot: 'on',
-    //   trace: 'on',
+    //   use: { ...devices['Desktop Firefox'], screenshot: 'on', video: 'on', trace: 'on' },
     // },
-    // },
+    // { testMatch: ['tests/*.test.ts'] },
     // {
     //   name: 'webkit',
-    //   use: { ...devices['Desktop Safari'],
-    //   screenshot: 'on',
-    //   trace: 'on',
+    //   use: { ...devices['Desktop Safari'], screenshot: 'on', video: 'on', trace: 'on' },
     // },
-    // },
+    // { testMatch: ['tests/*.test.ts'] },
   ],
   reporter: [['dot'], ['json', { outputFile: 'test-result.json' }], ['html', { open: 'always' }]],
-  retries: 0,
+  retries: 1,
   // setting workers to '1' disables parallel running, workers can also be set at runtime in the command line
   workers: 1,
 };

@@ -13,10 +13,13 @@ test('Payments page header is displayed', async ({ page }) => {
   await checkoutPaymentsPage.assertAccoutPaymentsPage();
 });
 test('Payments page Terms of Service Link is Clickable', async ({ page }) => {
+<<<<<<< HEAD
   await checkoutPaymentsPage.clickTermsOfServiceLnk();
   await checkoutPaymentsPage.assertTermsOfServiceNewTab();
 });
 test('Payments page Terms of Service Link is Clickable', async ({ page }) => {
+=======
+>>>>>>> 6a44b0426dcc0c01ce1a70dfd3fd1d434cadf1ee
   await checkoutPaymentsPage.clickTermsOfServiceLnk();
   await checkoutPaymentsPage.assertTermsOfServiceNewTab();
 });

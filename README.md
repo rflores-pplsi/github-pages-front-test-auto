@@ -328,6 +328,7 @@ If this list does not include a UI/Control Type that you are implementing, use y
 | File list box              | fil    | filSource       |
 | Form                       | frm    | frmEntry        |
 | Frame                      | fra    | fraLanguage     |
+| Header                     | hdr    | hdrMessage      |
 | Image                      | img    | imgIcon         |
 | Label                      | lbl    | lblHelpMessage  |
 | Links/Anchor Tags          | lnk    | lnkForgotPwd    |

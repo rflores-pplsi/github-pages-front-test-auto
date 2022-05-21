@@ -22,7 +22,7 @@ export class CheckoutPaymentsPage extends CheckoutPersonalInfoPage {
     console.log(' - accountPaymentPage.goToPaymentsPage');
     await this.navigateToPlanalyzerCsrCheckoutOktaLogin();
     await this.loginThroughOkta();
-    await this.createOrderRedirectToCheckout('D2C', 'LegalShield', state, 'en-US', '', '', ['Legal Plan']);
+    await this.createOrderRedirectToCheckoutFromPlanalyzer('D2C', 'LegalShield', state, 'en-US', '', '', ['Legal Plan']);
     await this.navigatePersonalInfoPageFromLogin(basicUser.email, basicUser.password);
     const regionObj = RegionsUtils.usStates;
     const stateObj = state;
@@ -33,6 +33,7 @@ export class CheckoutPaymentsPage extends CheckoutPersonalInfoPage {
     await this.clickSaveAndContinueButton();
     // await this.page.waitForTimeout(3500);
   };
+
   // ========================== Click Methods ==============================
   clickBankDraftBtn = async () => {
     // Force a wait time
