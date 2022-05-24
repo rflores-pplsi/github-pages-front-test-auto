@@ -1,4 +1,5 @@
 import { test } from '@playwright/test';
+import RegionsUtils from '../../utils/regions.utils';
 import { CheckoutConfirmationPage } from '../../page-objects/checkout/checkout-confirmation.page';
 
 // create instance of Page
@@ -15,7 +16,7 @@ test.beforeEach(async ({ page }) => {
 test('Verify FreeTrial purchase for IDS Individual on IDS Canada ', async ({ page }) => {
   console.log('Test Case: Verify FreeTrial purchase IDS Individual on IDS Canada - Personal Info Page');
   await checkoutConfirmationPage.navigateToPersonalInfoPageFromPlanalyzer('D2C', 'IDShield', 'Ontario', 'en-CA', '', 'F30', ['IDShield Individual']);
-  // await checkoutConfirmationPage.assertPlanNameDisplayedInSummary('IDShield Individual');
+  await checkoutConfirmationPage.assertPlanNameDisplayedInSummary('IDShield Individual');
   await checkoutConfirmationPage.assertMonthlyLabelAndTotal('$14.95');
   await checkoutConfirmationPage.assertTotalDueToday('$0.00');
   const regionObj = RegionsUtils.caProvinces;
@@ -42,18 +43,21 @@ test('Verify FreeTrial purchase for IDS Individual on IDS Canada ', async ({ pag
 
   // await checkoutConfirmationPage.navigateConfirm...
   // await checkoutConfirmationPage.assert...
-  await checkoutConfirmationPage.assertPlanNameDisplayed('IDShield Individual');
-  await checkoutConfirmationPage.assertPlanCostDisplayed('IDShield Individual');
+  await checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary('IDShield Individual');
+  await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName('IDShield Individual');
 
   // assert anything else you want on Confirmation page
 });
 
 test.only('Verify FreeTrial purchase for IDS Family on IDS Canada ', async ({ page }) => {
   console.log('Test Case: Verify FreeTrial purchase for IDS Family on IDS Canada - Personal Info Page');
+  // Navigate to Personal Info Page
   await checkoutConfirmationPage.navigateToPersonalInfoPageFromPlanalyzer('D2C', 'IDShield', 'Ontario', 'en-CA', '', 'F30', ['IDShield Family']);
-  // await checkoutConfirmationPage.assertPlanNameDisplayedInSummary('IDShield Individual');
+  // Personal Info Page Assertion
+  await checkoutConfirmationPage.assertPlanNameDisplayedInSummary('IDShield Family');
   await checkoutConfirmationPage.assertMonthlyLabelAndTotal('$29.95');
   await checkoutConfirmationPage.assertTotalDueToday('$0.00');
+  // Navigate to Payment Page
   const regionObj = RegionsUtils.caProvinces;
   const stateObj = 'Ontario';
   for (const obj of regionObj) {
@@ -61,25 +65,14 @@ test.only('Verify FreeTrial purchase for IDS Family on IDS Canada ', async ({ pa
       await checkoutConfirmationPage.changeAddress(obj.validAddress.street, obj.validAddress.city, obj.validAddress.postalCode);
   }
   await checkoutConfirmationPage.clickSaveAndContinueButton();
-  // assert anything else you want on personal info page
-
-  // await checkoutConfirmationPage.navigatePayment...
-  // await checkoutConfirmationPage.assert...
+  // Payment Page Assertions
   await checkoutConfirmationPage.assertMonthlyLabelAndTotal('$29.95');
   await checkoutConfirmationPage.assertTotalDueToday('$0.00');
+  // Navigate to Confirmation Page using CC
   await checkoutConfirmationPage.fillCreditCardFormForCa();
-
-  // await checkoutConfirmationPage.clickBankDraftBtn();
-  // await checkoutConfirmationPage.fillBankDraftFormForCa();
-
-  // assert anything else you want on Payment Page page
-
-  // await checkoutConfirmationPage.navigateConfirm...
-  // await checkoutConfirmationPage.assert...
-  await checkoutConfirmationPage.assertPlanNameDisplayed('IDShield Family');
-  await checkoutConfirmationPage.assertPlanCostDisplayed('IDShield Family');
-
-  // assert anything else you want on Confirmation page
+  // Confirmation Page assertions
+  await checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary('IDShield Family');
+  await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName('IDShield Family');
 });
 
 test('Self-Pay (IDShield Individual) using Planalyzer and Bank Draft', async ({ page }) => {
