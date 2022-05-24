@@ -6,6 +6,7 @@ import selfPayData from '../e2e/data/e2e-checkout-group-self-pay.json';
 import payrollDeductData from '../e2e/data/e2e-checkout-group-payroll-deduct.json';
 import fringeData from '../e2e/data/e2e-checkout-group-fringe.json';
 import partialFringeData from '../e2e/data/e2e-checkout-group-partial-fringe.json';
+import idshieldCanadaData from '../e2e/data/e2e-checkout-idshield-canada.json';
 
 // create instance of Page
 let checkoutConfirmationPage: CheckoutConfirmationPage;
@@ -16,6 +17,35 @@ test.beforeEach(async ({ page }) => {
   // test.slow triples the default wait times
   test.slow();
 });
+
+// Free Trial fro IDShield CA using bank draft - for all Provinces
+for (const tc of idshieldCanadaData.filter((tc) => tc.run == true)) {
+  for (const province of RegionsUtils.caProvinces.filter((province) => province.abbrv == 'ON' && province.priority == true)) {
+    test.only(`${tc.testCaseName} - ${province.name} @IdShield @Canada`, async ({ page }) => {
+      console.log(`Test Case: ${tc.testCaseName} - ${province.name}`);
+      // Navigate to personal Info page through planalyzer
+      await checkoutConfirmationPage.navigateToPersonalInfoPageFromPlanalyzer('D2C', 'IDShield', province.name, 'en-CA', '', 'F30', [tc.planName]);
+      await checkoutConfirmationPage.changeAddress(province.validAddress.street, province.validAddress.city, province.validAddress.postalCode);
+      // TODO: make captureOrderSummary generic, and create a groupconfig specific captureOrderSummary method
+      await checkoutConfirmationPage.captureOrderSummary('Not Applicable');
+      // Personal Info Assertions
+      // await checkoutConfirmationPage.assertPlanNameTierNameAndCost(tc.planName, tc.tierName, tc.planCost);
+      // await checkoutConfirmationPage.assertPayPeriodTotal(tc.totalCost);
+      // TODO: make captureOrderSummary generic, and create a groupconfig specific captureOrderSummary method
+      await checkoutConfirmationPage.navigateFromPersonalInfoPageToPaymentPageNoBusiness('Not Applicable');
+      await page.pause();
+      // // Payment Assertions
+      // await checkoutConfirmationPage.assertPlanNameTierNameAndCost(tc.planName, tc.tierName, tc.planCost);
+      // await checkoutConfirmationPage.assertPayPeriodTotal(tc.totalCost);
+      // await checkoutConfirmationPage.navigateFromPaymentBankDraftPageToConfirmationPage();
+      // // Confirmation Assertions
+      // await checkoutConfirmationPage.assertMembershipTileIsDisplayed(tc.planType);
+      // await checkoutConfirmationPage.assertNoMemberNumbersAreDisplayed();
+      // await checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary(tc.planName);
+      // await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName(tc.planName);
+    });
+  }
+}
 
 // Self-Pay Group Configurations - Single Plan
 for (const tc of selfPayData.filter((tc) => tc.run == true)) {

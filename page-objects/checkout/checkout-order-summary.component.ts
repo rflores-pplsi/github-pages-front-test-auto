@@ -58,6 +58,27 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
   };
 
   /**
+   *
+   *
+   * @param {string} groupPayConfig
+   * @memberof CheckoutOrderSummaryComponent
+   */
+  captureOrderSummaryWithoutTier = async (): Promise<void> => {
+    console.log(' - checkoutOrderSummaryComponent.captureOrderSummary');
+    await this.page.waitForSelector(lnkEditOrder);
+    await this.page.waitForLoadState('networkidle');
+    // reset rows to empty when calling this method from the payment page
+    if (orderSummary.orderSummaryRows.length != 0) {
+      orderSummary.orderSummaryRows = [];
+    }
+    const numberOfRows = (await this.page.$$('//div[contains(@class,"plan-name-row")]')).length;
+    for (let i: number = 0; i < numberOfRows; i++) {
+      const row = await this.captureOrderSummaryRow(i);
+      orderSummary.addRow(row);
+    }
+  };
+
+  /**
    * @param {number} [i=0]
    * @memberof CheckoutOrderSummaryComponent
    */
@@ -73,6 +94,16 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
     return planRow;
   };
 
+  captureOrderSummaryRowWithoutTier = async (i: number = 0): Promise<OrderSummaryRow> => {
+    console.log(' - checkoutOrderSummaryComponent.captureOrderSummaryRow');
+    const planNameJsHandle = (await this.page.$$(txtPlanNames))[i].getProperty('innerText');
+    const planNameText = await (await planNameJsHandle).jsonValue();
+    const planCostJsHandle = (await this.page.$$(txtPlanCosts))[i].getProperty('innerText');
+    const planCostText = await (await planCostJsHandle).jsonValue();
+    const planRow = new OrderSummaryRowWithoutTier(planNameText, planCostText);
+    return planRow;
+  };
+
   /**
    * @param {number} [i=0]
    * @memberof CheckoutOrderSummaryComponent
@@ -84,7 +115,6 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
     const tierNameJsHandle = (await this.page.$$(txtTierNames))[i].getProperty('innerText');
     const tierNameText = await (await tierNameJsHandle).jsonValue();
     const planRow = new OrderSummaryRowWithoutCost(planNameText, tierNameText);
-    console.log(planRow);
     return planRow;
   };
 

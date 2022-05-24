@@ -49,7 +49,7 @@ test('Verify FreeTrial purchase for IDS Individual on IDS Canada ', async ({ pag
   // assert anything else you want on Confirmation page
 });
 
-test.only('Verify FreeTrial purchase for IDS Family on IDS Canada ', async ({ page }) => {
+test('Verify FreeTrial purchase for IDS Family on IDS Canada ', async ({ page }) => {
   console.log('Test Case: Verify FreeTrial purchase for IDS Family on IDS Canada - Personal Info Page');
   // Navigate to Personal Info Page
   await checkoutConfirmationPage.navigateToPersonalInfoPageFromPlanalyzer('D2C', 'IDShield', 'Ontario', 'en-CA', '', 'F30', ['IDShield Family']);

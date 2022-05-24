@@ -92,6 +92,11 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
     await this.captureOrderSummary(groupPayConfig);
   };
 
+  navigateFromPersonalInfoPageToPaymentPageNoBusiness = async (groupPayConfig: string): Promise<void> => {
+    await this.clickSaveAndContinueButton();
+    await this.captureOrderSummary(groupPayConfig);
+  };
+
   // ========================== fill Text Box Methods ======================
   // Fill  Account Number Method
   fillAccountNumberTxt = async (account: string) => {

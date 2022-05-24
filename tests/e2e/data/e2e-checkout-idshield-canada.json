@@ -1,0 +1,12 @@
+[
+  {
+    "testCaseName": "IdShield Canada (Idshield Individual)",
+    "planName": "IDShield Individual",
+    "tierName": "1 Bureau Credit Monitoring",
+    "planType": "IDShield",
+    "payFrequency": "Monthly",
+    "planCost": "$12.95",
+    "totalCost": "$12.95",
+    "run": true
+  }
+]
