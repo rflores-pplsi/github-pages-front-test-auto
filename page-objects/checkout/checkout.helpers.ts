@@ -72,6 +72,30 @@ export class OrderSummaryWithoutCosts {
 
 /**
  * @export
+ * @class OrderSummaryWithoutCosts
+ */
+export class OrderSummaryWithoutTiers {
+  orderSummaryRows: OrderSummaryRowWithoutTier[];
+
+  /**
+   * Creates an instance of OrderSummaryWithoutCosts.
+   * @memberof OrderSummaryWithoutTiers
+   */
+  constructor() {
+    this.orderSummaryRows = [];
+  }
+
+  /**
+   * @param {OrderSummaryRow} row
+   * @memberof OrderSummary
+   */
+  addRow = async (row: OrderSummaryRowWithoutTier): Promise<void> => {
+    this.orderSummaryRows.push(row);
+  };
+}
+
+/**
+ * @export
  * @class OrderSummaryRowWithoutCost
  */
 export class OrderSummaryRowWithoutCost {
@@ -87,5 +111,25 @@ export class OrderSummaryRowWithoutCost {
   constructor(planName: string | null, tierName: string | null) {
     this.planName = planName;
     this.tierName = tierName;
+  }
+}
+
+/**
+ * @export
+ * @class OrderSummaryRowWithoutCost
+ */
+export class OrderSummaryRowWithoutTier {
+  planName: string | null;
+  costName: string | null;
+
+  /**
+   * Creates an instance of OrderSummaryRowWithoutCost.
+   * @param {(string | null)} planName
+   * @param {(string | null)} costName
+   * @memberof OrderSummaryRowWithoutCost
+   */
+  constructor(planName: string | null, costName: string | null) {
+    this.planName = planName;
+    this.costName = costName;
   }
 }

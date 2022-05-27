@@ -13,7 +13,7 @@ test.beforeEach(async ({ page }) => {
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
 
-test.only('Verify FreeTrial purchase for IDS Individual on IDS Canada ', async ({ page }) => {
+test('Verify FreeTrial purchase for IDS Individual on IDS Canada ', async ({ page }) => {
   console.log('Test Case: Verify FreeTrial purchase IDS Individual on IDS Canada - Personal Info Page');
   // Navigate to Personal Info Page
   await checkoutConfirmationPage.navigateToPersonalInfoPageFromPlanalyzer('D2C', 'IDShield', 'Ontario', 'en-CA', '', 'F30', ['IDShield Individual']);
@@ -34,13 +34,13 @@ test.only('Verify FreeTrial purchase for IDS Individual on IDS Canada ', async (
   await checkoutConfirmationPage.assertTotalDueToday('$0.00');
   // Navigate to Confirmation Page using BankDraft
   await checkoutConfirmationPage.clickBankDraftBtn();
-  await checkoutConfirmationPage.fillBankDraftFormForCa();
+  await checkoutConfirmationPage.fillBankDraftFormForCanada();
   // Confirmation Page assertions
   await checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary('IDShield Individual');
   await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName('IDShield Individual');
 });
 
-test.only('Verify FreeTrial purchase for IDS Family on IDS Canada ', async ({ page }) => {
+test('Verify FreeTrial purchase for IDS Family on IDS Canada ', async ({ page }) => {
   console.log('Test Case: Verify FreeTrial purchase for IDS Family on IDS Canada - Personal Info Page');
   // Navigate to Personal Info Page
   await checkoutConfirmationPage.navigateToPersonalInfoPageFromPlanalyzer('D2C', 'IDShield', 'Ontario', 'en-CA', '', 'F30', ['IDShield Family']);

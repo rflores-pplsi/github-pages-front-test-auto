@@ -60,8 +60,8 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
     // Fillout the Bank Draft form
     return this.page.locator(txtTotalPriceLabel).innerText();
   };
-  fillBankDraftFormForCa = async () => {
-    console.log(' - checkoutPaymentPage.fillBankDraftFormForCa');
+  fillBankDraftFormForCanada = async () => {
+    console.log(' - checkoutPaymentPage.fillBankDraftFormForCanada');
     // Fillout the Bank Draft form
     await this.fillAccountNumberForCaTxt('0000000');
     await this.page.keyboard.press('Tab');
@@ -88,11 +88,6 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
     if (planName.includes('Business')) {
       await this.completeBusinessInfoForm();
     }
-    await this.clickSaveAndContinueButton();
-    await this.captureOrderSummary(groupPayConfig);
-  };
-
-  navigateFromPersonalInfoPageToPaymentPageNoBusiness = async (groupPayConfig: string): Promise<void> => {
     await this.clickSaveAndContinueButton();
     await this.captureOrderSummary(groupPayConfig);
   };

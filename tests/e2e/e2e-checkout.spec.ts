@@ -20,25 +20,30 @@ test.beforeEach(async ({ page }) => {
 
 // Free Trial fro IDShield CA using bank draft - for all Provinces
 for (const tc of idshieldCanadaData.filter((tc) => tc.run == true)) {
-  for (const province of RegionsUtils.caProvinces.filter((province) => province.abbrv == 'ON' && province.priority == true)) {
-    // test.only(`${tc.testCaseName} - ${province.name} @IdShield @Canada`, async ({ page }) => {
-    test(`${tc.testCaseName} - ${province.name} @IdShield @Canada`, async ({ page }) => {
+  for (const province of RegionsUtils.caProvinces.filter((province) => province.name != 'Quebec' && province.priority == true)) {
+    test.only(`${tc.testCaseName} - ${province.name} @IdShield @Canada @checkoutRegression`, async ({ page }) => {
+      // test(`${tc.testCaseName} - ${province.name} @IdShield @Canada`, async ({ page }) => {
       console.log(`Test Case: ${tc.testCaseName} - ${province.name}`);
       // Navigate to personal Info page through planalyzer
+      // Note: TODO: Convert this method to one that uses the marketing site instead of planalyzer
       await checkoutConfirmationPage.navigateToPersonalInfoPageFromPlanalyzer('D2C', 'IDShield', province.name, 'en-CA', '', 'F30', [tc.planName]);
       await checkoutConfirmationPage.changeAddress(province.validAddress.street, province.validAddress.city, province.validAddress.postalCode);
-      // TODO: make captureOrderSummary generic, and create a groupconfig specific captureOrderSummary method
-      await checkoutConfirmationPage.captureOrderSummary('Not Applicable');
+      await checkoutConfirmationPage.captureOrderSummaryWithoutTier();
       // Personal Info Assertions
-      // await checkoutConfirmationPage.assertPlanNameTierNameAndCost(tc.planName, tc.tierName, tc.planCost);
-      // await checkoutConfirmationPage.assertPayPeriodTotal(tc.totalCost);
-      // TODO: make captureOrderSummary generic, and create a groupconfig specific captureOrderSummary method
-      await checkoutConfirmationPage.navigateFromPersonalInfoPageToPaymentPageNoBusiness('Not Applicable');
-      await page.pause();
-      // // Payment Assertions
-      // await checkoutConfirmationPage.assertPlanNameTierNameAndCost(tc.planName, tc.tierName, tc.planCost);
-      // await checkoutConfirmationPage.assertPayPeriodTotal(tc.totalCost);
-      // await checkoutConfirmationPage.navigateFromPaymentBankDraftPageToConfirmationPage();
+      // await checkoutConfirmationPage.assertPlanNameAndCost('IDShield Individual', '$14.95');
+      // (tc.planName, tc.planCost);
+      await checkoutConfirmationPage.assertPlanNameDisplayedInSummary(tc.planName);
+      await checkoutConfirmationPage.assertMonthlyLabelAndTotal(tc.totalCost);
+      await checkoutConfirmationPage.assertTotalDueToday(tc.totalDueToday);
+      await checkoutConfirmationPage.clickSaveAndContinueButton();
+      await checkoutConfirmationPage.captureOrderSummaryWithoutTier();
+      // Payment Assertions
+      // await checkoutConfirmationPage.assertPlanNameAndCost(tc.planName, tc.planCost);
+      await checkoutConfirmationPage.assertPlanNameDisplayedInSummary(tc.planName);
+      await checkoutConfirmationPage.assertMonthlyLabelAndTotal(tc.totalCost);
+      await checkoutConfirmationPage.assertTotalDueToday(tc.totalDueToday);
+
+      await checkoutConfirmationPage.navigateFromPaymentBankDraftPageToConfirmationPageCanada();
       // // Confirmation Assertions
       // await checkoutConfirmationPage.assertMembershipTileIsDisplayed(tc.planType);
       // await checkoutConfirmationPage.assertNoMemberNumbersAreDisplayed();
@@ -51,7 +56,7 @@ for (const tc of idshieldCanadaData.filter((tc) => tc.run == true)) {
 // Self-Pay Group Configurations - Single Plan
 for (const tc of selfPayData.filter((tc) => tc.run == true)) {
   for (const state of RegionsUtils.usStates.filter((state) => state.abbrv == 'NY' && state.priority == true)) {
-    test(`${tc.testCaseName} - ${state.name} @selfPay @groups`, async ({ page }) => {
+    test(`${tc.testCaseName} - ${state.name} @selfPay @groups @checkoutRegression`, async ({ page }) => {
       console.log(`Test Case: ${tc.testCaseName} - ${state.name}`);
       await checkoutConfirmationPage.navigateToPersonalInfoPageSinglePlan(
         basicUser.email,

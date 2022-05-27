@@ -57,6 +57,12 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
     await this.page.waitForSelector(conMembershipWrapper, { timeout: 50000 });
   };
 
+  navigateFromPaymentBankDraftPageToConfirmationPageCanada = async (): Promise<void> => {
+    await this.clickBankDraftBtn();
+    await this.fillBankDraftFormForCanada();
+    await this.page.waitForSelector(conMembershipWrapper, { timeout: 50000 });
+  };
+
   // ========================== Click Methods ==============================
   /**
    * @memberof CheckoutConfirmationPage
