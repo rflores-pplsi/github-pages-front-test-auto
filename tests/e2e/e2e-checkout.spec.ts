@@ -21,7 +21,8 @@ test.beforeEach(async ({ page }) => {
 // Free Trial fro IDShield CA using bank draft - for all Provinces
 for (const tc of idshieldCanadaData.filter((tc) => tc.run == true)) {
   for (const province of RegionsUtils.caProvinces.filter((province) => province.abbrv == 'ON' && province.priority == true)) {
-    test.only(`${tc.testCaseName} - ${province.name} @IdShield @Canada`, async ({ page }) => {
+    // test.only(`${tc.testCaseName} - ${province.name} @IdShield @Canada`, async ({ page }) => {
+    test(`${tc.testCaseName} - ${province.name} @IdShield @Canada`, async ({ page }) => {
       console.log(`Test Case: ${tc.testCaseName} - ${province.name}`);
       // Navigate to personal Info page through planalyzer
       await checkoutConfirmationPage.navigateToPersonalInfoPageFromPlanalyzer('D2C', 'IDShield', province.name, 'en-CA', '', 'F30', [tc.planName]);
