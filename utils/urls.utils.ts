@@ -114,8 +114,17 @@ export default class UrlsUtils {
   };
 
   static readonly channelsUrls = {
+    advantage: {
+      url: `https://associate-office.${envUrlString}legalshield.com/advantage`,
+    },
     businesscard: {
       url: `https://associate-office.${envUrlString}legalshield.com/business-card`,
+    },
+    login: {
+      url: `https://associate-office.${envUrlString}legalshield.com/`,
+    },
+    perks: {
+      url: `https://associate-office.${envUrlString}legalshield.com/perks`,
     },
     reportsbusinessorganizational: {
       url: `https://associate-office.${envUrlString}legalshield.com/reports/business/organizational`,
