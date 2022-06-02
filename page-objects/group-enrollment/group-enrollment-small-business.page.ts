@@ -21,6 +21,11 @@ const txtLawResults = '[class="header"]';
 const txtLawFirmName = '.results > p:nth-child(2)';
 const lnkAppStore = '.lsux-grid.container a:nth-child(1) > img';
 const btnBackToTop = 'main > div > div > button > span';
+const btnPricing = '#root > div > nav > div > div > ul > li:nth-child(2) > a';
+const btnState = '//div[contains(@class,"mr-5") and contains (.,"State")]//button';
+const btnPaymentFrequency = '//p[contains (.,"Payment frequency")]/following-sibling::div//button';
+const btnViewDetails = '#root  div:nth-child(1) > div > div > div.groupTokenCardLeft > a';
+const txtProductsAndBenefits = '[id="lsdsTitle"]';
 
 /**
  * @export
@@ -35,7 +40,7 @@ export class GroupEnrollmentSmallBusinessPage extends OktaPage {
     // Type in the search field group 99645
     await this.page.fill(txtSearch, '99645');
     // Click on Group Search button
-    await this.page.click(btnSearchGroup);
+    await this.clickOnElement(btnSearchGroup);
     // Confirm search was successful
     await this.page.waitForSelector(txtGroupInfo);
   };
@@ -45,7 +50,7 @@ export class GroupEnrollmentSmallBusinessPage extends OktaPage {
     // Type in the search law field 80021
     await this.page.fill(txtSearchLawFirm, '80021');
     // Click on Law Search button
-    await this.page.click(btnSearchLawFirm);
+    await this.clickOnElement(btnSearchLawFirm);
     // Confirm search was successful
     await this.page.waitForSelector(txtLawResults);
   };
@@ -53,8 +58,47 @@ export class GroupEnrollmentSmallBusinessPage extends OktaPage {
   copyNewGroupURL = async (): Promise<void> => {
     console.log(' - GroupEnrollmentGroupPage.copyNewGroupURL');
     // Copy link, paste it in a another tab
-    await this.page.click(btnCopyLink);
+    await this.clickOnElement(btnCopyLink);
     await this.page.waitForTimeout(1000);
+  };
+<<<<<<< Updated upstream:page-objects/group-enrollment/group-enrollment-small-business.page.ts
+=======
+  /**
+   *
+   *
+   * @param {string} state
+   * @param {string} paymentFrequency
+   * @memberof ShieldBenefitsSmallBusinessPage
+   */
+
+  selectStateAndPaymentFrequency = async (state: string, paymentFrequency: string): Promise<void> => {
+    console.log(' - ShieldBenefitsSmallBusinessPage.selectStateAndPaymentFrequency');
+    // Select State
+    await this.clickOnElement(btnState);
+    await this.clickOnElement(`//div[contains(@class,"lsux-link-content--menu") and contains (.,"${state}")]`);
+    // Select Payment Frequency
+    await this.clickOnElement(btnPaymentFrequency);
+    await this.clickOnElement(`//div[contains(@class,"lsux-link-content--menu") and contains (.,"${paymentFrequency}")]`);
+  };
+
+  // ========================== Navigate Methods ===========================
+>>>>>>> Stashed changes:page-objects/shield-benefits/shield-benefits-small-business.page.ts
+  /**
+   *
+   *
+   * @param {string} state
+   * @param {string} paymentFrequency
+   * @memberof ShieldBenefitsSmallBusinessPage
+   */
+
+  selectStateAndPaymentFrequency = async (state: string, paymentFrequency: string): Promise<void> => {
+    console.log(' - ShieldBenefitsSmallBusinessPage.selectStateAndPaymentFrequency');
+    // Select State
+    await this.clickOnElement(btnState);
+    await this.clickOnElement(`//div[contains(@class,"lsux-link-content--menu") and contains (.,"${state}")]`);
+    // Select Payment Frequency
+    await this.clickOnElement(btnPaymentFrequency);
+    await this.clickOnElement(`//div[contains(@class,"lsux-link-content--menu") and contains (.,"${paymentFrequency}")]`);
   };
 
   // ========================== Navigate Methods ===========================
@@ -109,6 +153,18 @@ export class GroupEnrollmentSmallBusinessPage extends OktaPage {
     await this.page.click(btnBackToTop);
   };
 
+  clickBtnPricing = async (): Promise<void> => {
+    console.log(' - ShieldBenefitsSmallBusinessPage.clickBtnPricing');
+    // Click on Pricing tab
+    await this.clickOnElement(btnPricing);
+  };
+
+  clickBtnViewDetails = async (): Promise<void> => {
+    console.log(' - ShieldBenefitsSmallBusinessPage.clickBtnViewDetails');
+    // Click on View Details button
+    await this.clickOnElement(btnViewDetails);
+  };
+
   // ========================== Assertion Methods ==========================
 
   assertGroupEnrollmentSearchPageSmallBusinessTab = async (): Promise<void> => {
@@ -135,5 +191,12 @@ export class GroupEnrollmentSmallBusinessPage extends OktaPage {
     console.log(' - GroupEnrollmentSearchPage.assertAppStoreUrl');
     // Verify after clicking on App store link it redirects to the store site
     await expect(this.page).toHaveURL(urlAppStore);
+  };
+
+  assertProductsAndBenefitsTitle = async (): Promise<void> => {
+    console.log(' - ShieldBenefitsSmallBusinessPage.assertProductsAndBenefitTitle');
+    // Confirm that Products and Benefits Title is displayed
+    const name = this.page.locator(txtProductsAndBenefits);
+    await expect(name).toContainText('Products and Benefits');
   };
 }
