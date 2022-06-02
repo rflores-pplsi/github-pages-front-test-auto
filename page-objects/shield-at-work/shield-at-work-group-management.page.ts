@@ -44,3 +44,4 @@ export class ShieldAtWorkGroupManagement extends LsWorkLoginPage {
     await expect(locator).toContainText('Barry University');
   };
 }
+g;

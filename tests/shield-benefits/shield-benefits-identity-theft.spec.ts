@@ -48,3 +48,13 @@ test('Verify functionality on the Identity Theft Page - Identity Theft Page is t
   // Verify that Sign In button is translated to Spanish
   await shieldBenefitsIdentityTheftPage.assertIniciarSesionTranslation();
 });
+
+test('Verify functionality on the Identity Theft Page - Verify that link is redirect to the Member Perks site', async ({ page }) => {
+  console.log('Test Case: Verify functionality on the Identity Theft Page - Verify that link is redirect to the Member Perks site');
+  // Navigate to the Identity Theft Page
+  await shieldBenefitsIdentityTheftPage.navigateToGroupEnrollmentIdentityTheftPage('99638');
+  // Click on Member Perks link
+  await shieldBenefitsIdentityTheftPage.clickLnkMemberPerks();
+  // Confirm that Member Perks site is displayed
+  await shieldBenefitsIdentityTheftPage.assertMemberPerksUrl();
+});

@@ -44,7 +44,7 @@ export default class UrlsUtils {
       url: `https://forms.${envUrlString}legalshield.com/`,
     },
     shieldAtWork: {
-      url: `https://login.${envUrlString}shieldatwork.com/`,
+      url: `https://login.${envUrlString}shieldatwork.com?app=work`,
     },
     groupEnrollment: {
       url: `https://groupenrollment.${envUrlString}legalshieldinternal.com/`,

@@ -47,3 +47,17 @@ test('Verify functionality on the small business page - Back to top button takes
   // Confirm top of page is displayed
   await shieldBenefitsSmallBusinessPage.assertShieldBenefitsSmallBusinessPageSmallBusinessPage();
 });
+
+test.only('Verify functionality on the small business page - View details button redirects to products and benefits page', async ({ page }) => {
+  console.log('Test Case: Verify functionality on the small business page - View details button redirects to products and benefits page');
+  // Navigate to the small business page
+  await shieldBenefitsSmallBusinessPage.navigateToGroupEnrollmentSmallBusinessPage('99645');
+  // Click on Pricing tab
+  await shieldBenefitsSmallBusinessPage.clickBtnPricing();
+  // Select state and payment frequency
+  await shieldBenefitsSmallBusinessPage.selectStateAndPaymentFrequency('Colorado', 'Monthly');
+  // Click on View Details button
+  await shieldBenefitsSmallBusinessPage.clickBtnViewDetails();
+  // Confirm Products and Benefits url is displayed
+  await shieldBenefitsSmallBusinessPage.assertProductsAndBenefitsTitle();
+});
