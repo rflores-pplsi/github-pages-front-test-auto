@@ -71,28 +71,6 @@ export class ShieldBenefitsSmallBusinessPage extends OktaPage {
     await this.clickOnElement(btnCopyLink);
     await this.page.waitForTimeout(1000);
   };
-<<<<<<< Updated upstream:page-objects/group-enrollment/group-enrollment-small-business.page.ts
-=======
-  /**
-   *
-   *
-   * @param {string} state
-   * @param {string} paymentFrequency
-   * @memberof ShieldBenefitsSmallBusinessPage
-   */
-
-  selectStateAndPaymentFrequency = async (state: string, paymentFrequency: string): Promise<void> => {
-    console.log(' - ShieldBenefitsSmallBusinessPage.selectStateAndPaymentFrequency');
-    // Select State
-    await this.clickOnElement(btnState);
-    await this.clickOnElement(`//div[contains(@class,"lsux-link-content--menu") and contains (.,"${state}")]`);
-    // Select Payment Frequency
-    await this.clickOnElement(btnPaymentFrequency);
-    await this.clickOnElement(`//div[contains(@class,"lsux-link-content--menu") and contains (.,"${paymentFrequency}")]`);
-  };
-
-  // ========================== Navigate Methods ===========================
->>>>>>> Stashed changes:page-objects/shield-benefits/shield-benefits-small-business.page.ts
   /**
    *
    *
