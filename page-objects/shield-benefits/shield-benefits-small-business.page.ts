@@ -6,7 +6,7 @@ import { OktaPage } from '../okta/okta.page';
 
 const url = UrlsUtils.legalshieldUrls.groupEnrollment.url;
 const urlAppStore = 'https://apps.apple.com/us/app/legalshield-law-firms-on-call/id924247236';
-const urlGroup = 'https://www.dev-shieldbenefits.com/';
+const urlGroup = 'https://www.uat-shieldbenefits.com/';
 const txtSearch = '[placeholder="Search"]';
 const btnSearchGroup = '.lsux-button--primary';
 const btnEdit = '.group-item-controls > div:nth-child(3) > a > div > img';
@@ -29,26 +29,36 @@ const txtProductsAndBenefits = '[id="lsdsTitle"]';
 
 /**
  * @export
- * @class GroupEnrollmentSmallBusinessPage
- * @extends {GroupEnrollmentSmallBusinessPage}
+ * @class ShieldBenefitsSmallBusinessPage
+ * @extends {ShieldBenefitsSmallBusinessPage}
  */
-export class GroupEnrollmentSmallBusinessPage extends OktaPage {
+export class ShieldBenefitsSmallBusinessPage extends OktaPage {
   // ========================== Process Methods ============================
-
-  searchGroup = async (): Promise<void> => {
-    console.log(' - groupEnrollmentSearch.searchGroup');
+  /**
+   *
+   *
+   * @param {string} group
+   * @memberof ShieldBenefitsSmallBusinessPage
+   */
+  searchGroup = async (group: string): Promise<void> => {
+    console.log(' - ShieldBenefitsSmallBusinessPage.searchGroup');
     // Type in the search field group 99645
-    await this.page.fill(txtSearch, '99645');
+    await this.page.fill(txtSearch, group);
     // Click on Group Search button
     await this.clickOnElement(btnSearchGroup);
     // Confirm search was successful
     await this.page.waitForSelector(txtGroupInfo);
   };
-
-  searchLawFirm = async (): Promise<void> => {
-    console.log(' - groupEnrollmentSearch.searchLawFirm');
+  /**
+   *
+   *
+   * @param {string} zipcode
+   * @memberof ShieldBenefitsSmallBusinessPage
+   */
+  searchLawFirm = async (zipcode: string): Promise<void> => {
+    console.log(' - ShieldBenefitsSmallBusinessPage.searchLawFirm');
     // Type in the search law field 80021
-    await this.page.fill(txtSearchLawFirm, '80021');
+    await this.page.fill(txtSearchLawFirm, zipcode);
     // Click on Law Search button
     await this.clickOnElement(btnSearchLawFirm);
     // Confirm search was successful
@@ -56,7 +66,7 @@ export class GroupEnrollmentSmallBusinessPage extends OktaPage {
   };
 
   copyNewGroupURL = async (): Promise<void> => {
-    console.log(' - GroupEnrollmentGroupPage.copyNewGroupURL');
+    console.log(' - ShieldBenefitsSmallBusinessPage.copyNewGroupURL');
     // Copy link, paste it in a another tab
     await this.clickOnElement(btnCopyLink);
     await this.page.waitForTimeout(1000);
@@ -102,53 +112,62 @@ export class GroupEnrollmentSmallBusinessPage extends OktaPage {
   };
 
   // ========================== Navigate Methods ===========================
-
-  navigateToGroupEnrollmentGroupURLPage = async (): Promise<void> => {
-    console.log(' - GroupEnrollmentGroupPage.navigateToGroupEnrollmentGroupURLPage');
+  /**
+   *
+   *
+   * @param {string} value
+   * @memberof ShieldBenefitsSmallBusinessPage
+   */
+  navigateToGroupEnrollmentGroupURLPage = async (value: string): Promise<void> => {
+    console.log(' - ShieldBenefitsSmallBusinessPage.navigateToGroupEnrollmentGroupURLPage');
     // Click on Edit button
     await this.clickBtnEditGroup();
     // Verify after pasting url in another browser tab group is displayed
-    const valNewGroupURL = await this.page.getAttribute(txbNewGroupURLId, 'value');
+    const valNewGroupURL = await this.page.getAttribute(txbNewGroupURLId, value);
     await this.page.waitForTimeout(1000);
     await this.page.goto(urlGroup + valNewGroupURL);
-    await this.page.waitForLoadState('networkidle');
   };
 
   navigateToGroupEnrollmentSearchPage = async (): Promise<void> => {
-    console.log(' - groupEnrollmentSearchPage.navigateToGroupEnrollmentSearchPage');
+    console.log(' - ShieldBenefitsSmallBusinessPage.navigateToGroupEnrollmentSearchPage');
     await this.page.goto(url);
     // Login through Okta page to be redirected to Group Enrollment Search Page
     await this.loginThroughOktaGroupEnrollment();
   };
-
-  navigateToGroupEnrollmentSmallBusinessPage = async (): Promise<void> => {
-    console.log(' - groupEnrollmentSearchPage.navigateToGroupEnrollmentSmallBusinessPage');
+  /**
+   *
+   *
+   * @param {string} group
+   * @return {*}  {Promise<void>}
+   */
+  navigateToGroupEnrollmentSmallBusinessPage = async (group: string): Promise<void> => {
+    console.log(' - ShieldBenefitsSmallBusinessPage.navigateToGroupEnrollmentSmallBusinessPage');
     await this.navigateToGroupEnrollmentSearchPage();
-    await this.searchGroup();
-    await this.navigateToGroupEnrollmentGroupURLPage();
+    await this.searchGroup(group);
+    await this.navigateToGroupEnrollmentGroupURLPage('value');
   };
   // ========================== Click Methods ==============================
 
   clickBtnEditGroup = async (): Promise<void> => {
-    console.log(' - groupEnrollmentSearchPage.clickBtnEditGroup');
+    console.log(' - ShieldBenefitsSmallBusinessPage.clickBtnEditGroup');
     // Click on Edit button
     await this.page.click(btnEdit);
   };
 
   clickBtnSignIn = async (): Promise<void> => {
-    console.log(' - groupEnrollmentSearchPage.clickBtnSignIn');
+    console.log(' - ShieldBenefitsSmallBusinessPage.clickBtnSignIn');
     // Click on Sign In button
     await this.page.click(btnSignIn);
   };
 
   clickAppStoreLink = async (): Promise<void> => {
-    console.log(' - groupEnrollmentSearchPage.clickAppStoreLink');
+    console.log(' - ShieldBenefitsSmallBusinessPage.clickAppStoreLink');
     // Click on AppStore link
     await this.page.click(lnkAppStore);
   };
 
   clickBtnBackToTop = async (): Promise<void> => {
-    console.log(' - groupEnrollmentSearchPage.clickAppStoreLink');
+    console.log(' - ShieldBenefitsSmallBusinessPage.clickAppStoreLink');
     // Click on Back to top button
     await this.page.click(btnBackToTop);
   };
@@ -167,20 +186,20 @@ export class GroupEnrollmentSmallBusinessPage extends OktaPage {
 
   // ========================== Assertion Methods ==========================
 
-  assertGroupEnrollmentSearchPageSmallBusinessTab = async (): Promise<void> => {
-    console.log(' - GroupEnrollmentSearchPage.assertGroupEnrollmentSearchPagePageSmallBusinessTab');
-    // Verify that Small Business tab is displayed for Newity group
+  assertShieldBenefitsSmallBusinessPageSmallBusinessPage = async (): Promise<void> => {
+    console.log(' - ShieldBenefitsSmallBusinessPage.assertShieldBenefitsSmallBusinessPage');
+    // Verify that Small Business tab is displayed for 99645 group
     await this.assertElementIsVisible(tabSmallBusiness);
   };
 
   assertAccountsV2Url = async (): Promise<void> => {
-    console.log(' - GroupEnrollmentSearchPage.assertAccountsV2Url');
+    console.log(' - ShieldBenefitsSmallBusinessPage.assertAccountsV2Url');
     // Verify after clicking on Sign In button it redirects to Accounts V2
     await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.login.url + '/login?app=accountsv2&impact=Low&path=%2Fsign-in');
   };
 
   assertLawFirmInformation = async (): Promise<void> => {
-    console.log(' - GroupEnrollmentSearchPage.assertLawFirmInformation');
+    console.log(' - ShieldBenefitsSmallBusinessPage.assertLawFirmInformation');
     // Confirm law firm name displays on the small business page
     await this.page.waitForSelector(txtLawFirmName);
     const name = this.page.locator(txtLawFirmName);
@@ -188,7 +207,7 @@ export class GroupEnrollmentSmallBusinessPage extends OktaPage {
   };
 
   assertAppStoreUrl = async (): Promise<void> => {
-    console.log(' - GroupEnrollmentSearchPage.assertAppStoreUrl');
+    console.log(' - ShieldBenefitsSmallBusinessPage.assertAppStoreUrl');
     // Verify after clicking on App store link it redirects to the store site
     await expect(this.page).toHaveURL(urlAppStore);
   };
