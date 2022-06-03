@@ -60,8 +60,8 @@ export class CheckoutPaymentsCreditCardPage extends CheckoutPaymentsPage {
     // Fillout the Bank Draft form
     return this.page.locator(txtTotalPriceLabel).innerText();
   };
-  fillCreditCardFormForCa = async () => {
-    console.log(' - checkoutPaymentPage.fillCreditCardFormForCa');
+  fillCreditCardFormForCanada = async () => {
+    console.log(' - checkoutPaymentPage.fillCreditCardFormForCanada');
     // Fillout the Credit Card form
     await this.fillCreditCardNumberTxt('4444333322221111');
     await this.page.keyboard.press('Tab');

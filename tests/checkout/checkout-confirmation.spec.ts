@@ -13,8 +13,8 @@ test.beforeEach(async ({ page }) => {
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
 
-test('Verify FreeTrial purchase for IDS Individual on IDS Canada ', async ({ page }) => {
-  console.log('Test Case: Verify FreeTrial purchase IDS Individual on IDS Canada - Personal Info Page');
+test('Verify FreeTrial purchase for IDS Individual on IDS Canada with BankDraft', async ({ page }) => {
+  console.log('Test Case: Verify FreeTrial purchase IDS Individual on IDS Canada with BankDraft - Personal Info Page');
   // Navigate to Personal Info Page
   await checkoutConfirmationPage.navigateToPersonalInfoPageFromPlanalyzer('D2C', 'IDShield', 'Ontario', 'en-CA', '', 'F30', ['IDShield Individual']);
   // Personal Info Page Assertion
@@ -40,7 +40,7 @@ test('Verify FreeTrial purchase for IDS Individual on IDS Canada ', async ({ pag
   await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName('IDShield Individual');
 });
 
-test('Verify FreeTrial purchase for IDS Family on IDS Canada ', async ({ page }) => {
+test('Verify FreeTrial purchase for IDS Family on IDS Canada with CreditCard', async ({ page }) => {
   console.log('Test Case: Verify FreeTrial purchase for IDS Family on IDS Canada - Personal Info Page');
   // Navigate to Personal Info Page
   await checkoutConfirmationPage.navigateToPersonalInfoPageFromPlanalyzer('D2C', 'IDShield', 'Ontario', 'en-CA', '', 'F30', ['IDShield Family']);
@@ -60,7 +60,7 @@ test('Verify FreeTrial purchase for IDS Family on IDS Canada ', async ({ page })
   await checkoutConfirmationPage.assertMonthlyLabelAndTotal('$29.95');
   await checkoutConfirmationPage.assertTotalDueToday('$0.00');
   // Navigate to Confirmation Page using CC
-  await checkoutConfirmationPage.fillCreditCardFormForCa();
+  await checkoutConfirmationPage.fillCreditCardFormForCanada();
   // Confirmation Page assertions
   await checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary('IDShield Family');
   await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName('IDShield Family');

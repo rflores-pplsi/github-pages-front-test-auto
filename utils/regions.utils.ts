@@ -529,7 +529,7 @@ export default class RegionsUtils {
         city: 'Calgary',
         postalCode: 'T2H 2B5',
       },
-      priority: false,
+      priority: true,
     },
     {
       name: 'British Columbia',
@@ -539,7 +539,7 @@ export default class RegionsUtils {
         city: 'Whistler',
         postalCode: 'V8E 1H9',
       },
-      priority: false,
+      priority: true,
     },
     {
       name: 'Manitoba',
@@ -549,7 +549,7 @@ export default class RegionsUtils {
         city: 'Winnipeg',
         postalCode: 'R3C 0R3',
       },
-      priority: false,
+      priority: true,
     },
     {
       name: 'New Brunswick',
@@ -559,7 +559,7 @@ export default class RegionsUtils {
         city: 'Saint John',
         postalCode: 'E2L 4W3',
       },
-      priority: false,
+      priority: true,
     },
     {
       name: 'Newfoundland and Labrador',
@@ -569,7 +569,7 @@ export default class RegionsUtils {
         city: 'St. Johns',
         postalCode: 'A1C 3K2',
       },
-      priority: false,
+      priority: true,
     },
     {
       name: 'Northwest Territories',
@@ -579,7 +579,7 @@ export default class RegionsUtils {
         city: 'Yellowknife',
         postalCode: 'X1A 2R3',
       },
-      priority: false,
+      priority: true,
     },
     {
       name: 'Nova Scotia',
@@ -589,7 +589,7 @@ export default class RegionsUtils {
         city: 'Halifax',
         postalCode: 'B3J 3J5',
       },
-      priority: false,
+      priority: true,
     },
     {
       name: 'Nunavut',
@@ -599,7 +599,7 @@ export default class RegionsUtils {
         city: 'Iqaluit',
         postalCode: 'X0A 0H0',
       },
-      priority: false,
+      priority: true,
     },
     {
       name: 'Ontario',
@@ -619,7 +619,7 @@ export default class RegionsUtils {
         city: 'Charlottetown',
         postalCode: 'C1A 1H1',
       },
-      priority: false,
+      priority: true,
     },
     {
       name: 'Quebec',
@@ -629,7 +629,7 @@ export default class RegionsUtils {
         city: 'Quebec',
         postalCode: 'G1R 4P5',
       },
-      priority: false,
+      priority: true,
     },
     {
       name: 'Saskatchewan',
@@ -639,7 +639,7 @@ export default class RegionsUtils {
         city: 'Regina',
         postalCode: 'S4P 0S3',
       },
-      priority: false,
+      priority: true,
     },
     {
       name: 'Yukon',
@@ -649,7 +649,7 @@ export default class RegionsUtils {
         city: 'Whitehorse',
         postalCode: 'Y1A 2B6',
       },
-      priority: false,
+      priority: true,
     },
   ];
   private page: Page;
