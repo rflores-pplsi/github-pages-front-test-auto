@@ -21,78 +21,7 @@ test.beforeEach(async ({ page }) => {
 // Free Trial fro IDShield CA using bank draft - for all Provinces minus Quebec
 for (const tc of idshieldCanadaData.filter((tc) => tc.run == true)) {
   for (const province of RegionsUtils.caProvinces.filter((province) => province.name != 'Quebec' && province.priority == true)) {
-    test(`${tc.testCaseName} - ${province.name} @IdShield @Canada @checkoutRegression`, async ({ page }) => {
-      // test(`${tc.testCaseName} - ${province.name} @IdShield @Canada`, async ({ page }) => {
-      console.log(`Test Case: ${tc.testCaseName} - ${province.name}`);
-      // Navigate to personal Info page through planalyzer
-      // Note: TODO: Convert this method to one that uses the marketing site instead of planalyzer
-      await checkoutConfirmationPage.navigateToPersonalInfoPageFromPlanalyzer('D2C', 'IDShield', province.name, 'en-CA', '', 'F30', [tc.planName]);
-      await checkoutConfirmationPage.changeAddress(province.validAddress.street, province.validAddress.city, province.validAddress.postalCode);
-      await checkoutConfirmationPage.captureOrderSummaryWithoutTier();
-      // Personal Info Assertions
-      // await checkoutConfirmationPage.assertPlanNameAndCost('IDShield Individual', '$14.95');
-      // await checkoutConfirmationPage.assertPlanNameAndCost(tc.planName, tc.planCost);
-      await checkoutConfirmationPage.assertPlanNameDisplayedInSummary(tc.planName);
-      await checkoutConfirmationPage.assertMonthlyLabelAndTotal(tc.totalCost);
-      await checkoutConfirmationPage.assertTotalDueToday(tc.totalDueToday);
-      await checkoutConfirmationPage.clickSaveAndContinueButton();
-      await checkoutConfirmationPage.captureOrderSummaryWithoutTier();
-      // Payment Assertions
-      // await checkoutConfirmationPage.assertPlanNameAndCost(tc.planName, tc.planCost);
-      await checkoutConfirmationPage.assertPlanNameDisplayedInSummary(tc.planName);
-      await checkoutConfirmationPage.assertMonthlyLabelAndTotal(tc.totalCost);
-      await checkoutConfirmationPage.assertTotalDueToday(tc.totalDueToday);
-
-      await checkoutConfirmationPage.navigateFromPaymentBankDraftPageToConfirmationPageCanada();
-      // // Confirmation Assertions
-      // await checkoutConfirmationPage.assertMembershipTileIsDisplayed(tc.planType);
-      // await checkoutConfirmationPage.assertNoMemberNumbersAreDisplayed();
-      // await checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary(tc.planName);
-      // await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName(tc.planName);
-    });
-  }
-}
-
-// Free Trial fro IDShield CA using credit card - for all Provinces minus Quebec
-for (const tc of idshieldCanadaData.filter((tc) => tc.run == true)) {
-  for (const province of RegionsUtils.caProvinces.filter((province) => province.name != 'Quebec' && province.priority == true)) {
-    test(`${tc.testCaseName} - ${province.name} @IdShield @Canada @checkoutRegression`, async ({ page }) => {
-      // test(`${tc.testCaseName} - ${province.name} @IdShield @Canada`, async ({ page }) => {
-      console.log(`Test Case: ${tc.testCaseName} - ${province.name}`);
-      // Navigate to personal Info page through planalyzer
-      // Note: TODO: Convert this method to one that uses the marketing site instead of planalyzer
-      await checkoutConfirmationPage.navigateToPersonalInfoPageFromPlanalyzer('D2C', 'IDShield', province.name, 'en-CA', '', 'F30', [tc.planName]);
-      await checkoutConfirmationPage.changeAddress(province.validAddress.street, province.validAddress.city, province.validAddress.postalCode);
-      await checkoutConfirmationPage.captureOrderSummaryWithoutTier();
-      // Personal Info Assertions
-      // await checkoutConfirmationPage.assertPlanNameAndCost('IDShield Individual', '$14.95');
-      // (tc.planName, tc.planCost);
-      await checkoutConfirmationPage.assertPlanNameDisplayedInSummary(tc.planName);
-      await checkoutConfirmationPage.assertMonthlyLabelAndTotal(tc.totalCost);
-      await checkoutConfirmationPage.assertTotalDueToday(tc.totalDueToday);
-      await checkoutConfirmationPage.clickSaveAndContinueButton();
-      await checkoutConfirmationPage.captureOrderSummaryWithoutTier();
-      // Payment Assertions
-      // await checkoutConfirmationPage.assertPlanNameAndCost(tc.planName, tc.planCost);
-      await checkoutConfirmationPage.assertPlanNameDisplayedInSummary(tc.planName);
-      await checkoutConfirmationPage.assertMonthlyLabelAndTotal(tc.totalCost);
-      await checkoutConfirmationPage.assertTotalDueToday(tc.totalDueToday);
-
-      await checkoutConfirmationPage.navigateFromPaymentCreditCardPageToConfirmationPageCanada();
-      // // Confirmation Assertions
-      // await checkoutConfirmationPage.assertMembershipTileIsDisplayed(tc.planType);
-      // await checkoutConfirmationPage.assertNoMemberNumbersAreDisplayed();
-      // await checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary(tc.planName);
-      // await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName(tc.planName);
-    });
-  }
-}
-
-// Free Trial fro IDShield CA using bank draft - for only Quebec minus all other Provinces
-for (const tc of idshieldCanadaData.filter((tc) => tc.run == true)) {
-  for (const province of RegionsUtils.caProvinces.filter((province) => province.name == 'Quebec' && province.priority == true)) {
     test.only(`${tc.testCaseName} - ${province.name} @IdShield @Canada @checkoutRegression`, async ({ page }) => {
-      // test(`${tc.testCaseName} - ${province.name} @IdShield @Canada`, async ({ page }) => {
       console.log(`Test Case: ${tc.testCaseName} - ${province.name}`);
       // Navigate to personal Info page through planalyzer
       // Note: TODO: Convert this method to one that uses the marketing site instead of planalyzer
@@ -100,60 +29,24 @@ for (const tc of idshieldCanadaData.filter((tc) => tc.run == true)) {
       await checkoutConfirmationPage.changeAddress(province.validAddress.street, province.validAddress.city, province.validAddress.postalCode);
       await checkoutConfirmationPage.captureOrderSummaryWithoutTier();
       // Personal Info Assertions
-      // await checkoutConfirmationPage.assertPlanNameAndCost('IDShield Individual', '$14.95');
-      // await checkoutConfirmationPage.assertPlanNameAndCost(tc.planName, tc.planCost);
+      // await checkoutConfirmationPage.assertPlanNameAndCost(tc.planName, tc.planCost); -> want to use but not working as expected
       await checkoutConfirmationPage.assertPlanNameDisplayedInSummary(tc.planName);
       await checkoutConfirmationPage.assertMonthlyLabelAndTotal(tc.totalCost);
       await checkoutConfirmationPage.assertTotalDueToday(tc.totalDueToday);
       await checkoutConfirmationPage.clickSaveAndContinueButton();
       await checkoutConfirmationPage.captureOrderSummaryWithoutTier();
       // Payment Assertions
-      // await checkoutConfirmationPage.assertPlanNameAndCost(tc.planName, tc.planCost);
+      // await checkoutConfirmationPage.assertPlanNameAndCost(tc.planName, tc.planCost); -> want to use but not working as expected
       await checkoutConfirmationPage.assertPlanNameDisplayedInSummary(tc.planName);
       await checkoutConfirmationPage.assertMonthlyLabelAndTotal(tc.totalCost);
       await checkoutConfirmationPage.assertTotalDueToday(tc.totalDueToday);
 
       await checkoutConfirmationPage.navigateFromPaymentBankDraftPageToConfirmationPageCanada();
-      // // Confirmation Assertions
-      // await checkoutConfirmationPage.assertMembershipTileIsDisplayed(tc.planType);
-      // await checkoutConfirmationPage.assertNoMemberNumbersAreDisplayed();
-      // await checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary(tc.planName);
-      // await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName(tc.planName);
-    });
-  }
-}
-
-// Free Trial fro IDShield CA using credit card - for only Quebec minus all other Provinces
-for (const tc of idshieldCanadaData.filter((tc) => tc.run == true)) {
-  for (const province of RegionsUtils.caProvinces.filter((province) => province.name == 'Quebec' && province.priority == true)) {
-    test(`${tc.testCaseName} - ${province.name} @IdShield @Canada @checkoutRegression`, async ({ page }) => {
-      // test(`${tc.testCaseName} - ${province.name} @IdShield @Canada`, async ({ page }) => {
-      console.log(`Test Case: ${tc.testCaseName} - ${province.name}`);
-      // Navigate to personal Info page through planalyzer
-      // Note: TODO: Convert this method to one that uses the marketing site instead of planalyzer
-      await checkoutConfirmationPage.navigateToPersonalInfoPageFromPlanalyzer('D2C', 'IDShield', province.name, 'en-CA', '', 'F30', [tc.planName]);
-      await checkoutConfirmationPage.changeAddress(province.validAddress.street, province.validAddress.city, province.validAddress.postalCode);
-      await checkoutConfirmationPage.captureOrderSummaryWithoutTier();
-      // Personal Info Assertions
-      // await checkoutConfirmationPage.assertPlanNameAndCost('IDShield Individual', '$14.95');
-      // (tc.planName, tc.planCost);
-      await checkoutConfirmationPage.assertPlanNameDisplayedInSummary(tc.planName);
-      await checkoutConfirmationPage.assertMonthlyLabelAndTotal(tc.totalCost);
-      await checkoutConfirmationPage.assertTotalDueToday(tc.totalDueToday);
-      await checkoutConfirmationPage.clickSaveAndContinueButton();
-      await checkoutConfirmationPage.captureOrderSummaryWithoutTier();
-      // Payment Assertions
-      // await checkoutConfirmationPage.assertPlanNameAndCost(tc.planName, tc.planCost);
-      await checkoutConfirmationPage.assertPlanNameDisplayedInSummary(tc.planName);
-      await checkoutConfirmationPage.assertMonthlyLabelAndTotal(tc.totalCost);
-      await checkoutConfirmationPage.assertTotalDueToday(tc.totalDueToday);
-
-      await checkoutConfirmationPage.navigateFromPaymentCreditCardPageToConfirmationPageCanada();
-      // // Confirmation Assertions
-      // await checkoutConfirmationPage.assertMembershipTileIsDisplayed(tc.planType);
-      // await checkoutConfirmationPage.assertNoMemberNumbersAreDisplayed();
-      // await checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary(tc.planName);
-      // await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName(tc.planName);
+      // Confirmation Assertions
+      await checkoutConfirmationPage.assertMembershipTileIsDisplayed(tc.planType);
+      await checkoutConfirmationPage.assertNoMemberNumbersAreDisplayed();
+      await checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary(tc.planName);
+      await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName(tc.planName);
     });
   }
 }

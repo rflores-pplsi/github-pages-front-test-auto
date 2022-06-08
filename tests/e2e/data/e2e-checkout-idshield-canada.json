@@ -1,41 +1,11 @@
 [
   {
-    "testCaseName": "IdShield Canada (Idshield Individual All Province  - Quebec)",
+    "testCaseName": "IdShield Canada (Idshield Individual All Province  - Except Quebec)",
     "planName": "IDShield Individual",
     "planType": "IDShield",
     "payFrequency": "Monthly",
     "planCost": "$14.95",
     "totalCost": "$14.95",
-    "totalDueToday": "$0.00",
-    "run": true
-  },
-  {
-    "testCaseName": "IdShield Canada (Idshield Family All Province  - Quebec)",
-    "planName": "IDShield Family",
-    "planType": "IDShield",
-    "payFrequency": "Monthly",
-    "planCost": "$29.95",
-    "totalCost": "$29.95",
-    "totalDueToday": "$0.00",
-    "run": true
-  },
-  {
-    "testCaseName": "IdShield Canada (Idshield Individual Only Quebec)",
-    "planName": "IDShield Individual",
-    "planType": "IDShield",
-    "payFrequency": "Monthly",
-    "planCost": "$12.95",
-    "totalCost": "$12.95",
-    "totalDueToday": "$0.00",
-    "run": true
-  },
-  {
-    "testCaseName": "IdShield Canada (Idshield Family Only Quebec)",
-    "planName": "IDShield Family",
-    "planType": "IDShield",
-    "payFrequency": "Monthly",
-    "planCost": "$25.95",
-    "totalCost": "$25.95",
     "totalDueToday": "$0.00",
     "run": true
   }
