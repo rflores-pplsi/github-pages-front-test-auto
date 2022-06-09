@@ -1,14 +1,17 @@
+import { expect } from '@playwright/test';
 import urlsUtils from '../../utils/urls.utils';
 import { LsWorkLoginPage } from '../shield-at-work/shield-at-work-login.page';
 
 // ========================== Selectors ==================================
 const url = urlsUtils.legalshieldUrls.shieldAtWork.url;
-const btnViewGroup = '[class="lsux-button  lsux-button--standard      ml-4"]';
-const txtSearch = '[placeholder="Search by name or group number"]';
-const btnSearch = '[id="searchButton"]';
+const btnViewGroup: string = '[class="lsux-button  lsux-button--standard      ml-4"]';
+const txtSearch: string = '[placeholder="Search by name or group number"]';
+const btnSearch: string = '[id="searchButton"]';
 const btnEnrollmentTab = '#root div.lsux-tab--bar.lsux-tab--stretch.mt-4._1eLFtzcrk-k4lYLgF3dWc1 > div:nth-child(3) > div > a > h4';
-const txtGroup = '#root  .lsux-container--flex-items-center.mb-2 > h3';
-const btnManageSite = '//*[@id="root"]/div/div[2]/div[1]/div/div/div[2]/div[1]/div[2]/div/div/div[3]/div[2]/div/h2/button';
+const txtGroup: string = '#root  .lsux-container--flex-items-center.mb-2 > h3';
+const btnManageSite: string = ' .lsux-row.half.children2._1mGEzKW4bHYdkCdXubcxyu > div:nth-child(2) > div > h2 > button > span';
+const txtEnrollmentInformation: string = '.lsux-container--flex-items-center._3LtEyoCyKId7Bp09BBV_XQ.px-6.TZykF7nc8qs6i9k03RlmT > h3';
+const txtMessage: string = '.lsux-container--flex-content-center.py-10.px-4 > h3';
 
 /**
  * @export
@@ -63,5 +66,20 @@ export class ShieldAtWorkEnrollmentTab extends LsWorkLoginPage {
     console.log(' - enrollmentShieldAtWorkPage.assertManageSiteButtonIsVisible');
     // Verify that Identity Theft Page is displayed for 99638 group
     await this.assertElementIsVisible(btnManageSite);
+  };
+
+  assertEnrollmentInformation = async (): Promise<void> => {
+    console.log(' - enrollmentShieldAtWorkPage.assertEnrollmentInformation');
+    // Verify that enrollment information  is displayed
+    await this.page.waitForSelector(txtEnrollmentInformation);
+    const information = this.page.locator(txtEnrollmentInformation);
+    await expect(information).toContainText('Enrollment information');
+  };
+
+  assertMessageIsDisplayed = async (): Promise<void> => {
+    console.log(' - enrollmentShieldAtWorkPage.assertMessageIsDisplayed');
+    await this.page.waitForSelector(txtMessage);
+    const message = 'There are no members to display for group based on status filter.';
+    await this.assertElementHasText(txtMessage, message);
   };
 }
