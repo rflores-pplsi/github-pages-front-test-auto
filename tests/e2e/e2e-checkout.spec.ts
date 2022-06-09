@@ -26,7 +26,7 @@ for (const tc of idshieldCanadaData.filter((tc) => tc.run == true)) {
     // Navigate to personal Info page through planalyzer
     // Note: TODO: Convert this method to one that uses the marketing site instead of planalyzer
     await checkoutConfirmationPage.navigateToPersonalInfoPageFromPlanalyzer('D2C', 'IDShield', tc.province, 'en-CA', '', 'F30', [tc.planName]);
-    await checkoutConfirmationPage.changeAddress(tc.province, 'Canada');
+    await checkoutConfirmationPage.changeAddressCanada(tc.province);
     await checkoutConfirmationPage.captureOrderSummaryWithoutTier();
     // Personal Info Assertions
     // await checkoutConfirmationPage.assertPlanNameAndCost(tc.planName, tc.planCost); -> want to use but not working as expected
@@ -59,7 +59,7 @@ for (const tc of idshieldCanadaData.filter((tc) => tc.run == true)) {
       // Navigate to personal Info page through planalyzer
       // Note: TODO: Convert this method to one that uses the marketing site instead of planalyzer
       await checkoutConfirmationPage.navigateToPersonalInfoPageFromPlanalyzer('D2C', 'IDShield', province.name, 'en-CA', '', 'F30', [tc.planName]);
-      await checkoutConfirmationPage.changeAddress(province.validAddress.street, province.validAddress.city, province.validAddress.postalCode);
+      await checkoutConfirmationPage.changeAddressCanada(province.validAddress.street, province.validAddress.city, province.validAddress.postalCode);
       await checkoutConfirmationPage.captureOrderSummaryWithoutTier();
       // Personal Info Assertions
       // await checkoutConfirmationPage.assertPlanNameAndCost(tc.planName, tc.planCost); -> want to use but not working as expected

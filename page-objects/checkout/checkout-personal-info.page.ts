@@ -140,14 +140,18 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @memberof CheckoutPersonalInfoPage
    */
   // Update only the address in the personal information form, useful when iterating through different regions as the address needs to match
-  changeAddress = async (regionName: string, country: string): Promise<void> => {
-    // logic to go to regions util, and populate the 3 variables needed for this method for the appropriate region
-    const homeAddress = 'RegionsUtils';
-    const city = 'RegionsUtils';
-    const postalCode = 'RegionsUtils';
+  changeAddress = async (homeAddress: string, city: string, postalCode: string): Promise<void> => {
     await this.enterHomeAddress(homeAddress);
     await this.enterCity(city);
     await this.enterPostalCode(postalCode);
+  };
+
+  changeAddressCanada = async (provinceName: string): Promise<void> => {
+    // logic to go to regions util, and populate the 3 variables needed for this method for the appropriate region
+    const provinceObject = RegionsUtils.caProvinces.filter((pn) => pn.name == provinceName);
+    await this.enterHomeAddress(provinceObject[0].validAddress.street);
+    await this.enterCity(provinceObject[0].validAddress.city);
+    await this.enterPostalCode(provinceObject[0].validAddress.postalCode);
   };
 
   /**
