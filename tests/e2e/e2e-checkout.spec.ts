@@ -18,10 +18,43 @@ test.beforeEach(async ({ page }) => {
   test.slow();
 });
 
-// Free Trial fro IDShield CA using bank draft - for all Provinces minus Quebec
+// Free Trial for IDShield CA using bank draft
+for (const tc of idshieldCanadaData.filter((tc) => tc.run == true)) {
+  // for (const province of RegionsUtils.caProvinces.filter((province) => province.name != 'Quebec' && province.priority == true)) {
+  test.only(`${tc.testCaseName} - ${tc.province} @IdShield @Canada @checkoutRegression`, async ({ page }) => {
+    console.log(`Test Case: ${tc.testCaseName} - ${tc.province}`);
+    // Navigate to personal Info page through planalyzer
+    // Note: TODO: Convert this method to one that uses the marketing site instead of planalyzer
+    await checkoutConfirmationPage.navigateToPersonalInfoPageFromPlanalyzer('D2C', 'IDShield', tc.province, 'en-CA', '', 'F30', [tc.planName]);
+    await checkoutConfirmationPage.changeAddress(tc.province, 'Canada');
+    await checkoutConfirmationPage.captureOrderSummaryWithoutTier();
+    // Personal Info Assertions
+    // await checkoutConfirmationPage.assertPlanNameAndCost(tc.planName, tc.planCost); -> want to use but not working as expected
+    await checkoutConfirmationPage.assertPlanNameDisplayedInSummary(tc.planName);
+    await checkoutConfirmationPage.assertMonthlyLabelAndTotal(tc.totalCost);
+    await checkoutConfirmationPage.assertTotalDueToday(tc.totalDueToday);
+    await checkoutConfirmationPage.clickSaveAndContinueButton();
+    await checkoutConfirmationPage.captureOrderSummaryWithoutTier();
+    // Payment Assertions
+    // await checkoutConfirmationPage.assertPlanNameAndCost(tc.planName, tc.planCost); -> want to use but not working as expected
+    await checkoutConfirmationPage.assertPlanNameDisplayedInSummary(tc.planName);
+    await checkoutConfirmationPage.assertMonthlyLabelAndTotal(tc.totalCost);
+    await checkoutConfirmationPage.assertTotalDueToday(tc.totalDueToday);
+
+    await checkoutConfirmationPage.navigateFromPaymentBankDraftPageToConfirmationPageCanada();
+    // Confirmation Assertions
+    await checkoutConfirmationPage.assertMembershipTileIsDisplayed(tc.planType);
+    await checkoutConfirmationPage.assertNoMemberNumbersAreDisplayed();
+    await checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary(tc.planName);
+    await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName(tc.planName);
+  });
+  // }
+}
+
+// Free Trial for IDShield CA using credit card
 for (const tc of idshieldCanadaData.filter((tc) => tc.run == true)) {
   for (const province of RegionsUtils.caProvinces.filter((province) => province.name != 'Quebec' && province.priority == true)) {
-    test.only(`${tc.testCaseName} - ${province.name} @IdShield @Canada @checkoutRegression`, async ({ page }) => {
+    test(`${tc.testCaseName} - ${province.name} @IdShield @Canada @checkoutRegression`, async ({ page }) => {
       console.log(`Test Case: ${tc.testCaseName} - ${province.name}`);
       // Navigate to personal Info page through planalyzer
       // Note: TODO: Convert this method to one that uses the marketing site instead of planalyzer
@@ -41,7 +74,7 @@ for (const tc of idshieldCanadaData.filter((tc) => tc.run == true)) {
       await checkoutConfirmationPage.assertMonthlyLabelAndTotal(tc.totalCost);
       await checkoutConfirmationPage.assertTotalDueToday(tc.totalDueToday);
 
-      await checkoutConfirmationPage.navigateFromPaymentBankDraftPageToConfirmationPageCanada();
+      await checkoutConfirmationPage.navigateFromPaymentCreditCardPageToConfirmationPageCanada();
       // Confirmation Assertions
       await checkoutConfirmationPage.assertMembershipTileIsDisplayed(tc.planType);
       await checkoutConfirmationPage.assertNoMemberNumbersAreDisplayed();

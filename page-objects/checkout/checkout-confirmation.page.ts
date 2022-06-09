@@ -64,7 +64,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   };
 
   navigateFromPaymentCreditCardPageToConfirmationPageCanada = async (): Promise<void> => {
-    await this.clickCreditCardBtn();
+    // await this.clickCreditCardBtn();
     await this.fillCreditCardFormForCanada();
     await this.page.waitForSelector(conMembershipWrapper, { timeout: 90000 });
   };

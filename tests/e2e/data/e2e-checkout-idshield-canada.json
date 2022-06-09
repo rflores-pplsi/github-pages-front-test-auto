@@ -1,11 +1,23 @@
 [
   {
-    "testCaseName": "IdShield Canada (Idshield Individual All Province  - Except Quebec)",
+    "testCaseName": "IdShield Canada (Idshield Individual - No Quebec)",
+    "province": "Alberta",
     "planName": "IDShield Individual",
     "planType": "IDShield",
     "payFrequency": "Monthly",
     "planCost": "$14.95",
     "totalCost": "$14.95",
+    "totalDueToday": "$0.00",
+    "run": true
+  },
+  {
+    "testCaseName": "IdShield Canada (Idshield Family -  No Quebec)",
+    "province": "Alberta",
+    "planName": "IDShield Family",
+    "planType": "IDShield",
+    "payFrequency": "Monthly",
+    "planCost": "$29.95",
+    "totalCost": "$29.95",
     "totalDueToday": "$0.00",
     "run": true
   }
