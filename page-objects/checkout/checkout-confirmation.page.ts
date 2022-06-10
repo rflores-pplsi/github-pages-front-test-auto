@@ -46,25 +46,28 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   };
 
   navigateFromPaymentBankDraftPageToConfirmationPage = async (): Promise<void> => {
+    console.log(' CheckoutConfirmationPage.navigateFromPaymentBankDraftPageToConfirmationPage');
     await this.clickBankDraftBtn();
     await this.fillBankDraftForm();
     await this.page.waitForSelector(conMembershipWrapper, { timeout: 50000 });
   };
 
   navigateFromPaymentAgreementPageToConfirmationPage = async (): Promise<void> => {
+    console.log(' CheckoutConfirmationPage.navigateFromPaymentAgreementPageToConfirmationPage');
     await this.clickAgreementCheckbox();
     await this.clickCompleteEnrollmentButton();
     await this.page.waitForSelector(conMembershipWrapper, { timeout: 50000 });
   };
 
   navigateFromPaymentBankDraftPageToConfirmationPageCanada = async (): Promise<void> => {
+    console.log(' CheckoutConfirmationPage.navigateFromPaymentBankDraftPageToConfirmationPageCanada');
     await this.clickBankDraftBtn();
     await this.fillBankDraftFormForCanada();
     await this.page.waitForSelector(conMembershipWrapper, { timeout: 90000 });
   };
 
   navigateFromPaymentCreditCardPageToConfirmationPageCanada = async (): Promise<void> => {
-    // await this.clickCreditCardBtn();
+    console.log(' CheckoutConfirmationPage.navigateFromPaymentCreditCardPageToConfirmationPageCanada');
     await this.fillCreditCardFormForCanada();
     await this.page.waitForSelector(conMembershipWrapper, { timeout: 90000 });
   };
