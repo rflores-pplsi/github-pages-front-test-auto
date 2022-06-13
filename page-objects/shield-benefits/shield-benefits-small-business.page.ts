@@ -1,31 +1,28 @@
-import { expect } from '@playwright/test';
 import UrlsUtils from '../../utils/urls.utils';
 import { OktaPage } from '../okta/okta.page';
 
 // ========================== Selectors ==================================
 
-const url = UrlsUtils.legalshieldUrls.groupEnrollment.url;
-const urlAppStore = 'https://apps.apple.com/us/app/legalshield-law-firms-on-call/id924247236';
-const urlGroup = 'https://www.uat-shieldbenefits.com/';
-const txtSearch = '[placeholder="Search"]';
-const btnSearchGroup = '.lsux-button--primary';
-const btnEdit = '.group-item-controls > div:nth-child(3) > a > div > img';
-const btnCopyLink = '.lsux-button:nth-child(3) > .lsux-text--description';
-const tabSmallBusiness = '//*[@id="root"]/div/nav/div/div/ul/li[1]/a';
-const txtGroupInfo = '[class="group-item-info"]';
-const txbNewGroupURLId = '.lsux-grid div:nth-child(4) > div > div > form > div:nth-child(1) input';
-const btnSignIn = '[id="signedout"]';
-const txtSearchLawFirm = '[placeholder="Search"]';
-const btnSearchLawFirm = 'button:nth-child(4)';
-const txtLawResults = '[class="header"]';
-const txtLawFirmName = '.results > p:nth-child(2)';
-const lnkAppStore = '.lsux-grid.container a:nth-child(1) > img';
-const btnBackToTop = 'main > div > div > button > span';
-const btnPricing = '#root > div > nav > div > div > ul > li:nth-child(2) > a';
-const btnState = '//div[contains(@class,"mr-5") and contains (.,"State")]//button';
-const btnPaymentFrequency = '//p[contains (.,"Payment frequency")]/following-sibling::div//button';
-const btnViewDetails = '#root  div:nth-child(1) > div > div > div.groupTokenCardLeft > a';
-const txtProductsAndBenefits = '[id="lsdsTitle"]';
+const url: string = UrlsUtils.legalshieldUrls.groupEnrollment.url;
+const urlGroup: string = 'https://www.uat-shieldbenefits.com/';
+const txtSearch: string = '[placeholder="Search"]';
+const btnSearchGroup: string = '.lsux-button--primary';
+const btnEdit: string = '.group-item-controls > div:nth-child(3) > a > div > img';
+const btnCopyLink: string = '.lsux-button:nth-child(3) > .lsux-text--description';
+const tabSmallBusiness: string = '//*[@id="root"]/div/nav/div/div/ul/li[1]/a';
+const txtGroupInfo: string = '[class="group-item-info"]';
+const txbNewGroupURLId: string = '.lsux-grid div:nth-child(4) > div > div > form > div:nth-child(1) input';
+const btnSignIn: string = '[id="signedout"]';
+const txtSearchLawFirm: string = '[placeholder="Search"]';
+const btnSearchLawFirm: string = 'button:nth-child(4)';
+const txtLawResults: string = '[class="header"]';
+const txtLawFirmName: string = '.results > p:nth-child(2)';
+const btnAppStore: string = '.lsux-grid.container a:nth-child(1) > img';
+const btnBackToTop: string = 'main > div > div > button > span';
+const btnPricing: string = '#root > div > nav > div > div > ul > li:nth-child(2) > a';
+const btnState: string = '//div[contains(@class,"mr-5") and contains (.,"State")]//button';
+const btnPaymentFrequency: string = '//p[contains (.,"Payment frequency")]/following-sibling::div//button';
+const btnViewDetails: string = '#root  div:nth-child(1) > div > div > div.groupTokenCardLeft > a';
 
 /**
  * @export
@@ -141,7 +138,7 @@ export class ShieldBenefitsSmallBusinessPage extends OktaPage {
   clickAppStoreLink = async (): Promise<void> => {
     console.log(' - ShieldBenefitsSmallBusinessPage.clickAppStoreLink');
     // Click on AppStore link
-    await this.page.click(lnkAppStore);
+    await this.page.click(btnAppStore);
   };
 
   clickBtnBackToTop = async (): Promise<void> => {
@@ -156,12 +153,6 @@ export class ShieldBenefitsSmallBusinessPage extends OktaPage {
     await this.clickOnElement(btnPricing);
   };
 
-  clickBtnViewDetails = async (): Promise<void> => {
-    console.log(' - ShieldBenefitsSmallBusinessPage.clickBtnViewDetails');
-    // Click on View Details button
-    await this.clickOnElement(btnViewDetails);
-  };
-
   // ========================== Assertion Methods ==========================
 
   assertShieldBenefitsSmallBusinessPageSmallBusinessPage = async (): Promise<void> => {
@@ -170,30 +161,28 @@ export class ShieldBenefitsSmallBusinessPage extends OktaPage {
     await this.assertElementIsVisible(tabSmallBusiness);
   };
 
-  assertAccountsV2Url = async (): Promise<void> => {
-    console.log(' - ShieldBenefitsSmallBusinessPage.assertAccountsV2Url');
-    // Verify after clicking on Sign In button it redirects to Accounts V2
-    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.login.url + '/login?app=accountsv2&impact=Low&path=%2Fsign-in');
+  assertSignInButtonIsDisplayed = async (): Promise<void> => {
+    console.log(' - ShieldBenefitsSmallBusinessPage.assertSignInButtonISDisplayed');
+    // Confirm Sign In button is displayed
+    await this.assertElementIsVisible(btnSignIn);
   };
 
   assertLawFirmInformation = async (): Promise<void> => {
     console.log(' - ShieldBenefitsSmallBusinessPage.assertLawFirmInformation');
     // Confirm law firm name displays on the small business page
     await this.page.waitForSelector(txtLawFirmName);
-    const name = this.page.locator(txtLawFirmName);
-    await expect(name).toContainText('Riggs, Abney, Neal, Turpen, Orbison & Lewis, PC');
+    await this.assertElementContainsText(txtLawFirmName, 'Riggs, Abney, Neal, Turpen, Orbison & Lewis, PC');
   };
 
-  assertAppStoreUrl = async (): Promise<void> => {
-    console.log(' - ShieldBenefitsSmallBusinessPage.assertAppStoreUrl');
-    // Verify after clicking on App store link it redirects to the store site
-    await expect(this.page).toHaveURL(urlAppStore);
+  assertAppStoreButtonISDisplayed = async (): Promise<void> => {
+    console.log(' - ShieldBenefitsSmallBusinessPage.assertAppStoreButtonIsDisplayed');
+    // Confirm App store button is displayed
+    await this.assertElementIsVisible(btnAppStore);
   };
 
-  assertProductsAndBenefitsTitle = async (): Promise<void> => {
-    console.log(' - ShieldBenefitsSmallBusinessPage.assertProductsAndBenefitTitle');
-    // Confirm that Products and Benefits Title is displayed
-    const name = this.page.locator(txtProductsAndBenefits);
-    await expect(name).toContainText('Products and Benefits');
+  assertButtonViewDetailsIsDisplayed = async (): Promise<void> => {
+    console.log(' - ShieldBenefitsSmallBusinessPage.assertButtonViewDetailsIsVisible');
+    // Confirm that View Details button is displayed
+    await this.assertElementIsVisible(btnViewDetails);
   };
 }

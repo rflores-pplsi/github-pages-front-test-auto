@@ -10,30 +10,35 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('Company information is displayed on account tab', async ({ page }) => {
+  console.log('Company information is displayed on account tab');
   await shieldAtWorkAccountTab.navigateToShieldAtWorkAccountTab();
   // Verify that company information  is displayed
   await shieldAtWorkAccountTab.assertCompanyInformation();
 });
 
 test('Contact information is displayed on account tab', async ({ page }) => {
+  console.log('Contact information is displayed on account tab');
   await shieldAtWorkAccountTab.navigateToShieldAtWorkAccountTab();
   // Verify that contact information  is displayed
   await shieldAtWorkAccountTab.assertContactInformation();
 });
 
 test('Address is displayed on account tab', async ({ page }) => {
+  console.log('Address is displayed on account tab');
   await shieldAtWorkAccountTab.navigateToShieldAtWorkAccountTab();
   // Verify that address is displayed
   await shieldAtWorkAccountTab.assertAddress();
 });
 
 test('Available Plan Offerings is displayed on account tab', async ({ page }) => {
+  console.log('Available Plan Offerings is displayed on account tab');
   await shieldAtWorkAccountTab.navigateToShieldAtWorkAccountTab();
   // Verify that available plan offerings is displayed
   await shieldAtWorkAccountTab.assertAvailablePlanOfferings();
 });
 
 test('State drop down is selectable on account tab', async ({ page }) => {
+  console.log('State drop down is selectable on account tab');
   await shieldAtWorkAccountTab.navigateToShieldAtWorkAccountTab();
   // Verify that TX state is selectable from drop down
   await shieldAtWorkAccountTab.selectState();
