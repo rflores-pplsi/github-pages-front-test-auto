@@ -154,6 +154,14 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     await this.enterPostalCode(provinceObject[0].validAddress.postalCode);
   };
 
+  changeAddressUs = async (regionName: string): Promise<void> => {
+    // logic to go to regions util, and populate the 3 variables needed for this method for the appropriate region
+    const regionObject = RegionsUtils.usStates.filter((pn) => pn.name == regionName);
+    await this.enterHomeAddress(regionObject[0].validAddress.street);
+    await this.enterCity(regionObject[0].validAddress.city);
+    await this.enterPostalCode(regionObject[0].validAddress.postalCode);
+  };
+
   /**
    * @param {string} firstName
    * @memberof CheckoutPersonalInfoPage

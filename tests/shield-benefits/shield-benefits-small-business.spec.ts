@@ -48,7 +48,7 @@ test('Verify functionality on the small business page - Back to top button takes
   await shieldBenefitsSmallBusinessPage.assertShieldBenefitsSmallBusinessPageSmallBusinessPage();
 });
 
-test.only('Verify functionality on the small business page - View details button redirects to products and benefits page', async ({ page }) => {
+test('Verify functionality on the small business page - View details button redirects to products and benefits page', async ({ page }) => {
   console.log('Test Case: Verify functionality on the small business page - View details button redirects to products and benefits page');
   // Navigate to the small business page
   await shieldBenefitsSmallBusinessPage.navigateToGroupEnrollmentSmallBusinessPage('99645');
