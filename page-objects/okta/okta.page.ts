@@ -1,6 +1,6 @@
 import UrlsUtils from '../../utils/urls.utils';
 import { oktaUser } from '../../utils/user.utils';
-import { LoginPage } from '../login/login.page';
+import { LegalshieldTestHarnessMenuPage } from '../../page-objects/test-harness/legalshield-test-harness-menu.page';
 
 require('dotenv').config;
 
@@ -16,7 +16,7 @@ const txtPassword: string = '#okta-signin-password';
  * @class OktaPage
  * @extends {BasePage}
  */
-export class OktaPage extends LoginPage {
+export class OktaPage extends LegalshieldTestHarnessMenuPage {
   // ========================== Process Methods ==========================
 
   loginThroughOkta = async (): Promise<void> => {

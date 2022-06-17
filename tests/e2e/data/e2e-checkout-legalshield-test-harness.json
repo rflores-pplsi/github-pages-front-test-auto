@@ -1,0 +1,10 @@
+[
+  {
+    "testCaseName": "Legal Shield (Legal Plan)",
+    "region": "Colorado",
+    "productNames": {
+      "productName": "Legal Plan"
+    },
+    "disabled": false
+  }
+]

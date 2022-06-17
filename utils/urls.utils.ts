@@ -4,6 +4,7 @@ require('dotenv').config();
 
 const envUrlString = EnvironmentUtil.getEnvUrlString();
 const envLaunchUrlString = EnvironmentUtil.getLaunchUrlString();
+const envTestHarnessString = EnvironmentUtil.getTestHarnessUrlString();
 
 /**
  *
@@ -54,6 +55,21 @@ export default class UrlsUtils {
     },
     typeForm: {
       url: 'https://legalshield.typeform.com/to/lJtBMp?typeform-source=classic.dev-shieldatwork.com',
+    },
+  };
+
+  static readonly testHarnessUrls = {
+    legalShield: {
+      url: `https://wptesttool${envTestHarnessString}.pplsicorp.com/d2c-lsus/?lsc-current-site=LS_US`,
+    },
+    legalShieldCanada: {
+      url: `https://wptesttool${envTestHarnessString}.pplsicorp.com/d2c-lsca/?lsc-current-site=LS_CA`,
+    },
+    idShield: {
+      url: `https://wptesttool${envTestHarnessString}.pplsicorp.com/d2c-idsus/?lsc-current-site=IDS_US`,
+    },
+    idShieldCanada: {
+      url: `https://wptesttool${envTestHarnessString}.pplsicorp.com/d2c-idsca/?lsc-current-site=IDS_CA`,
     },
   };
 
