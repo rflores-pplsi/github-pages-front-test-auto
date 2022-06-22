@@ -17,15 +17,15 @@ test.beforeEach(async ({ page }) => {
 // LegalShield
 for (const tc of legalshieldTestHarnessData.filter((tc) => tc.disabled == false)) {
   const region = tc.region;
-  test(`${tc.testCaseName} - ${tc.region} @legalshield @testHarnessCheckoutRegression`, async ({ page }) => {
+  test.only(`${tc.testCaseName} - ${tc.region} @legalshield @testHarnessCheckoutRegression`, async ({ page }) => {
     console.log(`Test Case: ${tc.testCaseName} - ${tc.region}`);
 
-    // 1. Use Test Harness to Create a Cart
+    // Select Plans and get to Personal Info Page
     await checkoutConfirmationPage.goTo(UrlsUtils.testHarnessUrls.legalShield.url);
     await checkoutConfirmationPage.addProducts(region, tc.productNames);
+    await checkoutConfirmationPage.clickCheckoutButton();
+    await checkoutConfirmationPage.login(basicUser.email, basicUser.password);
 
-    // 2. Click Checkout Button
-    // 3. Login
     // 4. Capture Order Summary
 
     // // OLD CODE FOR REFERENCE ======================================================

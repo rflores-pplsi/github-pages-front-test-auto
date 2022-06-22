@@ -2,9 +2,7 @@
   {
     "testCaseName": "Legal Shield (Legal Plan)",
     "region": "Colorado",
-    "productNames": {
-      "productName": "Legal Plan"
-    },
+    "productNames": ["Legal Plan", "Legal Plan - Trial Defense Supplement"],
     "disabled": false
   }
 ]
