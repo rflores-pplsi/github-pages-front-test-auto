@@ -4,23 +4,22 @@ import { OktaPage } from '../okta/okta.page';
 
 // ========================== Selectors ==================================
 
-const url = UrlsUtils.legalshieldUrls.groupEnrollment.url;
-const urlAppStore = 'https://apps.apple.com/us/app/legalshield-law-firms-on-call/id924247236';
-const urlGroup = 'https://www.dev-shieldbenefits.com/';
-const urlMemberPerks = 'https://pslogin.perkspot.com/login?communityId=588';
-const txtSearch = '[placeholder="Search"]';
-const btnSearchGroup = '.lsux-button--primary';
-const btnEdit = '.group-item-controls > div:nth-child(3) > a > div > img';
-const btnCopyLink = '.lsux-button:nth-child(3) > .lsux-text--description';
-const tabIdentityTheft = '//*[@id="root"]/div/nav/div/div/ul/li[1]/a';
-const txtGroupInfo = '[class="group-item-info"]';
-const txbNewGroupURLId = '.lsux-grid div:nth-child(4) > div > div > form > div:nth-child(1) input';
-const btnSignIn = '[id="signedout"]';
-const lnkAppStore = '.lsux-grid.container a:nth-child(1) > img';
-const btnBackToTop = 'main > div > div > button > span';
-const btnLanguageDropDown = 'p.dropBtn';
-const opcEspanolUS = '.lsux-col.col.four.leftWrapper > div > ul > li.langSwitcher > div > div > ul > li:nth-child(2)';
-const lnkMemberPerks = 'section.memberperksWrapper  div:nth-child(1) > div > p > a';
+const url: string = UrlsUtils.legalshieldUrls.groupEnrollment.url;
+const urlAppStore: string = 'https://apps.apple.com/us/app/legalshield-law-firms-on-call/id924247236';
+const urlGroup: string = 'https://www.uat-shieldbenefits.com/';
+const txtSearch: string = '[placeholder="Search"]';
+const btnSearchGroup: string = '.lsux-button--primary';
+const btnEdit: string = '.group-item-controls > div:nth-child(3) > a > div > img';
+const btnCopyLink: string = '.lsux-button:nth-child(3) > .lsux-text--description';
+const tabIdentityTheft: string = '//*[@id="root"]/div/nav/div/div/ul/li[1]/a';
+const txtGroupInfo: string = '[class="group-item-info"]';
+const txbNewGroupURLId: string = '.lsux-grid div:nth-child(4) > div > div > form > div:nth-child(1) input';
+const btnSignIn: string = '[id="signedout"]';
+const lnkAppStore: string = '.lsux-grid.container a:nth-child(1) > img';
+const btnBackToTop: string = 'main > div > div > button > span';
+const btnLanguageDropDown: string = 'p.dropBtn';
+const opcEspanolUS: string = '.lsux-col.col.four.leftWrapper > div > ul > li.langSwitcher > div > div > ul > li:nth-child(2)';
+const lnkMemberPerks: string = 'section.memberperksWrapper  div:nth-child(1) > div > p > a';
 
 /**
  * @export
@@ -75,6 +74,7 @@ export class ShieldBenefitsIdentityTheftPage extends OktaPage {
     // Login through Okta page to be redirected to Group Enrollment Search Page
     await this.loginThroughOktaGroupEnrollment();
   };
+
   /**
    *
    *
@@ -157,12 +157,5 @@ export class ShieldBenefitsIdentityTheftPage extends OktaPage {
     const iniciar = await this.page.waitForSelector(btnSignIn);
     console.log(iniciar.innerText());
     await this.assertElementContainsText(btnSignIn, 'Iniciar Sesión');
-  };
-
-  assertMemberPerksUrl = async (): Promise<void> => {
-    console.log(' -ShieldBenefitsIdentityTheftPage.assertMemberPerksUrl');
-    // Verify after clicking on Member Perks link it redirects to the site
-    await expect(this.page).toHaveURL(urlMemberPerks);
-    await this.page.waitForLoadState('domcontentloaded');
   };
 }
