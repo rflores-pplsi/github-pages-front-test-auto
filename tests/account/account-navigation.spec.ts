@@ -17,7 +17,7 @@ test.beforeEach(async ({ page }) => {
 test('Navigate to plans page', async ({ page }) => {
   console.log('Test Case: Navigate to plans page');
   // Click Plans Link
-  await accountNavigationPage.clickPlansLink();
+  // await accountNavigationPage.clickPlansLink();
   // Confirm URL of the Profile Page
   await accountNavigationPage.assertAccountPlansUrl();
 });
@@ -56,4 +56,13 @@ test('Navigate to resources page', async ({ page }) => {
   await accountNavigationPage.clickResourcesLink();
   // Confirm URL of the Profile Page
   await accountNavigationPage.assertAccountResourcesUrl();
+});
+
+// Navigate to Preferences Page from Account Navigation
+test('Navigate to preferences page', async ({ page }) => {
+  console.log('Test Case: Navigate to preferences resources page');
+  // Click Preferences Link
+  await accountNavigationPage.clickPreferencesLink();
+  // Confirm URL of the Profile Page
+  await accountNavigationPage.assertAccountPreferencesUrl();
 });

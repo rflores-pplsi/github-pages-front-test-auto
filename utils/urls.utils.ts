@@ -30,13 +30,13 @@ export default class UrlsUtils {
       url: `https://checkoutv3.${envUrlString}legalshield.com`,
     },
     ids: {
-      url: `https://ids.${envUrlString}legalshield.com/`,
+      url: `https://ids.${envUrlString}legalshield.com/home?e=ad815d14-8f26-46de-8505-092d6cace860&e=ad815d14-8f26-46de-8505-092d6cace860`,
     },
     ids4b: {
-      url: `https://ids4b.${envUrlString}legalshield.com/`,
+      url: `https://ids4b.${envUrlString}legalshield.com/settings?e=c16d0a77-9d64-4b8a-aaff-18567eb76a32`,
     },
     legal: {
-      url: `https://legal.${envUrlString}legalshield.com/`,
+      url: `https://legal.${envUrlString}legalshield.com/?e=509c1d27-d6c0-4e1a-b796-c64ec184da5d`,
     },
     launch: {
       url: `https://mybusiness.${envUrlString}legalshield.com/`,
@@ -104,7 +104,8 @@ export default class UrlsUtils {
 
   static readonly memberPerksUrls = {
     login: {
-      url: 'https://legalshield.perkspot.com/login',
+      // url: 'https://legalshield.perkspot.com/login',
+      url: 'https://pslogin.perkspot.com/login?communityId=588',
     },
   };
 

@@ -8,6 +8,7 @@ const lnkProfile = '.lsux-navigation--item-profile';
 const lnkPayments = '.lsux-navigation--item-payments';
 const lnkSecurity = '.lsux-navigation--item-security';
 const lnkResources = '.lsux-navigation--item-resources';
+const lnkPreferences = '.lsux-navigation--item-preferences';
 
 /**
  * * @export
@@ -53,7 +54,7 @@ export class AccountNavigationPage extends LoginPage {
   clickPreferencesLink = async () => {
     console.log(' - accountNavigationPage.clickPreferencesLink');
     // Click on Preferences Link from Accounts Navigation
-    await this.clickOnElement(lnkResources);
+    await this.clickOnElement(lnkPreferences);
   };
 
   // ========================== Navigate Methods ==========================

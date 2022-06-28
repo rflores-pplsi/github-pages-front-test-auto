@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
 import { AccountPlansPage } from '../../page-objects/account/account-plans.page';
-import { withPlans } from '../../utils/user.utils';
+import { basicUser } from '../../utils/user.utils';
 
 // Define Pages
 let accountPlansPage: AccountPlansPage;
@@ -9,7 +9,7 @@ let accountPlansPage: AccountPlansPage;
 test.beforeEach(async ({ page }) => {
   accountPlansPage = new AccountPlansPage(page);
   // Login with accounts that have all necessary plans and navigate to accounts plan page
-  await accountPlansPage.loginToNavigateToAccountsPlanPage(withPlans.email, withPlans.password);
+  await accountPlansPage.loginToNavigateToAccountsPlanPage(basicUser.email, basicUser.password);
   // Capture a table of available plans for the account logged in
   await accountPlansPage.createPlansTable();
 });

@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
 import { AccountResourcesPage } from '../../page-objects/account/account-resources.page';
-import { withPlans } from '../../utils/user.utils';
+import { basicUser } from '../../utils/user.utils';
 
 // Define Pages
 let accountResourcesPage: AccountResourcesPage;
@@ -11,7 +11,7 @@ test.beforeEach(async ({ page }) => {
   // Attempt to reach Accounts Resource Page
   await accountResourcesPage.navigateToAccountResourcesPage();
   // Login when prompted and successful login redirects to Accounts Resource Page
-  await accountResourcesPage.login(withPlans.email, withPlans.password);
+  await accountResourcesPage.login(basicUser.email, basicUser.password);
 });
 
 test('Forms Logo is displayed', async ({ page }) => {
