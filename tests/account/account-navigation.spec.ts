@@ -16,8 +16,9 @@ test.beforeEach(async ({ page }) => {
 // Navigate to Plans Page from Account Navigation
 test('Navigate to plans page', async ({ page }) => {
   console.log('Test Case: Navigate to plans page');
-  // Click Plans Link
-  // await accountNavigationPage.clickPlansLink();
+  // Verify the Plans Link Works. Click Plans Link
+  await accountNavigationPage.clickProfileLink();
+  await accountNavigationPage.clickPlansLink();
   // Confirm URL of the Profile Page
   await accountNavigationPage.assertAccountPlansUrl();
 });
