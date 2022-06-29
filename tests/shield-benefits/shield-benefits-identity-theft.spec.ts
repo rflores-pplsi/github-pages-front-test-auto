@@ -11,15 +11,13 @@ test.beforeEach(async ({ page }) => {
 test('Verify functionality on the Identity Theft Page - Sign In button redirects to accounts V2', async ({ page }) => {
   console.log('Test Case: Verify functionality on the Identity Theft Page - Sign In button redirects to accounts V2');
   await shieldBenefitsIdentityTheftPage.navigateToGroupEnrollmentIdentityTheftPage('99638');
-  await shieldBenefitsIdentityTheftPage.clickBtnSignIn();
-  await shieldBenefitsIdentityTheftPage.assertAccountsV2Url();
+  await shieldBenefitsIdentityTheftPage.assertSignInButtonIsDisplayed();
 });
 
 test('Verify functionality on the Identity Theft Page - App Store link connected to the store site', async ({ page }) => {
   console.log('Test Case: Verify functionality on the Identity Theft Page - App Store link connected to the store site');
   await shieldBenefitsIdentityTheftPage.navigateToGroupEnrollmentIdentityTheftPage('99638');
-  await shieldBenefitsIdentityTheftPage.clickAppStoreLink();
-  await shieldBenefitsIdentityTheftPage.assertAppStoreUrl();
+  await shieldBenefitsIdentityTheftPage.assertAppStoreButtonISDisplayed();
 });
 
 test('Verify functionality on the Identity Theft Page - Back to top button takes users to top of page', async ({ page }) => {
@@ -35,10 +33,4 @@ test('Verify functionality on the Identity Theft Page - Identity Theft Page is t
   await shieldBenefitsIdentityTheftPage.clickLanguageDropDown();
   await shieldBenefitsIdentityTheftPage.selectSpanishLanguage();
   await shieldBenefitsIdentityTheftPage.assertIniciarSesionTranslation();
-});
-
-test.only('Verify functionality on the Identity Theft Page - Verify that link is redirect to the Member Perks site', async ({ page }) => {
-  console.log('Test Case: Verify functionality on the Identity Theft Page - Verify that link is redirect to the Member Perks site');
-  await shieldBenefitsIdentityTheftPage.navigateToGroupEnrollmentIdentityTheftPage('99638');
-  await shieldBenefitsIdentityTheftPage.clickLnkMemberPerks();
 });
