@@ -67,3 +67,12 @@ test('Navigate to preferences page', async ({ page }) => {
   // Confirm URL of the Profile Page
   await accountNavigationPage.assertAccountPreferencesUrl();
 });
+
+// Navigate to MultiFactor Page from Account Navigation
+test('Navigate to multifactor page', async ({ page }) => {
+  console.log('Test Case: Navigate to multifactor page');
+  // Click Resources Link
+  await accountNavigationPage.clickMfaLink();
+  // Confirm URL of the Profile Page
+  await accountNavigationPage.assertAccountMultifactorUrl();
+});

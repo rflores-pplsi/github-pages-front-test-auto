@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
 import { AccountPlansPage } from '../../page-objects/account/account-plans.page';
-import { basicUser } from '../../utils/user.utils';
+import { withPlans } from '../../utils/user.utils';
 
 // Define Pages
 let accountPlansPage: AccountPlansPage;
@@ -9,7 +9,7 @@ let accountPlansPage: AccountPlansPage;
 test.beforeEach(async ({ page }) => {
   accountPlansPage = new AccountPlansPage(page);
   // Login with accounts that have all necessary plans and navigate to accounts plan page
-  await accountPlansPage.loginToNavigateToAccountsPlanPage(basicUser.email, basicUser.password);
+  await accountPlansPage.loginToNavigateToAccountsPlanPage(withPlans.email, withPlans.password);
   // Capture a table of available plans for the account logged in
   await accountPlansPage.createPlansTable();
 });
@@ -42,7 +42,7 @@ test('Click website link for a IDShield Individual plan and redirect to IDS appl
 test('Click website link for a Launch plan and redirect to mybusiness application', async ({ page }) => {
   console.log('Test Case: Click website link for a Launch plan and redirect to mybusiness application');
   // Click on the website link based on the plan name
-  await accountPlansPage.clickGoToWebsiteLink('Launch');
+  await accountPlansPage.clickGoToWebsiteLink('Small Business Launch Supplement');
   // Confirm redirect to My Business App
   await accountPlansPage.assertLaunchPageUrl();
 });
