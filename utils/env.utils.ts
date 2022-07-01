@@ -85,6 +85,29 @@ class EnvironmentUtil {
     }
     return envLaunchUrlString;
   }
+
+  /**
+   *
+   *
+   * @return {*}
+   * @memberof EnvironmentUtil
+   */
+  getTestHarnessUrlString() {
+    let envTestHarnessUrlString = null;
+    const env = this.getEnv();
+    switch (env) {
+      case 'dev':
+        envTestHarnessUrlString = 'dev';
+        break;
+      case 'uat':
+        envTestHarnessUrlString = 'uat';
+        break;
+      case 'prod':
+        envTestHarnessUrlString = 'prod';
+        break;
+    }
+    return envTestHarnessUrlString;
+  }
   /**
    *
    *

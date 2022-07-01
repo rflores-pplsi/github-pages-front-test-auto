@@ -11,7 +11,8 @@ test.beforeEach(async ({ page }) => {
 });
 
 // Navigate to the Profile Name page
-test('Edit Names', async ({ page }) => {
+// test.fixme - The Edit button is now disabled
+test.fixme('Edit Names', async ({ page }) => {
   console.log('Test Case: Edit Names');
   // Edit First Name Text Box
   await accountProfileNamePage.editNameForm();

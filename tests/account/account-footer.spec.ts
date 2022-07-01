@@ -21,9 +21,9 @@ test('Navigate to Terms of Service page', async () => {
   await accountFooterPage.assertTermsOfServicePageUrlInNewTab(newPage);
 });
 
-test('Navigate to Privacy Ploicy page', async () => {
+test('Navigate to Privacy Policy page', async () => {
   test.fixme(); // resolve context issues for the new tabs
-  console.log('Test Case: Navigate to Privacy Ploicy page');
+  console.log('Test Case: Navigate to Privacy Policy page');
   const newPage = await accountFooterPage.clickPrivacyPolicyLink();
 });
 

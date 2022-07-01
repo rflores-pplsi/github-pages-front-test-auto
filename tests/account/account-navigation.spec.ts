@@ -16,7 +16,8 @@ test.beforeEach(async ({ page }) => {
 // Navigate to Plans Page from Account Navigation
 test('Navigate to plans page', async ({ page }) => {
   console.log('Test Case: Navigate to plans page');
-  // Click Plans Link
+  // Verify the Plans Link Works. Click Plans Link
+  await accountNavigationPage.clickProfileLink();
   await accountNavigationPage.clickPlansLink();
   // Confirm URL of the Profile Page
   await accountNavigationPage.assertAccountPlansUrl();
@@ -56,4 +57,22 @@ test('Navigate to resources page', async ({ page }) => {
   await accountNavigationPage.clickResourcesLink();
   // Confirm URL of the Profile Page
   await accountNavigationPage.assertAccountResourcesUrl();
+});
+
+// Navigate to Preferences Page from Account Navigation
+test('Navigate to preferences page', async ({ page }) => {
+  console.log('Test Case: Navigate to preferences resources page');
+  // Click Preferences Link
+  await accountNavigationPage.clickPreferencesLink();
+  // Confirm URL of the Profile Page
+  await accountNavigationPage.assertAccountPreferencesUrl();
+});
+
+// Navigate to MultiFactor Page from Account Navigation
+test('Navigate to multifactor page', async ({ page }) => {
+  console.log('Test Case: Navigate to multifactor page');
+  // Click Resources Link
+  await accountNavigationPage.clickMfaLink();
+  // Confirm URL of the Profile Page
+  await accountNavigationPage.assertAccountMultifactorUrl();
 });

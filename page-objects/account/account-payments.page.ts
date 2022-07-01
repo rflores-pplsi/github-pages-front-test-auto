@@ -1,26 +1,24 @@
-import { Locator, Page } from '@playwright/test';
+// import { expect } from '@playwright/test';
 import UrlsUtils from '../../utils/urls.utils';
+import { LoginPage } from '../login/login.page';
+
+// ========================== Selectors ==================================
+
 /**
  * @export
  * @class PaymentsPage
+ * @extends {LoginPage}
  */
-export class PaymentsPage {
-  readonly page: Page;
-  readonly url: string;
-  readonly hdrPage: Locator;
+export class PaymentsPage extends LoginPage {
+  // ========================== Process Methods ============================
 
-  /**
-   * Creates an instance of PaymentsPage.
-   * @param {Page} page
-   * @memberof PaymentsPage
-   */
-  constructor(page: Page) {
-    this.page = page;
-    this.url = UrlsUtils.legalshieldUrls.account.url + '/payments';
-    this.hdrPage = page.locator('h2.lsux-heading');
-  }
-
-  goto = async (): Promise<void> => {
-    await this.page.goto(this.url);
+  // ========================== Navigate Methods ===========================
+  navigateToAccountPaymentsPage = async (): Promise<void> => {
+    console.log(' - accountResourcesPage.navigateToAccountPaymentsPage');
+    // Navigate to Activate Page
+    await this.goTo(UrlsUtils.legalshieldUrls.account.url + '/payments');
   };
+  // ========================== Click Methods ==============================
+
+  // ========================== Assertion Methods ==========================
 }
