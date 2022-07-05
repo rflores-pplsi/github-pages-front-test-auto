@@ -1,11 +1,10 @@
-import { expect } from '@playwright/test';
 import UrlsUtils from '../../utils/urls.utils';
 import { OktaPage } from '../okta/okta.page';
 
 // ========================== Selectors ==================================
 
 const url: string = UrlsUtils.legalshieldUrls.groupEnrollment.url;
-const urlAppStore: string = 'https://apps.apple.com/us/app/legalshield-law-firms-on-call/id924247236';
+const btnAppStore: string = '.lsux-grid.container a:nth-child(1) > img';
 const urlGroup: string = 'https://www.uat-shieldbenefits.com/';
 const txtSearch: string = '[placeholder="Search"]';
 const btnSearchGroup: string = '.lsux-button--primary';
@@ -139,16 +138,16 @@ export class ShieldBenefitsIdentityTheftPage extends OktaPage {
     await this.assertElementIsVisible(tabIdentityTheft);
   };
 
-  assertAccountsV2Url = async (): Promise<void> => {
-    console.log(' - ShieldBenefitsIdentityTheftPage.assertAccountsV2Url');
-    // Verify after clicking on Sign In button it redirects to Accounts V2
-    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.login.url + '/login?app=accountsv2&impact=Low&path=%2Fsign-in');
+  assertSignInButtonIsDisplayed = async (): Promise<void> => {
+    console.log(' - ShieldBenefitsCommercialDriverPage.assertSignInButtonIsDisplayed');
+    // Confirm Sign In button is displayed
+    await this.assertElementIsVisible(btnSignIn);
   };
 
-  assertAppStoreUrl = async (): Promise<void> => {
-    console.log(' -ShieldBenefitsIdentityTheftPage.assertAppStoreUrl');
-    // Verify after clicking on App store link it redirects to the store site
-    await expect(this.page).toHaveURL(urlAppStore);
+  assertAppStoreButtonISDisplayed = async (): Promise<void> => {
+    console.log(' - ShieldBenefitsCommercialDriverPage.assertAppStoreButtonIsDisplayed');
+    // Confirm App store button is displayed
+    await this.assertElementIsVisible(btnAppStore);
   };
 
   assertIniciarSesionTranslation = async (): Promise<void> => {
