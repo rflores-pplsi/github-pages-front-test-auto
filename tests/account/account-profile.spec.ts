@@ -11,7 +11,8 @@ test.beforeEach(async ({ page }) => {
 });
 
 // Navigate to the Profile Name page
-test('Navigate to the Profile Name page by clicking the Name Edit button', async ({ page }) => {
+// Added .fixme since the Edit Name button is now disabled
+test.fixme('Navigate to the Profile Name page by clicking the Name Edit button', async ({ page }) => {
   console.log('Test Case: Navigate to the Profile Name page by clicking the Name Edit button');
   // Clicking the Name Edit button
   await accountProfilePage.clickEditNameButton();
@@ -38,7 +39,8 @@ test('Navigate to the Profile Phone Number page by clicking the Phone Number Edi
 });
 
 // Navigate to the Profile Address page
-test('Navigate to the Profile Address page by clicking the Address Edit button', async ({ page }) => {
+// Added .fixme since the Edit Address button is now disabled
+test.fixme('Navigate to the Profile Address page by clicking the Address Edit button', async ({ page }) => {
   console.log('Test Case: Navigate to the Profile Address page by clicking the Address Edit button');
   // Clicking the Address button
   await accountProfilePage.clickEditAddressButton();

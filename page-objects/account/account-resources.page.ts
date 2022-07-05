@@ -45,13 +45,13 @@ export class AccountResourcesPage extends LoginPage {
 
   assertFormsLogoIsDisplayed = async (): Promise<void> => {
     console.log(' - accountResourcesPage.assertFormsLogoIsDisplayed');
-    // Confirm that the Forms label is deisplayed in the Forms Panel
+    // Confirm that the Forms label is displayed in the Forms Panel
     await this.assertElementIsVisible(imgFormsLogoLarge);
   };
 
   assertFormsLabelIsDisplayed = async (): Promise<void> => {
     console.log(' - accountResourcesPage.assertFormsLabelIsDisplayed');
-    // Confirm that the Forms label is deisplayed in the Forms Panel
+    // Confirm that the Forms label is displayed in the Forms Panel
     await this.assertElementIsVisible(lblForms);
   };
 
@@ -66,13 +66,13 @@ export class AccountResourcesPage extends LoginPage {
 
   assertMemberPerksLogoIsDisplayed = async (): Promise<void> => {
     console.log(' - accountResourcesPage.assertMemberPerksLogoIsDisplayed');
-    // Confirm that the Member Perks logo is deisplayed in the Member Perks Panel
+    // Confirm that the Member Perks logo is displayed in the Member Perks Panel
     await this.assertElementIsVisible(imgMemberPerksLogoLarge);
   };
 
   assertMemberPerksLabelIsDisplayed = async (): Promise<void> => {
     console.log(' - accountResourcesPage.assertMemberPerksLabelIsDisplayed');
-    // Confirm that the Member Perks label is deisplayed in the Member Perks Panel
+    // Confirm that the Member Perks label is displayed in the Member Perks Panel
     await this.assertElementIsVisible(lblMemberPerks);
   };
 

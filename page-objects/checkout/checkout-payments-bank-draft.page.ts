@@ -16,6 +16,10 @@ const txtTotalLabel = "//p[contains(text(),'Monthly Total:')]";
 const txtTotalPriceLabel = "//div[@class='lsux-row eight-four children2 footer-row mb-0 py-4']/div[@class='lsux-col pr-0 right-label-col']/div/p";
 const conMembershipWrapper = '//div[contains(@class,"membership-wrapper")]';
 
+// Bank Draft Selectors for Canada
+const txtTransitNumber = "[placeholder='Transit Number']";
+const txtInstitutionNumber = "[placeholder='Institution Number']";
+
 // create instance of Page
 
 /**
@@ -55,6 +59,19 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
     console.log(' - checkoutPaymentBankDraftPage.fillOrderSummarytxtTotalPriceLabelValue');
     // Fillout the Bank Draft form
     return this.page.locator(txtTotalPriceLabel).innerText();
+  };
+  fillBankDraftFormForCanada = async () => {
+    console.log(' - checkoutPaymentPage.fillBankDraftFormForCanada');
+    // Fillout the Bank Draft form
+    await this.fillAccountNumberForCaTxt('0000000');
+    await this.page.keyboard.press('Tab');
+    await this.fillTransitNumberTxt('00000');
+    await this.page.keyboard.press('Tab');
+    await this.fillInstitutionNumberTxt('000');
+    await this.page.keyboard.press('Tab');
+    await this.fillAccountHolderNameTxt('Automation Tester');
+    await this.page.keyboard.press('Tab');
+    await this.clickPurchaseBtn();
   };
   // ========================== Navigate Methods ===========================
   navigateToPaymentsBankDraftPage = async (state: string): Promise<void> => {
@@ -115,6 +132,37 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
     if (frmPayment != null) {
       // Fill  Bank Name
       await this.fillTextBox(txtBankName, bankname);
+    } else throw new Error('No such frame');
+  };
+  // Fill  Account Number Method for Canada
+  fillAccountNumberForCaTxt = async (account: string) => {
+    const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
+    console.log(' - checkoutPaymentPage.fillAccountNumberForCaTxt');
+    // Fill  Account Number
+    const txtAccountNumbertst2 = await frmPayment.locator(txtAccountNumber);
+    await txtAccountNumbertst2.type('0000000');
+    // await this.fillTextBox(txtAccountNumber, account);
+  };
+  // Fill Transit Number Method
+  fillTransitNumberTxt = async (routing: string) => {
+    console.log(' - checkoutPaymentPage.fillTransitNumberTxt');
+    // Switch to frame
+    const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
+    if (frmPayment != null) {
+      // Fill  Transit Number
+      const txtTransitNumberTxt = await frmPayment.locator(txtTransitNumber);
+      await txtTransitNumberTxt.type('00000');
+    } else throw new Error('No such frame');
+  };
+  // Fill Institution Number Method
+  fillInstitutionNumberTxt = async (routing: string) => {
+    console.log(' - checkoutPaymentPage.fillInstitutionNumberTxt');
+    // Switch to frame
+    const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
+    if (frmPayment != null) {
+      // Fill  Institution Number
+      const txtInstitutionNumberTxt = await frmPayment.locator(txtInstitutionNumber);
+      await txtInstitutionNumberTxt.type('000');
     } else throw new Error('No such frame');
   };
   // ========================== Click Methods ==============================

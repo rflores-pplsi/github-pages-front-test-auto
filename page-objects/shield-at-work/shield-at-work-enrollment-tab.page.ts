@@ -1,7 +1,9 @@
+import { expect } from '@playwright/test';
 import urlsUtils from '../../utils/urls.utils';
 import { LsWorkLoginPage } from '../shield-at-work/shield-at-work-login.page';
 
 // ========================== Selectors ==================================
+
 const url: string = urlsUtils.legalshieldUrls.shieldAtWork.url;
 const btnViewGroup: string = '.lsux-button.lsux-button--standard.ml-3 > span';
 const txtSearch: string = '[placeholder="Search by name or group number"]';
@@ -11,6 +13,7 @@ const btnEnrollmentTab: string =
 const txtGroup: string = '#root  .lsux-container--flex-items-center.mb-2 > h3';
 const btnManageSite: string = '.lsux-container.lsux-container--white div > h2 > button > span';
 const txtEnrollmentInformation: string = '.lsux-row.thirds.children4._1mGEzKW4bHYdkCdXubcxyu > div:nth-child(1) > div > h2';
+
 
 /**
  * @export
@@ -70,9 +73,11 @@ export class ShieldAtWorkEnrollmentTab extends LsWorkLoginPage {
     await this.assertElementIsVisible(btnManageSite);
   };
 
+
   assertEnrollmentInformationIsDisplayed = async (): Promise<void> => {
     console.log(' - enrollmentShieldAtWorkPage.assertEnrollmentInformationIsDisplayed');
     // Verify that enrollment information is displayed on the enrollment page
     await this.assertElementIsVisible(txtEnrollmentInformation);
+
   };
 }

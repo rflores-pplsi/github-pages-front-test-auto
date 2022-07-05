@@ -23,7 +23,7 @@ export class AccountPlansPage extends LoginPage {
    */
   createPlansTable = async (): Promise<void> => {
     console.log(' - accountPlansPage.createPlansTable');
-    await this.page.waitForLoadState('networkidle');
+    await this.page.waitForLoadState('networkidle', { timeout: 100000 });
     const numberOfPlans = (await this.page.$$('.config-tab.p-5')).length;
     for (let i: number = 0; i < numberOfPlans; i++) {
       const row = await this.createPlanRow(i);
@@ -88,6 +88,8 @@ export class AccountPlansPage extends LoginPage {
     console.log(' - accountPlansPage.clickGoToWebsiteLink');
     // Click go to website link for the
     const planRowIndex = await this.getPlanRowIndexFromPlanName(plansTable, planName);
+    console.log('plansTable==>' + JSON.stringify(plansTable));
+    console.log(planRowIndex);
     await plansTable.planRows[planRowIndex].websiteLink.click();
   };
 

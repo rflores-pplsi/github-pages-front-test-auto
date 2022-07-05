@@ -23,3 +23,5 @@ test('Enrollment information is displayed on the enrollment page', async ({ page
   await shieldAtWorkEnrollmentTab.clickEnrollmentTab();
   await shieldAtWorkEnrollmentTab.assertEnrollmentInformationIsDisplayed();
 });
+
+

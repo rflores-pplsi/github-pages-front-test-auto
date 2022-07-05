@@ -4,6 +4,7 @@ require('dotenv').config();
 
 const envUrlString = EnvironmentUtil.getEnvUrlString();
 const envLaunchUrlString = EnvironmentUtil.getLaunchUrlString();
+const envTestHarnessString = EnvironmentUtil.getTestHarnessUrlString();
 
 /**
  *
@@ -29,16 +30,16 @@ export default class UrlsUtils {
       url: `https://checkoutv3.${envUrlString}legalshield.com`,
     },
     ids: {
-      url: `https://ids.${envUrlString}legalshield.com/`,
+      url: `https://ids.${envUrlString}legalshield.com/?e=9f3299c8-4a2e-4421-aad0-d51c72882430`,
     },
     ids4b: {
-      url: `https://ids4b.${envUrlString}legalshield.com/`,
+      url: `https://ids4b.${envUrlString}legalshield.com/?e=c97e551a-c109-451e-9488-82e0a36962ae`,
     },
     legal: {
-      url: `https://legal.${envUrlString}legalshield.com/`,
+      url: `https://legal.${envUrlString}legalshield.com/?e=12cefe8f-af99-4e9f-9efc-9d12d8c92a72`,
     },
     launch: {
-      url: `https://mybusiness.${envUrlString}legalshield.com/`,
+      url: `https://mybusiness.${envUrlString}legalshield.com/questionnaire?e=12cefe8f-af99-4e9f-9efc-9d12d8c92a72`,
     },
     forms: {
       url: `https://forms.${envUrlString}legalshield.com/`,
@@ -54,6 +55,21 @@ export default class UrlsUtils {
     },
     typeForm: {
       url: 'https://legalshield.typeform.com/to/lJtBMp?typeform-source=classic.dev-shieldatwork.com',
+    },
+  };
+
+  static readonly testHarnessUrls = {
+    legalShield: {
+      url: `https://wptesttool${envTestHarnessString}.pplsicorp.com/d2c-lsus/?lsc-current-site=LS_US`,
+    },
+    legalShieldCanada: {
+      url: `https://wptesttool${envTestHarnessString}.pplsicorp.com/d2c-lsca/?lsc-current-site=LS_CA`,
+    },
+    idShield: {
+      url: `https://wptesttool${envTestHarnessString}.pplsicorp.com/d2c-idsus/?lsc-current-site=IDS_US`,
+    },
+    idShieldCanada: {
+      url: `https://wptesttool${envTestHarnessString}.pplsicorp.com/d2c-idsca/?lsc-current-site=IDS_CA`,
     },
   };
 
@@ -88,7 +104,8 @@ export default class UrlsUtils {
 
   static readonly memberPerksUrls = {
     login: {
-      url: 'https://legalshield.perkspot.com/login',
+      // url: 'https://legalshield.perkspot.com/login',
+      url: 'https://pslogin.perkspot.com/login?communityId=588',
     },
   };
 

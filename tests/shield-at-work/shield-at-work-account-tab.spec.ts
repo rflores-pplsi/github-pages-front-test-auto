@@ -43,4 +43,5 @@ test('Payment frequency are displayed on the account tab', async ({ page }) => {
   console.log('Payment frequency are displayed on the account tab');
   await shieldAtWorkAccountTab.navigateToShieldAtWorkAccountTab();
   await shieldAtWorkAccountTab.assertPaymentFrequencyIsDisplayed();
+
 });
