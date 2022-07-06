@@ -3,11 +3,13 @@ import UrlsUtils from '../../utils/urls.utils';
 import { LoginPage } from '../../page-objects/login/login.page';
 
 // Selectors
-const lnkPlans = '.lsux-navigation--item-plans';
-const lnkProfile = '.lsux-navigation--item-profile';
-const lnkPayments = '.lsux-navigation--item-payments';
-const lnkSecurity = '.lsux-navigation--item-security';
-const lnkResources = '.lsux-navigation--item-resources';
+const lnkPlans = '//a[contains(.,"Plans")]';
+const lnkProfile = '//a[contains(.,"Profile")]';
+const lnkPayments = '//a[contains(.,"Payments")]';
+const lnkSecurity = '//a[contains(.,"Security")]';
+const lnkResources = '//a[contains(.,"Resources")]';
+const lnkPreferences = '//a[contains(.,"Preferences")]';
+const lnkMultifactor = '//a[contains(.,"Multifactor")]';
 
 /**
  * * @export
@@ -53,7 +55,13 @@ export class AccountNavigationPage extends LoginPage {
   clickPreferencesLink = async () => {
     console.log(' - accountNavigationPage.clickPreferencesLink');
     // Click on Preferences Link from Accounts Navigation
-    await this.clickOnElement(lnkResources);
+    await this.clickOnElement(lnkPreferences);
+  };
+
+  clickMfaLink = async () => {
+    console.log(' - accountNavigationPage.clickMfaLink');
+    // Click on Multifactor Link from Accounts Navigation
+    await this.clickOnElement(lnkMultifactor);
   };
 
   // ========================== Navigate Methods ==========================
@@ -103,6 +111,14 @@ export class AccountNavigationPage extends LoginPage {
     console.log(' - accountNavigationPage.assertAccountPreferencesUrl');
     // Confirm the Account Preferences Page URL
     await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.account.url + '/preferences');
+    // Wait for document to load before subsequent steps
+    await this.page.waitForLoadState('domcontentloaded');
+  };
+
+  assertAccountMultifactorUrl = async () => {
+    console.log(' - accountNavigationPage.assertAccountMultifactorUrl');
+    // Confirm the Account Multifactor Page URL
+    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.account.url + '/mfa');
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };

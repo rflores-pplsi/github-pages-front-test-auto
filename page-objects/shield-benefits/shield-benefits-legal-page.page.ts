@@ -9,7 +9,7 @@ const txtSearch: string = '[placeholder="Search"]';
 const btnSearchGroup: string = '.lsux-button--primary';
 const btnEdit: string = '.group-item-controls > div:nth-child(3) > a > div > img';
 const btnCopyLink: string = '.lsux-button:nth-child(3) > .lsux-text--description';
-const tabSmallBusiness: string = '//*[@id="root"]/div/nav/div/div/ul/li[1]/a';
+const tabLegalPage: string = '#root > div > nav > div > div > ul > li:nth-child(2) > a';
 const txtGroupInfo: string = '[class="group-item-info"]';
 const txbNewGroupURLId: string = '.lsux-grid div:nth-child(4) > div > div > form > div:nth-child(1) input';
 const btnSignIn: string = '[id="signedout"]';
@@ -19,27 +19,28 @@ const txtLawResults: string = '[class="header"]';
 const txtLawFirmName: string = '.results > p:nth-child(2)';
 const btnAppStore: string = '.lsux-grid.container a:nth-child(1) > img';
 const btnBackToTop: string = 'main > div > div > button > span';
-const btnPricing: string = '#root > div > nav > div > div > ul > li:nth-child(2) > a';
+const btnPricing: string = '#root > div > nav > div > div > ul > li:nth-child(7) > a';
 const btnState: string = '//div[contains(@class,"mr-5") and contains (.,"State")]//button';
 const btnPaymentFrequency: string = '//p[contains (.,"Payment frequency")]/following-sibling::div//button';
 const btnViewDetails: string = '#root  div:nth-child(1) > div > div > div.groupTokenCardLeft > a';
+const btnVideoPlayer: string = '[class="react-player__play-icon"]';
 
 /**
  * @export
- * @class ShieldBenefitsSmallBusinessPage
- * @extends {ShieldBenefitsSmallBusinessPage}
+ * @class ShieldBenefitsLegalPage
+ * @extends {ShieldBenefitsLegalPage}
  */
-export class ShieldBenefitsSmallBusinessPage extends OktaPage {
+export class ShieldBenefitsLegalPage extends OktaPage {
   // ========================== Process Methods ============================
   /**
    *
    *
    * @param {string} group
-   * @memberof ShieldBenefitsSmallBusinessPage
+   * @memberof ShieldBenefitsLegalPage
    */
   searchGroup = async (group: string): Promise<void> => {
-    console.log(' - ShieldBenefitsSmallBusinessPage.searchGroup');
-    // Type in the search field group 99645
+    console.log(' - ShieldBenefitsLegalPage.searchGroup');
+    // Type in the search field group 83696
     await this.page.fill(txtSearch, group);
     // Click on Group Search button
     await this.clickOnElement(btnSearchGroup);
@@ -50,10 +51,10 @@ export class ShieldBenefitsSmallBusinessPage extends OktaPage {
    *
    *
    * @param {string} zipcode
-   * @memberof ShieldBenefitsSmallBusinessPage
+   * @memberof ShieldBenefitsLegalPage
    */
   searchLawFirm = async (zipcode: string): Promise<void> => {
-    console.log(' - ShieldBenefitsSmallBusinessPage.searchLawFirm');
+    console.log(' - ShieldBenefitsLegalPage.searchLawFirm');
     // Type in the search law field 80021
     await this.page.fill(txtSearchLawFirm, zipcode);
     // Click on Law Search button
@@ -63,7 +64,7 @@ export class ShieldBenefitsSmallBusinessPage extends OktaPage {
   };
 
   copyNewGroupURL = async (): Promise<void> => {
-    console.log(' - ShieldBenefitsSmallBusinessPage.copyNewGroupURL');
+    console.log(' - ShieldBenefitsLegalPage.copyNewGroupURL');
     // Copy link, paste it in a another tab
     await this.clickOnElement(btnCopyLink);
     await this.page.waitForTimeout(1000);
@@ -73,11 +74,11 @@ export class ShieldBenefitsSmallBusinessPage extends OktaPage {
    *
    * @param {string} state
    * @param {string} paymentFrequency
-   * @memberof ShieldBenefitsSmallBusinessPage
+   * @memberof ShieldBenefitsLegalPage
    */
 
   selectStateAndPaymentFrequency = async (state: string, paymentFrequency: string): Promise<void> => {
-    console.log(' - ShieldBenefitsSmallBusinessPage.selectStateAndPaymentFrequency');
+    console.log(' - ShieldBenefitsLegalPage.selectStateAndPaymentFrequency');
     // Select State
     await this.clickOnElement(btnState);
     await this.clickOnElement(`//div[contains(@class,"lsux-link-content--menu") and contains (.,"${state}")]`);
@@ -91,10 +92,10 @@ export class ShieldBenefitsSmallBusinessPage extends OktaPage {
    *
    *
    * @param {string} value
-   * @memberof ShieldBenefitsSmallBusinessPage
+   * @memberof ShieldBenefitsLegalPage
    */
   navigateToGroupEnrollmentGroupURLPage = async (value: string): Promise<void> => {
-    console.log(' - ShieldBenefitsSmallBusinessPage.navigateToGroupEnrollmentGroupURLPage');
+    console.log(' - ShieldBenefitsLegalPage.navigateToGroupEnrollmentGroupURLPage');
     // Click on Edit button
     await this.clickBtnEditGroup();
     // Verify after pasting url in another browser tab group is displayed
@@ -104,7 +105,7 @@ export class ShieldBenefitsSmallBusinessPage extends OktaPage {
   };
 
   navigateToGroupEnrollmentSearchPage = async (): Promise<void> => {
-    console.log(' - ShieldBenefitsSmallBusinessPage.navigateToGroupEnrollmentSearchPage');
+    console.log(' - ShieldBenefitsLegalPage.navigateToGroupEnrollmentSearchPage');
     await this.page.goto(url);
     // Login through Okta page to be redirected to Group Enrollment Search Page
     await this.loginThroughOktaGroupEnrollment();
@@ -113,10 +114,10 @@ export class ShieldBenefitsSmallBusinessPage extends OktaPage {
    *
    *
    * @param {string} group
-   * @return {*}  {Promise<void>}
+   * @memberof ShieldBenefitsLegalPage
    */
-  navigateToGroupEnrollmentSmallBusinessPage = async (group: string): Promise<void> => {
-    console.log(' - ShieldBenefitsSmallBusinessPage.navigateToGroupEnrollmentSmallBusinessPage');
+  navigateToGroupEnrollmentLegalPage = async (group: string): Promise<void> => {
+    console.log(' - ShieldBenefitsLegalPage.navigateToGroupEnrollmentLegalPage');
     await this.navigateToGroupEnrollmentSearchPage();
     await this.searchGroup(group);
     await this.navigateToGroupEnrollmentGroupURLPage('value');
@@ -124,65 +125,77 @@ export class ShieldBenefitsSmallBusinessPage extends OktaPage {
   // ========================== Click Methods ==============================
 
   clickBtnEditGroup = async (): Promise<void> => {
-    console.log(' - ShieldBenefitsSmallBusinessPage.clickBtnEditGroup');
+    console.log(' - ShieldBenefitsLegalPage.clickBtnEditGroup');
     // Click on Edit button
     await this.page.click(btnEdit);
   };
 
   clickBtnSignIn = async (): Promise<void> => {
-    console.log(' - ShieldBenefitsSmallBusinessPage.clickBtnSignIn');
+    console.log(' - ShieldBenefitsLegalPage.clickBtnSignIn');
     // Click on Sign In button
     await this.page.click(btnSignIn);
   };
 
   clickAppStoreLink = async (): Promise<void> => {
-    console.log(' - ShieldBenefitsSmallBusinessPage.clickAppStoreLink');
+    console.log(' - ShieldBenefitsLegalPage.clickAppStoreLink');
     // Click on AppStore link
     await this.page.click(btnAppStore);
   };
 
   clickBtnBackToTop = async (): Promise<void> => {
-    console.log(' - ShieldBenefitsSmallBusinessPage.clickAppStoreLink');
+    console.log(' - ShieldBenefitsLegalPage.clickAppStoreLink');
     // Click on Back to top button
     await this.page.click(btnBackToTop);
   };
 
   clickBtnPricing = async (): Promise<void> => {
-    console.log(' - ShieldBenefitsSmallBusinessPage.clickBtnPricing');
+    console.log(' - ShieldBenefitsLegalPage.clickBtnPricing');
     // Click on Pricing tab
     await this.clickOnElement(btnPricing);
   };
 
+  clickBtnLegalPage = async (): Promise<void> => {
+    console.log(' - ShieldBenefitsLegalPage.clickBtnLegalPage');
+    // Click on Legal tab
+    await this.clickOnElement(tabLegalPage);
+  };
+
   // ========================== Assertion Methods ==========================
 
-  assertShieldBenefitsSmallBusinessPageSmallBusinessPage = async (): Promise<void> => {
-    console.log(' - ShieldBenefitsSmallBusinessPage.assertShieldBenefitsSmallBusinessPage');
-    // Verify that Small Business tab is displayed for 99645 group
-    await this.assertElementIsVisible(tabSmallBusiness);
+  assertShieldBenefitsLegalPage = async (): Promise<void> => {
+    console.log(' - ShieldBenefitsLegalPage.assertShieldBenefitsLegalPage');
+    // Verify that Legal tab is displayed for  group 83696
+    await this.assertElementIsVisible(tabLegalPage);
   };
 
   assertSignInButtonIsDisplayed = async (): Promise<void> => {
-    console.log(' - ShieldBenefitsSmallBusinessPage.assertSignInButtonISDisplayed');
+    console.log(' - ShieldBenefitsLegalPage.assertSignInButtonIsDisplayed');
     // Confirm Sign In button is displayed
     await this.assertElementIsVisible(btnSignIn);
   };
 
   assertLawFirmInformation = async (): Promise<void> => {
-    console.log(' - ShieldBenefitsSmallBusinessPage.assertLawFirmInformation');
-    // Confirm law firm name displays on the small business page
+    console.log(' - ShieldBenefitsLegalPage.assertLawFirmInformation');
+    // Confirm law firm name displays on the legal page
     await this.page.waitForSelector(txtLawFirmName);
     await this.assertElementContainsText(txtLawFirmName, 'Riggs, Abney, Neal, Turpen, Orbison & Lewis, PC');
   };
 
   assertAppStoreButtonISDisplayed = async (): Promise<void> => {
-    console.log(' - ShieldBenefitsSmallBusinessPage.assertAppStoreButtonIsDisplayed');
+    console.log(' - ShieldBenefitsLegalPage.assertAppStoreButtonIsDisplayed');
     // Confirm App store button is displayed
     await this.assertElementIsVisible(btnAppStore);
   };
 
   assertButtonViewDetailsIsDisplayed = async (): Promise<void> => {
-    console.log(' - ShieldBenefitsSmallBusinessPage.assertButtonViewDetailsIsVisible');
+    console.log(' - ShieldBenefitsLegalPage.assertButtonViewDetailsIsVisible');
     // Confirm that View Details button is displayed
     await this.assertElementIsVisible(btnViewDetails);
+  };
+
+  assertVideoPlayerIsDisplayed = async (): Promise<void> => {
+    console.log(' - ShieldBenefitsLegalPage.assertButtonVideoPlayerIsDisplayed');
+    // Confirm that Video player is displayed on the legal page
+    await this.assertElementIsVisible(btnVideoPlayer);
   };
 }

@@ -30,10 +30,10 @@ export default class UrlsUtils {
       url: `https://checkoutv3.${envUrlString}legalshield.com`,
     },
     ids: {
-      url: `https://ids.${envUrlString}legalshield.com/`,
+      url: `https://ids.${envUrlString}legalshield.com`,
     },
     ids4b: {
-      url: `https://ids4b.${envUrlString}legalshield.com/settings?e=8322f8ad-3735-4601-9972-46bdc90a6a0e`,
+      url: `https://ids4b.${envUrlString}legalshield.com/`,
     },
     legal: {
       url: `https://legal.${envUrlString}legalshield.com/`,
@@ -104,7 +104,8 @@ export default class UrlsUtils {
 
   static readonly memberPerksUrls = {
     login: {
-      url: 'https://legalshield.perkspot.com/login',
+      // url: 'https://legalshield.perkspot.com/login',
+      url: 'https://pslogin.perkspot.com/login?communityId=588',
     },
   };
 

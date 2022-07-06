@@ -42,7 +42,7 @@ test('Click website link for a IDShield Individual plan and redirect to IDS appl
 test('Click website link for a Launch plan and redirect to mybusiness application', async ({ page }) => {
   console.log('Test Case: Click website link for a Launch plan and redirect to mybusiness application');
   // Click on the website link based on the plan name
-  await accountPlansPage.clickGoToWebsiteLink('Launch');
+  await accountPlansPage.clickGoToWebsiteLink('Small Business Launch Supplement');
   // Confirm redirect to My Business App
   await accountPlansPage.assertLaunchPageUrl();
 });

@@ -10,26 +10,31 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('Company information is displayed on account tab', async ({ page }) => {
+  console.log('Company information is displayed on account tab');
   await shieldAtWorkAccountTab.navigateToShieldAtWorkAccountTab();
   await shieldAtWorkAccountTab.assertCompanyInformation();
 });
 
 test('Contact information is displayed on account tab', async ({ page }) => {
+  console.log('Contact information is displayed on account tab');
   await shieldAtWorkAccountTab.navigateToShieldAtWorkAccountTab();
   await shieldAtWorkAccountTab.assertContactInformation();
 });
 
 test('Address is displayed on account tab', async ({ page }) => {
+  console.log('Address is displayed on account tab');
   await shieldAtWorkAccountTab.navigateToShieldAtWorkAccountTab();
   await shieldAtWorkAccountTab.assertAddress();
 });
 
 test('Available Plan Offerings is displayed on account tab', async ({ page }) => {
+  console.log('Available Plan Offerings is displayed on account tab');
   await shieldAtWorkAccountTab.navigateToShieldAtWorkAccountTab();
   await shieldAtWorkAccountTab.assertAvailablePlanOfferings();
 });
 
 test('State drop down is selectable on account tab', async ({ page }) => {
+  console.log('State drop down is selectable on account tab');
   await shieldAtWorkAccountTab.navigateToShieldAtWorkAccountTab();
   await shieldAtWorkAccountTab.selectState();
 });
