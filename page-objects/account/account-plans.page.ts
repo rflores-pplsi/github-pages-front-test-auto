@@ -101,9 +101,7 @@ export class AccountPlansPage extends LoginPage {
   assertIdShieldForBusinessPageUrl = async (): Promise<void> => {
     console.log(' - profileAddressPage.assertIdShieldForBusinessPageUrl');
     // Confirm the IDShield For Business Page URL is reached
-    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.ids4b.url);
-    // Wait for document to load before subsequent steps
-    await this.page.waitForLoadState('domcontentloaded');
+    await this.assertUrlContains(this.page, 'ids4b');
   };
 
   assertLegalPageUrl = async (): Promise<void> => {

@@ -49,6 +49,8 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
     if (orderSummary.orderSummaryRows.length != 0) {
       orderSummary.orderSummaryRows = [];
     }
+    // store as a variable
+    // explore foreach
     const numberOfRows = (await this.page.$$('//div[contains(@class,"plan-name-row")]')).length;
     for (let i: number = 0; i < numberOfRows; i++) {
       if (groupPayConfig == 'Fringe') {
@@ -89,6 +91,7 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
     const planNameJsHandle = (await this.page.$$(txtPlanNames))[i].getProperty('innerText');
     const planNameText = await (await planNameJsHandle).jsonValue();
     const tierNameJsHandle = (await this.page.$$(txtTierNames))[i].getProperty('innerText');
+    // is this null, and is that ok
     const tierNameText = await (await tierNameJsHandle).jsonValue();
     const planCostJsHandle = (await this.page.$$(txtPlanCosts))[i].getProperty('innerText');
     const planCostText = await (await planCostJsHandle).jsonValue();

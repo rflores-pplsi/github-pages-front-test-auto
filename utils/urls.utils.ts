@@ -33,7 +33,7 @@ export default class UrlsUtils {
       url: `https://ids.${envUrlString}legalshield.com/`,
     },
     ids4b: {
-      url: `https://ids4b.${envUrlString}legalshield.com/`,
+      url: `https://ids4b.${envUrlString}legalshield.com/settings?e=8322f8ad-3735-4601-9972-46bdc90a6a0e`,
     },
     legal: {
       url: `https://legal.${envUrlString}legalshield.com/`,

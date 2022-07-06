@@ -22,11 +22,14 @@ for (const tc of legalshieldTestHarnessData.filter((tc) => tc.disabled == false)
 
     // Select Plans and get to Personal Info Page
     await checkoutConfirmationPage.goTo(UrlsUtils.testHarnessUrls.legalShield.url);
-    await checkoutConfirmationPage.addProducts(region, tc.productNames);
+    await checkoutConfirmationPage.selectTestHarnessRegion(region);
+    await checkoutConfirmationPage.addProducts(tc.productNames);
     await checkoutConfirmationPage.clickCheckoutButton();
     await checkoutConfirmationPage.login(basicUser.email, basicUser.password);
+    await page.pause();
 
-    // 4. Capture Order Summary
+    // // 4. Capture Order Summary
+    // await checkoutConfirmationPage.captureOrderSummary;
 
     // // OLD CODE FOR REFERENCE ======================================================
     // // Navigate to personal Info page through planalyzer
