@@ -2,13 +2,10 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "strict": true,
-    "target": "es2021",
-<<<<<<< HEAD
-    "types": ["node", "webdriverio/async", "@wdio/cucumber-framework", "expect-webdriverio"]
-=======
+    "target": "es6",
+    "types": ["node"],
     "resolveJsonModule": true,
     "esModuleInterop": true
->>>>>>> 6a44b0426dcc0c01ce1a70dfd3fd1d434cadf1ee
   },
   "exclude": ["node_modules"]
 }
