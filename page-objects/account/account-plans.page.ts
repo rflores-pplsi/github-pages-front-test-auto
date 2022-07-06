@@ -88,8 +88,6 @@ export class AccountPlansPage extends LoginPage {
     console.log(' - accountPlansPage.clickGoToWebsiteLink');
     // Click go to website link for the
     const planRowIndex = await this.getPlanRowIndexFromPlanName(plansTable, planName);
-    console.log('plansTable==>' + JSON.stringify(plansTable));
-    console.log(planRowIndex);
     await plansTable.planRows[planRowIndex].websiteLink.click();
   };
 
@@ -104,12 +102,14 @@ export class AccountPlansPage extends LoginPage {
     console.log(' - profileAddressPage.assertIdShieldForBusinessPageUrl');
     // Confirm the IDShield For Business Page URL is reached
     await this.assertUrlContains(this.page, 'ids4b');
+    // Wait for document to load before subsequent steps
+    await this.page.waitForLoadState('domcontentloaded');
   };
 
   assertLegalPageUrl = async (): Promise<void> => {
     console.log(' - profileAddressPage.assertLegalPageUrl');
     // Confirm the Legal Page URL is reached
-    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.legal.url);
+    await this.assertUrlContains(this.page, 'legal');
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };
@@ -117,7 +117,7 @@ export class AccountPlansPage extends LoginPage {
   assertIdShieldPageUrl = async (): Promise<void> => {
     console.log(' - profileAddressPage.assertIdShieldPageUrl');
     // Confirm the ID Shield Page URL is reached
-    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.ids.url);
+    await this.assertUrlContains(this.page, 'ids');
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };
@@ -125,7 +125,7 @@ export class AccountPlansPage extends LoginPage {
   assertLaunchPageUrl = async (): Promise<void> => {
     console.log(' - profileAddressPage.assertLaunchPageUrl');
     // Confirm the Legal Page URL is reached
-    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.launch.url);
+    await this.assertUrlContains(this.page, 'mybusiness');
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };

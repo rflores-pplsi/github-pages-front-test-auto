@@ -15,7 +15,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 // Click website link for a ID Shield for Business plan and redirect to IDS4B page
-test.only('Click website link for an ID Shield for Business plan and redirect to IDS4B application', async ({ page }) => {
+test('Click website link for an ID Shield for Business plan and redirect to IDS4B application', async ({ page }) => {
   console.log('Test Case: Click website link for an ID Shield for Business plan and redirect to IDS4B application');
   // Click on the website link based on the plan name
   await accountPlansPage.clickGoToWebsiteLink('IDShield for Business');
