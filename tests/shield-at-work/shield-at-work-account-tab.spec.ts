@@ -33,8 +33,15 @@ test('Available Plan Offerings is displayed on account tab', async ({ page }) =>
   await shieldAtWorkAccountTab.assertAvailablePlanOfferings();
 });
 
-test('State drop down is selectable on account tab', async ({ page }) => {
-  console.log('State drop down is selectable on account tab');
+test('State is displayed on the account tab', async ({ page }) => {
+  console.log('State and payment frequency are displayed on the account tab');
   await shieldAtWorkAccountTab.navigateToShieldAtWorkAccountTab();
-  await shieldAtWorkAccountTab.selectState();
+  await shieldAtWorkAccountTab.assertStateIsDisplayed();
+});
+
+test('Payment frequency are displayed on the account tab', async ({ page }) => {
+  console.log('Payment frequency are displayed on the account tab');
+  await shieldAtWorkAccountTab.navigateToShieldAtWorkAccountTab();
+  await shieldAtWorkAccountTab.assertPaymentFrequencyIsDisplayed();
+
 });

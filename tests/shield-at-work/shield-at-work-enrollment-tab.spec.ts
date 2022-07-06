@@ -12,21 +12,16 @@ test.beforeEach(async ({ page }) => {
 
 test('Manage Site button is enabled on the enrollment tab', async ({ page }) => {
   console.log('Manage Site button is enabled on the enrollment tab');
-  await shieldAtWorkEnrollmentTab.groupSearchByGroupNumber('207196');
+  await shieldAtWorkEnrollmentTab.navigateToShieldAtWorkEnrollmentTab();
   await shieldAtWorkEnrollmentTab.clickEnrollmentTab();
   await shieldAtWorkEnrollmentTab.assertManageSiteButtonIsVisible();
 });
 
 test('Enrollment information is displayed on the enrollment page', async ({ page }) => {
   console.log('Enrollment information is displayed on the enrollment page');
-  await shieldAtWorkEnrollmentTab.groupSearchByGroupNumber('207196');
+  await shieldAtWorkEnrollmentTab.navigateToShieldAtWorkEnrollmentTab();
   await shieldAtWorkEnrollmentTab.clickEnrollmentTab();
-  await shieldAtWorkEnrollmentTab.assertEnrollmentInformation();
+  await shieldAtWorkEnrollmentTab.assertEnrollmentInformationIsDisplayed();
 });
 
-test('Message "There are no members to display for group based on status filter" is displayed on the enrollment page ', async ({ page }) => {
-  console.log('Message "There are no members to display for group based on status filter" is displayed on the enrollment page ');
-  await shieldAtWorkEnrollmentTab.groupSearchByGroupNumber('207196');
-  await shieldAtWorkEnrollmentTab.clickEnrollmentTab();
-  await shieldAtWorkEnrollmentTab.assertMessageIsDisplayed();
-});
+

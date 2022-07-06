@@ -3,15 +3,17 @@ import urlsUtils from '../../utils/urls.utils';
 import { LsWorkLoginPage } from '../shield-at-work/shield-at-work-login.page';
 
 // ========================== Selectors ==================================
-const url = urlsUtils.legalshieldUrls.shieldAtWork.url;
-const btnViewGroup: string = '[class="lsux-button  lsux-button--standard      ml-4"]';
+
+const url: string = urlsUtils.legalshieldUrls.shieldAtWork.url;
+const btnViewGroup: string = '.lsux-button.lsux-button--standard.ml-3 > span';
 const txtSearch: string = '[placeholder="Search by name or group number"]';
 const btnSearch: string = '[id="searchButton"]';
-const btnEnrollmentTab = '#root div.lsux-tab--bar.lsux-tab--stretch.mt-4._1eLFtzcrk-k4lYLgF3dWc1 > div:nth-child(3) > div > a > h4';
+const btnEnrollmentTab: string =
+  '#root > div > div > div:nth-child(1) > div > div > div.px-6.pt-4.mb-6.oVjDjW_QqZkyeTOHfYTdP > div.lsux-tab--bar.lsux-tab--stretch.mt-4._1eLFtzcrk-k4lYLgF3dWc1 > div:nth-child(2) > div > a > h4';
 const txtGroup: string = '#root  .lsux-container--flex-items-center.mb-2 > h3';
-const btnManageSite: string = ' .lsux-row.half.children2._1mGEzKW4bHYdkCdXubcxyu > div:nth-child(2) > div > h2 > button > span';
-const txtEnrollmentInformation: string = '.lsux-container--flex-items-center._3LtEyoCyKId7Bp09BBV_XQ.px-6.TZykF7nc8qs6i9k03RlmT > h3';
-const txtMessage: string = '.lsux-container--flex-content-center.py-10.px-4 > h3';
+const btnManageSite: string = '.lsux-container.lsux-container--white div > h2 > button > span';
+const txtEnrollmentInformation: string = '.lsux-row.thirds.children4._1mGEzKW4bHYdkCdXubcxyu > div:nth-child(1) > div > h2';
+
 
 /**
  * @export
@@ -22,18 +24,17 @@ export class ShieldAtWorkEnrollmentTab extends LsWorkLoginPage {
   /**
    *
    *
-   * @param {string} groupNumber
+   * @param {string} group
    * @memberof ShieldAtWorkEnrollmentTab
    */
-  groupSearchByGroupNumber = async (groupNumber: string): Promise<void> => {
+  groupSearchByGroupNumber = async (group: string): Promise<void> => {
     console.log(' - enrollmentShieldAtWorkPage.groupSearchByGroupNumber');
     // Type in the search field the group number
-    await this.page.fill(txtSearch, groupNumber);
-    await this.page.waitForSelector(txtSearch);
+    await this.page.fill(txtSearch, group);
     // Click on search button
     await this.clickOnElement(btnSearch);
+    // Wait for the group name is displayed
     await this.page.waitForSelector(txtGroup);
-    await this.clickViewGroupButton();
   };
 
   // ========================== Click Methods ==============================
@@ -58,28 +59,25 @@ export class ShieldAtWorkEnrollmentTab extends LsWorkLoginPage {
     await this.page.goto(url);
     // Login to ShieldAtWork
     await this.loginWithCredentials();
+    // Search group by group number
+    await this.groupSearchByGroupNumber('207196');
+    // Click on View group button
+    await this.clickViewGroupButton();
   };
 
   // ========================== Assertion Methods ==========================
 
   assertManageSiteButtonIsVisible = async (): Promise<void> => {
     console.log(' - enrollmentShieldAtWorkPage.assertManageSiteButtonIsVisible');
-    // Verify that Identity Theft Page is displayed for 99638 group
+    // Verify that Manage site button is displayed on the enrollment page
     await this.assertElementIsVisible(btnManageSite);
   };
 
-  assertEnrollmentInformation = async (): Promise<void> => {
-    console.log(' - enrollmentShieldAtWorkPage.assertEnrollmentInformation');
-    // Verify that enrollment information  is displayed
-    await this.page.waitForSelector(txtEnrollmentInformation);
-    const information = this.page.locator(txtEnrollmentInformation);
-    await expect(information).toContainText('Enrollment information');
-  };
 
-  assertMessageIsDisplayed = async (): Promise<void> => {
-    console.log(' - enrollmentShieldAtWorkPage.assertMessageIsDisplayed');
-    await this.page.waitForSelector(txtMessage);
-    const message = 'There are no members to display for group based on status filter.';
-    await this.assertElementHasText(txtMessage, message);
+  assertEnrollmentInformationIsDisplayed = async (): Promise<void> => {
+    console.log(' - enrollmentShieldAtWorkPage.assertEnrollmentInformationIsDisplayed');
+    // Verify that enrollment information is displayed on the enrollment page
+    await this.assertElementIsVisible(txtEnrollmentInformation);
+
   };
 }
