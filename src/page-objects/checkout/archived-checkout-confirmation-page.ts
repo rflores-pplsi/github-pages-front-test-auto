@@ -4,7 +4,7 @@ import { expect } from '@playwright/test';
 import UrlsUtils from '../../utils/urls.utils';
 import { OktaPage } from '../okta/okta.page';
 
-require('dotenv').config;
+// require('dotenv').config;
 
 // Selectors
 // let Produrl: string = UrlsUtils.launchUrls.devUrl.url;

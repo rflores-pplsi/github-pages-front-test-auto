@@ -1,0 +1,34 @@
+{
+  "status": "passed",
+  "attachments": [],
+  "suites": [
+    {
+      "name": "chromium",
+      "status": "passed",
+      "metadata": {},
+      "suites": [
+        {
+          "name": "tests\\qa-maintenance-list\\groups-bestmoneymoves.spec.ts",
+          "status": "passed",
+          "metadata": {},
+          "suites": [],
+          "attachments": [],
+          "tests": [
+            {
+              "name": "test",
+              "status": "passed",
+              "startTime": "2022-07-06T20:48:04.190Z",
+              "duration": 31088,
+              "metadata": {},
+              "attachments": [],
+              "videoTimestamp": 5.19
+            }
+          ]
+        }
+      ],
+      "attachments": [],
+      "tests": []
+    }
+  ],
+  "metadata": {}
+}

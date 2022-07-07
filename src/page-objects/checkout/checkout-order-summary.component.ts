@@ -162,8 +162,8 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
       const cost = row.planCost;
       if (planName == expectedPlanName) {
         found = true;
-        await this.assertStringMatch(tierName, expectedTierName);
-        await this.assertStringMatch(cost, expectedPlanCost);
+        await this.assertStringMatch(tierName as string, expectedTierName as string);
+        await this.assertStringMatch(cost as string, expectedPlanCost);
       }
     });
 

@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import EnvironmentUtil from './env.utils';
-require('dotenv').config();
+// require('dotenv').config();
 
 const envUrlString = EnvironmentUtil.getEnvUrlString();
 const envLaunchUrlString = EnvironmentUtil.getLaunchUrlString();
@@ -123,5 +123,9 @@ export default class UrlsUtils {
     reportscommissions: {
       url: `https://associate-office.${envUrlString}legalshield.com/reports/commissions`,
     },
+  };
+  static readonly groupsUrls = {
+    urlBestMoneyMovers: `https://www.shieldbenefits.com/bestmoneymoves/overview`,
+    url1UniversalTrucking: `https://w3.legalshield.com/gs/init?grp=1universaltrucking`,
   };
 }

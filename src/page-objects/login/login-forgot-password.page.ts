@@ -1,4 +1,4 @@
-import { LoginPage } from '../login/login.page';
+import { LoginPage } from './login.page';
 
 // Selectors
 const txtEmailAddress: string = '[placeholder="Email Address"]';

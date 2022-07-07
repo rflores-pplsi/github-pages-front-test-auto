@@ -1,0 +1,40 @@
+Preparing npm environment
+
+Running 0 test using 0 worker
+
+
+Error: Cannot find module 'dotenv'
+Require stack:
+- D:\sauce-playwright-runner\2.9.0\bundle\__project__\page-objects\okta\okta.page.ts
+- D:\sauce-playwright-runner\2.9.0\bundle\__project__\page-objects\planalyzer\planalyzer-csr-checkout.page.ts
+- D:\sauce-playwright-runner\2.9.0\bundle\__project__\page-objects\shield-benefits\shield-benefits-legal-pricing.page.ts
+- D:\sauce-playwright-runner\2.9.0\bundle\__project__\page-objects\checkout\checkout-order-summary.component.ts
+- D:\sauce-playwright-runner\2.9.0\bundle\__project__\page-objects\checkout\checkout-personal-info.page.ts
+- D:\sauce-playwright-runner\2.9.0\bundle\__project__\page-objects\qa-maintenance-list\bestmoneymoversgroup.page.ts
+- D:\sauce-playwright-runner\2.9.0\bundle\__project__\tests\qa-maintenance-list\groups-bestmoneymoves.spec.ts
+- D:\sauce-playwright-runner\2.9.0\bundle\node_modules\@playwright\test\lib\loader.js
+- D:\sauce-playwright-runner\2.9.0\bundle\node_modules\@playwright\test\lib\runner.js
+- D:\sauce-playwright-runner\2.9.0\bundle\node_modules\@playwright\test\lib\cli.js
+- D:\sauce-playwright-runner\2.9.0\bundle\node_modules\playwright-core\lib\cli\cli.js
+- D:\sauce-playwright-runner\2.9.0\bundle\node_modules\playwright-core\cli.js
+- D:\sauce-playwright-runner\2.9.0\bundle\node_modules\@playwright\test\cli.js
+
+   at page-objects\okta\okta.page.ts:5
+
+  3 | import { LoginPage } from '../login/login.page';
+  4 |
+> 5 | require('dotenv').config;
+    | ^
+  6 |
+  7 | // ========================== Selectors ==========================
+  8 | const txtEmailAddres: string = '#okta-signin-username';
+
+    at Object.<anonymous> (D:\sauce-playwright-runner\2.9.0\bundle\__project__\page-objects\okta\okta.page.ts:5:1)
+    at Object.<anonymous> (D:\sauce-playwright-runner\2.9.0\bundle\__project__\page-objects\planalyzer\planalyzer-csr-checkout.page.ts:1:1)
+
+=================
+ no tests found.
+=================
+
+
+

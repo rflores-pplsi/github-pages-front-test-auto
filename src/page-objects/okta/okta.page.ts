@@ -2,7 +2,7 @@ import UrlsUtils from '../../utils/urls.utils';
 import { oktaUser } from '../../utils/user.utils';
 import { LoginPage } from '../login/login.page';
 
-require('dotenv').config;
+// require('dotenv').config;
 
 // ========================== Selectors ==========================
 const txtEmailAddres: string = '#okta-signin-username';

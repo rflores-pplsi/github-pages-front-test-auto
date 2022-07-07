@@ -3,7 +3,7 @@
 import { expect } from '@playwright/test';
 import { AccountNavigationPage } from './account-navigation.page';
 import { AccountProfilePage } from './account-profile.page';
-require('dotenv').config;
+// require('dotenv').config;
 
 // ========================== Selectors ==========================
 const btnEmailAddressAdd = 'button.lsux-button.lsux-button--primary.mt-4 img';

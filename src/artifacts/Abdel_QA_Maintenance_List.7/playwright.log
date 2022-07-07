@@ -1,0 +1,36 @@
+Preparing npm environment
+
+Running 0 test using 0 worker
+
+
+Error: Cannot find module 'dotenv'
+Require stack:
+- D:\sauce-playwright-runner\2.9.0\bundle\__project__\utils\urls.utils.ts
+- D:\sauce-playwright-runner\2.9.0\bundle\__project__\page-objects\qa-maintenance-list\bestmoneymoversgroup.page.ts
+- D:\sauce-playwright-runner\2.9.0\bundle\__project__\tests\qa-maintenance-list\groups-bestmoneymoves.spec.ts
+- D:\sauce-playwright-runner\2.9.0\bundle\node_modules\@playwright\test\lib\loader.js
+- D:\sauce-playwright-runner\2.9.0\bundle\node_modules\@playwright\test\lib\runner.js
+- D:\sauce-playwright-runner\2.9.0\bundle\node_modules\@playwright\test\lib\cli.js
+- D:\sauce-playwright-runner\2.9.0\bundle\node_modules\playwright-core\lib\cli\cli.js
+- D:\sauce-playwright-runner\2.9.0\bundle\node_modules\playwright-core\cli.js
+- D:\sauce-playwright-runner\2.9.0\bundle\node_modules\@playwright\test\cli.js
+
+   at utils\urls.utils.ts:3
+
+  1 | /* eslint-disable camelcase */
+  2 | import EnvironmentUtil from './env.utils';
+> 3 | require('dotenv').config();
+    | ^
+  4 |
+  5 | const envUrlString = EnvironmentUtil.getEnvUrlString();
+  6 | const envLaunchUrlString = EnvironmentUtil.getLaunchUrlString();
+
+    at Object.<anonymous> (D:\sauce-playwright-runner\2.9.0\bundle\__project__\utils\urls.utils.ts:3:1)
+    at Object.<anonymous> (D:\sauce-playwright-runner\2.9.0\bundle\__project__\page-objects\qa-maintenance-list\bestmoneymoversgroup.page.ts:5:1)
+
+=================
+ no tests found.
+=================
+
+
+

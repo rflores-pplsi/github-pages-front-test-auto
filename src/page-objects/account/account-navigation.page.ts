@@ -1,6 +1,6 @@
 import { expect } from '@playwright/test';
 import UrlsUtils from '../../utils/urls.utils';
-import { LoginPage } from '../../page-objects/login/login.page';
+import { LoginPage } from '../login/login.page';
 
 // Selectors
 const lnkPlans = '.lsux-navigation--item-plans';

@@ -1,6 +1,6 @@
 import { expect } from '@playwright/test'; // import expect functionality from playwright
 import urlsUtils from '../../utils/urls.utils'; // import class of Urls
-import { LsWorkLoginPage } from '../shield-at-work/shield-at-work-login.page'; // import the LoginPage for extension
+import { LsWorkLoginPage } from './shield-at-work-login.page'; // import the LoginPage for extension
 
 // ========================== Selectors ==================================
 const url = urlsUtils.legalshieldUrls.shieldAtWork.url;

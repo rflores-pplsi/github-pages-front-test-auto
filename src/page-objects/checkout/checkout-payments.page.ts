@@ -1,6 +1,5 @@
 import { expect, Page } from '@playwright/test';
 import RegionsUtils from '../../utils/regions.utils';
-import { basicUser } from '../../utils/user.utils';
 import { CheckoutPersonalInfoPage } from './checkout-personal-info.page';
 
 // ========================== Selectors ==================================
@@ -23,7 +22,7 @@ export class CheckoutPaymentsPage extends CheckoutPersonalInfoPage {
     await this.navigateToPlanalyzerCsrCheckoutOktaLogin();
     await this.loginThroughOkta();
     await this.createOrderRedirectToCheckoutFromPlanalyzer('D2C', 'LegalShield', state, 'en-US', '', '', ['Legal Plan']);
-    await this.navigatePersonalInfoPageFromLogin(basicUser.email, basicUser.password);
+    // await this.navigatePersonalInfoPageFromLogin(basicUser.email, basicUser.password);
     const regionObj = RegionsUtils.usStates;
     const stateObj = state;
     for (const obj of regionObj) {
@@ -54,16 +53,15 @@ export class CheckoutPaymentsPage extends CheckoutPersonalInfoPage {
       await frame.locator(btnCreditCard).click();
     } else throw new Error('No such frame');
   };
-  
-   = async() => {
-    // Switch to frame
-    await this.page.frameLocator("//iframe[@title='payment iframe']");
-    const frame = this.page.frameLocator("//iframe[@title='payment iframe']");
-    if (frame != null) {
-      // Click on Add Payment button
-      await frame.locator(lnkTermsOfService).click();
-    } else throw new Error('No such frame');
-  };
+  //  = async() => {
+  //   // Switch to frame
+  //   await this.page.frameLocator("//iframe[@title='payment iframe']");
+  //   const frame = this.page.frameLocator("//iframe[@title='payment iframe']");
+  //   if (frame != null) {
+  //     // Click on Add Payment button
+  //     await frame.locator(lnkTermsOfService).click();
+  //   } else throw new Error('No such frame');
+  // };
   // ========================== Assertion Methods ==========================
   assertAccoutPaymentsPage = async () => {
     await this.page.frameLocator("//iframe[@title='payment iframe']");

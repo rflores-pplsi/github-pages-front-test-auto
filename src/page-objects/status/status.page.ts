@@ -1,5 +1,5 @@
 import UrlsUtils from '../../utils/urls.utils';
-import { StatusHeaderPage } from '../../page-objects/status/status-header.page';
+import { StatusHeaderPage } from './status-header.page';
 import { expect } from '@playwright/test';
 
 // ========================== Selectors ==========================

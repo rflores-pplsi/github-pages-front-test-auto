@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites name="Abdel QA Maintenance List chromium" tests="1" failures="0" skipped="0" errors="0" time="31.088">
+    <testsuite name="tests\qa-maintenance-list\groups-bestmoneymoves.spec.ts" timestamp="2022-07-06T20:48:03.235Z" hostname="" tests="1" failures="0" skipped="0" time="31.088" errors="0" id="0">
+        <testcase name="test" classname="[chromium] › tests\qa-maintenance-list\groups-bestmoneymoves.spec.ts:14:6 › test" time="31.088">
+            <system-out>
+ - BestMoneyMoversGroupPage.navigateToBestMoneyMoversGroupPage
+ - BestMoneyMoversGroupPage.clickBtnEnrollNow
+ - BestMoneyMoversGroupPage.assertTestingHarnesGroupsPricingPage
+ - BestMoneyMoversGroupPage.selectStateBestMoneyMoversGroupPage
+ - BestMoneyMoversGroupPage.assertTestingHarnesGroupsPricingPage
+State is selected and Available Plans Label is displayed
+ - BestMoneyMoversGroupPage.selectFrequencyBestMoneyMoversGroupPage
+Frequency is selected
+ - BestMoneyMoversGroupPage.clickBtnESelectPlan
+Plan is selected
+ - BestMoneyMoversGroupPage.loginBestMoneyMoversGroupPage
+Redirected to login page
+ - loginPage.login
+ - BestMoneyMoversGroupPage.updateAddressTestingHarnesGroupsPage
+ - checkoutPersonalInfoPage.enterHomeAddress
+ - checkoutPersonalInfoPage.enterCity
+ - checkoutPersonalInfoPage.enterPostalCode
+
+</system-out>
+        </testcase>
+        <properties>
+            <property name="platformName" value="windows 10"/>
+            <property name="browserName" value="chromium"/>
+        </properties>
+    </testsuite>
+</testsuites>

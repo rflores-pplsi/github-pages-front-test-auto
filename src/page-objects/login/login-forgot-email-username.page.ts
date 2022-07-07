@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import { LoginPage } from '../login/login.page';
+import { LoginPage } from './login.page';
 
 // ========================== Selectors ==========================
 const lnkCustomerService: string = '#root :text("1-800-654-7757")';
