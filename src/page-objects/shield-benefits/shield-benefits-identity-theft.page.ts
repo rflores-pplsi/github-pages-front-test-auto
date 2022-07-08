@@ -1,24 +1,24 @@
-import { expect } from '@playwright/test';
 import UrlsUtils from '../../utils/urls.utils';
 import { OktaPage } from '../okta/okta.page';
 
 // ========================== Selectors ==================================
 
-const url = UrlsUtils.legalshieldUrls.groupEnrollment.url;
-const urlAppStore = 'https://apps.apple.com/us/app/legalshield-law-firms-on-call/id924247236';
-const urlGroup = 'https://www.dev-shieldbenefits.com/';
-const txtSearch = '[placeholder="Search"]';
-const btnSearchGroup = '.lsux-button--primary';
-const btnEdit = '.group-item-controls > div:nth-child(3) > a > div > img';
-const btnCopyLink = '.lsux-button:nth-child(3) > .lsux-text--description';
-const tabIdentityTheft = '//*[@id="root"]/div/nav/div/div/ul/li[1]/a';
-const txtGroupInfo = '[class="group-item-info"]';
-const txbNewGroupURLId = '.lsux-grid div:nth-child(4) > div > div > form > div:nth-child(1) input';
-const btnSignIn = '[id="signedout"]';
-const lnkAppStore = '.lsux-grid.container a:nth-child(1) > img';
-const btnBackToTop = 'main > div > div > button > span';
-const btnLanguageDropDown = 'p.dropBtn';
-const opcEspanolUS = '#root > div > footer > div > div.leftWrapper > ul > li.langSwitcher > div > div > ul > li:nth-child(2)';
+const url: string = UrlsUtils.legalshieldUrls.groupEnrollment.url;
+const btnAppStore: string = '.lsux-grid.container a:nth-child(1) > img';
+const urlGroup: string = 'https://www.uat-shieldbenefits.com/';
+const txtSearch: string = '[placeholder="Search"]';
+const btnSearchGroup: string = '.lsux-button--primary';
+const btnEdit: string = '.group-item-controls > div:nth-child(3) > a > div > img';
+const btnCopyLink: string = '.lsux-button:nth-child(3) > .lsux-text--description';
+const tabIdentityTheft: string = '//*[@id="root"]/div/nav/div/div/ul/li[1]/a';
+const txtGroupInfo: string = '[class="group-item-info"]';
+const txbNewGroupURLId: string = '.lsux-grid div:nth-child(4) > div > div > form > div:nth-child(1) input';
+const btnSignIn: string = '[id="signedout"]';
+const lnkAppStore: string = '.lsux-grid.container a:nth-child(1) > img';
+const btnBackToTop: string = 'main > div > div > button > span';
+const btnLanguageDropDown: string = 'p.dropBtn';
+const opcEspanolUS: string = '.lsux-col.col.four.leftWrapper > div > ul > li.langSwitcher > div > div > ul > li:nth-child(2)';
+const lnkMemberPerks: string = 'section.memberperksWrapper  div:nth-child(1) > div > p > a';
 
 /**
  * @export
@@ -73,6 +73,7 @@ export class ShieldBenefitsIdentityTheftPage extends OktaPage {
     // Login through Okta page to be redirected to Group Enrollment Search Page
     await this.loginThroughOktaGroupEnrollment();
   };
+
   /**
    *
    *
@@ -117,6 +118,12 @@ export class ShieldBenefitsIdentityTheftPage extends OktaPage {
     await this.clickOnElement(btnLanguageDropDown);
   };
 
+  clickLnkMemberPerks = async (): Promise<void> => {
+    console.log(' - ShieldBenefitsIdentityTheftPage.clickLnkMemberPerks');
+    // Click on Member Perks link
+    await this.clickOnElement(lnkMemberPerks);
+  };
+
   selectSpanishLanguage = async (): Promise<void> => {
     console.log(' - ShieldBenefitsIdentityTheftPage.selectSpanishLanguage');
     // Select Spanish US language from drop down
@@ -131,16 +138,16 @@ export class ShieldBenefitsIdentityTheftPage extends OktaPage {
     await this.assertElementIsVisible(tabIdentityTheft);
   };
 
-  assertAccountsV2Url = async (): Promise<void> => {
-    console.log(' - ShieldBenefitsIdentityTheftPage.assertAccountsV2Url');
-    // Verify after clicking on Sign In button it redirects to Accounts V2
-    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.login.url + '/login?app=accountsv2&impact=Low&path=%2Fsign-in');
+  assertSignInButtonIsDisplayed = async (): Promise<void> => {
+    console.log(' - ShieldBenefitsCommercialDriverPage.assertSignInButtonIsDisplayed');
+    // Confirm Sign In button is displayed
+    await this.assertElementIsVisible(btnSignIn);
   };
 
-  assertAppStoreUrl = async (): Promise<void> => {
-    console.log(' -ShieldBenefitsIdentityTheftPage.assertAppStoreUrl');
-    // Verify after clicking on App store link it redirects to the store site
-    await expect(this.page).toHaveURL(urlAppStore);
+  assertAppStoreButtonISDisplayed = async (): Promise<void> => {
+    console.log(' - ShieldBenefitsCommercialDriverPage.assertAppStoreButtonIsDisplayed');
+    // Confirm App store button is displayed
+    await this.assertElementIsVisible(btnAppStore);
   };
 
   assertIniciarSesionTranslation = async (): Promise<void> => {

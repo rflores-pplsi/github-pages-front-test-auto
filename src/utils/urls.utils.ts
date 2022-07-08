@@ -4,6 +4,7 @@ import EnvironmentUtil from './env.utils';
 
 const envUrlString = EnvironmentUtil.getEnvUrlString();
 const envLaunchUrlString = EnvironmentUtil.getLaunchUrlString();
+const envTestHarnessString = EnvironmentUtil.getTestHarnessUrlString();
 
 /**
  *
@@ -29,7 +30,7 @@ export default class UrlsUtils {
       url: `https://checkoutv3.${envUrlString}legalshield.com`,
     },
     ids: {
-      url: `https://ids.${envUrlString}legalshield.com/`,
+      url: `https://ids.${envUrlString}legalshield.com`,
     },
     ids4b: {
       url: `https://ids4b.${envUrlString}legalshield.com/`,
@@ -44,7 +45,7 @@ export default class UrlsUtils {
       url: `https://forms.${envUrlString}legalshield.com/`,
     },
     shieldAtWork: {
-      url: `https://login.${envUrlString}shieldatwork.com/`,
+      url: `https://login.${envUrlString}shieldatwork.com?app=work`,
     },
     groupEnrollment: {
       url: `https://groupenrollment.${envUrlString}legalshieldinternal.com/`,
@@ -54,6 +55,21 @@ export default class UrlsUtils {
     },
     typeForm: {
       url: 'https://legalshield.typeform.com/to/lJtBMp?typeform-source=classic.dev-shieldatwork.com',
+    },
+  };
+
+  static readonly testHarnessUrls = {
+    legalShield: {
+      url: `https://wptesttool${envTestHarnessString}.pplsicorp.com/d2c-lsus/?lsc-current-site=LS_US`,
+    },
+    legalShieldCanada: {
+      url: `https://wptesttool${envTestHarnessString}.pplsicorp.com/d2c-lsca/?lsc-current-site=LS_CA`,
+    },
+    idShield: {
+      url: `https://wptesttool${envTestHarnessString}.pplsicorp.com/d2c-idsus/?lsc-current-site=IDS_US`,
+    },
+    idShieldCanada: {
+      url: `https://wptesttool${envTestHarnessString}.pplsicorp.com/d2c-idsca/?lsc-current-site=IDS_CA`,
     },
   };
 
@@ -88,7 +104,8 @@ export default class UrlsUtils {
 
   static readonly memberPerksUrls = {
     login: {
-      url: 'https://legalshield.perkspot.com/login',
+      // url: 'https://legalshield.perkspot.com/login',
+      url: 'https://pslogin.perkspot.com/login?communityId=588',
     },
   };
 
@@ -114,8 +131,17 @@ export default class UrlsUtils {
   };
 
   static readonly channelsUrls = {
+    advantage: {
+      url: `https://associate-office.${envUrlString}legalshield.com/advantage`,
+    },
     businesscard: {
       url: `https://associate-office.${envUrlString}legalshield.com/business-card`,
+    },
+    login: {
+      url: `https://associate-office.${envUrlString}legalshield.com/`,
+    },
+    perks: {
+      url: `https://associate-office.${envUrlString}legalshield.com/perks`,
     },
     reportsbusinessorganizational: {
       url: `https://associate-office.${envUrlString}legalshield.com/reports/business/organizational`,

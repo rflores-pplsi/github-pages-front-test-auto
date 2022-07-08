@@ -523,54 +523,132 @@ export default class RegionsUtils {
     {
       name: 'Alberta',
       abbrv: 'AB',
+      validAddress: {
+        street: '5940 Blackfoot Trail SE',
+        city: 'Calgary',
+        postalCode: 'T2H 2B5',
+      },
+      priority: true,
     },
     {
       name: 'British Columbia',
       abbrv: 'BC',
+      validAddress: {
+        street: '4050 Whistler Way',
+        city: 'Whistler',
+        postalCode: 'V8E 1H9',
+      },
+      priority: true,
     },
     {
       name: 'Manitoba',
       abbrv: 'MB',
+      validAddress: {
+        street: '222 Broadway',
+        city: 'Winnipeg',
+        postalCode: 'R3C 0R3',
+      },
+      priority: true,
     },
     {
       name: 'New Brunswick',
       abbrv: 'NB',
+      validAddress: {
+        street: '39 King St',
+        city: 'Saint John',
+        postalCode: 'E2L 4W3',
+      },
+      priority: true,
     },
     {
       name: 'Newfoundland and Labrador',
       abbrv: 'NL',
+      validAddress: {
+        street: '115 Cavendish Square',
+        city: 'St. Johns',
+        postalCode: 'A1C 3K2',
+      },
+      priority: true,
     },
     {
       name: 'Northwest Territories',
       abbrv: 'NT',
+      validAddress: {
+        street: '4825 49th Ave',
+        city: 'Yellowknife',
+        postalCode: 'X1A 2R3',
+      },
+      priority: true,
     },
     {
       name: 'Nova Scotia',
       abbrv: 'NS',
+      validAddress: {
+        street: '1919 Upper Water St',
+        city: 'Halifax',
+        postalCode: 'B3J 3J5',
+      },
+      priority: true,
     },
     {
       name: 'Nunavut',
       abbrv: 'NU',
+      validAddress: {
+        street: '4110 Road to Nowhere',
+        city: 'Iqaluit',
+        postalCode: 'X0A 0H0',
+      },
+      priority: true,
     },
     {
       name: 'Ontario',
       abbrv: 'ON',
+      validAddress: {
+        street: '6361 Fallsview Blvd',
+        city: 'Niagara Falls',
+        postalCode: 'L2G 3V9',
+      },
+      priority: true,
     },
     {
       name: 'Prince Edward Island',
       abbrv: 'PE',
+      validAddress: {
+        street: '55 Weymouth St',
+        city: 'Charlottetown',
+        postalCode: 'C1A 1H1',
+      },
+      priority: true,
     },
     {
       name: 'Quebec',
       abbrv: 'QC',
+      validAddress: {
+        street: '1 Rue des Carrieres',
+        city: 'Quebec',
+        postalCode: 'G1R 4P5',
+      },
+      priority: true,
     },
     {
       name: 'Saskatchewan',
       abbrv: 'SK',
+      validAddress: {
+        street: '2125 Victoria Ave',
+        city: 'Regina',
+        postalCode: 'S4P 0S3',
+      },
+      priority: true,
     },
     {
       name: 'Yukon',
       abbrv: 'YT',
+      validAddress: {
+        street: '411 Main St',
+        city: 'Whitehorse',
+        postalCode: 'Y1A 2B6',
+      },
+      priority: true,
     },
   ];
   private page: Page;

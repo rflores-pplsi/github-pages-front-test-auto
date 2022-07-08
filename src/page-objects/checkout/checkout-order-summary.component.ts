@@ -3,9 +3,12 @@ import { OrderSummary } from './checkout.helpers';
 import { OrderSummaryRow } from './checkout.helpers';
 import { OrderSummaryWithoutCosts } from './checkout.helpers';
 import { OrderSummaryRowWithoutCost } from './checkout.helpers';
+import { OrderSummaryWithoutTiers } from './checkout.helpers';
+import { OrderSummaryRowWithoutTier } from './checkout.helpers';
 
 // Instantiations
 const orderSummary = new OrderSummary();
+const orderSummaryWithoutTiers = new OrderSummaryWithoutTiers();
 const orderSummaryWithoutCosts = new OrderSummaryWithoutCosts();
 
 // ========================== Selectors ==================================
@@ -20,6 +23,7 @@ const txtMonthlyTotalLabel: string = '//div[contains(@class,"left-label")]//p[co
 const txtMonthlyTotalAmount: string = '//div[contains(@class,"footer-row") and contains(.,"Monthly Total:")]//div[contains(@class,"right-label")]//p';
 const txtAnnualTotalLabel: string = '//div[contains(@class,"left-label")]//p[contains(.,"Annual Total:")]';
 const txtAnnualTotalAmount: string = '//div[contains(@class,"footer-row") and contains(.,"Annual Total:")]//div[contains(@class,"right-label")]//p';
+const txtTotalDueTodayLabel: string = '//div[contains(@class,"left-label")]//p[contains(.,"Total Due Today:")]';
 const txtTotalDueTodayAmount: string =
   '//div[contains(@class, "footer-row") and contains(., "Total Due Today")]//div[contains(@class,"right-label")]//p';
 const txtPayPeriodTotalAmount: string =
@@ -45,6 +49,8 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
     if (orderSummary.orderSummaryRows.length != 0) {
       orderSummary.orderSummaryRows = [];
     }
+    // store as a variable
+    // explore foreach
     const numberOfRows = (await this.page.$$('//div[contains(@class,"plan-name-row")]')).length;
     for (let i: number = 0; i < numberOfRows; i++) {
       if (groupPayConfig == 'Fringe') {
@@ -54,6 +60,25 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
         const row = await this.captureOrderSummaryRow(i);
         orderSummary.addRow(row);
       }
+    }
+  };
+  /**
+   *
+   *
+   * @memberof CheckoutOrderSummaryComponent
+   */
+  captureOrderSummaryWithoutTier = async (): Promise<void> => {
+    console.log(' - checkoutOrderSummaryComponent.captureOrderSummaryWithoutTier');
+    await this.page.waitForSelector(lnkEditOrder);
+    await this.page.waitForLoadState('networkidle');
+    // reset rows to empty when calling this method from the payment page
+    if (orderSummaryWithoutTiers.orderSummaryRows.length != 0) {
+      orderSummaryWithoutTiers.orderSummaryRows = [];
+    }
+    const numberOfRows = (await this.page.$$('//div[contains(@class,"plan-name-row")]')).length;
+    for (let i: number = 0; i < numberOfRows; i++) {
+      const row = await this.captureOrderSummaryRowWithoutTier(i);
+      orderSummary.addRow(row);
     }
   };
 
@@ -66,10 +91,21 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
     const planNameJsHandle = (await this.page.$$(txtPlanNames))[i].getProperty('innerText');
     const planNameText = await (await planNameJsHandle).jsonValue();
     const tierNameJsHandle = (await this.page.$$(txtTierNames))[i].getProperty('innerText');
+    // is this null, and is that ok
     const tierNameText = await (await tierNameJsHandle).jsonValue();
     const planCostJsHandle = (await this.page.$$(txtPlanCosts))[i].getProperty('innerText');
     const planCostText = await (await planCostJsHandle).jsonValue();
     const planRow = new OrderSummaryRow(planNameText, tierNameText, planCostText);
+    return planRow;
+  };
+
+  captureOrderSummaryRowWithoutTier = async (i: number = 0): Promise<OrderSummaryRowWithoutTier> => {
+    console.log(' - checkoutOrderSummaryComponent.captureOrderSummaryRow');
+    const planNameJsHandle = (await this.page.$$(txtPlanNames))[i].getProperty('innerText');
+    const planNameText = await (await planNameJsHandle).jsonValue();
+    const planCostJsHandle = (await this.page.$$(txtPlanCosts))[i].getProperty('innerText');
+    const planCostText = await (await planCostJsHandle).jsonValue();
+    const planRow = new OrderSummaryRowWithoutTier(planNameText, planCostText);
     return planRow;
   };
 
@@ -84,7 +120,6 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
     const tierNameJsHandle = (await this.page.$$(txtTierNames))[i].getProperty('innerText');
     const tierNameText = await (await tierNameJsHandle).jsonValue();
     const planRow = new OrderSummaryRowWithoutCost(planNameText, tierNameText);
-    console.log(planRow);
     return planRow;
   };
 
@@ -176,7 +211,32 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
       }
     }
   };
+  /**
+   * @param {string} expectedPlanName
+   * @param {string} expectedPlanCost
+   * @memberof CheckoutOrderSummaryComponent
+   */
+  assertPlanNameAndCost = async (expectedPlanName: string, expectedPlanCost: string): Promise<void> => {
+    console.log(' - checkoutOrderSummaryComponent.assertPlanNameAndCost');
+    let found: boolean = false;
+    orderSummary.orderSummaryRows.forEach(async (row) => {
+      const planName = row.planName;
+      const costs = row.planCost;
+      if (planName == expectedPlanName) {
+        found = true;
+        await this.assertStringMatch(costs, expectedPlanCost);
+      }
+    });
 
+    if (found == false) {
+      try {
+        await this.assertBoolean(found, true);
+      } catch {
+        console.log(JSON.stringify(orderSummary));
+        throw new Error('Plan Name not found in Order Summary');
+      }
+    }
+  };
   /**
    * @param {string} expectedPlanName
    * @memberof CheckoutOrderSummaryComponent
@@ -223,6 +283,7 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
    */
   assertTotalDueToday = async (total: string): Promise<void> => {
     console.log(' - checkoutOrderSummaryComponent.assertTotalDueToday');
+    await this.assertElementHasText(txtTotalDueTodayLabel, 'Total Due Today:');
     await this.assertElementHasText(txtTotalDueTodayAmount, total);
   };
 

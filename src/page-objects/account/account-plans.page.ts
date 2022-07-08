@@ -23,7 +23,7 @@ export class AccountPlansPage extends LoginPage {
    */
   createPlansTable = async (): Promise<void> => {
     console.log(' - accountPlansPage.createPlansTable');
-    await this.page.waitForLoadState('networkidle');
+    await this.page.waitForLoadState('networkidle', { timeout: 100000 });
     const numberOfPlans = (await this.page.$$('.config-tab.p-5')).length;
     for (let i: number = 0; i < numberOfPlans; i++) {
       const row = await this.createPlanRow(i);
@@ -101,7 +101,7 @@ export class AccountPlansPage extends LoginPage {
   assertIdShieldForBusinessPageUrl = async (): Promise<void> => {
     console.log(' - profileAddressPage.assertIdShieldForBusinessPageUrl');
     // Confirm the IDShield For Business Page URL is reached
-    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.ids4b.url);
+    await this.assertUrlContains(this.page, 'ids4b');
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };
@@ -109,7 +109,7 @@ export class AccountPlansPage extends LoginPage {
   assertLegalPageUrl = async (): Promise<void> => {
     console.log(' - profileAddressPage.assertLegalPageUrl');
     // Confirm the Legal Page URL is reached
-    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.legal.url);
+    await this.assertUrlContains(this.page, 'legal');
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };
@@ -117,7 +117,7 @@ export class AccountPlansPage extends LoginPage {
   assertIdShieldPageUrl = async (): Promise<void> => {
     console.log(' - profileAddressPage.assertIdShieldPageUrl');
     // Confirm the ID Shield Page URL is reached
-    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.ids.url);
+    await this.assertUrlContains(this.page, 'ids');
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };
@@ -125,7 +125,7 @@ export class AccountPlansPage extends LoginPage {
   assertLaunchPageUrl = async (): Promise<void> => {
     console.log(' - profileAddressPage.assertLaunchPageUrl');
     // Confirm the Legal Page URL is reached
-    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.launch.url);
+    await this.assertUrlContains(this.page, 'mybusiness');
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };

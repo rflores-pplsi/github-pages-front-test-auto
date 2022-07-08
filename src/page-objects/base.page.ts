@@ -124,6 +124,17 @@ export class BasePage {
    */
   assertUrl = async (page: Page, url: string): Promise<void> => {
     await expect(page).toHaveURL(url);
+    await page.waitForLoadState('domcontentloaded');
+  };
+
+  /**
+   * @param {Page} page
+   * @param {string} substring
+   * @memberof BasePage
+   */
+  assertUrlContains = async (page: Page, substring: string): Promise<void> => {
+    await expect(page).toHaveURL(new RegExp(substring));
+    await page.waitForLoadState('domcontentloaded');
   };
 
   /**

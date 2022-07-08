@@ -1,0 +1,8 @@
+[
+  {
+    "testCaseName": "Legal Shield (Legal Plan)",
+    "region": "Iowa",
+    "productNames": ["Legal Plan", "Small Business Legal Pro"],
+    "disabled": false
+  }
+]
