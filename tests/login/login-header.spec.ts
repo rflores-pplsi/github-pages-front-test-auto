@@ -45,6 +45,8 @@ test('Change market to Canada - French', async () => {
 });
 
 test('Navigate to https://www.pplsi.com/ by clicking logo', async () => {
+  // Disable as the url doe snot exist in lower environments
+  test.fixme();
   console.log('Test Case: Can navigate to https://www.pplsi.com/ by clicking logo');
   // Click on the PPLSI logo from the left side of header
   await loginHeaderPage.clickPplsiLogo();

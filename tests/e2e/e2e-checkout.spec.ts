@@ -125,6 +125,7 @@ for (const tc of selfPayData.filter((tc) => tc.run == true)) {
         state.validAddress.city,
         state.validAddress.postalCode
       );
+      // capture specific kind of orders summary
       // Personal Info Assertions
       await checkoutConfirmationPage.assertPlanNameTierNameAndCost(tc.planName, tc.tierName, tc.planCost);
       await checkoutConfirmationPage.assertPayPeriodTotal(tc.totalCost);

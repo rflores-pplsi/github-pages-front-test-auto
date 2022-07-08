@@ -30,16 +30,16 @@ export default class UrlsUtils {
       url: `https://checkoutv3.${envUrlString}legalshield.com`,
     },
     ids: {
-      url: `https://ids.${envUrlString}legalshield.com/?e=9f3299c8-4a2e-4421-aad0-d51c72882430`,
+      url: `https://ids.${envUrlString}legalshield.com`,
     },
     ids4b: {
-      url: `https://ids4b.${envUrlString}legalshield.com/?e=c97e551a-c109-451e-9488-82e0a36962ae`,
+      url: `https://ids4b.${envUrlString}legalshield.com/`,
     },
     legal: {
-      url: `https://legal.${envUrlString}legalshield.com/?e=12cefe8f-af99-4e9f-9efc-9d12d8c92a72`,
+      url: `https://legal.${envUrlString}legalshield.com/`,
     },
     launch: {
-      url: `https://mybusiness.${envUrlString}legalshield.com/questionnaire?e=12cefe8f-af99-4e9f-9efc-9d12d8c92a72`,
+      url: `https://mybusiness.${envUrlString}legalshield.com/`,
     },
     forms: {
       url: `https://forms.${envUrlString}legalshield.com/`,
