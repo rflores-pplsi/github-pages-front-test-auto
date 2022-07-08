@@ -46,12 +46,6 @@ suites:
     browserName: "webkit"
   testMatch: /classic-shield-at-work/*/  
 rootDir: .\
-artifacts:
-  download:
-    match:
-    - '*'
-    when: always
-    directory: ./artifacts
 docker:
   fileTransfer: copy
   image: saucelabs/stt-playwright-node:1.22.2
