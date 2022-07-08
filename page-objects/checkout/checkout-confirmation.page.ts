@@ -46,28 +46,28 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   };
 
   navigateFromPaymentBankDraftPageToConfirmationPage = async (): Promise<void> => {
-    console.log(' CheckoutConfirmationPage.navigateFromPaymentBankDraftPageToConfirmationPage');
+    console.log(' - checkoutConfirmationPage.navigateFromPaymentBankDraftPageToConfirmationPage');
     await this.clickBankDraftBtn();
     await this.fillBankDraftForm();
     await this.page.waitForSelector(conMembershipWrapper, { timeout: 50000 });
   };
 
   navigateFromPaymentAgreementPageToConfirmationPage = async (): Promise<void> => {
-    console.log(' CheckoutConfirmationPage.navigateFromPaymentAgreementPageToConfirmationPage');
+    console.log(' - checkoutConfirmationPage.navigateFromPaymentAgreementPageToConfirmationPage');
     await this.clickAgreementCheckbox();
     await this.clickCompleteEnrollmentButton();
     await this.page.waitForSelector(conMembershipWrapper, { timeout: 50000 });
   };
 
   navigateFromPaymentBankDraftPageToConfirmationPageCanada = async (): Promise<void> => {
-    console.log(' CheckoutConfirmationPage.navigateFromPaymentBankDraftPageToConfirmationPageCanada');
+    console.log(' - checkoutConfirmationPage.navigateFromPaymentBankDraftPageToConfirmationPageCanada');
     await this.clickBankDraftBtn();
     await this.fillBankDraftFormForCanada();
     await this.page.waitForSelector(conMembershipWrapper, { timeout: 90000 });
   };
 
   navigateFromPaymentCreditCardPageToConfirmationPageCanada = async (): Promise<void> => {
-    console.log(' CheckoutConfirmationPage.navigateFromPaymentCreditCardPageToConfirmationPageCanada');
+    console.log(' - checkoutConfirmationPage.navigateFromPaymentCreditCardPageToConfirmationPageCanada');
     await this.fillCreditCardFormForCanada();
     await this.page.waitForSelector(conMembershipWrapper, { timeout: 90000 });
   };
@@ -165,6 +165,17 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
     const ele = `//div[contains(@class,"plan-details-card") and contains(.,"${planName}")]`;
     await this.page.waitForSelector(conMembershipWrapper, { timeout: 50000 });
     await this.assertElementIsVisible(ele);
+  };
+
+  /**
+   * @param {Array<Array<string>>} productNamesAndCosts
+   * @memberof CheckoutConfirmationPage
+   */
+  assertAllPlanTilesOnConfirmationPage = async (productNamesAndCosts: Array<Array<string>>): Promise<void> => {
+    console.log(' - checkoutConfirmationPage.assertAllPlanTilesOnConfirmationPage');
+    for (const pnc of productNamesAndCosts) {
+      await this.isElementVisible(`//div[contains(@class,"plan-details-card") and contains(.,"${pnc[0]}") and contains(.,"${pnc[1]}")]`);
+    }
   };
 
   /**

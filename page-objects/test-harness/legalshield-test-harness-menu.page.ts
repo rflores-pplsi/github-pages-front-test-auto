@@ -14,12 +14,12 @@ const ddlRegionSelector = '//select[contains(@class,"lsc_region_selector")]';
 export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartComponent {
   // ========================== Process Methods ============================
 
-  addProducts = async (region: string, productNames: Array<string>) => {
+  addProducts = async (region: string, productNamesAndCosts: Array<Array<string>>) => {
     console.log(' -legalshieldCanadaTestHarnessMenuPage.addProducts');
-    for (const pn of productNames) {
+    for (const pn of productNamesAndCosts) {
       // TODO: Loop through productNames and click on the button associated with them as many times as needed
-      console.log(pn);
-      await this.clickProductButton(pn);
+      console.log(pn[0], pn[1]);
+      await this.clickProductButton(pn[0]);
       await this.page.waitForLoadState('domcontentloaded');
     }
   };

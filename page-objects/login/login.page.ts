@@ -41,7 +41,7 @@ export class LoginPage extends BasePage {
       // Click on Sign In to submit login form
       await this.clickOnElement(btnSignIn);
       // Wait for page to finish loading
-      await this.page.waitForLoadState('networkidle');
+      await this.page.waitForLoadState('networkidle', { timeout: 150000 });
     } else {
       throw new Error('Email or Password parameters are undefined');
     }

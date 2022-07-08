@@ -60,9 +60,8 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
       }
     }
   };
+
   /**
-   *
-   *
    * @memberof CheckoutOrderSummaryComponent
    */
   captureOrderSummaryWithoutTier = async (): Promise<void> => {
@@ -96,8 +95,12 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
     return planRow;
   };
 
+  /**
+   * @param {number} [i=0]
+   * @memberof CheckoutOrderSummaryComponent
+   */
   captureOrderSummaryRowWithoutTier = async (i: number = 0): Promise<OrderSummaryRowWithoutTier> => {
-    console.log(' - checkoutOrderSummaryComponent.captureOrderSummaryRow');
+    console.log(' - checkoutOrderSummaryComponent.captureOrderSummaryRowWithoutTier');
     const planNameJsHandle = (await this.page.$$(txtPlanNames))[i].getProperty('innerText');
     const planNameText = await (await planNameJsHandle).jsonValue();
     const planCostJsHandle = (await this.page.$$(txtPlanCosts))[i].getProperty('innerText');
@@ -231,6 +234,34 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
       } catch {
         console.log(JSON.stringify(orderSummary));
         throw new Error('Plan Name not found in Order Summary');
+      }
+    }
+  };
+
+  /**
+   * @param {Array<Array<string>>} productNamesAndCosts
+   * @memberof CheckoutOrderSummaryComponent
+   */
+  assertAllPlanNamesAndCosts = async (productNamesAndCosts: Array<Array<string>>): Promise<void> => {
+    console.log(' - checkoutOrderSummaryComponent.assertAllPlanNamesAndCosts');
+    for (const pnc of productNamesAndCosts) {
+      let found: boolean = false;
+      orderSummary.orderSummaryRows.forEach(async (row) => {
+        const planName = row.planName;
+        const costs = row.planCost;
+        if (planName == pnc[0]) {
+          found = true;
+          await this.assertStringMatch(costs, pnc[1]);
+        }
+      });
+
+      if (found == false) {
+        try {
+          await this.assertBoolean(found, true);
+        } catch {
+          console.log(JSON.stringify(orderSummary));
+          throw new Error('Plan Name not found in Order Summary');
+        }
       }
     }
   };
