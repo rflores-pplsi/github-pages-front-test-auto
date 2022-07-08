@@ -10,7 +10,7 @@ const config: PlaywrightTestConfig = {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'], screenshot: 'on', video: 'on', trace: 'on' },
     },
-    { testMatch: ['tests/*.test.ts'] },
+    { testMatch: ['tests/*/*.spec.ts'] },
     // {
     //   name: 'firefox',
     //   use: { ...devices['Desktop Firefox'], screenshot: 'on', video: 'on', trace: 'on' },

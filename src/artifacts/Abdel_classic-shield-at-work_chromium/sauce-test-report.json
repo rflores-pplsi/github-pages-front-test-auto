@@ -1,0 +1,115 @@
+{
+  "status": "passed",
+  "attachments": [],
+  "suites": [
+    {
+      "name": "chromium",
+      "status": "passed",
+      "metadata": {},
+      "suites": [
+        {
+          "name": "tests\\classic-shield-at-work\\classic-account-tab.spec.ts",
+          "status": "passed",
+          "metadata": {},
+          "suites": [],
+          "attachments": [],
+          "tests": [
+            {
+              "name": "Security page is displayed on the account information page",
+              "status": "passed",
+              "startTime": "2022-07-07T03:24:49.958Z",
+              "duration": 52152,
+              "metadata": {},
+              "attachments": [],
+              "videoTimestamp": 4.958
+            },
+            {
+              "name": "Edit Employee button redirects to the correct page to update the number of employees",
+              "status": "passed",
+              "startTime": "2022-07-07T03:25:42.110Z",
+              "duration": 14593,
+              "metadata": {},
+              "attachments": [],
+              "videoTimestamp": 57.11
+            }
+          ]
+        },
+        {
+          "name": "tests\\classic-shield-at-work\\classic-enrollment-tab.spec.ts",
+          "status": "passed",
+          "metadata": {},
+          "suites": [],
+          "attachments": [],
+          "tests": [
+            {
+              "name": "Member list is displayed on the enrollment page",
+              "status": "passed",
+              "startTime": "2022-07-07T03:25:56.729Z",
+              "duration": 26119,
+              "metadata": {},
+              "attachments": [],
+              "videoTimestamp": 71.729
+            },
+            {
+              "name": "Enrollment form is displayed on the enrollment page",
+              "status": "passed",
+              "startTime": "2022-07-07T03:26:22.849Z",
+              "duration": 26091,
+              "metadata": {},
+              "attachments": [],
+              "videoTimestamp": 97.849
+            }
+          ]
+        },
+        {
+          "name": "tests\\classic-shield-at-work\\classic-login.spec.ts",
+          "status": "passed",
+          "metadata": {},
+          "suites": [],
+          "attachments": [],
+          "tests": [
+            {
+              "name": "Login with credentials",
+              "status": "passed",
+              "startTime": "2022-07-07T03:26:48.948Z",
+              "duration": 5636,
+              "metadata": {},
+              "attachments": [],
+              "videoTimestamp": 123.948
+            },
+            {
+              "name": "Type Form Url is displayed after clicking on Sign Up link",
+              "status": "passed",
+              "startTime": "2022-07-07T03:26:54.584Z",
+              "duration": 4507,
+              "metadata": {},
+              "attachments": [],
+              "videoTimestamp": 129.584
+            }
+          ]
+        },
+        {
+          "name": "tests\\classic-shield-at-work\\classic-reports-tab.spec.ts",
+          "status": "passed",
+          "metadata": {},
+          "suites": [],
+          "attachments": [],
+          "tests": [
+            {
+              "name": "Reports page is displayed, Submit button is enabled",
+              "status": "passed",
+              "startTime": "2022-07-07T03:26:59.101Z",
+              "duration": 12569,
+              "metadata": {},
+              "attachments": [],
+              "videoTimestamp": 134.101
+            }
+          ]
+        }
+      ],
+      "attachments": [],
+      "tests": []
+    }
+  ],
+  "metadata": {}
+}

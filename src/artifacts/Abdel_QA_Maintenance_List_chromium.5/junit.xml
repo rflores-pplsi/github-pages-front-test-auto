@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites name="Abdel QA Maintenance List chromium" tests="2" failures="0" skipped="2" errors="0" time="0">
+    <testsuite name="tests\checkout\checkout-personal-info.spec.ts" timestamp="2022-07-06T20:53:47.949Z" hostname="" tests="1" failures="0" skipped="1" time="0" errors="0" id="0">
+        <testcase name="Verify Error for all fields on Personal Info Page Displays" classname="[chromium] › tests\checkout\checkout-personal-info.spec.ts:23:6 › Verify Error for all fields on Personal Info Page Displays" time="0">
+            <skipped/>
+        </testcase>
+        <properties>
+            <property name="platformName" value="windows 10"/>
+            <property name="browserName" value="chromium"/>
+        </properties>
+    </testsuite>
+    <testsuite name="tests\qa-maintenance-list\groups-bestmoneymoves.spec.ts" timestamp="2022-07-06T20:53:47.949Z" hostname="" tests="1" failures="0" skipped="1" time="0" errors="0" id="1">
+        <testcase name="test" classname="[chromium] › tests\qa-maintenance-list\groups-bestmoneymoves.spec.ts:14:6 › test" time="0">
+            <skipped/>
+        </testcase>
+        <properties>
+            <property name="platformName" value="windows 10"/>
+            <property name="browserName" value="chromium"/>
+        </properties>
+    </testsuite>
+</testsuites>

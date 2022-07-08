@@ -2,7 +2,8 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "strict": true,
-    "target": "es2021",
+    "target": "es6",
+    "types": ["node"],
     "resolveJsonModule": true,
     "esModuleInterop": true
   },

@@ -1,0 +1,10 @@
+Preparing npm environment
+
+Running 1 test using 1 worker
+
+  ok [chromium] › tests\qa-maintenance-list\google.spec.ts:2:1 › test (8s)
+
+
+  1 passed (9s)
+
+

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites name="Abdel classic-shield-at-work webkit" tests="7" failures="0" skipped="0" errors="0" time="146.19">
+    <testsuite name="tests/classic-shield-at-work/classic-account-tab.spec.ts" timestamp="2022-07-07T17:35:29.953Z" hostname="" tests="2" failures="0" skipped="0" time="42.36" errors="0" id="0">
+        <testcase name="Security page is displayed on the account information page" classname="[webkit] › tests/classic-shield-at-work/classic-account-tab.spec.ts:11:1 › Security page is displayed on the account information page" time="26.359">
+            <system-out>
+ - accountClassicShieldAtWorkPage.navigateToClassicShieldAtWork
+ - accountShieldAtWorkPage.loginWithCredentials
+ - accountShieldAtWorkPage.assertSecurityPage
+ - accountClassicShieldAtWorkPage.clickViewBtn
+ - accountClassicShieldAtWorkPage.clickMenuBtn
+ - accountClassicShieldAtWorkPage.clickSecurityBtn
+
+</system-out>
+        </testcase>
+        <testcase name="Edit Employee button redirects to the correct page to update the number of employees" classname="[webkit] › tests/classic-shield-at-work/classic-account-tab.spec.ts:16:1 › Edit Employee button redirects to the correct page to update the number of employees" time="16.001">
+            <system-out>
+ - accountClassicShieldAtWorkPage.navigateToClassicShieldAtWork
+ - accountShieldAtWorkPage.loginWithCredentials
+ - accountShieldAtWorkPage.assertEditEmployeePage
+ - accountClassicShieldAtWorkPage.clickViewBtn
+ - accountClassicShieldAtWorkPage.clickSecurityBtn
+
+</system-out>
+        </testcase>
+        <properties>
+            <property name="platformName" value="macOS 12"/>
+            <property name="browserName" value="webkit"/>
+        </properties>
+    </testsuite>
+    <testsuite name="tests/classic-shield-at-work/classic-enrollment-tab.spec.ts" timestamp="2022-07-07T17:35:29.953Z" hostname="" tests="2" failures="0" skipped="0" time="56.193" errors="0" id="1">
+        <testcase name="Member list is displayed on the enrollment page" classname="[webkit] › tests/classic-shield-at-work/classic-enrollment-tab.spec.ts:11:1 › Member list is displayed on the enrollment page" time="20.036">
+            <system-out>
+ - accountClassicShieldAtWorkPage.navigateToClassicShieldAtWork
+ - accountShieldAtWorkPage.loginWithCredentials
+ - accountShieldAtWorkPage.assertMemberList
+ - accountClassicShieldAtWorkPage.clickViewBtn
+ - accountClassicShieldAtWorkPage.clickEnrollmentTab
+
+</system-out>
+        </testcase>
+        <testcase name="Enrollment form is displayed on the enrollment page" classname="[webkit] › tests/classic-shield-at-work/classic-enrollment-tab.spec.ts:16:1 › Enrollment form is displayed on the enrollment page" time="36.157">
+            <system-out>
+ - accountClassicShieldAtWorkPage.navigateToClassicShieldAtWork
+ - accountShieldAtWorkPage.loginWithCredentials
+ - accountShieldAtWorkPage.assertMemberEnrollmentForm
+ - accountClassicShieldAtWorkPage.clickViewBtn
+ - accountClassicShieldAtWorkPage.clickEnrollmentTab
+ - accountClassicShieldAtWorkPage.clickEnrollNewMemberBtn
+
+</system-out>
+        </testcase>
+        <properties>
+            <property name="platformName" value="macOS 12"/>
+            <property name="browserName" value="webkit"/>
+        </properties>
+    </testsuite>
+    <testsuite name="tests/classic-shield-at-work/classic-login.spec.ts" timestamp="2022-07-07T17:35:29.953Z" hostname="" tests="2" failures="0" skipped="0" time="13.881" errors="0" id="2">
+        <testcase name="Login with credentials" classname="[webkit] › tests/classic-shield-at-work/classic-login.spec.ts:11:1 › Login with credentials" time="7.313">
+            <system-out>
+ - accountClassicShieldAtWorkPage.navigateToClassicShieldAtWork
+ - accountShieldAtWorkPage.loginWithCredentials
+
+</system-out>
+        </testcase>
+        <testcase name="Type Form Url is displayed after clicking on Sign Up link" classname="[webkit] › tests/classic-shield-at-work/classic-login.spec.ts:15:1 › Type Form Url is displayed after clicking on Sign Up link" time="6.568">
+            <system-out>
+ - accountClassicShieldAtWorkPage.navigateToClassicShieldAtWork
+ - activateEnterCodePage.assertTypeFormPageUrl
+ - accountClassicShieldAtWorkPage.clickReports
+
+</system-out>
+        </testcase>
+        <properties>
+            <property name="platformName" value="macOS 12"/>
+            <property name="browserName" value="webkit"/>
+        </properties>
+    </testsuite>
+    <testsuite name="tests/classic-shield-at-work/classic-reports-tab.spec.ts" timestamp="2022-07-07T17:35:29.953Z" hostname="" tests="1" failures="0" skipped="0" time="33.756" errors="0" id="3">
+        <testcase name="Reports page is displayed, Submit button is enabled" classname="[webkit] › tests/classic-shield-at-work/classic-reports-tab.spec.ts:11:1 › Reports page is displayed, Submit button is enabled" time="33.756">
+            <system-out>
+ - accountClassicShieldAtWorkPage.navigateToClassicShieldAtWork
+ - accountShieldAtWorkPage.loginWithCredentials
+ - accountShieldAtWorkPage.assertReportsPage
+ - accountClassicShieldAtWorkPage.clickViewBtn
+ - accountClassicShieldAtWorkPage.clickReports
+
+</system-out>
+        </testcase>
+        <properties>
+            <property name="platformName" value="macOS 12"/>
+            <property name="browserName" value="webkit"/>
+        </properties>
+    </testsuite>
+</testsuites>
