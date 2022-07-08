@@ -12,6 +12,7 @@ const dtpCalendar: string = "img[class*='lsux-icon--small']";
 const dtpYear: string = '.react-datepicker__year-select';
 const dtpMonth: string = '.react-datepicker__month-select';
 const dtpDay2: string = "(//div[contains(@class,'react-datepicker__day--002')])[1]";
+const dtpDay5: string = "(//div[contains(@class,'react-datepicker__day--005')])[1]";
 const cboCountry: string = '.lsux-row div:nth-child(2) select';
 const countryUS: string = "div[class*='quarters'] > div:nth-of-type(2) > div > div > div > select>option";
 const countryCA: string = "#root div.tabs div.lsux-row.quarters.children4 > div:nth-child(2) select [ value='CAN']";
@@ -26,7 +27,14 @@ const tabFastStartStatements: string = "//h4[.='Fast Start Statements']";
 const tabRevenueReport: string = "//h4[.='Revenue Report Statements']";
 const lblSearchCommissionStatements: string = "//span[.='Search Commission Statements']";
 const dtpSelectCalculation: string = "div[class*='quarters'] > div:nth-of-type(3) > div > div > div > select";
-
+const lblAdvancedCommission: string = '.tabs > div > div:nth-child(2) > div:nth-child(1) h2';
+const lblEarnedCommission: string = '.lsux-content div:nth-child(2) div:nth-child(2) h2';
+const lblComAdvanceBalance: string = "#root div:nth-child(3) > div > div:nth-child(1) h2'";
+const lblComByOrgCalculation: string = '#root div > div:nth-child(4) h2';
+const lblCommissionAdjustments: string = '#root div > div:nth-child(5) h2';
+const lblPersonalMemberships: string = '#root div > div:nth-child(6) h2';
+const lblPersonalCancellations: string = '#root div > div:nth-child(7) h2';
+const singleReport: string = 'div:nth-child(1) h2';
 /**
  *
  * @export
@@ -61,7 +69,7 @@ export class ReportsCommissionsPage extends LoginPage {
     // Navigate to Report Commission Page
     await this.goTo(UrlsUtils.channelsUrls.reportscommissions.url);
     await this.login(revenueReports.username, revenueReports.password);
-    await this.page.waitForSelector(lblAssociateNumber);
+    await this.page.waitForSelector(tabRevenueReport);
   };
 
   navigateToReportsCommissionsPage2 = async (): Promise<void> => {
@@ -103,6 +111,15 @@ export class ReportsCommissionsPage extends LoginPage {
     const locator = this.page.locator(dtpDay2);
     await expect(locator).toBeEnabled();
     await this.page.click(dtpDay2);
+  };
+
+  clickOnSearchDatesDay5 = async (): Promise<void> => {
+    // Click on day 2 from calendar
+    console.log(' - ReportsCommissionsPage.clickOnSearchDatesDay');
+    await this.assertElementIsEnabled(dtpDay5);
+    const locator = this.page.locator(dtpDay5);
+    await expect(locator).toBeEnabled();
+    await this.page.click(dtpDay5);
   };
 
   clickOnSearchButton = async (): Promise<void> => {
@@ -160,6 +177,7 @@ export class ReportsCommissionsPage extends LoginPage {
 
   assertTabRevenueReportIsDisplayed = async (): Promise<void> => {
     console.log(' - ReportsCommissionsPage.assertTabRevenueReportsIsDisplayed');
+    await this.page.waitForSelector(tabRevenueReport);
     await this.assertElementIsVisible(tabRevenueReport);
   };
 
@@ -191,5 +209,41 @@ export class ReportsCommissionsPage extends LoginPage {
   assertBtnSearchIsDisplayed = async (): Promise<void> => {
     console.log(' - ReportsCommissionsPage.assertBtnSearchIsDisplayed');
     await this.assertElementIsVisible(btnSearch);
+  };
+
+  assertAdvancedCommissionIsDisplayed = async (): Promise<void> => {
+    console.log(' - ReportsCommissionsPage.assertAdvancedCommissionIsDisplayed');
+    await this.assertElementIsVisible(lblAdvancedCommission);
+  };
+
+  assertEarnedCommissionIsDisplayed = async (): Promise<void> => {
+    console.log(' - ReportsCommissionsPage.assertEarnedCommissionIsDisplayed');
+    await this.assertElementIsVisible(lblEarnedCommission);
+  };
+
+  assertCommissionAdvanceBalanceIsDisplayed = async (): Promise<void> => {
+    console.log(' - ReportsCommissionsPage.assertCommissionAdvanceBalanceIsDisplayed');
+    await this.page.waitForSelector(lblComAdvanceBalance);
+    await this.assertElementIsVisible(lblComAdvanceBalance);
+  };
+
+  assertComByOrganizationCalculationIsDisplayed = async (): Promise<void> => {
+    console.log(' - ReportsCommissionsPage.assertComByOrganizationCalculationIsDisplayed');
+    await this.assertElementIsVisible(lblComByOrgCalculation);
+  };
+
+  assertCommissionAdjustmentsIsDisplayed = async (): Promise<void> => {
+    console.log(' - ReportsCommissionsPage.assertCommissionAdjustmentsIsDisplayed');
+    await this.assertElementIsVisible(lblCommissionAdjustments);
+  };
+
+  assertPersonalMembershipsIsDisplayed = async (): Promise<void> => {
+    console.log(' - ReportsCommissionsPage.assertPersonalMembershipsIsDisplayed');
+    await this.assertElementIsVisible(lblPersonalMemberships);
+  };
+
+  assertPersonalCancellationsIsDisplayed = async (): Promise<void> => {
+    console.log(' - ReportsCommissionsPage.assertPersonalCancellationsIsDisplayed');
+    await this.assertElementIsVisible(lblPersonalCancellations);
   };
 }
