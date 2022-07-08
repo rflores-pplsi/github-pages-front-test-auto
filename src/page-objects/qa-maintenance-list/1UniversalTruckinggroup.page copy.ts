@@ -16,10 +16,12 @@ let city: string;
 let postalCode: string;
 const url1UniversalTrucking = UrlsUtils.groupsUrls.url1UniversalTrucking;
 const tabSigningUp = 'a#signup';
-const selectStatedorpdown = '#select_value_label_15';
+const selectStatedorpdown = '//span[contains(text(),"State/Province")]';
 const availablePlansLbl = '//h3[contains(text(),"Sélectionnez votre plan pour chauffeur commercial")]';
 const rdbtnlanguage = '[aria-label="English"]';
 const btnSelectUniversalTracking = '//button[contains(text(),"SELECT")]';
+const btnAjouterAuPanier = '//button[contains(text(),"AJOUTER AU PANIER")]';
+const btnCoordonnees = '//button[contains(text(),"Coordonnées")]';
 const tellUsAboutYourselfLbl = '//h1[contains(text(),"Tell us about yourself")]';
 
 export class UniversalTruckingPage extends OktaPage {
@@ -28,7 +30,7 @@ export class UniversalTruckingPage extends OktaPage {
     console.log(' - UniversalTruckingPage.selectStateUniversalTruckingPage');
     // Click to Select dropdown
     await this.page.waitForSelector(selectStatedorpdown);
-    await this.page.locator(selectStatedorpdown).click();
+    await this.page.locator(selectStatedorpdown).click({ force: true });
     // Click on state >> nth=0
     await this.page
       .locator('text=' + state)
@@ -74,18 +76,17 @@ export class UniversalTruckingPage extends OktaPage {
     // Click on Enroll Now button
     await this.page.click(tabSigningUp);
   };
-  clickBtnESelect = async (plan: string): Promise<void> => {
+  clickBtnESelect = async (): Promise<void> => {
     console.log(' - UniversalTruckingPage.clickBtnESelect');
     // Click on SELECT button
-    await this.page.locator('//h3[contains(text(),' + plan + ')]').click();
+    await this.page.locator(btnSelectUniversalTracking).click();
   };
   clickBtnSelectPlan = async (plan: string): Promise<void> => {
     console.log(' - UniversalTruckingPage.clickBtnESelectPlan');
     // Click on Enroll Now button
-    await Promise.all([
-      await this.page.waitForSelector(availablePlansLbl),
-      await this.page.locator('text=' + plan + '/ MonthlyEnroll Now>> button').click(),
-    ]);
+    await Promise.all([await this.page.waitForSelector(availablePlansLbl), await this.page.locator(availablePlansLbl).click()]);
+    await this.page.locator(btnAjouterAuPanier).click();
+    await this.page.locator(btnCoordonnees).click();
     console.log('Plan is selected');
   };
   // ========================== Assertion Methods ==========================

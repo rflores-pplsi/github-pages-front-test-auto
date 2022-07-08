@@ -24,8 +24,9 @@ test.only('test', async ({ page }) => {
   await universalTruckingPage.selectlanguage('French');
   // Select a state
   await universalTruckingPage.selectStateUniversalTruckingPage('Virginia');
+  await universalTruckingPage.clickBtnESelect();
   // Select a plan
-  await universalTruckingPage.clickBtnESelect('Select Your Commercial Driver Plan');
+  await universalTruckingPage.clickBtnSelectPlan('Sélectionnez votre plan juridique');
   // Login
   await universalTruckingPage.loginBestMoneyMoversGroupPage();
   // Verify that user is redirected to personal info page
