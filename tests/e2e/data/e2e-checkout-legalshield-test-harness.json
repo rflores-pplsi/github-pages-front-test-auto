@@ -61,7 +61,7 @@
     "productNamesAndCosts": [["Legal Plan - Home Business Supplement", "$14.95"]],
     "monthlyTotal": "$14.95",
     "planType": "LegalShield",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "Legal Plan - Business Plus Supplement",
@@ -69,7 +69,7 @@
     "productNamesAndCosts": [["Legal Plan - Business Plus Supplement", "$14.95"]],
     "monthlyTotal": "$14.95",
     "planType": "LegalShield",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "Legal Plan - Gun Owners Supplement",

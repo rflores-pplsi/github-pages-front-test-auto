@@ -1,0 +1,29 @@
+Preparing npm environment
+
+Running 1 test using 1 worker
+
+ - BestMoneyMoversGroupPage.navigateToBestMoneyMoversGroupPage
+ - BestMoneyMoversGroupPage.clickBtnEnrollNow
+ - BestMoneyMoversGroupPage.assertTestingHarnesGroupsPricingPage
+ - BestMoneyMoversGroupPage.selectStateBestMoneyMoversGroupPage
+ - BestMoneyMoversGroupPage.assertTestingHarnesGroupsPricingPage
+State is selected and Available Plans Label is displayed
+ - BestMoneyMoversGroupPage.selectFrequencyBestMoneyMoversGroupPage
+Frequency is selected
+ - BestMoneyMoversGroupPage.clickBtnESelectPlan
+Plan is selected
+ - BestMoneyMoversGroupPage.loginBestMoneyMoversGroupPage
+Redirected to login page
+ - loginPage.login
+ - BestMoneyMoversGroupPage.updateAddressTestingHarnesGroupsPage
+ - checkoutPersonalInfoPage.enterHomeAddress
+ - checkoutPersonalInfoPage.enterCity
+ - checkoutPersonalInfoPage.enterPostalCode
+  ok [chromium] › tests\qa-maintenance-list\groups-bestmoneymoves.spec.ts:14:6 › test (48s)
+
+  Slow test file: [chromium] › tests\qa-maintenance-list\groups-bestmoneymoves.spec.ts (48s)
+  Consider splitting slow test files to speed up parallel execution
+
+  1 passed (49s)
+
+

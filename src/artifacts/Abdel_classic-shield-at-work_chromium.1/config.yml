@@ -1,0 +1,45 @@
+apiVersion: v1alpha
+kind: playwright
+defaults:
+  mode: sauce
+sauce:
+  region: us-west-1
+  concurrency: 1
+  metadata:
+    tags:
+      - e2e
+      - release team
+      - other tag
+    build: Release $CI_COMMIT_SHORT_SHA
+  sauceignore: .sauceignore
+playwright:
+  version: 1.22.2
+suites:
+- name: Abdel QA Maintenance List chromium
+  mode: sauce
+  platformName: macOS 12
+  params:
+    browserName: "webkit"
+  testMatch: /qa-maintenance-list/*/
+- name: Abdel group-enrollment chromium
+  mode: sauce
+  platformName: windows 10
+  params:
+    browserName: "firefox"
+  testMatch: /group-enrollment/*/
+- name: Abdel classic-shield-at-work chromium
+  mode: sauce
+  platformName: macOS 12
+  params:
+    browserName: "webkit"
+  testMatch: /classic-shield-at-work/*/  
+rootDir: .\
+artifacts:
+  download:
+    match:
+    - '*'
+    when: always
+    directory: ./artifacts
+docker:
+  fileTransfer: copy
+  image: saucelabs/stt-playwright-node:1.22.2
