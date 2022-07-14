@@ -1,8 +1,0 @@
-Preparing npm environment
-SyntaxError: Invalid regular expression: /./**/*.spec.ts/: Nothing to repeat
-    at new RegExp (<anonymous>)
-    at forceRegExp (D:\sauce-playwright-runner\2.9.0\bundle\node_modules\@playwright\test\lib\cli.js:194:10)
-    at D:\sauce-playwright-runner\2.9.0\bundle\node_modules\@playwright\test\lib\cli.js:157:11
-    at Array.map (<anonymous>)
-    at runTests (D:\sauce-playwright-runner\2.9.0\bundle\node_modules\@playwright\test\lib\cli.js:154:34)
-    at Ai.<anonymous> (D:\sauce-playwright-runner\2.9.0\bundle\node_modules\@playwright\test\lib\cli.js:70:7)

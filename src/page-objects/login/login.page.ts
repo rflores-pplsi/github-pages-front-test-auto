@@ -98,6 +98,11 @@ export class LoginPage extends BasePage {
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };
+  testEnv = async (): Promise<void> => {
+    console.log(' - loginPage.testEnv');
+    // Navigate to Account Plans Page
+    console.log(process.env['LOGIN_EMAIL_DEV']);
+  };
 
   // ========================== Click Methods ==========================
 

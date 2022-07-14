@@ -1,13 +1,13 @@
 import { test } from '@playwright/test';
-import { CheckoutConfirmationPage } from '../../page-objects/checkout/checkout-confirmation.page';
-import RegionsUtils from '../../utils/regions.utils';
-import { basicUser } from '../../utils/user.utils';
-import selfPayData from '../e2e/data/e2e-checkout-group-self-pay.json';
-import payrollDeductData from '../e2e/data/e2e-checkout-group-payroll-deduct.json';
-import fringeData from '../e2e/data/e2e-checkout-group-fringe.json';
-import partialFringeData from '../e2e/data/e2e-checkout-group-partial-fringe.json';
-import idshieldCanadaData from '../e2e/data/e2e-checkout-idshield-canada.json';
-import legalshieldUsData from '../e2e/data/e2e-checkout-legalshield-MA.json';
+import { CheckoutConfirmationPage } from '../../src/page-objects/checkout/checkout-confirmation.page';
+import RegionsUtils from '../../src/utils/regions.utils';
+import { basicUser } from '../../src/utils/user.utils';
+import selfPayData from '../../src/tests/e2e/data/e2e-checkout-group-self-pay.json';
+import payrollDeductData from '../../src/tests/e2e/data/e2e-checkout-group-payroll-deduct.json';
+import fringeData from '../../src/tests/e2e/data/e2e-checkout-group-fringe.json';
+import partialFringeData from '../../src/tests/e2e/data/e2e-checkout-group-partial-fringe.json';
+import idshieldCanadaData from '../../src/tests/e2e/data/e2e-checkout-idshield-canada.json';
+import legalshieldUsData from '../../src/tests/e2e/data/e2e-checkout-legalshield-MA.json';
 
 // create instance of Page
 let checkoutConfirmationPage: CheckoutConfirmationPage;

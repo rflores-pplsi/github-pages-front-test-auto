@@ -2,10 +2,12 @@
   "compilerOptions": {
     "moduleResolution": "node",
     "strict": true,
-    "target": "es6",
-    "types": ["node"],
+    "target": "ES6",
+    // "module":"CommonJS",
     "resolveJsonModule": true,
-    "esModuleInterop": true
-  },
-  "exclude": ["node_modules"]
+    "esModuleInterop": true,
+    "paths":{
+      "contentful": ["./node_modules/contentful/dist/contentful.browser.js"]
+    },
+ }
 }

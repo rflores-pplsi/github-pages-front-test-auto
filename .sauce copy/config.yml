@@ -20,7 +20,7 @@ suites:
   platformName: windows 11
   params:
     browserName: "chromium"
-  testMatch: /login/login.spec.ts/
+  testMatch: /src/tests/login/login.spec.ts/
 # - name: 'Abdel group-enrollment chromium'
 #   mode: sauce
 #   platformName: windows 10

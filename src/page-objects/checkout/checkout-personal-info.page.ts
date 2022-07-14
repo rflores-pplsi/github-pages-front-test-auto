@@ -49,12 +49,15 @@ const txtIncorporationDay: string = '[name="doiDay"]';
 const txtIncorporationYear: string = '[name="doiYear"]';
 const txtTaxId: string = '[name="taxId"]';
 
+// eslint-disable-next-line valid-jsdoc
 /**
  * @export
  * @class CheckoutPersonalInfoPage
  * @extends {LoginPage}
  */
 export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
+  // eslint-disable-next-line no-undef
+  [x: string]: any;
   // ========================== Process Methods ============================
 
   /**

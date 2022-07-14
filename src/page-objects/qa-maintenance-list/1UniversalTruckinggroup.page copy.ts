@@ -17,12 +17,14 @@ let postalCode: string;
 const url1UniversalTrucking = UrlsUtils.groupsUrls.url1UniversalTrucking;
 const tabSigningUp = 'a#signup';
 const selectStatedorpdown = '//span[contains(text(),"State/Province")]';
-const availablePlansLbl = '//h3[contains(text(),"Sélectionnez votre plan pour chauffeur commercial")]';
+const availablePlansLbl = '//h3[contains(text(),"Sélectionnez votre plan juridique")]';
 const rdbtnlanguage = '[aria-label="English"]';
 const btnSelectUniversalTracking = '//button[contains(text(),"SELECT")]';
 const btnAjouterAuPanier = '//button[contains(text(),"AJOUTER AU PANIER")]';
 const btnCoordonnees = '//button[contains(text(),"Coordonnées")]';
 const tellUsAboutYourselfLbl = '//h1[contains(text(),"Tell us about yourself")]';
+const txtPlanjuridique = 'h4.pull-left ng-bind-html';
+const txtParMoi = 'span.pull-right.summary__plan__price.ng-binding.ng-scope';
 
 export class UniversalTruckingPage extends OktaPage {
   // ========================== Process Methods ============================
@@ -85,8 +87,16 @@ export class UniversalTruckingPage extends OktaPage {
     console.log(' - UniversalTruckingPage.clickBtnESelectPlan');
     // Click on Enroll Now button
     await Promise.all([await this.page.waitForSelector(availablePlansLbl), await this.page.locator(availablePlansLbl).click()]);
-    await this.page.locator(btnAjouterAuPanier).click();
-    await this.page.locator(btnCoordonnees).click();
+    const ajouter = await this.page.$$(btnAjouterAuPanier);
+    await Promise.all([await ajouter[0].click()]);
+    // await this.page.locator(btnCoordonnees).click();
+    console.log('Plan is selected');
+    await this.page.waitForSelector(txtPlanjuridique);
+    console.log(this.page.locator(txtPlanjuridique).innerText());
+  };
+  clickBtnCoordonnées = async (): Promise<void> => {
+    console.log(' - UniversalTruckingPage.clickBtnESelectPlan');
+    // await this.page.locator(btnCoordonnees).click();
     console.log('Plan is selected');
   };
   // ========================== Assertion Methods ==========================
@@ -109,6 +119,20 @@ export class UniversalTruckingPage extends OktaPage {
     await this.waitForElementToBeVisible(tellUsAboutYourselfLbl);
     this.page.locator(tellUsAboutYourselfLbl).isVisible;
     console.log('On Personal Info page');
+  };
+  assertSelectedPlanTxt = async (plan: string): Promise<void> => {
+    console.log(' - UniversalTruckingPage.assertSelectedPlanTxt');
+    console.log(this.page.locator(txtPlanjuridique).innerText());
+    // Verify that Selected Plans label is displayed
+    await expect(this.page.locator(txtPlanjuridique)).toHaveText(plan);
+    console.log('Plan juridique is selected ');
+  };
+  assertParMoiTxt = async (): Promise<void> => {
+    console.log(' - UniversalTruckingPage.assertParMoiTxt');
+    // Verify that Selected Plans label is displayed
+    await this.waitForElementToBeVisible(txtParMoi);
+    await this.assertElementHasText(txtParMoi, '$24.95');
+    console.log('Plan juridique price is displayed ');
   };
 }
 function forEach(

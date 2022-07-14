@@ -686,16 +686,17 @@ export default class RegionsUtils {
    * @memberof RegionsUtils
    */
   async selectProvinceFromFooter(province: string): Promise<void> {
-    await retryAsync(
-      async () => {
-        await this.ele_sddFooterProvince.selectOption({ label: `${province}` });
-        return this.ele_sopFooterSelectedProvince.innerText();
-      },
-      {
-        delay: 500,
-        maxTry: 5,
-        until: (lastResult) => lastResult === province,
-      }
-    );
+    // // eslint-disable-next-line no-undef
+    // await retryAsync(
+    //   async () => {
+    //     await this.ele_sddFooterProvince.selectOption({ label: `${province}` });
+    //     return this.ele_sopFooterSelectedProvince.innerText();
+    //   },
+    //   {
+    //     delay: 500,
+    //     maxTry: 5,
+    //     until: (lastResult) => lastResult === province,
+    //   }
+    // );
   }
 }

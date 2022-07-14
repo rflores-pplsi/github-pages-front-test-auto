@@ -3,6 +3,7 @@
 import { expect } from '@playwright/test';
 import RegionsUtils from '../../utils/regions.utils';
 import UrlsUtils from '../../utils/urls.utils';
+import { basicUser } from '../../index';
 import { CheckoutPersonalInfoPage } from '../checkout/checkout-personal-info.page';
 import { LoginPage } from '../login/login.page';
 import { OktaPage } from '../okta/okta.page';
@@ -50,7 +51,7 @@ export class BestMoneyMoversGroupPage extends OktaPage {
     console.log(' - BestMoneyMoversGroupPage.loginBestMoneyMoversGroupPage');
     console.log('Redirected to login page');
     const loginPage = new LoginPage(this.page);
-    await loginPage.login('mattfeeqa@gmail.com', 'Password10!');
+    await loginPage.login(basicUser.email, basicUser.password);
   };
   updateAddressTestingHarnesGroupsPage = async (state: string): Promise<void> => {
     console.log(' - BestMoneyMoversGroupPage.updateAddressTestingHarnesGroupsPage');

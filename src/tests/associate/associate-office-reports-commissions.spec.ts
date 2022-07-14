@@ -10,10 +10,10 @@ test.beforeEach(async ({ page }) => {
   await reportsCommissionsPage.navigateToReportsCommissionsPage();
 });
 
-test('Add tab for Revenue Report', async ({ page }) => {
-  await reportsCommissionsPage.assertReportsReportsCommissionsPageShow();
-  await reportsCommissionsPage.assertTabFastStartStatementIsDisplayed();
-});
+// test('Add tab for Revenue Report', async ({ page }) => {
+//   await reportsCommissionsPage.assertReportsReportsCommissionsPageShow();
+//   await reportsCommissionsPage.assertTabFastStartStatementIsDisplayed();
+// });
 
 test('Create Revenue Report Statement Selection List', async ({ page }) => {
   await reportsCommissionsPage.assertSearchDatesIsDisplayed();

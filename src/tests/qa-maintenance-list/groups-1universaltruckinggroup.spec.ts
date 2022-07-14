@@ -23,16 +23,16 @@ test.only('test', async ({ page }) => {
   // Select a language
   await universalTruckingPage.selectlanguage('French');
   // Select a state
-  await universalTruckingPage.selectStateUniversalTruckingPage('Virginia');
+  await universalTruckingPage.selectStateUniversalTruckingPage('Texas');
   await universalTruckingPage.clickBtnESelect();
   // Select a plan
   await universalTruckingPage.clickBtnSelectPlan('Sélectionnez votre plan juridique');
-  // Login
-  await universalTruckingPage.loginBestMoneyMoversGroupPage();
-  // Verify that user is redirected to personal info page
-  universalTruckingPage.assertTellUsAboutYourselfTxt;
-  // Update address
-  await universalTruckingPage.updateAddressTestingHarnesGroupsPage('Virginia');
+  // Verify the Plan name
+  universalTruckingPage.assertSelectedPlanTxt('Plan juridique');
+  // Verify the price
+  universalTruckingPage.assertParMoiTxt();
+  // Click on Coordonnees button
+  await universalTruckingPage.clickBtnCoordonnées();
 });
 for (const state of RegionsUtils.usStates) {
   for (const plan of ['12.95', '22.95', '23.95', '43.90', '36.90']) {
@@ -47,7 +47,7 @@ for (const state of RegionsUtils.usStates) {
       // Select a state
       await universalTruckingPage.selectStateUniversalTruckingPage(state.name);
       // Click button:has-text("Select")
-      await universalTruckingPage.clickBtnESelect('Select Your Commercial Driver Plan');
+      await universalTruckingPage.clickBtnESelect();
       // Verify that Available Plans label isDisplayed
       await universalTruckingPage.assertAvailablePlanTxt();
       // Select a plan

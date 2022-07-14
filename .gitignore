@@ -11,3 +11,7 @@ docker-log.txt
 playwright-report
 test-result.json
 test-results
+.env*
+!.env.project
+!.env.vault
+src/.env
