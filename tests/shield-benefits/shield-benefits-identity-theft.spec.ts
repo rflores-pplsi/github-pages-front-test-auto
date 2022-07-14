@@ -15,7 +15,7 @@ test('Verify functionality on the Identity Theft Page - Sign In button redirects
   // Click on Sign In button
   await shieldBenefitsIdentityTheftPage.clickBtnSignIn();
   // Verify Accounts v2 url displays
-  await shieldBenefitsIdentityTheftPage.assertAccountsV2Url();
+  await shieldBenefitsIdentityTheftPage.assertAccountsUrl();
 });
 
 test('Verify functionality on the Identity Theft Page - App Store link connected to the store site', async ({ page }) => {

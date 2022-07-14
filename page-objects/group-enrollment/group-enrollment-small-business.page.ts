@@ -117,10 +117,10 @@ export class GroupEnrollmentSmallBusinessPage extends OktaPage {
     await this.assertElementIsVisible(tabSmallBusiness);
   };
 
-  assertAccountsV2Url = async (): Promise<void> => {
-    console.log(' - GroupEnrollmentSearchPage.assertAccountsV2Url');
-    // Verify after clicking on Sign In button it redirects to Accounts V2
-    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.login.url + '/login?app=accountsv2&impact=Low&path=%2Fsign-in');
+  assertAccountsUrl = async (): Promise<void> => {
+    console.log(' - GroupEnrollmentSearchPage.assertAccountsUrl');
+    // Verify after clicking on Sign In button it redirects to Accounts
+    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.login.url + '/login?app=accounts&impact=Low&path=%2Fsign-in');
   };
 
   assertLawFirmInformation = async (): Promise<void> => {
