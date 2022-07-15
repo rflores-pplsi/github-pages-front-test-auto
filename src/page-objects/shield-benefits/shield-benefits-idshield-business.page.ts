@@ -128,7 +128,7 @@ export class ShieldBenefitsIDShieldBusinessPage extends OktaPage {
   };
 
   clickBtnPricing = async (): Promise<void> => {
-    console.log(' - ShieldBenefitsCommercialDriverPage.clickBtnPricing');
+    console.log(' - ShieldBenefitsIdShieldBusinessPage.clickBtnPricing');
     // Click on Pricing tab
     await this.clickOnElement(btnPricing);
   };

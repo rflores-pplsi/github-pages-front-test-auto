@@ -80,7 +80,7 @@ export class ShieldBenefitsCommercialDriverPage extends OktaPage {
    */
 
   selectStateAndPaymentFrequency = async (state: string, paymentFrequency: string): Promise<void> => {
-    console.log(' - ShieldBenefitsSmallBusinessPage.selectStateAndPaymentFrequency');
+    console.log(' - ShieldBenefitsCommercialDriverPage.selectStateAndPaymentFrequency');
     // Select State
     await this.clickOnElement(btnSelect);
     await this.clickOnElement(btnState);

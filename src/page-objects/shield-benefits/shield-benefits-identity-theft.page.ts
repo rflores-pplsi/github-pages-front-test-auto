@@ -137,13 +137,13 @@ export class ShieldBenefitsIdentityTheftPage extends OktaPage {
   };
 
   assertSignInButtonIsDisplayed = async (): Promise<void> => {
-    console.log(' - ShieldBenefitsCommercialDriverPage.assertSignInButtonIsDisplayed');
+    console.log(' - ShieldBenefitsIdentityTheftPage.assertSignInButtonIsDisplayed');
     // Confirm Sign In button is displayed
     await this.assertElementIsVisible(btnSignIn);
   };
 
   assertAppStoreButtonISDisplayed = async (): Promise<void> => {
-    console.log(' - ShieldBenefitsCommercialDriverPage.assertAppStoreButtonIsDisplayed');
+    console.log(' - ShieldBenefitsIdentityTheftPage.assertAppStoreButtonIsDisplayed');
     // Confirm App store button is displayed
     await this.assertElementIsVisible(btnAppStore);
   };
