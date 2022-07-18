@@ -3,12 +3,12 @@
 import { expect } from '@playwright/test';
 import RegionsUtils from '../../utils/regions.utils';
 import UrlsUtils from '../../utils/urls.utils';
-import { basicUser } from '../../index';
+import { basicUser } from '../../utils/user.utils';
 import { CheckoutPersonalInfoPage } from '../checkout/checkout-personal-info.page';
 import { LoginPage } from '../login/login.page';
 import { OktaPage } from '../okta/okta.page';
 
-// require('dotenv').config;
+require('dotenv').config;
 
 // ========================== Selectors ==================================
 

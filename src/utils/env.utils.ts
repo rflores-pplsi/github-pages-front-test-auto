@@ -1,4 +1,5 @@
 // import { load_dotenv } from 'dotenv';
+require('dotenv').config();
 
 /**
  * @class EnvironmentUtil

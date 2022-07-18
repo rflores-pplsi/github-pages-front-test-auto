@@ -20,6 +20,7 @@ suites:
   platformName: windows 10
   params:
     project: 
+    browserName: "chromium"
   testMatch: [".ts$"]
 rootDir: .\
 artifacts:

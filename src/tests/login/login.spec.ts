@@ -1,8 +1,8 @@
 import { test } from '@playwright/test';
 import { LoginPage } from '../../page-objects/login/login.page';
 import UrlsUtils from '../../utils/urls.utils';
-import { basicUser, withUsername } from '../../index';
-// import { config } from 'dotenv';
+import { basicUser, withUsername } from '../../utils/user.utils';
+import { config } from 'dotenv';
 
 // Declare Page Variable for This Page
 let loginPage: LoginPage;

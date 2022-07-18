@@ -1,5 +1,6 @@
 import EnvironmentUtil from './utils/env.utils';
 // import { config } from 'dotenv';
+require('dotenv').config();
 const env = EnvironmentUtil.getEnv();
 export const associateUser = {
   username: process.env[`ASSOCIATE_USERNAME_${env.toUpperCase()}`],
