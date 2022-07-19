@@ -22,6 +22,8 @@ const lblRepresentative = '//div/p[contains(text(),"Representative: JANICE S BRA
 const btnGetStarted = '//div[@class="navContainer__top"]/a[contains(text(),"Get Started")]';
 const btnStateOrProvince = 'span.glyphicon.startNow__section__icon.glyphicon-menu-down';
 const lnkSelectYourPlan = '//h3[contains(text(),"Select Your Legal Plan")]';
+const btnAddToCart = '//button[contains(text(),"ADD TO CART")]';
+const btnContactInfo = '//button[contains(text(),"Contact Information")]';
 
 export class PrimericaGroupPage extends OktaPage {
   // ========================== Process Methods ============================
@@ -79,15 +81,22 @@ export class PrimericaGroupPage extends OktaPage {
     // Click Select your plan Link
     await this.clickOnElement(lnkSelectYourPlan);
   };
-  clickAddToCartbtn = async (): Promise<void> => {
-    console.log(' - PrimericaGroupPage.clickSelectYourPlanLnk');
-    // Click Select your plan Link
-    await this.clickOnElement(lnkSelectYourPlan);
+  clickAddToCartBtn = async (): Promise<void> => {
+    console.log(' - PrimericaGroupPage.clickAddToCartBtn');
+    // Click Add to cart button
+    await this.page.waitForSelector(btnAddToCart);
+    const ajouter = await this.page.$$(btnAddToCart);
+    await ajouter[0].click();
+  };
+  clickContactInfoBtn = async (): Promise<void> => {
+    console.log(' - PrimericaGroupPage.clickGetStartedBtn');
+    // Click Get Started button
+    await this.clickOnElement(btnContactInfo);
   };
   // ========================== Assertion Methods ==========================
 
   assertRepresentativeLbl = async (rep: string): Promise<void> => {
-    console.log(' - UniversalTruckingPage.assertTestingHarnesGroupsPricingPage');
+    console.log(' - PrimericaGroupPage.assertRepresentativeLbl');
     // Verify that the Representative: JANICE S BRAY is displayed
     await this.page.waitForLoadState();
     await this.page.locator(lblRepresentative).isVisible();
@@ -96,4 +105,10 @@ export class PrimericaGroupPage extends OktaPage {
     await this.assertStringMatch(repLbl, rep);
     console.log('${repLbl} page is displayed ');
   };
-
+  assertCheckoutURL = async (): Promise<void> => {
+    console.log(' - PrimericaGroupPage.assertCheckoutURL');
+    // Verify that  it takes user to checkout
+    await expect(this.page).toHaveURL('https://checkout.legalshield.ca/groups/primericacaeng?agent=12345&region=MB');
+    console.log('Landed on checkout page');
+  };
+}

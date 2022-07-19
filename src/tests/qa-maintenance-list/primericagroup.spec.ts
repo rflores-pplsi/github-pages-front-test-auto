@@ -22,11 +22,17 @@ test.only('test', async ({ page }) => {
   // Click on Submit button
   await primericaGroupPage.clickSubmitBtn();
   // Verify that user can see Representative: JANICE S BRAY
-  await primericaGroupPage.assertRepresentativeLbl('Representative: JANICE S BRAY');
+  // await primericaGroupPage.assertRepresentativeLbl('Representative: JANICE S BRAY');
   // Click on Get Started Button
   await primericaGroupPage.clickGetStartedBtn();
   // Verify the Plan name
   await primericaGroupPage.selectStateOrProvince('Manitoba');
   // Click select your plan link
   await primericaGroupPage.clickSelectYourPlanLnk();
+  // Click on Add to Cart Button
+  await primericaGroupPage.clickAddToCartBtn();
+  // Click on Contact info Button
+  await primericaGroupPage.clickContactInfoBtn();
+  // Verify that  it takes user to checkout
+  await primericaGroupPage.assertCheckoutURL();
 });
