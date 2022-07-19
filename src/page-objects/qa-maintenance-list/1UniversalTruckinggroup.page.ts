@@ -3,11 +3,11 @@
 import { expect } from '@playwright/test';
 import RegionsUtils from '../../utils/regions.utils';
 import UrlsUtils from '../../utils/urls.utils';
-import { CheckoutPersonalInfoPage } from '../checkout/checkout-personal-info.page';
-import { LoginPage } from '../login/login.page';
+import { CheckoutPersonalInfoPage } from '../../page-objects/checkout/checkout-personal-info.page';
+import { LoginPage } from '../../page-objects/login/login.page';
 import { OktaPage } from '../okta/okta.page';
 
-// require('dotenv').config;
+require('dotenv').config;
 
 // ========================== Selectors ==================================
 
@@ -16,14 +16,14 @@ let city: string;
 let postalCode: string;
 const url1UniversalTrucking = UrlsUtils.groupsUrls.url1UniversalTrucking;
 const tabSigningUp = 'a#signup';
-const selectStatedorpdown = '//span[contains(text(),"State/Province")]';
+const selectStatedorpdown = '#select_value_label_15 span:nth-child(1)';
 const availablePlansLbl = '//h3[contains(text(),"Sélectionnez votre plan juridique")]';
 const rdbtnlanguage = '[aria-label="English"]';
 const btnSelectUniversalTracking = '//button[contains(text(),"SELECT")]';
 const btnAjouterAuPanier = '//button[contains(text(),"AJOUTER AU PANIER")]';
 const btnCoordonnees = '//button[contains(text(),"Coordonnées")]';
 const tellUsAboutYourselfLbl = '//h1[contains(text(),"Tell us about yourself")]';
-const txtPlanjuridique = 'h4.pull-left ng-bind-html';
+const txtPlanjuridique = '//div[@class="clearfix"]/h4/ng-bind-html[contains(text(),"Plan juridique")]';
 const txtParMoi = 'span.pull-right.summary__plan__price.ng-binding.ng-scope';
 
 export class UniversalTruckingPage extends OktaPage {
@@ -86,13 +86,13 @@ export class UniversalTruckingPage extends OktaPage {
   clickBtnSelectPlan = async (plan: string): Promise<void> => {
     console.log(' - UniversalTruckingPage.clickBtnESelectPlan');
     // Click on Enroll Now button
-    await Promise.all([await this.page.waitForSelector(availablePlansLbl), await this.page.locator(availablePlansLbl).click()]);
+    await this.page.waitForSelector(availablePlansLbl);
+    await this.page.locator(availablePlansLbl).click();
+    await this.page.waitForSelector(btnAjouterAuPanier);
     const ajouter = await this.page.$$(btnAjouterAuPanier);
-    await Promise.all([await ajouter[0].click()]);
+    await ajouter[0].click();
     // await this.page.locator(btnCoordonnees).click();
     console.log('Plan is selected');
-    await this.page.waitForSelector(txtPlanjuridique);
-    console.log(this.page.locator(txtPlanjuridique).innerText());
   };
   clickBtnCoordonnées = async (): Promise<void> => {
     console.log(' - UniversalTruckingPage.clickBtnESelectPlan');
@@ -120,17 +120,22 @@ export class UniversalTruckingPage extends OktaPage {
     this.page.locator(tellUsAboutYourselfLbl).isVisible;
     console.log('On Personal Info page');
   };
-  assertSelectedPlanTxt = async (plan: string): Promise<void> => {
+  assertSelectedPlanAndParMoiTxt = async (): Promise<void> => {
     console.log(' - UniversalTruckingPage.assertSelectedPlanTxt');
-    console.log(this.page.locator(txtPlanjuridique).innerText());
-    // Verify that Selected Plans label is displayed
-    await expect(this.page.locator(txtPlanjuridique)).toHaveText(plan);
-    console.log('Plan juridique is selected ');
+    await this.page.waitForLoadState();
+    await this.page.waitForSelector(txtPlanjuridique);
+    const plan = await this.page.$$(txtPlanjuridique);
+    await plan[0].innerHTML();
+    console.log(await plan[0].innerHTML());
+    await this.assertElementHasText(txtPlanjuridique, 'Plan juridique');
+    console.log(await this.page.locator(txtParMoi).innerHTML());
+    await this.assertElementHasText(txtParMoi, '$24.95');
+    // expect(await this.page.screenshot()).toMatchSnapshot('PlanJuridique.png');
   };
   assertParMoiTxt = async (): Promise<void> => {
     console.log(' - UniversalTruckingPage.assertParMoiTxt');
+    await this.page.locator(txtParMoi).isEnabled();
     // Verify that Selected Plans label is displayed
-    await this.waitForElementToBeVisible(txtParMoi);
     await this.assertElementHasText(txtParMoi, '$24.95');
     console.log('Plan juridique price is displayed ');
   };

@@ -1,5 +1,5 @@
 /* eslint-disable camelcase */
-import EnvironmentUtil from './env.utils';
+import EnvironmentUtil from '../utils/env.utils';
 // import { config } from 'dotenv';
 require('dotenv').config();
 
@@ -152,7 +152,8 @@ export default class UrlsUtils {
     },
   };
   static readonly groupsUrls = {
-    urlBestMoneyMovers: `https://www.shieldbenefits.com/bestmoneymoves/overview`,
-    url1UniversalTrucking: `https://w3.legalshield.com/gs/init?grp=1universaltrucking`,
+    urlBestMoneyMovers: `https://www.${envUrlString}shieldbenefits.com/bestmoneymoves/overview`,
+    url1UniversalTrucking: `http://www.legalshield.com/info/1universaltrucking`,
+    urlPrimericaGroup: `http://groups.${envUrlString}legalshield.com/?group=primerica`,
   };
 }
