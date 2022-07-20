@@ -14,7 +14,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 // Login Page test using Basic Email
-test('Login with basic email', async ({ page }) => {
+test.only('Login with basic email', async ({ page }) => {
   console.log('Test Case: Login with basic email');
   // Log in with a basic user account
   await loginPage.login(basicUser.email, basicUser.password);
