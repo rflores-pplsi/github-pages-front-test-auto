@@ -4,7 +4,7 @@ import { OktaPage } from '../okta/okta.page';
 // ========================== Selectors ==================================
 
 const url: string = UrlsUtils.legalshieldUrls.groupEnrollment.url;
-const urlGroup: string = 'https://www.uat-shieldbenefits.com/';
+const urlGroup: string = 'https://www.uat-shieldbenefits.com/ytiwen';
 const txtSearch: string = '[placeholder="Search"]';
 const btnSearchGroup: string = '.lsux-button--primary';
 const btnEdit: string = '.group-item-controls > div:nth-child(3) > a > div > img';
@@ -20,9 +20,10 @@ const txtLawFirmName: string = '.results > p:nth-child(2)';
 const btnAppStore: string = '.lsux-grid.container a:nth-child(1) > img';
 const btnBackToTop: string = 'main > div > div > button > span';
 const btnPricing: string = '#root > div > nav > div > div > ul > li:nth-child(2) > a';
-const btnState: string = '//div[contains(@class,"mr-5") and contains (.,"State")]//button';
+const btnSelect: string = '#root div.filters.mt-5.mb-5.false > div > div.mr-custom > div > button';
+const btnState: string = '#root  div.mr-custom  div:nth-child(6)';
 const btnPaymentFrequency: string = '//p[contains (.,"Payment frequency")]/following-sibling::div//button';
-const btnViewDetails: string = '#root  div:nth-child(1) > div > div > div.groupTokenCardLeft > a';
+const btnViewDetails: string = '#root div:nth-child(3) div:nth-child(1) > div > div > div.groupTokenCardLeft > a';
 
 /**
  * @export
@@ -79,11 +80,10 @@ export class ShieldBenefitsSmallBusinessPage extends OktaPage {
   selectStateAndPaymentFrequency = async (state: string, paymentFrequency: string): Promise<void> => {
     console.log(' - ShieldBenefitsSmallBusinessPage.selectStateAndPaymentFrequency');
     // Select State
+    await this.clickOnElement(btnSelect);
     await this.clickOnElement(btnState);
-    await this.clickOnElement(`//div[contains(@class,"lsux-link-content--menu") and contains (.,"${state}")]`);
     // Select Payment Frequency
     await this.clickOnElement(btnPaymentFrequency);
-    await this.clickOnElement(`//div[contains(@class,"lsux-link-content--menu") and contains (.,"${paymentFrequency}")]`);
   };
 
   // ========================== Navigate Methods ===========================
@@ -117,9 +117,7 @@ export class ShieldBenefitsSmallBusinessPage extends OktaPage {
    */
   navigateToGroupEnrollmentSmallBusinessPage = async (group: string): Promise<void> => {
     console.log(' - ShieldBenefitsSmallBusinessPage.navigateToGroupEnrollmentSmallBusinessPage');
-    await this.navigateToGroupEnrollmentSearchPage();
-    await this.searchGroup(group);
-    await this.navigateToGroupEnrollmentGroupURLPage('value');
+    await this.page.goto(urlGroup);
   };
   // ========================== Click Methods ==============================
 
