@@ -56,7 +56,7 @@ test('Verify functionality on the Primerica Legal page - Law firm information is
   await shieldBenefitsPrimericaLegalPage.assertLawFirmInformation();
 });
 
-test.only('Verify functionality on the Primerica Legal page - Terms of services are displayed', async ({ page }) => {
+test('Verify functionality on the Primerica Legal page - Terms of services are displayed', async ({ page }) => {
 console.log('Test Case: Verify functionality on the Primerica Legal page - Terms of services are displayed');
 await shieldBenefitsPrimericaLegalPage.navigateToPrimericaLegalPage();
 await shieldBenefitsPrimericaLegalPage.clickBtnLegalPage();
