@@ -22,6 +22,9 @@ const txtWebsiteMemberService: string = '#helpContentCustom > a:nth-child(3)';
 const txtRepID: string = '[placeholder="Rep ID"]';
 const btnFindRep: string = '#root  div.mr-5.find-agent-btn > div > button > span';
 const btnEnrollNow: string = '#root div.agent-info button > span';
+const btnTermsOfServices: string = '#root div.lsux-col.col.eight.rightWrapper > div > ul > li:nth-child(2) > a';
+
+
 
 /**
  * @export
@@ -167,5 +170,12 @@ export class ShieldBenefitsPrimericaLegalPage extends OktaPage {
     console.log(' - ShieldBenefitsPrimericaLegalPage.assertEnrollNowButtonIsDisplayed');
     // Verify that Enroll now button is displayed
     await this.assertElementIsVisible(btnEnrollNow);
+  };
+
+  assertTermsOfServicesBtnIsDisplayed = async (): Promise<void> => {
+    console.log(' - ShieldBenefitsPrimericaLegalPage.assertTermsOfServicesBtnIsDisplayed');
+    // Verify that Terms of Services button is displayed on the Legal page
+    await this.page.waitForSelector(btnTermsOfServices);
+    await this.assertElementIsVisible(btnTermsOfServices);
   };
 }
