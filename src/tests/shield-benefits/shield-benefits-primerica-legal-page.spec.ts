@@ -55,3 +55,10 @@ test('Verify functionality on the Primerica Legal page - Law firm information is
   await shieldBenefitsPrimericaLegalPage.searchLawFirm('80021');
   await shieldBenefitsPrimericaLegalPage.assertLawFirmInformation();
 });
+
+test('Verify functionality on the Primerica Legal page - Terms of services are displayed', async ({ page }) => {
+console.log('Test Case: Verify functionality on the Primerica Legal page - Terms of services are displayed');
+await shieldBenefitsPrimericaLegalPage.navigateToPrimericaLegalPage();
+await shieldBenefitsPrimericaLegalPage.clickBtnLegalPage();
+await shieldBenefitsPrimericaLegalPage.assertTermsOfServicesBtnIsDisplayed();
+});
