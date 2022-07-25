@@ -88,8 +88,6 @@ export class AccountPlansPage extends LoginPage {
     console.log(' - accountPlansPage.clickGoToWebsiteLink');
     // Click go to website link for the
     const planRowIndex = await this.getPlanRowIndexFromPlanName(plansTable, planName);
-    console.log('plansTable==>' + JSON.stringify(plansTable));
-    console.log(planRowIndex);
     await plansTable.planRows[planRowIndex].websiteLink.click();
   };
 

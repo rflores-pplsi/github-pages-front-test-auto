@@ -98,7 +98,7 @@ export default class UrlsUtils {
       url: 'https://www.pplsi.com',
     },
     termsOfService: {
-      url: 'https://www.legalshield.com/terms-service?',
+      url: 'https://www.pplsi.com/terms-service?',
     },
   };
 

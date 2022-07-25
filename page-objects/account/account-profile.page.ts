@@ -95,6 +95,18 @@ export class AccountProfilePage extends LoginPage {
     await this.page.waitForLoadState('domcontentloaded');
   };
 
+  assertNameEditButtonIsDisabled = async (): Promise<void> => {
+    console.log(' - accountProfilePage.assertNameEditButtonIsDisabled');
+    // confirm Edit button for Name is disabled.
+    await this.assertElementIsDisabled(btnEditName);
+  };
+
+  assertAddressButtonIsDisabled = async (): Promise<void> => {
+    console.log(' - accountProfilePage.assertAddressButtonIsDisabled');
+    // confirm Edit button for Address is disabled.
+    await this.assertElementIsDisabled(btnEditAddress);
+  };
+
   assertProfileDateOfBirthPageUrl = async (): Promise<void> => {
     console.log(' - accountProfilePage.assertProfileDateOfBirthPageUrl');
     // Confirm the landing on Profile Date of Birth Page

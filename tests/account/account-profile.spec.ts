@@ -10,14 +10,11 @@ test.beforeEach(async ({ page }) => {
   await accountProfilePage.navigateToProfilePage();
 });
 
-// Navigate to the Profile Name page
-// Added .fixme since the Edit Name button is now disabled
-test.fixme('Navigate to the Profile Name page by clicking the Name Edit button', async ({ page }) => {
-  console.log('Test Case: Navigate to the Profile Name page by clicking the Name Edit button');
-  // Clicking the Name Edit button
-  await accountProfilePage.clickEditNameButton();
+// Edit Profile Name button should be disabled
+test('Verify the Edit button for Name should be disabled', async ({ page }) => {
+  console.log('Test Case: Verify the Edit button for Name should be disabled');
   // Verify the landing on the Profile Name page
-  await accountProfilePage.assertProfileNamePage();
+  await accountProfilePage.assertNameEditButtonIsDisabled();
 });
 
 // Navigate to the Profile Date of Birth page
@@ -38,14 +35,11 @@ test('Navigate to the Profile Phone Number page by clicking the Phone Number Edi
   await accountProfilePage.assertProfilePhoneNumberPageUrl();
 });
 
-// Navigate to the Profile Address page
-// Added .fixme since the Edit Address button is now disabled
-test.fixme('Navigate to the Profile Address page by clicking the Address Edit button', async ({ page }) => {
-  console.log('Test Case: Navigate to the Profile Address page by clicking the Address Edit button');
-  // Clicking the Address button
-  await accountProfilePage.clickEditAddressButton();
+// Edit Profile Address button should be disabled
+test('Verify the Edit button for Address should be disabled', async ({ page }) => {
+  console.log('Test Case: Verify the Edit button for Address should be disabled');
   // Verify the landing on the Profile Address page
-  await accountProfilePage.assertProfileAddressPageUrl();
+  await accountProfilePage.assertAddressButtonIsDisabled();
 });
 
 // Navigate to the Profile Email page

@@ -132,7 +132,7 @@ export class BasePage {
    */
   assertElementIsVisible = async (ele: string): Promise<void> => {
     const locator = this.page.locator(ele);
-    await expect(locator).toBeVisible();
+    await expect(locator).toBeVisible({ timeout: 100000 });
   };
 
   /**
@@ -161,7 +161,7 @@ export class BasePage {
    */
   assertElementIsEnabled = async (ele: string): Promise<void> => {
     const locator = this.page.locator(ele);
-    expect(locator).toBeEnabled();
+    await expect(locator).toBeEnabled();
   };
 
   /**
@@ -170,7 +170,8 @@ export class BasePage {
    */
   assertElementIsDisabled = async (ele: string): Promise<void> => {
     const locator = this.page.locator(ele);
-    expect(locator).toBeDisabled();
+    await this.page.waitForLoadState('load');
+    await expect(locator).toBeDisabled();
   };
 
   /**
@@ -178,7 +179,7 @@ export class BasePage {
    * @memberof BasePage
    */
   locateElement = async (ele: string): Promise<void> => {
-    await this.page.locator(ele);
+    this.page.locator(ele);
   };
 
   /**

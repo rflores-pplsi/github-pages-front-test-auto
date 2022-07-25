@@ -17,7 +17,7 @@ test.beforeEach(async ({ page }) => {
 // LegalShield
 for (const tc of legalshieldTestHarnessData.filter((tc) => tc.disabled == false)) {
   const region = tc.region;
-  test.only(`${tc.testCaseName} - ${tc.region} @legalshield @testHarnessCheckoutRegression`, async ({ page }) => {
+  test(`${tc.testCaseName} - ${tc.region} @legalshield @testHarnessCheckoutRegression`, async ({ page }) => {
     console.log(`Test Case: ${tc.testCaseName} - ${tc.region}`);
 
     // Select Plans and get to Personal Info Page

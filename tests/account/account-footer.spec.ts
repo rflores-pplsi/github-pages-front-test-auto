@@ -15,20 +15,20 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('Navigate to Terms of Service page', async () => {
-  test.fixme(); // resolve context issues for the new tabs
+  test.skip(); // Not working in lower environments need to still resolve for prod
   console.log('Test Case: Navigate to Terms of Service page');
   const newPage = await accountFooterPage.clickTermsOfServiceLink();
   await accountFooterPage.assertTermsOfServicePageUrlInNewTab(newPage);
 });
 
 test('Navigate to Privacy Policy page', async () => {
-  test.fixme(); // resolve context issues for the new tabs
+  test.skip(); // Not working in lower environments need to still resolve for prod
   console.log('Test Case: Navigate to Privacy Policy page');
   const newPage = await accountFooterPage.clickPrivacyPolicyLink();
 });
 
 test('Navigate to Legal Disclaimer page', async ({ page }) => {
-  test.fixme(); // resolve context issues for the new tabs
+  test.skip(); // Not working in lower environments need to still resolve for prod
   console.log('Test Case: Navigate to Legal Disclaimer page');
   const newPage = await accountFooterPage.clickDisclaimerLink();
 });
