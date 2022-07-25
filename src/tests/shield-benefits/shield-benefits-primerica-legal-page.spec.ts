@@ -62,3 +62,17 @@ await shieldBenefitsPrimericaLegalPage.navigateToPrimericaLegalPage();
 await shieldBenefitsPrimericaLegalPage.clickBtnLegalPage();
 await shieldBenefitsPrimericaLegalPage.assertTermsOfServicesBtnIsDisplayed();
 });
+
+test('Verify functionality on the Primerica Legal page - Privacy Policy is displayed', async ({ page }) => {
+console.log('Test Case: Verify functionality on the Primerica Legal page - Privacy Policy is displayed');
+await shieldBenefitsPrimericaLegalPage.navigateToPrimericaLegalPage();
+await shieldBenefitsPrimericaLegalPage.clickBtnLegalPage();
+await shieldBenefitsPrimericaLegalPage.assertPrivacyPolicyBtnIsDisplayed();
+});
+
+test('Verify functionality on the Primerica Legal page - Code of Ethics is displayed', async ({ page }) => {
+console.log('Test Case: Verify functionality on the Primerica Legal page - Code of Ethics is displayed');
+await shieldBenefitsPrimericaLegalPage.navigateToPrimericaLegalPage();
+await shieldBenefitsPrimericaLegalPage.clickBtnLegalPage();
+await shieldBenefitsPrimericaLegalPage.assertCodeOfEthicsBtnIsDisplayed();
+});

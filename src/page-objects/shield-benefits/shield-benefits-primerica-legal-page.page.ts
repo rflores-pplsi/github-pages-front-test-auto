@@ -23,7 +23,8 @@ const txtRepID: string = '[placeholder="Rep ID"]';
 const btnFindRep: string = '#root  div.mr-5.find-agent-btn > div > button > span';
 const btnEnrollNow: string = '#root div.agent-info button > span';
 const btnTermsOfServices: string = '#root div.lsux-col.col.eight.rightWrapper > div > ul > li:nth-child(2) > a';
-
+const btnPrivacyPolicy: string = '#root div.lsux-col.col.eight.rightWrapper > div > ul > li:nth-child(3) > a';
+const btnCodeOfEthics: string = '#root div.lsux-col.col.eight.rightWrapper > div > ul > li:nth-child(4) > a';
 
 
 /**
@@ -178,4 +179,19 @@ export class ShieldBenefitsPrimericaLegalPage extends OktaPage {
     await this.page.waitForSelector(btnTermsOfServices);
     await this.assertElementIsVisible(btnTermsOfServices);
   };
+
+    assertPrivacyPolicyBtnIsDisplayed = async (): Promise<void> => {
+    console.log(' - ShieldBenefitsPrimericaLegalPage.assertPrivacyPolicyBtnIsDisplayed');
+    // Verify that Privacy Policy button is displayed on the Legal page
+    await this.page.waitForSelector(btnPrivacyPolicy);
+    await this.assertElementIsVisible(btnPrivacyPolicy);
+  };
+
+    assertCodeOfEthicsBtnIsDisplayed = async (): Promise<void> => {
+    console.log(' - ShieldBenefitsPrimericaLegalPage.assertPrivacyPolicyBtnIsDisplayed');
+    // Verify that Code of Ethics button is displayed on the Legal page
+    await this.page.waitForSelector(btnCodeOfEthics);
+    await this.assertElementIsVisible(btnCodeOfEthics);
+   };
 }
+
