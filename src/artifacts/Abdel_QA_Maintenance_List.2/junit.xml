@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites name="Abdel QA Maintenance List" tests="1" failures="0" skipped="0" errors="0" time="7.9">
+    <testsuite name="tests\qa-maintenance-list\google.spec.ts" timestamp="2022-07-06T19:22:50.900Z" hostname="" tests="1" failures="0" skipped="0" time="7.9" errors="0" id="0">
+        <testcase name="test" classname="[chromium] › tests\qa-maintenance-list\google.spec.ts:2:1 › test" time="7.9"/>
+        <properties>
+            <property name="platformName" value="windows 10"/>
+            <property name="browserName" value="chromium"/>
+        </properties>
+    </testsuite>
+</testsuites>

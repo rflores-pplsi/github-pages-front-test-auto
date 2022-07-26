@@ -1,0 +1,52 @@
+Preparing npm environment
+
+Running 7 tests using 2 workers
+
+ - accountClassicShieldAtWorkPage.navigateToClassicShieldAtWork
+ - accountClassicShieldAtWorkPage.navigateToClassicShieldAtWork
+ - accountShieldAtWorkPage.loginWithCredentials
+ - accountShieldAtWorkPage.loginWithCredentials
+ - accountShieldAtWorkPage.assertMemberList
+ - accountClassicShieldAtWorkPage.clickViewBtn
+ - accountShieldAtWorkPage.assertSecurityPage
+ - accountClassicShieldAtWorkPage.clickViewBtn
+ - accountClassicShieldAtWorkPage.clickEnrollmentTab
+  ✓  [webkit] › tests/classic-shield-at-work/classic-enrollment-tab.spec.ts:11:1 › Member list is displayed on the enrollment page (20s)
+ - accountClassicShieldAtWorkPage.navigateToClassicShieldAtWork
+ - accountShieldAtWorkPage.loginWithCredentials
+ - accountClassicShieldAtWorkPage.clickMenuBtn
+ - accountClassicShieldAtWorkPage.clickSecurityBtn
+  ✓  [webkit] › tests/classic-shield-at-work/classic-account-tab.spec.ts:11:1 › Security page is displayed on the account information page (26s)
+ - accountClassicShieldAtWorkPage.navigateToClassicShieldAtWork
+ - accountShieldAtWorkPage.assertMemberEnrollmentForm
+ - accountClassicShieldAtWorkPage.clickViewBtn
+ - accountShieldAtWorkPage.loginWithCredentials
+ - accountShieldAtWorkPage.assertEditEmployeePage
+ - accountClassicShieldAtWorkPage.clickViewBtn
+ - accountClassicShieldAtWorkPage.clickEnrollmentTab
+ - accountClassicShieldAtWorkPage.clickEnrollNewMemberBtn
+ - accountClassicShieldAtWorkPage.clickSecurityBtn
+  ✓  [webkit] › tests/classic-shield-at-work/classic-account-tab.spec.ts:16:1 › Edit Employee button redirects to the correct page to update the number of employees (16s)
+ - accountClassicShieldAtWorkPage.navigateToClassicShieldAtWork
+ - accountShieldAtWorkPage.loginWithCredentials
+  ✓  [webkit] › tests/classic-shield-at-work/classic-login.spec.ts:11:1 › Login with credentials (7s)
+ - accountClassicShieldAtWorkPage.navigateToClassicShieldAtWork
+ - activateEnterCodePage.assertTypeFormPageUrl
+ - accountClassicShieldAtWorkPage.clickReports
+  ✓  [webkit] › tests/classic-shield-at-work/classic-enrollment-tab.spec.ts:16:1 › Enrollment form is displayed on the enrollment page (36s)
+  ✓  [webkit] › tests/classic-shield-at-work/classic-login.spec.ts:15:1 › Type Form Url is displayed after clicking on Sign Up link (7s)
+ - accountClassicShieldAtWorkPage.navigateToClassicShieldAtWork
+ - accountShieldAtWorkPage.loginWithCredentials
+ - accountShieldAtWorkPage.assertReportsPage
+ - accountClassicShieldAtWorkPage.clickViewBtn
+ - accountClassicShieldAtWorkPage.clickReports
+  ✓  [webkit] › tests/classic-shield-at-work/classic-reports-tab.spec.ts:11:1 › Reports page is displayed, Submit button is enabled (34s)
+
+  Slow test file: [webkit] › tests/classic-shield-at-work/classic-enrollment-tab.spec.ts (56s)
+  Slow test file: [webkit] › tests/classic-shield-at-work/classic-account-tab.spec.ts (42s)
+  Slow test file: [webkit] › tests/classic-shield-at-work/classic-reports-tab.spec.ts (34s)
+  Consider splitting slow test files to speed up parallel execution
+
+  7 passed (2m)
+
+

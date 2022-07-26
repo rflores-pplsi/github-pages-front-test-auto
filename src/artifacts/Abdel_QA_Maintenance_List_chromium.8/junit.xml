@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites name="Abdel QA Maintenance List chromium" tests="2" failures="1" skipped="0" errors="0" time="83.22900000000001">
+    <testsuite name="tests\qa-maintenance-list\groups-1universaltruckinggroup.spec.ts" timestamp="2022-07-07T03:16:03.038Z" hostname="" tests="1" failures="1" skipped="0" time="12.445" errors="0" id="0">
+        <testcase name="test" classname="[chromium] › tests\qa-maintenance-list\groups-1universaltruckinggroup.spec.ts:15:6 › test" time="12.445">
+            <failure message="groups-1universaltruckinggroup.spec.ts:15:6 test" type="FAILURE"><![CDATA[
+  [chromium] › tests\qa-maintenance-list\groups-1universaltruckinggroup.spec.ts:15:6 › test ========
+
+    locator.click: DOMException: Failed to execute 'evaluate' on 'Document': The string './/h3[contains(text(),Select Your Commercial Driver Plan)]' is not a valid XPath expression.
+
+      26 |   await universalTruckingPage.selectStateUniversalTruckingPage('Virginia');
+      27 |   // Select a plan
+    > 28 |   await universalTruckingPage.clickBtnESelect('Select Your Commercial Driver Plan');
+         |                               ^
+      29 |   // Login
+      30 |   await universalTruckingPage.loginBestMoneyMoversGroupPage();
+      31 |   // Verify that user is redirected to personal info page
+
+        at Object.queryAll (<anonymous>:1016:26)
+        at InjectedScript._queryEngineAll (<anonymous>:3889:49)
+        at InjectedScript.querySelectorAll (<anonymous>:3876:30)
+        at eval (eval at evaluate (:178:30), <anonymous>:10:33)
+        at next (<anonymous>:4014:27)
+        at <anonymous>:4024:7
+        at Object.run (<anonymous>:4068:22)
+        at eval (eval at evaluate (:178:30), <anonymous>:1:14)
+        at UtilityScript.evaluate (<anonymous>:180:17)
+        at UtilityScript.<anonymous> (<anonymous>:1:44)
+    =========================== logs ===========================
+    waiting for selector "//h3[contains(text(),Select Your Commercial Driver Plan)]"
+      Failed to execute 'evaluate' on 'Document': The string './/h3[contains(text(),Select Your Commercial Driver Plan)]' is not a valid XPath expression.
+    ============================================================
+        at UniversalTruckingPage.clickBtnESelect (D:\sauce-playwright-runner\2.9.0\bundle\__project__\page-objects\qa-maintenance-list\1UniversalTruckinggroup.page copy.ts:80:68)
+        at D:\sauce-playwright-runner\2.9.0\bundle\__project__\tests\qa-maintenance-list\groups-1universaltruckinggroup.spec.ts:28:31
+
+]]></failure>
+            <system-out>
+ - UniversalTruckingPage.navigateTo1UniversalTruckingGroupPage
+ - UniversalTruckingPage.assertTestingHarnesGroupsPricingPage
+ - UniversalTruckingPage.clickTabSigningUp
+ - UniversalTruckingPage.selectlanguage
+language is selected
+ - UniversalTruckingPage.selectStateUniversalTruckingPage
+ - UniversalTruckingPage.clickBtnESelect
+
+</system-out>
+        </testcase>
+        <properties>
+            <property name="platformName" value="windows 10"/>
+            <property name="browserName" value="chromium"/>
+        </properties>
+    </testsuite>
+    <testsuite name="tests\qa-maintenance-list\groups-bestmoneymoves.spec.ts" timestamp="2022-07-07T03:16:03.038Z" hostname="" tests="1" failures="0" skipped="0" time="70.784" errors="0" id="1">
+        <testcase name="test" classname="[chromium] › tests\qa-maintenance-list\groups-bestmoneymoves.spec.ts:14:6 › test" time="70.784">
+            <system-out>
+ - BestMoneyMoversGroupPage.navigateToBestMoneyMoversGroupPage
+ - BestMoneyMoversGroupPage.clickBtnEnrollNow
+ - BestMoneyMoversGroupPage.assertTestingHarnesGroupsPricingPage
+ - BestMoneyMoversGroupPage.selectStateBestMoneyMoversGroupPage
+ - BestMoneyMoversGroupPage.assertTestingHarnesGroupsPricingPage
+State is selected and Available Plans Label is displayed
+ - BestMoneyMoversGroupPage.selectFrequencyBestMoneyMoversGroupPage
+Frequency is selected
+ - BestMoneyMoversGroupPage.clickBtnESelectPlan
+Plan is selected
+ - BestMoneyMoversGroupPage.loginBestMoneyMoversGroupPage
+Redirected to login page
+ - loginPage.login
+ - BestMoneyMoversGroupPage.updateAddressTestingHarnesGroupsPage
+ - checkoutPersonalInfoPage.enterHomeAddress
+ - checkoutPersonalInfoPage.enterCity
+ - checkoutPersonalInfoPage.enterPostalCode
+
+</system-out>
+        </testcase>
+        <properties>
+            <property name="platformName" value="windows 10"/>
+            <property name="browserName" value="chromium"/>
+        </properties>
+    </testsuite>
+</testsuites>

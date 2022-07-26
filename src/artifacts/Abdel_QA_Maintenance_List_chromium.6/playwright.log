@@ -1,0 +1,57 @@
+Preparing npm environment
+
+Running 3 tests using 1 worker
+
+
+Error: Cannot find module 'dotenv'
+Require stack:
+- D:\sauce-playwright-runner\2.9.0\bundle\__project__\page-objects\account\account-profile-email.page.ts
+- D:\sauce-playwright-runner\2.9.0\bundle\__project__\tests\account\account-profile-email.spec.ts
+- D:\sauce-playwright-runner\2.9.0\bundle\node_modules\@playwright\test\lib\loader.js
+- D:\sauce-playwright-runner\2.9.0\bundle\node_modules\@playwright\test\lib\runner.js
+- D:\sauce-playwright-runner\2.9.0\bundle\node_modules\@playwright\test\lib\cli.js
+- D:\sauce-playwright-runner\2.9.0\bundle\node_modules\playwright-core\lib\cli\cli.js
+- D:\sauce-playwright-runner\2.9.0\bundle\node_modules\playwright-core\cli.js
+- D:\sauce-playwright-runner\2.9.0\bundle\node_modules\@playwright\test\cli.js
+
+   at page-objects\account\account-profile-email.page.ts:6
+
+  4 | import { AccountNavigationPage } from './account-navigation.page';
+  5 | import { AccountProfilePage } from './account-profile.page';
+> 6 | require('dotenv').config;
+    | ^
+  7 |
+  8 | // ========================== Selectors ==========================
+  9 | const btnEmailAddressAdd = 'button.lsux-button.lsux-button--primary.mt-4 img';
+
+    at Object.<anonymous> (D:\sauce-playwright-runner\2.9.0\bundle\__project__\page-objects\account\account-profile-email.page.ts:6:1)
+    at Object.<anonymous> (D:\sauce-playwright-runner\2.9.0\bundle\__project__\tests\account\account-profile-email.spec.ts:2:1)
+
+Error: Cannot find module 'dotenv'
+Require stack:
+- D:\sauce-playwright-runner\2.9.0\bundle\__project__\page-objects\account\account-profile-phone.page.ts
+- D:\sauce-playwright-runner\2.9.0\bundle\__project__\tests\account\account-profile-phone.spec.ts
+- D:\sauce-playwright-runner\2.9.0\bundle\node_modules\@playwright\test\lib\loader.js
+- D:\sauce-playwright-runner\2.9.0\bundle\node_modules\@playwright\test\lib\runner.js
+- D:\sauce-playwright-runner\2.9.0\bundle\node_modules\@playwright\test\lib\cli.js
+- D:\sauce-playwright-runner\2.9.0\bundle\node_modules\playwright-core\lib\cli\cli.js
+- D:\sauce-playwright-runner\2.9.0\bundle\node_modules\playwright-core\cli.js
+- D:\sauce-playwright-runner\2.9.0\bundle\node_modules\@playwright\test\cli.js
+
+   at page-objects\account\account-profile-phone.page.ts:7
+
+   5 | import { AccountNavigationPage } from './account-navigation.page';
+   6 | import { AccountProfilePage } from './account-profile.page';
+>  7 | require('dotenv').config;
+     | ^
+   8 |
+   9 | // ========================== Selectors ==========================
+  10 |
+
+    at Object.<anonymous> (D:\sauce-playwright-runner\2.9.0\bundle\__project__\page-objects\account\account-profile-phone.page.ts:7:1)
+    at Object.<anonymous> (D:\sauce-playwright-runner\2.9.0\bundle\__project__\tests\account\account-profile-phone.spec.ts:2:1)
+
+
+  3 skipped
+
+

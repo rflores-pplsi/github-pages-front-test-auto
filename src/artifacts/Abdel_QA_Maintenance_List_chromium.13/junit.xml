@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites name="Abdel QA Maintenance List chromium" tests="2" failures="1" skipped="0" errors="0" time="65.18299999999999">
+    <testsuite name="tests/qa-maintenance-list/groups-1universaltruckinggroup.spec.ts" timestamp="2022-07-07T17:30:19.030Z" hostname="" tests="1" failures="1" skipped="0" time="16.866" errors="0" id="0">
+        <testcase name="test" classname="[webkit] › tests/qa-maintenance-list/groups-1universaltruckinggroup.spec.ts:15:6 › test" time="16.866">
+            <failure message="groups-1universaltruckinggroup.spec.ts:15:6 test" type="FAILURE"><![CDATA[
+  [webkit] › tests/qa-maintenance-list/groups-1universaltruckinggroup.spec.ts:15:6 › test ==========
+
+    locator.click: SyntaxError: The string did not match the expected pattern.
+    =========================== logs ===========================
+    waiting for selector "//h3[contains(text(),Select Your Commercial Driver Plan)]"
+    ============================================================
+
+      26 |   await universalTruckingPage.selectStateUniversalTruckingPage('Virginia');
+      27 |   // Select a plan
+    > 28 |   await universalTruckingPage.clickBtnESelect('Select Your Commercial Driver Plan');
+         |                               ^
+      29 |   // Login
+      30 |   await universalTruckingPage.loginBestMoneyMoversGroupPage();
+      31 |   // Verify that user is redirected to personal info page
+
+        at UniversalTruckingPage.clickBtnESelect (/Volumes/Sauce/saucectl-runners/sauce-playwright-runner/2.9.0/bundle/__project__/page-objects/qa-maintenance-list/1UniversalTruckinggroup.page copy.ts:80:68)
+        at /Volumes/Sauce/saucectl-runners/sauce-playwright-runner/2.9.0/bundle/__project__/tests/qa-maintenance-list/groups-1universaltruckinggroup.spec.ts:28:31
+
+]]></failure>
+            <system-out>
+ - UniversalTruckingPage.navigateTo1UniversalTruckingGroupPage
+ - UniversalTruckingPage.assertTestingHarnesGroupsPricingPage
+ - UniversalTruckingPage.clickTabSigningUp
+ - UniversalTruckingPage.selectlanguage
+language is selected
+ - UniversalTruckingPage.selectStateUniversalTruckingPage
+ - UniversalTruckingPage.clickBtnESelect
+
+</system-out>
+        </testcase>
+        <properties>
+            <property name="platformName" value="macOS 12"/>
+            <property name="browserName" value="webkit"/>
+        </properties>
+    </testsuite>
+    <testsuite name="tests/qa-maintenance-list/groups-bestmoneymoves.spec.ts" timestamp="2022-07-07T17:30:19.030Z" hostname="" tests="1" failures="0" skipped="0" time="48.317" errors="0" id="1">
+        <testcase name="test" classname="[webkit] › tests/qa-maintenance-list/groups-bestmoneymoves.spec.ts:14:6 › test" time="48.317">
+            <system-out>
+ - BestMoneyMoversGroupPage.navigateToBestMoneyMoversGroupPage
+ - BestMoneyMoversGroupPage.clickBtnEnrollNow
+ - BestMoneyMoversGroupPage.assertTestingHarnesGroupsPricingPage
+ - BestMoneyMoversGroupPage.selectStateBestMoneyMoversGroupPage
+ - BestMoneyMoversGroupPage.assertTestingHarnesGroupsPricingPage
+State is selected and Available Plans Label is displayed
+ - BestMoneyMoversGroupPage.selectFrequencyBestMoneyMoversGroupPage
+Frequency is selected
+ - BestMoneyMoversGroupPage.clickBtnESelectPlan
+Plan is selected
+ - BestMoneyMoversGroupPage.loginBestMoneyMoversGroupPage
+Redirected to login page
+ - loginPage.login
+ - BestMoneyMoversGroupPage.updateAddressTestingHarnesGroupsPage
+ - checkoutPersonalInfoPage.enterHomeAddress
+ - checkoutPersonalInfoPage.enterCity
+ - checkoutPersonalInfoPage.enterPostalCode
+
+</system-out>
+        </testcase>
+        <properties>
+            <property name="platformName" value="macOS 12"/>
+            <property name="browserName" value="webkit"/>
+        </properties>
+    </testsuite>
+</testsuites>

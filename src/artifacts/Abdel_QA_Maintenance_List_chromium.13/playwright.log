@@ -1,0 +1,59 @@
+Preparing npm environment
+
+Running 2 tests using 2 workers
+
+ - BestMoneyMoversGroupPage.navigateToBestMoneyMoversGroupPage
+ - UniversalTruckingPage.navigateTo1UniversalTruckingGroupPage
+ - BestMoneyMoversGroupPage.clickBtnEnrollNow
+ - UniversalTruckingPage.assertTestingHarnesGroupsPricingPage
+ - UniversalTruckingPage.clickTabSigningUp
+ - UniversalTruckingPage.selectlanguage
+ - BestMoneyMoversGroupPage.assertTestingHarnesGroupsPricingPage
+ - BestMoneyMoversGroupPage.selectStateBestMoneyMoversGroupPage
+ - BestMoneyMoversGroupPage.assertTestingHarnesGroupsPricingPage
+State is selected and Available Plans Label is displayed
+ - BestMoneyMoversGroupPage.selectFrequencyBestMoneyMoversGroupPage
+Frequency is selected
+ - BestMoneyMoversGroupPage.clickBtnESelectPlan
+language is selected
+ - UniversalTruckingPage.selectStateUniversalTruckingPage
+ - UniversalTruckingPage.clickBtnESelect
+  ✘  [webkit] › tests/qa-maintenance-list/groups-1universaltruckinggroup.spec.ts:15:6 › test (17s)
+Plan is selected
+ - BestMoneyMoversGroupPage.loginBestMoneyMoversGroupPage
+Redirected to login page
+ - loginPage.login
+ - BestMoneyMoversGroupPage.updateAddressTestingHarnesGroupsPage
+ - checkoutPersonalInfoPage.enterHomeAddress
+ - checkoutPersonalInfoPage.enterCity
+ - checkoutPersonalInfoPage.enterPostalCode
+  ✓  [webkit] › tests/qa-maintenance-list/groups-bestmoneymoves.spec.ts:14:6 › test (48s)
+
+
+  1) [webkit] › tests/qa-maintenance-list/groups-1universaltruckinggroup.spec.ts:15:6 › test =======
+
+    locator.click: SyntaxError: The string did not match the expected pattern.
+    =========================== logs ===========================
+    waiting for selector "//h3[contains(text(),Select Your Commercial Driver Plan)]"
+    ============================================================
+
+      26 |   await universalTruckingPage.selectStateUniversalTruckingPage('Virginia');
+      27 |   // Select a plan
+    > 28 |   await universalTruckingPage.clickBtnESelect('Select Your Commercial Driver Plan');
+         |                               ^
+      29 |   // Login
+      30 |   await universalTruckingPage.loginBestMoneyMoversGroupPage();
+      31 |   // Verify that user is redirected to personal info page
+
+        at UniversalTruckingPage.clickBtnESelect (/Volumes/Sauce/saucectl-runners/sauce-playwright-runner/2.9.0/bundle/__project__/page-objects/qa-maintenance-list/1UniversalTruckinggroup.page copy.ts:80:68)
+        at /Volumes/Sauce/saucectl-runners/sauce-playwright-runner/2.9.0/bundle/__project__/tests/qa-maintenance-list/groups-1universaltruckinggroup.spec.ts:28:31
+
+  Slow test file: [webkit] › tests/qa-maintenance-list/groups-bestmoneymoves.spec.ts (48s)
+  Slow test file: [webkit] › tests/qa-maintenance-list/groups-1universaltruckinggroup.spec.ts (17s)
+  Consider splitting slow test files to speed up parallel execution
+
+  1 failed
+    [webkit] › tests/qa-maintenance-list/groups-1universaltruckinggroup.spec.ts:15:6 › test ========
+  1 passed (50s)
+
+

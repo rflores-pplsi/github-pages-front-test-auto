@@ -1,0 +1,53 @@
+{
+  "status": "failed",
+  "attachments": [],
+  "suites": [
+    {
+      "name": "chromium",
+      "status": "failed",
+      "metadata": {},
+      "suites": [
+        {
+          "name": "tests\\qa-maintenance-list\\groups-1universaltruckinggroup.spec.ts",
+          "status": "failed",
+          "metadata": {},
+          "suites": [],
+          "attachments": [],
+          "tests": [
+            {
+              "name": "test",
+              "status": "failed",
+              "startTime": "2022-07-07T03:17:52.081Z",
+              "duration": 11622,
+              "metadata": {},
+              "output": "locator.click: DOMException: Failed to execute 'evaluate' on 'Document': The string './/h3[contains(text(),Select Your Commercial Driver Plan)]' is not a valid XPath expression.\n    at Object.queryAll (<anonymous>:1016:26)\n    at InjectedScript._queryEngineAll (<anonymous>:3889:49)\n    at InjectedScript.querySelectorAll (<anonymous>:3876:30)\n    at eval (eval at evaluate (:178:30), <anonymous>:10:33)\n    at next (<anonymous>:4014:27)\n    at <anonymous>:4024:7\n    at Object.run (<anonymous>:4068:22)\n    at eval (eval at evaluate (:178:30), <anonymous>:1:14)\n    at UtilityScript.evaluate (<anonymous>:180:17)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n=========================== logs ===========================\nwaiting for selector \"//h3[contains(text(),Select Your Commercial Driver Plan)]\"\n  Failed to execute 'evaluate' on 'Document': The string './/h3[contains(text(),Select Your Commercial Driver Plan)]' is not a valid XPath expression.\n============================================================:  undefined\n\nlocator.click: DOMException: Failed to execute 'evaluate' on 'Document': The string './/h3[contains(text(),Select Your Commercial Driver Plan)]' is not a valid XPath expression.\n    at Object.queryAll (<anonymous>:1016:26)\n    at InjectedScript._queryEngineAll (<anonymous>:3889:49)\n    at InjectedScript.querySelectorAll (<anonymous>:3876:30)\n    at eval (eval at evaluate (:178:30), <anonymous>:10:33)\n    at next (<anonymous>:4014:27)\n    at <anonymous>:4024:7\n    at Object.run (<anonymous>:4068:22)\n    at eval (eval at evaluate (:178:30), <anonymous>:1:14)\n    at UtilityScript.evaluate (<anonymous>:180:17)\n    at UtilityScript.<anonymous> (<anonymous>:1:44)\n=========================== logs ===========================\nwaiting for selector \"//h3[contains(text(),Select Your Commercial Driver Plan)]\"\n  Failed to execute 'evaluate' on 'Document': The string './/h3[contains(text(),Select Your Commercial Driver Plan)]' is not a valid XPath expression.\n============================================================\n    at UniversalTruckingPage.clickBtnESelect (D:\\sauce-playwright-runner\\2.9.0\\bundle\\__project__\\page-objects\\qa-maintenance-list\\1UniversalTruckinggroup.page copy.ts:80:68)\n    at D:\\sauce-playwright-runner\\2.9.0\\bundle\\__project__\\tests\\qa-maintenance-list\\groups-1universaltruckinggroup.spec.ts:28:31\n    ",
+              "attachments": [],
+              "videoTimestamp": 6.081
+            }
+          ]
+        },
+        {
+          "name": "tests\\qa-maintenance-list\\groups-bestmoneymoves.spec.ts",
+          "status": "passed",
+          "metadata": {},
+          "suites": [],
+          "attachments": [],
+          "tests": [
+            {
+              "name": "test",
+              "status": "passed",
+              "startTime": "2022-07-07T03:18:04.698Z",
+              "duration": 20824,
+              "metadata": {},
+              "attachments": [],
+              "videoTimestamp": 18.698
+            }
+          ]
+        }
+      ],
+      "attachments": [],
+      "tests": []
+    }
+  ],
+  "metadata": {}
+}

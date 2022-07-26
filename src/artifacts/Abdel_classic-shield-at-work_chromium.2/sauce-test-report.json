@@ -1,0 +1,116 @@
+{
+  "status": "failed",
+  "attachments": [],
+  "suites": [
+    {
+      "name": "chromium",
+      "status": "failed",
+      "metadata": {},
+      "suites": [
+        {
+          "name": "tests/classic-shield-at-work/classic-account-tab.spec.ts",
+          "status": "passed",
+          "metadata": {},
+          "suites": [],
+          "attachments": [],
+          "tests": [
+            {
+              "name": "Security page is displayed on the account information page",
+              "status": "passed",
+              "startTime": "2022-07-07T17:32:56.939Z",
+              "duration": 71157,
+              "metadata": {},
+              "attachments": [],
+              "videoTimestamp": 5.939
+            },
+            {
+              "name": "Edit Employee button redirects to the correct page to update the number of employees",
+              "status": "passed",
+              "startTime": "2022-07-07T17:34:08.096Z",
+              "duration": 21498,
+              "metadata": {},
+              "attachments": [],
+              "videoTimestamp": 77.096
+            }
+          ]
+        },
+        {
+          "name": "tests/classic-shield-at-work/classic-enrollment-tab.spec.ts",
+          "status": "passed",
+          "metadata": {},
+          "suites": [],
+          "attachments": [],
+          "tests": [
+            {
+              "name": "Member list is displayed on the enrollment page",
+              "status": "passed",
+              "startTime": "2022-07-07T17:32:56.943Z",
+              "duration": 53924,
+              "metadata": {},
+              "attachments": [],
+              "videoTimestamp": 5.943
+            },
+            {
+              "name": "Enrollment form is displayed on the enrollment page",
+              "status": "passed",
+              "startTime": "2022-07-07T17:33:50.868Z",
+              "duration": 40499,
+              "metadata": {},
+              "attachments": [],
+              "videoTimestamp": 59.868
+            }
+          ]
+        },
+        {
+          "name": "tests/classic-shield-at-work/classic-login.spec.ts",
+          "status": "failed",
+          "metadata": {},
+          "suites": [],
+          "attachments": [],
+          "tests": [
+            {
+              "name": "Login with credentials",
+              "status": "passed",
+              "startTime": "2022-07-07T17:34:29.616Z",
+              "duration": 9195,
+              "metadata": {},
+              "attachments": [],
+              "videoTimestamp": 98.616
+            },
+            {
+              "name": "Type Form Url is displayed after clicking on Sign Up link",
+              "status": "failed",
+              "startTime": "2022-07-07T17:34:38.812Z",
+              "duration": 31025,
+              "metadata": {},
+              "output": "expect(received).toHaveURL(expected)\n\nExpected string: \"https://legalshield.typeform.com/to/lJtBMp?typeform-source=classic.dev-shieldatwork.com\"\nReceived string: \"https://legalshield.typeform.com/to/lJtBMp\"\nCall log:\n  - expect.toHaveURL with timeout 5000ms\n  - waiting for selector \":root\"\n  -   selector resolved to <html lang=\"en\">…</html>\n  -   unexpected value \"https://legalshield.typeform.com/to/lJtBMp\"\n:  undefined\n\nError: expect(received).toHaveURL(expected)\n\nExpected string: \"https://legalshield.typeform.com/to/lJtBMp?typeform-source=classic.dev-shieldatwork.com\"\nReceived string: \"https://legalshield.typeform.com/to/lJtBMp\"\nCall log:\n  - expect.toHaveURL with timeout 5000ms\n  - waiting for selector \":root\"\n  -   selector resolved to <html lang=\"en\">…</html>\n  -   unexpected value \"https://legalshield.typeform.com/to/lJtBMp\"\n\n    at ClassicShieldAtWork.assertTypeFormPageUrl (/Volumes/Sauce/saucectl-runners/sauce-playwright-runner/2.9.0/bundle/__project__/page-objects/classic-shield-at-work/classic-login.page.ts:49:29)\n    at /Volumes/Sauce/saucectl-runners/sauce-playwright-runner/2.9.0/bundle/__project__/tests/classic-shield-at-work/classic-login.spec.ts:16:3\n    ",
+              "attachments": [],
+              "videoTimestamp": 107.812
+            }
+          ]
+        },
+        {
+          "name": "tests/classic-shield-at-work/classic-reports-tab.spec.ts",
+          "status": "passed",
+          "metadata": {},
+          "suites": [],
+          "attachments": [],
+          "tests": [
+            {
+              "name": "Reports page is displayed, Submit button is enabled",
+              "status": "passed",
+              "startTime": "2022-07-07T17:34:31.392Z",
+              "duration": 39525,
+              "metadata": {},
+              "attachments": [],
+              "videoTimestamp": 100.392
+            }
+          ]
+        }
+      ],
+      "attachments": [],
+      "tests": []
+    }
+  ],
+  "metadata": {}
+}
