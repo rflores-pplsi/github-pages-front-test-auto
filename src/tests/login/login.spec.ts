@@ -36,7 +36,7 @@ test('Login by submitting form with Enter key', async ({ page }) => {
 test('Login with username', async ({ page }) => {
   console.log('Test Case: Login with username');
   // Log in with a basic user account with a username
-  await loginPage.login(withUsername.email, withUsername.password);
+  await loginPage.login(withUsername.username, withUsername.password);
   // Confirm that login is successful by asserting the login url
   await loginPage.assertAccountsPlanPageUrl();
 });

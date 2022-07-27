@@ -15,7 +15,7 @@ const envTestHarnessString = EnvironmentUtil.getTestHarnessUrlString();
 export default class UrlsUtils {
   static readonly legalshieldUrls = {
     account: {
-      url: `https://accountsv2.${envUrlString}legalshield.com`,
+      url: `https://accounts.${envUrlString}legalshield.com`,
     },
     login: {
       url: `https://login.${envUrlString}legalshield.com`,

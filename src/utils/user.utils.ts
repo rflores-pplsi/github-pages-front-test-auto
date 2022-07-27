@@ -33,7 +33,7 @@ export const dependentUser = {
   password: process.env[`DEPENDENT_PASSWORD_${env.toUpperCase()}`],
 };
 export const withUsername = {
-  email: process.env[`WITHUSERNAME_EMAIL_${env.toUpperCase()}`],
+  username: process.env[`WITHUSERNAME_USERNAME_${env.toUpperCase()}`],
   password: process.env[`WITHUSERNAME_PASSWORD_${env.toUpperCase()}`],
 };
 export const withoutUsername = {
