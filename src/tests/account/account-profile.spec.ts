@@ -19,6 +19,8 @@ test('Verify the Edit button for Name should be disabled', async ({ page }) => {
 
 // Navigate to the Profile Date of Birth page
 test('Navigate to the Profile Date of Birth page by clicking the Date of Birth Edit button @smoke @visual', async ({ page }) => {
+  test.skip();
+  // TODO: improve reliability by ensuring a protected account is used OR do not use snapshot
   console.log('Test Case: Navigate to the Profile Date of Birth page by clicking the Date of Birth Edit button');
   // Clicking the Date of Birth Edit button
   await accountProfilePage.clickEditDateOfBirthButton();
@@ -34,6 +36,8 @@ test('Navigate to the Profile Date of Birth page by clicking the Date of Birth E
 // Navigate to the Profile Phone Number page
 test('Navigate to the Profile Phone Number page by clicking the Phone Number Edit button @smoke @ visual', async ({ page }) => {
   console.log('Test Case: Navigate to the Profile Phone Number page by clicking the Phone Number Edit button');
+  test.skip();
+  // TODO: improve reliability by ensuring a protected account is used OR do not use snapshot
   // Clicking the Phone Number button
   await accountProfilePage.clickEditPhoneNumberButton();
   // Verify the landing on the Profile Phone Number page
@@ -43,7 +47,7 @@ test('Navigate to the Profile Phone Number page by clicking the Phone Number Edi
       fullPage: true,
     })
   ).toMatchSnapshot('ProfilePhoneNumberPage.png');
-});
+};);
 
 // Edit Profile Address button should be disabled
 test('Verify the Edit button for Address should be disabled', async ({ page }) => {
@@ -55,6 +59,8 @@ test('Verify the Edit button for Address should be disabled', async ({ page }) =
 // Navigate to the Profile Email page
 test('Navigate to the Profile Email Address page by clicking the Email Address Edit button @smoke @visual', async ({ page }) => {
   console.log('Test Case: Navigate to the Profile Email Address page by clicking the Email Address Edit button');
+  test.skip();
+  // TODO: improve reliability by ensuring a protected account is used OR do not use snapshot
   // Clicking the Email button
   await accountProfilePage.clickEditEmailButton();
   // Verify the landing on the Profile Email page
