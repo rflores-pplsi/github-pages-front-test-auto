@@ -8,15 +8,20 @@ test.beforeEach(async ({ page }) => {
   await shieldAtWorkMemberEnrollment.navigateToShieldAtWork();
 });
 
-test('Edit button for contact information should be enabled', async ({ page }) => {
-  // Login with your credentials
-  await shieldAtWorkMemberEnrollment.loginWithCredentials();
-  // Click on Enroll new member button
-  await shieldAtWorkMemberEnrollment.clickEnrollNewMember();
-  // Fill out contact information
-  await shieldAtWorkMemberEnrollment.fillOutContactInformation();
-  // Click on Continue button
+test('Contact information, available plan offerings section, member information and associate selection  are displayed on the member enrollment page', async ({
+  page,
+}) => {
+  await shieldAtWorkMemberEnrollment.navigateToShieldAtWorkMemberEnrollment();
+  await shieldAtWorkMemberEnrollment.fillOutContactInformation(
+    'Test',
+    'Tester',
+    '5555555555',
+    'tester93@gmail.com',
+    '1666 Raleigh',
+    'Dallas',
+    '77494'
+  );
   await shieldAtWorkMemberEnrollment.clickContinueButtonContactInfo();
-  // Verify that Edit button is enabled
   await shieldAtWorkMemberEnrollment.assertEditButton();
+  await shieldAtWorkMemberEnrollment.assertEffectiveDateField();
 });
