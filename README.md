@@ -193,7 +193,7 @@ Example File Structure:
 ## Naming a Page Object Model file
 
 Format: [service name]-[page name]-[sub pagename (optional)].page.ts <br>
-Example: account-profile-phone.page.ts (page object for URL - https://accountsv2.uat-legalshield.com/profile)
+Example: account-profile-phone.page.ts (page object for URL - https://accounts.uat-legalshield.com/profile)
 
 ## Anatomy of a Page Object
 
