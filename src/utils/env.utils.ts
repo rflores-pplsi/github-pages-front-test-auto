@@ -1,3 +1,4 @@
+/* eslint-disable require-jsdoc */
 // import { load_dotenv } from 'dotenv';
 require('dotenv').config();
 
@@ -41,6 +42,23 @@ class EnvironmentUtil {
         break;
     }
     return envUrlString;
+  }
+
+  getWalsEnvUrlString(): any {
+    let envWalsUrlString = null;
+    const env = this.getEnv();
+    switch (env) {
+      case 'dev':
+        envWalsUrlString = 'dev.';
+        break;
+      case 'uat':
+        envWalsUrlString = 'stage.';
+        break;
+      case 'prod':
+        envWalsUrlString = '';
+        break;
+    }
+    return envWalsUrlString;
   }
   /**
    *

@@ -6,6 +6,7 @@ require('dotenv').config();
 const envUrlString = EnvironmentUtil.getEnvUrlString();
 const envLaunchUrlString = EnvironmentUtil.getLaunchUrlString();
 const envTestHarnessString = EnvironmentUtil.getTestHarnessUrlString();
+const envWalsUrlString = EnvironmentUtil.getWalsEnvUrlString();
 
 /**
  *
@@ -123,12 +124,15 @@ export default class UrlsUtils {
   };
 
   static readonly walsUrls = {
-    devUrl: {
-      url: ' https://lspro.dev.wearelegalshield.com/launch',
+    walsUrl: {
+      url: ' https://lspro.' + envWalsUrlString + 'wearelegalshield.com',
     },
-    uatUrl: {
-      url: 'https://lspro.stage.wearelegalshield.com/launch',
-    },
+    // uatUrl: {
+    //   url: 'https://lspro.stage.wearelegalshield.com/launch',
+    // },
+    // prodUrl: {
+    //   url: 'https://lspro.wearelegalshield.com/launch',
+    // },
   };
 
   static readonly channelsUrls = {

@@ -1,10 +1,10 @@
 apiVersion: v1alpha
 kind: playwright
 defaults:
-  mode: sauce
+  mode: docker
 sauce:
   region: us-west-1
-  concurrency: 1
+  concurrency: 2
   metadata:
     tags:
       - e2e
@@ -17,10 +17,10 @@ playwright:
 suites:
 - name: Abdel QA Maintenance List chromium
   mode: sauce
-  platformName: windows 11
+  platformName: Windows 11
   params:
     browserName: "chromium"
-  testMatch: /login/login.spec.ts/
+  testMatch: [/login/login.spec.ts/]
 # - name: 'Abdel group-enrollment chromium'
 #   mode: sauce
 #   platformName: windows 10
@@ -48,4 +48,4 @@ suites:
 rootDir: .\
 docker:
   fileTransfer: copy
-  image: saucelabs/stt-playwright-node:1.22.2
+  image: playwright:v1.16.2-focal

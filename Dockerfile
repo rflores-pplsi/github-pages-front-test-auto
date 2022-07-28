@@ -1,14 +1,22 @@
-# pull official base image
-FROM node:16.16.0 as build-env
+
+# pull playwright official base image
+FROM  mcr.microsoft.com/playwright:v1.16.2-focal as build-env
 # set working directory
-WORKDIR /app
-COPY . ./
-# add app
-RUN npm ci --ignore-scripts
-FROM node:16.16.0
-# Move over published app
-WORKDIR /app
-COPY --from=build-env /app .
-# start app
-WORKDIR /app
-CMD ["npm", "start"]
+WORKDIR /src
+# add code
+COPY . /src/ /src/
+COPY package.json /src/
+COPY playwright.config.ts /src/
+# add dependencies
+RUN npm install
+# add webdrivres
+RUN npx playwright install
+# listing port
+EXPOSE 80
+
+From mcr.microsoft.com/playwright:v1.16.2-focal
+FROM   build-env
+# Move over published code
+WORKDIR /src
+COPY --from=build-env /src/ .
+CMD [ "npx", "playwright", "test","src/tests/qa-maintenance-list", "--reporter=html" ]

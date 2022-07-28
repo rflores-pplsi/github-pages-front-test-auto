@@ -1,25 +1,21 @@
-const path = require('path');
-
 module.exports = {
   entry: './src/index.ts',
-  mode: process.env.NODE_ENV || 'development',
+  output: {
+    path: __dirname + '/dist/',
+    filename: 'bundle.js',
+    publicPath: '/',
+  },
+  devServer: {
+    static: './dist',
+  },
+  mode: 'development',
   module: {
     rules: [
       {
-        test: /\.ts$/,
-        use: 'ts-loader',
-        include: [path.resolve(__dirname, 'src')],
-        exclude: /node_modules/,
+        test: /\.[tj]sx?$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: 'ts-loader',
       },
     ],
-  },
-  devtool: false,
-  resolve: {
-    extensions: ['.ts', '.js'],
-  },
-  output: {
-    publicPath: 'public',
-    filename: 'bundle.js',
-    path: path.resolve(__dirname, 'public'),
   },
 };
