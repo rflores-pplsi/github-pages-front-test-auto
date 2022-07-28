@@ -1,6 +1,4 @@
 import { expect, BrowserContext, Page } from '@playwright/test';
-import * as dotenv from 'dotenv';
-dotenv.config();
 
 let context: BrowserContext;
 

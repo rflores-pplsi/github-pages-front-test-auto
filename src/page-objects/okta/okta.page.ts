@@ -61,7 +61,7 @@ export class OktaPage extends LegalshieldTestHarnessMenuPage {
   navigateToPlanalyzerCsrCheckoutOktaLogin = async (): Promise<void> => {
     console.log(' - loginPage.navigateToPlanalyzerSearchOktaLogin');
     // Navigate to Okta
-    await this.goTo(UrlsUtils.legalshieldInternalUrls.paralyzer_csr_checkout.url);
+    await this.goTo(UrlsUtils.legalshieldInternalUrls.planalyzer_csr_checkout.url);
     // Wait for page to finish loading
     await this.page.waitForLoadState('networkidle');
   };
