@@ -29,7 +29,6 @@ test('Edit Phone Number by clicking the Phone Edit button', async ({ page }) => 
   // Edit Phone number Text Box
   await accountProfilePhonePage.editPhoneNumberFun('(666) 555-4444', '(771) 777-7777');
   // Verify the Phone Number is updated
-  await page.pause();
   await accountProfilePhonePage.assertProfilePhoneNumberTxtBox('(771) 777-7777');
 });
 
