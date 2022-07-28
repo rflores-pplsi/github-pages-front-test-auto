@@ -126,11 +126,13 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   };
 
   completeBusinessInfoForm = async (): Promise<void> => {
-    await this.enterBusinessName('test business');
-    await this.enterIncorporationMonth('01');
-    await this.enterIncorporationDay('01');
-    await this.enterIncorporationYear('2020');
-    await this.enterTaxId('123456789');
+    if (await this.page.isVisible(txtBusinessName)) {
+      await this.enterBusinessName('test business');
+      await this.enterIncorporationMonth('01');
+      await this.enterIncorporationDay('01');
+      await this.enterIncorporationYear('2020');
+      await this.enterTaxId('123456789');
+    }
   };
 
   /**

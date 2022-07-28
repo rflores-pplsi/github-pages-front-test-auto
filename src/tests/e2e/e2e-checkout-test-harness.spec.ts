@@ -30,6 +30,7 @@ for (const tc of legalshieldTestHarnessData.filter((tc) => tc.disabled == false)
     await checkoutConfirmationPage.assertAllProductNamesAndCosts(tc.productNamesAndCosts);
     await checkoutConfirmationPage.assertMonthlyLabelAndTotal(tc.monthlyTotal);
     // Save and continue to the Payment Page
+    await checkoutConfirmationPage.completeBusinessInfoForm();
     await checkoutConfirmationPage.clickSaveAndContinueButton();
     await checkoutConfirmationPage.captureOrderSummaryWithoutTier();
     // Payment Assertions

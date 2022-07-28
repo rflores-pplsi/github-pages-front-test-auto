@@ -21,8 +21,9 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
     console.log(' - legalshieldTestHarnessMenuPage.addProducts');
     for (const pn of productNamesAndCosts) {
       // TODO: Loop through productNames and click on the button associated with them as many times as needed
+
       await this.clickProductButton(pn[0]);
-      if (pn.includes('Small Business')) {
+      if (pn[0].includes('Small Business')) {
         // Complete the questionairre with nos
         await this.completeQualifyingQuestionairreWithNos();
       }
@@ -40,7 +41,7 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
   // ========================== Click Methods ==============================
 
   clickProductButton = async (productName: string) => {
-    console.log(' - legalshieldTestHarnessMenuPage.clickProductButton');
+    console.log(' - legalshieldTestHarnessMenuPage.clickProductButton - ' + productName);
     await this.clickOnElement(`//div[contains(@class,"plan-layout")]//h1[text()="${productName}"]/following-sibling::a`);
     await this.page.waitForLoadState('domcontentloaded');
   };

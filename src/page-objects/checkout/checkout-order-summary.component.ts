@@ -133,7 +133,6 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
     console.log(' - checkoutOrderSummaryComponent.captureOrderSummaryRowWithoutTier');
     const supplementNameText = await this.page.locator(txtSupplementNames).nth(i).innerText();
     const supplementCostText = await this.page.locator(txtSupplementCosts).nth(i).innerText();
-    console.log(supplementNameText, supplementCostText);
     const supplementRow = new OrderSummaryRowWithoutTier(supplementNameText, supplementCostText);
     return supplementRow;
   };
