@@ -8,9 +8,7 @@ test.beforeEach(async ({ page }) => {
   await shieldAtWorkMemberEnrollment.navigateToShieldAtWork();
 });
 
-test('Contact information, available plan offerings section, member information and associate selection  are displayed on the member enrollment page', async ({
-  page,
-}) => {
+test('Contact information, available plan offerings section, member information  are displayed on the member enrollment page', async ({ page }) => {
   await shieldAtWorkMemberEnrollment.navigateToShieldAtWorkMemberEnrollment();
   await shieldAtWorkMemberEnrollment.fillOutContactInformation(
     'Test',
@@ -24,4 +22,10 @@ test('Contact information, available plan offerings section, member information 
   await shieldAtWorkMemberEnrollment.clickContinueButtonContactInfo();
   await shieldAtWorkMemberEnrollment.assertEditButton();
   await shieldAtWorkMemberEnrollment.assertEffectiveDateField();
+  await shieldAtWorkMemberEnrollment.selectEffectiveDate();
+  await shieldAtWorkMemberEnrollment.selectPlan();
+  await shieldAtWorkMemberEnrollment.clickContinueButtonPlanOfferings();
+  await shieldAtWorkMemberEnrollment.selectDateOfBirth();
+  await shieldAtWorkMemberEnrollment.selectSSN();
+  await shieldAtWorkMemberEnrollment.assertFamilyMemberSectionIsDisplayed();
 });
