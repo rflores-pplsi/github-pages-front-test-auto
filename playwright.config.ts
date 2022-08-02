@@ -13,10 +13,10 @@ const config: PlaywrightTestConfig = {
         screenshot: 'on',
         video: 'on',
         trace: 'on',
-        viewport: {
-          width: 1250,
-          height: 1300,
-        },
+        // viewport: {
+        //   width: 1250,
+        //   height: 1300,
+        // },
       },
     },
     // {
@@ -29,7 +29,7 @@ const config: PlaywrightTestConfig = {
     // },
   ],
   reporter: [['dot'], ['json', { outputFile: 'test-result.json' }], ['html', { open: 'always' }]],
-  retries: 2,
+  retries: 1,
   // setting workers to '1' disables parallel running, workers can also be set at runtime in the command line
   workers: 1,
 };

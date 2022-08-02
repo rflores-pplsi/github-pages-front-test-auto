@@ -17,6 +17,9 @@ const config: PlaywrightTestConfig = {
           width: 1250,
           height: 1300,
         },
+        extraHTTPHeaders: {
+          Authorization: 'Basic ',
+        },
       },
     },
     // {

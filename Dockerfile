@@ -15,7 +15,6 @@ RUN npx playwright install
 EXPOSE 80
 
 From mcr.microsoft.com/playwright:v1.16.2-focal
-FROM   build-env
 # Move over published code
 WORKDIR /src
 COPY --from=build-env /src/ .

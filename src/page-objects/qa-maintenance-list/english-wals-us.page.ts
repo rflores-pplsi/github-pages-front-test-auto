@@ -33,6 +33,30 @@ const txtZipCode = '[placeholder="Zip Code"]';
 const lnkChange = '//div/a[contains(text(),"Change")]';
 const selectRegion = 'select[name="state_select"]';
 const btnUpdateState = '#edit-submit--3';
+const txtPhoneNumber = '#phone-number';
+const selectPhoneType = '//span[contains(text(),"Phone Type")]';
+const optionPhoneType = '//span[contains(text(),"Mobile")]';
+const txtDateOfBirth = '#date-birth';
+const txtDependentFirstName = '#first-name-dependant-form';
+const txtDependentLastName = '#last-name-dependant-form';
+const txtDependentBDay = '#date-birth-dependant-form';
+const txtDependentEmail = '#dependant-email-start-form';
+const selectFamilyMemberType = '//span[contains(text(),"Family Member Type")]';
+const txtSSN = '#s-security';
+const btnContactInfoContinue = 'button.shared-button.small';
+const rdoButtonUsername = '.mat-radio-container';
+const txtPassword = '#password';
+const txtConfirmPassword = '#confirm-password';
+const btnAssociateAccountContinue = '//button[contains(text(),"Continue")]';
+const rdoCheckByMail = '//mat-radio-button[@id="mat-radio-13"]/label/div[1]';
+const btnCommissionOptionContinue = '//button[contains(text(),"Continue")]';
+const txtNameOnCard = '#cardholder_name';
+const txtCardNumber = '#card_number';
+const txtExpDate = '#expiration_date';
+const txtCVV = '#security_code';
+const btnPurchase = '#savecc';
+const lblWelcome = '//div[@class="confirmation-col col-sm-12 col-tb-12 col-dk-6 confirmation-wrapper wals-content ng-star-inserted"]/h1';
+
 let street: string;
 let city: string;
 let postalCode: string;
@@ -40,7 +64,14 @@ let postalCode: string;
 export class EnglishWalsUSPage extends OktaPage {
   // ========================== Process Methods ============================
 
-  filloutContactInformationForm = async (state: string, email: string, firstName: string, lastName: string): Promise<void> => {
+  filloutContactInformationForm = async (
+    state: string,
+    email: string,
+    firstName: string,
+    lastName: string,
+    phone: string,
+    type: string
+  ): Promise<void> => {
     console.log(' - EnglishWalsUSPage.FilloutContactInformationForm');
     for (const stte of RegionsUtils.usStates.filter((ste) => ste.name == state)) {
       street = stte.validAddress.street;
@@ -56,8 +87,16 @@ export class EnglishWalsUSPage extends OktaPage {
       await this.fillTextBox(txtAddress, street);
       // Fill City
       await this.fillTextBox(txtCity, city);
+      await this.page.keyboard.press('Tab');
       // Fill Zip Code
       await this.fillTextBox(txtZipCode, postalCode);
+      await this.page.keyboard.press('Tab');
+      // Fill Phone Number
+      // await this.page.waitForSelector(txtPhoneNumber);
+      await this.typeTextBox(txtPhoneNumber, phone);
+      // Select a phone type
+      await this.clickOnElement(selectPhoneType);
+      await this.page.click('//span[contains(text(),"' + type + '")]');
     }
   };
   changeStateinformation = async (state: string): Promise<void> => {
@@ -90,7 +129,87 @@ export class EnglishWalsUSPage extends OktaPage {
     // Click on Checkout Button
     await this.clickCheckoutBtn();
   };
+  filloutSecurityAndFamilyCoverageInfo = async (
+    dob: string,
+    ssn: string,
+    depFirst: string,
+    depLast: string,
+    depDob: string,
+    dependent: string,
+    dependentEmail: string
+  ): Promise<void> => {
+    console.log(' - EnglishWalsUSPage.filloutSecurityInfo');
+    // Fill date of birth
+    await this.typeTextBox(txtDateOfBirth, dob);
+    // Fill SSN
+    await this.typeTextBox(txtSSN, ssn);
+    // Fill Dependent First Name
+    await this.typeTextBox(txtDependentFirstName, depFirst);
+    // Fill Dependent Last Name
+    await this.typeTextBox(txtDependentLastName, depLast);
+    // Fill Dependent Date of Birth
+    await this.typeTextBox(txtDependentBDay, depDob);
+    // Select a Family member type
+    await this.clickOnElement(selectFamilyMemberType);
+    await this.page.waitForSelector('//span[contains(text()," ' + dependent + ' ")]');
+    await this.clickOnElement('//span[contains(text()," ' + dependent + ' ")]');
+    if (!this.page.$(txtDependentEmail)) {
+      await this.fillTextBox(txtDependentEmail, dependentEmail);
+    } else {
+      console.log("Dependent's email is not displayed");
+    }
 
+    // Click continue Button
+    // await this.page.keyboard.press('Tab');
+    await this.page.waitForSelector(btnContactInfoContinue);
+    await this.clickOnElement(btnContactInfoContinue);
+  };
+  createAUser = async (pass: string, confirmpass: string): Promise<void> => {
+    console.log(' - EnglishWalsUSPage.createAUser');
+    // Select a username
+    await this.page.waitForSelector(rdoButtonUsername);
+    const radioUsernames = await this.page.$$(rdoButtonUsername);
+    radioUsernames[0].click();
+    await this.page.waitForSelector('//div[contains(text(),"test")]');
+    const usernames = await this.page.$$('//div[contains(text(),"test")]');
+    await this.page.locator('//*[@class="mat-radio-button mat-accent ng-star-inserted"][1]/label/div[2]').screenshot({ path: 'screenshot.png' });
+    console.log(this.page.locator('//*[@class="mat-radio-button mat-accent ng-star-inserted"][1]/label/div[2]').innerHTML());
+    // Enter a password
+    await this.fillTextBox(txtPassword, pass);
+    // Confirm Password
+    await this.fillTextBox(txtConfirmPassword, confirmpass);
+    // click on continue button
+    await this.clickOnElement(btnContactInfoContinue);
+  };
+  commissionOptions = async (): Promise<void> => {
+    console.log(' - EnglishWalsUSPage.commissionOptions');
+    // Check by mail
+    await this.clickOnElement(rdoCheckByMail);
+    // Click on Continue button
+    await this.clickOnElement(btnCommissionOptionContinue);
+  };
+  filloutCreditCardInfo = async (name: string, cardNum: string, expDate: string, cvv: string): Promise<void> => {
+    console.log(' - EnglishWalsUSPage.filloutCreditCardInfo');
+    // Locate an switch to the frame
+    const frmParent = this.page.frameLocator('#payment-method');
+    const frmPayment = frmParent.frameLocator('#paymentMethodFramePsx');
+    // Fill name on card
+    // Fill  Account Number
+    const NameOnCard = frmPayment.locator(txtNameOnCard);
+    await NameOnCard.type(name);
+    // Fill card number
+    const CardNumber = frmPayment.locator(txtCardNumber);
+    await CardNumber.type(cardNum);
+    // Fill Expiration date
+    const ExpDate = frmPayment.locator(txtExpDate);
+    await ExpDate.type(expDate);
+    // Fill security code
+    const Cvv = frmPayment.locator(txtCVV);
+    await Cvv.type(cvv);
+    // Click purchase button
+    const btnPur = frmPayment.locator(btnPurchase);
+    await btnPur.click();
+  };
   // ========================== Navigate Methods ===========================
   navigateToEnglishWalsUSPage = async (): Promise<void> => {
     console.log(' - EnglishWalsUSPage.navigateToEnglishWalsUSPage');
@@ -152,5 +271,13 @@ export class EnglishWalsUSPage extends OktaPage {
     await this.page.waitForSelector(ttlContactInfo);
     await this.assertElementContainsText(ttlContactInfo, 'Contact information');
     console.log('Landed on checkout page');
+  };
+  assertWelcomelabel = async (): Promise<void> => {
+    console.log(' - PrimericaGroupPage.assertContactInformationTxt');
+    // Verify that the user made the purchase
+    await this.page.waitForLoadState();
+    await this.page.waitForSelector(lblWelcome);
+    await this.assertElementContainsText(lblWelcome, 'Welcome to the LegalShield Family!');
+    console.log('Welcome to the LegalShield Family!');
   };
 }
