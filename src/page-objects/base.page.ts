@@ -227,6 +227,12 @@ export class BasePage {
     expect(value1).toEqual(value2);
   };
 
+  /**
+   *
+   *
+   * @param {string} ele
+   * @memberof BasePage
+   */
   assertElementNotOnPage = async (ele: string): Promise<void> => {
     expect(await this.page.$$(ele)).toHaveLength(0);
   };

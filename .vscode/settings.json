@@ -13,8 +13,10 @@
   },
   "terminal.integrated.scrollback": 10000,
   "cSpell.words": [
+    "businesscard",
     "camelcase",
     "checkoutv",
+    "chromedriver",
     "domcontentloaded",
     "endregion",
     "idsca",
@@ -23,7 +25,18 @@
     "legalshield",
     "LSCA",
     "lsus",
+    "networkidle",
     "NITROPACK",
-    "pplsi"
+    "Planalyzer",
+    "pplsi",
+    "reportsbusinessorganizational",
+    "reportscommissions",
+    "saucectl",
+    "signin",
+    "wals",
+    "wdio",
+    "webdriverio",
+    "wpengine",
+    "zipcodes"
   ]
 }
