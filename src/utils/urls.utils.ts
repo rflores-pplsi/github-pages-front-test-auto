@@ -123,9 +123,10 @@ export default class UrlsUtils {
     },
   };
 
-  static readonly walsUrls = {
-    walsUrl: {
-      url: ' https://lspro.' + envWalsUrlString + 'wearelegalshield.com',
+  static readonly wals = {
+    urls: {
+      urlEnUS: ' https://lspro.' + envWalsUrlString + 'wearelegalshield.com',
+      urlSpUS: ' https://lspro.' + envWalsUrlString + 'somoslegalshield.com',
     },
     // uatUrl: {
     //   url: 'https://lspro.stage.wearelegalshield.com/launch',
@@ -156,8 +157,8 @@ export default class UrlsUtils {
     },
   };
   static readonly groupsUrls = {
-    urlBestMoneyMovers: `https://www.${envUrlString}shieldbenefits.com/bestmoneymoves/overview`,
+    urlBestMoneyMovers: `https://www.shieldbenefits.com/bestmoneymoves/overview`,
     url1UniversalTrucking: `http://www.legalshield.com/info/1universaltrucking`,
-    urlPrimericaGroup: `http://groups.${envUrlString}legalshield.com/?group=primerica`,
+    urlPrimericaGroup: `http://groups.legalshield.com/?group=primerica`,
   };
 }

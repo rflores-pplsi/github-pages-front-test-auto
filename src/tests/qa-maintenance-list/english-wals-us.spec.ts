@@ -11,7 +11,7 @@ test.beforeEach(async ({ page, request }) => {
   test.slow();
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
-test('English WALS-US', async ({ page }) => {
+test.only('English WALS-US', async ({ page }) => {
   test.slow;
   // Navigate to English-WALS-US page
   await englishWalsUSPage.navigateToEnglishWalsUSPage();
@@ -42,12 +42,12 @@ test('English WALS-US', async ({ page }) => {
   // Verify that the user made the purchase
   await englishWalsUSPage.assertWelcomelabel();
 });
-test.only('English WALS-US API verification', async ({ request }) => {
+test('English WALS-US API verification', async ({ request }) => {
   test.slow;
   const _response = await request.get('https://checkoutv3.uat-legalshield.com/o/v1/orders', {
     headers: {
       Authorization: 'Basic dHR0ZXN0ZnRzdGVzdGx0czpQYXNzd29yZDE=',
     },
   });
-  console.log(await _response);
+  console.log(await _response.json);
 });
