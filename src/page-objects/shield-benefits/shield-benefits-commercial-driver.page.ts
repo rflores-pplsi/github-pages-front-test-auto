@@ -1,4 +1,3 @@
-import { expect } from '@playwright/test';
 import UrlsUtils from '../../utils/urls.utils';
 import { OktaPage } from '../okta/okta.page';
 
@@ -23,7 +22,7 @@ const btnBackToTop: string = 'main > div > div > button > span';
 const btnPricing: string = '#root > div > nav > div > div > ul > li:nth-child(7) > a';
 const btnState: string = '#root  div.mr-custom  div:nth-child(6)';
 const btnPaymentFrequency: string = '//p[contains (.,"Payment frequency")]/following-sibling::div//button';
-const btnViewDetails: string = '#root  div:nth-child(3) div:nth-child(1) > div > div > div.groupTokenCardLeft > a';
+const btnViewDetails: string = '#root div:nth-child(3) > div > div:nth-child(1) > div > div > div.groupTokenCardLeft > a > img';
 const lnkMemberPerks: string = ' section div:nth-child(1) > div > p > a';
 const btnSelect: string = '#root div.filters.mt-5.mb-5.false > div > div.mr-custom > div > button';
 
@@ -189,13 +188,13 @@ export class ShieldBenefitsCommercialDriverPage extends OktaPage {
   assertButtonViewDetailsIsDisplayed = async (): Promise<void> => {
     console.log(' - ShieldBenefitsCommercialDriverPage.assertButtonViewDetailsIsVisible');
     // Confirm that View Details button is displayed
-    const locator = this.page.locator(btnViewDetails);
-    await expect(locator).toBeVisible();
+    await this.page.waitForSelector(btnViewDetails);
   };
 
   assertLinkMemberPerksIsDisplayed = async (): Promise<void> => {
     console.log(' - ShieldBenefitsCommercialDriverPage.assertLinkMemberPerksIsDisplayed');
     // Confirm that Member Perks link is displayed
+    await this.page.waitForLoadState('networkidle');
     await this.assertElementIsVisible(lnkMemberPerks);
   };
 }
