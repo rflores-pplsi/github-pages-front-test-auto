@@ -19,6 +19,13 @@ const txtSearch: string = '[placeholder="Search by name or group number"]';
 const btnSearch: string = '[id="searchButton"]';
 const txtGroup: string = '#root  .lsux-container--flex-items-center.mb-2 > h3';
 const txtEffectiveDate: string = '[name="effectiveDate"]';
+const btnPlan: string =
+  '#root > div > div > div:nth-child(1) > div > div > div > div:nth-child(2) > form:nth-child(2) > div.lsux-container.lsux-container--white > div.mb-4._2nNbq5j54sbQ6MAihmSQg3 > div > div > div._3XfumkavlVQM3FWcqB9M-R > div:nth-child(1) > div > div > div.tEEXP1wEkyj2EVCZvuvw8 > div._2E_HYKNfYafGOziR-TaXG_ > label > div';
+const btnContinuePlanOfferings: string =
+  '#root > div > div > div:nth-child(1) > div > div > div > div:nth-child(2) > form:nth-child(2) > div._1yvcEtEbZqaqWyKqhjijeG > button';
+const txtDateOfBirth: string = '[name="birthDay"]';
+const txtSSN: string = '[name="ssn"]';
+const txtFamilyMembers: string = '.lsux-row.plain.children1.pl-4.mb-0.pb-6.pr-5.family-member-heading-row > h4';
 
 /**
  * @export
@@ -85,11 +92,33 @@ export class ShieldAtWorkMemberEnrollment extends LsWorkLoginPage {
   };
 
   selectEffectiveDate = async (): Promise<void> => {
-    console.log(' -  ShieldAtWorkMemberEnrollment.groupSearchByGroupNumber');
+    console.log(' -  ShieldAtWorkMemberEnrollment.selectEffectiveDate');
+    await this.page.waitForSelector(txtEffectiveDate);
     // Select an effective date
-    const today = new Date();
-    const date = today.getMonth() + 1 + '/' + today.getDate() + '/' + today.getFullYear();
-    await this.page.fill(txtEffectiveDate, date, { timeout: 180000 });
+    // const today = new Date();
+    // const date = today.getMonth() + 1 + '/' + today.getDay() + '/' + today.getFullYear();
+    await this.page.type(txtEffectiveDate, '09102022');
+  };
+
+  selectDateOfBirth = async (): Promise<void> => {
+    console.log(' -  ShieldAtWorkMemberEnrollment.selectDateOfBirth');
+    await this.page.waitForSelector(txtDateOfBirth);
+    // Select date of birth
+    await this.page.type(txtDateOfBirth, '01031990');
+  };
+
+  selectSSN = async (): Promise<void> => {
+    console.log(' -  ShieldAtWorkMemberEnrollment.selectSSN');
+    await this.page.waitForSelector(txtSSN);
+    // Select SSN
+    await this.page.type(txtSSN, '111111111');
+  };
+
+  selectPlan = async (): Promise<void> => {
+    console.log(' -  ShieldAtWorkMemberEnrollment.selectPlan');
+    // Select Plan
+    await this.waitForElementToBeVisible(btnPlan);
+    await this.clickOnElement(btnPlan);
   };
 
   // ========================== Navigate Methods ===========================
@@ -119,6 +148,16 @@ export class ShieldAtWorkMemberEnrollment extends LsWorkLoginPage {
     await this.clickOnElement(btnContinueContactInfo);
     // wait for page to load plans
     await this.page.waitForLoadState('networkidle', { timeout: 30000 });
+    await this.page.waitForSelector(txtEffectiveDate);
+  };
+
+  clickContinueButtonPlanOfferings = async (): Promise<void> => {
+    // Click on Continue button
+    console.log(' - ShieldAtWorkMemberEnrollment .clickContinueButtonPlanOfferings');
+    await this.waitForElementToBeVisible(btnContinuePlanOfferings);
+    await this.clickOnElement(btnContinuePlanOfferings);
+    // wait for page to load plans
+    await this.page.waitForLoadState('networkidle', { timeout: 30000 });
   };
 
   // ========================== Assertion Methods ==========================
@@ -133,5 +172,11 @@ export class ShieldAtWorkMemberEnrollment extends LsWorkLoginPage {
     console.log(' - ShieldAtWorkMemberEnrollment .assertEffectiveDateField');
     // Verify that Edit button is enabled
     await this.assertElementIsVisible(txtEffectiveDate);
+  };
+
+  assertFamilyMemberSectionIsDisplayed = async (): Promise<void> => {
+    console.log(' - ShieldAtWorkMemberEnrollment .assertFamilyMemberSectionIsDisplayed');
+    // Confirm family section is displayed
+    await this.assertElementIsVisible(txtFamilyMembers);
   };
 }

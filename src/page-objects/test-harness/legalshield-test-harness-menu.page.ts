@@ -17,12 +17,13 @@ const btnAddToCart: string = '#add-to-cart-btn';
 export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartComponent {
   // ========================== Process Methods ============================
 
-  addProducts = async (productNames: Array<string>) => {
+  addProducts = async (region: string, productNamesAndCosts: Array<Array<string>>) => {
     console.log(' - legalshieldTestHarnessMenuPage.addProducts');
-    for (const pn of productNames) {
+    for (const pn of productNamesAndCosts) {
       // TODO: Loop through productNames and click on the button associated with them as many times as needed
-      await this.clickProductButton(pn);
-      if (pn.includes('Small Business')) {
+
+      await this.clickProductButton(pn[0]);
+      if (pn[0].includes('Small Business')) {
         // Complete the questionairre with nos
         await this.completeQualifyingQuestionairreWithNos();
       }
@@ -36,20 +37,11 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
     await this.clickNonProfitNoRadioButton();
     await this.clickAddToCartButton();
   };
-
-  /**
-   * @param {string} region
-   * @memberof LegalshieldTestHarnessMenuPage
-   */
-  selectTestHarnessRegion = async (region: string) => {
-    console.log(' - legalshieldTestHarnessMenuPage.selectTestHarnessRegion');
-    await this.selectFromDropDownMenu(ddlRegionSelector, region);
-  };
   // ========================== Navigate Methods ===========================
   // ========================== Click Methods ==============================
 
   clickProductButton = async (productName: string) => {
-    console.log(' -legalshieldCanadaTestHarnessMenuPage.clickProductButton');
+    console.log(' - legalshieldTestHarnessMenuPage.clickProductButton - ' + productName);
     await this.clickOnElement(`//div[contains(@class,"plan-layout")]//h1[text()="${productName}"]/following-sibling::a`);
     await this.page.waitForLoadState('domcontentloaded');
   };

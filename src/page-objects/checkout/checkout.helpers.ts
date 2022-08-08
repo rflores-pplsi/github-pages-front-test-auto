@@ -120,16 +120,16 @@ export class OrderSummaryRowWithoutCost {
  */
 export class OrderSummaryRowWithoutTier {
   planName: string | null;
-  costName: string | null;
+  planCost: string | null;
 
   /**
    * Creates an instance of OrderSummaryRowWithoutCost.
    * @param {(string | null)} planName
-   * @param {(string | null)} costName
+   * @param {(string | null)} planCost
    * @memberof OrderSummaryRowWithoutCost
    */
-  constructor(planName: string | null, costName: string | null) {
+  constructor(planName: string | null, planCost: string | null) {
     this.planName = planName;
-    this.costName = costName;
+    this.planCost = planCost;
   }
 }

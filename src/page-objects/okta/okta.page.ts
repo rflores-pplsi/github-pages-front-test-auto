@@ -5,7 +5,7 @@ import { LegalshieldTestHarnessMenuPage } from '../../page-objects/test-harness/
 // require('dotenv').config;
 
 // ========================== Selectors ==========================
-const txtEmailAddres: string = '#okta-signin-username';
+const txtEmailAddress: string = '#okta-signin-username';
 const btnSignIn: string = '#okta-signin-submit';
 const txtPassword: string = '#okta-signin-password';
 
@@ -25,7 +25,7 @@ export class OktaPage extends LegalshieldTestHarnessMenuPage {
     const password = oktaUser.password;
     if (emailOrUsername && password) {
       // Enter email
-      await this.fillTextBox(txtEmailAddres, emailOrUsername);
+      await this.fillTextBox(txtEmailAddress, emailOrUsername);
       // Enter password into input
       await this.fillTextBox(txtPassword, password);
       // Click on Sign In to submit login form
@@ -39,7 +39,7 @@ export class OktaPage extends LegalshieldTestHarnessMenuPage {
   loginThroughOktaGroupEnrollment = async (): Promise<void> => {
     console.log(' - OktaPage.oktaLoginGroupEnrollment');
     // Enter email
-    await this.fillTextBox(txtEmailAddres, 'qatesting@legalshieldcorp.com ');
+    await this.fillTextBox(txtEmailAddress, 'qatesting@legalshieldcorp.com ');
     // Enter password into input
     await this.fillTextBox(txtPassword, 'fJ733ye8qb&q');
     // Click on Sign In to submit login form
