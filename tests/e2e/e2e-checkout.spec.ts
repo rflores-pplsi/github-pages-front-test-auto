@@ -79,7 +79,7 @@ for (const tc of idshieldCanadaData.filter((tc) => tc.run == true)) {
   });
 }
 
-// Legal Shield
+// Legalshield selling Legal Plan in MA
 for (const tc of legalshieldUsData.filter((tc) => tc.run == true)) {
   test(`${tc.testCaseName} - ${tc.region} @LegalShield @MA @Massachusetts`, async ({ page }) => {
     console.log(`Test Case: ${tc.testCaseName} - ${tc.region}`);

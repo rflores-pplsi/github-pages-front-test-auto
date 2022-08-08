@@ -10,23 +10,17 @@ test.beforeEach(async ({ page }) => {
   await accountProfilePage.navigateToProfilePage();
 });
 
-// Navigate to the Profile Name page
-// Added .fixme since the Edit Name button is now disabled
-test.fixme('Navigate to the Profile Name page by clicking the Name Edit button', async ({ page }) => {
-  console.log('Test Case: Navigate to the Profile Name page by clicking the Name Edit button');
-  // Clicking the Name Edit button
-  await accountProfilePage.clickEditNameButton();
+// Edit Profile Name button should be disabled
+test('Verify the Edit button for Name should be disabled', async ({ page }) => {
+  console.log('Test Case: Verify the Edit button for Name should be disabled');
   // Verify the landing on the Profile Name page
-  await accountProfilePage.assertProfileNamePage();
-  expect(
-    await page.screenshot({
-      fullPage: true,
-    })
-  ).toMatchSnapshot('ProfileNamePage.png');
+  await accountProfilePage.assertNameEditButtonIsDisabled();
 });
 
 // Navigate to the Profile Date of Birth page
 test('Navigate to the Profile Date of Birth page by clicking the Date of Birth Edit button @smoke @visual', async ({ page }) => {
+  test.skip();
+  // TODO: improve reliability by ensuring a protected account is used OR do not use snapshot
   console.log('Test Case: Navigate to the Profile Date of Birth page by clicking the Date of Birth Edit button');
   // Clicking the Date of Birth Edit button
   await accountProfilePage.clickEditDateOfBirthButton();
@@ -42,6 +36,8 @@ test('Navigate to the Profile Date of Birth page by clicking the Date of Birth E
 // Navigate to the Profile Phone Number page
 test('Navigate to the Profile Phone Number page by clicking the Phone Number Edit button @smoke @ visual', async ({ page }) => {
   console.log('Test Case: Navigate to the Profile Phone Number page by clicking the Phone Number Edit button');
+  test.skip();
+  // TODO: improve reliability by ensuring a protected account is used OR do not use snapshot
   // Clicking the Phone Number button
   await accountProfilePage.clickEditPhoneNumberButton();
   // Verify the landing on the Profile Phone Number page
@@ -51,26 +47,20 @@ test('Navigate to the Profile Phone Number page by clicking the Phone Number Edi
       fullPage: true,
     })
   ).toMatchSnapshot('ProfilePhoneNumberPage.png');
-});
+};);
 
-// Navigate to the Profile Address page
-// Added .fixme since the Edit Address button is now disabled
-test.fixme('Navigate to the Profile Address page by clicking the Address Edit button', async ({ page }) => {
-  console.log('Test Case: Navigate to the Profile Address page by clicking the Address Edit button');
-  // Clicking the Address button
-  await accountProfilePage.clickEditAddressButton();
+// Edit Profile Address button should be disabled
+test('Verify the Edit button for Address should be disabled', async ({ page }) => {
+  console.log('Test Case: Verify the Edit button for Address should be disabled');
   // Verify the landing on the Profile Address page
-  await accountProfilePage.assertProfileAddressPageUrl();
-  expect(
-    await page.screenshot({
-      fullPage: true,
-    })
-  ).toMatchSnapshot('ProfileAddressPage.png');
+  await accountProfilePage.assertAddressButtonIsDisabled();
 });
 
 // Navigate to the Profile Email page
 test('Navigate to the Profile Email Address page by clicking the Email Address Edit button @smoke @visual', async ({ page }) => {
   console.log('Test Case: Navigate to the Profile Email Address page by clicking the Email Address Edit button');
+  test.skip();
+  // TODO: improve reliability by ensuring a protected account is used OR do not use snapshot
   // Clicking the Email button
   await accountProfilePage.clickEditEmailButton();
   // Verify the landing on the Profile Email page
