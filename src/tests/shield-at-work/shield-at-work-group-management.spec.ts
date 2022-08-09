@@ -9,8 +9,13 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('Search group by group number', async ({ page }) => {
-  // Type in the search field 111452 group number and click on Search button
-  await shieldAtWorkGroupManagement.groupSearchByGroupNumber();
-  // Verify that the group is displayed on the group management page
+  await shieldAtWorkGroupManagement.groupSearchByGroupNumber('111452');
   await shieldAtWorkGroupManagement.assertTextGroup();
+});
+
+test('Home button takes to the group management page', async ({ page }) => {
+  await shieldAtWorkGroupManagement.groupSearchByGroupNumber('111452');
+  await shieldAtWorkGroupManagement.clickNameIcon();
+  await shieldAtWorkGroupManagement.clickBtnHome();
+  await shieldAtWorkGroupManagement.assertGroupManagementPageIsDisplayed();
 });
