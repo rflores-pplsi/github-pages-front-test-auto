@@ -24,11 +24,11 @@ const chkbNo = '#no-bdl';
 const btnContinue = '#builder_modal_checkout_btn';
 const btnCheckout = '#minicart_btn_checkout';
 const ttlContactInfo = '//h2[contains(text(),"Contact information")]';
-const txtEmail = '[placeholder="Email"]';
+const txtEmail = '#email-start-form';
 const txtFirstName = 'input[name="first-name"]';
 const txtLastName = 'input[name="last-name"]';
-const txtAddress = '[placeholder="Address"]';
-const txtCity = '[placeholder="City"]';
+const txtAddress = '#address';
+const txtCity = '#city';
 const txtZipCode = '[placeholder="Zip Code"]';
 const lnkChange = '//div/a[contains(text(),"Change")]';
 const selectRegion = 'select[name="state_select"]';
@@ -56,7 +56,11 @@ const txtExpDate = '#expiration_date';
 const txtCVV = '#security_code';
 const btnPurchase = '#savecc';
 const lblWelcome = '//div[@class="confirmation-col col-sm-12 col-tb-12 col-dk-6 confirmation-wrapper wals-content ng-star-inserted"]/h1';
-
+const rdoBankDraft = '//form[@id="cc_form"]/div[2]/div/div/input';
+const txtNameOfAccountHolder = '#accountholder_name';
+const txtRoutingNumber = '#routing_number';
+const txtAccountNumber = '#account_number';
+const rdoCheckingAccount = '//input[ @value="Checking"]';
 let street: string;
 let city: string;
 let postalCode: string;
@@ -103,6 +107,7 @@ export class EnglishWalsUSPage extends OktaPage {
     console.log(' - EnglishWalsUSPage.ChangeStateinformation');
     // Click on change state
     await this.page.waitForLoadState;
+    await this.page.locator(lnkChange).isVisible;
     await this.page.locator(lnkChange).click({ force: true });
     // Select a state
     await this.page.waitForSelector(selectRegion);
@@ -209,6 +214,33 @@ export class EnglishWalsUSPage extends OktaPage {
     // Click purchase button
     const btnPur = frmPayment.locator(btnPurchase);
     await btnPur.click();
+  };
+  filloutBankAccountInfo = async (name: string, routingNum: string, accountNumber: string): Promise<void> => {
+    console.log(' - EnglishWalsUSPage.filloutBankAccountInfo');
+    // Locate an switch to the frame
+    await this.page.waitForLoadState();
+    const frmParent = this.page.frameLocator('#payment-method');
+    const frmPayment = frmParent.frameLocator('#paymentMethodFramePsx');
+    // Check Bank Draft name
+    const bankDraft = frmPayment.locator(rdoBankDraft);
+    await bankDraft.click();
+    // Fill  Name of account holder
+    const NameOfAccountHolder = frmPayment.locator(txtNameOfAccountHolder);
+    await NameOfAccountHolder.type(name);
+    // Fill Routing number
+    const RoutingNumber = frmPayment.locator(txtRoutingNumber);
+    await RoutingNumber.type(routingNum);
+    // Fill Account Number
+    const AccountNumber = frmPayment.locator(txtAccountNumber);
+    await AccountNumber.type(accountNumber);
+    // Check Checking Account
+    const CheckingAccount = frmPayment.locator(rdoCheckingAccount);
+    await CheckingAccount.click();
+    // Click purchase button
+    await this.page.keyboard.press('Enter');
+    await this.page.keyboard.press('Enter');
+    const btnPur = frmPayment.locator(btnPurchase);
+    // await btnPur.click();
   };
   // ========================== Navigate Methods ===========================
   navigateToEnglishWalsUSPage = async (): Promise<void> => {

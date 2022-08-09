@@ -1,30 +1,30 @@
 /* eslint-disable no-undef */
 import { test } from '@playwright/test';
-import { EnglishWalsUSPage } from '../../page-objects/qa-maintenance-list/english-wals-us.page';
+import { EnglishWalsCAPage } from '../../page-objects/qa-maintenance-list/english-wals-ca.page';
 // create instance of Page
-let englishWalsUSPage: EnglishWalsUSPage;
+let englishWalsCaPage: EnglishWalsCAPage;
 
 // Setup environment before each test
 test.beforeEach(async ({ page, request }) => {
-  englishWalsUSPage = new EnglishWalsUSPage(page);
+  englishWalsCaPage = new EnglishWalsCAPage(page);
   // test.slow triples the default wait times
   test.slow();
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
 test.only('English WALS-US', async ({ page }) => {
   test.slow;
-  // Navigate to English-WALS-US page
-  await englishWalsUSPage.navigateToEnglishWalsUSPage();
-  // Update the state
-  await englishWalsUSPage.changeStateinformation('Virginia');
+  // Navigate to English-WALS-Ca page
+  await englishWalsCaPage.navigateToEnglishWalsCaPage();
+  // Update the Province
+  await englishWalsCaPage.changeStateinformation('British Columbia');
   // Get Started then pick a plan
-  await englishWalsUSPage.getStartedThenPickAPlan();
+  await englishWalsCaPage.getStartedThenPickAPlan();
   // Verify that  it takes user to checkout
-  await englishWalsUSPage.assertContactInformationTxt();
+  await englishWalsCaPage.assertContactInformationTxt();
   // Fill Contact information form
-  await englishWalsUSPage.filloutContactInformationForm('Virginia', 'enepa20@gmail.com', 'testFt', 'testLt', '5712223333', 'Mobile');
+  await englishWalsCaPage.filloutContactInformationForm('British Columbia', 'enepa20@gmail.com', 'testFt', 'testLt', '5712223333', 'Mobile');
   // Fill Security an Family info form
-  await englishWalsUSPage.filloutSecurityAndFamilyCoverageInfo(
+  await englishWalsCaPage.filloutSecurityAndFamilyCoverageInfo(
     '12121990',
     '111223333',
     'testerDependentFirst',
@@ -34,13 +34,13 @@ test.only('English WALS-US', async ({ page }) => {
     'dependent@gmail.com'
   );
   // Create a User
-  await englishWalsUSPage.createAUser('Password1', 'Password1');
+  await englishWalsCaPage.createAUser('Password1', 'Password1');
   // Select Commission option
-  await englishWalsUSPage.commissionOptions();
+  await englishWalsCaPage.commissionOptions();
   // Fill Credit card form
-  await englishWalsUSPage.filloutBankAccountInfo('testerfirstlast', '103000648', '000000');
+  await englishWalsCaPage.filloutBankAccountInfo('testerfirstlast', '103000648', '000000');
   // Verify that the user made the purchase
-  await englishWalsUSPage.assertWelcomelabel();
+  await englishWalsCaPage.assertWelcomelabel();
 });
 test('English WALS-US API verification', async ({ request }) => {
   test.slow;

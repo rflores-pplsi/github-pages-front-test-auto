@@ -13,17 +13,17 @@ require('dotenv').config;
 
 // ========================== Selectors ==================================
 
-const urlSpanishWalsUSPage = UrlsUtils.wals.urls.urlSpUS;
-const btnConsigueUnPlan = '#block-is-business-builder-plan >> text=CONSIGUE UN PLAN';
+const urlEnglishWalsCaPage = UrlsUtils.wals.urls.urlEnCa;
+const btnGetAPlan = '#block-is-business-builder-plan >> text=GET A PLAN';
 const btnBecomeAssociate = '//span[contains(text(),"Become an Associate")]';
 const lblHomeBusinessSupplement = 'label:has-text("Add Home Business Supplement")';
-const btnPRÓXIMO = '#builder_modal_checkout_btn_continue';
+const btnNext = '#builder_modal_checkout_btn_continue';
 const btnNextWithForm = '#builder_modal_checkout_btn_withform';
 const chkbIndividual = '#individual-bdl';
 const chkbNo = '#no-bdl';
 const btnContinue = '#builder_modal_checkout_btn';
 const btnCheckout = '#minicart_btn_checkout';
-const ttlContactInfo = '//h2[contains(text(),"Información del contacto")]';
+const ttlContactInfo = '//h2[contains(text(),"Contact information")]';
 const txtEmail = '#email-start-form';
 const txtFirstName = 'input[name="first-name"]';
 const txtLastName = 'input[name="last-name"]';
@@ -34,21 +34,22 @@ const lnkChange = '//div/a[contains(text(),"Change")]';
 const selectRegion = 'select[name="state_select"]';
 const btnUpdateState = '#edit-submit--3';
 const txtPhoneNumber = '#phone-number';
-const selectPhoneType = '//span[contains(text(),"Tipo de telefono")]';
-const optionPhoneType = '//span[contains(text()," Móvil ")]';
+const selectPhoneType = '//span[contains(text(),"Phone Type")]';
+const optionPhoneType = '//span[contains(text(),"Mobile")]';
 const txtDateOfBirth = '#date-birth';
 const txtDependentFirstName = '#first-name-dependant-form';
 const txtDependentLastName = '#last-name-dependant-form';
 const txtDependentBDay = '#date-birth-dependant-form';
 const txtDependentEmail = '#dependant-email-start-form';
-const selectFamilyMemberType = '//span[contains(text(),"Tipo de miembro de la familia")]';
+const selectFamilyMemberType = '//span[contains(text(),"Family Member Type")]';
 const txtSSN = '#s-security';
 const btnContactInfoContinue = 'button.shared-button.small';
 const rdoButtonUsername = '.mat-radio-container';
 const txtPassword = '#password';
 const txtConfirmPassword = '#confirm-password';
+const btnAssociateAccountContinue = '//button[contains(text(),"Continue")]';
 const rdoCheckByMail = '//mat-radio-button[@id="mat-radio-13"]/label/div[1]';
-const btnCommissionOptionContinue = '//button[contains(text()," Continuar ")]';
+const btnCommissionOptionContinue = '//button[contains(text(),"Continue")]';
 const txtNameOnCard = '#cardholder_name';
 const txtCardNumber = '#card_number';
 const txtExpDate = '#expiration_date';
@@ -64,7 +65,7 @@ let street: string;
 let city: string;
 let postalCode: string;
 
-export class SpanishWalsUSPage extends OktaPage {
+export class EnglishWalsCAPage extends OktaPage {
   // ========================== Process Methods ============================
 
   filloutContactInformationForm = async (
@@ -75,7 +76,7 @@ export class SpanishWalsUSPage extends OktaPage {
     phone: string,
     type: string
   ): Promise<void> => {
-    console.log(' - SpanishWalsUSPage.FilloutContactInformationForm');
+    console.log(' - EnglishWalsCaPage.FilloutContactInformationForm');
     for (const stte of RegionsUtils.usStates.filter((ste) => ste.name == state)) {
       street = stte.validAddress.street;
       city = stte.validAddress.city;
@@ -103,9 +104,10 @@ export class SpanishWalsUSPage extends OktaPage {
     }
   };
   changeStateinformation = async (state: string): Promise<void> => {
-    console.log(' - SpanishWalsUSPage.ChangeStateinformation');
+    console.log(' - EnglishWalsCaPage.ChangeStateinformation');
     // Click on change state
     await this.page.waitForLoadState;
+    await this.page.locator(lnkChange).isVisible;
     await this.page.locator(lnkChange).click({ force: true });
     // Select a state
     await this.page.waitForSelector(selectRegion);
@@ -115,10 +117,12 @@ export class SpanishWalsUSPage extends OktaPage {
   };
 
   getStartedThenPickAPlan = async (): Promise<void> => {
-    console.log(' - SpanishWalsUSPage.getStartedThenPickAPlan');
-    await this.clickConsigueUnPlanBtn();
+    console.log(' - EnglishWalsCaPage.getStartedThenPickAPlan');
+    await this.clickGetStartedBtn();
+    // Click on label Add Home Business Supplement
+    await this.selectHomeBusinessSupplement();
     // Click on Next button
-    await this.clickPRÓXIMOBtn();
+    await this.clickNextBtn();
     // Check #individual-bdl
     await this.clickIndividualChkBox();
     // Click on Next button
@@ -139,7 +143,7 @@ export class SpanishWalsUSPage extends OktaPage {
     dependent: string,
     dependentEmail: string
   ): Promise<void> => {
-    console.log(' - SpanishWalsUSPage.filloutSecurityInfo');
+    console.log(' - EnglishWalsCaPage.filloutSecurityInfo');
     // Fill date of birth
     await this.typeTextBox(txtDateOfBirth, dob);
     // Fill SSN
@@ -166,7 +170,7 @@ export class SpanishWalsUSPage extends OktaPage {
     await this.clickOnElement(btnContactInfoContinue);
   };
   createAUser = async (pass: string, confirmpass: string): Promise<void> => {
-    console.log(' - SpanishWalsUSPage.createAUser');
+    console.log(' - EnglishWalsCaPage.createAUser');
     // Select a username
     await this.page.waitForSelector(rdoButtonUsername);
     const radioUsernames = await this.page.$$(rdoButtonUsername);
@@ -183,14 +187,14 @@ export class SpanishWalsUSPage extends OktaPage {
     await this.clickOnElement(btnContactInfoContinue);
   };
   commissionOptions = async (): Promise<void> => {
-    console.log(' - SpanishWalsUSPage.commissionOptions');
+    console.log(' - EnglishWalsCaPage.commissionOptions');
     // Check by mail
     await this.clickOnElement(rdoCheckByMail);
     // Click on Continue button
     await this.clickOnElement(btnCommissionOptionContinue);
   };
   filloutCreditCardInfo = async (name: string, cardNum: string, expDate: string, cvv: string): Promise<void> => {
-    console.log(' - SpanishWalsUSPage.filloutCreditCardInfo');
+    console.log(' - EnglishWalsCaPage.filloutCreditCardInfo');
     // Locate an switch to the frame
     const frmParent = this.page.frameLocator('#payment-method');
     const frmPayment = frmParent.frameLocator('#paymentMethodFramePsx');
@@ -212,7 +216,7 @@ export class SpanishWalsUSPage extends OktaPage {
     await btnPur.click();
   };
   filloutBankAccountInfo = async (name: string, routingNum: string, accountNumber: string): Promise<void> => {
-    console.log(' - EnglishWalsUSPage.filloutBankAccountInfo');
+    console.log(' - EnglishWalsCaPage.filloutBankAccountInfo');
     // Locate an switch to the frame
     await this.page.waitForLoadState();
     const frmParent = this.page.frameLocator('#payment-method');
@@ -239,10 +243,10 @@ export class SpanishWalsUSPage extends OktaPage {
     // await btnPur.click();
   };
   // ========================== Navigate Methods ===========================
-  navigateToSpanishWalsUSPage = async (): Promise<void> => {
-    console.log(' - SpanishWalsUSPage.navigateToSpanishWalsUSPage');
+  navigateToEnglishWalsCaPage = async (): Promise<void> => {
+    console.log(' - EnglishWalsCaPage.navigateToEnglishWalsUSPage');
     // navigate to URL
-    await this.page.goto(urlSpanishWalsUSPage);
+    await this.page.goto(urlEnglishWalsCaPage);
   };
 
   // ========================== Click Methods ==============================
@@ -252,60 +256,60 @@ export class SpanishWalsUSPage extends OktaPage {
     // await this.page.mouse.click(220, 800);
     await this.page.locator(btnBecomeAssociate).click();
   };
-  clickConsigueUnPlanBtn = async (): Promise<void> => {
-    console.log(' - SpanishWalsUSPage.clickGetStartedBtn');
-    await this.page.locator(btnConsigueUnPlan).click();
+  clickGetStartedBtn = async (): Promise<void> => {
+    console.log(' - EnglishWalsCaPage.clickGetStartedBtn');
+    await this.page.locator(btnGetAPlan).click();
   };
   selectHomeBusinessSupplement = async (): Promise<void> => {
-    console.log(' - SpanishWalsUSPage.selectHomeBusinessSupplement');
+    console.log(' - EnglishWalsCaPage.selectHomeBusinessSupplement');
     // Click Select your plan Link
     await this.clickOnElement(lblHomeBusinessSupplement);
   };
-  clickPRÓXIMOBtn = async (): Promise<void> => {
-    console.log(' - SpanishWalsUSPage.clickNextBtn');
+  clickNextBtn = async (): Promise<void> => {
+    console.log(' - EnglishWalsCaPage.clickNextBtn');
     // Click on Next button
-    await this.clickOnElement(btnPRÓXIMO);
+    await this.clickOnElement(btnNext);
   };
   clickIndividualChkBox = async (): Promise<void> => {
-    console.log(' - SpanishWalsUSPage.clickIndividualChkBox');
+    console.log(' - EnglishWalsCaPage.clickIndividualChkBox');
     // Check individual checkbox
     await this.clickOnElement(chkbIndividual);
   };
   clickNextWithFormBtn = async (): Promise<void> => {
-    console.log(' - SpanishWalsUSPage.clickNextWithFormBtn');
+    console.log(' - EnglishWalsCaPage.clickNextWithFormBtn');
     // Click on Next button
     await this.clickOnElement(btnNextWithForm);
   };
   clickNoChkBox = async (): Promise<void> => {
-    console.log(' - SpanishWalsUSPage.clickNoChkBox');
+    console.log(' - EnglishWalsCaPage.clickNoChkBox');
     // Check No checkbox
     await this.clickOnElement(chkbNo);
   };
   clickContinueBtn = async (): Promise<void> => {
-    console.log(' - SpanishWalsUSPage.clickContinueBtn');
+    console.log(' - EnglishWalsCaPage.clickContinueBtn');
     // Click on Continue button
     await this.clickOnElement(btnContinue);
   };
   clickCheckoutBtn = async (): Promise<void> => {
-    console.log(' - SpanishWalsUSPage.clickCheckoutBtn');
+    console.log(' - EnglishWalsCaPage.clickCheckoutBtn');
     // Click on Checkout button
     await this.clickOnElement(btnCheckout);
   };
   // ========================== Assertion Methods ==========================
 
   assertContactInformationTxt = async (): Promise<void> => {
-    console.log(' - SpanishWalsUSPage.assertContactInformationTxt');
+    console.log(' - EnglishWalsCaPage.assertContactInformationTxt');
     // Verify that  it takes user to checkout
     await this.page.waitForSelector(ttlContactInfo);
-    await this.assertElementContainsText(ttlContactInfo, 'Información del contacto');
+    await this.assertElementContainsText(ttlContactInfo, 'Contact information');
     console.log('Landed on checkout page');
   };
   assertWelcomelabel = async (): Promise<void> => {
-    console.log(' - SpanishWalsUSPage.assertContactInformationTxt');
+    console.log(' - EnglishWalsCaPage.assertContactInformationTxt');
     // Verify that the user made the purchase
-    await this.page.waitForLoadState();
+    await this.page.waitForLoadState;
     await this.page.waitForSelector(lblWelcome);
-    await this.assertElementContainsText(lblWelcome, '¡Bienvenido a la familia LegalShield!');
-    console.log('¡Bienvenido a la familia LegalShield!');
+    await this.assertElementContainsText(lblWelcome, 'Welcome to the LegalShield Family!');
+    console.log('Welcome to the LegalShield Family!');
   };
 }

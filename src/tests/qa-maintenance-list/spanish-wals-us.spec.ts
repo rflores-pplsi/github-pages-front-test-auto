@@ -22,7 +22,7 @@ test('Spanish WALS-US', async ({ page }) => {
   // Verify that  it takes user to checkout
   await spanishWalsUSPage.assertContactInformationTxt();
   // Fill Contact information form
-  await spanishWalsUSPage.filloutContactInformationForm('Virginia', 'tester2022@hotmail.com', 'testFt', 'testLt', '5712223333', 'Mobile');
+  await spanishWalsUSPage.filloutContactInformationForm('Virginia', 'tester2022@hotmail.com', 'testFt', 'testLt', '5712223333', 'Móvil');
   // Fill Security an Family info form
   await spanishWalsUSPage.filloutSecurityAndFamilyCoverageInfo(
     '12121990',
@@ -30,7 +30,7 @@ test('Spanish WALS-US', async ({ page }) => {
     'testerDependentFirst',
     'testerDependentLast',
     '12122010',
-    'Dependent',
+    'Dependiente',
     'dependent@gmail.com'
   );
   // Create a User
@@ -38,7 +38,7 @@ test('Spanish WALS-US', async ({ page }) => {
   // Select Commission option
   await spanishWalsUSPage.commissionOptions();
   // Fill Credit card form
-  await spanishWalsUSPage.filloutCreditCardInfo('testerfirstlast', '4444222233331111', '12/25', '102');
+  await spanishWalsUSPage.filloutBankAccountInfo('testerfirstlast', '103000648', '000000');
   // Verify that the user made the purchase
   await spanishWalsUSPage.assertWelcomelabel();
 });
