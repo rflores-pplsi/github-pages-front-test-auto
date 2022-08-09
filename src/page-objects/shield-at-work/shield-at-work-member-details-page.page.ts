@@ -78,6 +78,7 @@ export class ShieldAtWorkMemberDetailsPage extends LsWorkLoginPage {
   assertMemberInformationIsDisplayed = async (): Promise<void> => {
     console.log(' - ShieldAtWorkMemberDetailsPage.assertMemberInformationIsDisplayed');
     // Confirm clicking on member name redirects to the member details page
+    await this.page.waitForLoadState('networkidle');
     await this.assertElementIsVisible(txtMemberInformation);
   };
 

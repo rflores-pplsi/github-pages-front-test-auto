@@ -9,7 +9,7 @@ test.beforeEach(async ({ page }) => {
   test.slow();
 });
 
-test('Member information is displayed after clicking on member name on the member details page', async ({ page }) => {
+test.only('Member information is displayed after clicking on member name on the member details page', async ({ page }) => {
   console.log('Member information is displayed after clicking on member name on the member details page');
   await shieldAtWorkMemberDetailsPage.navigateToShieldAtWorkMemberDetailsPage();
   await shieldAtWorkMemberDetailsPage.clickMemberName();
