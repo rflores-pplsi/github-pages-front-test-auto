@@ -1,16 +1,19 @@
-import { PlanalyzerCsrCheckoutPage } from '../planalyzer/planalyzer-csr-checkout.page';
+import { ShieldBenefitsLegalOverviewPage } from '../shield-benefits/shield-benefits-legal-overview.page';
 
 // ========================== Selectors ==================================
 const btnState = '//div[contains(@class,"mr-5") and contains (.,"State")]//button';
+const btnProvinceSelect = 'button:has-text("Select")';
 const btnPaymentFrequency = '//p[contains (.,"Payment frequency")]/following-sibling::div//button';
 const conAvailablePlans = '//div[contains (@class,"filters mt-5 mb-5") and contains(.,"Available")]';
 
 /**
+ *
+ *
  * @export
  * @class ShieldBenefitsLegalPricingPage
- * @extends {BasePage}
+ * @extends {ShieldBenefitsLegalOverviewPage}
  */
-export class ShieldBenefitsLegalPricingPage extends PlanalyzerCsrCheckoutPage {
+export class ShieldBenefitsLegalPricingPage extends ShieldBenefitsLegalOverviewPage {
   // ========================== Process Methods ============================
 
   /**
@@ -61,8 +64,41 @@ export class ShieldBenefitsLegalPricingPage extends PlanalyzerCsrCheckoutPage {
     await this.clickCombinationPlanEnrollNowButton(planName1, planName2);
   };
 
+  /**
+   *
+   *
+   * @param {string} province
+   * @memberof ShieldBenefitsLegalPricingPage
+   */
+  selectProvince = async (province: string) => {
+    console.log(' - shieldBenefitsLegalPricingPage.selectPProvince');
+    await this.clickProvinceSelectButton();
+    await this.clickOnElement(`//div[contains(@class,"lsux-link-content lsux-link-content--menu py-3 px-4") and contains (.,"${province}")]`);
+    await this.waitForElementToBeVisible(conAvailablePlans);
+  };
+
   // ========================== Navigate Methods ===========================
   // ========================== Click Methods ==============================
+
+  /**
+   *
+   *
+   * @memberof ShieldBenefitsLegalPricingPage
+   */
+  clickProvinceSelectButton = async () => {
+    console.log(' - shieldBenefitsLegalPricingPage.clickProvinceSelectButton');
+    await this.clickOnElement(btnProvinceSelect);
+  };
+
+  /**
+   *
+   *
+   * @memberof ShieldBenefitsLegalPricingPage
+   */
+  clickPaymentFrequencyButton = async () => {
+    console.log(' - shieldBenefitsLegalPricingPage.clickPaymentFrequencyButton');
+    await this.clickOnElement(btnPaymentFrequency);
+  };
 
   /**
    * @param {string} planName
@@ -73,6 +109,22 @@ export class ShieldBenefitsLegalPricingPage extends PlanalyzerCsrCheckoutPage {
     console.log(' - shieldBenefitsLegalPricingPage.clickIndividualPlanEnrollNowButton');
     // Click on Enroll Now button for selected Plan
     await this.clickOnElement(`//div[@class="groupTokenCard" and contains(.,"${planName}") and contains(.,"${tierName}")]//button`);
+  };
+
+  clickPricingPageSinglePlanEnrollNowButton = async (planSupplementName: string) => {
+    console.log(' - shieldBenefitsLegalPricingPage.clickPricingPageSinglePlanEnrollNowButton');
+    if (planSupplementName.includes('+')) {
+      if (planSupplementName.includes(',')) {
+        // 2 supplement case (if group configured with 3 or more we need to revisit this approach)
+        await this.clickOnElement(`//div[@class="groupTokenCard" and contains(.,"${planSupplementName}")]//button`);
+      } else {
+        // 1 supplement case
+        await this.clickOnElement(`//div[@class="groupTokenCard" and contains(.,"${planSupplementName}")and not(contains(.,','))]//button`);
+      }
+    } else {
+      // 0 supplement case
+      await this.clickOnElement(`//div[@class="groupTokenCard" and contains(.,"${planSupplementName}") and not(contains(.,'+'))]//button`);
+    }
   };
 
   /**
