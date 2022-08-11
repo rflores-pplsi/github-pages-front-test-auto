@@ -5,7 +5,7 @@
   "main": "index.ts",
   "mode": "developer ",
   "scripts": {
-    "test": "mocha",
+    "test": "npx playwright test",
     "buildtsc": "tsc --project tsconfig.build.json",
     "build": "webpack ",
     "build-watch": "webpack --watch"
