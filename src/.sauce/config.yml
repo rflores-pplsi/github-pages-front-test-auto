@@ -1,10 +1,10 @@
 apiVersion: v1alpha
 kind: playwright
 defaults:
-  mode: docker
+  mode: sauce
 sauce:
   region: us-west-1
-  concurrency: 2
+  concurrency: 1
   metadata:
     tags:
       - e2e
@@ -17,35 +17,35 @@ playwright:
 suites:
 - name: Abdel QA Maintenance List chromium
   mode: sauce
-  platformName: Windows 11
+  platformName: macOS 12
+  params:
+    browserName: "webkit"
+  testMatch: /qa-maintenance-list/*/
+- name: 'Abdel group-enrollment chromium'
+  mode: sauce
+  platformName: windows 10
   params:
     browserName: "chromium"
-  testMatch: [/login/login.spec.ts/]
-# - name: 'Abdel group-enrollment chromium'
-#   mode: sauce
-#   platformName: windows 10
-#   params:
-#     browserName: "chromium"
-#   testMatch: /qa-maintenance-list/*/  
-# - name: Abdel group-enrollment firefox
-#   mode: sauce
-#   platformName: windows 10
-#   params:
-#     browserName: "firefox"
-#   testMatch: /group-enrollment/*/
-# - name: Abdel classic-shield-at-work chromium
-#   mode: sauce
-#   platformName: macOS 12
-#   params:
-#     browserName: "chromium"
-#   testMatch: /classic-shield-at-work/*/    
-# - name: Abdel classic-shield-at-work webkit
-#   mode: sauce
-#   platformName: macOS 12
-#   params:
-#     browserName: "webkit"
-#   testMatch: /classic-shield-at-work/*/  
+  testMatch: /group-enrollment/*/  
+- name: Abdel group-enrollment firefox
+  mode: sauce
+  platformName: windows 10
+  params:
+    browserName: "firefox"
+  testMatch: /group-enrollment/*/
+- name: Abdel classic-shield-at-work chromium
+  mode: sauce
+  platformName: macOS 12
+  params:
+    browserName: "chromium"
+  testMatch: /classic-shield-at-work/*/    
+- name: Abdel classic-shield-at-work webkit
+  mode: sauce
+  platformName: macOS 12
+  params:
+    browserName: "webkit"
+  testMatch: /classic-shield-at-work/*/  
 rootDir: .\
 docker:
   fileTransfer: copy
-  image: playwright:v1.16.2-focal
+  image: saucelabs/stt-playwright-node:1.22.2

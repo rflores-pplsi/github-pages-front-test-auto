@@ -19,6 +19,7 @@ suites:
   mode: sauce
   platformName: windows 10
   params:
+    project: 
     browserName: "chromium"
   testMatch: [".ts$"]
 rootDir: .\
@@ -30,4 +31,4 @@ artifacts:
     directory: ./artifacts
 docker:
   fileTransfer: copy
-  image: playwright:v1.16.2-focal
+  image: saucelabs/stt-playwright-node:1.22.2
