@@ -56,6 +56,10 @@ export const associateReportsCommissions2 = {
   username: process.env[`ASSOCIATE_REPORTS_COMMISSIONS_USERNAME2_${env.toUpperCase()}`],
   password: process.env[`ASSOCIATE_REPORTS_COMMISSIONS_PASSWORD2_${env.toUpperCase()}`],
 };
+export const associateReportsCommissions3 = {
+  username: process.env[`RC_PENDING_STATEMENTS_USERNAME_${env.toUpperCase()}`],
+  password: process.env[`RC_PENDING_STATEMENTS_PASSWORD_${env.toUpperCase()}`],
+};
 export const revenueReports = {
   username: process.env[`REVENUE_REPORTS_USERNAME_${env.toUpperCase()}`],
   password: process.env[`REVENUE_REPORTS_PASSWORD_${env.toUpperCase()}`],

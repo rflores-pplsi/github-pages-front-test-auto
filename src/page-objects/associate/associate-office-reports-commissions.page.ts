@@ -1,11 +1,10 @@
 import { LoginPage } from '../login/login.page';
 import { expect } from '@playwright/test';
-import { associateReportsCommissions2, revenueReports } from '../../utils/user.utils';
+import { associateReportsCommissions2, associateReportsCommissions3, revenueReports } from '../../utils/user.utils';
 import { associateReportsCommissions } from '../../utils/user.utils';
 import UrlsUtils from '../../utils/urls.utils';
 
 // ========================== Selectors ==================================
-
 const lblAssociateNumber: string = '.lsux-heading.lsux-heading--t28';
 const dtpSearchDates: string = "input[placeholder='Search dates']";
 const dtpCalendar: string = "img[class*='lsux-icon--small']";
@@ -15,7 +14,8 @@ const dtpDay2: string = "(//div[contains(@class,'react-datepicker__day--002')])[
 const dtpDay5: string = "(//div[contains(@class,'react-datepicker__day--005')])[1]";
 const dtpDay19: string = "(//div[contains(@class,'react-datepicker__day--019')])[1]";
 const dtpDay31: string = "(//div[contains(@class,'react-datepicker__day--031')])[1]";
-const cboCountry: string = '.lsux-row div:nth-child(2) select';
+const dtpDay28: string = "(//div[contains(@class,'react-datepicker__day--028')])";
+const cboCountry: string = 'select.lsux-select-container__select';
 const btnSearch: string = 'button[class*="lsux-button--primary"]';
 const lblAssociateLevel: string = "div[class='lsux-row plain children3']";
 const lblAssociateFullName: string = "(//span[contains(@class,'lsux-text')])[1]";
@@ -64,6 +64,8 @@ const lblType: string = "//div[.='Type']";
 const lblPersonalCancellations: string = 'h2:has-text("Personal Cancellations")';
 const lblMonthsPaid: string = 'text="Months Paid"';
 const lblReason: string = 'text="Reason"';
+// Pending Statements
+const lblPendingCommissionStatements: string = 'xpath=//div/p';
 
 /**
  *
@@ -118,6 +120,7 @@ export class ReportsCommissionsPage extends LoginPage {
     await this.login(associateReportsCommissions.username, associateReportsCommissions.password);
     await this.page.waitForSelector(lblAssociateNumber);
   };
+  // await this.page.waitForLoadState('domcontentloaded');
 
   navigateToReportsCommissionsPage3 = async (): Promise<void> => {
     console.log(' - ReportsCommissionsPage.navigateToReportsCommissionsPage');
@@ -126,6 +129,15 @@ export class ReportsCommissionsPage extends LoginPage {
     await this.login(associateReportsCommissions2.username, associateReportsCommissions2.password);
     await this.page.waitForSelector(lblAssociateNumber);
   };
+
+  navigateToReportsCommissionsPage4 = async (): Promise<void> => {
+    console.log(' - ReportsCommissionsPage.navigateToReportsCommissionsPage');
+    // Navigate to Report Commission Page
+    await this.goTo(UrlsUtils.channelsUrls.reportscommissions.url);
+    await this.login(associateReportsCommissions3.username, associateReportsCommissions3.password);
+    await this.page.waitForSelector(lblAssociateNumber);
+  };
+
   // ========================== Click Methods ==============================
   clickOnSearchDates = async (): Promise<void> => {
     // Click on data picker
@@ -167,6 +179,12 @@ export class ReportsCommissionsPage extends LoginPage {
     // Click on day 19 from calendar
     console.log(' - ReportsCommissionsPage.clickOnSearchDatesDay');
     await this.clickOnElement(dtpDay19);
+  };
+
+  clickOnSearchDatesDay28 = async (): Promise<void> => {
+    // Click on day 31 from calendar
+    console.log(' - ReportsCommissionsPage.clickOnSearchDatesDay');
+    await this.clickOnElement(dtpDay28);
   };
 
   clickOnSearchDatesDay31 = async (): Promise<void> => {
@@ -339,5 +357,23 @@ export class ReportsCommissionsPage extends LoginPage {
     await this.assertElementIsVisible(lblPersonalCancellations);
     await this.assertElementIsVisible(lblMonthsPaid);
     await this.assertElementIsVisible(lblReason);
+  };
+
+  assertPendingStatementsIsDisplayed = async (): Promise<void> => {
+    console.log(' - ReportsCommissionsPage.assertPendingStatementsIsDisplayed');
+    await this.assertElementIsVisible(lblSearchCommissionStatements);
+    console.log(await this.page.locator(lblPendingCommissionStatements).nth(1).textContent());
+    await expect(this.page.locator(lblPendingCommissionStatements).nth(1)).toContainText('LEGALSHIELD');
+    console.log(await this.page.locator(lblPendingCommissionStatements).nth(2).textContent());
+    await expect(this.page.locator(lblPendingCommissionStatements).nth(2)).toContainText('********* PENDING COMMISSION STATEMENT *********');
+  };
+
+  assertPendingStatementsIsDisplayed2 = async (): Promise<void> => {
+    console.log(' - ReportsCommissionsPage.assertPendingStatementsIsDisplayed');
+    await this.assertElementIsVisible(lblSearchCommissionStatements);
+    console.log(await this.page.locator(lblPendingCommissionStatements).nth(1).textContent());
+    await expect(this.page.locator(lblPendingCommissionStatements).nth(1)).toContainText('LEGALSHIELD');
+    console.log(await this.page.locator(lblPendingCommissionStatements).nth(2).textContent());
+    await expect(this.page.locator(lblPendingCommissionStatements).nth(2)).toContainText('********* PENDING COMMISSION STATEMENT ********* (CANADA)');
   };
 }
