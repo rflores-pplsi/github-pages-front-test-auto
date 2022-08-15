@@ -120,7 +120,6 @@ export class ReportsCommissionsPage extends LoginPage {
     await this.login(associateReportsCommissions.username, associateReportsCommissions.password);
     await this.page.waitForSelector(lblAssociateNumber);
   };
-  // await this.page.waitForLoadState('domcontentloaded');
 
   navigateToReportsCommissionsPage3 = async (): Promise<void> => {
     console.log(' - ReportsCommissionsPage.navigateToReportsCommissionsPage');
@@ -182,7 +181,7 @@ export class ReportsCommissionsPage extends LoginPage {
   };
 
   clickOnSearchDatesDay28 = async (): Promise<void> => {
-    // Click on day 31 from calendar
+    // Click on day 28 from calendar
     console.log(' - ReportsCommissionsPage.clickOnSearchDatesDay');
     await this.clickOnElement(dtpDay28);
   };
