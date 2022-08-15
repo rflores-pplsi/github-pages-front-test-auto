@@ -54,7 +54,7 @@ export class ShieldAtWorkGroupManagement extends LsWorkLoginPage {
 
   clickBtnHome = async (): Promise<void> => {
     console.log(' - groupManagementShieldAtWorkPage.clickBtnHome');
-    // Click on nHome button in dropdown menu
+    // Click on Home button in dropdown menu
     await this.clickOnElement(btnHome);
   };
 
@@ -68,7 +68,7 @@ export class ShieldAtWorkGroupManagement extends LsWorkLoginPage {
   };
 
   assertGroupManagementPageIsDisplayed = async (): Promise<void> => {
-    console.log(' - groupManagementShieldAtWorkPage.assertGroupManagementPageIsDisplayed ');
+    console.log(' - groupManagementShieldAtWorkPage.assertGroupManagementPageIsDisplayed');
     // Confirm that after clicking on Home button it takes you to the group management page
     await this.assertElementIsVisible(txtGroupManagement);
   };
