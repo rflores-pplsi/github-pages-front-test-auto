@@ -6,7 +6,7 @@ import { LoginPage } from '../login/login.page';
 
 const url = urlsUtils.legalshieldUrls.shieldAtWork.url;
 const txtEmail = '[placeholder="Email address/Username"]';
-const txtPassword = '[placeholder="Password"]';
+const txtPassword = '[name="password"]';
 const btnSignIn = '#root button > span';
 const txtGroupManagement = 'h2:has-text("Group management")';
 
