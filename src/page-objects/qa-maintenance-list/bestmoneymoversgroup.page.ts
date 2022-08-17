@@ -110,18 +110,3 @@ export class BestMoneyMoversGroupPage extends OktaPage {
     console.log('On Personal Info page');
   };
 }
-function forEach(
-  stt: any,
-  of: any,
-  usStates: { name: string; abbrv: string; validAddress: { street: string; city: string; postalCode: string }; priority: boolean }[]
-) {
-  throw new Error('Function not implemented.');
-}
-
-function stt(
-  stt: any,
-  of: any,
-  usStates: { name: string; abbrv: string; validAddress: { street: string; city: string; postalCode: string }; priority: boolean }[]
-) {
-  throw new Error('Function not implemented.');
-}

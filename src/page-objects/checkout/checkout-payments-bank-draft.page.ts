@@ -1,4 +1,5 @@
 /* eslint-disable valid-jsdoc */
+import DataUtils from '../../utils/Tests.Data';
 import { CheckoutPaymentsCreditCardPage } from './checkout-payments-credit-card.page';
 
 // ========================== Selectors ==================================
@@ -63,13 +64,14 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
   fillBankDraftFormForCanada = async () => {
     console.log(' - checkoutPaymentPage.fillBankDraftFormForCanada');
     // Fillout the Bank Draft form
-    await this.fillAccountNumberForCaTxt('0000000');
+    await this.page.waitForLoadState();
+    await this.fillAccountNumberForCaTxt(DataUtils.data.testingHarness.ca.bd.Account);
     await this.page.keyboard.press('Tab');
-    await this.fillTransitNumberTxt('00000');
+    await this.fillTransitNumberTxt(DataUtils.data.testingHarness.ca.bd.Transit);
     await this.page.keyboard.press('Tab');
-    await this.fillInstitutionNumberTxt('000');
+    await this.fillInstitutionNumberTxt(DataUtils.data.testingHarness.ca.bd.Institution);
     await this.page.keyboard.press('Tab');
-    await this.fillAccountHolderNameTxt('Automation Tester');
+    await this.fillAccountHolderNameTxt(DataUtils.data.testingHarness.ca.bd.name);
     await this.page.keyboard.press('Tab');
     await this.clickPurchaseBtn();
   };
@@ -140,18 +142,18 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
     console.log(' - checkoutPaymentPage.fillAccountNumberForCaTxt');
     // Fill  Account Number
     const txtAccountNumbertst2 = await frmPayment.locator(txtAccountNumber);
-    await txtAccountNumbertst2.type('0000000');
+    await txtAccountNumbertst2.type(account);
     // await this.fillTextBox(txtAccountNumber, account);
   };
   // Fill Transit Number Method
-  fillTransitNumberTxt = async (routing: string) => {
+  fillTransitNumberTxt = async (transitNumber: string) => {
     console.log(' - checkoutPaymentPage.fillTransitNumberTxt');
     // Switch to frame
     const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
     if (frmPayment != null) {
       // Fill  Transit Number
       const txtTransitNumberTxt = await frmPayment.locator(txtTransitNumber);
-      await txtTransitNumberTxt.type('00000');
+      await txtTransitNumberTxt.type(transitNumber);
     } else throw new Error('No such frame');
   };
   // Fill Institution Number Method
@@ -162,7 +164,7 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
     if (frmPayment != null) {
       // Fill  Institution Number
       const txtInstitutionNumberTxt = await frmPayment.locator(txtInstitutionNumber);
-      await txtInstitutionNumberTxt.type('000');
+      await txtInstitutionNumberTxt.type(routing);
     } else throw new Error('No such frame');
   };
   // ========================== Click Methods ==============================

@@ -4,7 +4,7 @@ import { BasePage } from '../base.page';
 
 // ========================== Selectors ==========================
 const txtEmailOrUsername: string = '[placeholder="Email address/Username"]';
-const txtPassword: string = '[placeholder="Password"]';
+const txtPassword: string = 'input[name="password"]';
 const btnSignIn: string = '//button[contains(@class,"lsux-button--primary")]/span[contains(.,"Sign in")]';
 const lnkSignUp: string = 'a:has-text("Sign up")';
 const lnkSignIn: string = '//div[@class="content"]//a[contains(.,"Sign in")]';

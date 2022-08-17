@@ -73,6 +73,9 @@ export default class UrlsUtils {
     idShieldCanada: {
       url: `https://wptesttool${envTestHarnessString}.pplsicorp.com/d2c-idsca/?lsc-current-site=IDS_CA`,
     },
+    d2c: {
+      url: `https://wptesttool${envTestHarnessString}.pplsicorp.com`,
+    },
   };
 
   static readonly legalshieldInternalUrls = {

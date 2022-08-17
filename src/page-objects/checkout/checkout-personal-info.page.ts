@@ -4,7 +4,7 @@ import { CheckoutOrderSummaryComponent } from './checkout-order-summary.componen
 import RegionsUtils from '../../utils/regions.utils';
 
 // ========================== Selectors ==================================
-const btnSaveAndContinue: string = '[type=submit]';
+const btnSaveAndContinue: string = 'button:has-text("Save & Continue")';
 // const btnSaveAndContinue: string = 'button:has-text("Save & Continue")';
 
 // ========================== Personal Info Selectors ====================
@@ -155,6 +155,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     await this.enterHomeAddress(provinceObject[0].validAddress.street);
     await this.enterCity(provinceObject[0].validAddress.city);
     await this.enterPostalCode(provinceObject[0].validAddress.postalCode);
+    await this.clickOnElement(btnSaveAndContinue);
   };
 
   changeAddressUs = async (regionName: string): Promise<void> => {
