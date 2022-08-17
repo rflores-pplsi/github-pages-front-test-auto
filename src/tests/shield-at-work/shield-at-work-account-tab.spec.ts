@@ -6,12 +6,13 @@ let shieldAtWorkAccountTab: ShieldAtWorkAccountTab;
 
 test.beforeEach(async ({ page }) => {
   shieldAtWorkAccountTab = new ShieldAtWorkAccountTab(page);
-  await shieldAtWorkAccountTab.navigateToShieldAtWorkAccountTab();
+  // await shieldAtWorkAccountTab.navigateToGroupPage('111452');
 });
 
-test('Company information is displayed on account tab', async ({ page }) => {
+test.only('Company information is displayed on account tab', async ({ page }) => {
   console.log('Company information is displayed on account tab');
-  await shieldAtWorkAccountTab.navigateToShieldAtWorkAccountTab();
+  // await shieldAtWorkAccountTab.navigateToShieldAtWorkAccountTab();
+  await shieldAtWorkAccountTab.navigateToGroupPage('111452');
   await shieldAtWorkAccountTab.assertCompanyInformation();
 });
 
@@ -41,7 +42,5 @@ test('State is displayed on the account tab', async ({ page }) => {
 
 test('Payment frequency are displayed on the account tab', async ({ page }) => {
   console.log('Payment frequency are displayed on the account tab');
-  await shieldAtWorkAccountTab.navigateToShieldAtWorkAccountTab();
   await shieldAtWorkAccountTab.assertPaymentFrequencyIsDisplayed();
-
 });

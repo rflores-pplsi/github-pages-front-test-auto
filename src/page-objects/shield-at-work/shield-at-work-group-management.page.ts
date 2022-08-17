@@ -43,6 +43,11 @@ export class ShieldAtWorkGroupManagement extends LsWorkLoginPage {
     await this.loginWithCredentials();
   };
 
+  navigateToGroupPage = async (groupNumber: String): Promise<void> => {
+    console.log(' - groupManagementShieldAtWorkPage.navigateToGroupPage');
+    await this.page.goto(url);
+  };
+
   // ========================== Click Methods ==============================
   // eslint-disable-next-line prettier/prettier
 

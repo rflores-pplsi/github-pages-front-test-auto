@@ -1,9 +1,10 @@
 import urlsUtils from '../../utils/urls.utils';
-import { LsWorkLoginPage } from './shield-at-work-login.page';
+import { OktaPage } from '../okta/okta.page';
+// import { OktaPage } from '../../page-objects/okta/okta.page';
 
 // ========================== Selectors ==================================
 const url: string = urlsUtils.legalshieldUrls.shieldAtWork.url;
-const txtSearch: string = '[placeholder="Search by name or group number"]';
+const txtSearch: string = '[id="searchInput"]';
 const btnSearch: string = '[id="searchButton"]';
 const txtGroup: string = '#root  .lsux-container--flex-items-center.mb-2 > h3';
 const btnViewGroup: string = '.lsux-button.lsux-button--standard.ml-3 > span';
@@ -17,9 +18,9 @@ const btnPaymentFrequency: string = '.lsux-form-field-container._1Gj4FaXDj3_n1qm
 /**
  * @export
  * @class ShieldAtWorkAccountTab
- * @extends {LsWorkLoginPage}
+ * @extends {ShieldAtWorkAccountTab}
  */
-export class ShieldAtWorkAccountTab extends LsWorkLoginPage {
+export class ShieldAtWorkAccountTab extends OktaPage {
   // ========================== Process Methods ============================
   /**
    *
@@ -35,6 +36,21 @@ export class ShieldAtWorkAccountTab extends LsWorkLoginPage {
     await this.clickOnElement(btnSearch);
     // Wait for the group name is displayed
     await this.page.waitForSelector(txtGroup);
+    await this.page.pause();
+  };
+  /**
+   *
+   *
+   * @param {String} groupNumber
+   * @memberof ShieldAtWorkAccountTab
+   */
+  navigateToGroupPage = async (groupNumber: String): Promise<void> => {
+    console.log(' - groupManagementShieldAtWorkPage.navigateToGroupPage');
+    await await this.page.goto(url);
+    await this.page.pause();
+    await this.loginThroughOktaGroupEnrollment();
+    // await this.page.pause();
+    // await this.page.goto(`${url}/group/111452/`);
   };
 
   // ========================== Click Methods ==============================
@@ -52,11 +68,12 @@ export class ShieldAtWorkAccountTab extends LsWorkLoginPage {
     // Navigate to Url
     await this.page.goto(url);
     // Login to ShieldAtWork
-    await this.loginWithCredentials();
+    await this.loginThroughOktaGroupEnrollment();
     // Search group by group number
     await this.groupSearchByGroupNumber('111452');
     // Click on View group button
     await this.clickViewGroup();
+    await this.page.waitForURL('https://groups.uat-shieldatwork.com/group/111452/');
   };
 
   // ========================== Assertion Methods ==========================
