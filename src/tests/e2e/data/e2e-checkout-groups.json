@@ -3,10 +3,10 @@
     "testCaseName": "Legal Plan Family",
     "region": "Alberta",
     "groupNameOrNumber": "victoryfancysausage",
-    "planSupplementName": "Legal Plan Family",
-    "monthlyTotal": "$29.95",
+    "planSupplementName": ["Legal Plan Family", "$23.95"],
+    "monthlyTotal": "$23.95",
     "planType": "LegalShield",
-    "disabled": true
+    "disabled": false
   },
   {
     "testCaseName": "Legal Plan Family + Home Business Supplement",
@@ -33,6 +33,6 @@
     "planSupplementName": "Legal Plan Family + Home Business Supplement, Trial Defense Supplement",
     "monthlyTotal": "$29.95",
     "planType": "LegalShield",
-    "disabled": false
+    "disabled": true
   }
 ]

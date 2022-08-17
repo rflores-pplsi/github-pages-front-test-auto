@@ -2,6 +2,7 @@ import UrlsUtils from '../../utils/urls.utils';
 import { basicUser } from '../../utils/user.utils';
 import { CheckoutOrderSummaryComponent } from './checkout-order-summary.component';
 import RegionsUtils from '../../utils/regions.utils';
+import { OrderSummary } from './checkout.helpers';
 
 // ========================== Selectors ==================================
 const btnSaveAndContinue: string = '[type=submit]';
@@ -401,7 +402,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     }
     await this.login(emailOrUsername, password);
     await this.changeAddress(street, city, postalCode);
-    await this.captureOrderSummary(groupPayConfig);
+    await this.captureOrderSummaryWithoutTier();
   };
 
   /**

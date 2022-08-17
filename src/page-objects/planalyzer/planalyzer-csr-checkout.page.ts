@@ -10,6 +10,7 @@ const txtPrepaidMonth: string = '[placeholder="Pre-paid months"]';
 const txtCouponCode: string = '[placeholder="Coupon code"]';
 const btnShowResults: string = 'button:has-text("Show Results")';
 const btnGoToCheckout: string = 'button:has-text("GO TO CHECKOUT")';
+const btnContinue: string = 'button:has-text("Continue")';
 
 /**
  *
@@ -49,6 +50,7 @@ export class PlanalyzerCsrCheckoutPage extends OktaPage {
     await this.clickShowResults();
     await this.clickPlanCheckboxes(plans);
     await this.clickGoToCheckout();
+    await this.clickContinueButton();
   };
 
   /**
@@ -152,6 +154,14 @@ export class PlanalyzerCsrCheckoutPage extends OktaPage {
     console.log(' - planalyzerCsrCheckoutPage.clickGoToCheckout');
     // Click on the Search Results Button
     await this.clickOnElement(btnGoToCheckout);
+    // Wait for document to load before subsequent steps
+    await this.page.waitForLoadState('domcontentloaded');
+  };
+
+  clickContinueButton = async (): Promise<void> => {
+    console.log(' - planalyzerCsrCheckoutPage.clickContinueButton');
+    // Click on the Search Results Button
+    await this.clickOnElement(btnContinue);
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };

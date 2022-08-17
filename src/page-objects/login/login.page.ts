@@ -10,6 +10,7 @@ const lnkSignUp: string = 'a:has-text("Sign up")';
 const lnkSignIn: string = '//div[@class="content"]//a[contains(.,"Sign in")]';
 const lnkForgotPassword: string = 'a:has-text("Forgot Password?")';
 const lnkForgotEmailUsername: string = 'a:has-text("Forgot Email/Username?")';
+const btnExposedPassword: string = 'button:has-text("OK")';
 
 /**
  * @export
@@ -45,6 +46,9 @@ export class LoginPage extends BasePage {
     } else {
       throw new Error('Email or Password parameters are undefined');
     }
+
+    // temporary exposed password dialog dismissal
+    await this.clickOnElement(btnExposedPassword);
   };
 
   /**

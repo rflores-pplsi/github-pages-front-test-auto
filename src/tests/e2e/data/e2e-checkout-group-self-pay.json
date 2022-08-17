@@ -5,11 +5,12 @@
     "groupNumber": "nnlegaltest7",
     "planName": "IDShield Individual",
     "tierName": "1 Bureau Credit Monitoring",
+    "orderSummaryPlanName": "IDShield Individual - Individual 1B",
     "planType": "IDShield",
     "payFrequency": "Monthly",
     "planCost": "$12.95",
     "totalCost": "$12.95",
-    "run": true
+    "disabled": true
   },
   {
     "testCaseName": "Self-Pay (Legal Plan Family)",
@@ -17,11 +18,12 @@
     "groupNumber": "nnlegaltest7",
     "planName": "Legal Plan Family",
     "tierName": "",
+    "orderSummaryPlanName": "Legal Plan Family",
     "planType": "LegalShield",
     "payFrequency": "Monthly",
     "planCost": "$23.95",
     "totalCost": "$23.95",
-    "run": true
+    "disabled": true
   },
   {
     "testCaseName": "Self-Pay (IDShield Family)",
@@ -29,11 +31,12 @@
     "groupNumber": "nnlegaltest7",
     "planName": "IDShield Family",
     "tierName": "1 Bureau Credit Monitoring",
+    "orderSummaryPlanName": "IDShield Family - Family 1B",
     "planType": "IDShield",
     "payFrequency": "Monthly",
     "planCost": "$22.95",
     "totalCost": "$22.95",
-    "run": true
+    "disabled": true
   },
   {
     "testCaseName": "Self-Pay ID Only (IDShield Individual)",
@@ -41,11 +44,12 @@
     "groupNumber": "nnidstest3",
     "planName": "IDShield Individual",
     "tierName": "1 Bureau Credit Monitoring",
+    "orderSummaryPlanName": "IDShield Individual - Individual 1B",
     "planType": "IDShield",
     "payFrequency": "Monthly",
     "planCost": "$12.95",
     "totalCost": "$12.95",
-    "run": true
+    "disabled": true
   },
   {
     "testCaseName": "Self-Pay ID Only (IDShield Family)",
@@ -53,23 +57,25 @@
     "groupNumber": "nnidstest3",
     "planName": "IDShield Family",
     "tierName": "1 Bureau Credit Monitoring",
+    "orderSummaryPlanName": "IDShield Family - Family 1B",
     "planType": "IDShield",
     "payFrequency": "Monthly",
     "planCost": "$22.95",
     "totalCost": "$22.95",
-    "run": true
+    "disabled": true
   },
   {
     "testCaseName": "Self-Pay (IDShield for Business - Essentials)",
     "groupPayConfig": "self-pay",
-    "groupNumber": "test48",
+    "groupNumber": "≈",
     "planName": "IDShield for Business",
     "tierName": "Essentials",
+    "orderSummaryPlanName": "IDShield for Business - Essentials",
     "planType": "IDShield",
     "payFrequency": "Monthly",
     "planCost": "$79.95",
     "totalCost": "$79.95",
-    "run": true
+    "disabled": true
   },
   {
     "testCaseName": "Self-Pay (Commercial Drivers Legal Plan)",
@@ -77,11 +83,12 @@
     "groupNumber": "test48",
     "planName": "Commercial Drivers Legal Plan",
     "tierName": "",
+    "orderSummaryPlanName": "Commercial Drivers Legal Plan",
     "planType": "LegalShield",
     "payFrequency": "Monthly",
     "planCost": "$29.95",
     "totalCost": "$29.95",
-    "run": true
+    "disabled": true
   },
   {
     "testCaseName": "Self-Pay (Small Business - Small Business Plus)",
@@ -89,11 +96,12 @@
     "groupNumber": "test48",
     "planName": "Small Business",
     "tierName": "Plus Plan",
+    "orderSummaryPlanName": "Small Business Plus",
     "planType": "LegalShield",
     "payFrequency": "Monthly",
     "planCost": "$99.00",
     "totalCost": "$99.00",
-    "run": true
+    "disabled": false
   },
   {
     "testCaseName": "Self-Pay (Small Business - Small Business Essentials)",
@@ -101,11 +109,12 @@
     "groupNumber": "test48",
     "planName": "Small Business",
     "tierName": "Essentials Plan",
+    "orderSummaryPlanName": "Small Business Essentials",
     "planType": "LegalShield",
     "payFrequency": "Monthly",
     "planCost": "$49.00",
     "totalCost": "$49.00",
-    "run": true
+    "disabled": true
   },
   {
     "testCaseName": "Self-Pay (Small Business - Small Business Pro)",
@@ -113,11 +122,12 @@
     "groupNumber": "test48",
     "planName": "Small Business",
     "tierName": "Pro Plan",
+    "orderSummaryPlanName": "Small Business Pro",
     "planType": "LegalShield",
     "payFrequency": "Monthly",
     "planCost": "$169.00",
     "totalCost": "$169.00",
-    "run": true
+    "disabled": true
   },
   {
     "testCaseName": "Self-Pay (IDShield for Business - Plus)",
@@ -125,10 +135,11 @@
     "groupNumber": "test48",
     "planName": "IDShield for Business",
     "tierName": "Plus",
+    "orderSummaryPlanName": "IDShield for Business - Plus",
     "planType": "IDShield",
     "payFrequency": "Monthly",
     "planCost": "$149.95",
     "totalCost": "$149.95",
-    "run": true
+    "disabled": true
   }
 ]

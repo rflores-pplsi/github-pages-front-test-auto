@@ -216,7 +216,11 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
    * @param {string} expectedPlanCost
    * @memberof CheckoutOrderSummaryComponent
    */
-  assertPlanNameTierNameAndCost = async (expectedPlanName: string, expectedTierName: string | undefined, expectedPlanCost: string): Promise<void> => {
+  assertPlanNameFriendlyTierNameAndCost = async (
+    expectedPlanName: string,
+    expectedTierName: string | undefined,
+    expectedPlanCost: string
+  ): Promise<void> => {
     console.log(' - checkoutOrderSummaryComponent.assertPlanNameTierNameAndCost');
     let found: boolean = false;
     orderSummary.orderSummaryRows.forEach(async (row) => {
@@ -255,7 +259,7 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
         await this.assertStringMatch(costs, expectedPlanCost);
       }
     });
-
+    await this.page.pause();
     if (found == false) {
       try {
         await this.assertBoolean(found, true);

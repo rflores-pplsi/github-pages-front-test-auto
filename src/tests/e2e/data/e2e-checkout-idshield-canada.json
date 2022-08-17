@@ -8,7 +8,7 @@
     "planCost": "$14.95",
     "totalCost": "$14.95",
     "totalDueToday": "$0.00",
-    "run": true
+    "disabled": true
   },
   {
     "testCaseName": "IdShield Canada (Idshield Family)",
@@ -19,7 +19,7 @@
     "planCost": "$29.95",
     "totalCost": "$29.95",
     "totalDueToday": "$0.00",
-    "run": true
+    "disabled": true
   },
   {
     "testCaseName": "IdShield Canada (Idshield Individual)",
@@ -30,7 +30,7 @@
     "planCost": "$14.95",
     "totalCost": "$14.95",
     "totalDueToday": "$0.00",
-    "run": true
+    "disabled": true
   },
   {
     "testCaseName": "IdShield Canada (Idshield Family)",
@@ -41,7 +41,7 @@
     "planCost": "$29.95",
     "totalCost": "$29.95",
     "totalDueToday": "$0.00",
-    "run": true
+    "disabled": true
   },
   {
     "testCaseName": "IdShield Canada (Idshield Individual)",
@@ -52,7 +52,7 @@
     "planCost": "$14.95",
     "totalCost": "$14.95",
     "totalDueToday": "$0.00",
-    "run": true
+    "disabled": true
   },
   {
     "testCaseName": "IdShield Canada (Idshield Family)",
@@ -63,7 +63,7 @@
     "planCost": "$29.95",
     "totalCost": "$29.95",
     "totalDueToday": "$0.00",
-    "run": true
+    "disabled": true
   },
   {
     "testCaseName": "IdShield Canada (Idshield Individual)",
@@ -74,7 +74,7 @@
     "planCost": "$14.95",
     "totalCost": "$14.95",
     "totalDueToday": "$0.00",
-    "run": true
+    "disabled": false
   },
   {
     "testCaseName": "IdShield Canada (Idshield Family)",
@@ -85,7 +85,7 @@
     "planCost": "$29.95",
     "totalCost": "$29.95",
     "totalDueToday": "$0.00",
-    "run": true
+    "disabled": false
   },
   {
     "testCaseName": "IdShield Canada (Idshield Individual)",
@@ -96,7 +96,7 @@
     "planCost": "$14.95",
     "totalCost": "$14.95",
     "totalDueToday": "$0.00",
-    "run": true
+    "disabled": true
   },
   {
     "testCaseName": "IdShield Canada (Idshield Family)",
@@ -107,7 +107,7 @@
     "planCost": "$29.95",
     "totalCost": "$29.95",
     "totalDueToday": "$0.00",
-    "run": true
+    "disabled": true
   },
   {
     "testCaseName": "IdShield Canada (Idshield Individual)",
@@ -118,7 +118,7 @@
     "planCost": "$14.95",
     "totalCost": "$14.95",
     "totalDueToday": "$0.00",
-    "run": true
+    "disabled": true
   },
   {
     "testCaseName": "IdShield Canada (Idshield Family)",
@@ -129,7 +129,7 @@
     "planCost": "$29.95",
     "totalCost": "$29.95",
     "totalDueToday": "$0.00",
-    "run": true
+    "disabled": true
   },
   {
     "testCaseName": "IdShield Canada (Idshield Individual)",
@@ -140,7 +140,7 @@
     "planCost": "$14.95",
     "totalCost": "$14.95",
     "totalDueToday": "$0.00",
-    "run": true
+    "disabled": true
   },
   {
     "testCaseName": "IdShield Canada (Idshield Family)",
@@ -151,7 +151,7 @@
     "planCost": "$29.95",
     "totalCost": "$29.95",
     "totalDueToday": "$0.00",
-    "run": true
+    "disabled": true
   },
   {
     "testCaseName": "IdShield Canada (Idshield Individual)",
@@ -162,7 +162,7 @@
     "planCost": "$14.95",
     "totalCost": "$14.95",
     "totalDueToday": "$0.00",
-    "run": true
+    "disabled": true
   },
   {
     "testCaseName": "IdShield Canada (Idshield Family)",
@@ -173,7 +173,7 @@
     "planCost": "$29.95",
     "totalCost": "$29.95",
     "totalDueToday": "$0.00",
-    "run": true
+    "disabled": true
   },
   {
     "testCaseName": "IdShield Canada (Idshield Individual)",
@@ -184,7 +184,7 @@
     "planCost": "$14.95",
     "totalCost": "$14.95",
     "totalDueToday": "$0.00",
-    "run": true
+    "disabled": true
   },
   {
     "testCaseName": "IdShield Canada (Idshield Family)",
@@ -195,7 +195,7 @@
     "planCost": "$29.95",
     "totalCost": "$29.95",
     "totalDueToday": "$0.00",
-    "run": true
+    "disabled": true
   },
   {
     "testCaseName": "IdShield Canada (Idshield Individual)",
@@ -206,7 +206,7 @@
     "planCost": "$14.95",
     "totalCost": "$14.95",
     "totalDueToday": "$0.00",
-    "run": true
+    "disabled": true
   },
   {
     "testCaseName": "IdShield Canada (Idshield Family)",
@@ -217,7 +217,7 @@
     "planCost": "$29.95",
     "totalCost": "$29.95",
     "totalDueToday": "$0.00",
-    "run": true
+    "disabled": true
   },
   {
     "testCaseName": "IdShield Canada (Idshield Individual)",
@@ -228,7 +228,7 @@
     "planCost": "$14.95",
     "totalCost": "$14.95",
     "totalDueToday": "$0.00",
-    "run": true
+    "disabled": true
   },
   {
     "testCaseName": "IdShield Canada (Idshield Family)",
@@ -239,7 +239,7 @@
     "planCost": "$29.95",
     "totalCost": "$29.95",
     "totalDueToday": "$0.00",
-    "run": true
+    "disabled": true
   },
   {
     "testCaseName": "IdShield Canada (Idshield Individual)",
@@ -250,7 +250,7 @@
     "planCost": "$14.95",
     "totalCost": "$14.95",
     "totalDueToday": "$0.00",
-    "run": true
+    "disabled": true
   },
   {
     "testCaseName": "IdShield Canada (Idshield Family)",
@@ -261,7 +261,7 @@
     "planCost": "$29.95",
     "totalCost": "$29.95",
     "totalDueToday": "$0.00",
-    "run": true
+    "disabled": true
   },
   {
     "testCaseName": "IdShield Canada (Idshield Individual)",
@@ -272,7 +272,7 @@
     "planCost": "$12.95",
     "totalCost": "$12.95",
     "totalDueToday": "$0.00",
-    "run": true
+    "disabled": true
   },
   {
     "testCaseName": "IdShield Canada (Idshield Family)",
@@ -283,6 +283,6 @@
     "planCost": "$25.95",
     "totalCost": "$25.95",
     "totalDueToday": "$0.00",
-    "run": true
+    "disabled": true
   }
 ]

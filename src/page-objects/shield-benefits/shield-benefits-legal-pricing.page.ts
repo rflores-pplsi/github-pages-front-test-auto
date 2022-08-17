@@ -1,7 +1,7 @@
 import { ShieldBenefitsLegalOverviewPage } from '../shield-benefits/shield-benefits-legal-overview.page';
 
 // ========================== Selectors ==================================
-const btnState = '//div[contains(@class,"mr-5") and contains (.,"State")]//button';
+const btnStateSelect = 'button:has-text("Select")';
 const btnProvinceSelect = 'button:has-text("Select")';
 const btnPaymentFrequency = '//p[contains (.,"Payment frequency")]/following-sibling::div//button';
 const conAvailablePlans = '//div[contains (@class,"filters mt-5 mb-5") and contains(.,"Available")]';
@@ -25,7 +25,7 @@ export class ShieldBenefitsLegalPricingPage extends ShieldBenefitsLegalOverviewP
    */
   selectPlanAndEnroll = async (state: string, paymentFrequency: string, planName: string, tierName: string) => {
     console.log(' - shieldBenefitsLegalPricingPage.selectPlanAndEnroll');
-    await this.clickOnElement(btnState);
+    await this.clickOnElement(btnStateSelect);
     await this.clickOnElement(`//div[contains(@class,"lsux-link-content--menu") and contains (.,"${state}")]`);
     await this.clickOnElement(btnPaymentFrequency);
     await this.clickOnElement(`//div[contains(@class,"lsux-link-content--menu") and contains (.,"${paymentFrequency}")]`);
@@ -41,7 +41,7 @@ export class ShieldBenefitsLegalPricingPage extends ShieldBenefitsLegalOverviewP
    */
   selectPlanAndEnrollNoPaymentFrequency = async (state: string, planName: string, tierName: string) => {
     console.log(' - shieldBenefitsLegalPricingPage.selectPlanAndEnroll');
-    await this.clickOnElement(btnState);
+    await this.clickOnElement(btnStateSelect);
     await this.clickOnElement(`//div[contains(@class,"lsux-link-content--menu") and contains (.,"${state}")]`);
     await this.waitForElementToBeVisible(conAvailablePlans);
     await this.clickIndividualPlanEnrollNowButton(planName, tierName);
@@ -56,7 +56,7 @@ export class ShieldBenefitsLegalPricingPage extends ShieldBenefitsLegalOverviewP
    */
   selectCombinationPlanAndEnroll = async (state: string, paymentFrequency: string, planName1: string, planName2: string) => {
     console.log(' - shieldBenefitsLegalPricingPage.selectCombinationPlanAndEnroll');
-    await this.clickOnElement(btnState);
+    await this.clickOnElement(btnStateSelect);
     await this.clickOnElement(`//div[contains(@class,"lsux-link-content--menu") and contains (.,"${state}")]`);
     await this.clickOnElement(btnPaymentFrequency);
     await this.clickOnElement(`//div[contains(@class,"lsux-link-content--menu") and contains (.,"${paymentFrequency}")]`);
@@ -111,7 +111,7 @@ export class ShieldBenefitsLegalPricingPage extends ShieldBenefitsLegalOverviewP
     await this.clickOnElement(`//div[@class="groupTokenCard" and contains(.,"${planName}") and contains(.,"${tierName}")]//button`);
   };
 
-  clickPricingPageSinglePlanEnrollNowButton = async (planSupplementName: string) => {
+  clickPricingPageSinglePlanEnrollNowButton = async (planSupplementName: Array<Array<string>>) => {
     console.log(' - shieldBenefitsLegalPricingPage.clickPricingPageSinglePlanEnrollNowButton');
     if (planSupplementName.includes('+')) {
       if (planSupplementName.includes(',')) {

@@ -25,11 +25,10 @@ for (const tc of checkoutGroupsData.filter((tc) => tc.disabled == false)) {
     await checkoutConfirmationPage.login(basicUser.email, basicUser.password);
     await checkoutConfirmationPage.changeAddressCanada(tc.region);
     await checkoutConfirmationPage.captureOrderSummaryWithoutTier();
-    await page.pause();
 
     // // Personal Info Assertions
-    // await checkoutConfirmationPage.assertAllProductNamesAndCosts(tc.productNamesAndCosts);
-    // await checkoutConfirmationPage.assertMonthlyLabelAndTotal(tc.monthlyTotal);
+    await checkoutConfirmationPage.assertAllProductNamesAndCosts(tc.productNamesAndCosts);
+    await checkoutConfirmationPage.assertMonthlyLabelAndTotal(tc.monthlyTotal);
     // // Save and continue to the Payment Page
     // await checkoutConfirmationPage.completeBusinessInfoForm();
     // await checkoutConfirmationPage.clickSaveAndContinueButton();
