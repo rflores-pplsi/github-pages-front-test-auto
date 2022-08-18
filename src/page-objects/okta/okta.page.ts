@@ -27,6 +27,8 @@ export class OktaPage extends LegalshieldTestHarnessMenuPage {
       // Enter email
       await this.fillTextBox(txtEmailAddress, emailOrUsername);
       // Enter password into input
+      // Have yet to find an explicit wait option, using this for now
+      await this.page.waitForTimeout(500);
       await this.fillTextBox(txtPassword, password);
       // Click on Sign In to submit login form
       await this.clickOnElement(btnSignIn);

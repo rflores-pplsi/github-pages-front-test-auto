@@ -1,6 +1,5 @@
 import urlsUtils from '../../utils/urls.utils';
 import { OktaPage } from '../okta/okta.page';
-// import { OktaPage } from '../../page-objects/okta/okta.page';
 
 // ========================== Selectors ==================================
 const url: string = urlsUtils.legalshieldUrls.shieldAtWork.url;
@@ -14,6 +13,7 @@ const txtContactInformation: string = '.lsux-content div:nth-child(2) > div:nth-
 const txtAddress: string = '.lsux-content  div:nth-child(2) > div:nth-child(3)  h3';
 const btnState: string = '.lsux-form-field-container._3CcWh8AqBHYFBJD2ZPGeEk > div > select';
 const btnPaymentFrequency: string = '.lsux-form-field-container._1Gj4FaXDj3_n1qmtzsl_z8 > div > select';
+const lnkLegalPlusPlan: string = '//*[@id="root"]/div/div/div[1]/div/div/div[2]/div[4]/div/div[2]/div/div/div[3]/div[1]/a';
 
 /**
  * @export
@@ -36,7 +36,6 @@ export class ShieldAtWorkAccountTab extends OktaPage {
     await this.clickOnElement(btnSearch);
     // Wait for the group name is displayed
     await this.page.waitForSelector(txtGroup);
-    await this.page.pause();
   };
   /**
    *
@@ -46,11 +45,14 @@ export class ShieldAtWorkAccountTab extends OktaPage {
    */
   navigateToGroupPage = async (groupNumber: String): Promise<void> => {
     console.log(' - groupManagementShieldAtWorkPage.navigateToGroupPage');
-    await await this.page.goto(url);
-    await this.page.pause();
-    await this.loginThroughOktaGroupEnrollment();
-    // await this.page.pause();
-    // await this.page.goto(`${url}/group/111452/`);
+    await this.page.goto(url);
+    // Login through okta
+    // await this.loginThroughOktaGroupEnrollment();
+    await this.loginThroughOkta();
+    // Search group by group number
+    await this.groupSearchByGroupNumber('111452');
+    // Click on View group button
+    await this.clickViewGroup();
   };
 
   // ========================== Click Methods ==============================
@@ -61,20 +63,13 @@ export class ShieldAtWorkAccountTab extends OktaPage {
     await this.clickOnElement(btnViewGroup);
   };
 
-  // ========================== Navigate Methods ===========================
-
-  navigateToShieldAtWorkAccountTab = async (): Promise<void> => {
-    console.log(' - accountShieldAtWorkPage.navigateToShieldAtWorkAccountTab');
-    // Navigate to Url
-    await this.page.goto(url);
-    // Login to ShieldAtWork
-    await this.loginThroughOktaGroupEnrollment();
-    // Search group by group number
-    await this.groupSearchByGroupNumber('111452');
-    // Click on View group button
-    await this.clickViewGroup();
-    await this.page.waitForURL('https://groups.uat-shieldatwork.com/group/111452/');
+  clickLnkLegalPlusPlan = async (): Promise<void> => {
+    console.log(' - accountShieldAtWorkPage.clickLnkPlusPlan');
+    // Click on Legal Plus Plan in available offerings section
+    await this.clickOnElement(lnkLegalPlusPlan);
   };
+
+  // ========================== Navigate Methods ===========================
 
   // ========================== Assertion Methods ==========================
 
@@ -116,5 +111,11 @@ export class ShieldAtWorkAccountTab extends OktaPage {
     console.log(' - accountShieldAtWork.assertPaymentFrequencyIsDisplayed');
     // Verify that payment frequency is displayed on the account tab
     await this.assertElementIsVisible(btnPaymentFrequency);
+  };
+
+  assertBenefitsDetailsPage = async (): Promise<void> => {
+    console.log(' - accountShieldAtWork.assertBenefitsDetailsPage');
+    // Verify that after clicking on hyperlink in available offerings section the benefits page is displayed
+    await this.page.waitForLoadState('domcontentloaded');
   };
 }
