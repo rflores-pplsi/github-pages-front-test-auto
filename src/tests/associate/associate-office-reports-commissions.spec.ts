@@ -7,21 +7,36 @@ let reportsCommissionsPage: ReportsCommissionsPage;
 // Setup environment before each test
 test.beforeEach(async ({ page }) => {
   reportsCommissionsPage = new ReportsCommissionsPage(page);
-  await reportsCommissionsPage.navigateToReportsCommissionsPage();
+  await reportsCommissionsPage.navigateToReportsCommissionsPage2();
 });
 
-// test('Add tab for Revenue Report', async ({ page }) => {
-//   await reportsCommissionsPage.assertReportsReportsCommissionsPageShow();
-//   await reportsCommissionsPage.assertTabFastStartStatementIsDisplayed();
-// });
+test('Associate Info is displayed', async ({ page }) => {
+  await reportsCommissionsPage.assertReportsCommissionsPageShow();
+  await reportsCommissionsPage.assertAssociateAddressInfo();
+});
 
-test('Create Revenue Report Statement Selection List', async ({ page }) => {
+test('Associate Statements Tab is displayed', async ({ page }) => {
+  await reportsCommissionsPage.assertTabAssociateStatementsIsDisplayed();
+  await reportsCommissionsPage.assertLblSearchCommissionStatementsIsDisplayed();
   await reportsCommissionsPage.assertSearchDatesIsDisplayed();
-  await reportsCommissionsPage.clickOnSearchDates();
-  await reportsCommissionsPage.selectDateFromSearchDates('2021', 'July');
-  await reportsCommissionsPage.clickOnSearchDatesDay5();
-  await reportsCommissionsPage.assertComboCountryIsEnable();
-  await reportsCommissionsPage.selectCountry('United States');
-  await reportsCommissionsPage.clickOnSearchButton();
-  await reportsCommissionsPage.assertAdvancedCommissionIsDisplayed();
+  await reportsCommissionsPage.assertComboCountryIsDisplayed();
+  await reportsCommissionsPage.assertSelectCalculationIsDisplayed();
+  await reportsCommissionsPage.assertBtnSearchIsDisplayed();
+});
+
+test('Pending Statements Tab is displayed', async ({ page }) => {
+  await reportsCommissionsPage.assertTabPendingStatementsIsDisplayed();
+  await reportsCommissionsPage.clickOnPendingStatements();
+  await reportsCommissionsPage.assertLblSearchCommissionStatementsIsDisplayed();
+  await reportsCommissionsPage.assertSearchDatesIsDisplayed();
+  await reportsCommissionsPage.assertComboCountryIsDisplayed();
+  await reportsCommissionsPage.assertBtnSearchIsDisplayed();
+});
+
+test('Fast Start Statement Tab is displayed', async ({ page }) => {
+  await reportsCommissionsPage.assertTabFastStartStatementsIsDisplayed();
+  await reportsCommissionsPage.assertSearchDatesIsDisplayed();
+  await reportsCommissionsPage.assertSearchDatesIsDisplayed();
+  await reportsCommissionsPage.assertComboCountryIsDisplayed();
+  await reportsCommissionsPage.assertBtnSearchIsDisplayed();
 });
