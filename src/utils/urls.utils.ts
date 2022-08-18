@@ -1,10 +1,12 @@
 /* eslint-disable camelcase */
-import EnvironmentUtil from './env.utils';
+import EnvironmentUtil from '../utils/env.utils';
+// import { config } from 'dotenv'
 require('dotenv').config();
 
 const envUrlString = EnvironmentUtil.getEnvUrlString();
 const envLaunchUrlString = EnvironmentUtil.getLaunchUrlString();
 const envTestHarnessString = EnvironmentUtil.getTestHarnessUrlString();
+const envWalsUrlString = EnvironmentUtil.getWalsEnvUrlString();
 
 /**
  *
@@ -71,6 +73,9 @@ export default class UrlsUtils {
     idShieldCanada: {
       url: `https://wptesttool${envTestHarnessString}.pplsicorp.com/d2c-idsca/?lsc-current-site=IDS_CA`,
     },
+    d2c: {
+      url: `https://wptesttool${envTestHarnessString}.pplsicorp.com`,
+    },
   };
 
   static readonly legalshieldInternalUrls = {
@@ -124,13 +129,19 @@ export default class UrlsUtils {
     },
   };
 
-  static readonly walsUrls = {
-    devUrl: {
-      url: ' https://lspro.dev.wearelegalshield.com/launch',
+  static readonly wals = {
+    urls: {
+      urlEnUS: ' https://lspro.' + envWalsUrlString + 'wearelegalshield.com',
+      urlSpUS: ' https://lspro.' + envWalsUrlString + 'somoslegalshield.com',
+      urlEnCa: ' https://lspro.' + envWalsUrlString + 'wearelegalshield.ca',
+      urlFrCa: ' https://lspro.' + envWalsUrlString + 'noussommeslegalshield.ca',
     },
-    uatUrl: {
-      url: 'https://lspro.stage.wearelegalshield.com/launch',
-    },
+    // uatUrl: {
+    //   url: 'https://lspro.stage.wearelegalshield.com/launch',
+    // },
+    // prodUrl: {
+    //   url: 'https://lspro.wearelegalshield.com/launch',
+    // },
   };
 
   static readonly channelsUrls = {
@@ -155,6 +166,7 @@ export default class UrlsUtils {
   };
   static readonly groupsUrls = {
     urlBestMoneyMovers: `https://www.shieldbenefits.com/bestmoneymoves/overview`,
-    url1UniversalTrucking: `https://w3.legalshield.com/gs/init?grp=1universaltrucking`,
+    url1UniversalTrucking: `http://www.legalshield.com/info/1universaltrucking`,
+    urlPrimericaGroup: `http://groups.legalshield.com/?group=primerica`,
   };
 }

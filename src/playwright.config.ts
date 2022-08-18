@@ -13,20 +13,25 @@ const config: PlaywrightTestConfig = {
         screenshot: 'on',
         video: 'on',
         trace: 'on',
-        // viewport: {
-        //   width: 1250,
-        //   height: 1300,
-        // },
+        viewport: {
+          width: 1250,
+          height: 1300,
+        },
+        extraHTTPHeaders: {
+          Authorization: 'Basic ',
+        },
       },
     },
     // {
     //   name: 'firefox',
     //   use: { ...devices['Desktop Firefox'], screenshot: 'on', video: 'on', trace: 'on' },
     // },
+    // { testMatch: ['tests/*.test.ts'] },
     // {
     //   name: 'webkit',
     //   use: { ...devices['Desktop Safari'], screenshot: 'on', video: 'on', trace: 'on' },
     // },
+    // { testMatch: ['tests/*.test.ts'] },
   ],
   reporter: [['dot'], ['json', { outputFile: 'test-result.json' }], ['html', { open: 'always' }]],
   retries: 1,

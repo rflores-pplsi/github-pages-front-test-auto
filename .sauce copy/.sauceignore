@@ -13,3 +13,8 @@
 # Remove this to have node_modules uploaded with code
 node_modules/
 artifacts
+package-lock.json
+package.json
+webpack.config.js
+tsconfig.json
+README.md
