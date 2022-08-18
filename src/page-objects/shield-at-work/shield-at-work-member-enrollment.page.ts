@@ -1,5 +1,5 @@
 import urlsUtils from '../../utils/urls.utils';
-import { LsWorkLoginPage } from './shield-at-work-login.page';
+import { OktaPage } from '../okta/okta.page';
 
 // ========================== Selectors ==================================
 
@@ -32,7 +32,7 @@ const txtFamilyMembers: string = '.lsux-row.plain.children1.pl-4.mb-0.pb-6.pr-5.
  * @class ShieldAtWorkMemberEnrollment
  * @extends {LsWorkLoginPage}
  */
-export class ShieldAtWorkMemberEnrollment extends LsWorkLoginPage {
+export class ShieldAtWorkMemberEnrollment extends OktaPage {
   // ========================== Process Methods ============================
 
   /**
@@ -123,16 +123,20 @@ export class ShieldAtWorkMemberEnrollment extends LsWorkLoginPage {
 
   // ========================== Navigate Methods ===========================
 
-  navigateToShieldAtWorkMemberEnrollment = async (): Promise<void> => {
-    console.log(' - ShieldAtWorkMemberEnrollment .navigateToShieldAtWorkMemberEnrollment');
-    // Navigate to Url
+  /**
+   *
+   *
+   * @param {String} groupNumber
+   * @memberof shieldAtWorkMemberEnrollment
+   */
+  navigateToGroupPage = async (groupNumber: String): Promise<void> => {
+    console.log(' - shieldAtWorkMemberEnrollment.navigateToGroupPage');
     await this.page.goto(url);
-    // Login to ShieldAtWork
-    await this.loginWithCredentials();
-    // Type in the search field group 121076
-    await this.groupSearchByGroupNumber('121076');
-    // Click on Enroll new member button
-    await this.clickEnrollNewMember();
+    // Login through okta
+    // await this.loginThroughOktaGroupEnrollment();
+    await this.loginThroughOkta();
+    // Search group by group number
+    await this.groupSearchByGroupNumber('111452');
   };
   // ========================== Click Methods ==============================
 

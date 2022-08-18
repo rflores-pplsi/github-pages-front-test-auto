@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import EnvironmentUtil from './env.utils';
-// require('dotenv').config();
+require('dotenv').config();
 
 const envUrlString = EnvironmentUtil.getEnvUrlString();
 const envLaunchUrlString = EnvironmentUtil.getLaunchUrlString();
@@ -45,7 +45,7 @@ export default class UrlsUtils {
       url: `https://forms.${envUrlString}legalshield.com/`,
     },
     shieldAtWork: {
-      url: ` https://login.uat-shieldatwork.com/login?app=groups`,
+      url: `https://groups.${envUrlString}shieldatwork.com/employee`,
     },
     groupEnrollment: {
       url: `https://groupenrollment.${envUrlString}legalshieldinternal.com/`,
@@ -90,6 +90,9 @@ export default class UrlsUtils {
   static readonly shieldBenefits = {
     home: {
       url: `https://www.${envUrlString}shieldbenefits.com`,
+    },
+    employee: {
+      url: `https://www.${envUrlString}shieldbenefits.com/employee`,
     },
   };
 

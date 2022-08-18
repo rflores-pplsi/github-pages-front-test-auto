@@ -5,11 +5,12 @@ let shieldAtWorkMemberEnrollment: ShieldAtWorkMemberEnrollment;
 
 test.beforeEach(async ({ page }) => {
   shieldAtWorkMemberEnrollment = new ShieldAtWorkMemberEnrollment(page);
-  await shieldAtWorkMemberEnrollment.navigateToShieldAtWork();
 });
 
-test('Contact information, available plan offerings section, member information  are displayed on the member enrollment page', async ({ page }) => {
-  await shieldAtWorkMemberEnrollment.navigateToShieldAtWorkMemberEnrollment();
+test.skip('Contact information, available plan offerings section, member information  are displayed on the member enrollment page', async ({
+  page,
+}) => {
+  await shieldAtWorkMemberEnrollment.navigateToGroupPage('111452');
   await shieldAtWorkMemberEnrollment.fillOutContactInformation(
     'Test',
     'Tester',

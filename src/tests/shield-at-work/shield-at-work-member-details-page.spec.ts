@@ -11,14 +11,14 @@ test.beforeEach(async ({ page }) => {
 
 test('Member information is displayed after clicking on member name on the member details page', async ({ page }) => {
   console.log('Member information is displayed after clicking on member name on the member details page');
-  await shieldAtWorkMemberDetailsPage.navigateToShieldAtWorkMemberDetailsPage();
+  await shieldAtWorkMemberDetailsPage.navigateToGroupPage('111452');
   await shieldAtWorkMemberDetailsPage.clickMemberName();
   await shieldAtWorkMemberDetailsPage.assertMemberInformationIsDisplayed();
 });
 
-test('Error message "There are no family members to display" is displayed for family section on the member details page', async ({ page }) => {
+test.skip('Error message "There are no family members to display" is displayed for family section on the member details page', async ({ page }) => {
   console.log('Error message "There are no family members to display" is displayed for family section on the member details page');
-  await shieldAtWorkMemberDetailsPage.navigateToShieldAtWorkMemberDetailsPage();
+  await shieldAtWorkMemberDetailsPage.navigateToGroupPage('111452');
   await shieldAtWorkMemberDetailsPage.clickMemberName();
   await shieldAtWorkMemberDetailsPage.assertErrorMessageIsDisplayed();
 });
