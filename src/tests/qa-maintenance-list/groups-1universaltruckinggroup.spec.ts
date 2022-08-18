@@ -11,7 +11,7 @@ test.beforeEach(async ({ page }) => {
   test.slow();
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
-test.only('test', async ({ page }) => {
+test('test', async ({ page }) => {
   test.slow;
   // Go to https://www.shieldbenefits.com/bestmoneymoves/overview
   await universalTruckingPage.navigateTo1UniversalTruckingGroupPage();

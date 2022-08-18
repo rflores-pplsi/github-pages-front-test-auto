@@ -15,7 +15,7 @@ test('Verify functionality on the small business page - Sign In button redirects
   // Click on Sign In button
   await groupEnrollmentSmallBusinessPage.clickBtnSignIn();
   // Verify Accounts v2 url displays
-  await groupEnrollmentSmallBusinessPage.assertAccountsV2Url();
+  await groupEnrollmentSmallBusinessPage.assertAccountsUrl();
 });
 
 test('Verify functionality on the small business page - Law firm information is displayed', async ({ page }) => {

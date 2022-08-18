@@ -1,9 +1,9 @@
 import urlsUtils from '../../utils/urls.utils';
-import { LsWorkLoginPage } from './shield-at-work-login.page';
+import { OktaPage } from '../okta/okta.page';
 
 // ========================== Selectors ==================================
 const url: string = urlsUtils.legalshieldUrls.shieldAtWork.url;
-const txtSearch: string = '[placeholder="Search by name or group number"]';
+const txtSearch: string = '[id="searchInput"]';
 const btnSearch: string = '[id="searchButton"]';
 const txtGroup: string = '#root  .lsux-container--flex-items-center.mb-2 > h3';
 const btnViewGroup: string = '.lsux-button.lsux-button--standard.ml-3 > span';
@@ -13,13 +13,14 @@ const txtContactInformation: string = '.lsux-content div:nth-child(2) > div:nth-
 const txtAddress: string = '.lsux-content  div:nth-child(2) > div:nth-child(3)  h3';
 const btnState: string = '.lsux-form-field-container._3CcWh8AqBHYFBJD2ZPGeEk > div > select';
 const btnPaymentFrequency: string = '.lsux-form-field-container._1Gj4FaXDj3_n1qmtzsl_z8 > div > select';
+const lnkLegalPlusPlan: string = '//*[@id="root"]/div/div/div[1]/div/div/div[2]/div[4]/div/div[2]/div/div/div[3]/div[1]/a';
 
 /**
  * @export
  * @class ShieldAtWorkAccountTab
- * @extends {LsWorkLoginPage}
+ * @extends {ShieldAtWorkAccountTab}
  */
-export class ShieldAtWorkAccountTab extends LsWorkLoginPage {
+export class ShieldAtWorkAccountTab extends OktaPage {
   // ========================== Process Methods ============================
   /**
    *
@@ -36,6 +37,23 @@ export class ShieldAtWorkAccountTab extends LsWorkLoginPage {
     // Wait for the group name is displayed
     await this.page.waitForSelector(txtGroup);
   };
+  /**
+   *
+   *
+   * @param {String} groupNumber
+   * @memberof ShieldAtWorkAccountTab
+   */
+  navigateToGroupPage = async (groupNumber: String): Promise<void> => {
+    console.log(' - groupManagementShieldAtWorkPage.navigateToGroupPage');
+    await this.page.goto(url);
+    // Login through okta
+    // await this.loginThroughOktaGroupEnrollment();
+    await this.loginThroughOkta();
+    // Search group by group number
+    await this.groupSearchByGroupNumber('111452');
+    // Click on View group button
+    await this.clickViewGroup();
+  };
 
   // ========================== Click Methods ==============================
 
@@ -45,19 +63,13 @@ export class ShieldAtWorkAccountTab extends LsWorkLoginPage {
     await this.clickOnElement(btnViewGroup);
   };
 
-  // ========================== Navigate Methods ===========================
-
-  navigateToShieldAtWorkAccountTab = async (): Promise<void> => {
-    console.log(' - accountShieldAtWorkPage.navigateToShieldAtWorkAccountTab');
-    // Navigate to Url
-    await this.page.goto(url);
-    // Login to ShieldAtWork
-    await this.loginWithCredentials();
-    // Search group by group number
-    await this.groupSearchByGroupNumber('111452');
-    // Click on View group button
-    await this.clickViewGroup();
+  clickLnkLegalPlusPlan = async (): Promise<void> => {
+    console.log(' - accountShieldAtWorkPage.clickLnkPlusPlan');
+    // Click on Legal Plus Plan in available offerings section
+    await this.clickOnElement(lnkLegalPlusPlan);
   };
+
+  // ========================== Navigate Methods ===========================
 
   // ========================== Assertion Methods ==========================
 
@@ -99,5 +111,11 @@ export class ShieldAtWorkAccountTab extends LsWorkLoginPage {
     console.log(' - accountShieldAtWork.assertPaymentFrequencyIsDisplayed');
     // Verify that payment frequency is displayed on the account tab
     await this.assertElementIsVisible(btnPaymentFrequency);
+  };
+
+  assertBenefitsDetailsPage = async (): Promise<void> => {
+    console.log(' - accountShieldAtWork.assertBenefitsDetailsPage');
+    // Verify that after clicking on hyperlink in available offerings section the benefits page is displayed
+    await this.page.waitForLoadState('domcontentloaded');
   };
 }

@@ -23,6 +23,8 @@ test('Add a new Phone Number ', async ({ page }) => {
 
 // Edit the Profile Phone Number page
 test('Edit Phone Number by clicking the Phone Edit button', async ({ page }) => {
+  // skipping this test as it will pass even when it doesn't find the phone number it wants to edit (often an account gets modified elsewhere)
+  test.skip();
   console.log('Test Case: Edit Phone Number by clicking the Phone Edit button');
   // Edit Phone number Text Box
   await accountProfilePhonePage.editPhoneNumberFun('(666) 555-4444', '(771) 777-7777');

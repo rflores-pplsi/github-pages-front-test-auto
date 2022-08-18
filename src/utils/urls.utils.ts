@@ -1,6 +1,6 @@
 /* eslint-disable camelcase */
 import EnvironmentUtil from '../utils/env.utils';
-// import { config } from 'dotenv';
+// import { config } from 'dotenv'
 require('dotenv').config();
 
 const envUrlString = EnvironmentUtil.getEnvUrlString();
@@ -17,7 +17,7 @@ const envWalsUrlString = EnvironmentUtil.getWalsEnvUrlString();
 export default class UrlsUtils {
   static readonly legalshieldUrls = {
     account: {
-      url: `https://accountsv2.${envUrlString}legalshield.com`,
+      url: `https://accounts.${envUrlString}legalshield.com`,
     },
     login: {
       url: `https://login.${envUrlString}legalshield.com`,
@@ -47,7 +47,7 @@ export default class UrlsUtils {
       url: `https://forms.${envUrlString}legalshield.com/`,
     },
     shieldAtWork: {
-      url: `https://login.${envUrlString}shieldatwork.com?app=work`,
+      url: `https://groups.${envUrlString}shieldatwork.com/employee`,
     },
     groupEnrollment: {
       url: `https://groupenrollment.${envUrlString}legalshieldinternal.com/`,
@@ -96,6 +96,9 @@ export default class UrlsUtils {
     home: {
       url: `https://www.${envUrlString}shieldbenefits.com`,
     },
+    employee: {
+      url: `https://www.${envUrlString}shieldbenefits.com/employee`,
+    },
   };
 
   static readonly pplsiUrls = {
@@ -103,7 +106,7 @@ export default class UrlsUtils {
       url: 'https://www.pplsi.com',
     },
     termsOfService: {
-      url: 'https://www.legalshield.com/terms-service?',
+      url: 'https://www.pplsi.com/terms-service?',
     },
   };
 

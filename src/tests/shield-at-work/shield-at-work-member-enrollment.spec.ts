@@ -5,18 +5,28 @@ let shieldAtWorkMemberEnrollment: ShieldAtWorkMemberEnrollment;
 
 test.beforeEach(async ({ page }) => {
   shieldAtWorkMemberEnrollment = new ShieldAtWorkMemberEnrollment(page);
-  await shieldAtWorkMemberEnrollment.navigateToShieldAtWork();
 });
 
-test('Edit button for contact information should be enabled', async ({ page }) => {
-  // Login with your credentials
-  await shieldAtWorkMemberEnrollment.loginWithCredentials();
-  // Click on Enroll new member button
-  await shieldAtWorkMemberEnrollment.clickEnrollNewMember();
-  // Fill out contact information
-  await shieldAtWorkMemberEnrollment.fillOutContactInformation();
-  // Click on Continue button
+test.skip('Contact information, available plan offerings section, member information  are displayed on the member enrollment page', async ({
+  page,
+}) => {
+  await shieldAtWorkMemberEnrollment.navigateToGroupPage('111452');
+  await shieldAtWorkMemberEnrollment.fillOutContactInformation(
+    'Test',
+    'Tester',
+    '5555555555',
+    'tester93@gmail.com',
+    '1666 Raleigh',
+    'Dallas',
+    '77494'
+  );
   await shieldAtWorkMemberEnrollment.clickContinueButtonContactInfo();
-  // Verify that Edit button is enabled
   await shieldAtWorkMemberEnrollment.assertEditButton();
+  await shieldAtWorkMemberEnrollment.assertEffectiveDateField();
+  await shieldAtWorkMemberEnrollment.selectEffectiveDate();
+  await shieldAtWorkMemberEnrollment.selectPlan();
+  await shieldAtWorkMemberEnrollment.clickContinueButtonPlanOfferings();
+  await shieldAtWorkMemberEnrollment.selectDateOfBirth();
+  await shieldAtWorkMemberEnrollment.selectSSN();
+  await shieldAtWorkMemberEnrollment.assertFamilyMemberSectionIsDisplayed();
 });

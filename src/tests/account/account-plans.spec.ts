@@ -7,6 +7,7 @@ let accountPlansPage: AccountPlansPage;
 
 // Setup environment before each test
 test.beforeEach(async ({ page }) => {
+  console.log('Before Each:');
   accountPlansPage = new AccountPlansPage(page);
   // Login with accounts that have all necessary plans and navigate to accounts plan page
   await accountPlansPage.loginToNavigateToAccountsPlanPage(withPlans.email, withPlans.password);

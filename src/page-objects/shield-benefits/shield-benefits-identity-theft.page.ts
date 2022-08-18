@@ -5,7 +5,7 @@ import { OktaPage } from '../okta/okta.page';
 
 const url: string = UrlsUtils.legalshieldUrls.groupEnrollment.url;
 const btnAppStore: string = '.lsux-grid.container a:nth-child(1) > img';
-const urlGroup: string = 'https://www.uat-shieldbenefits.com/';
+const urlGroup: string = 'https://www.uat-shieldbenefits.com/nnidstest3';
 const txtSearch: string = '[placeholder="Search"]';
 const btnSearchGroup: string = '.lsux-button--primary';
 const btnEdit: string = '.group-item-controls > div:nth-child(3) > a > div > img';
@@ -14,7 +14,7 @@ const tabIdentityTheft: string = '//*[@id="root"]/div/nav/div/div/ul/li[1]/a';
 const txtGroupInfo: string = '[class="group-item-info"]';
 const txbNewGroupURLId: string = '.lsux-grid div:nth-child(4) > div > div > form > div:nth-child(1) input';
 const btnSignIn: string = '[id="signedout"]';
-const lnkAppStore: string = '.lsux-grid.container a:nth-child(1) > img';
+const lnkAppStore: string = '.lsux-grid.container  a:nth-child(1) > img';
 const btnBackToTop: string = 'main > div > div > button > span';
 const btnLanguageDropDown: string = 'p.dropBtn';
 const opcEspanolUS: string = '.lsux-col.col.four.leftWrapper > div > ul > li.langSwitcher > div > div > ul > li:nth-child(2)';
@@ -82,9 +82,7 @@ export class ShieldBenefitsIdentityTheftPage extends OktaPage {
    */
   navigateToGroupEnrollmentIdentityTheftPage = async (group: string): Promise<void> => {
     console.log(' - ShieldBenefitsIdentityTheftPage.navigateToGroupEnrollmentSmallBusinessPage');
-    await this.navigateToGroupEnrollmentSearchPage();
-    await this.searchGroup(group);
-    await this.navigateToGroupEnrollmentGroupURLPage('value');
+    await this.page.goto(urlGroup);
   };
   // ========================== Click Methods ==============================
 
@@ -139,13 +137,13 @@ export class ShieldBenefitsIdentityTheftPage extends OktaPage {
   };
 
   assertSignInButtonIsDisplayed = async (): Promise<void> => {
-    console.log(' - ShieldBenefitsCommercialDriverPage.assertSignInButtonIsDisplayed');
+    console.log(' - ShieldBenefitsIdentityTheftPage.assertSignInButtonIsDisplayed');
     // Confirm Sign In button is displayed
     await this.assertElementIsVisible(btnSignIn);
   };
 
   assertAppStoreButtonISDisplayed = async (): Promise<void> => {
-    console.log(' - ShieldBenefitsCommercialDriverPage.assertAppStoreButtonIsDisplayed');
+    console.log(' - ShieldBenefitsIdentityTheftPage.assertAppStoreButtonIsDisplayed');
     // Confirm App store button is displayed
     await this.assertElementIsVisible(btnAppStore);
   };

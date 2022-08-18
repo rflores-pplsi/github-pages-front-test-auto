@@ -19,6 +19,10 @@ const imgShowOrderSummaryChevron: string = 'img[alt="nav_chevron_single_down."]'
 const conOrderSummary: string = '//div[contains(@class,"order-summary")]';
 const txtPlanNames: string = '//div[contains(@class,"plan-name-row")]//p[1]';
 const txtTierNames: string = '//div[contains(@class,"plan-name-row")]//p[2]';
+const txtSupplementNames: string =
+  '//div[contains(@class,"lsux-row half children2 content-row mb-4 mt-4 pb-4")]//p[not(contains(@style,"text-align: right;"))]';
+const txtSupplementCosts: string =
+  '//div[contains(@class,"lsux-row half children2 content-row mb-4 mt-4 pb-4")]//p[contains(@style,"text-align: right;")]';
 const txtPlanCosts: string = '//div[contains(@class,"lsux-row half children2 content-row mb-4")]//div[contains(@class,"right-label-col")]//p';
 const txtMonthlyTotalLabel: string = '//div[contains(@class,"left-label")]//p[contains(.,"Monthly Total:")]';
 const txtMonthlyTotalAmount: string = '//div[contains(@class,"footer-row") and contains(.,"Monthly Total:")]//div[contains(@class,"right-label")]//p';
@@ -63,9 +67,8 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
       }
     }
   };
+
   /**
-   *
-   *
    * @memberof CheckoutOrderSummaryComponent
    */
   captureOrderSummaryWithoutTier = async (): Promise<void> => {
@@ -76,10 +79,17 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
     if (orderSummaryWithoutTiers.orderSummaryRows.length != 0) {
       orderSummaryWithoutTiers.orderSummaryRows = [];
     }
-    const numberOfRows = (await this.page.$$('//div[contains(@class,"plan-name-row")]')).length;
-    for (let i: number = 0; i < numberOfRows; i++) {
+    // write all plans to the orderSummary object
+    const numberOfPlans = (await this.page.$$(txtPlanNames)).length;
+    for (let i: number = 0; i < numberOfPlans; i++) {
       const row = await this.captureOrderSummaryRowWithoutTier(i);
       orderSummary.addRow(row as unknown as OrderSummaryRow);
+    }
+    // write all supplements to the orderSummary object
+    const numberOfSupplements = (await this.page.$$(txtSupplementNames)).length;
+    for (let i: number = 0; i < numberOfSupplements; i++) {
+      const row = await this.captureOrderSummarySupplementRowWithoutTier(i);
+      orderSummary.addRow(row);
     }
   };
 
@@ -100,14 +110,32 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
     return planRow;
   };
 
+  /**
+   * @param {number} [i=0]
+   * @memberof CheckoutOrderSummaryComponent
+   */
   captureOrderSummaryRowWithoutTier = async (i: number = 0): Promise<OrderSummaryRowWithoutTier> => {
-    console.log(' - checkoutOrderSummaryComponent.captureOrderSummaryRow');
+    console.log(' - checkoutOrderSummaryComponent.captureOrderSummaryRowWithoutTier');
     const planNameJsHandle = (await this.page.$$(txtPlanNames))[i].getProperty('innerText');
     const planNameText = await (await planNameJsHandle).jsonValue();
     const planCostJsHandle = (await this.page.$$(txtPlanCosts))[i].getProperty('innerText');
     const planCostText = await (await planCostJsHandle).jsonValue();
     const planRow = new OrderSummaryRowWithoutTier(planNameText, planCostText);
     return planRow;
+  };
+
+  /**
+   *
+   *
+   * @param {number} [i=0]
+   * @memberof CheckoutOrderSummaryComponent
+   */
+  captureOrderSummarySupplementRowWithoutTier = async (i: number = 0): Promise<OrderSummaryRowWithoutTier> => {
+    console.log(' - checkoutOrderSummaryComponent.captureOrderSummaryRowWithoutTier');
+    const supplementNameText = await this.page.locator(txtSupplementNames).nth(i).innerText();
+    const supplementCostText = await this.page.locator(txtSupplementCosts).nth(i).innerText();
+    const supplementRow = new OrderSummaryRowWithoutTier(supplementNameText, supplementCostText);
+    return supplementRow;
   };
 
   /**
@@ -237,6 +265,52 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
         throw new Error('Plan Name not found in Order Summary');
       }
     }
+  };
+
+  /**
+   * @param {Array<Array<string>>} productNamesAndCosts
+   * @memberof CheckoutOrderSummaryComponent
+   */
+  assertAllProductNamesAndCosts = async (productNamesAndCosts: Array<Array<string>>): Promise<void> => {
+    console.log(' - checkoutOrderSummaryComponent.assertAllPlanNamesAndCosts');
+    for (const pnc of productNamesAndCosts) {
+      let found: boolean = false;
+      let expectedProductName: string = pnc[0];
+      // remove plan prefix if it is a supplement
+      if (pnc[0].includes('-')) {
+        expectedProductName = await this.extractSupplementName(pnc[0]);
+      }
+      for (const row of orderSummary.orderSummaryRows) {
+        const planName = row.planName;
+        const costs = row.planCost;
+        // If product is a supplement, need to remove the name of the parent plan from the string
+        if (planName == expectedProductName) {
+          found = true;
+          await this.assertStringMatch(costs, pnc[1]);
+          // break out of productAndNames For loop if found
+          break;
+        }
+      }
+
+      if (found == false) {
+        try {
+          await this.assertBoolean(found, true);
+        } catch {
+          // console.log('Order Summary' + JSON.stringify(orderSummary));
+          throw new Error('Product Name not found in Order Summary');
+        }
+      }
+    }
+  };
+
+  /**
+   * @param {string} productName
+   * @memberof CheckoutOrderSummaryComponent
+   */
+  extractSupplementName = async (productName: string): Promise<string> => {
+    console.log(' - checkoutOrderSummaryComponent.extractSupplementName');
+    const supplementName = productName.split('- ', 3);
+    return supplementName[1];
   };
   /**
    * @param {string} expectedPlanName

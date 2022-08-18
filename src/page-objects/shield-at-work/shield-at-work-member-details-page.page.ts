@@ -10,23 +10,25 @@ const btnSearch: string = '[id="searchButton"]';
 const btnEnrollmentTab: string =
   '#root > div > div > div:nth-child(1) > div > div > div.px-6.pt-4.mb-6.oVjDjW_QqZkyeTOHfYTdP > div.lsux-tab--bar.lsux-tab--stretch.mt-4._1eLFtzcrk-k4lYLgF3dWc1 > div:nth-child(2) > div > a > h4';
 const txtGroup: string = '#root  .lsux-container--flex-items-center.mb-2 > h3';
-const btnManageSite: string = '.lsux-container.lsux-container--white div > h2 > button > span';
-const txtEnrollmentInformation: string = '.lsux-row.thirds.children4._1mGEzKW4bHYdkCdXubcxyu > div:nth-child(1) > div > h2';
+const btnMemberName: string = '#root  div:nth-child(2) > div:nth-child(3) ';
+const txtMemberInformation: string =
+  '#root  div:nth-child(2) > div.lsux-container.lsux-container--flexbox.lsux-container--flex-justify-space-between h3';
+const txtFamily: string = '#root div:nth-child(4) > div.mb-4._2nNbq5j54sbQ6MAihmSQg3 h3';
 
 /**
  * @export
- * @class ShieldAtWorkEnrollmentTab
+ * @class  ShieldAtWorkMemberDetailsPage
  * @extends {LsWorkLoginPage}
  */
-export class ShieldAtWorkEnrollmentTab extends OktaPage {
+export class ShieldAtWorkMemberDetailsPage extends OktaPage {
   /**
    *
    *
    * @param {string} group
-   * @memberof ShieldAtWorkAccountTab
+   * @memberof  ShieldAtWorkMemberDetailsPage
    */
   groupSearchByGroupNumber = async (group: string): Promise<void> => {
-    console.log(' - accountShieldAtWorkPage.groupSearchByGroupNumber');
+    console.log(' -  ShieldAtWorkMemberDetailsPage.groupSearchByGroupNumber');
     // Type in the search field the group number
     await this.page.fill(txtSearch, group);
     // Click on search button
@@ -38,21 +40,33 @@ export class ShieldAtWorkEnrollmentTab extends OktaPage {
   // ========================== Click Methods ==============================
 
   clickViewGroup = async (): Promise<void> => {
-    console.log(' - accountShieldAtWorkPage.clickViewGroup');
+    console.log(' - ShieldAtWorkMemberDetailsPage.clickViewGroup');
     // Click on View Group button
     await this.clickOnElement(btnViewGroup);
   };
 
   clickEnrollmentTab = async (): Promise<void> => {
-    console.log(' - enrollmentShieldAtWorkPage.clickEnrollmentTab');
+    console.log(' -  ShieldAtWorkMemberDetailsPage.clickEnrollmentTab');
     // Click on Enrollment tab
     await this.clickOnElement(btnEnrollmentTab);
   };
 
+  clickMemberName = async (): Promise<void> => {
+    console.log(' -  ShieldAtWorkMemberDetailsPage.clickMemberName');
+    // Click on Member name
+    await this.clickOnElement(btnMemberName);
+  };
+
   // ========================== Navigate Methods ===========================
 
+  /**
+   *
+   *
+   * @param {String} groupNumber
+   * @memberof ShieldAtWorkAccountTab
+   */
   navigateToGroupPage = async (groupNumber: String): Promise<void> => {
-    console.log(' - enrollmentShieldAtWorkPage.navigateToGroupPage');
+    console.log(' - ShieldAtWorkMemberDetailsPage.navigateToGroupPage');
     await this.page.goto(url);
     // Login through okta
     await this.loginThroughOkta();
@@ -64,15 +78,18 @@ export class ShieldAtWorkEnrollmentTab extends OktaPage {
 
   // ========================== Assertion Methods ==========================
 
-  assertManageSiteButtonIsVisible = async (): Promise<void> => {
-    console.log(' - enrollmentShieldAtWorkPage.assertManageSiteButtonIsVisible');
-    // Verify that Manage site button is displayed on the enrollment page
-    await this.assertElementIsVisible(btnManageSite);
+  assertMemberInformationIsDisplayed = async (): Promise<void> => {
+    console.log(' - ShieldAtWorkMemberDetailsPage.assertMemberInformationIsDisplayed');
+    // Confirm clicking on member name redirects to the member details page
+    await this.page.waitForLoadState('networkidle');
+    await this.assertElementIsVisible(txtMemberInformation);
   };
 
-  assertEnrollmentInformationIsDisplayed = async (): Promise<void> => {
-    console.log(' - enrollmentShieldAtWorkPage.assertEnrollmentInformationIsDisplayed');
-    // Verify that enrollment information is displayed on the enrollment page
-    await this.assertElementIsVisible(txtEnrollmentInformation);
+  assertErrorMessageIsDisplayed = async (): Promise<void> => {
+    console.log(' - ShieldAtWorkMemberDetailsPage.assertErrorMessageIsDisplayed');
+    // Confirm error message is displayed for family section on the member details page
+    await this.page.waitForSelector(txtFamily);
+    const errorMessage = 'There are no family members to display.';
+    await this.assertElementHasText(txtFamily, errorMessage);
   };
 }

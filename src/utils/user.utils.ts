@@ -36,7 +36,7 @@ export const dependentUser = {
   password: process.env[`DEPENDENT_PASSWORD_${env.toUpperCase()}`],
 };
 export const withUsername = {
-  email: process.env[`WITHUSERNAME_EMAIL_${env.toUpperCase()}`],
+  username: process.env[`WITHUSERNAME_USERNAME_${env.toUpperCase()}`],
   password: process.env[`WITHUSERNAME_PASSWORD_${env.toUpperCase()}`],
 };
 export const withoutUsername = {
@@ -58,6 +58,10 @@ export const canadianUser = {
 export const associateReportsCommissions2 = {
   username: process.env[`ASSOCIATE_REPORTS_COMMISSIONS_USERNAME2_${env.toUpperCase()}`],
   password: process.env[`ASSOCIATE_REPORTS_COMMISSIONS_PASSWORD2_${env.toUpperCase()}`],
+};
+export const associateReportsCommissions3 = {
+  username: process.env[`RC_PENDING_STATEMENTS_USERNAME_${env.toUpperCase()}`],
+  password: process.env[`RC_PENDING_STATEMENTS_PASSWORD_${env.toUpperCase()}`],
 };
 export const revenueReports = {
   username: process.env[`REVENUE_REPORTS_USERNAME_${env.toUpperCase()}`],
