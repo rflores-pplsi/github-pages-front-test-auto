@@ -259,7 +259,6 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
         await this.assertStringMatch(costs, expectedPlanCost);
       }
     });
-    await this.page.pause();
     if (found == false) {
       try {
         await this.assertBoolean(found, true);

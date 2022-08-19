@@ -50,7 +50,6 @@ export class PlanalyzerCsrCheckoutPage extends OktaPage {
     await this.clickShowResults();
     await this.clickPlanCheckboxes(plans);
     await this.clickGoToCheckout();
-    await this.clickContinueButton();
   };
 
   /**

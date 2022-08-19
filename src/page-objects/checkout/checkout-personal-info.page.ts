@@ -58,18 +58,18 @@ const txtTaxId: string = '[name="taxId"]';
 export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   // ========================== Process Methods ============================
 
-  /**
-   *
-   *
-   * @param {string} state
-   * @param {string} paymentFrequency
-   * @param {string} planName
-   * @param {string} tierName
-   * @memberof CheckoutPersonalInfoPage
-   */
-  selectPlanFromShieldBenefitsPricingPage = async (state: string, paymentFrequency: string, planName: string, tierName: string): Promise<void> => {
-    await this.selectPlanAndEnroll(state, paymentFrequency, planName, tierName);
-  };
+  // /**
+  //  *
+  //  *
+  //  * @param {string} state
+  //  * @param {string} paymentFrequency
+  //  * @param {string} planName
+  //  * @param {string} tierName
+  //  * @memberof CheckoutPersonalInfoPage
+  //  */
+  // selectPlanFromShieldBenefitsPricingPage = async (state: string[], paymentFrequency: string, planName: string, tierName: string): Promise<void> => {
+  //   await this.selectPlanFromShieldBenefitsPricingPage(state, paymentFrequency, planName, tierName);
+  // };
 
   /**
    * @param {string} state

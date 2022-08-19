@@ -46,9 +46,6 @@ export class LoginPage extends BasePage {
     } else {
       throw new Error('Email or Password parameters are undefined');
     }
-
-    // temporary exposed password dialog dismissal
-    await this.clickOnElement(btnExposedPassword);
   };
 
   /**

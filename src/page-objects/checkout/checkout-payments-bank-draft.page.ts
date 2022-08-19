@@ -37,6 +37,7 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
     await this.page.keyboard.press('Tab');
     await this.fillAccountHolderNameTxt('Automation Tester');
     await this.page.keyboard.press('Tab');
+    await this.page.pause();
     await this.clickPurchaseBtn();
     await this.page.waitForSelector(conMembershipWrapper, { timeout: 50000 });
   };
