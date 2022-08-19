@@ -39,8 +39,11 @@ export class LoginPage extends BasePage {
       await this.fillTextBox(txtEmailOrUsername, emailOrUsername);
       // Enter password into input
       await this.fillTextBox(txtPassword, password);
-      // Click on Sign In to submit login form
+      // Click on Sign In
       await this.clickOnElement(btnSignIn);
+      // Click on Ok pop up to submit login form
+      // no Ok pop up button in prod yet -> need to comment out this line before run
+      await this.clickOnElement(btnOk);
       // Wait for page to finish loading
       await this.page.waitForLoadState('networkidle', { timeout: 250000 });
     } else {

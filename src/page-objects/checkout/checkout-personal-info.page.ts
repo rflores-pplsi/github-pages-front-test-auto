@@ -5,7 +5,7 @@ import RegionsUtils from '../../utils/regions.utils';
 import { OrderSummary } from './checkout.helpers';
 
 // ========================== Selectors ==================================
-const btnSaveAndContinue: string = '[type=submit]';
+const btnSaveAndContinue: string = 'button:has-text("Save & Continue")';
 // const btnSaveAndContinue: string = 'button:has-text("Save & Continue")';
 
 // ========================== Personal Info Selectors ====================
@@ -50,12 +50,15 @@ const txtIncorporationDay: string = '[name="doiDay"]';
 const txtIncorporationYear: string = '[name="doiYear"]';
 const txtTaxId: string = '[name="taxId"]';
 
+// eslint-disable-next-line valid-jsdoc
 /**
  * @export
  * @class CheckoutPersonalInfoPage
  * @extends {LoginPage}
  */
 export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
+  // eslint-disable-next-line no-undef
+  [x: string]: any;
   // ========================== Process Methods ============================
 
   // /**
@@ -155,6 +158,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     await this.enterHomeAddress(provinceObject[0].validAddress.street);
     await this.enterCity(provinceObject[0].validAddress.city);
     await this.enterPostalCode(provinceObject[0].validAddress.postalCode);
+    await this.clickOnElement(btnSaveAndContinue);
   };
 
   changeAddressUs = async (regionName: string): Promise<void> => {

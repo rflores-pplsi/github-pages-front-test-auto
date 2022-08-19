@@ -16,7 +16,7 @@ export class LegalshieldCanadaTestHarnessMenuPage extends LoginPage {
 
   addProducts = async (productNames: Promise<Object>) => {
     console.log(' -legalshieldCanadaTestHarnessMenuPage.clickProductButton');
-    await this.clickOnElement();
+    // await this.clickOnElement();
     await this.page.waitForLoadState('domcontentloaded');
   };
   // ========================== Navigate Methods ===========================
@@ -24,7 +24,7 @@ export class LegalshieldCanadaTestHarnessMenuPage extends LoginPage {
 
   clickProductButton = async (productName: string) => {
     console.log(' -legalshieldCanadaTestHarnessMenuPage.clickProductButton');
-    await this.clickOnElement();
+    // await this.clickOnElement();
     await this.page.waitForLoadState('domcontentloaded');
   };
   // ========================== Assertion Methods ==========================

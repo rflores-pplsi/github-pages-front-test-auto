@@ -6,42 +6,47 @@ let shieldAtWorkAccountTab: ShieldAtWorkAccountTab;
 
 test.beforeEach(async ({ page }) => {
   shieldAtWorkAccountTab = new ShieldAtWorkAccountTab(page);
-  await shieldAtWorkAccountTab.navigateToShieldAtWorkAccountTab();
 });
 
 test('Company information is displayed on account tab', async ({ page }) => {
   console.log('Company information is displayed on account tab');
-  await shieldAtWorkAccountTab.navigateToShieldAtWorkAccountTab();
+  await shieldAtWorkAccountTab.navigateToGroupPage('111452');
   await shieldAtWorkAccountTab.assertCompanyInformation();
 });
 
 test('Contact information is displayed on account tab', async ({ page }) => {
   console.log('Contact information is displayed on account tab');
-  await shieldAtWorkAccountTab.navigateToShieldAtWorkAccountTab();
+  await shieldAtWorkAccountTab.navigateToGroupPage('111452');
   await shieldAtWorkAccountTab.assertContactInformation();
 });
 
 test('Address is displayed on account tab', async ({ page }) => {
   console.log('Address is displayed on account tab');
-  await shieldAtWorkAccountTab.navigateToShieldAtWorkAccountTab();
+  await shieldAtWorkAccountTab.navigateToGroupPage('111452');
   await shieldAtWorkAccountTab.assertAddress();
 });
 
 test('Available Plan Offerings is displayed on account tab', async ({ page }) => {
   console.log('Available Plan Offerings is displayed on account tab');
-  await shieldAtWorkAccountTab.navigateToShieldAtWorkAccountTab();
+  await shieldAtWorkAccountTab.navigateToGroupPage('111452');
   await shieldAtWorkAccountTab.assertAvailablePlanOfferings();
 });
 
 test('State is displayed on the account tab', async ({ page }) => {
   console.log('State and payment frequency are displayed on the account tab');
-  await shieldAtWorkAccountTab.navigateToShieldAtWorkAccountTab();
+  await shieldAtWorkAccountTab.navigateToGroupPage('111452');
   await shieldAtWorkAccountTab.assertStateIsDisplayed();
 });
 
 test('Payment frequency are displayed on the account tab', async ({ page }) => {
   console.log('Payment frequency are displayed on the account tab');
-  await shieldAtWorkAccountTab.navigateToShieldAtWorkAccountTab();
+  await shieldAtWorkAccountTab.navigateToGroupPage('111452');
   await shieldAtWorkAccountTab.assertPaymentFrequencyIsDisplayed();
+});
 
+test('Benefits details displays after clicking on hyperlink in available plan offerings section', async ({ page }) => {
+  console.log('Benefits details displays after clicking on hyperlink in available plan offerings section');
+  await shieldAtWorkAccountTab.navigateToGroupPage('111452');
+  await shieldAtWorkAccountTab.clickLnkLegalPlusPlan();
+  await shieldAtWorkAccountTab.assertBenefitsDetailsPage();
 });

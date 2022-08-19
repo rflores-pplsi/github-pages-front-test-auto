@@ -1,0 +1,157 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable require-jsdoc */
+import { expect } from '@playwright/test';
+import RegionsUtils from '../../utils/regions.utils';
+import UrlsUtils from '../../utils/urls.utils';
+import { CheckoutPersonalInfoPage } from '../../page-objects/checkout/checkout-personal-info.page';
+import { LoginPage } from '../../page-objects/login/login.page';
+import { OktaPage } from '../okta/okta.page';
+
+require('dotenv').config;
+
+// ========================== Selectors ==================================
+
+let street: string;
+let city: string;
+let postalCode: string;
+const url1UniversalTrucking = UrlsUtils.groupsUrls.url1UniversalTrucking;
+const tabSigningUp = 'a#signup';
+const selectStatedorpdown = '#select_value_label_15 span:nth-child(1)';
+const availablePlansLbl = '//h3[contains(text(),"Sélectionnez votre plan juridique")]';
+const rdbtnlanguage = '[aria-label="English"]';
+const btnSelectUniversalTracking = '//button[contains(text(),"SELECT")]';
+const btnAjouterAuPanier = '//button[contains(text(),"AJOUTER AU PANIER")]';
+const btnCoordonnees = '//button[contains(text(),"Coordonnées")]';
+const tellUsAboutYourselfLbl = '//h1[contains(text(),"Tell us about yourself")]';
+const txtPlanjuridique = '//div[@class="clearfix"]/h4/ng-bind-html[contains(text(),"Plan juridique")]';
+const txtParMoi = 'span.pull-right.summary__plan__price.ng-binding.ng-scope';
+
+export class UniversalTruckingPage extends OktaPage {
+  // ========================== Process Methods ============================
+  selectStateUniversalTruckingPage = async (state: string): Promise<void> => {
+    console.log(' - UniversalTruckingPage.selectStateUniversalTruckingPage');
+    // Click to Select dropdown
+    await this.page.waitForSelector(selectStatedorpdown);
+    await this.page.locator(selectStatedorpdown).click({ force: true });
+    // Click on state >> nth=0
+    await this.page
+      .locator('text=' + state)
+      .first()
+      .click();
+  };
+  selectlanguage = async (language: string): Promise<void> => {
+    console.log(' - UniversalTruckingPage.selectlanguage');
+    // Locate a language radio button
+    await this.page.waitForSelector(rdbtnlanguage);
+    // Pick a language
+    await this.page.locator('[aria-label="' + language + '"]').click();
+    console.log('language is selected');
+  };
+  loginBestMoneyMoversGroupPage = async (): Promise<void> => {
+    console.log(' - BestMoneyMoversGroupPage.loginBestMoneyMoversGroupPage');
+    console.log('Redirected to login page');
+    const loginPage = new LoginPage(this.page);
+    await loginPage.login('mattfeeqa@gmail.com', 'Password10!');
+  };
+  updateAddressTestingHarnesGroupsPage = async (state: string): Promise<void> => {
+    console.log(' - BestMoneyMoversGroupPage.updateAddressTestingHarnesGroupsPage');
+    const checkoutPersonalInfoPage = new CheckoutPersonalInfoPage(this.page);
+    for (const stte of RegionsUtils.usStates.filter((ste) => ste.name == state)) {
+      street = stte.validAddress.street;
+      city = stte.validAddress.city;
+      postalCode = stte.validAddress.postalCode;
+    }
+    await checkoutPersonalInfoPage.changeAddress(street, city, postalCode);
+  };
+
+  // ========================== Navigate Methods ===========================
+  navigateTo1UniversalTruckingGroupPage = async (): Promise<void> => {
+    console.log(' - UniversalTruckingPage.navigateTo1UniversalTruckingGroupPage');
+    // navigate to URL
+    await this.page.goto(url1UniversalTrucking);
+  };
+
+  // ========================== Click Methods ==============================
+
+  clickTabSigningUp = async (): Promise<void> => {
+    console.log(' - UniversalTruckingPage.clickTabSigningUp');
+    // Click on Enroll Now button
+    await this.page.click(tabSigningUp);
+  };
+  clickBtnESelect = async (): Promise<void> => {
+    console.log(' - UniversalTruckingPage.clickBtnESelect');
+    // Click on SELECT button
+    await this.page.locator(btnSelectUniversalTracking).click();
+  };
+  clickBtnSelectPlan = async (plan: string): Promise<void> => {
+    console.log(' - UniversalTruckingPage.clickBtnESelectPlan');
+    // Click on Enroll Now button
+    await this.page.waitForSelector(availablePlansLbl);
+    await this.page.locator(availablePlansLbl).click();
+    await this.page.waitForSelector(btnAjouterAuPanier);
+    const ajouter = await this.page.$$(btnAjouterAuPanier);
+    await ajouter[0].click();
+    // await this.page.locator(btnCoordonnees).click();
+    console.log('Plan is selected');
+  };
+  clickBtnCoordonnées = async (): Promise<void> => {
+    console.log(' - UniversalTruckingPage.clickBtnESelectPlan');
+    // await this.page.locator(btnCoordonnees).click();
+    console.log('Plan is selected');
+  };
+  // ========================== Assertion Methods ==========================
+
+  assertW3Url = async (): Promise<void> => {
+    console.log(' - UniversalTruckingPage.assertTestingHarnesGroupsPricingPage');
+    // Verify that pricing Page is displayed
+    await this.page.waitForURL('https://w3.legalshield.com/gs/init?grp=1universaltrucking');
+  };
+  assertAvailablePlanTxt = async (): Promise<void> => {
+    console.log(' - UniversalTruckingPage.assertTestingHarnesGroupsPricingPage');
+    // Verify that Available Plans label is displayed
+    await this.waitForElementToBeVisible(availablePlansLbl);
+    console.log('State is selected and Available Plans Label is displayed');
+  };
+  assertTellUsAboutYourselfTxt = async (): Promise<void> => {
+    console.log(' - UniversalTruckingPage.assertTellUsAboutYourselfTxt');
+    console.log('logged in and redirected to personal info page');
+    // Verify that Available Plans label is displayed
+    await this.waitForElementToBeVisible(tellUsAboutYourselfLbl);
+    this.page.locator(tellUsAboutYourselfLbl).isVisible;
+    console.log('On Personal Info page');
+  };
+  assertSelectedPlanAndParMoiTxt = async (): Promise<void> => {
+    console.log(' - UniversalTruckingPage.assertSelectedPlanTxt');
+    await this.page.waitForLoadState();
+    await this.page.waitForSelector(txtPlanjuridique);
+    const plan = await this.page.$$(txtPlanjuridique);
+    await plan[0].innerHTML();
+    console.log(await plan[0].innerHTML());
+    await this.assertElementHasText(txtPlanjuridique, 'Plan juridique');
+    console.log(await this.page.locator(txtParMoi).innerHTML());
+    await this.assertElementHasText(txtParMoi, '$24.95');
+    // expect(await this.page.screenshot()).toMatchSnapshot('PlanJuridique.png');
+  };
+  assertParMoiTxt = async (): Promise<void> => {
+    console.log(' - UniversalTruckingPage.assertParMoiTxt');
+    await this.page.locator(txtParMoi).isEnabled();
+    // Verify that Selected Plans label is displayed
+    await this.assertElementHasText(txtParMoi, '$24.95');
+    console.log('Plan juridique price is displayed ');
+  };
+}
+function forEach(
+  stt: any,
+  of: any,
+  usStates: { name: string; abbrv: string; validAddress: { street: string; city: string; postalCode: string }; priority: boolean }[]
+) {
+  throw new Error('Function not implemented.');
+}
+
+function stt(
+  stt: any,
+  of: any,
+  usStates: { name: string; abbrv: string; validAddress: { street: string; city: string; postalCode: string }; priority: boolean }[]
+) {
+  throw new Error('Function not implemented.');
+}

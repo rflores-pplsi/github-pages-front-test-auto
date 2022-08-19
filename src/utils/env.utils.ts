@@ -1,3 +1,7 @@
+/* eslint-disable require-jsdoc */
+// import { load_dotenv } from 'dotenv';
+require('dotenv').config();
+
 /**
  * @class EnvironmentUtil
  */
@@ -6,7 +10,7 @@ class EnvironmentUtil {
    * @return {*}
    * @memberof EnvironmentUtil
    */
-  getEnv() {
+  getEnv(): any {
     let env = null;
     if (process.env.USE_PROD == 'true' || process.env.USE_PRODUCTION == 'true') {
       env = 'prod';
@@ -23,7 +27,7 @@ class EnvironmentUtil {
    * @return {*}
    * @memberof EnvironmentUtil
    */
-  getEnvUrlString() {
+  getEnvUrlString(): any {
     let envUrlString = null;
     const env = this.getEnv();
     switch (env) {
@@ -39,16 +43,33 @@ class EnvironmentUtil {
     }
     return envUrlString;
   }
+
+  getWalsEnvUrlString(): any {
+    let envWalsUrlString = null;
+    const env = this.getEnv();
+    switch (env) {
+      case 'dev':
+        envWalsUrlString = 'dev.';
+        break;
+      case 'uat':
+        envWalsUrlString = 'stage.';
+        break;
+      case 'prod':
+        envWalsUrlString = '';
+        break;
+    }
+    return envWalsUrlString;
+  }
   /**
    *
    *
    * @return {*}
    * @memberof EnvironmentUtil
    */
-  getDropDownEnvironmentOptions() {
+  getDropDownEnvironmentOptions(): any {
     let envDropDownString = '';
     const env = this.getEnv();
-    // This is to convert Environment varibale set in the command line to a format usable by planalyzer dropdown
+    // This is to convert Environment variable set in the command line to a format usable by planalyzer dropdown
     switch (env) {
       case 'dev':
         envDropDownString = 'STG';
@@ -69,7 +90,7 @@ class EnvironmentUtil {
    * @return {*}
    * @memberof EnvironmentUtil
    */
-  getLaunchUrlString() {
+  getLaunchUrlString(): any {
     let envLaunchUrlString = null;
     const env = this.getEnv();
     switch (env) {
@@ -92,7 +113,7 @@ class EnvironmentUtil {
    * @return {*}
    * @memberof EnvironmentUtil
    */
-  getTestHarnessUrlString() {
+  getTestHarnessUrlString(): any {
     let envTestHarnessUrlString = null;
     const env = this.getEnv();
     switch (env) {
@@ -114,11 +135,11 @@ class EnvironmentUtil {
    * @return {*}
    * @memberof EnvironmentUtil
    */
-  getWordpessEnvURLString() {
+  getWordpessEnvURLString(): any {
     let wordPressEnvUrlString = null;
     const env = this.getEnv();
     switch (env) {
-      // update if/when marketing site (wordpress) is avilable on dev
+      // update if/when marketing site (wordpress) is available on dev
       // case 'dev':
       //   envUrlString = 'dev-';
       //   break;
@@ -137,7 +158,7 @@ class EnvironmentUtil {
    * @return {*}
    * @memberof EnvironmentUtil
    */
-  getEnvUrlWPString() {
+  getEnvUrlWPString(): any {
     let envUrlString = null;
     const env = this.getEnv();
     switch (env) {

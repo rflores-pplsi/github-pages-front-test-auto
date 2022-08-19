@@ -1,4 +1,7 @@
 import EnvironmentUtil from './env.utils';
+// import 'dotenv/config'; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+// import express from 'express';
+require('dotenv').config();
 const env = EnvironmentUtil.getEnv();
 export const associateUser = {
   username: process.env[`ASSOCIATE_USERNAME_${env.toUpperCase()}`],
@@ -55,6 +58,10 @@ export const canadianUser = {
 export const associateReportsCommissions2 = {
   username: process.env[`ASSOCIATE_REPORTS_COMMISSIONS_USERNAME2_${env.toUpperCase()}`],
   password: process.env[`ASSOCIATE_REPORTS_COMMISSIONS_PASSWORD2_${env.toUpperCase()}`],
+};
+export const associateReportsCommissions3 = {
+  username: process.env[`RC_PENDING_STATEMENTS_USERNAME_${env.toUpperCase()}`],
+  password: process.env[`RC_PENDING_STATEMENTS_PASSWORD_${env.toUpperCase()}`],
 };
 export const revenueReports = {
   username: process.env[`REVENUE_REPORTS_USERNAME_${env.toUpperCase()}`],

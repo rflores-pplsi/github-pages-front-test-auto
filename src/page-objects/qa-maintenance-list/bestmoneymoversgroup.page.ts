@@ -3,11 +3,12 @@
 import { expect } from '@playwright/test';
 import RegionsUtils from '../../utils/regions.utils';
 import UrlsUtils from '../../utils/urls.utils';
+import { basicUser } from '../../utils/user.utils';
 import { CheckoutPersonalInfoPage } from '../checkout/checkout-personal-info.page';
 import { LoginPage } from '../login/login.page';
 import { OktaPage } from '../okta/okta.page';
 
-// require('dotenv').config;
+require('dotenv').config;
 
 // ========================== Selectors ==================================
 
@@ -50,7 +51,7 @@ export class BestMoneyMoversGroupPage extends OktaPage {
     console.log(' - BestMoneyMoversGroupPage.loginBestMoneyMoversGroupPage');
     console.log('Redirected to login page');
     const loginPage = new LoginPage(this.page);
-    await loginPage.login('mattfeeqa@gmail.com', 'Password10!');
+    await loginPage.login(basicUser.email, basicUser.password);
   };
   updateAddressTestingHarnesGroupsPage = async (state: string): Promise<void> => {
     console.log(' - BestMoneyMoversGroupPage.updateAddressTestingHarnesGroupsPage');
@@ -108,19 +109,4 @@ export class BestMoneyMoversGroupPage extends OktaPage {
     this.page.locator(tellUsAboutYourselfLbl).isVisible;
     console.log('On Personal Info page');
   };
-}
-function forEach(
-  stt: any,
-  of: any,
-  usStates: { name: string; abbrv: string; validAddress: { street: string; city: string; postalCode: string }; priority: boolean }[]
-) {
-  throw new Error('Function not implemented.');
-}
-
-function stt(
-  stt: any,
-  of: any,
-  usStates: { name: string; abbrv: string; validAddress: { street: string; city: string; postalCode: string }; priority: boolean }[]
-) {
-  throw new Error('Function not implemented.');
 }

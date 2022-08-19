@@ -1,5 +1,5 @@
 import urlsUtils from '../../utils/urls.utils';
-import { LsWorkLoginPage } from '../shield-at-work/shield-at-work-login.page';
+import { OktaPage } from '../okta/okta.page';
 
 // ========================== Selectors ==================================
 
@@ -18,15 +18,15 @@ const txtEnrollmentInformation: string = '.lsux-row.thirds.children4._1mGEzKW4bH
  * @class ShieldAtWorkEnrollmentTab
  * @extends {LsWorkLoginPage}
  */
-export class ShieldAtWorkEnrollmentTab extends LsWorkLoginPage {
+export class ShieldAtWorkEnrollmentTab extends OktaPage {
   /**
    *
    *
    * @param {string} group
-   * @memberof ShieldAtWorkEnrollmentTab
+   * @memberof ShieldAtWorkAccountTab
    */
   groupSearchByGroupNumber = async (group: string): Promise<void> => {
-    console.log(' - enrollmentShieldAtWorkPage.groupSearchByGroupNumber');
+    console.log(' - accountShieldAtWorkPage.groupSearchByGroupNumber');
     // Type in the search field the group number
     await this.page.fill(txtSearch, group);
     // Click on search button
@@ -37,30 +37,29 @@ export class ShieldAtWorkEnrollmentTab extends LsWorkLoginPage {
 
   // ========================== Click Methods ==============================
 
-  clickViewGroupButton = async (): Promise<void> => {
-    console.log(' - enrollmentShieldAtWorkPage.clickViewGroup');
+  clickViewGroup = async (): Promise<void> => {
+    console.log(' - accountShieldAtWorkPage.clickViewGroup');
     // Click on View Group button
     await this.clickOnElement(btnViewGroup);
   };
 
   clickEnrollmentTab = async (): Promise<void> => {
     console.log(' - enrollmentShieldAtWorkPage.clickEnrollmentTab');
-    // Click on View Group button
+    // Click on Enrollment tab
     await this.clickOnElement(btnEnrollmentTab);
   };
 
   // ========================== Navigate Methods ===========================
 
-  navigateToShieldAtWorkEnrollmentTab = async (): Promise<void> => {
-    console.log(' - enrollmentShieldAtWorkPage.navigateToShieldAtWorkEnrollmentTab');
-    // Navigate to Url
+  navigateToGroupPage = async (groupNumber: String): Promise<void> => {
+    console.log(' - enrollmentShieldAtWorkPage.navigateToGroupPage');
     await this.page.goto(url);
-    // Login to ShieldAtWork
-    await this.loginWithCredentials();
+    // Login through okta
+    await this.loginThroughOkta();
     // Search group by group number
-    await this.groupSearchByGroupNumber('207196');
+    await this.groupSearchByGroupNumber('111452');
     // Click on View group button
-    await this.clickViewGroupButton();
+    await this.clickViewGroup();
   };
 
   // ========================== Assertion Methods ==========================

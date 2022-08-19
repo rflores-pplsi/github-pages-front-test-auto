@@ -1,3 +1,4 @@
+/* eslint-disable valid-jsdoc */
 import { ShieldBenefitsLegalPricingPage } from '../shield-benefits/shield-benefits-legal-pricing.page';
 import { OrderSummary } from './checkout.helpers';
 import { OrderSummaryRow } from './checkout.helpers';
@@ -82,7 +83,7 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
     const numberOfPlans = (await this.page.$$(txtPlanNames)).length;
     for (let i: number = 0; i < numberOfPlans; i++) {
       const row = await this.captureOrderSummaryRowWithoutTier(i);
-      orderSummary.addRow(row);
+      orderSummary.addRow(row as unknown as OrderSummaryRow);
     }
     // write all supplements to the orderSummary object
     const numberOfSupplements = (await this.page.$$(txtSupplementNames)).length;
@@ -256,7 +257,7 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
       const costs = row.planCost;
       if (planName == expectedPlanName) {
         found = true;
-        await this.assertStringMatch(costs, expectedPlanCost);
+        await this.assertStringMatch(costs as string, expectedPlanCost);
       }
     });
     if (found == false) {

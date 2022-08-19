@@ -1,5 +1,5 @@
 import urlsUtils from '../../utils/urls.utils';
-import { LsWorkLoginPage } from '../shield-at-work/shield-at-work-login.page';
+import { OktaPage } from '../okta/okta.page';
 
 // ========================== Selectors ==================================
 
@@ -20,7 +20,7 @@ const txtFamily: string = '#root div:nth-child(4) > div.mb-4._2nNbq5j54sbQ6MAihm
  * @class  ShieldAtWorkMemberDetailsPage
  * @extends {LsWorkLoginPage}
  */
-export class ShieldAtWorkMemberDetailsPage extends LsWorkLoginPage {
+export class ShieldAtWorkMemberDetailsPage extends OktaPage {
   /**
    *
    *
@@ -39,15 +39,15 @@ export class ShieldAtWorkMemberDetailsPage extends LsWorkLoginPage {
 
   // ========================== Click Methods ==============================
 
-  clickViewGroupButton = async (): Promise<void> => {
-    console.log(' -  ShieldAtWorkMemberDetailsPage.clickViewGroup');
+  clickViewGroup = async (): Promise<void> => {
+    console.log(' - ShieldAtWorkMemberDetailsPage.clickViewGroup');
     // Click on View Group button
     await this.clickOnElement(btnViewGroup);
   };
 
   clickEnrollmentTab = async (): Promise<void> => {
     console.log(' -  ShieldAtWorkMemberDetailsPage.clickEnrollmentTab');
-    // Click on View Group button
+    // Click on Enrollment tab
     await this.clickOnElement(btnEnrollmentTab);
   };
 
@@ -59,18 +59,21 @@ export class ShieldAtWorkMemberDetailsPage extends LsWorkLoginPage {
 
   // ========================== Navigate Methods ===========================
 
-  navigateToShieldAtWorkMemberDetailsPage = async (): Promise<void> => {
-    console.log(' -  ShieldAtWorkMemberDetailsPage.navigateToShieldAtWorkMemberDetailsPage');
-    // Navigate to Url
+  /**
+   *
+   *
+   * @param {String} groupNumber
+   * @memberof ShieldAtWorkAccountTab
+   */
+  navigateToGroupPage = async (groupNumber: String): Promise<void> => {
+    console.log(' - ShieldAtWorkMemberDetailsPage.navigateToGroupPage');
     await this.page.goto(url);
-    // Login to ShieldAtWork
-    await this.loginWithCredentials();
+    // Login through okta
+    await this.loginThroughOkta();
     // Search group by group number
-    await this.groupSearchByGroupNumber('36007');
+    await this.groupSearchByGroupNumber('111452');
     // Click on View group button
-    await this.clickViewGroupButton();
-    // Click on Enrollment tab
-    await this.clickEnrollmentTab();
+    await this.clickViewGroup();
   };
 
   // ========================== Assertion Methods ==========================
@@ -78,6 +81,7 @@ export class ShieldAtWorkMemberDetailsPage extends LsWorkLoginPage {
   assertMemberInformationIsDisplayed = async (): Promise<void> => {
     console.log(' - ShieldAtWorkMemberDetailsPage.assertMemberInformationIsDisplayed');
     // Confirm clicking on member name redirects to the member details page
+    await this.page.waitForLoadState('networkidle');
     await this.assertElementIsVisible(txtMemberInformation);
   };
 
