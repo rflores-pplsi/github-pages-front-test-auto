@@ -21,29 +21,29 @@ test.beforeEach(async ({ page, request }) => {
 test.only('D2E LegalShield CA using Testing Harness', async ({ page }) => {
   test.slow;
   await test.step('Navigate to Testing Harness', async () => {
-    await d2CLegalShieldCaPage.navigateToTestingHarnessPage();
+    await d2CLegalShieldCaPage.navigateToTestingHarnessPage('d2cLegalShieldCA');
   });
   await test.step('Select Direct to Consumer', async () => {
     await d2CLegalShieldCaPage.selectDirecttoConsumerD2C();
   });
   await test.step('Click Legalshield Canada', async () => {
-    await d2CLegalShieldCaPage.clickLegalShielCA(DataUtils.data.testingHarness.lineOfBusiness.LegalShieldCanada);
+    await d2CLegalShieldCaPage.clickLegalShieldCA(DataUtils.data.testingHarness.lineOfBusiness.LegalShieldCanada);
   });
   await test.step('Select your region', async () => {
     await d2CLegalShieldCaPage.selectYourRegion(DataUtils.data.testingHarness.ca.bd.province.BC);
   });
   await test.step('Add Plan and some Supplements', async () => {
     await d2CLegalShieldCaPage.addPlanAndSomeSupplements([
-      DataUtils.data.testingHarness.plans.LegalPlan,
-      DataUtils.data.testingHarness.plans.LegalPlanRideShareandDeliverySupplement,
-      DataUtils.data.testingHarness.plans.LegalPlanTrialDefenceSupplement,
+      DataUtils.data.testingHarness.plans.ca.LegalPlan,
+      DataUtils.data.testingHarness.plans.ca.LegalPlanRideShareandDeliverySupplement,
+      DataUtils.data.testingHarness.plans.ca.LegalPlanTrialDefenceSupplement,
     ]);
   });
   await test.step('Select Checkout, create a new account or sign in as an existing user. > Verify URL is correct', async () => {
-    await d2CLegalShieldCaPage.selectCheckout();
+    await d2CLegalShieldCaPage.selectCheckout('LegalShielCA');
   });
   await test.step('Sign in as an existing user', async () => {
-    await d2CLegalShieldCaPage.loginLegalShieldCA();
+    await d2CLegalShieldCaPage.loginLegalShieldCA('LegalShieldCA');
   });
   await test.step('Complete BD transaction and continue to confirmation page.', async () => {
     await checkoutPersonalInfoPage.changeAddressCanada(DataUtils.data.testingHarness.ca.bd.province.BC);

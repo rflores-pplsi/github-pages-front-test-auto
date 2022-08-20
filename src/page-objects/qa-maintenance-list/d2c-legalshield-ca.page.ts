@@ -33,28 +33,28 @@ export class D2CLegalShieldCaPage extends OktaPage {
       await this.clickOnElement('//a[contains(text(),"' + ps + '")]');
     }
   };
-  selectCheckout = async (): Promise<void> => {
+  selectCheckout = async (lineofbusiness: string): Promise<void> => {
     // Take a screenshot of the cart
-    await this.page.locator('#cart-container').screenshot({ path: 'Screenshots/testingHarness/d2cLegalShieldCart.png' });
+    await this.page.locator('#cart-container').screenshot({ path: 'Screenshots/testingHarness/' + lineofbusiness + 'Cart.png' });
     await this.clickOnElement('#checkout-btn');
   };
-  loginLegalShieldCA = async (): Promise<void> => {
+  loginLegalShieldCA = async (lineofbusiness: string): Promise<void> => {
     await this.page.waitForLoadState();
     const loginPage = new LoginPage(this.page);
     await loginPage.login(basicUser.email, basicUser.password);
     await this.page.waitForLoadState();
-    await this.page.screenshot({ path: 'Screenshots/testingHarness/d2cLegalShieldCheckout.png', fullPage: true });
+    await this.page.screenshot({ path: 'Screenshots/testingHarness/' + lineofbusiness + 'Checkout.png', fullPage: true });
   };
   // ========================== Navigate Methods ===========================
-  navigateToTestingHarnessPage = async (): Promise<void> => {
+  navigateToTestingHarnessPage = async (lineofbusiness: string): Promise<void> => {
     // navigate to URL
     await this.page.goto(urlD2CLegalShieldCaPage);
     await this.page.waitForLoadState();
-    await this.page.screenshot({ path: 'Screenshots/testingHarness/d2cLegalShieldTestingHarness.png', fullPage: true });
+    await this.page.screenshot({ path: 'Screenshots/testingHarness/' + lineofbusiness + 'TestingHarness.png', fullPage: true });
   };
 
   // ========================== Click Methods ==============================
-  clickLegalShielCA = async (lofb: string): Promise<void> => {
+  clickLegalShieldCA = async (lofb: string): Promise<void> => {
     // navigate to URL
     await this.page.waitForLoadState();
     const LineOfBusiness = 'div.et_pb_column_' + lofb;
