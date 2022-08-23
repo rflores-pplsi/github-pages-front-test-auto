@@ -1,7 +1,7 @@
 [
   {
-    "testCaseName": "Self-Pay ID/Legal (IDShield Individual)",
-    "regions": ["New York", "California", "Georgia", "Texas", "Florida"],
+    "testCaseName": "Self-Pay ID/Legal Z(IDShield Individual)",
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
     "groupPayConfig": "self-pay",
     "groupNumber": "nnlegaltest7",
     "planName": "IDShield Individual",
@@ -15,7 +15,7 @@
   },
   {
     "testCaseName": "Self-Pay (Legal Plan Family)",
-    "regions": ["New York", "California", "Georgia", "Texas", "Florida"],
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
     "groupPayConfig": "self-pay",
     "groupNumber": "nnlegaltest7",
     "planName": "Legal Plan Family",
@@ -25,11 +25,11 @@
     "payFrequency": "Monthly",
     "planCost": "$23.95",
     "totalCost": "$23.95",
-    "disabled": true
+    "disabled": false
   },
   {
     "testCaseName": "Self-Pay (IDShield Family)",
-    "regions": ["New York", "California", "Georgia", "Texas", "Florida"],
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
     "groupPayConfig": "self-pay",
     "groupNumber": "nnlegaltest7",
     "planName": "IDShield Family",
@@ -39,11 +39,11 @@
     "payFrequency": "Monthly",
     "planCost": "$22.95",
     "totalCost": "$22.95",
-    "disabled": true
+    "disabled": false
   },
   {
     "testCaseName": "Self-Pay ID Only (IDShield Individual)",
-    "regions": ["New York", "California", "Georgia", "Texas", "Florida"],
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
     "groupPayConfig": "self-pay",
     "groupNumber": "nnidstest3",
     "planName": "IDShield Individual",
@@ -53,11 +53,11 @@
     "payFrequency": "Monthly",
     "planCost": "$12.95",
     "totalCost": "$12.95",
-    "disabled": true
+    "disabled": false
   },
   {
     "testCaseName": "Self-Pay ID Only (IDShield Family)",
-    "regions": ["New York", "California", "Georgia", "Texas", "Florida"],
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
     "groupPayConfig": "self-pay",
     "groupNumber": "nnidstest3",
     "planName": "IDShield Family",
@@ -67,13 +67,13 @@
     "payFrequency": "Monthly",
     "planCost": "$22.95",
     "totalCost": "$22.95",
-    "disabled": true
+    "disabled": false
   },
   {
     "testCaseName": "Self-Pay (IDShield for Business - Essentials)",
-    "regions": ["New York", "California", "Georgia", "Texas", "Florida"],
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
     "groupPayConfig": "self-pay",
-    "groupNumber": "≈",
+    "groupNumber": "test48",
     "planName": "IDShield for Business",
     "tierName": "Essentials",
     "orderSummaryPlanName": "IDShield for Business - Essentials",
@@ -81,11 +81,11 @@
     "payFrequency": "Monthly",
     "planCost": "$79.95",
     "totalCost": "$79.95",
-    "disabled": true
+    "disabled": false
   },
   {
     "testCaseName": "Self-Pay (Commercial Drivers Legal Plan)",
-    "regions": ["New York", "California", "Georgia", "Texas", "Florida"],
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
     "groupPayConfig": "self-pay",
     "groupNumber": "test48",
     "planName": "Commercial Drivers Legal Plan",
@@ -95,11 +95,11 @@
     "payFrequency": "Monthly",
     "planCost": "$29.95",
     "totalCost": "$29.95",
-    "disabled": true
+    "disabled": false
   },
   {
     "testCaseName": "Self-Pay (Small Business - Small Business Plus)",
-    "regions": ["New York", "California", "Georgia", "Texas", "Florida"],
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
     "groupPayConfig": "self-pay",
     "groupNumber": "test48",
     "planName": "Small Business",
@@ -109,11 +109,11 @@
     "payFrequency": "Monthly",
     "planCost": "$99.00",
     "totalCost": "$99.00",
-    "disabled": true
+    "disabled": false
   },
   {
     "testCaseName": "Self-Pay (Small Business - Small Business Essentials)",
-    "regions": ["New York", "California", "Georgia", "Texas", "Florida"],
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
     "groupPayConfig": "self-pay",
     "groupNumber": "test48",
     "planName": "Small Business",
@@ -123,11 +123,11 @@
     "payFrequency": "Monthly",
     "planCost": "$49.00",
     "totalCost": "$49.00",
-    "disabled": true
+    "disabled": false
   },
   {
     "testCaseName": "Self-Pay (Small Business - Small Business Pro)",
-    "regions": ["New York", "California", "Georgia", "Texas", "Florida"],
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
     "groupPayConfig": "self-pay",
     "groupNumber": "test48",
     "planName": "Small Business",
@@ -137,11 +137,11 @@
     "payFrequency": "Monthly",
     "planCost": "$169.00",
     "totalCost": "$169.00",
-    "disabled": true
+    "disabled": false
   },
   {
     "testCaseName": "Self-Pay (IDShield for Business - Plus)",
-    "regions": ["New York", "California", "Georgia", "Texas", "Florida"],
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
     "groupPayConfig": "self-pay",
     "groupNumber": "test48",
     "planName": "IDShield for Business",
@@ -151,6 +151,6 @@
     "payFrequency": "Monthly",
     "planCost": "$149.95",
     "totalCost": "$149.95",
-    "disabled": true
+    "disabled": false
   }
 ]
