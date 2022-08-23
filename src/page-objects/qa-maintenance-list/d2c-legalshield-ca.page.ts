@@ -27,10 +27,14 @@ export class D2CLegalShieldCaPage extends OktaPage {
     await this.selectFromDropDownMenu(slctChooseYourRegion, region);
     await this.clickOnElement(btnUpdateRegion);
   };
-  addPlanAndSomeSupplements = async (planSupp: Array<string>): Promise<void> => {
+  addPlanAndSomeSupplements = async (lineOfBusiness: string, planSupp: Array<string>): Promise<void> => {
     for (const ps of planSupp) {
       // Add a plan
-      await this.clickOnElement('//a[contains(text(),"' + ps + '")]');
+      if (lineOfBusiness == 'd2cLegalShieldCA' || lineOfBusiness == 'd2cLegalShieldUS') {
+        await this.clickOnElement('//a[contains(text(),"' + ps + '")]');
+      } else {
+        await this.clickOnElement('text=' + ps + ' >> nth=0');
+      }
     }
   };
   selectCheckout = async (lineofbusiness: string): Promise<void> => {

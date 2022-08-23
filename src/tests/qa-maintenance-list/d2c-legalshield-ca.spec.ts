@@ -33,14 +33,14 @@ test.only('D2E LegalShield CA using Testing Harness', async ({ page }) => {
     await d2CLegalShieldCaPage.selectYourRegion(DataUtils.data.testingHarness.ca.bd.province.BC);
   });
   await test.step('Add Plan and some Supplements', async () => {
-    await d2CLegalShieldCaPage.addPlanAndSomeSupplements([
+    await d2CLegalShieldCaPage.addPlanAndSomeSupplements('d2cLegalShieldCA', [
       DataUtils.data.testingHarness.plans.ca.LegalPlan,
       DataUtils.data.testingHarness.plans.ca.LegalPlanRideShareandDeliverySupplement,
       DataUtils.data.testingHarness.plans.ca.LegalPlanTrialDefenceSupplement,
     ]);
   });
   await test.step('Select Checkout, create a new account or sign in as an existing user. > Verify URL is correct', async () => {
-    await d2CLegalShieldCaPage.selectCheckout('LegalShielCA');
+    await d2CLegalShieldCaPage.selectCheckout('LegalShieldCA');
   });
   await test.step('Sign in as an existing user', async () => {
     await d2CLegalShieldCaPage.loginLegalShieldCA('LegalShieldCA');
