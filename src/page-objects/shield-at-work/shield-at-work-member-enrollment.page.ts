@@ -19,13 +19,15 @@ const txtSearch: string = '[placeholder="Search by name or group number"]';
 const btnSearch: string = '[id="searchButton"]';
 const txtGroup: string = '#root  .lsux-container--flex-items-center.mb-2 > h3';
 const txtEffectiveDate: string = '[name="effectiveDate"]';
-const btnPlan: string =
-  '#root > div > div > div:nth-child(1) > div > div > div > div:nth-child(2) > form:nth-child(2) > div.lsux-container.lsux-container--white > div.mb-4._2nNbq5j54sbQ6MAihmSQg3 > div > div > div._3XfumkavlVQM3FWcqB9M-R > div:nth-child(1) > div > div > div.tEEXP1wEkyj2EVCZvuvw8 > div._2E_HYKNfYafGOziR-TaXG_ > label > div';
+const btnPlanLegalFamilySmallBusiness: string =
+  '.lsux-container.lsux-container--white div:nth-child(11) > div > div > div.tEEXP1wEkyj2EVCZvuvw8  label > div';
 const btnContinuePlanOfferings: string =
   '#root > div > div > div:nth-child(1) > div > div > div > div:nth-child(2) > form:nth-child(2) > div._1yvcEtEbZqaqWyKqhjijeG > button';
 const txtDateOfBirth: string = '[name="birthDay"]';
 const txtSSN: string = '[name="ssn"]';
 const txtFamilyMembers: string = '.lsux-row.plain.children1.pl-4.mb-0.pb-6.pr-5.family-member-heading-row > h4';
+const txtPersonalSection: string = '[class="lsux-row thirds children2 pl-3 pt-5 mb-0"]';
+const txtSmallBusinessSection: string = '[class="lsux-row half children4 iXT0avfKqWlj5YIcRiizJ"]';
 
 /**
  * @export
@@ -116,9 +118,9 @@ export class ShieldAtWorkMemberEnrollment extends OktaPage {
 
   selectPlan = async (): Promise<void> => {
     console.log(' -  ShieldAtWorkMemberEnrollment.selectPlan');
-    // Select Plan
-    await this.waitForElementToBeVisible(btnPlan);
-    await this.clickOnElement(btnPlan);
+    // Select Legal Family Plan + Small Business
+    await this.waitForElementToBeVisible(btnPlanLegalFamilySmallBusiness);
+    await this.clickOnElement(btnPlanLegalFamilySmallBusiness);
   };
 
   // ========================== Navigate Methods ===========================
@@ -133,10 +135,11 @@ export class ShieldAtWorkMemberEnrollment extends OktaPage {
     console.log(' - shieldAtWorkMemberEnrollment.navigateToGroupPage');
     await this.page.goto(url);
     // Login through okta
-    // await this.loginThroughOktaGroupEnrollment();
     await this.loginThroughOkta();
     // Search group by group number
-    await this.groupSearchByGroupNumber('111452');
+    await this.groupSearchByGroupNumber('121076');
+    // Click on Enroll New member button
+    await this.clickEnrollNewMember();
   };
   // ========================== Click Methods ==============================
 
@@ -182,5 +185,17 @@ export class ShieldAtWorkMemberEnrollment extends OktaPage {
     console.log(' - ShieldAtWorkMemberEnrollment .assertFamilyMemberSectionIsDisplayed');
     // Confirm family section is displayed
     await this.assertElementIsVisible(txtFamilyMembers);
+  };
+
+  assertPersonalSectionIsDisplayed = async (): Promise<void> => {
+    console.log(' - ShieldAtWorkMemberEnrollment .assertPersonalSectionIsDisplayed');
+    // Confirm personal section is displayed
+    await this.assertElementIsVisible(txtPersonalSection);
+  };
+
+  assertSmallBusinessSectionIsDisplayed = async (): Promise<void> => {
+    console.log(' - ShieldAtWorkMemberEnrollment .assertSmallBusinessSectionIsDisplayed');
+    // Confirm small business section is displayed
+    await this.assertElementIsVisible(txtPersonalSection);
   };
 }
