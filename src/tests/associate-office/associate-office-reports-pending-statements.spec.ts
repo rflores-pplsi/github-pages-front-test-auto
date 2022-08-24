@@ -22,7 +22,7 @@ test('Displays Pending Statement report for US', async ({ page }) => {
   await reportsCommissionsPage.clickOnSearchDates();
   await reportsCommissionsPage.selectDateFromSearchDates('2015', 'February');
   await reportsCommissionsPage.clickOnSearchDatesDay28();
-  await reportsCommissionsPage.selectCountry('United States');
+  await reportsCommissionsPage.selectCountry3('United States');
   await reportsCommissionsPage.clickOnSearchButton();
   await reportsCommissionsPage.assertPendingStatementsIsDisplayed();
 });
@@ -33,19 +33,19 @@ test('Displays Pending Statement report for Canada', async ({ page }) => {
   await reportsCommissionsPage.clickOnSearchDates();
   await reportsCommissionsPage.selectDateFromSearchDates('2015', 'February');
   await reportsCommissionsPage.clickOnSearchDatesDay28();
-  await reportsCommissionsPage.selectCountry('Canada');
+  await reportsCommissionsPage.selectCountry3('Canada');
   await reportsCommissionsPage.clickOnSearchButton();
   await reportsCommissionsPage.assertPendingStatementsIsDisplayed2();
 });
 
 // run in prod only, because we don't have those dates and statements available in dev and uat
-test('Displays Pending Statement report for US (prod only)', async ({ page }) => {
+test.skip('Displays Pending Statement report for US (prod only)', async ({ page }) => {
   await reportsCommissionsPage.clickOnPendingStatements();
   await reportsCommissionsPage.assertSearchDatesIsDisplayed();
   await reportsCommissionsPage.clickOnSearchDates();
   await reportsCommissionsPage.selectDateFromSearchDates('2022', 'August');
   await reportsCommissionsPage.clickOnSearchDatesDay31();
-  await reportsCommissionsPage.selectCountry('United States');
+  await reportsCommissionsPage.selectCountry3('United States');
   await reportsCommissionsPage.clickOnSearchButton();
   await reportsCommissionsPage.assertPendingStatementsIsDisplayed();
 });

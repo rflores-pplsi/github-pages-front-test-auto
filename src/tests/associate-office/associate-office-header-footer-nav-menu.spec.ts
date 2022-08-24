@@ -2,7 +2,7 @@ import { test } from '@playwright/test';
 import { LoginPage } from '../../page-objects/login/login.page';
 import { NavMenuPage } from '../../page-objects/associate/associate-office-header-footer-nav-menu.page';
 import UrlsUtils from '../../utils/urls.utils';
-import { associateBasic,associateLegacy,associateAdvantagePlus } from '../../utils/user.utils';
+import { associateBasic, associateLegacy, associateAdvantagePlus } from '../../utils/user.utils';
 
 // Declare Page Variable for This Page
 let loginPage: LoginPage;
@@ -48,7 +48,6 @@ test('Sign Out is displayed in the Header', async ({ page }) => {
   console.log('Test Case: Sign Out is displayed in the Header');
   await navMenuPage.assertSignOutIsDisplayed();
 });
-
 
 // Left Navigation Menu
 test('My Team is displayed in the left Navigation Menu', async ({ page }) => {
