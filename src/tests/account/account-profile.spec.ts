@@ -47,7 +47,7 @@ test('Navigate to the Profile Phone Number page by clicking the Phone Number Edi
       fullPage: true,
     })
   ).toMatchSnapshot('ProfilePhoneNumberPage.png');
-};);
+});
 
 // Edit Profile Address button should be disabled
 test('Verify the Edit button for Address should be disabled', async ({ page }) => {

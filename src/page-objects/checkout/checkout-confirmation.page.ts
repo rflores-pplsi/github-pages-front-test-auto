@@ -37,7 +37,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
     if (paymentMethod.toUpperCase() == 'BD') {
       console.log(' - checkoutPaymentPage.navigateToCheckoutConfirmationPage');
       await this.clickBankDraftBtn();
-      await this.fillBankDraftForm();
+      await this.fillBankDraftFormAndSubmit();
     } else if (paymentMethod.toUpperCase() == 'CC') {
       // await this.clickBankDraftBtn();
       // await this.clickCreditCardBtn();
@@ -48,7 +48,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   navigateFromPaymentBankDraftPageToConfirmationPage = async (): Promise<void> => {
     console.log(' - checkoutConfirmationPage.navigateFromPaymentBankDraftPageToConfirmationPage');
     await this.clickBankDraftBtn();
-    await this.fillBankDraftForm();
+    await this.fillBankDraftFormAndSubmit();
     await this.page.waitForSelector(conMembershipWrapper, { timeout: 50000 });
   };
 

@@ -2,6 +2,7 @@ import UrlsUtils from '../../utils/urls.utils';
 import { basicUser } from '../../utils/user.utils';
 import { CheckoutOrderSummaryComponent } from './checkout-order-summary.component';
 import RegionsUtils from '../../utils/regions.utils';
+import { OrderSummary } from './checkout.helpers';
 
 // ========================== Selectors ==================================
 const btnSaveAndContinue: string = 'button:has-text("Save & Continue")';
@@ -60,18 +61,18 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   [x: string]: any;
   // ========================== Process Methods ============================
 
-  /**
-   *
-   *
-   * @param {string} state
-   * @param {string} paymentFrequency
-   * @param {string} planName
-   * @param {string} tierName
-   * @memberof CheckoutPersonalInfoPage
-   */
-  selectPlanFromShieldBenefitsPricingPage = async (state: string, paymentFrequency: string, planName: string, tierName: string): Promise<void> => {
-    await this.selectPlanAndEnroll(state, paymentFrequency, planName, tierName);
-  };
+  // /**
+  //  *
+  //  *
+  //  * @param {string} state
+  //  * @param {string} paymentFrequency
+  //  * @param {string} planName
+  //  * @param {string} tierName
+  //  * @memberof CheckoutPersonalInfoPage
+  //  */
+  // selectPlanFromShieldBenefitsPricingPage = async (state: string[], paymentFrequency: string, planName: string, tierName: string): Promise<void> => {
+  //   await this.selectPlanFromShieldBenefitsPricingPage(state, paymentFrequency, planName, tierName);
+  // };
 
   /**
    * @param {string} state
@@ -405,7 +406,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     }
     await this.login(emailOrUsername, password);
     await this.changeAddress(street, city, postalCode);
-    await this.captureOrderSummary(groupPayConfig);
+    await this.captureOrderSummaryWithoutTier();
   };
 
   /**

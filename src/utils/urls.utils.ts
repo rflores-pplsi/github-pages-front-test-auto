@@ -1,6 +1,5 @@
 /* eslint-disable camelcase */
-import EnvironmentUtil from '../utils/env.utils';
-// import { config } from 'dotenv'
+import EnvironmentUtil from './env.utils';
 require('dotenv').config();
 
 const envUrlString = EnvironmentUtil.getEnvUrlString();

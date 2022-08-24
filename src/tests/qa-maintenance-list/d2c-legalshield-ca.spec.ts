@@ -18,7 +18,7 @@ test.beforeEach(async ({ page, request }) => {
   test.slow();
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
-test.only('D2E LegalShield CA using Testing Harness', async ({ page }) => {
+test('D2E LegalShield CA using Testing Harness', async ({ page }) => {
   test.slow;
   await test.step('Navigate to Testing Harness', async () => {
     await d2CLegalShieldCaPage.navigateToTestingHarnessPage();

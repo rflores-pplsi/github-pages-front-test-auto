@@ -29,16 +29,18 @@ const txtInstitutionNumber = "[placeholder='Institution Number']";
  */
 export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPage {
   // ========================== Process Methods ============================
-  fillBankDraftForm = async () => {
+  fillBankDraftFormAndSubmit = async () => {
     console.log(' - checkoutPaymentPage.fillBankDraftForm');
-    // Fillout the Bank Draft form
+    // Fill out the Bank Draft form
     await this.fillAccountNumberTxt('1000123546');
     await this.page.keyboard.press('Tab');
     await this.fillRoutingNumberTxt('103000648');
     await this.page.keyboard.press('Tab');
     await this.fillAccountHolderNameTxt('Automation Tester');
     await this.page.keyboard.press('Tab');
+    await this.page.pause();
     await this.clickPurchaseBtn();
+    await this.page.waitForSelector(conMembershipWrapper, { timeout: 50000 });
   };
 
   fillOrderSummarypPlanValue = async (): Promise<string> => {
