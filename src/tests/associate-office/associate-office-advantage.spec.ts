@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
 import { LoginPage } from '../../page-objects/login/login.page';
-import { AdvantagePage } from '../../page-objects/associate/associate-office-advantage.page';
+import { AdvantagePage } from '../../page-objects/associate-office/associate-office-advantage.page';
 import UrlsUtils from '../../utils/urls.utils';
 import { associateBasic, associateLegacy, associateAdvantagePlus } from '../../utils/user.utils';
 

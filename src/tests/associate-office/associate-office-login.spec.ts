@@ -1,8 +1,8 @@
 import { test } from '@playwright/test';
 import { LoginPage } from '../../page-objects/login/login.page';
-import { ProfilePickerPage } from '../../page-objects/associate/associate-office-profile-picker.page';
+import { ProfilePickerPage } from '../../page-objects/associate-office/associate-office-profile-picker.page';
 import UrlsUtils from '../../utils/urls.utils';
-import { associateBasic,associateLegacy,associateAdvantagePlus } from '../../utils/user.utils';
+import { associateBasic, associateLegacy, associateAdvantagePlus } from '../../utils/user.utils';
 
 // Declare Page Variable for This Page
 let loginPage: LoginPage;

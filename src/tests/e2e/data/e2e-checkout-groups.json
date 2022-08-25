@@ -1,0 +1,38 @@
+[
+  {
+    "testCaseName": "Legal Plan Family",
+    "regions": "Alberta",
+    "groupNameOrNumber": "victoryfancysausage",
+    "productNamesAndCosts": "Legal Plan Family", "$23.95",
+    "monthlyTotal": "$23.95",
+    "planType": "LegalShield",
+    "disabled": false
+  },
+  {
+    "testCaseName": "Legal Plan Family + Home Business Supplement",
+    "region": "Alberta",
+    "groupNameOrNumber": "victoryfancysausage",
+    "planSupplementName": "Legal Plan Family + Home Business Supplement",
+    "monthlyTotal": "$29.95",
+    "planType": "LegalShield",
+    "disabled": true
+  },
+  {
+    "testCaseName": "Legal Plan Family + Trial Defense Supplement",
+    "region": "Alberta",
+    "groupNameOrNumber": "victoryfancysausage",
+    "planSupplementName": "Legal Plan Family + Trial Defense Supplement",
+    "monthlyTotal": "$29.95",
+    "planType": "LegalShield",
+    "disabled": true
+  },
+  {
+    "testCaseName": "Legal Plan Family + Home Business Supplement, Trial Defense Supplement",
+    "region": "Alberta",
+    "groupNameOrNumber": "victoryfancysausage",
+    "planSupplementName": "Legal Plan Family + Home Business Supplement, Trial Defense Supplement",
+    "monthlyTotal": "$29.95",
+    "planType": "LegalShield",
+    "disabled": true
+  }
+]

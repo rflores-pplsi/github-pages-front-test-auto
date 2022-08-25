@@ -1,6 +1,6 @@
-import { expect } from '@playwright/test'; // import expect functionality from playwright
-import urlsUtils from '../../utils/urls.utils'; // import class of Urls
-import { LsWorkLoginPage } from './shield-at-work-login.page'; // import the LoginPage for extension
+import { expect } from '@playwright/test';
+import urlsUtils from '../../utils/urls.utils';
+import { OktaPage } from '../okta/okta.page';
 
 // ========================== Selectors ==================================
 const url: string = urlsUtils.legalshieldUrls.shieldAtWork.url;
@@ -16,7 +16,7 @@ const txtGroupManagement: string = '.lsux-container--flex-justify-space-between.
  * @class ShieldAtWorkGroupManagement
  * @extends {LsWorkLoginPage}
  */
-export class ShieldAtWorkGroupManagement extends LsWorkLoginPage {
+export class ShieldAtWorkGroupManagement extends OktaPage {
   /**
    *
    *
@@ -35,12 +35,11 @@ export class ShieldAtWorkGroupManagement extends LsWorkLoginPage {
 
   // ========================== Navigate Methods ===========================
 
-  navigateToShieldAtWorkGroupManagementPage = async (): Promise<void> => {
-    console.log(' - groupManagementShieldAtWorkPage.navigateToShieldAtWorkGroupManagementPage');
-    // Navigate to Url
+  navigateToGroupPage = async (groupNumber: String): Promise<void> => {
+    console.log(' - groupManagementShieldAtWorkPage.navigateToGroupPage');
     await this.page.goto(url);
-    // Login to ShieldAtWork
-    await this.loginWithCredentials();
+    // Login through okta
+    await this.loginThroughOkta();
   };
 
   // ========================== Click Methods ==============================
@@ -54,7 +53,7 @@ export class ShieldAtWorkGroupManagement extends LsWorkLoginPage {
 
   clickBtnHome = async (): Promise<void> => {
     console.log(' - groupManagementShieldAtWorkPage.clickBtnHome');
-    // Click on nHome button in dropdown menu
+    // Click on Home button in dropdown menu
     await this.clickOnElement(btnHome);
   };
 
@@ -68,7 +67,7 @@ export class ShieldAtWorkGroupManagement extends LsWorkLoginPage {
   };
 
   assertGroupManagementPageIsDisplayed = async (): Promise<void> => {
-    console.log(' - groupManagementShieldAtWorkPage.assertGroupManagementPageIsDisplayed ');
+    console.log(' - groupManagementShieldAtWorkPage.assertGroupManagementPageIsDisplayed');
     // Confirm that after clicking on Home button it takes you to the group management page
     await this.assertElementIsVisible(txtGroupManagement);
   };

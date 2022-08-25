@@ -1,4 +1,7 @@
 import EnvironmentUtil from './env.utils';
+// import 'dotenv/config'; // see https://github.com/motdotla/dotenv#how-do-i-use-dotenv-with-import
+// import express from 'express';
+require('dotenv').config();
 const env = EnvironmentUtil.getEnv();
 export const associateUser = {
   username: process.env[`ASSOCIATE_USERNAME_${env.toUpperCase()}`],

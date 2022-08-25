@@ -2,6 +2,7 @@ import { test } from '@playwright/test';
 import { LoginPage } from '../../page-objects/login/login.page';
 import UrlsUtils from '../../utils/urls.utils';
 import { basicUser, withUsername } from '../../utils/user.utils';
+import { config } from 'dotenv';
 
 // Declare Page Variable for This Page
 let loginPage: LoginPage;
@@ -17,6 +18,7 @@ test.beforeEach(async ({ page }) => {
 test('Login with basic email', async ({ page }) => {
   console.log('Test Case: Login with basic email');
   // Log in with a basic user account
+  await loginPage.testEnv();
   await loginPage.login(basicUser.email, basicUser.password);
   // Confirm that login is successful by asserting the login url
   await loginPage.assertAccountsPlanPageUrl();

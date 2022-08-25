@@ -5,11 +5,12 @@ let shieldAtWorkMemberEnrollment: ShieldAtWorkMemberEnrollment;
 
 test.beforeEach(async ({ page }) => {
   shieldAtWorkMemberEnrollment = new ShieldAtWorkMemberEnrollment(page);
-  await shieldAtWorkMemberEnrollment.navigateToShieldAtWork();
 });
 
-test('Contact information, available plan offerings section, member information  are displayed on the member enrollment page', async ({ page }) => {
-  await shieldAtWorkMemberEnrollment.navigateToShieldAtWorkMemberEnrollment();
+test('Contact information, available plan offerings section, member information , personal and small business sections are displayed on the member enrollment page', async ({
+  page,
+}) => {
+  await shieldAtWorkMemberEnrollment.navigateToGroupPage('121076');
   await shieldAtWorkMemberEnrollment.fillOutContactInformation(
     'Test',
     'Tester',
@@ -25,7 +26,7 @@ test('Contact information, available plan offerings section, member information 
   await shieldAtWorkMemberEnrollment.selectEffectiveDate();
   await shieldAtWorkMemberEnrollment.selectPlan();
   await shieldAtWorkMemberEnrollment.clickContinueButtonPlanOfferings();
-  await shieldAtWorkMemberEnrollment.selectDateOfBirth();
-  await shieldAtWorkMemberEnrollment.selectSSN();
+  await shieldAtWorkMemberEnrollment.assertPersonalSectionIsDisplayed();
   await shieldAtWorkMemberEnrollment.assertFamilyMemberSectionIsDisplayed();
+  await shieldAtWorkMemberEnrollment.assertSmallBusinessSectionIsDisplayed();
 });
