@@ -26,7 +26,7 @@ export class D2CLegalShieldUSPage extends OktaPage {
   // ========================== Navigate Methods ===========================
 
   // ========================== Click Methods ==============================
-  clickLegalShieldUS = async (lofb: string, lineofbusiness: string): Promise<void> => {
+  clickOnALineOfBusiness = async (lofb: string, lineofbusiness: string): Promise<void> => {
     // navigate to URL
     await this.page.waitForLoadState();
     const LineOfBusiness = 'div.et_pb_column_' + lofb;

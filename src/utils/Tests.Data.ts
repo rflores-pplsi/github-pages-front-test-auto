@@ -24,6 +24,8 @@ export default class DataUtils {
           SmallBusinessLegalPro: 'PRO',
           SmallBusinessLegalProBusinessPlusSupplement: 'BPS',
           SmallBusinessLegalProTrialDefenceforBusiness: 'TDB',
+          IDShieldIndividual: 'IDSCI2',
+          IDShieldFamily: 'IDSCF2',
         },
         us: {
           LegalPlan: 'LPUS21',

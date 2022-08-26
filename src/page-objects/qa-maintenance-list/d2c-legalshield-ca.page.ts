@@ -39,8 +39,14 @@ export class D2CLegalShieldCaPage extends OktaPage {
   };
   selectCheckout = async (lineofbusiness: string): Promise<void> => {
     // Take a screenshot of the cart
-    await this.page.locator('#cart-container').screenshot({ path: 'Screenshots/testingHarness/' + lineofbusiness + 'Cart.png' });
-    await this.clickOnElement('#checkout-btn');
+    if (lineofbusiness != 'd2cIDShieldCA') {
+      await this.page.locator('#cart-container').screenshot({ path: 'Screenshots/testingHarness/' + lineofbusiness + 'Cart.png' });
+      await this.clickOnElement('#checkout-btn');
+    } else {
+      await this.page.waitForSelector('button:has-text("Continue")');
+      await this.page.locator('#root').screenshot({ path: 'Screenshots/testingHarness/' + lineofbusiness + 'Cart.png' });
+      await this.clickOnElement('button:has-text("Continue")');
+    }
   };
   loginLegalShieldCA = async (lineofbusiness: string): Promise<void> => {
     await this.page.waitForLoadState();

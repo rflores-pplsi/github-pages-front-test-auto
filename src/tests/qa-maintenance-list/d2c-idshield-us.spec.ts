@@ -21,7 +21,7 @@ test.beforeEach(async ({ page, request }) => {
   test.slow();
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
-test.only('D2E IDShield US using Testing Harness', async ({ page }) => {
+test.only('D2E IDShield US using Testing Harness', async ({ page, request }) => {
   test.slow;
   await test.step('Navigate to Testing Harness', async () => {
     await d2CLegalShieldCaPage.navigateToTestingHarnessPage('d2cIDShieldUS');
@@ -30,7 +30,7 @@ test.only('D2E IDShield US using Testing Harness', async ({ page }) => {
     await d2CLegalShieldCaPage.selectDirecttoConsumerD2C();
   });
   await test.step('Test from IDShield', async () => {
-    await d2CLegalShieldUSPage.clickLegalShieldUS(DataUtils.data.testingHarness.lineOfBusiness.IDShield, 'IDShieldUS');
+    await d2CLegalShieldUSPage.clickOnALineOfBusiness(DataUtils.data.testingHarness.lineOfBusiness.IDShield, 'IDShieldUS');
   });
   await test.step('Select a Region', async () => {
     await d2CLegalShieldUSPage.selectYourCity(DataUtils.data.testingHarness.us.city.VA);

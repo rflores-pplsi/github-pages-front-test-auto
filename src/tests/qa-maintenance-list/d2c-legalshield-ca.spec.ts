@@ -3,9 +3,11 @@ import { test } from '@playwright/test';
 import { CheckoutPaymentsBankDraftPage } from '../../page-objects/checkout/checkout-payments-bank-draft.page';
 import { CheckoutPersonalInfoPage } from '../../page-objects/checkout/checkout-personal-info.page';
 import { D2CLegalShieldCaPage } from '../../page-objects/qa-maintenance-list/d2c-legalshield-ca.page';
+import { D2CLegalShieldUSPage } from '../../page-objects/qa-maintenance-list/d2c-legalshield-us.page';
 import DataUtils from '../../utils/Tests.Data';
 // create instance of Page
 let d2CLegalShieldCaPage: D2CLegalShieldCaPage;
+let d2CLegalShieldUSPage: D2CLegalShieldUSPage;
 let checkoutPersonalInfoPage: CheckoutPersonalInfoPage;
 let checkoutPaymentsBankDraftPage: CheckoutPaymentsBankDraftPage;
 
@@ -27,7 +29,7 @@ test.only('D2E LegalShield CA using Testing Harness', async ({ page }) => {
     await d2CLegalShieldCaPage.selectDirecttoConsumerD2C();
   });
   await test.step('Click Legalshield Canada', async () => {
-    await d2CLegalShieldCaPage.clickLegalShieldCA(DataUtils.data.testingHarness.lineOfBusiness.LegalShieldCanada);
+    await d2CLegalShieldUSPage.clickOnALineOfBusiness('LegalShieldCA', DataUtils.data.testingHarness.lineOfBusiness.LegalShieldCanada);
   });
   await test.step('Select your region', async () => {
     await d2CLegalShieldCaPage.selectYourRegion(DataUtils.data.testingHarness.ca.bd.province.BC);
