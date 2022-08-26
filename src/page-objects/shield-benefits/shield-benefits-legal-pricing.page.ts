@@ -133,6 +133,7 @@ export class ShieldBenefitsLegalPricingPage extends ShieldBenefitsLegalOverviewP
     console.log(' - shieldBenefitsLegalPricingPage.clickEnrollNowButtonFromShieldBenefitsPricingPage');
     // Click on Enroll Now button for selected Plan
     await this.waitForElementToBeVisible(conAvailablePlans);
+    await this.page.pause();
     await this.clickOnElement(`//div[@class="groupTokenCard" and contains(.,"${planName}") and contains(.,"${tierName}")]//button`);
   };
 

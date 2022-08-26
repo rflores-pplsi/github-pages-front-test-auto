@@ -16,7 +16,7 @@
     ],
     "monthlyTotal": "$44.90",
     "planType": "LegalShield",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "Legal Plan - Home Business Supplement",
@@ -24,7 +24,7 @@
     "productNamesAndCosts": [["Legal Plan - Home Business Supplement", "$14.95"]],
     "monthlyTotal": "$44.90",
     "planType": "LegalShield",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "Legal Plan - Business Plus Supplement",
@@ -32,7 +32,7 @@
     "productNamesAndCosts": [["Legal Plan - Business Plus Supplement", "$14.95"]],
     "monthlyTotal": "$44.90",
     "planType": "LegalShield",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "Legal Plan - Gun Owners Supplement",
@@ -40,7 +40,7 @@
     "productNamesAndCosts": [["Legal Plan - Gun Owners Supplement", "$14.95"]],
     "monthlyTotal": "$44.90",
     "planType": "LegalShield",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "Legal Plan - Ride Share and Delivery Supplement",
@@ -48,7 +48,7 @@
     "productNamesAndCosts": [["Legal Plan - Ride Share and Delivery Supplement", "$14.95"]],
     "monthlyTotal": "$44.90",
     "planType": "LegalShield",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "Legal Plan - All Supplements",
@@ -63,7 +63,7 @@
     ],
     "monthlyTotal": "$104.70",
     "planType": "LegalShield",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "Small Business Legal Essentials",
@@ -71,7 +71,7 @@
     "productNamesAndCosts": [["Small Business Legal Essentials", "$49.00"]],
     "monthlyTotal": "$49.00",
     "planType": "LegalShield",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "Small Business Legal Essentials + Business Plus Supplement",
@@ -82,7 +82,7 @@
     ],
     "monthlyTotal": "$63.95",
     "planType": "LegalShield",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "Small Business Legal Plus",
@@ -90,7 +90,7 @@
     "productNamesAndCosts": [["Small Business Legal Plus", "$99.00"]],
     "monthlyTotal": "$99.00",
     "planType": "LegalShield",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "Small Business Legal Plus + Business Plus Supplement",
@@ -101,7 +101,7 @@
     ],
     "monthlyTotal": "$113.95",
     "planType": "LegalShield",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "Small Business Legal Plus + Trial Defense for Business",
@@ -112,7 +112,7 @@
     ],
     "monthlyTotal": "$113.95",
     "planType": "LegalShield",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "Small Business Legal Pro",
@@ -120,7 +120,7 @@
     "productNamesAndCosts": [["Small Business Legal Pro", "$169.00"]],
     "monthlyTotal": "$169.00",
     "planType": "LegalShield",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "Small Business Legal Pro + Business Plus Supplement",
@@ -131,7 +131,7 @@
     ],
     "monthlyTotal": "$183.95",
     "planType": "LegalShield",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "Small Business Legal Pro + Trial Defense for Business",
@@ -142,7 +142,7 @@
     ],
     "monthlyTotal": "$183.95",
     "planType": "LegalShield",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "Two plans",
@@ -153,7 +153,7 @@
     ],
     "monthlyTotal": "$78.95",
     "planType": "LegalShield",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "Two plans and a supplement",
@@ -165,7 +165,7 @@
     ],
     "monthlyTotal": "$93.90",
     "planType": "LegalShield",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "Commercial Drivers Legal Plan",
@@ -173,7 +173,7 @@
     "productNamesAndCosts": [["Commercial Drivers Legal Plan", "$32.95"]],
     "monthlyTotal": "$32.95",
     "planType": "LegalShield",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "Super Commercial Drivers Legal Plan",
@@ -181,7 +181,7 @@
     "productNamesAndCosts": [["Super Commercial Drivers Legal Plan", "$44.95"]],
     "monthlyTotal": "$44.95",
     "planType": "LegalShield",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "IDShield for Business Essentials",
@@ -189,7 +189,7 @@
     "productNamesAndCosts": [["IDShield for Business Essentials", "$79.95"]],
     "monthlyTotal": "$79.95",
     "planType": "IDShield",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "IDShield for Business Plus",
@@ -197,7 +197,7 @@
     "productNamesAndCosts": [["IDShield for Business Plus", "$149.95"]],
     "monthlyTotal": "$149.95",
     "planType": "IDShield",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "IDShield Individual",
@@ -205,7 +205,7 @@
     "productNamesAndCosts": [["IDShield Individual", "$14.95"]],
     "monthlyTotal": "$14.95",
     "planType": "IDShield",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "IDShield Family",
@@ -213,7 +213,7 @@
     "productNamesAndCosts": [["IDShield Family", "$29.95"]],
     "monthlyTotal": "$29.95",
     "planType": "IDShield",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "IDShield Three Bureau Family",
@@ -221,7 +221,7 @@
     "productNamesAndCosts": [["IDShield Three Bureau Family", "$34.95"]],
     "monthlyTotal": "$34.95",
     "planType": "IDShield",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "IDShield Three Bureau Individual",
@@ -229,6 +229,6 @@
     "productNamesAndCosts": [["IDShield Three Bureau Individual", "$19.95"]],
     "monthlyTotal": "$19.95",
     "planType": "IDShield",
-    "disabled": false
+    "disabled": true
   }
 ]

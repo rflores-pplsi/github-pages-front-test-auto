@@ -19,22 +19,25 @@ test.beforeEach(async ({ page }) => {
 
 // Self-Pay Configurations - Single Plan
 for (const tc of selfPayData.filter((tc) => tc.disabled == false)) {
-  for (const state of tc.regions) {
-    test.only(`${tc.testCaseName} - ${state} @selfPay @shieldBenefits @shieldBenefitsUs`, async ({ page }) => {
-      console.log(`Test Case: ${tc.testCaseName} - ${state}`);
+  for (const region of tc.regions) {
+    test.only(`${tc.testCaseName} - ${region} @selfPay @shieldBenefits @shieldBenefitsUs`, async ({ page }) => {
+      console.log(`Test Case: ${tc.testCaseName} - ${region}`);
       // Crete Cart from Pricing Page and Continue to Personal Info Page
-      await test.step(`Navigate to Shield Benefits Pricing Page for Group: ${tc.groupNumber}`, async () => {
-        await checkoutConfirmationPage.navigateToShieldBenefitsPricingPage(tc.groupNumber);
+      await test.step(`Navigate to Shield Benefits Pricing Page for Group: ${tc.groupNameOrNumber}`, async () => {
+        // await checkoutConfirmationPage.navigateToShieldBenefitsPricingPage(tc.groupNumber);
+        await checkoutConfirmationPage.navigateToShieldBenefitsGroupOverview(tc.groupNameOrNumber);
+        await checkoutConfirmationPage.clickShieldBenefitsPricingTab();
       });
-      await test.step(`Select State: ${state}`, async () => {
-        await checkoutConfirmationPage.selectStateOrProvince(state);
+      await test.step(`Select State: ${region}`, async () => {
+        await checkoutConfirmationPage.selectStateOrProvince(region);
       });
       await test.step(`Select Payment Frequency: ${tc.payFrequency}`, async () => {
         await checkoutConfirmationPage.selectPaymentFrequency(tc.payFrequency);
       });
-      await test.step(`Click Enroll Now for Plan: ${tc.planName} with Tier: ${tc.tierName}`, async () => {
-        await checkoutConfirmationPage.clickEnrollNowButtonFromShieldBenefitsPricingPage(tc.planName, tc.tierName);
+      await test.step(`Click Enroll Now for Plan: ${tc.planSupplementName} with Tier: ${tc.tierName}`, async () => {
+        await checkoutConfirmationPage.clickPricingPageSinglePlanEnrollNowButton(tc.planSupplementName);
       });
+
       await test.step(`Login with Credentials - Email:  ${basicUser.email}, Password: ${basicUser.password}`, async () => {
         await checkoutConfirmationPage.login(basicUser.email, basicUser.password);
       });
@@ -49,8 +52,9 @@ for (const tc of selfPayData.filter((tc) => tc.disabled == false)) {
         await checkoutConfirmationPage.assertPayPeriodTotal(tc.totalCost);
       });
       // Complete Necessary Forms and Continue to Payment Page
-      await test.step(`Change Address to a valid one for State: ${state}`, async () => {
-        await checkoutConfirmationPage.changeAddressUs(state);
+      await test.step(`Change Address to a valid one for State: ${region}`, async () => {
+        // await checkoutConfirmationPage.changeAddressUs(state);
+        await checkoutConfirmationPage.changeAddressForMarket(tc.market, region);
       });
       await test.step(`Complete Business Form if necessary`, async () => {
         await checkoutConfirmationPage.completeBusinessInfoForm();
@@ -69,16 +73,16 @@ for (const tc of selfPayData.filter((tc) => tc.disabled == false)) {
       await test.step(`Click Bank Draft Tab`, async () => {
         await checkoutConfirmationPage.clickBankDraftBtn();
       });
-      await checkoutConfirmationPage.fillBankDraftFormAndSubmit();
+      await checkoutConfirmationPage.fillMarketBankDraftFormAndSubmit(tc.market);
       // Confirmation Assertions
       await test.step(`Assert Membership Tile is Displayed`, async () => {
         await checkoutConfirmationPage.assertMembershipTileIsDisplayed(tc.planType);
       });
       await test.step(`Assert Plan Name is Displayed in Confirmation Page Order Summary`, async () => {
-        await checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary(tc.planName);
+        await checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary(tc.planSupplementName);
       });
       await test.step(`Assert Plan Cost is Displayed in Confirmation Page Order Summary`, async () => {
-        await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName(tc.planName);
+        await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName(tc.planSupplementName);
       });
     });
   }

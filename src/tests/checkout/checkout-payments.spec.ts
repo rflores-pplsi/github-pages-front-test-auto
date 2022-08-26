@@ -10,7 +10,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('Payments page header is displayed', async ({ page }) => {
-  await checkoutPaymentsPage.assertAccoutPaymentsPage();
+  await checkoutPaymentsPage.assertAccountPaymentsPage();
 });
 test('Payments page Terms of Service Link is Clickable', async ({ page }) => {
   // await checkoutPaymentsPage.clickTermsOfServiceLnk();

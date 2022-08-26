@@ -26,18 +26,18 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   // ========================== Navigate Methods ===========================
   navigateToCheckoutConfirmationPageUsingPlanalyzer = async (state: string, paymentMethod: string): Promise<void> => {
     await this.navigateToPaymentsPage(state);
-    CheckoutConfirmationPage.pPlan = await this.fillOrderSummarypPlanValue();
+    CheckoutConfirmationPage.pPlan = await this.fillOrderSummaryPlanValue();
     console.log(CheckoutConfirmationPage.pPlan);
-    CheckoutConfirmationPage.pPlanPrice = await this.fillOrderSummarypPlanPriceValue();
+    CheckoutConfirmationPage.pPlanPrice = await this.fillOrderSummaryPlanPriceValue();
     console.log(CheckoutConfirmationPage.pPlanPrice);
-    CheckoutConfirmationPage.txtTotalLabel = await this.fillOrderSummarytxtTotalLabelValue();
+    CheckoutConfirmationPage.txtTotalLabel = await this.fillOrderSummaryTxtTotalLabelValue();
     console.log(CheckoutConfirmationPage.txtTotalLabel);
-    CheckoutConfirmationPage.txtTotalPriceLabel = await this.fillOrderSummarytxtTotalPriceLabelValue();
+    CheckoutConfirmationPage.txtTotalPriceLabel = await this.fillOrderSummaryTxtTotalPriceLabelValue();
     console.log(CheckoutConfirmationPage.txtTotalPriceLabel);
     if (paymentMethod.toUpperCase() == 'BD') {
       console.log(' - checkoutPaymentPage.navigateToCheckoutConfirmationPage');
       await this.clickBankDraftBtn();
-      await this.fillBankDraftFormAndSubmit();
+      await this.fillUsBankDraftFormAndSubmit();
     } else if (paymentMethod.toUpperCase() == 'CC') {
       // await this.clickBankDraftBtn();
       // await this.clickCreditCardBtn();
@@ -48,7 +48,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   navigateFromPaymentBankDraftPageToConfirmationPage = async (): Promise<void> => {
     console.log(' - checkoutConfirmationPage.navigateFromPaymentBankDraftPageToConfirmationPage');
     await this.clickBankDraftBtn();
-    await this.fillBankDraftFormAndSubmit();
+    await this.fillUsBankDraftFormAndSubmit();
     await this.page.waitForSelector(conMembershipWrapper, { timeout: 50000 });
   };
 
@@ -62,7 +62,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   navigateFromPaymentBankDraftPageToConfirmationPageCanada = async (): Promise<void> => {
     console.log(' - checkoutConfirmationPage.navigateFromPaymentBankDraftPageToConfirmationPageCanada');
     await this.clickBankDraftBtn();
-    await this.fillBankDraftFormForCanada();
+    await this.fillCaBankDraftFormAndSubmit();
     await this.page.waitForSelector(conMembershipWrapper, { timeout: 90000 });
   };
 
@@ -92,7 +92,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   };
 
   // ========================== Assertion Methods ==========================
-  assertWelcomeToLegalshiledFamilyPage = async () => {
+  assertWelcomeToLegalShieldFamilyPage = async () => {
     console.log(' - checkoutConfirmationPage.assertWelcomeToLegalshiledFamilyPage');
     const welcome = await this.page.waitForSelector(txtWelcomeToLegalshiledFamily);
     console.log(welcome.innerText());
