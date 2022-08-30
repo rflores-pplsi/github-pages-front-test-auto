@@ -11,7 +11,7 @@ test.beforeEach(async ({ page, request }) => {
   test.slow();
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
-test.only('English WALS-US', async ({ page }) => {
+test('English WALS-US', async ({ page }) => {
   test.slow;
   await test.step('Navigate to English-WALS-Ca page', async () => {
     await englishWalsCaPage.navigateToEnglishWalsCaPage();
@@ -51,5 +51,4 @@ test.only('English WALS-US', async ({ page }) => {
   await test.step('Verify that the user made the purchase', async () => {
     await englishWalsCaPage.assertWelcomelabel();
   });
-
 });

@@ -3,7 +3,7 @@ import UrlsUtils from '../../utils/urls.utils';
 import { BasePage } from '../base.page';
 
 // ========================== Selectors ==========================
-//header
+// Header
 const headerLogo: string = '.fixedheader img.largemediumscreen';
 const nameAO: string = '#lsdsTitle';
 const helpIcon: string = '#helpButton > img';
@@ -13,7 +13,7 @@ const downCaret: string = '#downCaret';
 const myAccount: string = '#myDropdown > a:nth-child(1) > div';
 const signOut: string = '#myDropdown > a:nth-child(3) > div';
 
-//left nav menu
+// Left nav menu
 const myTeam: string = '.lsux-navigation :nth-child(1) > div.lsux-link-content';
 const reports: string = '.lsux-navigation :nth-child(2) > div';
 const allReports: string = '.lsux-navigation :nth-child(3) > div';
@@ -25,11 +25,11 @@ const compensation: string = '.lsux-navigation :nth-child(8) > div';
 const lsAdvantage: string = '.lsux-navigation :nth-child(7) > div';
 const associatePerks: string = '.lsux-navigation :nth-child(8) > div';
 
-// footer
+// Footer
 const termsOfService: string = "a[href*='terms-service']";
 const privacyPolicy: string = '.lsux-footer a:nth-child(2)';
 const disclaimer: string = "a[href*='disclaimer']";
-const logo: string = '.lsux-footer > span > span'
+const logo: string = '.lsux-footer > span > span';
 
 /**
  * @export
@@ -39,140 +39,137 @@ const logo: string = '.lsux-footer > span > span'
 export class NavMenuPage extends BasePage {
   // ========================== Process Methods ==========================
 
-
   // ========================== Navigate Methods ==========================
-
 
   // ========================== Click Methods ==========================
 
-
   // ========================== Assertion Methods ==========================
 
-  //Header
-  assertHeaderLogoIsDisplayed = async(): Promise<void> => {
-  console.log(' - navMenuPage.assertHeaderLogoIsDisplayed');
-  await this.assertElementIsVisible(headerLogo);
+  // Header
+  assertHeaderLogoIsDisplayed = async (): Promise<void> => {
+    console.log(' - navMenuPage.assertHeaderLogoIsDisplayed');
+    await this.assertElementIsVisible(headerLogo);
   };
 
-  assertNameAOIsDisplayed = async(): Promise<void> => {
-  console.log(' - navMenuPage.assertNameAOIsDisplayed');
-  await this.assertElementIsVisible(nameAO);
+  assertNameAOIsDisplayed = async (): Promise<void> => {
+    console.log(' - navMenuPage.assertNameAOIsDisplayed');
+    await this.assertElementIsVisible(nameAO);
   };
 
-  assertHelpIconIsDisplayed = async(): Promise<void> => {
-  console.log(' - navMenuPage.assertHelpIconIsDisplayed');
-  await this.assertElementIsVisible(helpIcon);
+  assertHelpIconIsDisplayed = async (): Promise<void> => {
+    console.log(' - navMenuPage.assertHelpIconIsDisplayed');
+    await this.assertElementIsVisible(helpIcon);
   };
 
-  assertCustomerSupportIsDisplayed = async(): Promise<void> => {
-  console.log(' - navMenuPage.assertCustomerSupportIsDisplayed');
-  await this.clickOnElement(helpIcon);
-  await this.assertElementIsVisible(customerSupport);
-  await this.assertElementIsVisible(supportPhone);
+  assertCustomerSupportIsDisplayed = async (): Promise<void> => {
+    console.log(' - navMenuPage.assertCustomerSupportIsDisplayed');
+    await this.clickOnElement(helpIcon);
+    await this.assertElementIsVisible(customerSupport);
+    await this.assertElementIsVisible(supportPhone);
   };
 
-  assertSupportPhone = async(): Promise<void> => {
-  console.log(' - navMenuPage.assertSupportPhone');
-  await this.assertElementHasText(supportPhone, '1-580-436-7424');
+  assertSupportPhone = async (): Promise<void> => {
+    console.log(' - navMenuPage.assertSupportPhone');
+    await this.assertElementHasText(supportPhone, '1-580-436-7424');
   };
 
-  assertDownCaretIsDisplayed = async(): Promise<void> => {
-  console.log(' - navMenuPage.assertDownCaretIsDisplayed');
-  await this.assertElementIsVisible(downCaret);
+  assertDownCaretIsDisplayed = async (): Promise<void> => {
+    console.log(' - navMenuPage.assertDownCaretIsDisplayed');
+    await this.assertElementIsVisible(downCaret);
   };
 
-  assertMyAccountIsDisplayed = async(): Promise<void> => {
-  console.log(' - navMenuPage.assertMyAccountIsDisplayed');
-  await this.clickOnElement(downCaret);
-  await this.assertElementIsVisible(myAccount);
-  };
-  
-  assertSignOutIsDisplayed = async(): Promise<void> => {
-  console.log(' - navMenuPage.assertSignOutIsDisplayed');
-  await this.clickOnElement(downCaret);
-  await this.assertElementIsVisible(signOut);
+  assertMyAccountIsDisplayed = async (): Promise<void> => {
+    console.log(' - navMenuPage.assertMyAccountIsDisplayed');
+    await this.clickOnElement(downCaret);
+    await this.assertElementIsVisible(myAccount);
   };
 
-// Left Navigation Menu
-  assertMyTeamIsDisplayed = async(): Promise<void> => {
-  console.log(' - navMenuPage.assertMyTeamIsDisplayed');
-  await this.page.waitForSelector(myTeam);
-  await this.assertElementIsVisible(myTeam);
+  assertSignOutIsDisplayed = async (): Promise<void> => {
+    console.log(' - navMenuPage.assertSignOutIsDisplayed');
+    await this.clickOnElement(downCaret);
+    await this.assertElementIsVisible(signOut);
   };
 
-  assertReportsIsDisplayed = async(): Promise<void> => {
-  console.log(' - navMenuPage.assertReportsIsDisplayed');
-  await this.page.waitForSelector(reports);
-  await this.assertElementIsVisible(reports);
+  // Left Navigation Menu
+  assertMyTeamIsDisplayed = async (): Promise<void> => {
+    console.log(' - navMenuPage.assertMyTeamIsDisplayed');
+    await this.page.waitForSelector(myTeam);
+    await this.assertElementIsVisible(myTeam);
   };
 
-  assertAllReportsIsDisplayed = async(): Promise<void> => {
-  console.log(' - navMenuPage.assertAllReportsIsDisplayed');
-  await this.page.waitForSelector(allReports);
-  await this.assertElementIsVisible(allReports);
+  assertReportsIsDisplayed = async (): Promise<void> => {
+    console.log(' - navMenuPage.assertReportsIsDisplayed');
+    await this.page.waitForSelector(reports);
+    await this.assertElementIsVisible(reports);
   };
 
-  assertCommissionsIsDisplayed = async(): Promise<void> => {
-  console.log(' - navMenuPage.assertCommissionsIsDisplayed');
-  await this.page.waitForSelector(commissions);
-  await this.assertElementIsVisible(commissions);
+  assertAllReportsIsDisplayed = async (): Promise<void> => {
+    console.log(' - navMenuPage.assertAllReportsIsDisplayed');
+    await this.page.waitForSelector(allReports);
+    await this.assertElementIsVisible(allReports);
   };
 
-  assertTaxesIsDisplayed = async(): Promise<void> => {
-  console.log(' - navMenuPage.assertTaxesIsDisplayed');
-  await this.page.waitForSelector(taxes);
-  await this.assertElementIsVisible(taxes);
+  assertCommissionsIsDisplayed = async (): Promise<void> => {
+    console.log(' - navMenuPage.assertCommissionsIsDisplayed');
+    await this.page.waitForSelector(commissions);
+    await this.assertElementIsVisible(commissions);
   };
 
-  assertResourcesIsDisplayed = async(): Promise<void> => {
-  console.log(' - navMenuPage.assertResourcesIsDisplayed');
-  await this.page.waitForSelector(resources);
-  await this.assertElementIsVisible(resources);
+  assertTaxesIsDisplayed = async (): Promise<void> => {
+    console.log(' - navMenuPage.assertTaxesIsDisplayed');
+    await this.page.waitForSelector(taxes);
+    await this.assertElementIsVisible(taxes);
   };
 
-  assertMessagesIsDisplayed = async(): Promise<void> => {
-  console.log(' - navMenuPage.assertMessagesIsDisplayed');
-  await this.page.waitForSelector(messages);
-  await this.assertElementIsVisible(messages);
+  assertResourcesIsDisplayed = async (): Promise<void> => {
+    console.log(' - navMenuPage.assertResourcesIsDisplayed');
+    await this.page.waitForSelector(resources);
+    await this.assertElementIsVisible(resources);
   };
 
-  assertCompensationIsDisplayed = async(): Promise<void> => {
-  console.log(' - navMenuPage.assertCompensationIsDisplayed');
-  await this.page.waitForSelector(compensation);
-  await this.assertElementIsVisible(compensation);
+  assertMessagesIsDisplayed = async (): Promise<void> => {
+    console.log(' - navMenuPage.assertMessagesIsDisplayed');
+    await this.page.waitForSelector(messages);
+    await this.assertElementIsVisible(messages);
   };
 
-  assertLSAdvantageIsDisplayed = async(): Promise<void> => {
-  console.log(' - navMenuPage.assertLSAdvantageIsDisplayed');
-  await this.page.waitForSelector(lsAdvantage);
-  await this.assertElementIsVisible(lsAdvantage);
+  assertCompensationIsDisplayed = async (): Promise<void> => {
+    console.log(' - navMenuPage.assertCompensationIsDisplayed');
+    await this.page.waitForSelector(compensation);
+    await this.assertElementIsVisible(compensation);
   };
 
-  assertAssociatePerksIsDisplayed = async(): Promise<void> => {
-  console.log(' - navMenuPage.assertAssociatePerksIsDisplayed');
-  await this.page.waitForSelector(associatePerks);
-  await this.assertElementIsVisible(associatePerks);
+  assertLSAdvantageIsDisplayed = async (): Promise<void> => {
+    console.log(' - navMenuPage.assertLSAdvantageIsDisplayed');
+    await this.page.waitForSelector(lsAdvantage);
+    await this.assertElementIsVisible(lsAdvantage);
   };
 
-  //Footer
-  assertTermsOfServiceIsDisplayed = async(): Promise<void> => {
-  console.log(' - navMenuPage.assertTermsOfServiceIsDisplayed');
-  await this.page.waitForSelector(termsOfService);
-  await this.assertElementIsVisible(termsOfService);
+  assertAssociatePerksIsDisplayed = async (): Promise<void> => {
+    console.log(' - navMenuPage.assertAssociatePerksIsDisplayed');
+    await this.page.waitForSelector(associatePerks);
+    await this.assertElementIsVisible(associatePerks);
   };
 
-  assertPrivacyPolicyIsDisplayed = async(): Promise<void> => {
-  console.log(' - navMenuPage.assertPrivacyPolicyIsDisplayed');
-  await this.assertElementIsVisible(privacyPolicy);
+  // Footer
+  assertTermsOfServiceIsDisplayed = async (): Promise<void> => {
+    console.log(' - navMenuPage.assertTermsOfServiceIsDisplayed');
+    await this.page.waitForSelector(termsOfService);
+    await this.assertElementIsVisible(termsOfService);
   };
 
-  assertDisclaimerIsDisplayed = async(): Promise<void> => {
-  console.log(' - navMenuPage.assertDisclaimerIsDisplayed');
-  await this.assertElementIsVisible(disclaimer);
+  assertPrivacyPolicyIsDisplayed = async (): Promise<void> => {
+    console.log(' - navMenuPage.assertPrivacyPolicyIsDisplayed');
+    await this.assertElementIsVisible(privacyPolicy);
   };
 
-  assertLogoIsDisplayed = async(): Promise<void> => {
-  console.log(' - navMenuPage.assertLogoIsDisplayed');
-  await this.assertElementIsVisible(logo);
+  assertDisclaimerIsDisplayed = async (): Promise<void> => {
+    console.log(' - navMenuPage.assertDisclaimerIsDisplayed');
+    await this.assertElementIsVisible(disclaimer);
+  };
+
+  assertLogoIsDisplayed = async (): Promise<void> => {
+    console.log(' - navMenuPage.assertLogoIsDisplayed');
+    await this.assertElementIsVisible(logo);
   };
 }

@@ -1,6 +1,5 @@
 /* eslint-disable camelcase */
-import EnvironmentUtil from '../utils/env.utils';
-// import { config } from 'dotenv'
+import EnvironmentUtil from './env.utils';
 require('dotenv').config();
 
 const envUrlString = EnvironmentUtil.getEnvUrlString();
@@ -147,6 +146,9 @@ export default class UrlsUtils {
   static readonly channelsUrls = {
     advantage: {
       url: `https://associate-office.${envUrlString}legalshield.com/advantage`,
+    },
+    taxForm: {
+      url: `https://associate-office.${envUrlString}legalshield.com/reports/tax-forms`,
     },
     businesscard: {
       url: `https://associate-office.${envUrlString}legalshield.com/business-card`,
