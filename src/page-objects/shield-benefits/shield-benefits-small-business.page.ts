@@ -23,7 +23,7 @@ const btnPricing: string = '#root > div > nav > div > div > ul > li:nth-child(2)
 const btnSelect: string = '#root div.filters.mt-5.mb-5.false > div > div.mr-custom > div > button';
 const btnState: string = '#root  div.mr-custom  div:nth-child(6)';
 const btnPaymentFrequency: string = '//p[contains (.,"Payment frequency")]/following-sibling::div//button';
-const btnViewDetails: string = '#root div:nth-child(3) div:nth-child(1) > div > div > div.groupTokenCardLeft > a';
+const btnViewDetails: string = '//*[@id="root"]/div/div/main/section/div/div[3]/div/div[1]/div/div/div[1]/a';
 
 /**
  * @export
