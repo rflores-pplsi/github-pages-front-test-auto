@@ -11,7 +11,7 @@ export default class DataUtils {
       },
       plans: {
         ca: {
-          LegalPlan: 'LPCA21',
+          LegalPlan: 'CA22',
           LegalPlanBusinessPlusSupplement: 'BPS',
           LegalPlanHomeBusinessSupplement: 'HB3',
           LegalPlanTrialDefenceSupplement: 'TD3',

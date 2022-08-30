@@ -16,11 +16,12 @@ test.beforeEach(async ({ page, request }) => {
   d2CLegalShieldCaPage = new D2CLegalShieldCaPage(page);
   checkoutPersonalInfoPage = new CheckoutPersonalInfoPage(page);
   checkoutPaymentsBankDraftPage = new CheckoutPaymentsBankDraftPage(page);
+  d2CLegalShieldUSPage = new D2CLegalShieldUSPage(page);
   // test.slow triples the default wait times
   test.slow();
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
-test.only('D2E LegalShield CA using Testing Harness', async ({ page }) => {
+test('D2E LegalShield CA using Testing Harness', async ({ page }) => {
   test.slow;
   await test.step('Navigate to Testing Harness', async () => {
     await d2CLegalShieldCaPage.navigateToTestingHarnessPage('d2cLegalShieldCA');
@@ -29,7 +30,7 @@ test.only('D2E LegalShield CA using Testing Harness', async ({ page }) => {
     await d2CLegalShieldCaPage.selectDirecttoConsumerD2C();
   });
   await test.step('Click Legalshield Canada', async () => {
-    await d2CLegalShieldUSPage.clickOnALineOfBusiness('LegalShieldCA', DataUtils.data.testingHarness.lineOfBusiness.LegalShieldCanada);
+    await d2CLegalShieldUSPage.clickOnALineOfBusiness(DataUtils.data.testingHarness.lineOfBusiness.LegalShieldCanada, 'LegalShieldCanada');
   });
   await test.step('Select your region', async () => {
     await d2CLegalShieldCaPage.selectYourRegion(DataUtils.data.testingHarness.ca.bd.province.BC);
