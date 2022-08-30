@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { ReportsCommissionsPage } from '../../page-objects/associate/associate-office-reports-commissions.page';
+import { ReportsCommissionsPage } from '../../page-objects/associate-office/associate-office-reports-commissions.page';
 
 // create instance of Page
 let reportsCommissionsPage: ReportsCommissionsPage;
@@ -29,14 +29,15 @@ test('Pending Statements Tab is displayed', async ({ page }) => {
   await reportsCommissionsPage.clickOnPendingStatements();
   await reportsCommissionsPage.assertLblSearchCommissionStatementsIsDisplayed();
   await reportsCommissionsPage.assertSearchDatesIsDisplayed();
-  await reportsCommissionsPage.assertComboCountryIsDisplayed();
+  await reportsCommissionsPage.assertComboCountryIsDisplayed2();
   await reportsCommissionsPage.assertBtnSearchIsDisplayed();
 });
 
 test('Fast Start Statement Tab is displayed', async ({ page }) => {
   await reportsCommissionsPage.assertTabFastStartStatementsIsDisplayed();
+  await reportsCommissionsPage.clickOnFastStartStatements();
   await reportsCommissionsPage.assertSearchDatesIsDisplayed();
   await reportsCommissionsPage.assertSearchDatesIsDisplayed();
-  await reportsCommissionsPage.assertComboCountryIsDisplayed();
+  await reportsCommissionsPage.assertComboCountryIsDisplayed2();
   await reportsCommissionsPage.assertBtnSearchIsDisplayed();
 });

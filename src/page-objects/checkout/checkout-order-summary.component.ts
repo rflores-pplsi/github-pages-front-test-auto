@@ -1,3 +1,4 @@
+/* eslint-disable valid-jsdoc */
 import { ShieldBenefitsLegalPricingPage } from '../shield-benefits/shield-benefits-legal-pricing.page';
 import { OrderSummary } from './checkout.helpers';
 import { OrderSummaryRow } from './checkout.helpers';
@@ -17,7 +18,7 @@ const imgHideOrderSummaryChevron: string = 'img[alt="nav_chevron_single_up."]';
 const imgShowOrderSummaryChevron: string = 'img[alt="nav_chevron_single_down."]';
 const conOrderSummary: string = '//div[contains(@class,"order-summary")]';
 const txtPlanNames: string = '//div[contains(@class,"plan-name-row")]//p[1]';
-const txtTierNames: string = '//div[contains(@class,"plan-name-row")]//p[2]';
+const txtTierNames: string = '//div[contains(@class,"plan-name-row")]//p//span[2]';
 const txtSupplementNames: string =
   '//div[contains(@class,"lsux-row half children2 content-row mb-4 mt-4 pb-4")]//p[not(contains(@style,"text-align: right;"))]';
 const txtSupplementCosts: string =
@@ -82,7 +83,7 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
     const numberOfPlans = (await this.page.$$(txtPlanNames)).length;
     for (let i: number = 0; i < numberOfPlans; i++) {
       const row = await this.captureOrderSummaryRowWithoutTier(i);
-      orderSummary.addRow(row);
+      orderSummary.addRow(row as unknown as OrderSummaryRow);
     }
     // write all supplements to the orderSummary object
     const numberOfSupplements = (await this.page.$$(txtSupplementNames)).length;
@@ -143,10 +144,10 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
    */
   captureOrderSummaryRowWithoutCost = async (i: number = 0): Promise<OrderSummaryRowWithoutCost> => {
     console.log(' - checkoutOrderSummaryComponent.captureOrderSummaryRowWithoutCost');
-    const planNameJsHandle = (await this.page.$$(txtPlanNames))[i].getProperty('innerText');
-    const planNameText = await (await planNameJsHandle).jsonValue();
-    const tierNameJsHandle = (await this.page.$$(txtTierNames))[i].getProperty('innerText');
-    const tierNameText = await (await tierNameJsHandle).jsonValue();
+    const planAndTierNameText = await this.page.locator(txtPlanNames).nth(i).innerText();
+    const splitted = planAndTierNameText.split(' - ');
+    const planNameText = splitted[0];
+    const tierNameText = splitted[1];
     const planRow = new OrderSummaryRowWithoutCost(planNameText, tierNameText);
     return planRow;
   };
@@ -216,7 +217,11 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
    * @param {string} expectedPlanCost
    * @memberof CheckoutOrderSummaryComponent
    */
-  assertPlanNameTierNameAndCost = async (expectedPlanName: string, expectedTierName: string | undefined, expectedPlanCost: string): Promise<void> => {
+  assertPlanNameFriendlyTierNameAndCost = async (
+    expectedPlanName: string,
+    expectedTierName: string | undefined,
+    expectedPlanCost: string
+  ): Promise<void> => {
     console.log(' - checkoutOrderSummaryComponent.assertPlanNameTierNameAndCost');
     let found: boolean = false;
     orderSummary.orderSummaryRows.forEach(async (row) => {
@@ -252,10 +257,9 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
       const costs = row.planCost;
       if (planName == expectedPlanName) {
         found = true;
-        await this.assertStringMatch(costs, expectedPlanCost);
+        await this.assertStringMatch(costs as string, expectedPlanCost);
       }
     });
-
     if (found == false) {
       try {
         await this.assertBoolean(found, true);
@@ -325,10 +329,9 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
    * @param {string} tierName
    * @memberof CheckoutOrderSummaryComponent
    */
-  assertPlanNameAndTierName = async (planName: string, tierName: string): Promise<void> => {
-    console.log(' - checkoutOrderSummaryComponent.assertPlanName');
-    await this.assertElementContainsText(conOrderSummary, planName);
-    await this.assertElementContainsText(conOrderSummary, tierName);
+  assertPlanNameAndTierName = async (planAndTierName: string): Promise<void> => {
+    console.log(' - checkoutOrderSummaryComponent.assertPlanNameAndTierName');
+    await this.assertElementContainsText(conOrderSummary, planAndTierName);
   };
 
   /**

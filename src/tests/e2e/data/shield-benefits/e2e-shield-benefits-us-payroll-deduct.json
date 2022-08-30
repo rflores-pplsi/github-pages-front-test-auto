@@ -1,0 +1,44 @@
+[
+  {
+    "testCaseName": "Payroll Deduct (IDShield Individual)",
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
+    "groupPayConfig": "payroll deduct",
+    "groupNumber": "test11",
+    "planName": "IDShield Individual",
+    "tierName": "1 Bureau Credit Monitoring",
+    "orderSummaryPlanName": "IDShield Individual - Individual 1B",
+    "planType": "IDShield",
+    "payFrequency": "Monthly",
+    "planCost": "$12.95",
+    "totalCost": "$12.95",
+    "disabled": false
+  },
+  {
+    "testCaseName": "Payroll Deduct (Legal Plan Family)",
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
+    "groupPayConfig": "payroll deduct",
+    "groupNumber": "test11",
+    "planName": "Legal Plan Family",
+    "tierName": "",
+    "orderSummaryPlanName": "Legal Plan Family",
+    "planType": "LegalShield",
+    "payFrequency": "Monthly",
+    "planCost": "$21.95",
+    "totalCost": "$21.95",
+    "disabled": false
+  },
+  {
+    "testCaseName": "Payroll Deduct (IDShield Family)",
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
+    "groupPayConfig": "payroll deduct",
+    "groupNumber": "test11",
+    "planName": "IDShield Family",
+    "tierName": "1 Bureau Credit Monitoring",
+    "orderSummaryPlanName": "IDShield Family - Family 1B",
+    "planType": "IDShield",
+    "payFrequency": "Monthly",
+    "planCost": "$22.95",
+    "totalCost": "$22.95",
+    "disabled": false
+  }
+]
