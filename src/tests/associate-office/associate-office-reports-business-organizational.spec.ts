@@ -10,21 +10,19 @@ test.beforeEach(async ({ page }) => {
   await reportsBusinessOrganizationalPage.navigateToReportsBusinessOrganizationalPage();
 });
 
-test('OBR - FE - Routing', async ({ page }) => {
-  await reportsBusinessOrganizationalPage.assertBreadcrumbLinkIsDisplayed();
-  await reportsBusinessOrganizationalPage.assertOrganizationalBusinessReportTaIsDisplayed();
+test('Organizational Business Report Routing is displayed', async ({ page }) => {
+  console.log('Test Case: Organizational Business Report Routing is displayed');
+  const breadcrumbLinkTxt = 'Organizational Business Report';
+  await reportsBusinessOrganizationalPage.assertPageTitle(breadcrumbLinkTxt);
+  await reportsBusinessOrganizationalPage.assertBreadcrumbLinkIsDisplayed(breadcrumbLinkTxt);
+  await reportsBusinessOrganizationalPage.assertOrganizationalBusinessReportTabIsDisplayed();
 });
 
-test('OBR - FE - Create Search Component', async ({ page }) => {
-  await reportsBusinessOrganizationalPage.assertReportsBusinessOrganizationalPageShow();
-  await reportsBusinessOrganizationalPage.fillTxtBoxSearch('AssociateIds');
-  await reportsBusinessOrganizationalPage.assertTxaAssociateNumberIsDisplayed();
-});
-
-test('OBR - FE - Associate Name and Number Titles', async ({ page }) => {
-  await reportsBusinessOrganizationalPage.assertReportsBusinessOrganizationalPageShow();
-  await reportsBusinessOrganizationalPage.fillTxtBoxSearch('AssociateIds');
-  await reportsBusinessOrganizationalPage.assertTxaAssociateNumberIsDisplayed();
-  await reportsBusinessOrganizationalPage.clickSearchResult();
-  await reportsBusinessOrganizationalPage.assertTabPersonalBusinessReportIsDisplayed();
+test('Personal Business Report Routing is displayed', async ({ page }) => {
+  console.log('Test Case: Personal Business Report Routing is displayed');
+  await reportsBusinessOrganizationalPage.clickOnPersonalBusinessReportTab();
+  const breadcrumbLinkTxt = 'Personal Business Report';
+  await reportsBusinessOrganizationalPage.assertPageTitle(breadcrumbLinkTxt);
+  await reportsBusinessOrganizationalPage.assertBreadcrumbLinkIsDisplayed(breadcrumbLinkTxt);
+  await reportsBusinessOrganizationalPage.assertPersonalBusinessReportTabIsDisplayed();
 });

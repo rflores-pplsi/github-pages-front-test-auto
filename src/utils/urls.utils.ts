@@ -147,6 +147,9 @@ export default class UrlsUtils {
     advantage: {
       url: `https://associate-office.${envUrlString}legalshield.com/advantage`,
     },
+    taxForm: {
+      url: `https://associate-office.${envUrlString}legalshield.com/reports/tax-forms`,
+    },
     businesscard: {
       url: `https://associate-office.${envUrlString}legalshield.com/business-card`,
     },

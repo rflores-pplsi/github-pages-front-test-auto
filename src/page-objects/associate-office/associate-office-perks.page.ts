@@ -1,6 +1,6 @@
-import { expect } from '@playwright/test';
+import { BrowserContext, expect, Page } from '@playwright/test';
 import UrlsUtils from '../../utils/urls.utils';
-import { BasePage } from '../base.page';
+import { LoginPage } from '../login/login.page';
 
 // ========================== Selectors ==========================
 const banner: string = '#banner-perks';
@@ -15,118 +15,209 @@ const featuredPerkImage: string = '#featured-perks .lsux-col.image';
 const associatedPerks: string = '//p[text()="ASSOCIATEPerks"]';
 const availCanText: string = '#perks .lsux-col.canada span';
 const availCanImg: string = '#perks .lsux-col.canada img';
-const perkDisclaimer: string = '.perks-disclaimer';
+const lblPerkDisclaimer: string = '#perks > div:nth-child(3) p';
+const lblPerkJohnAddisonLeadership: string = '(//p[text()="John Addison Leadership"])[2]';
+const lblDescription: string = '//div/h1';
+const lblComment: string = '.info p';
+const btnShopNow: string = '.shop-now';
+const btnMoreDetails: string = "//div/a[@class='more-details']";
 
-  //John Addison Leadership perk
-const JALeadershipPerk: string = "div[class*='thirds'] > div:nth-of-type(1) > div > div > p";
-const JALeadershipPerkImg: string = "img[src*='2ef8a10b28e9943d741b6ceccf14c336.png']";
-const JALeadershipPerkDescription: string = '.card-perks > div > div > div:nth-child(2)  h1';
-const JALeadershipPerkComment: string = '.card-perks div:nth-child(2)  div > div > div > p';
-const JALeadershipPerkShopNow: string = "a[href*='ls-perks/']";
-
+// eslint-disable-next-line valid-jsdoc
 /**
+ *
  * @export
  * @class PerksPage
- * @extends {BasePage}
+ * @extends {LoginPage}
  */
-export class PerksPage extends BasePage {
+export class PerksPage extends LoginPage {
   // ========================== Process Methods ==========================
+  /**
+   * @param {string} perk
+   * @memberof PerksPage
+   */
+  waitForPerk = async (perk: string): Promise<void> => {
+    await this.page.waitForSelector(`//*[text()="${perk}"]`, { timeout: 40000 });
+  };
+  /**
+   * @param {string} perk
+   * @memberof PerksPage
+   */
 
-perk = async(perkTitle: string): Promise<void> => {
-  await this.page.waitForSelector(`//*[text()="${perkTitle}"]`);
-};
+  waitForPerkDisplayed = async (perk: string): Promise<void> => {
+    console.log(' - perksPage.waitForPerkDisplayed');
+    await this.waitForPerk(perk);
+  };
 
-description = async(perkTitle:string): Promise<void> => {
-  const perk = await this.page.waitForSelector(`//*[text()="${perkTitle}"]`);
-}
+  waitForJALPerkDisplayed = async (): Promise<void> => {
+    console.log(' - perksPage.waitForPerkDisplayed');
+    await this.page.waitForSelector(lblPerkJohnAddisonLeadership);
+  };
+
+  waitForPageIsLoaded = async (): Promise<void> => {
+    console.log(' - perksPage.waitForPageIsLoaded');
+    await this.page.waitForSelector(bannerTitle);
+  };
 
   // ========================== Navigate Methods ==========================
 
+  hoverOverToPerk = async (i: number = 0): Promise<void> => {
+    console.log(' - perksPage.hoverOverToPerk');
+    const image = this.page.locator('//img').nth(i);
+    await image.hover();
+    this.page.waitForTimeout(3000);
+  };
 
   // ========================== Click Methods ==========================
 
-
+  clickOnbMoreDetailsBtn = async (i: number = 0): Promise<void> => {
+    console.log(' - perksPage.clickOnbMoreDetailsBtn');
+    await this.page.locator(btnMoreDetails).nth(i).click();
+  };
 
   // ========================== Assertion Methods ==========================
 
   assertPerksPageUrl = async (): Promise<void> => {
-  console.log(' - perksPage.assertPerksPageUrl');
-  // Confirm Perks Page URL is reached
-  await expect(this.page).toHaveURL(UrlsUtils.channelsUrls.perks.url +'?login_redirect=1');
-  // Wait for document to load before subsequent steps
-  await this.page.waitForLoadState('domcontentloaded');
+    console.log(' - perksPage.assertPerksPageUrl');
+    // Confirm Perks Page URL is reached
+    await expect(this.page).toHaveURL(UrlsUtils.channelsUrls.perks.url + '?login_redirect=1');
+    // Wait for document to load before subsequent steps
+    await this.page.waitForLoadState('domcontentloaded');
   };
 
-  assertBannerIsDisplayed = async(): Promise<void> => {
-  console.log(' - perksPage.assertBannerIsDisplayed');
-  await this.page.waitForSelector(banner);
-  await this.assertElementIsVisible(banner);
+  assertBannerIsDisplayed = async (): Promise<void> => {
+    console.log(' - perksPage.assertBannerIsDisplayed');
+    await this.page.waitForSelector(banner);
+    await this.assertElementIsVisible(banner);
   };
 
   assertBannerTitleText = async (): Promise<void> => {
-  console.log(' - perksPage.assertBannerTitleText');
-  await this.page.waitForSelector(bannerTitle);
-  const strTitle = 'ASSOCIATEPerks';
-  await this.assertElementHasText(bannerTitle, strTitle);
+    console.log(' - perksPage.assertBannerTitleText');
+    await this.page.waitForSelector(bannerTitle);
+    const strTitle = 'ASSOCIATEPerks';
+    await this.assertElementHasText(bannerTitle, strTitle);
   };
 
   assertBannerDescriptionText = async (): Promise<void> => {
-  console.log(' - perksPage.assertBannerDescriptionText');
-  await this.page.waitForSelector(bannerDescription);
-  const strDescription = 'Exclusive Discounts to take your business to the next level';
-  await this.assertElementHasText(bannerDescription, strDescription);
+    console.log(' - perksPage.assertBannerDescriptionText');
+    await this.page.waitForSelector(bannerDescription);
+    const strDescription = 'Exclusive Discounts to take your business to the next level';
+    await this.assertElementHasText(bannerDescription, strDescription);
   };
 
   assertPerkText = async (): Promise<void> => {
-  console.log(' - perksPage.assertPerkText');
-  await this.page.waitForSelector(textPerks);
-  const strTitle = 'From office supplies to health care, PPLSI has partnered with these best in class services to help you manage and grow your business.';
-  await this.assertElementHasText(textPerks, strTitle);
+    console.log(' - perksPage.assertPerkText');
+    await this.page.waitForSelector(textPerks);
+    const strTitle =
+      'From office supplies to health care, PPLSI has partnered with these best in class services to help you manage and grow your business.';
+    await this.assertElementHasText(textPerks, strTitle);
   };
 
   assertFeaturedOfferTitleText = async (): Promise<void> => {
-  console.log(' - perksPage.assertFeaturedOfferTitleText');
-  await this.page.waitForSelector(featuredPerkTitle);
-  await this.assertElementIsVisible(featuredPerkTitle);
+    console.log(' - perksPage.assertFeaturedOfferTitleText');
+    await this.page.waitForSelector(featuredPerkTitle);
+    await this.assertElementIsVisible(featuredPerkTitle);
   };
 
   assertFeaturedPerkDescriptionText = async (): Promise<void> => {
-  console.log(' - perksPage.assertFeaturedPerkDescriptionText');
-  await this.page.waitForSelector(bannerDescription);
-  const strTitle1 = 'John Addison Leadership';
-  await this.assertElementHasText(featuredPerkDescriptionP1, strTitle1);
-  const strTitle2 = 'Use code 3THSPCVF for 10% off during checkout. (This is a one-time use code.)';
-  await this.assertElementHasText(featuredPerkDescriptionP2, strTitle2);
-  const strTitle3 = 'If you’re a unifier and you love to help others. If you understand that when we help others get what they want then we get what we want, I’d love for you to learn more about #MissionLeadership. I think we can do great things together.';
-  await this.assertElementHasText(featuredPerkDescriptionP3, strTitle3);
+    console.log(' - perksPage.assertFeaturedPerkDescriptionText');
+    await this.page.waitForSelector(bannerDescription);
+    const strTitle1 = 'John Addison Leadership';
+    await this.assertElementHasText(featuredPerkDescriptionP1, strTitle1);
+    const strTitle2 = 'Use code 3THSPCVF for 10% off during checkout. (This is a one-time use code.)';
+    await this.assertElementHasText(featuredPerkDescriptionP2, strTitle2);
+    const strTitle3 =
+      'If you’re a unifier and you love to help others. If you understand that when we help others get what they want then we get what we want, I’d love for you to learn more about #MissionLeadership. I think we can do great things together.';
+    await this.assertElementHasText(featuredPerkDescriptionP3, strTitle3);
   };
 
-  assertFeaturedPerkImageDisplayed = async(): Promise<void> => {
-  console.log(' - perksPage.assertFeaturedPerkImageDisplayed');
-  await this.page.waitForSelector(featuredPerkImage);
-  await this.assertElementIsVisible(featuredPerkImage);
+  assertFeaturedPerkImageDisplayed = async (): Promise<void> => {
+    console.log(' - perksPage.assertFeaturedPerkImageDisplayed');
+    await this.page.waitForSelector(featuredPerkImage);
+    await this.assertElementIsVisible(featuredPerkImage);
   };
 
-  assertASSOCIATEPerksDisplayed = async(): Promise<void> => {
-  console.log(' - perksPage.assertASSOCIATEPerksDisplayed');
-  await this.page.waitForSelector(associatedPerks);
-  await this.assertElementIsVisible(associatedPerks);
+  assertASSOCIATEPerksDisplayed = async (): Promise<void> => {
+    console.log(' - perksPage.assertASSOCIATEPerksDisplayed');
+    await this.page.waitForSelector(associatedPerks);
+    await this.assertElementIsVisible(associatedPerks);
   };
 
-  assertAvailableCanDisplayed = async(): Promise<void> => {
-  console.log(' - perksPage.assertAvailableCanDisplayed');
-  await this.page.waitForSelector(availCanText);
-  await this.assertElementIsVisible(availCanText);
+  assertAvailableCanDisplayed = async (): Promise<void> => {
+    console.log(' - perksPage.assertAvailableCanDisplayed');
+    await this.page.waitForSelector(availCanText);
+    await this.assertElementIsVisible(availCanText);
   };
 
-  assertAvailableCanImageDisplayed = async(): Promise<void> => {
-  console.log(' - perksPage.assertAvailableCanImageDisplayed');
-  await this.page.waitForSelector(availCanImg);
-  await this.assertElementIsVisible(availCanImg);
+  assertAvailableCanImageDisplayed = async (): Promise<void> => {
+    console.log(' - perksPage.assertAvailableCanImageDisplayed');
+    await this.page.waitForSelector(availCanImg);
+    await this.assertElementIsVisible(availCanImg);
   };
 
-  assertPerkDescriptionDisplayed = async(perkTitle:string): Promise<void> => {
-  console.log(' - perksPage.assertPerkImageDisplayed');
-  await this.description(perkTitle);
+  assertPerkTitleIsDisplayed = async (perk: string, perkTitle: string): Promise<void> => {
+    console.log(' - perksPage.assertPerkTitleIsDisplayed ');
+    await expect(this.page.locator(`//*[text()="${perk}"]`)).toContainText(perkTitle);
+  };
+
+  assertJALPerkTitleIsDisplayed = async (perkTitle: string): Promise<void> => {
+    console.log(' - perksPage.assertPerkTitleIsDisplayed ');
+    await expect(this.page.locator(lblPerkJohnAddisonLeadership)).toContainText(perkTitle);
+  };
+
+  assertPerkDescriptionIsDisplayed = async (perkDescription: string, description: string): Promise<void> => {
+    console.log(' - perksPage.assertPerkDescriptionIsDisplayed');
+    await expect(this.page.locator(`//*[text()="${perkDescription}"]`)).toContainText(description);
+  };
+
+  assertPerkDescriptionIsDisplayed2 = async (i: number = 0, description: string): Promise<void> => {
+    console.log(' - perksPage.assertPerkDescriptionIsDisplayed2');
+    await expect(this.page.locator(lblDescription).nth(i)).toContainText(description);
+  };
+
+  assertPerkCommentIsDisplayed = async (i: number = 0, perkComment: string): Promise<void> => {
+    console.log(' - perksPage.assertPerkCommentIsDisplayed');
+    await expect(this.page.locator(lblComment).nth(i)).toContainText(perkComment);
+  };
+
+  assertPerkShopNowButtonIsDisplayed = async (i: number = 0): Promise<void> => {
+    console.log(' - perksPage.assertPerkShopNowButtonIsDisplayed');
+    await expect(this.page.locator(btnShopNow).nth(i)).toContainText('Shop Now');
+    await this.page.locator(btnShopNow).nth(i).isVisible();
+    await this.page.locator(btnShopNow).nth(i).isEnabled();
+  };
+
+  assertPerkMoreDetailsIsDisplayed = async (i: number = 0): Promise<void> => {
+    console.log(' - perksPage.assertPerkMoreDetailsIsDisplayed');
+    await expect(this.page.locator(btnMoreDetails).nth(i)).toContainText('More Details');
+    await this.page.locator(btnMoreDetails).nth(i).isVisible();
+    await this.page.locator(btnMoreDetails).nth(i).isEnabled();
+  };
+
+  assertPerkDisclaimerIsDisplayed = async (): Promise<void> => {
+    console.log(' - perksPage.assertPerkDisclaimerIsDisplayed');
+    await this.page.waitForSelector(lblPerkDisclaimer);
+    await expect(this.page.locator(lblPerkDisclaimer)).toContainText(
+      'This site contains affiliate links to products and services. We may receive a commission for purchases made through these links.'
+    );
+    await this.page.locator(lblPerkDisclaimer).isVisible();
+  };
+
+  assertNewPageIsOpened = async (i: number = 0, title: string, context: BrowserContext, page: Page): Promise<void> => {
+    console.log(' - perksPage.assertNewPageIsOpened');
+    const [newPage] = await Promise.all([context.waitForEvent('page'), page.locator('.shop-now').nth(i).click()]);
+    await newPage.waitForLoadState();
+    await expect(newPage).toHaveTitle(title);
+  };
+
+  assertNewPageIsOpened2 = async (i: number = 0, title: string, context: BrowserContext, page: Page): Promise<void> => {
+    console.log(' - perksPage.assertNewPageIsOpened2');
+    const [newPage] = await Promise.all([context.waitForEvent('page'), page.locator("//div/a[@class='more-details']").nth(i).click()]);
+    await newPage.waitForLoadState();
+    await expect(newPage).toHaveTitle(title);
+  };
+
+  assertPageHasTitle = async (title: string): Promise<void> => {
+    console.log(' - perksPage.assertPageHasTitle');
+    await expect(this.page).toHaveTitle(title);
   };
 }
