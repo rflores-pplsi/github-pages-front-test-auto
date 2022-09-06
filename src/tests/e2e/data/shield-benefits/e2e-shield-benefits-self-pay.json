@@ -1,6 +1,6 @@
 [
   {
-    "testCaseName": "Self-Pay ID/Legal Z(IDShield Individual)",
+    "testCaseName": "Self-Pay ID/Legal (IDShield Individual)",
     "market": "US",
     "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
     "groupPayConfig": "self-pay",
@@ -12,12 +12,12 @@
     "payFrequency": "Monthly",
     "planCost": "$12.95",
     "totalCost": "$12.95",
-    "disabled": true
+    "disabled": false
   },
   {
     "testCaseName": "Self-Pay (Legal Plan Family)",
     "market": "US",
-    "regions": ["New York"],
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
     "groupPayConfig": "self-pay",
     "groupNameOrNumber": "nnlegaltest7",
     "planSupplementName": "Legal Plan Family",
@@ -42,7 +42,7 @@
     "payFrequency": "Monthly",
     "planCost": "$22.95",
     "totalCost": "$22.95",
-    "disabled": true
+    "disabled": false
   },
   {
     "testCaseName": "Self-Pay ID Only (IDShield Individual)",
@@ -57,7 +57,7 @@
     "payFrequency": "Monthly",
     "planCost": "$12.95",
     "totalCost": "$12.95",
-    "disabled": true
+    "disabled": false
   },
   {
     "testCaseName": "Self-Pay ID Only (IDShield Family)",
@@ -72,7 +72,7 @@
     "payFrequency": "Monthly",
     "planCost": "$22.95",
     "totalCost": "$22.95",
-    "disabled": true
+    "disabled": false
   },
   {
     "testCaseName": "Self-Pay (IDShield for Business - Essentials)",
@@ -87,7 +87,7 @@
     "payFrequency": "Monthly",
     "planCost": "$79.95",
     "totalCost": "$79.95",
-    "disabled": true
+    "disabled": false
   },
   {
     "testCaseName": "Self-Pay (Commercial Drivers Legal Plan)",
@@ -102,7 +102,7 @@
     "payFrequency": "Monthly",
     "planCost": "$29.95",
     "totalCost": "$29.95",
-    "disabled": true
+    "disabled": false
   },
   {
     "testCaseName": "Self-Pay (Small Business - Small Business Plus)",
@@ -117,7 +117,7 @@
     "payFrequency": "Monthly",
     "planCost": "$99.00",
     "totalCost": "$99.00",
-    "disabled": true
+    "disabled": false
   },
   {
     "testCaseName": "Self-Pay (Small Business - Small Business Essentials)",
@@ -132,7 +132,7 @@
     "payFrequency": "Monthly",
     "planCost": "$49.00",
     "totalCost": "$49.00",
-    "disabled": true
+    "disabled": false
   },
   {
     "testCaseName": "Self-Pay (Small Business - Small Business Pro)",
@@ -147,27 +147,39 @@
     "payFrequency": "Monthly",
     "planCost": "$169.00",
     "totalCost": "$169.00",
-    "disabled": true
+    "disabled": false
   },
   {
     "testCaseName": "Self-Pay (IDShield for Business - Plus)",
     "market": "US",
-    "regions": ["New York"],
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
     "groupPayConfig": "self-pay",
     "groupNameOrNumber": "test48",
-    "planSupplementName": "IDShield for Business",
+    "planSupplementName": "IDShield for Business  Plus",
     "tierName": "Plus",
     "orderSummaryPlanName": "IDShield for Business - Plus",
     "planType": "IDShield",
     "payFrequency": "Monthly",
     "planCost": "$149.95",
     "totalCost": "$149.95",
-    "disabled": true
+    "disabled": false
   },
   {
     "testCaseName": "Self-Pay Canada (Legal Plan Family)",
     "market": "CA",
-    "regions": ["Alberta"],
+    "regions": [
+      "Alberta",
+      "British Columbia",
+      "Manitoba",
+      "New Brunswick",
+      "Newfoundland and Labrador",
+      "Northwest Territories",
+      "Nova Scotia",
+      "Nunavut",
+      "Ontario",
+      "Saskatchewan",
+      "Yukon"
+    ],
     "groupPayConfig": "self-pay",
     "groupNameOrNumber": "victoryfancysausage",
     "planSupplementName": "Legal Plan Family",
@@ -177,6 +189,114 @@
     "payFrequency": "Monthly",
     "planCost": "$23.95",
     "totalCost": "$23.95",
-    "disabled": true
+    "disabled": false
+  },
+  {
+    "testCaseName": "Self-Pay Canada (Legal Plan Family + Home Business Supplement, Trial Defense Supplement)",
+    "market": "CA",
+    "regions": [
+      "Alberta",
+      "British Columbia",
+      "Manitoba",
+      "New Brunswick",
+      "Newfoundland and Labrador",
+      "Northwest Territories",
+      "Nova Scotia",
+      "Nunavut",
+      "Ontario",
+      "Saskatchewan",
+      "Yukon"
+    ],
+    "groupPayConfig": "self-pay",
+    "groupNameOrNumber": "victoryfancysausage",
+    "planSupplementName": "Legal Plan Family + Home Business Supplement, Trial Defense Supplement",
+    "tierName": "",
+    "orderSummaryPlanName": "Legal Plan Family",
+    "planType": "IDShield",
+    "payFrequency": "Monthly",
+    "planCost": "$49.85",
+    "totalCost": "$49.85",
+    "disabled": false
+  },
+  {
+    "testCaseName": "Self-Pay Canada (Legal Plan Family + Trial Defense Supplement)",
+    "market": "CA",
+    "regions": [
+      "Alberta",
+      "British Columbia",
+      "Manitoba",
+      "New Brunswick",
+      "Newfoundland and Labrador",
+      "Northwest Territories",
+      "Nova Scotia",
+      "Nunavut",
+      "Ontario",
+      "Saskatchewan",
+      "Yukon"
+    ],
+    "groupPayConfig": "self-pay",
+    "groupNameOrNumber": "victoryfancysausage",
+    "planSupplementName": "Legal Plan Family + Trial Defense Supplement",
+    "tierName": "",
+    "orderSummaryPlanName": "Legal Plan Family",
+    "planType": "IDShield",
+    "payFrequency": "Monthly",
+    "planCost": "$36.90",
+    "totalCost": "$36.90",
+    "disabled": false
+  },
+  {
+    "testCaseName": "Self-Pay Canada (Legal Plan Family + Home Business Supplement)",
+    "market": "CA",
+    "regions": [
+      "Alberta",
+      "British Columbia",
+      "Manitoba",
+      "New Brunswick",
+      "Newfoundland and Labrador",
+      "Northwest Territories",
+      "Nova Scotia",
+      "Nunavut",
+      "Ontario",
+      "Saskatchewan",
+      "Yukon"
+    ],
+    "groupPayConfig": "self-pay",
+    "groupNameOrNumber": "victoryfancysausage",
+    "planSupplementName": "Legal Plan Family + Home Business Supplement",
+    "tierName": "",
+    "orderSummaryPlanName": "Legal Plan Family",
+    "planType": "IDShield",
+    "payFrequency": "Monthly",
+    "planCost": "$36.90",
+    "totalCost": "$36.90",
+    "disabled": false
+  },
+  {
+    "testCaseName": "??",
+    "market": "CA",
+    "regions": [
+      "Alberta",
+      "British Columbia",
+      "Manitoba",
+      "New Brunswick",
+      "Newfoundland and Labrador",
+      "Northwest Territories",
+      "Nova Scotia",
+      "Nunavut",
+      "Ontario",
+      "Saskatchewan",
+      "Yukon"
+    ],
+    "groupPayConfig": "self-pay",
+    "groupNameOrNumber": "victoryfancysausage",
+    "planSupplementName": "Legal Plan Family",
+    "tierName": "",
+    "orderSummaryPlanName": "Legal Plan Family",
+    "planType": "IDShield",
+    "payFrequency": "Monthly",
+    "planCost": "$23.95",
+    "totalCost": "$23.95",
+    "disabled": false
   }
 ]

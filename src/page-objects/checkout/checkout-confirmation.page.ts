@@ -49,14 +49,14 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
     console.log(' - checkoutConfirmationPage.navigateFromPaymentBankDraftPageToConfirmationPage');
     await this.clickBankDraftBtn();
     await this.fillUsBankDraftFormAndSubmit();
-    await this.page.waitForSelector(conMembershipWrapper, { timeout: 50000 });
+    await this.page.waitForSelector(conMembershipWrapper, { timeout: 90000 });
   };
 
   navigateFromPaymentAgreementPageToConfirmationPage = async (): Promise<void> => {
     console.log(' - checkoutConfirmationPage.navigateFromPaymentAgreementPageToConfirmationPage');
     await this.clickAgreementCheckbox();
     await this.clickCompleteEnrollmentButton();
-    await this.page.waitForSelector(conMembershipWrapper, { timeout: 50000 });
+    await this.page.waitForSelector(conMembershipWrapper, { timeout: 90000 });
   };
 
   navigateFromPaymentBankDraftPageToConfirmationPageCanada = async (): Promise<void> => {
