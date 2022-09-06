@@ -1,14 +1,15 @@
 import { LoginPage } from '../login/login.page';
-import { associateAdvantagePlus } from '../../utils/user.utils';
+import { associateReportsCommissions } from '../../utils/user.utils';
 import UrlsUtils from '../../utils/urls.utils';
+import { expect } from '@playwright/test';
 // ========================== Selectors ==================================
-const txtBoxSearch: string = 'input[name="associateInputSearch"]';
-const organizationalBusinessReportBreadcrumb: string = 'span.lsux-crumbs__crumb--leaf';
-const organizationalBusinessReportTabDisplayed: string = '//*[@id="root"]/div/div[2]/div[1]/div/div[2]/div[1]/div/h4';
-const txaSearchResult: string = 'h2.lsux-heading.associate-name.lsux-heading--t26';
-const txaPersonal: string = '//*[@id="root"]/div/div[2]/div[1]/div/div[2]/div[2]/div';
+const lblBusinessReportBreadcrumb: string = 'span.lsux-crumbs__crumb--leaf';
+const tabOrgBusinessReport: string = "(//h4[contains(@class,'lsux-heading--t16')])[1]";
+const tabPersonalBusinessReport: string = "(//h4[contains(@class,'lsux-heading--t16')])[2]";
+const txaSearchBy: string = '//label';
+const txtBoxSearch: string = 'div.css-319lph-ValueContainer';
 const btnSearch: string = "button[class*='lsux-button--primary']";
-const txaAssociateNumber: string = 'div.associate-info p';
+// eslint-disable-next-line valid-jsdoc
 /**
  *
  *
@@ -24,7 +25,7 @@ export class ReportsBusinessOrganizationalPage extends LoginPage {
     console.log(' - ReportsBusinessOrganizationalPage.navigateToReportsBusinessOrganizationalPage');
     // Navigate to Business Organizational Page
     await this.goTo(UrlsUtils.channelsUrls.reportsbusinessorganizational.url);
-    await this.login(associateAdvantagePlus.username, associateAdvantagePlus.password);
+    await this.login(associateReportsCommissions.username, associateReportsCommissions.password);
     await this.page.waitForSelector(txtBoxSearch);
   };
 
@@ -34,15 +35,15 @@ export class ReportsBusinessOrganizationalPage extends LoginPage {
     console.log(' - ReportsBusinessOrganizationalPage.clickTxtBoxSearch');
     await this.page.click(txtBoxSearch);
   };
-  clickSearchResult = async (): Promise<void> => {
-    // Click on a search result
-    console.log(' - ReportsBusinessOrganizationalPage.clickSearchResult');
-    await this.page.click(txaSearchResult);
-  };
   clickOnSearchButton = async (): Promise<void> => {
     // Click on Search button
     console.log(' - ReportsBusinessOrganizationalPage.clickOnSearchButton');
     await this.page.click(btnSearch);
+  };
+  clickOnPersonalBusinessReportTab = async (): Promise<void> => {
+    // Click on Search button
+    console.log(' - ReportsBusinessOrganizationalPage.clickOnPersonalBusinessReportTab');
+    await this.page.click(tabPersonalBusinessReport);
   };
   // ========================== Fill Methods ===============================
   /**
@@ -53,29 +54,46 @@ export class ReportsBusinessOrganizationalPage extends LoginPage {
     await this.page.fill(txtBoxSearch, txt);
   };
   // ========================== Assertion Methods ==========================
-  assertReportsBusinessOrganizationalPageShow = async (): Promise<void> => {
-    console.log(' - ReportsBusinessOrganizationalPage.assertReportsBusinessOrganizationalPageShow');
+  assertPageTitle = async (title: string): Promise<void> => {
+    console.log(' - ReportsBusinessOrganizationalPage.assertPageTitle');
+    await expect(this.page).toHaveTitle(title);
+  };
+
+  assertBreadcrumbLinkIsDisplayed = async (breadcrumbLinkTxt: string): Promise<void> => {
+    console.log(' - ReportsBusinessOrganizationalPage. assertBreadcrumbLinkIsDisplayed');
+    await this.assertElementIsVisible(lblBusinessReportBreadcrumb);
+    await expect(this.page.locator(lblBusinessReportBreadcrumb)).toContainText(breadcrumbLinkTxt);
+    console.log(await this.page.locator(lblBusinessReportBreadcrumb).textContent());
+  };
+
+  assertOrganizationalBusinessReportTabIsDisplayed = async (): Promise<void> => {
+    console.log(' - ReportsBusinessOrganizationalPage.assertOrganizationalBusinessReportTabIsDisplayed');
+    await this.assertElementIsVisible(tabOrgBusinessReport);
+    await expect(this.page.locator(tabOrgBusinessReport)).toContainText('Organizational Business Report');
+    console.log(await this.page.locator(tabOrgBusinessReport).textContent());
+  };
+
+  assertPersonalBusinessReportTabIsDisplayed = async (): Promise<void> => {
+    console.log(' - ReportsBusinessOrganizationalPage.assertPersonalBusinessReportTabIsDisplayed');
+    await this.assertElementIsVisible(tabPersonalBusinessReport);
+    await expect(this.page.locator(tabPersonalBusinessReport)).toContainText('Personal Business Report');
+    console.log(await this.page.locator(tabPersonalBusinessReport).textContent());
+  };
+
+  assertTxaSearchByTxtIsDisplayed = async (): Promise<void> => {
+    console.log(' - ReportsBusinessOrganizationalPage.assertTxaSearchByIsDisplayed');
+    await this.assertElementIsVisible(txaSearchBy);
+    await expect(this.page.locator(txaSearchBy)).toContainText('Search by Associate name or number in your downline to see their business report.');
+    console.log(await this.page.locator(txaSearchBy).textContent());
+  };
+
+  assertTxtBoxSearchIsDisplayed = async (): Promise<void> => {
+    console.log(' - ReportsBusinessOrganizationalPage.assertTxtBoxSearchIsDisplayed');
     await this.assertElementIsVisible(txtBoxSearch);
   };
-  assertPageTitle = async (): Promise<void> => {
-    console.log(' - ReportsBusinessOrganizationalPage.assertPageTitle');
-    const strTitle = 'Organizational Business Report';
-    await this.assertStringMatch(strTitle, this.page.title.toString());
-  };
-  assertBreadcrumbLinkIsDisplayed = async (): Promise<void> => {
-    console.log(' - ReportsBusinessOrganizationalPage.assertBreadcrumbLinkIsDisplayed');
-    await this.assertElementIsVisible(organizationalBusinessReportBreadcrumb);
-  };
-  assertOrganizationalBusinessReportTaIsDisplayed = async (): Promise<void> => {
-    console.log(' - ReportsBusinessOrganizationalPage.assertOrganizationalBusinessReportTaIsDisplayed');
-    await this.assertElementIsVisible(organizationalBusinessReportTabDisplayed);
-  };
-  assertTabPersonalBusinessReportIsDisplayed = async (): Promise<void> => {
-    console.log(' - ReportsBusinessOrganizationalPage.assertTabPersonalBusinessReportIsDisplayed');
-    await this.assertElementIsVisible(txaPersonal);
-  };
-  assertTxaAssociateNumberIsDisplayed = async (): Promise<void> => {
-    console.log(' - ReportsBusinessOrganizationalPage.assertTxaAssociateNumberIsDisplayed');
-    await this.assertElementIsVisible(txaAssociateNumber);
+
+  assertBtnSearchIsDisplayed = async (): Promise<void> => {
+    console.log(' - ReportsBusinessOrganizationalPage.assertBtnSearchIsDisplayed');
+    await this.assertElementIsVisible(btnSearch);
   };
 }

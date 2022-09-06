@@ -1,6 +1,6 @@
-import { expect } from '@playwright/test';
+import { BrowserContext, expect, Page } from '@playwright/test';
 import UrlsUtils from '../../utils/urls.utils';
-import { BasePage } from '../base.page';
+import { LoginPage } from '../login/login.page';
 
 // ========================== Selectors ==========================
 const banner: string = '#banner-perks';
@@ -15,34 +15,64 @@ const featuredPerkImage: string = '#featured-perks .lsux-col.image';
 const associatedPerks: string = '//p[text()="ASSOCIATEPerks"]';
 const availCanText: string = '#perks .lsux-col.canada span';
 const availCanImg: string = '#perks .lsux-col.canada img';
-const perkDisclaimer: string = '.perks-disclaimer';
+const lblPerkDisclaimer: string = '#perks > div:nth-child(3) p';
+const lblPerkJohnAddisonLeadership: string = '(//p[text()="John Addison Leadership"])[2]';
+const lblDescription: string = '//div/h1';
+const lblComment: string = '.info p';
+const btnShopNow: string = '.shop-now';
+const btnMoreDetails: string = "//div/a[@class='more-details']";
 
-//John Addison Leadership perk
-const JALeadershipPerk: string = "div[class*='thirds'] > div:nth-of-type(1) > div > div > p";
-const JALeadershipPerkImg: string = "img[src*='2ef8a10b28e9943d741b6ceccf14c336.png']";
-const JALeadershipPerkDescription: string = '.card-perks > div > div > div:nth-child(2)  h1';
-const JALeadershipPerkComment: string = '.card-perks div:nth-child(2)  div > div > div > p';
-const JALeadershipPerkShopNow: string = "a[href*='ls-perks/']";
-
+// eslint-disable-next-line valid-jsdoc
 /**
+ *
  * @export
  * @class PerksPage
- * @extends {BasePage}
+ * @extends {LoginPage}
  */
-export class PerksPage extends BasePage {
+export class PerksPage extends LoginPage {
   // ========================== Process Methods ==========================
+  /**
+   * @param {string} perk
+   * @memberof PerksPage
+   */
+  waitForPerk = async (perk: string): Promise<void> => {
+    await this.page.waitForSelector(`//*[text()="${perk}"]`, { timeout: 40000 });
+  };
+  /**
+   * @param {string} perk
+   * @memberof PerksPage
+   */
 
-  perk = async (perkTitle: string): Promise<void> => {
-    await this.page.waitForSelector(`//*[text()="${perkTitle}"]`);
+  waitForPerkDisplayed = async (perk: string): Promise<void> => {
+    console.log(' - perksPage.waitForPerkDisplayed');
+    await this.waitForPerk(perk);
   };
 
-  description = async (perkTitle: string): Promise<void> => {
-    const perk = await this.page.waitForSelector(`//*[text()="${perkTitle}"]`);
+  waitForJALPerkDisplayed = async (): Promise<void> => {
+    console.log(' - perksPage.waitForPerkDisplayed');
+    await this.page.waitForSelector(lblPerkJohnAddisonLeadership);
+  };
+
+  waitForPageIsLoaded = async (): Promise<void> => {
+    console.log(' - perksPage.waitForPageIsLoaded');
+    await this.page.waitForSelector(bannerTitle);
   };
 
   // ========================== Navigate Methods ==========================
 
+  hoverOverToPerk = async (i: number = 0): Promise<void> => {
+    console.log(' - perksPage.hoverOverToPerk');
+    const image = this.page.locator('//img').nth(i);
+    await image.hover();
+    this.page.waitForTimeout(3000);
+  };
+
   // ========================== Click Methods ==========================
+
+  clickOnbMoreDetailsBtn = async (i: number = 0): Promise<void> => {
+    console.log(' - perksPage.clickOnbMoreDetailsBtn');
+    await this.page.locator(btnMoreDetails).nth(i).click();
+  };
 
   // ========================== Assertion Methods ==========================
 
@@ -124,8 +154,81 @@ export class PerksPage extends BasePage {
     await this.assertElementIsVisible(availCanImg);
   };
 
-  assertPerkDescriptionDisplayed = async (perkTitle: string): Promise<void> => {
-    console.log(' - perksPage.assertPerkImageDisplayed');
-    await this.description(perkTitle);
+  assertPerkTitleIsDisplayed = async (perk: string, perkTitle: string): Promise<void> => {
+    console.log(' - perksPage.assertPerkTitleIsDisplayed ');
+    await expect(this.page.locator(`//*[text()="${perk}"]`)).toContainText(perkTitle);
+    console.log(await this.page.locator(`//*[text()="${perk}"]`).textContent());
+  };
+
+  assertJALPerkTitleIsDisplayed = async (perkTitle: string): Promise<void> => {
+    console.log(' - perksPage.assertPerkTitleIsDisplayed ');
+    await expect(this.page.locator(lblPerkJohnAddisonLeadership)).toContainText(perkTitle);
+    console.log(await this.page.locator(lblPerkJohnAddisonLeadership).textContent());
+  };
+
+  assertPerkDescriptionIsDisplayed = async (perkDescription: string, description: string): Promise<void> => {
+    console.log(' - perksPage.assertPerkDescriptionIsDisplayed');
+    await expect(this.page.locator(`//*[text()="${perkDescription}"]`)).toContainText(description);
+    console.log(await this.page.locator(`//*[text()="${perkDescription}"]`).textContent());
+  };
+
+  assertPerkDescriptionIsDisplayed2 = async (i: number = 0, description: string): Promise<void> => {
+    console.log(' - perksPage.assertPerkDescriptionIsDisplayed2');
+    await expect(this.page.locator(lblDescription).nth(i)).toContainText(description);
+    console.log(await this.page.locator(lblDescription).nth(i).textContent());
+  };
+
+  assertPerkCommentIsDisplayed = async (i: number = 0, perkComment: string): Promise<void> => {
+    console.log(' - perksPage.assertPerkCommentIsDisplayed');
+    await expect(this.page.locator(lblComment).nth(i)).toContainText(perkComment);
+    console.log(await this.page.locator(lblComment).nth(i).textContent());
+  };
+
+  assertPerkShopNowButtonIsDisplayed = async (i: number = 0): Promise<void> => {
+    console.log(' - perksPage.assertPerkShopNowButtonIsDisplayed');
+    await expect(this.page.locator(btnShopNow).nth(i)).toContainText('Shop Now');
+    console.log(await this.page.locator(btnShopNow).nth(i).textContent());
+    await this.page.locator(btnShopNow).nth(i).isVisible();
+    await this.page.locator(btnShopNow).nth(i).isEnabled();
+  };
+
+  assertPerkMoreDetailsIsDisplayed = async (i: number = 0): Promise<void> => {
+    console.log(' - perksPage.assertPerkMoreDetailsIsDisplayed');
+    await expect(this.page.locator(btnMoreDetails).nth(i)).toContainText('More Details');
+    console.log(await this.page.locator(btnMoreDetails).nth(i).textContent());
+    await this.page.locator(btnMoreDetails).nth(i).isVisible();
+    await this.page.locator(btnMoreDetails).nth(i).isEnabled();
+  };
+
+  assertPerkDisclaimerIsDisplayed = async (): Promise<void> => {
+    console.log(' - perksPage.assertPerkDisclaimerIsDisplayed');
+    await this.page.waitForSelector(lblPerkDisclaimer);
+    await expect(this.page.locator(lblPerkDisclaimer)).toContainText(
+      'This site contains affiliate links to products and services. We may receive a commission for purchases made through these links.'
+    );
+    console.log(await this.page.locator(lblPerkDisclaimer).textContent());
+    await this.page.locator(lblPerkDisclaimer).isVisible();
+  };
+
+  assertNewPageIsOpened = async (i: number = 0, title: string, context: BrowserContext, page: Page): Promise<void> => {
+    console.log(' - perksPage.assertNewPageIsOpened');
+    const [newPage] = await Promise.all([context.waitForEvent('page'), page.locator('.shop-now').nth(i).click()]);
+    await newPage.waitForLoadState();
+    await expect(newPage).toHaveTitle(title);
+    console.log(await newPage.title());
+  };
+
+  assertNewPageIsOpened2 = async (i: number = 0, title: string, context: BrowserContext, page: Page): Promise<void> => {
+    console.log(' - perksPage.assertNewPageIsOpened2');
+    const [newPage] = await Promise.all([context.waitForEvent('page'), page.locator("//div/a[@class='more-details']").nth(i).click()]);
+    await newPage.waitForLoadState();
+    await expect(newPage).toHaveTitle(title);
+    console.log(await newPage.title());
+  };
+
+  assertPageHasTitle = async (title: string): Promise<void> => {
+    console.log(' - perksPage.assertPageHasTitle');
+    await expect(this.page).toHaveTitle(title);
+    console.log(await this.page.title());
   };
 }
