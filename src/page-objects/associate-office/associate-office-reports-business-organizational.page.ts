@@ -63,28 +63,24 @@ export class ReportsBusinessOrganizationalPage extends LoginPage {
     console.log(' - ReportsBusinessOrganizationalPage. assertBreadcrumbLinkIsDisplayed');
     await this.assertElementIsVisible(lblBusinessReportBreadcrumb);
     await expect(this.page.locator(lblBusinessReportBreadcrumb)).toContainText(breadcrumbLinkTxt);
-    console.log(await this.page.locator(lblBusinessReportBreadcrumb).textContent());
   };
 
   assertOrganizationalBusinessReportTabIsDisplayed = async (): Promise<void> => {
     console.log(' - ReportsBusinessOrganizationalPage.assertOrganizationalBusinessReportTabIsDisplayed');
     await this.assertElementIsVisible(tabOrgBusinessReport);
     await expect(this.page.locator(tabOrgBusinessReport)).toContainText('Organizational Business Report');
-    console.log(await this.page.locator(tabOrgBusinessReport).textContent());
   };
 
   assertPersonalBusinessReportTabIsDisplayed = async (): Promise<void> => {
     console.log(' - ReportsBusinessOrganizationalPage.assertPersonalBusinessReportTabIsDisplayed');
     await this.assertElementIsVisible(tabPersonalBusinessReport);
     await expect(this.page.locator(tabPersonalBusinessReport)).toContainText('Personal Business Report');
-    console.log(await this.page.locator(tabPersonalBusinessReport).textContent());
   };
 
   assertTxaSearchByTxtIsDisplayed = async (): Promise<void> => {
     console.log(' - ReportsBusinessOrganizationalPage.assertTxaSearchByIsDisplayed');
     await this.assertElementIsVisible(txaSearchBy);
     await expect(this.page.locator(txaSearchBy)).toContainText('Search by Associate name or number in your downline to see their business report.');
-    console.log(await this.page.locator(txaSearchBy).textContent());
   };
 
   assertTxtBoxSearchIsDisplayed = async (): Promise<void> => {

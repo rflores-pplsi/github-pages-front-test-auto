@@ -157,37 +157,31 @@ export class PerksPage extends LoginPage {
   assertPerkTitleIsDisplayed = async (perk: string, perkTitle: string): Promise<void> => {
     console.log(' - perksPage.assertPerkTitleIsDisplayed ');
     await expect(this.page.locator(`//*[text()="${perk}"]`)).toContainText(perkTitle);
-    console.log(await this.page.locator(`//*[text()="${perk}"]`).textContent());
   };
 
   assertJALPerkTitleIsDisplayed = async (perkTitle: string): Promise<void> => {
     console.log(' - perksPage.assertPerkTitleIsDisplayed ');
     await expect(this.page.locator(lblPerkJohnAddisonLeadership)).toContainText(perkTitle);
-    console.log(await this.page.locator(lblPerkJohnAddisonLeadership).textContent());
   };
 
   assertPerkDescriptionIsDisplayed = async (perkDescription: string, description: string): Promise<void> => {
     console.log(' - perksPage.assertPerkDescriptionIsDisplayed');
     await expect(this.page.locator(`//*[text()="${perkDescription}"]`)).toContainText(description);
-    console.log(await this.page.locator(`//*[text()="${perkDescription}"]`).textContent());
   };
 
   assertPerkDescriptionIsDisplayed2 = async (i: number = 0, description: string): Promise<void> => {
     console.log(' - perksPage.assertPerkDescriptionIsDisplayed2');
     await expect(this.page.locator(lblDescription).nth(i)).toContainText(description);
-    console.log(await this.page.locator(lblDescription).nth(i).textContent());
   };
 
   assertPerkCommentIsDisplayed = async (i: number = 0, perkComment: string): Promise<void> => {
     console.log(' - perksPage.assertPerkCommentIsDisplayed');
     await expect(this.page.locator(lblComment).nth(i)).toContainText(perkComment);
-    console.log(await this.page.locator(lblComment).nth(i).textContent());
   };
 
   assertPerkShopNowButtonIsDisplayed = async (i: number = 0): Promise<void> => {
     console.log(' - perksPage.assertPerkShopNowButtonIsDisplayed');
     await expect(this.page.locator(btnShopNow).nth(i)).toContainText('Shop Now');
-    console.log(await this.page.locator(btnShopNow).nth(i).textContent());
     await this.page.locator(btnShopNow).nth(i).isVisible();
     await this.page.locator(btnShopNow).nth(i).isEnabled();
   };
@@ -195,7 +189,6 @@ export class PerksPage extends LoginPage {
   assertPerkMoreDetailsIsDisplayed = async (i: number = 0): Promise<void> => {
     console.log(' - perksPage.assertPerkMoreDetailsIsDisplayed');
     await expect(this.page.locator(btnMoreDetails).nth(i)).toContainText('More Details');
-    console.log(await this.page.locator(btnMoreDetails).nth(i).textContent());
     await this.page.locator(btnMoreDetails).nth(i).isVisible();
     await this.page.locator(btnMoreDetails).nth(i).isEnabled();
   };
@@ -206,7 +199,6 @@ export class PerksPage extends LoginPage {
     await expect(this.page.locator(lblPerkDisclaimer)).toContainText(
       'This site contains affiliate links to products and services. We may receive a commission for purchases made through these links.'
     );
-    console.log(await this.page.locator(lblPerkDisclaimer).textContent());
     await this.page.locator(lblPerkDisclaimer).isVisible();
   };
 
@@ -215,7 +207,6 @@ export class PerksPage extends LoginPage {
     const [newPage] = await Promise.all([context.waitForEvent('page'), page.locator('.shop-now').nth(i).click()]);
     await newPage.waitForLoadState();
     await expect(newPage).toHaveTitle(title);
-    console.log(await newPage.title());
   };
 
   assertNewPageIsOpened2 = async (i: number = 0, title: string, context: BrowserContext, page: Page): Promise<void> => {
@@ -223,12 +214,10 @@ export class PerksPage extends LoginPage {
     const [newPage] = await Promise.all([context.waitForEvent('page'), page.locator("//div/a[@class='more-details']").nth(i).click()]);
     await newPage.waitForLoadState();
     await expect(newPage).toHaveTitle(title);
-    console.log(await newPage.title());
   };
 
   assertPageHasTitle = async (title: string): Promise<void> => {
     console.log(' - perksPage.assertPageHasTitle');
     await expect(this.page).toHaveTitle(title);
-    console.log(await this.page.title());
   };
 }
