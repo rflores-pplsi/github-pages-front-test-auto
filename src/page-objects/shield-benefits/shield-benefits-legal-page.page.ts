@@ -4,7 +4,7 @@ import { OktaPage } from '../okta/okta.page';
 // ========================== Selectors ==================================
 
 const url: string = UrlsUtils.legalshieldUrls.groupEnrollment.url;
-const urlGroup: string = 'https://www.uat-shieldbenefits.com/test48/overview';
+const urlGroup: string = 'https://www.uat-shieldbenefits.com/utllc';
 const txtSearch: string = '[placeholder="Search"]';
 const btnSearchGroup: string = '.lsux-button--primary';
 const btnEdit: string = '.group-item-controls > div:nth-child(3) > a > div > img';
