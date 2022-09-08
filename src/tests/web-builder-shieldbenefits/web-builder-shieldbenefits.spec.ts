@@ -8,9 +8,10 @@ test.beforeEach(async ({ page }) => {
   webBuilderShieldBenefits = new WebBuilderShieldBenefits(page);
 });
 
-test('Manage Site button is enabled on the enrollment tab', async ({ page }) => {
-  console.log('Manage Site button is enabled on the enrollment tab');
+test.skip('Verify funtionality on the web-builder ShieldBenefits page', async ({ page }) => {
+  console.log('Verify funtionality on the web-builder ShieldBenefits page');
   await webBuilderShieldBenefits.navigateToWebBuilderShieldBenefitsPage('83696');
   await webBuilderShieldBenefits.clickEnrollmentTab();
   await webBuilderShieldBenefits.clickManageSiteButton();
+  await webBuilderShieldBenefits.clickSaveButton();
 });

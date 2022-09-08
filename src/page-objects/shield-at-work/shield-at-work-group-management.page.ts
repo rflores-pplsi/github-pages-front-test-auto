@@ -39,7 +39,7 @@ export class ShieldAtWorkGroupManagement extends OktaPage {
     console.log(' - groupManagementShieldAtWorkPage.navigateToGroupPage');
     await this.page.goto(url);
     // Login through okta
-    await this.loginThroughOkta();
+    await this.loginThroughOktaGroupEnrollment();
   };
 
   // ========================== Click Methods ==============================

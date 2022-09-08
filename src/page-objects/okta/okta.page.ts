@@ -23,6 +23,7 @@ export class OktaPage extends LegalshieldTestHarnessMenuPage {
     console.log(' - OktaPage.loginThroughOkta');
     const emailOrUsername = oktaUser.email;
     const password = oktaUser.password;
+    console.log('username', emailOrUsername, password)
     if (emailOrUsername && password) {
       // Enter email
       await this.fillTextBox(txtEmailAddress, emailOrUsername);

@@ -11,7 +11,8 @@ const btnEnrollmentTab: string =
   '#root > div > div > div:nth-child(1) > div > div > div.px-6.pt-4.mb-6.oVjDjW_QqZkyeTOHfYTdP > div.lsux-tab--bar.lsux-tab--stretch.mt-4._1eLFtzcrk-k4lYLgF3dWc1 > div:nth-child(2) > div > a > h4';
 const txtGroup: string = '#root  .lsux-container--flex-items-center.mb-2 > h3';
 const btnManageSite: string = '.lsux-container.lsux-container--white div > h2 > button > span';
-const txtEnrollmentInformation: string = '.lsux-row.thirds.children4._1mGEzKW4bHYdkCdXubcxyu > div:nth-child(1) > div > h2';
+const txtNonNatTest48: string = '.lsux-heading.lsux-heading--t26';
+const btnSave: string = '#root > div > div.lsux-content > div > div.lsux-grid > div > div > div:nth-child(2) > div > div > form > div:nth-child(1) > div > button > span';
 
 /**
  * @export
@@ -48,25 +49,21 @@ export class WebBuilderShieldBenefits extends OktaPage {
     // Click on Enrollment tab
     await this.clickOnElement(btnEnrollmentTab);
   };
-
+    
    clickManageSiteButton = async (): Promise<void> => {
     console.log(' - WebBuilderShieldBenefits.clickManageSiteButton');
     // Click on Manage Site Button
     await this.clickOnElement(btnManageSite);
   };
 
-  // ========================== Navigate Methods ===========================
-
-  navigateToGroupPage = async (groupNumber: String): Promise<void> => {
-    console.log(' - WebBuilderShieldBenefits.navigateToGroupPage');
-    await this.page.goto(url);
-    // Login through okta
-    await this.loginThroughOktaGroupEnrollment();
-    // Search group by group number
-    await this.groupSearchByGroupNumber('111452');
-    // Click on View group button
-    await this.clickViewGroup();
+  clickSaveButton = async (): Promise<void> => {
+    console.log(' - WebBuilderShieldBenefits.clickSaveButton');
+    // Click on Save Button
+    await this.page.waitForLoadState('domcontentloaded');
+    await this.clickOnElement(btnSave);
   };
+
+  // ========================== Navigate Methods ===========================
 
   navigateToWebBuilderShieldBenefitsPage = async (groupNumber: String): Promise<void> => {
     console.log(' - WebBuilderShieldBenefits.navigateToWebBuilderShieldBenefitsPage');
@@ -74,17 +71,17 @@ export class WebBuilderShieldBenefits extends OktaPage {
     // Login through okta
     await this.loginThroughOktaGroupEnrollment();
     // Search group by group number
-    await this.groupSearchByGroupNumber('111452');
+    await this.groupSearchByGroupNumber('83696');
     // Click on View group button
     await this.clickViewGroup();
   };
 
   // ========================== Assertion Methods ==========================
 
-  assertManageSiteButtonIsVisible = async (): Promise<void> => {
+  assertNonNatTest48IsVisible = async (): Promise<void> => {
     console.log(' - WebBuilderShieldBenefits.assertManageSiteButtonIsVisible');
     // Verify that Manage site button is displayed on the enrollment page
-    await this.assertElementIsVisible(btnManageSite);
+    await this.assertElementIsVisible(txtNonNatTest48);
   };
 
   
