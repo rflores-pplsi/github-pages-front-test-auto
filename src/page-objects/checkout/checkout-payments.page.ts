@@ -37,6 +37,7 @@ export class CheckoutPaymentsPage extends CheckoutPersonalInfoPage {
   clickBankDraftBtn = async () => {
     // Force a wait time
     // Switch to frame
+    await this.page.waitForLoadState();
     this.page.frameLocator("//iframe[@title='payment iframe']");
     const frame = this.page.frameLocator("//iframe[@title='payment iframe']");
     if (frame != null) {
@@ -46,7 +47,7 @@ export class CheckoutPaymentsPage extends CheckoutPersonalInfoPage {
   };
   clickCreditCardBtn = async () => {
     // Switch to frame
-    await this.page.frameLocator("//iframe[@title='payment iframe']");
+    this.page.frameLocator("//iframe[@title='payment iframe']");
     const frame = this.page.frameLocator("//iframe[@title='payment iframe']");
     if (frame != null) {
       // Click on Add Payment button
@@ -64,7 +65,7 @@ export class CheckoutPaymentsPage extends CheckoutPersonalInfoPage {
   // };
   // ========================== Assertion Methods ==========================
   assertAccoutPaymentsPage = async () => {
-    await this.page.frameLocator("//iframe[@title='payment iframe']");
+    this.page.frameLocator("//iframe[@title='payment iframe']");
     const frame = this.page.frameLocator("//iframe[@title='payment iframe']");
     if (frame != null) {
       // Click on Add Payment button
