@@ -10,7 +10,7 @@ test.beforeEach(async ({ page }) => {
 
 test('Verify functionality on the Legal page - Sign In button is displayed', async ({ page }) => {
   console.log('Test Case: Verify functionality on the Legal page - Sign In button is displayed');
-  await shieldBenefitsLegalPage.navigateToGroupEnrollmentLegalPage('99574');
+  await shieldBenefitsLegalPage.navigateToGroupEnrollmentLegalPage('83696');
   await shieldBenefitsLegalPage.clickBtnLegalPage();
   await shieldBenefitsLegalPage.assertSignInButtonIsDisplayed();
 });
