@@ -27,7 +27,7 @@ test('D2E LegalShield CA using Testing Harness', async ({ page }) => {
     await d2CLegalShieldCaPage.navigateToTestingHarnessPage('d2cLegalShieldCA');
   });
   await test.step('Select Direct to Consumer', async () => {
-    await d2CLegalShieldCaPage.selectDirecttoConsumerD2C();
+    await d2CLegalShieldCaPage.selectDirecttoConsumerD2C('0');
   });
   await test.step('Click Legalshield Canada', async () => {
     await d2CLegalShieldUSPage.clickOnALineOfBusiness(DataUtils.data.testingHarness.lineOfBusiness.LegalShieldCanada, 'LegalShieldCanada');

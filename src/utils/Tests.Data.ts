@@ -4,10 +4,12 @@ export default class DataUtils {
   static readonly data = {
     testingHarness: {
       lineOfBusiness: {
-        IDShieldCanada: '1',
-        LegalShieldCanada: '2',
-        LegalShield: '3',
-        IDShield: '4',
+        IDShieldCanada: '0',
+        LegalShieldCanada: '1',
+        LegalShield: '2',
+        IDShield: '3',
+        networkShieldAssociate: '0',
+        ProfilesOfSuccess: '1',
       },
       plans: {
         ca: {

@@ -1,14 +1,17 @@
-import { test } from '@playwright/test';
-test('test', async ({ page }) => {
+import { test, expect } from '@playwright/test';
+export let interceptedRequest: Request;
+test('test', async ({ page, request }) => {
   // Go to https://www.google.com/?gws_rd=ssl
+  // page.on('request', (request) => console.log('>>', request.method(), request.url()));
+  page.on('response', (response) => console.log('<<', response));
   await page.goto('https://www.google.com/?gws_rd=ssl');
   // Click [aria-label="Search"]
   await page.locator('[aria-label="Search"]').click();
   // Fill [aria-label="Search"]
-  await page.locator('[aria-label="Search"]').fill('saucelabs');
-  // Press Enter
-  await Promise.all([
-    page.waitForNavigation(/* { url: 'https://www.google.com/search?q=saucelabs&source=hp&ei=Hra9YuWuItC7qtsPpO2mwAk&iflsig=AJiK0e8AAAAAYr3ELmllv5hkzgEuacE1p1oHvCDK2Vq4&ved=0ahUKEwjlta-htNX4AhXQnWoFHaS2CZgQ4dUDCAk&uact=5&oq=saucelabs&gs_lcp=Cgdnd3Mtd2l6EAMyEQguEIAEELEDEIMBEMcBENEDMgcIABCABBAKMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQ6DggAEI8BEOoCEIwDEOUCOg4ILhCPARDqAhCMAxDlAjoLCAAQgAQQsQMQgwE6EQguEIAEELEDEIMBEMcBEKMCOgsILhCABBCxAxCDAToICC4QsQMQgwE6DgguEIAEEMcBEKMCENQCOhQILhCABBCxAxCDARDHARCjAhDUAjoOCC4QgAQQsQMQxwEQowI6DgguELEDEIMBEMcBEKMCOggILhCABBCxAzoICC4QgAQQ1AI6CwguEIAEEMcBEKMCOg4ILhCABBCxAxDHARDRAzoLCC4QgAQQxwEQrwE6CAgAEIAEELEDOgUIABCxAzoLCC4QgAQQxwEQ0QM6BwguELEDEApQsRlYv0JgjFJoAXAAeACAAXmIAaoHkgEDNC41mAEAoAEBsAEK&sclient=gws-wiz' }*/),
-    page.locator('[aria-label="Search"]').press('Enter'),
-  ]);
+  await page.locator('[aria-label="Search"]').fill('Abdel');
+  // Click text=No thanks
+  await page.frameLocator('iframe[role="presentation"]').locator('text=No thanks').click();
+  // Click .L3eUgb > div:nth-child(2)
+  await page.locator('.L3eUgb > div:nth-child(2)').click();
+  // Click text=Google Search I'm Feeling LuckyI'm Feeling CuriousI'm Feeling HungryI'm Feeling  >> [aria-label="Google Search"]
 });

@@ -10,7 +10,7 @@ const lnkSignUp: string = 'a:has-text("Sign up")';
 const lnkSignIn: string = '//div[@class="content"]//a[contains(.,"Sign in")]';
 const lnkForgotPassword: string = 'a:has-text("Forgot Password?")';
 const lnkForgotEmailUsername: string = 'a:has-text("Forgot Email/Username?")';
-const btnOk: string = "//button[contains(@class,'lsux-modal-button-pad')]";
+const btnOk: string = '//span[contains(text(),"OK")]';
 
 /**
  * @export

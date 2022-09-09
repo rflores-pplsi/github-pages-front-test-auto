@@ -21,41 +21,37 @@ test.beforeEach(async ({ page, request }) => {
   test.slow();
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
-test.only('D2E LegalShield US using Testing Harness', async ({ page }) => {
+test.only('D2E IDShield CA using Testing Harness', async ({ page, request }) => {
   test.slow;
   await test.step('Navigate to Testing Harness', async () => {
-    await d2CLegalShieldCaPage.navigateToTestingHarnessPage('d2cLegalShieldUS');
+    await d2CLegalShieldCaPage.navigateToTestingHarnessPage('networkShieldAssociate');
   });
-  await test.step('Select "Direct to Consumer" box', async () => {
-    await d2CLegalShieldCaPage.selectDirecttoConsumerD2C('0');
+  await test.step('Select "Network" box', async () => {
+    await d2CLegalShieldCaPage.selectDirecttoConsumerD2C('1');
   });
-  await test.step('Test from Legalshield', async () => {
-    await d2CLegalShieldUSPage.clickOnALineOfBusiness(DataUtils.data.testingHarness.lineOfBusiness.LegalShield, 'd2cLegalShieldUS');
+  await test.step('Test from Shield Associate', async () => {
+    await d2CLegalShieldUSPage.clickOnALineOfBusiness(DataUtils.data.testingHarness.lineOfBusiness.networkShieldAssociate, 'networkShieldAssociate');
   });
   await test.step('Select a Region', async () => {
     await d2CLegalShieldUSPage.selectYourCity(DataUtils.data.testingHarness.us.city.VA);
   });
   await test.step('Add Plan and some Supplements', async () => {
-    await d2CLegalShieldCaPage.addPlanAndSomeSupplements('d2cLegalShieldUS', [
-      DataUtils.data.testingHarness.plans.us.LegalPlan,
-      DataUtils.data.testingHarness.plans.us.CommercialDriversLegalPlan,
-      DataUtils.data.testingHarness.plans.us.LaunchLLCFormation,
-    ]);
+    await d2CLegalShieldCaPage.addPlanAndSomeSupplements('d2cIDShieldCA', [DataUtils.data.testingHarness.plans.ca.IDShieldIndividual]);
   });
   await test.step('Select "Checkout" button to proceed with Checkout Process', async () => {
-    await d2CLegalShieldCaPage.selectCheckout('LegalShieldUS');
+    await d2CLegalShieldCaPage.selectCheckout('d2cIDShieldCA');
   });
   await test.step('Login Page > Sign-in as an existing account.', async () => {
-    await d2CLegalShieldCaPage.loginLegalShieldCA('LegalShieldUS');
+    await d2CLegalShieldCaPage.loginLegalShieldCA('d2cIDShieldCA');
   });
   await test.step('Proceed with Checkout Process Flow > Personal Information Page > Fill out Form', async () => {
-    await checkoutPersonalInfoPage.changeAddressUs(DataUtils.data.testingHarness.us.city.VA);
+    await checkoutPersonalInfoPage.changeAddressCanada(DataUtils.data.testingHarness.ca.bd.province.BC);
   });
   await test.step('Proceed to Payment Page > Complete Payment with BD transaction ', async () => {
     await checkoutPaymentsBankDraftPage.clickBankDraftBtn();
-    await checkoutPaymentsBankDraftPage.fillBankDraftForm();
+    await checkoutPaymentsBankDraftPage.fillBankDraftFormForCanada();
   });
   await test.step('Continue to Confirmation Page.', async () => {
-    await d2CLegalShieldUSPage.assertWelcomelabel('d2cLegalShieldUS');
+    await d2CLegalShieldUSPage.assertWelcomelabel('d2cIDShieldUS');
   });
 });

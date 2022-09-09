@@ -17,10 +17,10 @@ const lblWelcome = '//h1[contains(text(),"Welcome to the Family!")]';
 
 export class D2CLegalShieldCaPage extends OktaPage {
   // ========================== Process Methods ============================
-  selectDirecttoConsumerD2C = async (): Promise<void> => {
+  selectDirecttoConsumerD2C = async (nth: string): Promise<void> => {
     // Select D2C
     await this.page.waitForLoadState();
-    await this.page.click('text=Direct To Consumer Network Calendar >> img >> nth=0', { force: true });
+    await this.page.click('text=Direct To Consumer Network Calendar >> img >> nth=' + nth, { force: true });
   };
   selectYourRegion = async (region: string): Promise<void> => {
     await this.page.waitForSelector(slctChooseYourRegion);

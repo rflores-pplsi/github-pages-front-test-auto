@@ -27,7 +27,7 @@ test.only('D2E IDShield US using Testing Harness', async ({ page, request }) => 
     await d2CLegalShieldCaPage.navigateToTestingHarnessPage('d2cIDShieldUS');
   });
   await test.step('Select "Direct to Consumer" box', async () => {
-    await d2CLegalShieldCaPage.selectDirecttoConsumerD2C();
+    await d2CLegalShieldCaPage.selectDirecttoConsumerD2C('0');
   });
   await test.step('Test from IDShield', async () => {
     await d2CLegalShieldUSPage.clickOnALineOfBusiness(DataUtils.data.testingHarness.lineOfBusiness.IDShield, 'IDShieldUS');
