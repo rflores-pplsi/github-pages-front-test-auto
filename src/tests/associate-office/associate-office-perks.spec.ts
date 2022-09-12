@@ -165,10 +165,10 @@ test('Diamond Physicians perk is displayed', async ({ page, context }) => {
   await perksPage.assertPerkTitleIsDisplayed(perkTitle, perkTitle);
   await perksPage.assertPerkDescriptionIsDisplayed(description, description);
   await perksPage.assertPerkCommentIsDisplayed(5, comment);
-  await perksPage.assertPerkShopNowButtonIsDisplayed(5);
-  await perksPage.assertNewPageIsOpened(5, titleDiamondPage, context, page);
   await perksPage.assertPerkMoreDetailsIsDisplayed(0);
   await perksPage.assertNewPageIsOpened2(0, titleMyLSEPage, context, page);
+  await perksPage.assertPerkShopNowButtonIsDisplayed(5);
+  await perksPage.assertNewPageIsOpened(5, titleDiamondPage, context, page);
 });
 
 test('Unity Insurance Partners perk is displayed', async ({ page }) => {
@@ -293,20 +293,21 @@ test('National & Enterprise perk is displayed', async ({ page }) => {
   await perksPage.assertPageHasTitle(titleEnterprisePage);
 });
 
-test('Office Depot perk is displayed', async ({ page, context }) => {
-  console.log('Test Case: Office Depot perk is displayed');
-  test.slow();
-  const perkTitle = 'Office Depot';
+test('ODP Business Solutions perk is displayed', async ({ page, context }) => {
+  console.log('Test Case:ODP Business Solutions perk is displayed');
+  const perkTitle = 'ODP Business Solutions';
   const description = 'Office furniture, supplies, electronics, print services & more';
   const comment = 'Exclusive Discounts!';
-  const titleOfficeDepotPage = 'ODP Business Solutions';
+  const titleBusSolPage = 'ODP Business Solutions';
   await perksPage.waitForPerkDisplayed(perkTitle);
   await perksPage.hoverOverToPerk(23);
   await perksPage.assertPerkTitleIsDisplayed(perkTitle, perkTitle);
   await perksPage.assertPerkDescriptionIsDisplayed(description, description);
   await perksPage.assertPerkCommentIsDisplayed(14, comment);
   await perksPage.assertPerkShopNowButtonIsDisplayed(12);
-  await perksPage.assertNewPageIsOpened(12, titleOfficeDepotPage, context, page);
+  await perksPage.assertNewPageIsOpened(12, titleBusSolPage, context, page);
+  await perksPage.assertBusSolNewPageIsOpened(context, page);
+  await perksPage.assertBusSolNewPageIsOpened2(context, page);
 });
 
 test('HP Inc. perk is displayed', async ({ page, context }) => {
@@ -317,7 +318,7 @@ test('HP Inc. perk is displayed', async ({ page, context }) => {
   const titleHPPage = 'HP Employee Purchase Program';
   const titleMyLSEPage = 'MyLSE';
   await perksPage.waitForPerkDisplayed(perkTitle);
-  await perksPage.hoverOverToPerk(24);
+  await perksPage.hoverOverToPerk(25);
   await perksPage.assertPerkTitleIsDisplayed(perkTitle, perkTitle);
   await perksPage.assertPerkDescriptionIsDisplayed(description, description);
   await perksPage.assertPerkCommentIsDisplayed(15, comment);
@@ -334,7 +335,7 @@ test('JoS A. Bank. perk is displayed', async ({ page, context }) => {
   const comment = 'Exclusive Discounts!';
   const titleJoSBankPage = 'Coupon Page';
   await perksPage.waitForPerkDisplayed(perkTitle);
-  await perksPage.hoverOverToPerk(25);
+  await perksPage.hoverOverToPerk(26);
   await perksPage.assertPerkTitleIsDisplayed(perkTitle, perkTitle);
   await perksPage.assertPerkDescriptionIsDisplayed(description, description);
   await perksPage.assertPerkCommentIsDisplayed(16, comment);
@@ -349,7 +350,7 @@ test("Men's Wearhouse perk is displayed", async ({ page, context }) => {
   const comment = 'Exclusive Discounts!';
   const titleWearhousePage = 'Coupon Page';
   await perksPage.waitForPerkDisplayed(perkTitle);
-  await perksPage.hoverOverToPerk(26);
+  await perksPage.hoverOverToPerk(27);
   await perksPage.assertPerkTitleIsDisplayed(perkTitle, perkTitle);
   await perksPage.assertPerkDescriptionIsDisplayed(description, description);
   await perksPage.assertPerkCommentIsDisplayed(17, comment);
@@ -364,7 +365,7 @@ test('Moores perk is displayed', async ({ page, context }) => {
   const comment = 'Exclusive Discounts!';
   const titleMooresPage = 'Coupon Page';
   await perksPage.waitForPerkDisplayed(perkTitle);
-  await perksPage.hoverOverToPerk(27);
+  await perksPage.hoverOverToPerk(28);
   await perksPage.assertPerkTitleIsDisplayed(perkTitle, perkTitle);
   await perksPage.assertPerkDescriptionIsDisplayed(description, description);
   await perksPage.assertPerkCommentIsDisplayed(18, comment);
@@ -379,7 +380,7 @@ test('The Associate Store perk is displayed', async ({ page, context }) => {
   const comment = '10% Discount on Select Items!';
   const titleAssociateStorePage = 'LegalShield Associate Supplies – The PPLSI Associate Store';
   await perksPage.waitForPerkDisplayed(perkTitle);
-  await perksPage.hoverOverToPerk(28);
+  await perksPage.hoverOverToPerk(29);
   await perksPage.assertPerkTitleIsDisplayed(perkTitle, perkTitle);
   await perksPage.assertPerkDescriptionIsDisplayed(description, description);
   await perksPage.assertPerkCommentIsDisplayed(19, comment);
@@ -394,7 +395,7 @@ test('Jack Canfield Store perk is displayed', async ({ page, context }) => {
   const comment = 'Success Store Discount!';
   const titleJCStorePage = 'Welcome LegalShield Associates - Jack Canfield';
   await perksPage.waitForPerkDisplayed(perkTitle);
-  await perksPage.hoverOverToPerk(29);
+  await perksPage.hoverOverToPerk(30);
   await perksPage.assertPerkTitleIsDisplayed(perkTitle, perkTitle);
   await perksPage.assertPerkDescriptionIsDisplayed(description, description);
   await perksPage.assertPerkCommentIsDisplayed(20, comment);
@@ -409,7 +410,7 @@ test('John Maxwell Store perk is displayed', async ({ page, context }) => {
   const comment = 'Discount on Select Items!';
   const titleJMStorePage = 'John Maxwell Company x Leaal Shield';
   await perksPage.waitForPerkDisplayed(perkTitle);
-  await perksPage.hoverOverToPerk(30);
+  await perksPage.hoverOverToPerk(31);
   await perksPage.assertPerkTitleIsDisplayed(perkTitle, perkTitle);
   await perksPage.assertPerkDescriptionIsDisplayed(description, description);
   await perksPage.assertPerkCommentIsDisplayed(21, comment);
@@ -425,7 +426,7 @@ test('Don Yaeger Store perk is displayed', async ({ page, context }) => {
   const comment = '20% Discount!';
   const titleDYStorePage = 'Don Yaeger » Award-Winning Leadership Speaker & New York Times Best-Selling Author';
   await perksPage.waitForPerkDisplayed(perkTitle);
-  await perksPage.hoverOverToPerk(31);
+  await perksPage.hoverOverToPerk(32);
   await perksPage.assertPerkTitleIsDisplayed(perkTitle, perkTitle);
   await perksPage.assertPerkDescriptionIsDisplayed(description, description);
   await perksPage.assertPerkCommentIsDisplayed(22, comment);
@@ -440,7 +441,7 @@ test('Liberty Mutual perk is displayed', async ({ page }) => {
   const comment = 'Request a quote!';
   const titleLibertyPage = 'Associate Office';
   await perksPage.waitForPerkDisplayed(perkTitle);
-  await perksPage.hoverOverToPerk(32);
+  await perksPage.hoverOverToPerk(33);
   await perksPage.assertPerkTitleIsDisplayed(perkTitle, perkTitle);
   await perksPage.assertPerkDescriptionIsDisplayed(description, description);
   await perksPage.assertPerkCommentIsDisplayed(23, comment);
@@ -456,7 +457,7 @@ test('Justfly.com perk is displayed', async ({ page, context }) => {
   const comment = 'Book Now!';
   const titleJustflyPage = 'Cheap Flights, Airline tickets and Hotels - JustFly';
   await perksPage.waitForPerkDisplayed(perkTitle);
-  await perksPage.hoverOverToPerk(33);
+  await perksPage.hoverOverToPerk(34);
   await perksPage.assertPerkTitleIsDisplayed(perkTitle, perkTitle);
   await perksPage.assertPerkDescriptionIsDisplayed(description, description);
   await perksPage.assertPerkCommentIsDisplayed(24, comment);
@@ -470,7 +471,7 @@ test('Russell Stover perk is displayed', async ({ page, context }) => {
   const description = 'Chocolate makes every celebration better!';
   const comment = 'Daily Deals!';
   await perksPage.waitForPerkDisplayed(perkTitle);
-  await perksPage.hoverOverToPerk(34);
+  await perksPage.hoverOverToPerk(35);
   await perksPage.assertPerkTitleIsDisplayed(perkTitle, perkTitle);
   await perksPage.assertPerkDescriptionIsDisplayed(description, description);
   await perksPage.assertPerkCommentIsDisplayed(25, comment);
@@ -484,7 +485,7 @@ test('OfficeSuite perk is displayed', async ({ page, context }) => {
   const comment = 'Choose your plan';
   const titleOfficeSuitePage = 'Buy OfficeSuite | OfficeSuite';
   await perksPage.waitForPerkDisplayed(perkTitle);
-  await perksPage.hoverOverToPerk(35);
+  await perksPage.hoverOverToPerk(36);
   await perksPage.assertPerkTitleIsDisplayed(perkTitle, perkTitle);
   await perksPage.assertPerkDescriptionIsDisplayed(description, description);
   await perksPage.assertPerkCommentIsDisplayed(26, comment);
@@ -499,7 +500,7 @@ test('Eyeglasses.com perk is displayed', async ({ page, context }) => {
   const comment = 'Huge Selection!';
   const titleEyeglassesPage = 'Glasses Online | Buy Prescription Eyewear | Eyeglasses.com';
   await perksPage.waitForPerkDisplayed(perkTitle);
-  await perksPage.hoverOverToPerk(36);
+  await perksPage.hoverOverToPerk(37);
   await perksPage.assertPerkTitleIsDisplayed(perkTitle, perkTitle);
   await perksPage.assertPerkDescriptionIsDisplayed(description, description);
   await perksPage.assertPerkCommentIsDisplayed(27, comment);
@@ -514,7 +515,7 @@ test('Airport Parking perk is displayed', async ({ page, context }) => {
   const comment = 'Don’t overpay for parking.';
   const titleAirportPage = 'Airport Parking: Search, Compare, Book ';
   await perksPage.waitForPerkDisplayed(perkTitle);
-  await perksPage.hoverOverToPerk(37);
+  await perksPage.hoverOverToPerk(38);
   await perksPage.assertPerkTitleIsDisplayed(perkTitle, perkTitle);
   await perksPage.assertPerkDescriptionIsDisplayed(description, description);
   await perksPage.assertPerkCommentIsDisplayed(28, comment);
@@ -530,7 +531,7 @@ test('Sabjol Electronics perk is displayed', async ({ page, context }) => {
   const comment = 'Save today!';
   const titleSabjolPage = 'SABJOL - Shop Online For Everyday Best Deals and Save on Laptops, Smartphones, Headphones and Electronics';
   await perksPage.waitForPerkDisplayed(perkTitle);
-  await perksPage.hoverOverToPerk(38);
+  await perksPage.hoverOverToPerk(39);
   await perksPage.assertPerkTitleIsDisplayed(perkTitle, perkTitle);
   await perksPage.assertPerkDescriptionIsDisplayed(description, description);
   await perksPage.assertPerkCommentIsDisplayed(29, comment);
@@ -545,7 +546,7 @@ test('DiscoverCars.com perk is displayed', async ({ page, context }) => {
   const comment = 'Save up to 70%';
   const titleDiscoverCarsPage = 'Best Car Rental Deals with Free Cancellation, Compare & Save! | Discover Cars';
   await perksPage.waitForPerkDisplayed(perkTitle);
-  await perksPage.hoverOverToPerk(39);
+  await perksPage.hoverOverToPerk(40);
   await perksPage.assertPerkTitleIsDisplayed(perkTitle, perkTitle);
   await perksPage.assertPerkDescriptionIsDisplayed(description, description);
   await perksPage.assertPerkCommentIsDisplayed(30, comment);

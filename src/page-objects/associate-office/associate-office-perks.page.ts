@@ -216,6 +216,28 @@ export class PerksPage extends LoginPage {
     await expect(newPage).toHaveTitle(title);
   };
 
+  assertBusSolNewPageIsOpened = async (context: BrowserContext, page: Page): Promise<void> => {
+    console.log(' - perksPage.assertBusSolNewPageIsOpened');
+    const [newPage] = await Promise.all([
+      context.waitForEvent('page'),
+      page.locator('.card-perks button span').click(),
+      page.locator('a:has-text("Discount Program")').click(),
+    ]);
+    await newPage.waitForLoadState();
+    await this.page.locator('body > embed').isVisible();
+  };
+
+  assertBusSolNewPageIsOpened2 = async (context: BrowserContext, page: Page): Promise<void> => {
+    console.log(' - perksPage.assertBusSolNewPageIsOpened2');
+    const [newPage] = await Promise.all([
+      context.waitForEvent('page'),
+      page.locator('.card-perks button span').click(),
+      page.locator('a:has-text("Discount Categories")').click(),
+    ]);
+    await newPage.waitForLoadState();
+    await this.page.locator('body > embed').isVisible();
+  };
+
   assertPageHasTitle = async (title: string): Promise<void> => {
     console.log(' - perksPage.assertPageHasTitle');
     await expect(this.page).toHaveTitle(title);
