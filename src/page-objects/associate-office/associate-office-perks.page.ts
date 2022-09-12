@@ -16,7 +16,6 @@ const associatedPerks: string = '//p[text()="ASSOCIATEPerks"]';
 const availCanText: string = '#perks .lsux-col.canada span';
 const availCanImg: string = '#perks .lsux-col.canada img';
 const perkDisclaimer: string = '.perks-disclaimer';
-
 //John Addison Leadership perk
 const JALeadershipPerk: string = "div[class*='thirds'] > div:nth-of-type(1) > div > div > p";
 const JALeadershipPerkImg: string = "img[src*='2ef8a10b28e9943d741b6ceccf14c336.png']";
