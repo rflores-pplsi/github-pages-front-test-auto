@@ -1,3 +1,4 @@
+
 import { BrowserContext, expect, Page } from '@playwright/test';
 import UrlsUtils from '../../utils/urls.utils';
 import { LoginPage } from '../login/login.page';
@@ -15,6 +16,7 @@ const featuredPerkImage: string = '#featured-perks .lsux-col.image';
 const associatedPerks: string = '//p[text()="ASSOCIATEPerks"]';
 const availCanText: string = '#perks .lsux-col.canada span';
 const availCanImg: string = '#perks .lsux-col.canada img';
+
 const lblPerkDisclaimer: string = '#perks > div:nth-child(3) p';
 const lblPerkJohnAddisonLeadership: string = '(//p[text()="John Addison Leadership"])[2]';
 const lblDescription: string = '//div/h1';
