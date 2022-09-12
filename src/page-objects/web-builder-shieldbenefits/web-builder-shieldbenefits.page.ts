@@ -49,12 +49,13 @@ export class WebBuilderShieldBenefits extends OktaPage {
     // Click on Enrollment tab
     await this.clickOnElement(btnEnrollmentTab);
   };
-    
+  
    clickManageSiteButton = async (): Promise<void> => {
     console.log(' - WebBuilderShieldBenefits.clickManageSiteButton');
     // Click on Manage Site Button
     await this.clickOnElement(btnManageSite);
   };
+
 
   clickSaveButton = async (): Promise<void> => {
     console.log(' - WebBuilderShieldBenefits.clickSaveButton');
@@ -65,6 +66,20 @@ export class WebBuilderShieldBenefits extends OktaPage {
 
   // ========================== Navigate Methods ===========================
 
+  
+  // ========================== Navigate Methods ===========================
+
+  navigateToGroupPage = async (groupNumber: String): Promise<void> => {
+    console.log(' - WebBuilderShieldBenefits.navigateToGroupPage');
+    await this.page.goto(url);
+    // Login through okta
+    await this.loginThroughOktaGroupEnrollment();
+    // Search group by group number
+    await this.groupSearchByGroupNumber('111452');
+    // Click on View group button
+    await this.clickViewGroup();
+  };
+
   navigateToWebBuilderShieldBenefitsPage = async (groupNumber: String): Promise<void> => {
     console.log(' - WebBuilderShieldBenefits.navigateToWebBuilderShieldBenefitsPage');
     await this.page.goto(url);
@@ -72,6 +87,7 @@ export class WebBuilderShieldBenefits extends OktaPage {
     await this.loginThroughOktaGroupEnrollment();
     // Search group by group number
     await this.groupSearchByGroupNumber('83696');
+
     // Click on View group button
     await this.clickViewGroup();
   };
