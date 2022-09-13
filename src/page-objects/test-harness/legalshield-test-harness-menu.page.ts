@@ -27,11 +27,10 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
   };
 
   /**
-   * @param {string} region
    * @param {Array<Array<string>>} productNamesAndCosts
    * @memberof LegalshieldTestHarnessMenuPage
    */
-  addProducts = async (region: string, productNamesAndCosts: Array<Array<string>>) => {
+  addProducts = async (productNamesAndCosts: Array<Array<string>>) => {
     console.log(' - legalshieldTestHarnessMenuPage.addProducts');
     for (const pn of productNamesAndCosts) {
       // TODO: Loop through productNames and click on the button associated with them as many times as needed

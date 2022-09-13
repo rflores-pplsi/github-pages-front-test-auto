@@ -16,7 +16,7 @@ test.beforeEach(async ({ page }) => {
 // LegalShield
 for (const tc of legalshieldTestHarnessData.filter((tc) => tc.disabled == false)) {
   for (const region of tc.regions) {
-    test.only(`${tc.testCaseName} - ${region} @legalshield @testHarnessCheckoutRegression`, async ({ page }) => {
+    test(`${tc.testCaseName} - ${region} @legalshield @testHarnessCheckoutRegression`, async ({ page }) => {
       console.log(`Test Case: ${tc.testCaseName} - ${region}`);
 
       // Select Plans and get to Personal Info Page
@@ -24,7 +24,7 @@ for (const tc of legalshieldTestHarnessData.filter((tc) => tc.disabled == false)
         await checkoutConfirmationPage.goTo(UrlsUtils.testHarnessUrls.legalShield.url);
       });
       await test.step(`Select Region: ${region}`, async () => {
-        await checkoutConfirmationPage.addProducts(region, tc.productNamesAndCosts);
+        await checkoutConfirmationPage.addProducts(tc.productNamesAndCosts);
       });
       await test.step(`Click Checkout Button`, async () => {
         await checkoutConfirmationPage.clickCheckoutButton();

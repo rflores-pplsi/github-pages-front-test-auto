@@ -20,7 +20,7 @@ test.beforeEach(async ({ page }) => {
 // Self-Pay Configurations - Single Plan
 for (const tc of selfPayData.filter((tc) => tc.disabled == false)) {
   for (const region of tc.regions) {
-    test.only(`${tc.testCaseName} - ${region} @selfPay @shieldBenefits`, async ({ page }) => {
+    test(`${tc.testCaseName} - ${region} @selfPay @shieldBenefits`, async ({ page }) => {
       console.log(`Test Case: ${tc.testCaseName} - ${region}`);
       // Crete Cart from Pricing Page and Continue to Personal Info Page
       await test.step(`Navigate to Shield Benefits Pricing Page for Group: ${tc.groupNameOrNumber}`, async () => {
