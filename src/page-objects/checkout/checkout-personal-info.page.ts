@@ -152,6 +152,10 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     await this.enterPostalCode(postalCode);
   };
 
+  /**
+   * @param {string} provinceName
+   * @memberof CheckoutPersonalInfoPage
+   */
   changeAddressCanada = async (provinceName: string): Promise<void> => {
     // logic to go to regions util, and populate the 3 variables needed for this method for the appropriate region
     const provinceObject = RegionsUtils.caProvinces.filter((pn) => pn.name == provinceName);
@@ -161,12 +165,38 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     await this.clickOnElement(btnSaveAndContinue);
   };
 
+  /**
+   * @param {string} regionName
+   * @memberof CheckoutPersonalInfoPage
+   */
   changeAddressUs = async (regionName: string): Promise<void> => {
     // logic to go to regions util, and populate the 3 variables needed for this method for the appropriate region
     const regionObject = RegionsUtils.usStates.filter((pn) => pn.name == regionName);
     await this.enterHomeAddress(regionObject[0].validAddress.street);
     await this.enterCity(regionObject[0].validAddress.city);
     await this.enterPostalCode(regionObject[0].validAddress.postalCode);
+  };
+
+  /**
+   * @param {string} market
+   * @param {string} region
+   * @memberof CheckoutPersonalInfoPage
+   */
+  changeAddressForMarket = async (market: string, region: string): Promise<void> => {
+    switch (market) {
+      case 'US': {
+        await this.changeAddressUs(region);
+        break;
+      }
+      case 'CA': {
+        await this.changeAddressCanada(region);
+        break;
+      }
+      default: {
+        console.log('Market entered into data sheet cannot be found in regions util');
+        break;
+      }
+    }
   };
 
   /**

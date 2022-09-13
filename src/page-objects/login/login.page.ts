@@ -42,7 +42,7 @@ export class LoginPage extends BasePage {
       await this.clickOnElement(btnSignIn);
       // Click on Ok pop up
       // Ok pop up button in dev/uat only -> need to comment out this line before run in prod
-      // await this.clickOnElement(btnOk);
+      await this.clickOnElement(btnOk);
       // Wait for page to finish loading
       await this.page.waitForLoadState('networkidle', { timeout: 250000 });
     } else {

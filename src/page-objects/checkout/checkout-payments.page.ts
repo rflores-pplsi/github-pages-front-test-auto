@@ -34,6 +34,10 @@ export class CheckoutPaymentsPage extends CheckoutPersonalInfoPage {
   };
 
   // ========================== Click Methods ==============================
+
+  /**
+   * @memberof CheckoutPaymentsPage
+   */
   clickBankDraftBtn = async () => {
     // Force a wait time
     // Switch to frame
@@ -44,6 +48,10 @@ export class CheckoutPaymentsPage extends CheckoutPersonalInfoPage {
       await frame.locator(btnBankDraft).click();
     } else throw new Error('No such frame');
   };
+
+  /**
+   * @memberof CheckoutPaymentsPage
+   */
   clickCreditCardBtn = async () => {
     // Switch to frame
     await this.page.frameLocator("//iframe[@title='payment iframe']");
@@ -53,17 +61,9 @@ export class CheckoutPaymentsPage extends CheckoutPersonalInfoPage {
       await frame.locator(btnCreditCard).click();
     } else throw new Error('No such frame');
   };
-  //  = async() => {
-  //   // Switch to frame
-  //   await this.page.frameLocator("//iframe[@title='payment iframe']");
-  //   const frame = this.page.frameLocator("//iframe[@title='payment iframe']");
-  //   if (frame != null) {
-  //     // Click on Add Payment button
-  //     await frame.locator(lnkTermsOfService).click();
-  //   } else throw new Error('No such frame');
-  // };
+
   // ========================== Assertion Methods ==========================
-  assertAccoutPaymentsPage = async () => {
+  assertAccountPaymentsPage = async () => {
     await this.page.frameLocator("//iframe[@title='payment iframe']");
     const frame = this.page.frameLocator("//iframe[@title='payment iframe']");
     if (frame != null) {
