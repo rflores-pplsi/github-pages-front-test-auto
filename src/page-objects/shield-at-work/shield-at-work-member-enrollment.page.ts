@@ -37,9 +37,9 @@ const txtSSNPersonalSection: string = '[placeholder="000-00-0000"]';
 const btnRadioPubliclyTradedCompany: string = '#root form:nth-child(3) div.small-biz-select > div:nth-child(2) > div > label:nth-child(1) > div';
 const btnRadioNonProfitBusiness: string = '#root  div:nth-child(1)  form:nth-child(3) div.small-biz-select > div:nth-child(4) > div > label:nth-child(1) > div';
 const btnContinueAssociateInfo: string = '#root  div.mb-4._2nNbq5j54sbQ6MAihmSQg3 > div._1yvcEtEbZqaqWyKqhjijeG > button';
-const btnAssociateSelection: string = '[class="lsux-select-container__select lsux-select-container__select--default _2P_2ZWyAUyAmEAbofTtnLU"]';
-const btnSubmit: string = '.lsux-container.lsux-container--white.lsux-container--flexbox span';
-const txtGroupManagement: string = '.lsux-container--flex-justify-space-between.mb-5.mt-7 > h2';
+const btnAssociateSelection: string = 'select[type="submit"]';
+const btnSubmit: string = '//span[normalize-space()="Submit"]';
+const txtGroupManagement: string = '.lsux-heading.lsux-heading--t26';
 
 
 /**
@@ -179,7 +179,7 @@ fillOutPersonalInformationSection = async (
     console.log(' - shieldAtWorkMemberEnrollment.navigateToGroupPage');
     await this.page.goto(url);
     // Login through okta
-    await this.loginThroughOkta();
+    await this.loginThroughOktaGroupEnrollment();
     // Search group by group number
     await this.groupSearchByGroupNumber('121076');
     // Click on Enroll New member button

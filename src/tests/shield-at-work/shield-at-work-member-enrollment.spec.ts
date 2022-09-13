@@ -49,7 +49,7 @@ test('New member has been successfully enrolled on the member enrollment page', 
   await shieldAtWorkMemberEnrollment.selectPlan();
   await shieldAtWorkMemberEnrollment.clickContinueButtonPlanOfferings();
   await shieldAtWorkMemberEnrollment.fillOutPersonalInformationSection('09091992', '444444444');
-  await shieldAtWorkMemberEnrollment.fillOutSmallBusinessInformationSection('Tester', '5555', '08122022', 'bakery');
+  await shieldAtWorkMemberEnrollment.fillOutSmallBusinessInformationSection('Tester', '555555555', '08122022', 'bakery');
   await shieldAtWorkMemberEnrollment.clickNoPubliclyTradedCompanyRadioButton();
   await shieldAtWorkMemberEnrollment.clickNonProfitBusinessRadioButton();
   await shieldAtWorkMemberEnrollment.clickContinueButtonAssociateInfo();
