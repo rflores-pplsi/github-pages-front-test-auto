@@ -8,8 +8,8 @@ test.beforeEach(async ({ page }) => {
   webBuilderShieldBenefits = new WebBuilderShieldBenefits(page);
 });
 
-test('Web-builder ShieldBenefits page : Verify funtionality on the customize section,', async ({ page }) => {
-  console.log('Verify funtionality on the web-builder ShieldBenefits page, Customize section');
+test('Web-builder ShieldBenefits page : Verify functionality on the customize section,', async ({ page }) => {
+  console.log('Verify functionality on the web-builder ShieldBenefits page, Customize section');
   await webBuilderShieldBenefits.navigateToWebBuilderShieldBenefitsPage('83696');
   await webBuilderShieldBenefits.clickEnrollmentTab();
   await webBuilderShieldBenefits.clickManageSiteButton();
@@ -21,8 +21,8 @@ test('Web-builder ShieldBenefits page : Verify funtionality on the customize sec
   await webBuilderShieldBenefits.assertUserNameAndPasswordAreDisabled();
 });
 
-test('Web-builder ShieldBenefits page : Verify funtionality on the checkout section', async ({ page }) => {
-  console.log('Web-builder ShieldBenefits page : Verify funtionality on the checkout section');
+test('Web-builder ShieldBenefits page : Verify functionality on the checkout section', async ({ page }) => {
+  console.log('Web-builder ShieldBenefits page : Verify functionality on the checkout section');
   await webBuilderShieldBenefits.navigateToWebBuilderShieldBenefitsPage('83696');
   await webBuilderShieldBenefits.clickEnrollmentTab();
   await webBuilderShieldBenefits.clickManageSiteButton();
@@ -31,8 +31,8 @@ test('Web-builder ShieldBenefits page : Verify funtionality on the checkout sect
   await webBuilderShieldBenefits.assertCheckoutMessageIsDisabled();
   });
 
-  test('Web-builder ShieldBenefits page : Verify funtionality on the contact information section', async ({ page }) => {
-   console.log('Web-builder ShieldBenefits page : Verify funtionality on the contact information section');
+  test('Web-builder ShieldBenefits page : Verify functionality on the contact information section', async ({ page }) => {
+   console.log('Web-builder ShieldBenefits page : Verify functionality on the contact information section');
   await webBuilderShieldBenefits.navigateToWebBuilderShieldBenefitsPage('83696');
   await webBuilderShieldBenefits.clickEnrollmentTab();
   await webBuilderShieldBenefits.clickManageSiteButton();
