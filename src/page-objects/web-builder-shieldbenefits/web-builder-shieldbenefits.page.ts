@@ -1,8 +1,9 @@
+import { chromium, expect } from '@playwright/test';
 import urlsUtils from '../../utils/urls.utils';
 import { OktaPage } from '../okta/okta.page';
 
 // ========================== Selectors ==================================
-
+// Customize section
 const url: string = urlsUtils.legalshieldUrls.shieldAtWork.url;
 const btnViewGroup: string = '.lsux-button.lsux-button--standard.ml-3 > span';
 const txtSearch: string = '[placeholder="Search by name or group number"]';
@@ -12,7 +13,29 @@ const btnEnrollmentTab: string =
 const txtGroup: string = '#root  .lsux-container--flex-items-center.mb-2 > h3';
 const btnManageSite: string = '.lsux-container.lsux-container--white div > h2 > button > span';
 const txtNonNatTest48: string = '.lsux-heading.lsux-heading--t26';
-const btnSave: string = '#root > div > div.lsux-content > div > div.lsux-grid > div > div > div:nth-child(2) > div > div > form > div:nth-child(1) > div > button > span';
+const btnSave: string = '.add-button  span';
+const txtNewGroupUrl: string = '[placeholder="group website"]';
+const imgGroupLogo: string = '[class="group-logo-image"]';
+const txtGroupName: string = '[placeholder="Group Name (if logo is not available)"]';
+const txtDisplayMemberPerks: string = '.lsux-grid  div:nth-child(4) > div > label > span';
+const txtSpecialInstructions: string = '[id="specialInstructions"]';
+const btnAddLink: string = '.lsux-grid div:nth-child(5)  button > span';
+const txtUserName: string = '[placeholder="Username"]';
+const txtPassword: string = '[placeholder="Password"]';
+
+// Checkout section
+const txtPlanAndPricingUrl: string = '.lsux-grid form > div:nth-child(1) > div.form-custom-label > p';
+const txtSelectCheckoutType: string = '.lsux-grid  div:nth-child(2) > div > div > div > div > select';
+const txtCheckoutMessage: string = '[id="checkoutText"]';
+
+// Contact information section
+const txtSelectType: string = '.lsux-grid div > div > div:nth-child(2) > div > select';
+const txtPhoneNumber: string = '[name="contact-phone-number"]';
+const txtEmail: string = '[name="contact-email"]';
+const txtAssociateFullName: string = '[placeholder="Full Name (optional) "]';
+const txtAssociatePhoneNumber: string = '[placeholder="Phone Number (optional)"]';
+const txtAssociateExtNumber: string = '[placeholder="Ext Number (optional)"]';
+const txtAssociateEmail: string = '[placeholder="Email (optional)"]';
 
 /**
  * @export
@@ -78,11 +101,98 @@ export class WebBuilderShieldBenefits extends OktaPage {
 
   // ========================== Assertion Methods ==========================
 
-  assertNonNatTest48IsVisible = async (): Promise<void> => {
-    console.log(' - WebBuilderShieldBenefits.assertManageSiteButtonIsVisible');
-    // Verify that Manage site button is displayed on the enrollment page
-    await this.assertElementIsVisible(txtNonNatTest48);
+  assertButtonSaveIsDisplayed = async (): Promise<void> => {
+    console.log(' - WebBuilderShieldBenefits.assertButtonSaveIsDisplayed');
+    // Confirm button Save is displayed
+   await this.page.waitForLoadState('networkidle', { timeout: 30000 });
+   await this.isElementVisible(btnSave);
   };
+
+  assertNewGroupUrlIsDisplayed = async (): Promise<void> => {
+    console.log(' - WebBuilderShieldBenefits.assertNewGroupUrlIsDisplayed');
+    // Confirm New Group Url is displayed
+   await this.page.waitForLoadState('networkidle', { timeout: 30000 });
+   await this.isElementVisible(txtNewGroupUrl);
+  };
+
+  assertGroupLogoImageIsDisplayed = async (): Promise<void> => {
+    console.log(' - WebBuilderShieldBenefits.assertGroupLogoImageIsDisplayed');
+    // Confirm Group Logo Image is displayed
+   await this.page.waitForLoadState('networkidle', { timeout: 30000 });
+   await this.isElementVisible(imgGroupLogo);
+  };
+
+  assertGroupNameFieldIsDisplayed = async (): Promise<void> => {
+    console.log(' - WebBuilderShieldBenefits.assertGroupNameFieldIsDisplayed');
+    // Confirm Group Name field is displayed
+    await this.isElementVisible(txtGroupName);
+  };
+
+  assertDisplayMemberPerksIsDisplayed = async (): Promise<void> => {
+    console.log(' - WebBuilderShieldBenefits.assertDisplayMemberPerks');
+    // Confirm Display Member Perks? is visible 
+    await this.isElementVisible(txtDisplayMemberPerks);
+     };
+
+     assertSpecialInstructionsIsDisplayed = async (): Promise<void> => {
+     console.log(' - WebBuilderShieldBenefits.assertSpecialInstructionsIsDisplayed');
+     // Confirm Special Instructions is displayed
+     await this.isElementVisible(txtSpecialInstructions);
+     };
+
+     assertAddLinkButtonIsDisplayed = async (): Promise<void> => {
+     console.log(' - WebBuilderShieldBenefits.assertSpecialInstructionsIsDisplayed');
+     // Confirm Add Link button is displayed
+     await this.isElementVisible(btnAddLink);
+     };
+
+     assertUserNameAndPasswordAreDisabled = async (): Promise<void> => {
+     console.log(' - WebBuilderShieldBenefits.assertUserNameAndPasswordIsDisabled');
+     // Confirm Username and Passord field are disabled if not select "Add username and password to enter site?"
+     await this.assertElementIsHidden(txtUserName);
+     await this.assertElementIsHidden(txtPassword);
+     };
+
+     assertPlansAndPricingUrlIsDisplayed = async (): Promise<void> => {
+     console.log(' - WebBuilderShieldBenefits.assertPlansAndPricingUrlIsDisplayed');
+     // Confirm Plans and Pricing Url is displayed
+     await this.isElementVisible(txtPlanAndPricingUrl);
+     };
+
+     assertSelectCheckoutTypeIsDisplayed = async (): Promise<void> => {
+     console.log(' - WebBuilderShieldBenefits.assertSelectCheckoutTypeIsDisplayed');
+     // Confirm Select Checkout Type drop down is displayed
+     await this.isElementVisible(txtSelectCheckoutType);
+     };
+
+     assertCheckoutMessageIsDisabled = async (): Promise<void> => {
+     console.log(' - WebBuilderShieldBenefits.assertCheckoutMessageIsDisabled');
+     // Confirm Checkout message is hidden when select "No" 
+     await this.assertElementIsHidden(txtCheckoutMessage);
+     };
+
+     assertSelectTypeIsDisplayed = async (): Promise<void> => {
+     console.log(' - WebBuilderShieldBenefits.assertSelectTypeIsDisplayed');
+     // Confirm Select Type drop down is displayed
+     await this.isElementVisible(txtSelectType);
+     };
+
+     assertPhoneNumberAndEmailAreDisplayed = async (): Promise<void> => {
+     console.log(' - WebBuilderShieldBenefits.assertPhoneNumberAndEmailAreDisplayed');
+     // Confirm Phone number and email are displayed
+     await this.isElementVisible(txtPhoneNumber);
+     await this.isElementVisible(txtEmail);
+     };
+
+     assertAssociateInformationIsDisplayed = async (): Promise<void> => {
+     console.log(' - WebBuilderShieldBenefits.assertAssociateInformationIsDisplayed');
+     // Confirm Associate information displayed
+     await this.isElementVisible(txtAssociateFullName);
+     await this.isElementVisible(txtAssociatePhoneNumber);
+     await this.isElementVisible(txtAssociateExtNumber);
+     await this.isElementVisible(txtAssociateEmail);
+     };
+
 
   
 }
