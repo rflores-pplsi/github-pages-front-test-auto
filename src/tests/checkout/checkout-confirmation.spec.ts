@@ -34,7 +34,7 @@ test('Verify FreeTrial purchase for IDS Individual on IDS Canada with BankDraft'
   await checkoutConfirmationPage.assertTotalDueToday('$0.00');
   // Navigate to Confirmation Page using BankDraft
   await checkoutConfirmationPage.clickBankDraftBtn();
-  await checkoutConfirmationPage.fillBankDraftFormForCanada();
+  await checkoutConfirmationPage.fillCaBankDraftFormAndSubmit();
   // Confirmation Page assertions
   await checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary('IDShield Individual');
   await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName('IDShield Individual');
@@ -69,14 +69,14 @@ test('Verify FreeTrial purchase for IDS Family on IDS Canada with CreditCard', a
 test('Self-Pay (IDShield Individual) using Planalyzer and Bank Draft', async ({ page }) => {
   test.slow();
   await checkoutConfirmationPage.navigateToCheckoutConfirmationPageUsingPlanalyzer('Virginia', 'BD');
-  await checkoutConfirmationPage.assertWelcomeToLegalshiledFamilyPage();
+  await checkoutConfirmationPage.assertWelcomeToLegalShieldFamilyPage();
   await checkoutConfirmationPage.assertOrderSummaryPlanLabelConfirmationPage('Legal Plan');
   await checkoutConfirmationPage.assertOrderSummaryPlanPriceConfirmationPage();
 });
 test('Self-Pay (IDShield Individual) using Planalyzer and Credit Card', async ({ page }) => {
   test.slow();
   await checkoutConfirmationPage.navigateToCheckoutConfirmationPageUsingPlanalyzer('Virginia', 'CC');
-  await checkoutConfirmationPage.assertWelcomeToLegalshiledFamilyPage();
+  await checkoutConfirmationPage.assertWelcomeToLegalShieldFamilyPage();
   await checkoutConfirmationPage.assertOrderSummaryPlanLabelConfirmationPage('Legal Plan');
   await checkoutConfirmationPage.assertOrderSummaryPlanPriceConfirmationPage();
 });

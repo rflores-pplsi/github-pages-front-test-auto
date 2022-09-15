@@ -31,9 +31,7 @@ test('Contact information, available plan offerings section, member information 
   await shieldAtWorkMemberEnrollment.assertSmallBusinessSectionIsDisplayed();
 });
 
-test('New member has been successfully enrolled on the member enrollment page', async ({
-  page,
-}) => {
+test('New member has been successfully enrolled on the member enrollment page', async ({ page }) => {
   await shieldAtWorkMemberEnrollment.navigateToGroupPage('121076');
   await shieldAtWorkMemberEnrollment.fillOutContactInformation(
     'Test',
@@ -51,7 +49,7 @@ test('New member has been successfully enrolled on the member enrollment page', 
   await shieldAtWorkMemberEnrollment.selectPlan();
   await shieldAtWorkMemberEnrollment.clickContinueButtonPlanOfferings();
   await shieldAtWorkMemberEnrollment.fillOutPersonalInformationSection('09091992', '444444444');
-  await shieldAtWorkMemberEnrollment.fillOutSmallBusinessInformationSection('Tester', '555555555', '08122022', 'bakery')
+  await shieldAtWorkMemberEnrollment.fillOutSmallBusinessInformationSection('Tester', '555555555', '08122022', 'bakery');
   await shieldAtWorkMemberEnrollment.clickNoPubliclyTradedCompanyRadioButton();
   await shieldAtWorkMemberEnrollment.clickNonProfitBusinessRadioButton();
   await shieldAtWorkMemberEnrollment.clickContinueButtonAssociateInfo();
