@@ -21,7 +21,7 @@ export class ProfilePickerPage extends BasePage {
   assertLoginUrl = async (): Promise<void> => {
     console.log(' - loginPage.assertLoginPageUrl');
     // Confirm user successfully logged in by asserting URL
-    await expect(this.page).toHaveURL(UrlsUtils.channelsUrls.login.url + '?login_redirect=1');
+    await expect(this.page).toHaveURL(UrlsUtils.channelsUrls.taxForm.url + '?login_redirect=1');
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };

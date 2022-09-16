@@ -162,6 +162,9 @@ export default class UrlsUtils {
     reportsbusinessorganizational: {
       url: `https://associate-office.${envUrlString}legalshield.com/reports/business/organizational`,
     },
+    reportsbusinesspersonal: {
+      url: `https://associate-office.${envUrlString}legalshield.com/reports/business/personal`,
+    },
     reportscommissions: {
       url: `https://associate-office.${envUrlString}legalshield.com/reports/commissions`,
     },

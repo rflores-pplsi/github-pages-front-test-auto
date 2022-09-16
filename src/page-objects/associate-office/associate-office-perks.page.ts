@@ -231,6 +231,7 @@ export class PerksPage extends LoginPage {
     console.log(' - perksPage.assertBusSolNewPageIsOpened2');
     const [newPage] = await Promise.all([
       context.waitForEvent('page'),
+      page.waitForSelector('.card-perks button span'),
       page.locator('.card-perks button span').click(),
       page.locator('a:has-text("Discount Categories")').click(),
     ]);
