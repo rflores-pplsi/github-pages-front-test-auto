@@ -156,6 +156,9 @@ export default class UrlsUtils {
     login: {
       url: `https://associate-office.${envUrlString}legalshield.com/`,
     },
+    ppsliprospect: {
+      url: `https://associate-office.${envUrlString}legalshield.com/?vendor=nowapp`,
+    },
     perks: {
       url: `https://associate-office.${envUrlString}legalshield.com/perks`,
     },
