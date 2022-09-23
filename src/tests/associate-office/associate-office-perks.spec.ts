@@ -293,7 +293,7 @@ test('National & Enterprise perk is displayed', async ({ page }) => {
   await perksPage.assertPageHasTitle(titleEnterprisePage);
 });
 
-test.only('ODP Business Solutions perk is displayed', async ({ page, context }) => {
+test('ODP Business Solutions perk is displayed', async ({ page, context }) => {
   test.slow();
   console.log('Test Case:ODP Business Solutions perk is displayed');
   const perkTitle = 'ODP Business Solutions';
