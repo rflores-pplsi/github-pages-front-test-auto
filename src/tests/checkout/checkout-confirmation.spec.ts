@@ -19,7 +19,7 @@ test('Verify FreeTrial purchase for IDS Individual on IDS Canada with BankDraft'
   await checkoutConfirmationPage.navigateToPersonalInfoPageFromPlanalyzer('D2C', 'IDShield', 'Ontario', 'en-CA', '', 'F30', ['IDShield Individual']);
   // Personal Info Page Assertion
   await checkoutConfirmationPage.assertPlanNameDisplayedInSummary('IDShield Individual');
-  await checkoutConfirmationPage.assertMonthlyLabelAndTotal('$14.95');
+  await checkoutConfirmationPage.assertTermLabelAndTotal('$14.95');
   await checkoutConfirmationPage.assertTotalDueToday('$0.00');
   // Navigate to Payment Page
   const regionObj = RegionsUtils.caProvinces;
@@ -30,7 +30,7 @@ test('Verify FreeTrial purchase for IDS Individual on IDS Canada with BankDraft'
   }
   await checkoutConfirmationPage.clickSaveAndContinueButton();
   // Payment Page Assertions
-  await checkoutConfirmationPage.assertMonthlyLabelAndTotal('$14.95');
+  await checkoutConfirmationPage.assertTermLabelAndTotal('$14.95');
   await checkoutConfirmationPage.assertTotalDueToday('$0.00');
   // Navigate to Confirmation Page using BankDraft
   await checkoutConfirmationPage.clickBankDraftBtn();
@@ -46,7 +46,7 @@ test('Verify FreeTrial purchase for IDS Family on IDS Canada with CreditCard', a
   await checkoutConfirmationPage.navigateToPersonalInfoPageFromPlanalyzer('D2C', 'IDShield', 'Ontario', 'en-CA', '', 'F30', ['IDShield Family']);
   // Personal Info Page Assertion
   await checkoutConfirmationPage.assertPlanNameDisplayedInSummary('IDShield Family');
-  await checkoutConfirmationPage.assertMonthlyLabelAndTotal('$29.95');
+  await checkoutConfirmationPage.assertTermLabelAndTotal('$29.95');
   await checkoutConfirmationPage.assertTotalDueToday('$0.00');
   // Navigate to Payment Page
   const regionObj = RegionsUtils.caProvinces;
@@ -57,7 +57,7 @@ test('Verify FreeTrial purchase for IDS Family on IDS Canada with CreditCard', a
   }
   await checkoutConfirmationPage.clickSaveAndContinueButton();
   // Payment Page Assertions
-  await checkoutConfirmationPage.assertMonthlyLabelAndTotal('$29.95');
+  await checkoutConfirmationPage.assertTermLabelAndTotal('$29.95');
   await checkoutConfirmationPage.assertTotalDueToday('$0.00');
   // Navigate to Confirmation Page using CC
   await checkoutConfirmationPage.fillCreditCardFormForCanada();

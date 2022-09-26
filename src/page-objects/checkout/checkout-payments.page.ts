@@ -7,6 +7,7 @@ const txtHowWouldYouLikeToPay = 'h1.translate.checkout-v3-h2';
 const btnBankDraft = 'span.options.right.translate';
 const btnCreditCard = 'span.options.left.translate';
 const lnkTermsOfService = '#cc_form >> text=Terms of Service';
+const txtBankDraftTermsOfServiceAgreement = '//form[@id="bd_form"]//span[contains(@class,"termsConditions")]//br';
 
 // create instance of Page
 /**
@@ -17,6 +18,10 @@ export class CheckoutPaymentsPage extends CheckoutPersonalInfoPage {
   // ========================== Process Methods ============================
 
   // ========================== Navigate Methods ===========================
+  /**
+   * @param {string} state
+   * @memberof CheckoutPaymentsPage
+   */
   navigateToPaymentsPage = async (state: string): Promise<void> => {
     console.log(' - accountPaymentPage.goToPaymentsPage');
     await this.navigateToPlanalyzerCsrCheckoutOktaLogin();
@@ -63,8 +68,11 @@ export class CheckoutPaymentsPage extends CheckoutPersonalInfoPage {
   };
 
   // ========================== Assertion Methods ==========================
+  /**
+   * @memberof CheckoutPaymentsPage
+   */
   assertAccountPaymentsPage = async () => {
-    await this.page.frameLocator("//iframe[@title='payment iframe']");
+    this.page.frameLocator("//iframe[@title='payment iframe']");
     const frame = this.page.frameLocator("//iframe[@title='payment iframe']");
     if (frame != null) {
       // Click on Add Payment button
@@ -72,11 +80,33 @@ export class CheckoutPaymentsPage extends CheckoutPersonalInfoPage {
       await expect(locator).toContainText('How would you like to pay?');
     } else throw new Error('No such frame');
   };
+  /**
+   * @memberof CheckoutPaymentsPage
+   */
   assertTermsOfServiceNewTab = async (): Promise<Page> => {
     const [newPage] = await Promise.all([this.context.waitForEvent('page'), await this.page.click(lnkTermsOfService)]);
     await newPage.waitForLoadState();
     await expect(newPage).toHaveTitle('Terms of Service Notice - LegalShield');
     return newPage;
   };
+
+  // TODO: research why this method not finding text and implement step in e2e tests
+  /**
+   * @param {string} term
+   * @param {string} cost
+   * @memberof CheckoutPaymentsPage
+   */
+  assertPurchaseAgreementVerbiage = async (term: string, cost: string): Promise<void> => {
+    console.log(' - accountPaymentPage.assertPurchaseAgreementVerbiage');
+    this.page.frameLocator("//iframe[@title='payment iframe']");
+    const frame = this.page.frameLocator("//iframe[@title='payment iframe']");
+    if (frame != null) {
+      // Click on Add Payment button
+      await this.clickBankDraftBtn();
+      await this.assertElementHasText(
+        txtBankDraftTermsOfServiceAgreement,
+        `authorize ${term.toLowerCase()} recurring subscription charge of ${cost}.`
+      );
+    } else throw new Error('No such frame');
+  };
 }
-// iframe

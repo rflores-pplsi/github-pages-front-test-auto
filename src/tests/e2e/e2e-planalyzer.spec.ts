@@ -30,13 +30,13 @@ for (const tc of idshieldCanadaData.filter((tc) => tc.disabled == false)) {
     // Personal Info Assertions
     await checkoutConfirmationPage.assertPlanNameAndCost(tc.planName, tc.planCost);
     await checkoutConfirmationPage.assertPlanNameDisplayedInSummary(tc.planName);
-    await checkoutConfirmationPage.assertMonthlyLabelAndTotal(tc.totalCost);
+    await checkoutConfirmationPage.assertTermLabelAndTotal(tc.totalCost);
     await checkoutConfirmationPage.assertTotalDueToday(tc.totalDueToday);
     await checkoutConfirmationPage.clickSaveAndContinueButton();
     await checkoutConfirmationPage.captureOrderSummaryWithoutTier();
     // Payment Assertions
     await checkoutConfirmationPage.assertPlanNameDisplayedInSummary(tc.planName);
-    await checkoutConfirmationPage.assertMonthlyLabelAndTotal(tc.totalCost);
+    await checkoutConfirmationPage.assertTermLabelAndTotal(tc.totalCost);
     await checkoutConfirmationPage.assertTotalDueToday(tc.totalDueToday);
     await checkoutConfirmationPage.navigateFromPaymentBankDraftPageToConfirmationPageCanada();
     // Confirmation Assertions
@@ -90,13 +90,13 @@ for (const tc of legalshieldUsData.filter((tc) => tc.run == true)) {
     // Personal Info Assertions
     // await checkoutConfirmationPage.assertPlanNameAndCost(tc.planName, tc.planCost); -> want to use but not working as expected
     await checkoutConfirmationPage.assertPlanNameDisplayedInSummary(tc.planName);
-    await checkoutConfirmationPage.assertMonthlyLabelAndTotal(tc.totalCost);
+    await checkoutConfirmationPage.assertTermLabelAndTotal(tc.totalCost);
     await checkoutConfirmationPage.clickSaveAndContinueButton();
     await checkoutConfirmationPage.captureOrderSummaryWithoutTier();
     // Payment Assertions
     // await checkoutConfirmationPage.assertPlanNameAndCost(tc.planName, tc.planCost); -> want to use but not working as expected
     await checkoutConfirmationPage.assertPlanNameDisplayedInSummary(tc.planName);
-    await checkoutConfirmationPage.assertMonthlyLabelAndTotal(tc.totalCost);
+    await checkoutConfirmationPage.assertTermLabelAndTotal(tc.totalCost);
     await checkoutConfirmationPage.navigateFromPaymentBankDraftPageToConfirmationPage();
     // Confirmation Assertions
     await checkoutConfirmationPage.assertMembershipTileIsDisplayed(tc.planType);
