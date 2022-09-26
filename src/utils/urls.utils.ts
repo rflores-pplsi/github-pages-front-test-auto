@@ -156,11 +156,17 @@ export default class UrlsUtils {
     login: {
       url: `https://associate-office.${envUrlString}legalshield.com/`,
     },
+    ppsliprospect: {
+      url: `https://associate-office.${envUrlString}legalshield.com/?vendor=nowapp`,
+    },
     perks: {
       url: `https://associate-office.${envUrlString}legalshield.com/perks`,
     },
     reportsbusinessorganizational: {
       url: `https://associate-office.${envUrlString}legalshield.com/reports/business/organizational`,
+    },
+    reportsbusinesspersonal: {
+      url: `https://associate-office.${envUrlString}legalshield.com/reports/business/personal`,
     },
     reportscommissions: {
       url: `https://associate-office.${envUrlString}legalshield.com/reports/commissions`,

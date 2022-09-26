@@ -67,3 +67,11 @@ export const revenueReports = {
   username: process.env[`REVENUE_REPORTS_USERNAME_${env.toUpperCase()}`],
   password: process.env[`REVENUE_REPORTS_PASSWORD_${env.toUpperCase()}`],
 };
+export const businessReports = {
+  username: process.env[`ASSOCIATE_REPORTS_BUSINESS_USERNAME_${env.toUpperCase()}`],
+  password: process.env[`ASSOCIATE_REPORTS_BUSINESS_PASSWORD_${env.toUpperCase()}`],
+};
+export const profilePicker = {
+  username: process.env[`PROFILE_PICKER_USERNAME_ML_AC_${env.toUpperCase()}`],
+  password: process.env[`PROFILE_PICKER_PASSWORD_ML_AC_${env.toUpperCase()}`],
+};
