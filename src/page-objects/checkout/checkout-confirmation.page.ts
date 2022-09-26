@@ -26,6 +26,11 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   static txtTotalPriceLabel: string;
   // ========================== Process Methods ============================
 
+  /**
+   * @param {Response} response
+   * @param {Array<ProductDetails>} productDetails
+   * @memberof CheckoutConfirmationPage
+   */
   logFriendlyIDs = async (response: Response, productDetails: Array<ProductDetails>) => {
     const responseBody = await response.json();
     let i = 0;
@@ -106,6 +111,10 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
 
   // ========================== Assertion Methods ==========================
 
+  /**
+   * @param {Array<ProductDetails>} productDetails
+   * @memberof CheckoutConfirmationPage
+   */
   assertNameCostAndBillingFrequencyOnConfirmationPageForAllProducts = async (productDetails: Array<ProductDetails>) => {
     console.log('- checkoutConfirmationPage.assertNameCostAndBillingFrequencyForAllProducts');
     for (const pd of productDetails) {
@@ -187,6 +196,9 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
     await this.assertElementNotOnPage(lblMemberNumber);
   };
 
+  /**
+   * @memberof CheckoutConfirmationPage
+   */
   assertIdShieldMembershipIsDisplayed = async () => {
     console.log(' - checkoutConfirmationPage.assertIdShieldMembershipIsDisplayed');
     const ele = '//h2[contains(@class,"membership-title") and contains (.,"IDShield Membership")]';
@@ -257,6 +269,9 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
     await this.assertElementIsHidden(ele);
   };
 
+  /**
+   * @memberof CheckoutConfirmationPage
+   */
   assertNoPlanCostsAreDisplayedInConfirmationPageOrderSummary = async () => {
     console.log(' - checkoutConfirmationPage.assertNoPlanCostsAreDisplayedInConfirmationPageOrderSummary');
     const ele = `//div[contains(@class,"plan-details-card")]//h3[contains(@class,"plan-price")]`;
@@ -324,6 +339,9 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
     }
   };
 
+  /**
+   * @memberof CheckoutConfirmationPage
+   */
   assertTermsOfServiceLanguageAndLink = async () => {
     console.log(' - checkoutConfirmationPage.assertTermsOfServiceLanguageAndLink');
     await this.assertElementIsVisible(txaTermsOfServiceLanguage);

@@ -87,7 +87,7 @@ for (const tc of legalshieldIdShieldData.filter((tc) => tc.disabled == false)) {
 // LegalShield - Annual
 for (const tc of legalshieldIdShieldAnnualData.filter((tc) => tc.disabled == false)) {
   for (const region of tc.regions) {
-    test.only(`${tc.testCaseName} - ${region} @legalshield @testHarnessCheckoutRegression`, async ({ page }) => {
+    test(`${tc.testCaseName} - ${region} @legalshield @testHarnessCheckoutRegression`, async ({ page }) => {
       console.log(`Test Case: ${tc.testCaseName} - ${region}`);
       // Select Plans and get to Personal Info Page
       await test.step(`Navigate to Test Harness - LegalShield}`, async () => {
