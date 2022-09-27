@@ -1,3 +1,4 @@
+import { ProductDetails } from '../../tests/e2e/data/type-definitions';
 import { LegalshieldTestHarnessCartComponent } from './legalshield-test-harness-cart.component'; // import the LoginPage for extension
 
 // ========================== Selectors ==================================
@@ -22,8 +23,9 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
    */
   selectRegionFromDropdown = async (region: string) => {
     console.log(' - legalshieldTestHarnessMenuPage.selectRegionFromDropdown');
-    await this.clickRegionSelectDropdown();
-    await this.clickOnElement(`//select[contains(@class,"lsc_region_selector")]//option[contains(.,"${region}")]`);
+    await this.selectFromDropDownMenu(ddlRegionSelector, region);
+    // await this.clickRegionSelectDropdown();
+    // await this.clickOnElement(`//select[contains(@class,"lsc_region_selector")]//option[contains(.,"${region}")]`);
   };
 
   /**
@@ -38,8 +40,22 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
       await this.clickProductButton(pn[0]);
       if (pn[0].includes('Small Business')) {
         // Complete the questionairre with nos
-        await this.completeQualifyingQuestionairreWithNos();
+        await this.completeQualifyingQuestionnaireWithNos();
       }
+      await this.page.waitForLoadState('domcontentloaded');
+    }
+  };
+
+  /**
+   * @param {Array<Array<string>>} productDetails
+   * @memberof LegalshieldTestHarnessMenuPage
+   */
+  addProductsByNameAndShortCode = async (productDetails: Array<ProductDetails>) => {
+    console.log(' - legalshieldTestHarnessMenuPage.addProducts');
+    for (const pd of productDetails) {
+      await this.clickOnElement(
+        `//div[contains(@class,"plan-layout")]//h1[text()="${pd.productName}"]/following-sibling::a[contains(.,"${pd.shortCode}")]`
+      );
       await this.page.waitForLoadState('domcontentloaded');
     }
   };
@@ -47,8 +63,8 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
   /**
    * @memberof LegalshieldTestHarnessMenuPage
    */
-  completeQualifyingQuestionairreWithNos = async () => {
-    console.log(' - legalshieldTestHarnessMenuPage.completeQualifyingQuestionairreWithNos');
+  completeQualifyingQuestionnaireWithNos = async () => {
+    console.log(' - legalshieldTestHarnessMenuPage.completeQualifyingQuestionnaireWithNos');
     await this.clickPubliclyTradedNoRadioButton();
     await this.clickNonProfitNoRadioButton();
     await this.clickAddToCartButton();

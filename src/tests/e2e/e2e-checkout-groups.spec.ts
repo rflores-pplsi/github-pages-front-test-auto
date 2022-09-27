@@ -28,7 +28,7 @@ for (const tc of checkoutGroupsData.filter((tc) => tc.disabled == false)) {
 
     // // Personal Info Assertions
     await checkoutConfirmationPage.assertAllProductNamesAndCosts(tc.productNamesAndCosts);
-    await checkoutConfirmationPage.assertMonthlyLabelAndTotal(tc.monthlyTotal);
+    await checkoutConfirmationPage.assertTermLabelAndTotal(tc.monthlyTotal);
     // // Save and continue to the Payment Page
     // await checkoutConfirmationPage.completeBusinessInfoForm();
     // await checkoutConfirmationPage.clickSaveAndContinueButton();
