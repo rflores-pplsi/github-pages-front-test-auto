@@ -13,7 +13,6 @@ const pPlans = "//div[@class='lsux-row half children2 content-row mb-4 mt-4 firs
 const pPlanPrice = "//div[@class='lsux-row half children2 content-row mb-4 mt-4 first-plan']/div[@class='lsux-col pr-0 right-label-col']/div/p";
 const txtTotalLabel = "//p[contains(text(),'Monthly Total:')]";
 const txtTotalPriceLabel = "//div[@class='lsux-row eight-four children2 footer-row mb-0 py-4']/div[@class='lsux-col pr-0 right-label-col']/div/p";
-const conMembershipWrapper = '//div[contains(@class,"membership-wrapper")]';
 
 // Bank Draft Selectors for Canada
 const txtTransitNumber = "[placeholder='Transit Number']";
@@ -26,6 +25,19 @@ const txtInstitutionNumber = "[placeholder='Institution Number']";
  */
 export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPage {
   // ========================== Process Methods ============================
+  fillBankDraftFormAndSubmit = async () => {
+    console.log(' - checkoutPaymentPage.fillBankDraftForm');
+    // Fillout the Bank Draft form
+    await this.fillAccountNumberTxt(DataUtils.data.testingHarness.us.bd.Account);
+    await this.page.keyboard.press('Tab');
+    await this.fillRoutingNumberTxt(DataUtils.data.testingHarness.us.bd.Routing);
+    await this.page.keyboard.press('Tab');
+    await this.fillAccountHolderNameTxt(DataUtils.data.testingHarness.us.bd.name);
+    await this.page.keyboard.press('Tab');
+    await this.page.pause();
+    await this.clickPurchaseBtn();
+    await this.page.waitForSelector(conMembershipWrapper, { timeout: 50000 });
+  };
 
   /**
    * @memberof CheckoutPaymentsBankDraftPage
