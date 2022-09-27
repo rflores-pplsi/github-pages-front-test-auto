@@ -8,9 +8,7 @@ const txtRoutingNumber = "[placeholder='Routing Number']";
 const txtAccountHolderName = "[placeholder='Account Holder Name']";
 const txtBankName = "[placeholder='Bank Name']";
 const btnPurchase = '#savebd';
-const txtWelcomeToLegalshiledFamily = 'h1.lsux-heading.confirmation-title.lsux-heading--t28';
-// const conPlans =
-//   "//div[@class='lsux-row half children2 content-row mb-4 mt-4 first-plan']";
+const txtWelcomeToLegalShieldFamily = 'h1.lsux-heading.confirmation-title.lsux-heading--t28';
 const pPlans = "//div[@class='lsux-row half children2 content-row mb-4 mt-4 first-plan']/div/div/div/p";
 const pPlanPrice = "//div[@class='lsux-row half children2 content-row mb-4 mt-4 first-plan']/div[@class='lsux-col pr-0 right-label-col']/div/p";
 const txtTotalLabel = "//p[contains(text(),'Monthly Total:')]";
@@ -20,11 +18,10 @@ const txtTotalPriceLabel = "//div[@class='lsux-row eight-four children2 footer-r
 const txtTransitNumber = "[placeholder='Transit Number']";
 const txtInstitutionNumber = "[placeholder='Institution Number']";
 
-// create instance of Page
-
 /**
  * @export
- * @class AccountPaymentsBankDraftPage
+ * @class CheckoutPaymentsBankDraftPage
+ * @extends {CheckoutPaymentsCreditCardPage}
  */
 export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPage {
   // ========================== Process Methods ============================
@@ -42,29 +39,86 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
     await this.page.waitForSelector(conMembershipWrapper, { timeout: 50000 });
   };
 
-  fillOrderSummarypPlanValue = async (): Promise<string> => {
+  /**
+   * @memberof CheckoutPaymentsBankDraftPage
+   */
+  fillOrderSummaryPlanValue = async (): Promise<string> => {
     console.log(' - checkoutPaymentBankDraftPage.fillOrderSummarypPlanValue');
-    // Fillout the Bank Draft form
+    // Fill out the Bank Draft form
     return this.page.locator(pPlans).innerText();
   };
-  fillOrderSummarypPlanPriceValue = async (): Promise<string> => {
+
+  /**
+   * @memberof CheckoutPaymentsBankDraftPage
+   */
+  fillOrderSummaryPlanPriceValue = async (): Promise<string> => {
     console.log(' - checkoutPaymentBankDraftPage.fillOrderSummarypPlanPriceValue');
-    // Fillout the Bank Draft form
+    // Fill out the Bank Draft form
     return this.page.locator(pPlanPrice).innerText();
   };
-  fillOrderSummarytxtTotalLabelValue = async (): Promise<string> => {
+
+  /**
+   * @memberof CheckoutPaymentsBankDraftPage
+   */
+  fillOrderSummaryTxtTotalLabelValue = async (): Promise<string> => {
     console.log(' - checkoutPaymentBankDraftPage.fillOrderSummarytxtTotalLabelValue');
-    // Fillout the Bank Draft form
+    // Fill out the Bank Draft form
     return this.page.locator(txtTotalLabel).innerText();
   };
-  fillOrderSummarytxtTotalPriceLabelValue = async (): Promise<string> => {
+
+  /**
+   * @memberof CheckoutPaymentsBankDraftPage
+   */
+  fillOrderSummaryTxtTotalPriceLabelValue = async (): Promise<string> => {
     console.log(' - checkoutPaymentBankDraftPage.fillOrderSummarytxtTotalPriceLabelValue');
-    // Fillout the Bank Draft form
+    // Fill out the Bank Draft form
     return this.page.locator(txtTotalPriceLabel).innerText();
   };
-  fillBankDraftFormForCanada = async () => {
-    console.log(' - checkoutPaymentPage.fillBankDraftFormForCanada');
-    // Fillout the Bank Draft form
+
+  /**
+   * @param {string} market
+   * @memberof CheckoutPaymentsBankDraftPage
+   */
+  fillMarketBankDraftFormAndSubmit = async (market: string) => {
+    console.log(' - checkoutPaymentPage.fillMarketBankDraftFormAndSubmit');
+    switch (market) {
+      case 'US': {
+        await this.fillUsBankDraftFormAndSubmit();
+        break;
+      }
+      case 'CA': {
+        await this.fillCaBankDraftFormAndSubmit();
+        break;
+      }
+      default: {
+        console.log('Market entered into data sheet cannot be found in regions util');
+        break;
+      }
+    }
+  };
+
+  /**
+   * @memberof CheckoutPaymentsBankDraftPage
+   */
+  fillUsBankDraftFormAndSubmit = async () => {
+    console.log(' - checkoutPaymentPage.fillBankDraftForm');
+    // Fill out the Bank Draft form
+    await this.fillAccountNumberTxt('000000000');
+    await this.page.keyboard.press('Tab');
+    await this.fillRoutingNumberTxt('000000000');
+    await this.page.keyboard.press('Tab');
+    await this.fillAccountHolderNameTxt('Education Employee');
+    await this.page.keyboard.press('Tab');
+    await this.clickPurchaseBtn();
+    await this.page.waitForSelector(conMembershipWrapper, { timeout: 90000 });
+  };
+
+  /**
+   * @memberof CheckoutPaymentsBankDraftPage
+   */
+  fillCaBankDraftFormAndSubmit = async () => {
+    console.log(' - checkoutPaymentPage.fillCaBankDraftFormAndSubmit');
+    // Fill out the Bank Draft form
     await this.page.waitForLoadState();
     await this.fillAccountNumberForCaTxt(DataUtils.data.testingHarness.ca.bd.Account);
     await this.page.keyboard.press('Tab');
@@ -75,8 +129,14 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
     await this.fillAccountHolderNameTxt(DataUtils.data.testingHarness.ca.bd.name);
     await this.page.keyboard.press('Tab');
     await this.clickPurchaseBtn();
+    await this.page.waitForSelector(conMembershipWrapper, { timeout: 50000 });
   };
+
   // ========================== Navigate Methods ===========================
+  /**
+   * @param {string} state
+   * @memberof CheckoutPaymentsBankDraftPage
+   */
   navigateToPaymentsBankDraftPage = async (state: string): Promise<void> => {
     console.log(' - checkoutPaymentPage.navigateToPaymentsBankDraftPage');
     await this.navigateToPaymentsPage(state);
@@ -97,6 +157,10 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
 
   // ========================== fill Text Box Methods ======================
   // Fill  Account Number Method
+  /**
+   * @param {string} account
+   * @memberof CheckoutPaymentsBankDraftPage
+   */
   fillAccountNumberTxt = async (account: string) => {
     const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
     console.log(' - checkoutPaymentPage.fillAccountNumberTxt');
@@ -105,7 +169,12 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
     await txtAccountNumbertst1.type('1000123546');
     // await this.fillTextBox(txtAccountNumber, account);
   };
+
   // Fill  Routing Number Method
+  /**
+   * @param {string} routing
+   * @memberof CheckoutPaymentsBankDraftPage
+   */
   fillRoutingNumberTxt = async (routing: string) => {
     console.log(' - checkoutPaymentPage.fillRoutingNumberTxt');
     // Switch to frame
@@ -117,6 +186,11 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
       // await this.fillTextBox(txtRoutingNumber, routing);
     } else throw new Error('No such frame');
   };
+
+  /**
+   * @param {string} accountholdrname
+   * @memberof CheckoutPaymentsBankDraftPage
+   */
   fillAccountHolderNameTxt = async (accountholdrname: string) => {
     console.log(' - checkoutPaymentPage.fillAccountHolderNameTxt');
     // Switch to frame
@@ -128,6 +202,11 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
       // await this.fillTextBox(txtAccountHolderName, accountholdrname);
     } else throw new Error('No such frame');
   };
+
+  /**
+   * @param {string} bankname
+   * @memberof CheckoutPaymentsBankDraftPage
+   */
   fillBankNameTxt = async (bankname: string) => {
     console.log(' - checkoutPaymentPage.fillBankNameTxt');
     // Switch to frame
@@ -137,7 +216,12 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
       await this.fillTextBox(txtBankName, bankname);
     } else throw new Error('No such frame');
   };
+
   // Fill  Account Number Method for Canada
+  /**
+   * @param {string} account
+   * @memberof CheckoutPaymentsBankDraftPage
+   */
   fillAccountNumberForCaTxt = async (account: string) => {
     const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
     console.log(' - checkoutPaymentPage.fillAccountNumberForCaTxt');
@@ -146,7 +230,12 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
     await txtAccountNumbertst2.type(account);
     // await this.fillTextBox(txtAccountNumber, account);
   };
+
   // Fill Transit Number Method
+  /**
+   * @param {string} transitNumber
+   * @memberof CheckoutPaymentsBankDraftPage
+   */
   fillTransitNumberTxt = async (transitNumber: string) => {
     console.log(' - checkoutPaymentPage.fillTransitNumberTxt');
     // Switch to frame
@@ -157,7 +246,12 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
       await txtTransitNumberTxt.type(transitNumber);
     } else throw new Error('No such frame');
   };
+
   // Fill Institution Number Method
+  /**
+   * @param {string} routing
+   * @memberof CheckoutPaymentsBankDraftPage
+   */
   fillInstitutionNumberTxt = async (routing: string) => {
     console.log(' - checkoutPaymentPage.fillInstitutionNumberTxt');
     // Switch to frame
@@ -168,7 +262,11 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
       await txtInstitutionNumberTxt.type(routing);
     } else throw new Error('No such frame');
   };
+
   // ========================== Click Methods ==============================
+  /**
+   * @memberof CheckoutPaymentsBankDraftPage
+   */
   clickPurchaseBtn = async () => {
     console.log(' - checkoutPaymentPage.clickPurchaseBtn');
     // Switch to frame
@@ -178,11 +276,15 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
       await frmPayment.locator(btnPurchase).click();
     } else throw new Error('No such frame');
   };
+
   // ========================== Assertion Methods ==========================
-  assertWelcomeToLegalshiledFamilyPage = async () => {
+  /**
+   * @memberof CheckoutPaymentsBankDraftPage
+   */
+  assertWelcomeToLegalShieldFamilyPage = async () => {
     console.log(' - checkoutPaymentPage.assertWelcomeToLegalshiledFamilyPage');
-    const welcome = await this.page.waitForSelector(txtWelcomeToLegalshiledFamily);
+    const welcome = await this.page.waitForSelector(txtWelcomeToLegalShieldFamily);
     console.log(welcome.innerText());
-    await this.assertElementContainsText(txtWelcomeToLegalshiledFamily, 'Welcome!');
+    await this.assertElementContainsText(txtWelcomeToLegalShieldFamily, 'Welcome!');
   };
 }

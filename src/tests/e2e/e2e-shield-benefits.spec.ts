@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
 import { CheckoutConfirmationPage } from '../../page-objects/checkout/checkout-confirmation.page';
 import { basicUser } from '../../utils/user.utils';
-import selfPayData from './data/shield-benefits/e2e-shield-benefits-us-self-pay.json';
+import selfPayData from './data/shield-benefits/e2e-shield-benefits-self-pay.json';
 import payrollDeductData from './data/shield-benefits/e2e-shield-benefits-us-payroll-deduct.json';
 import fringeData from './data/shield-benefits/e2e-shield-benefits-us-fringe.json';
 import partialFringeData from './data/shield-benefits/e2e-shield-benefits-us-partial-fringe.json';
@@ -19,22 +19,24 @@ test.beforeEach(async ({ page }) => {
 
 // Self-Pay Configurations - Single Plan
 for (const tc of selfPayData.filter((tc) => tc.disabled == false)) {
-  for (const state of tc.regions) {
-    test.only(`${tc.testCaseName} - ${state} @selfPay @shieldBenefits @shieldBenefitsUs`, async ({ page }) => {
-      console.log(`Test Case: ${tc.testCaseName} - ${state}`);
+  for (const region of tc.regions) {
+    test(`${tc.testCaseName} - ${region} @selfPay @shieldBenefits`, async ({ page }) => {
+      console.log(`Test Case: ${tc.testCaseName} - ${region}`);
       // Crete Cart from Pricing Page and Continue to Personal Info Page
-      await test.step(`Navigate to Shield Benefits Pricing Page for Group: ${tc.groupNumber}`, async () => {
-        await checkoutConfirmationPage.navigateToShieldBenefitsPricingPage(tc.groupNumber);
+      await test.step(`Navigate to Shield Benefits Pricing Page for Group: ${tc.groupNameOrNumber}`, async () => {
+        await checkoutConfirmationPage.navigateToShieldBenefitsGroupOverview(tc.groupNameOrNumber);
+        await checkoutConfirmationPage.clickShieldBenefitsPricingTab();
       });
-      await test.step(`Select State: ${state}`, async () => {
-        await checkoutConfirmationPage.selectStateOrProvince(state);
+      await test.step(`Select State: ${region}`, async () => {
+        await checkoutConfirmationPage.selectStateOrProvince(region);
       });
       await test.step(`Select Payment Frequency: ${tc.payFrequency}`, async () => {
         await checkoutConfirmationPage.selectPaymentFrequency(tc.payFrequency);
       });
-      await test.step(`Click Enroll Now for Plan: ${tc.planName} with Tier: ${tc.tierName}`, async () => {
-        await checkoutConfirmationPage.clickEnrollNowButtonFromShieldBenefitsPricingPage(tc.planName, tc.tierName);
+      await test.step(`Click Enroll Now for Plan: ${tc.planSupplementName} with Tier: ${tc.tierName}`, async () => {
+        await checkoutConfirmationPage.clickPricingPageSinglePlanEnrollNowButton(tc.planSupplementName);
       });
+
       await test.step(`Login with Credentials - Email:  ${basicUser.email}, Password: ${basicUser.password}`, async () => {
         await checkoutConfirmationPage.login(basicUser.email, basicUser.password);
       });
@@ -49,8 +51,8 @@ for (const tc of selfPayData.filter((tc) => tc.disabled == false)) {
         await checkoutConfirmationPage.assertPayPeriodTotal(tc.totalCost);
       });
       // Complete Necessary Forms and Continue to Payment Page
-      await test.step(`Change Address to a valid one for State: ${state}`, async () => {
-        await checkoutConfirmationPage.changeAddressUs(state);
+      await test.step(`Change Address to a valid one for Region: ${region}`, async () => {
+        await checkoutConfirmationPage.changeAddressForMarket(tc.market, region);
       });
       await test.step(`Complete Business Form if necessary`, async () => {
         await checkoutConfirmationPage.completeBusinessInfoForm();
@@ -64,21 +66,22 @@ for (const tc of selfPayData.filter((tc) => tc.disabled == false)) {
       });
       await test.step(`Assert Pay Period Total: ${tc.totalCost}`, async () => {
         await checkoutConfirmationPage.assertPayPeriodTotal(tc.totalCost);
-        // Fill out Payment Method and Continue to Confirmation Page
       });
+      // Fill out Payment Method and Continue to Confirmation Page
+
       await test.step(`Click Bank Draft Tab`, async () => {
         await checkoutConfirmationPage.clickBankDraftBtn();
       });
-      await checkoutConfirmationPage.fillBankDraftFormAndSubmit();
+      await checkoutConfirmationPage.fillMarketBankDraftFormAndSubmit(tc.market);
       // Confirmation Assertions
       await test.step(`Assert Membership Tile is Displayed`, async () => {
         await checkoutConfirmationPage.assertMembershipTileIsDisplayed(tc.planType);
       });
       await test.step(`Assert Plan Name is Displayed in Confirmation Page Order Summary`, async () => {
-        await checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary(tc.planName);
+        await checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary(tc.planSupplementName);
       });
       await test.step(`Assert Plan Cost is Displayed in Confirmation Page Order Summary`, async () => {
-        await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName(tc.planName);
+        await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName(tc.planSupplementName);
       });
     });
   }
@@ -87,7 +90,7 @@ for (const tc of selfPayData.filter((tc) => tc.disabled == false)) {
 // Fringe Group Configurations - Single Plan
 for (const tc of fringeData.filter((tc) => tc.disabled == false)) {
   for (const state of tc.regions) {
-    test(`${tc.testCaseName} - ${state} @fringe @shieldBenefits @shieldBenefitsUs`, async ({ page }) => {
+    test(`${tc.testCaseName} - ${state} @fringe @shieldBenefits`, async ({ page }) => {
       console.log(`Test Case: ${tc.testCaseName} - ${state}`);
       // Crete Cart from Pricing Page and Continue to Personal Info Page
       await test.step(`Navigate to Shield Benefits Pricing Page for Group: ${tc.groupNumber}`, async () => {
@@ -146,7 +149,7 @@ for (const tc of fringeData.filter((tc) => tc.disabled == false)) {
 // Payroll Deduct Configurations - Single Plan
 for (const tc of payrollDeductData.filter((tc) => tc.disabled == false)) {
   for (const state of tc.regions) {
-    test(`${tc.testCaseName} - ${state} @payrollDeduct @shieldBenefits @shieldBenefitsUs`, async ({ page }) => {
+    test(`${tc.testCaseName} - ${state} @payrollDeduct @shieldBenefits`, async ({ page }) => {
       console.log(`Test Case: ${tc.testCaseName} - ${state}`);
       // Crete Cart from Pricing Page and Continue to Personal Info Page
       await test.step(`Navigate to Shield Benefits Pricing Page for Group: ${tc.groupNumber}`, async () => {
@@ -209,7 +212,7 @@ for (const tc of payrollDeductData.filter((tc) => tc.disabled == false)) {
 // Partial-Fringe Group Configurations - Single Plan
 for (const tc of partialFringeData.filter((tc) => tc.disabled == false)) {
   for (const state of tc.regions) {
-    test(`${tc.testCaseName} - ${state} @partialFringe @shieldBenefits @shieldBenefitsUs`, async ({ page }) => {
+    test(`${tc.testCaseName} - ${state} @partialFringe @shieldBenefits`, async ({ page }) => {
       console.log(`Test Case: ${tc.testCaseName} - ${state}`);
       // Crete Cart from Pricing Page and Continue to Personal Info Page
       await test.step(`Navigate to Shield Benefits Pricing Page for Group: ${tc.groupNumber}`, async () => {

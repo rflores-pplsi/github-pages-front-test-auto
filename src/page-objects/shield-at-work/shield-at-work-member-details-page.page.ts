@@ -69,7 +69,7 @@ export class ShieldAtWorkMemberDetailsPage extends OktaPage {
     console.log(' - ShieldAtWorkMemberDetailsPage.navigateToGroupPage');
     await this.page.goto(url);
     // Login through okta
-    await this.loginThroughOkta();
+    await this.loginThroughOktaGroupEnrollment();
     // Search group by group number
     await this.groupSearchByGroupNumber('111452');
     // Click on View group button

@@ -29,7 +29,7 @@ const config: PlaywrightTestConfig = {
     // },
   ],
   reporter: [['dot'], ['json', { outputFile: 'test-result.json' }], ['html', { open: 'always' }]],
-  retries: 1,
+  retries: 0,
   // setting workers to '1' disables parallel running, workers can also be set at runtime in the command line
   workers: 1,
 };

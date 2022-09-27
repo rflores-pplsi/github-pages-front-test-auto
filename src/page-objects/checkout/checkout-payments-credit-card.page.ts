@@ -40,22 +40,22 @@ export class CheckoutPaymentsCreditCardPage extends CheckoutPaymentsPage {
     await this.page.keyboard.press('Tab');
     await this.clickCreditCardPurchaseBtn();
   };
-  fillOrderSummarypPlanValue = async (): Promise<string> => {
+  fillOrderSummaryPlanValue = async (): Promise<string> => {
     console.log(' - checkoutPaymentBankDraftPage.fillOrderSummarypPlanValue');
     // Fillout the Bank Draft form
     return this.page.locator(pPlans).innerText();
   };
-  fillOrderSummarypPlanPriceValue = async (): Promise<string> => {
+  fillOrderSummaryPlanPriceValue = async (): Promise<string> => {
     console.log(' - checkoutPaymentBankDraftPage.fillOrderSummarypPlanPriceValue');
     // Fillout the Bank Draft form
     return this.page.locator(pPlanPrice).innerText();
   };
-  fillOrderSummarytxtTotalLabelValue = async (): Promise<string> => {
+  fillOrderSummaryTxtTotalLabelValue = async (): Promise<string> => {
     console.log(' - checkoutPaymentBankDraftPage.fillOrderSummarytxtTotalLabelValue');
     // Fillout the Bank Draft form
     return this.page.locator(txtTotalLabel).innerText();
   };
-  fillOrderSummarytxtTotalPriceLabelValue = async (): Promise<string> => {
+  fillOrderSummaryTxtTotalPriceLabelValue = async (): Promise<string> => {
     console.log(' - checkoutPaymentBankDraftPage.fillOrderSummarytxtTotalPriceLabelValue');
     // Fillout the Bank Draft form
     return this.page.locator(txtTotalPriceLabel).innerText();
@@ -147,7 +147,7 @@ export class CheckoutPaymentsCreditCardPage extends CheckoutPaymentsPage {
     } else throw new Error('No such frame');
   };
   // ========================== Assertion Methods ==========================
-  assertWelcomeToLegalshiledFamilyPage = async () => {
+  assertWelcomeToLegalShieldFamilyPage = async () => {
     console.log(' - checkoutPaymentPage.assertWelcomeToLegalshiledFamilyPage');
     const welcome = await this.page.waitForSelector(txtWelcomeToLegalshiledFamily);
     console.log(welcome.innerText());

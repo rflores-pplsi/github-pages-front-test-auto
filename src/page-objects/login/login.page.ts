@@ -10,7 +10,7 @@ const lnkSignUp: string = 'a:has-text("Sign up")';
 const lnkSignIn: string = '//div[@class="content"]//a[contains(.,"Sign in")]';
 const lnkForgotPassword: string = 'a:has-text("Forgot Password?")';
 const lnkForgotEmailUsername: string = 'a:has-text("Forgot Email/Username?")';
-
+const btnOk: string = "//button[contains(@class,'lsux-modal-button-pad')]";
 /**
  * @export
  * @class LoginPage
@@ -43,6 +43,7 @@ export class LoginPage extends BasePage {
       // Click on Ok pop up to submit login form
       // no Ok pop up button in prod yet -> need to comment out this line before run
       if (await this.page.locator(btnOk).isVisible()) await this.clickOnElement(btnOk);
+
       // Wait for page to finish loading
       await this.page.waitForLoadState('networkidle', { timeout: 250000 });
     } else {
