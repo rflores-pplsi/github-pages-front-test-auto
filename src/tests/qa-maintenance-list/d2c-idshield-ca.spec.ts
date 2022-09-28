@@ -22,7 +22,7 @@ test.beforeEach(async ({ page, request }) => {
   test.slow();
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
-test.only('D2E IDShield CA using Testing Harness', async ({ page }) => {
+test('D2E IDShield CA using Testing Harness', async ({ page }) => {
   test.slow;
   await test.step('Navigate to Testing Harness', async () => {
     await d2CLegalShieldCaPage.navigateToTestingHarnessPage('d2cIDShieldCA');
@@ -49,15 +49,18 @@ test.only('D2E IDShield CA using Testing Harness', async ({ page }) => {
   await test.step('Login Page > Sign-in as an existing account.', async () => {
     await d2CLegalShieldCaPage.loginLegalShieldCA('d2cIDShieldCA');
   });
-  await test.step('Select "Checkout" button to proceed with Checkout Process', async () => {
-    await d2CLegalShieldCaPage.selectCheckout('d2cIDShieldCA');
-  });
-  await test.step('Proceed with Checkout Process Flow > Personal Information Page > Fill out Form', async () => {
+  await test.step('change address', async () => {
     await checkoutPersonalInfoPage.changeAddressCanada(DataUtils.data.testingHarness.ca.bd.province.BC);
+  });
+  await test.step('Select "Checkout" button to proceed with Checkout Process', async () => {
+    // await d2CLegalShieldCaPage.selectCheckout('d2cIDShieldCA');
   });
   await test.step('Proceed to Payment Page > Complete Payment with BD transaction ', async () => {
     await checkoutPaymentsBankDraftPage.clickBankDraftBtn();
     await checkoutPaymentsBankDraftPage.fillBankDraftFormForCanada();
+    page.on('response', (response) => {
+      console.log('<<', response);
+    });
   });
   await test.step('Continue to Confirmation Page.', async () => {
     await d2CLegalShieldUSPage.assertWelcomelabel('d2cIDShieldUS');

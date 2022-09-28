@@ -48,7 +48,7 @@ const btnContactInfoContinue = 'button.shared-button.small';
 const rdoButtonUsername = '.mat-radio-container';
 const txtPassword = '#password';
 const txtConfirmPassword = '#confirm-password';
-const btnAssociateAccountContinue = '//button[contains(text(),"Continue")]';
+const btnAssociateAccountContinue = '//button[contains(text()," Continue")]';
 const rdoCheckByMail = '//mat-radio-button[@id="mat-radio-13"]/label/div[1]';
 const btnCommissionOptionContinue = '//button[contains(text(),"Continue")]';
 const txtNameOnCard = '#cardholder_name';
@@ -108,12 +108,12 @@ export class FrenchWalsCaPage extends OktaPage {
   changeStateinformation = async (state: string): Promise<void> => {
     console.log(' - FrenchWalsCaPage.ChangeStateinformation');
     // Click on change state
-    await this.page.waitForLoadState;
+    await this.page.waitForTimeout(1000);
     await this.page.waitForSelector(lnkChangeShoppingRegion);
     await this.page.locator(lnkChangeShoppingRegion).click({ force: true });
-    if (!(await this.page.locator(lnkChangeShoppingRegion).isVisible())) {
-      await this.page.locator(lnkChanger).click({ force: true });
-    }
+    // if (!(await this.page.locator(lnkChangeShoppingRegion).isVisible())) {
+    //   await this.page.locator(lnkChanger).click({ force: true });
+    // }
     // Select a state
     await this.page.waitForSelector(selectRegion);
     await this.selectFromDropDownMenu(selectRegion, state);
@@ -123,17 +123,26 @@ export class FrenchWalsCaPage extends OktaPage {
 
   getStartedThenPickAPlan = async (): Promise<void> => {
     console.log(' - FrenchWalsCaPage.getStartedThenPickAPlan');
-    await this.clickConsigueUnPlanBtn();
-    // Click on Next button
-    await this.clickPRÓXIMOBtn();
-    // Check #individual-bdl
-    await this.clickIndividualChkBox();
-    // Click on Next button
-    await this.clickNextWithFormBtn();
-    // Check No checkbox
-    await this.clickNoChkBox();
-    // Click on Add to Cart Button
-    await this.clickContinueBtn();
+    if (!(this.page.url() == 'https://lspro.noussommeslegalshield.ca/')) {
+      await this.clickOnElement('text=OBTENIR UN PLAN >> nth=2');
+      // Check No checkbox
+      await this.clickOnElement('#no');
+      // Click on Add to Cart Button
+      await this.clickOnElement('#associate-startup_modal_checkout_btn');
+    } else {
+      await this.clickConsigueUnPlanBtn();
+      // Click on Next button
+      await this.clickPRÓXIMOBtn();
+      // Check #individual-bdl
+      await this.clickIndividualChkBox();
+      // Click on Next button
+      await this.clickNextWithFormBtn();
+      // Check No checkbox
+      await this.page.waitForSelector(chkbNo);
+      await this.clickOnElement(chkbNo);
+      // Click on Add to Cart Button
+      await this.clickContinueBtn();
+    }
     // Click on Checkout Button
     await this.clickCheckoutBtn();
   };
@@ -168,9 +177,10 @@ export class FrenchWalsCaPage extends OktaPage {
     }
 
     // Click continue Button
-    // await this.page.keyboard.press('Tab');
-    await this.page.waitForSelector(btnContactInfoContinue);
-    await this.clickOnElement(btnContactInfoContinue);
+    await this.page.keyboard.press('Tab');
+    await this.page.keyboard.press('Tab');
+    await this.page.waitForSelector(btnAssociateAccountContinue);
+    await this.clickOnElement(btnAssociateAccountContinue);
   };
   createAUser = async (pass: string, confirmpass: string): Promise<void> => {
     console.log(' - FrenchWalsCaPage.createAUser');

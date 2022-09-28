@@ -11,13 +11,13 @@ test.beforeEach(async ({ page, request }) => {
   test.slow();
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
-test.only('English WALS-US', async ({ page }) => {
+test('French WALS-US', async ({ page }) => {
   test.slow;
   await test.step('Navigate to French-WALS-Ca page', async () => {
     await frenchWalsCaPage.navigateToFrenchWalsCaPage();
   });
   await test.step('Update the Province', async () => {
-    await frenchWalsCaPage.changeStateinformation('British Columbia');
+    await frenchWalsCaPage.changeStateinformation('la Colombie-Britannique');
   });
   await test.step('Get Started then pick a plan', async () => {
     await frenchWalsCaPage.getStartedThenPickAPlan();

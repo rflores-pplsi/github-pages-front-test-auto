@@ -106,8 +106,8 @@ export class EnglishWalsUSPage extends OktaPage {
   changeStateinformation = async (state: string): Promise<void> => {
     console.log(' - EnglishWalsUSPage.ChangeStateinformation');
     // Click on change state
-    await this.page.waitForLoadState;
-    await this.page.locator(lnkChange).isVisible;
+    this.page.waitForLoadState;
+    this.page.locator(lnkChange).isVisible;
     await this.page.locator(lnkChange).click({ force: true });
     // Select a state
     await this.page.waitForSelector(selectRegion);
@@ -180,8 +180,10 @@ export class EnglishWalsUSPage extends OktaPage {
     await this.page.locator('//*[@class="mat-radio-button mat-accent ng-star-inserted"][1]/label/div[2]').screenshot({ path: 'screenshot.png' });
     console.log(this.page.locator('//*[@class="mat-radio-button mat-accent ng-star-inserted"][1]/label/div[2]').innerHTML());
     // Enter a password
-    await this.fillTextBox(txtPassword, pass);
+    await this.page.waitForSelector(txtPassword);
+    await this.page.fill(txtPassword, pass);
     // Confirm Password
+    await this.page.waitForSelector(txtConfirmPassword);
     await this.fillTextBox(txtConfirmPassword, confirmpass);
     // click on continue button
     await this.clickOnElement(btnContactInfoContinue);
@@ -219,7 +221,10 @@ export class EnglishWalsUSPage extends OktaPage {
     console.log(' - EnglishWalsUSPage.filloutBankAccountInfo');
     // Locate an switch to the frame
     await this.page.waitForLoadState();
+    await this.page.waitForTimeout(7000);
+    this.page.frameLocator('#payment-method');
     const frmParent = this.page.frameLocator('#payment-method');
+    this.page.frameLocator('#paymentMethodFramePsx');
     const frmPayment = frmParent.frameLocator('#paymentMethodFramePsx');
     // Check Bank Draft name
     const bankDraft = frmPayment.locator(rdoBankDraft);
@@ -307,7 +312,7 @@ export class EnglishWalsUSPage extends OktaPage {
   assertWelcomelabel = async (): Promise<void> => {
     console.log(' - PrimericaGroupPage.assertContactInformationTxt');
     // Verify that the user made the purchase
-    await this.page.waitForLoadState;
+    this.page.waitForLoadState;
     await this.page.waitForSelector(lblWelcome);
     await this.assertElementContainsText(lblWelcome, 'Welcome to the LegalShield Family!');
     console.log('Welcome to the LegalShield Family!');

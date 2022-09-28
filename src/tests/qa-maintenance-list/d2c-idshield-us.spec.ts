@@ -21,7 +21,7 @@ test.beforeEach(async ({ page, request }) => {
   test.slow();
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
-test.only('D2E IDShield US using Testing Harness', async ({ page, request }) => {
+test('D2E IDShield US using Testing Harness', async ({ page, request }) => {
   test.slow;
   await test.step('Navigate to Testing Harness', async () => {
     await d2CLegalShieldCaPage.navigateToTestingHarnessPage('d2cIDShieldUS');

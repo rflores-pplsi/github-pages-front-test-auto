@@ -2,7 +2,6 @@ import { LegalshieldTestHarnessCartComponent } from './legalshield-test-harness-
 
 // ========================== Selectors ==================================
 
-const ddlRegionSelector = '//select[contains(@class,"lsc_region_selector")]';
 const btnPubliclyTradedNo: string = '#traded-company-no';
 const btnNonProfitNo: string = '#non-profit-no';
 const btnAddToCart: string = '#add-to-cart-btn';

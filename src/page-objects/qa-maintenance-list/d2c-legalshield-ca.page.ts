@@ -43,7 +43,11 @@ export class D2CLegalShieldCaPage extends OktaPage {
       await this.page.locator('#cart-container').screenshot({ path: 'Screenshots/testingHarness/' + lineofbusiness + 'Cart.png' });
       await this.clickOnElement('#checkout-btn');
     } else {
-      await this.page.waitForSelector('button:has-text("Continue")');
+      if (await this.page.locator('#lsc-header-cart-icon-desktop img').isVisible()) {
+        await this.page.waitForSelector('button:has-text("Continue")');
+      } else {
+        await this.clickOnElement('#lsc-header-cart-icon-desktop img');
+      }
       await this.page.locator('#root').screenshot({ path: 'Screenshots/testingHarness/' + lineofbusiness + 'Cart.png' });
       await this.clickOnElement('button:has-text("Continue")');
     }
