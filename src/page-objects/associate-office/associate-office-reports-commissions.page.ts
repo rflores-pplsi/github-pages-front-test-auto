@@ -128,7 +128,7 @@ export class ReportsCommissionsPage extends LoginPage {
   navigateToReportsCommissionsPage = async (): Promise<void> => {
     console.log(' - ReportsCommissionsPage.navigateToReportsCommissionsPage');
     // Navigate to Report Commission Page
-    await this.goTo(UrlsUtils.channelsUrls.reportscommissions.url);
+    await this.goTo(UrlsUtils.channelsUrls.reportsCommissions.url);
     await this.login(revenueReports.username, revenueReports.password);
     await this.page.click("h2:has-text('Harold Pinson')");
     await this.page.waitForSelector(tabRevenueReport);
@@ -137,7 +137,7 @@ export class ReportsCommissionsPage extends LoginPage {
   navigateToReportsCommissionsPage2 = async (): Promise<void> => {
     console.log(' - ReportsCommissionsPage.navigateToReportsCommissionsPage');
     // Navigate to Report Commission Page
-    await this.goTo(UrlsUtils.channelsUrls.reportscommissions.url);
+    await this.goTo(UrlsUtils.channelsUrls.reportsCommissions.url);
     await this.login(associateReportsCommissions.username, associateReportsCommissions.password);
     await this.page.waitForSelector(lblAssociateNumber);
   };
@@ -145,7 +145,7 @@ export class ReportsCommissionsPage extends LoginPage {
   navigateToReportsCommissionsPage3 = async (): Promise<void> => {
     console.log(' - ReportsCommissionsPage.navigateToReportsCommissionsPage');
     // Navigate to Report Commission Page
-    await this.goTo(UrlsUtils.channelsUrls.reportscommissions.url);
+    await this.goTo(UrlsUtils.channelsUrls.reportsCommissions.url);
     await this.login(associateReportsCommissions2.username, associateReportsCommissions2.password);
     await this.page.waitForSelector(lblAssociateNumber);
   };
@@ -153,7 +153,7 @@ export class ReportsCommissionsPage extends LoginPage {
   navigateToReportsCommissionsPage4 = async (): Promise<void> => {
     console.log(' - ReportsCommissionsPage.navigateToReportsCommissionsPage');
     // Navigate to Report Commission Page
-    await this.goTo(UrlsUtils.channelsUrls.reportscommissions.url);
+    await this.goTo(UrlsUtils.channelsUrls.reportsCommissions.url);
     await this.login(associateReportsCommissions3.username, associateReportsCommissions3.password);
     await this.page.waitForSelector(lblAssociateNumber);
   };

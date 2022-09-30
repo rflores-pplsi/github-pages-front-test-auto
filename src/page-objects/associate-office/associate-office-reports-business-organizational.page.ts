@@ -43,7 +43,7 @@ export class ReportsBusinessOrganizationalPage extends LoginPage {
   navigateToReportsBusinessOrganizationalPage = async (): Promise<void> => {
     console.log(' - ReportsBusinessOrganizationalPage.navigateToReportsBusinessOrganizationalPage');
     // Navigate to Business Organizational Page
-    await this.goTo(UrlsUtils.channelsUrls.reportsbusinessorganizational.url);
+    await this.goTo(UrlsUtils.channelsUrls.reportsBusinessOrganizational.url);
     await this.login(associateReportsCommissions.username, associateReportsCommissions.password);
     await this.page.waitForSelector(txaSearchBy);
   };
@@ -51,7 +51,7 @@ export class ReportsBusinessOrganizationalPage extends LoginPage {
   navigateToReportsBusinessPersonalPage = async (): Promise<void> => {
     console.log(' - ReportsBusinessOrganizationalPage.navigateToReportsBusinessPersonalPage');
     // Navigate to Business Personal Page
-    await this.goTo(UrlsUtils.channelsUrls.reportsbusinesspersonal.url);
+    await this.goTo(UrlsUtils.channelsUrls.reportsBusinessPersonal.url);
     await this.login(businessReports.username, businessReports.password);
     await this.page.waitForSelector(txaSearchBy);
   };
