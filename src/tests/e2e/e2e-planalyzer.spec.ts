@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
 import { CheckoutConfirmationPage } from '../../page-objects/checkout/checkout-confirmation.page';
 import { basicUser } from '../../utils/user.utils';
-import idshieldCanadaData from './data/e2e-checkout-idshield-canada.json';
+import idshieldCanadaData from './data/idshield/e2e-idshield-canada-monthly.json';
 import legalshieldUsData from './data/e2e-checkout-legalshield.json';
 
 // create instance of Page

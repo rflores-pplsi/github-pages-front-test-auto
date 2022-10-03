@@ -39,7 +39,7 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
 
       await this.clickProductButton(pn[0]);
       if (pn[0].includes('Small Business')) {
-        // Complete the questionairre with nos
+        // Complete the questionnaire with nos
         await this.completeQualifyingQuestionnaireWithNos();
       }
       await this.page.waitForLoadState('domcontentloaded');
@@ -56,6 +56,10 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
       await this.clickOnElement(
         `//div[contains(@class,"plan-layout")]//h1[text()="${pd.productName}"]/following-sibling::a[contains(.,"${pd.shortCode}")]`
       );
+      if (pd.productName.includes('Small Business')) {
+        // Complete the questionnaire with nos
+        await this.completeQualifyingQuestionnaireWithNos();
+      }
       await this.page.waitForLoadState('domcontentloaded');
     }
   };

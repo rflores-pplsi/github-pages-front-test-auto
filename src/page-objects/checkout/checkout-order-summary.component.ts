@@ -17,7 +17,6 @@ const orderSummaryWithoutCosts = new OrderSummaryWithoutCosts();
 const lnkEditOrder: string = 'button:has-text("Edit")';
 const imgHideOrderSummaryChevron: string = 'img[alt="nav_chevron_single_up."]';
 const imgShowOrderSummaryChevron: string = 'img[alt="nav_chevron_single_down."]';
-const lblBillingFrequency: string = '//p[contains(@class,"billing-frequency")]';
 const conOrderSummary: string = '//div[contains(@class,"order-summary")]';
 const txtPlanNames: string = '//div[contains(@class,"plan-name-row")]//p[1]';
 const txtTierNames: string = '//div[contains(@class,"plan-name-row")]//p//span[2]';
@@ -279,7 +278,7 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
    * @memberof CheckoutOrderSummaryComponent
    */
   assertAllProductNamesAndCosts = async (productDetails: Array<ProductDetails>): Promise<void> => {
-    console.log(' - checkoutOrderSummaryComponent.assertAllPlanNamesAndCosts');
+    console.log(' - checkoutOrderSummaryComponent.assertAllProductNamesAndCosts');
     for (const pd of productDetails) {
       let found: boolean = false;
       let expectedProductName: string = pd.productName;
@@ -343,7 +342,7 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
    * @memberof CheckoutOrderSummaryComponent
    */
   assertTermLabel = async (term: string): Promise<void> => {
-    console.log(' - checkoutOrderSummaryComponent.assertTermTotal');
+    console.log(' - checkoutOrderSummaryComponent.assertTermLabel');
     await this.assertElementHasText(txtTermTotalLabel, `${term} Total:`);
   };
 
@@ -357,9 +356,19 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
     await this.assertElementHasText(txtMonthlyTotalAmount, total);
   };
 
-  assertBillingFrequency = async (billingFrequency: string): Promise<void> => {
+  assertBillingFrequenciesForAllProducts = async (productDetails: Array<ProductDetails>): Promise<void> => {
     console.log(' - checkoutOrderSummaryComponent.assertBillingFrequency');
-    await this.assertElementContainsText(lblBillingFrequency, billingFrequency);
+    for (const pd of productDetails) {
+      if (pd.productName.includes('-')) {
+        // parse out supplement name from the testharness product name
+        const supplementName = pd.productName.split(' - ');
+        const eleBillingFrequency = `//div[contains(@class,"lsux-row half children2 content-row mb-4 mt-4") and contains(.,"${supplementName[1]}")]/following-sibling::div[1]`;
+        await this.assertElementContainsText(eleBillingFrequency, pd.term);
+      } else {
+        const eleBillingFrequency = `//div[contains(@class,"lsux-row half children2 content-row mb-4 mt-4") and contains(.,"${pd.productName}")]/following-sibling::div[1]`;
+        await this.assertElementContainsText(eleBillingFrequency, pd.term);
+      }
+    }
   };
 
   /**
