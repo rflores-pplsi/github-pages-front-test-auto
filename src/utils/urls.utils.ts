@@ -150,25 +150,25 @@ export default class UrlsUtils {
     taxForm: {
       url: `https://associate-office.${envUrlString}legalshield.com/reports/tax-forms`,
     },
-    businesscard: {
+    businessCard: {
       url: `https://associate-office.${envUrlString}legalshield.com/business-card`,
     },
     login: {
       url: `https://associate-office.${envUrlString}legalshield.com/`,
     },
-    ppsliprospect: {
+    pplsiProspect: {
       url: `https://associate-office.${envUrlString}legalshield.com/?vendor=nowapp`,
     },
     perks: {
       url: `https://associate-office.${envUrlString}legalshield.com/perks`,
     },
-    reportsbusinessorganizational: {
+    reportsBusinessOrganizational: {
       url: `https://associate-office.${envUrlString}legalshield.com/reports/business/organizational`,
     },
-    reportsbusinesspersonal: {
+    reportsBusinessPersonal: {
       url: `https://associate-office.${envUrlString}legalshield.com/reports/business/personal`,
     },
-    reportscommissions: {
+    reportsCommissions: {
       url: `https://associate-office.${envUrlString}legalshield.com/reports/commissions`,
     },
   };

@@ -42,7 +42,7 @@ export class LSEngagePage extends LoginPage {
   navigateToPPLSIProspectPage = async (): Promise<void> => {
     console.log(' - LSEngagePage.navigateToPPLSIProspectPage');
     // Navigate to PPLSI Prospect Page
-    await this.goTo(UrlsUtils.channelsUrls.ppsliprospect.url);
+    await this.goTo(UrlsUtils.channelsUrls.pplsiProspect.url);
     await this.login(associateReportsCommissions.username, associateReportsCommissions.password);
     await this.page.waitForSelector(lblLogoPPLSIProspect);
   };
@@ -50,7 +50,7 @@ export class LSEngagePage extends LoginPage {
   navigateToPPLSIProspectPage2 = async (): Promise<void> => {
     console.log(' - LSEngagePage.navigateToPPLSIProspectPage');
     // Navigate to PPLSI Prospect Page
-    await this.goTo(UrlsUtils.channelsUrls.ppsliprospect.url);
+    await this.goTo(UrlsUtils.channelsUrls.pplsiProspect.url);
     await this.login(profilePicker.username, profilePicker.password);
     await this.page.waitForSelector(lblMyAccounts);
   };
