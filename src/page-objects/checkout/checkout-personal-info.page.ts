@@ -5,8 +5,8 @@ import RegionsUtils from '../../utils/regions.utils';
 import { OrderSummary } from './checkout.helpers';
 
 // ========================== Selectors ==================================
+// const btnSaveAndContinue: string = '';
 const btnSaveAndContinue: string = 'button:has-text("Save & Continue")';
-// const btnSaveAndContinue: string = 'button:has-text("Save & Continue")';
 
 // ========================== Personal Info Selectors ====================
 const stpPersonalInfoCurrent: string = '//div[contains(@class,"step-circle--current") and contains(.,"2")]';
@@ -58,7 +58,6 @@ const txtTaxId: string = '[name="taxId"]';
  */
 export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   // eslint-disable-next-line no-undef
-  [x: string]: any;
   // ========================== Process Methods ============================
 
   // /**
@@ -162,7 +161,6 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     await this.enterHomeAddress(provinceObject[0].validAddress.street);
     await this.enterCity(provinceObject[0].validAddress.city);
     await this.enterPostalCode(provinceObject[0].validAddress.postalCode);
-    await this.clickOnElement(btnSaveAndContinue);
   };
 
   /**
@@ -175,7 +173,6 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     await this.enterHomeAddress(regionObject[0].validAddress.street);
     await this.enterCity(regionObject[0].validAddress.city);
     await this.enterPostalCode(regionObject[0].validAddress.postalCode);
-    await this.clickOnElement(btnSaveAndContinue);
   };
 
   /**

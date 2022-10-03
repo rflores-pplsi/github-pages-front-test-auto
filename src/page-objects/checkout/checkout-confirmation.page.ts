@@ -35,10 +35,13 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
     const responseBody = await response.json();
     let i = 0;
     // eslint-disable-next-line no-unused-vars
-    for (const pn of productDetails) {
-      const friendlyID = responseBody.offers[i].friendlyId;
-      console.log(`Friendly ID: ${friendlyID}`);
-      i++;
+    for (const pd of productDetails) {
+      if (!pd.productName.includes('-')) {
+        // do not look for shortcodes for supplements
+        const friendlyID = responseBody.offers[i].friendlyId;
+        console.log(` * Friendly ID: ${friendlyID}`);
+        i++;
+      }
     }
   };
   // ========================== Navigate Methods ===========================
@@ -116,12 +119,20 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
    * @memberof CheckoutConfirmationPage
    */
   assertNameCostAndBillingFrequencyOnConfirmationPageForAllProducts = async (productDetails: Array<ProductDetails>) => {
-    console.log('- checkoutConfirmationPage.assertNameCostAndBillingFrequencyForAllProducts');
+    console.log(' - checkoutConfirmationPage.assertNameCostAndBillingFrequencyForAllProducts');
     for (const pd of productDetails) {
       // Name
-      await this.assertElementIsVisible(
-        `//div[contains(@class,"plan-details-card") and contains(.,"${pd.productName}") and contains (.,"${pd.cost}") and contains(.,"Monthly")]`
-      );
+      if (pd.productName.includes('-')) {
+        await this.assertElementIsVisible(
+          `//div[contains(@class,"plan-details-card") and contains(.,"${pd.productName.split(' - ')[1]}") and contains (.,"${
+            pd.cost
+          }") and contains(.,"Monthly")]`
+        );
+      } else {
+        await this.assertElementIsVisible(
+          `//div[contains(@class,"plan-details-card") and contains(.,"${pd.productName}") and contains (.,"${pd.cost}") and contains(.,"Monthly")]`
+        );
+      }
     }
   };
 
@@ -131,12 +142,15 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
    * @memberof CheckoutConfirmationPage
    */
   assertShortCodesInPurchaseResponse = async (response: Response, productDetails: Array<ProductDetails>) => {
-    console.log('- checkoutConfirmationPage.assertShortCodeInPurchaseResponse');
+    console.log(' - checkoutConfirmationPage.assertShortCodeInPurchaseResponse');
     const responseBody = await response.json();
     let i = 0;
     for (const pd of productDetails) {
-      const shortName = responseBody.offers[i].products[0].planDetails.short_name;
-      await this.assertStringMatch(shortName, pd.shortCode);
+      if (!pd.productName.includes('-')) {
+        // do not look for shortcodes for supplements
+        const shortName = responseBody.offers[i].products[0].planDetails.short_name;
+        await this.assertStringMatch(shortName, pd.shortCode);
+      }
       i++;
     }
   };
@@ -216,15 +230,13 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   };
 
   /**
-   * @param {Array<Array<string>>} productDetails
+   * @param {string} planType
    * @memberof CheckoutConfirmationPage
    */
-  assertMembershipTilesAreDisplayed = async (productDetails: Array<Array<string>>) => {
-    console.log(' - checkoutConfirmationPage.assertMembershipTilesAreDisplayed');
-    for (const pn of productDetails) {
-      const ele = `//h2[contains(@class,"membership-title") and contains (.,"${pn.planType} Membership")]`;
-      await this.assertElementIsVisible(ele);
-    }
+  assertMembershipTileIsDisplayed = async (planType: string) => {
+    console.log(' - checkoutConfirmationPage.assertMembershipTileIsDisplayed');
+    const ele = `//h2[contains(@class,"membership-title") and contains (.,"${planType} Membership")]`;
+    await this.assertElementIsVisible(ele);
   };
 
   /**

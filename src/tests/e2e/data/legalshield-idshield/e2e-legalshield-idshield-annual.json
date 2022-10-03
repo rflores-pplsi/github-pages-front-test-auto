@@ -6,18 +6,6 @@
     "productDetails": [{ "productName": "Legal Plan", "shortCode": "LPD2C22", "cost": "$299.40", "productType": "LegalShield", "term": "Annual" }],
     "term": "Annual",
     "termTotal": "$299.40",
-    "disabled": true
-  },
-  {
-    "testCaseName": "Legal Plan + IDShield for Business Essentials  - Annual - One State",
-    "market": "US",
-    "regions": ["Alabama"],
-    "productDetails": [
-      { "productName": "Legal Plan", "shortCode": "LPD2C22", "cost": "$299.40", "productType": "LegalShield", "term": "Annual" },
-      { "productName": "IDShield for Business Essentials", "shortCode": "IDSBUS", "cost": "$79.95", "productType": "IDShield", "term": "Monthly" }
-    ],
-    "term": "Annual",
-    "termTotal": "$379.35",
     "disabled": false
   },
   {
