@@ -6,6 +6,7 @@ import { OrderSummaryWithoutCosts } from './checkout.helpers';
 import { OrderSummaryRowWithoutCost } from './checkout.helpers';
 import { OrderSummaryWithoutTiers } from './checkout.helpers';
 import { OrderSummaryRowWithoutTier } from './checkout.helpers';
+import { ProductDetails } from '../../tests/e2e/data/type-definitions';
 
 // Instantiations
 const orderSummary = new OrderSummary();
@@ -18,16 +19,18 @@ const imgHideOrderSummaryChevron: string = 'img[alt="nav_chevron_single_up."]';
 const imgShowOrderSummaryChevron: string = 'img[alt="nav_chevron_single_down."]';
 const conOrderSummary: string = '//div[contains(@class,"order-summary")]';
 const txtPlanNames: string = '//div[contains(@class,"plan-name-row")]//p[1]';
-const txtTierNames: string = '//div[contains(@class,"plan-name-row")]//p[2]';
+const txtTierNames: string = '//div[contains(@class,"plan-name-row")]//p//span[2]';
 const txtSupplementNames: string =
   '//div[contains(@class,"lsux-row half children2 content-row mb-4 mt-4 pb-4")]//p[not(contains(@style,"text-align: right;"))]';
 const txtSupplementCosts: string =
   '//div[contains(@class,"lsux-row half children2 content-row mb-4 mt-4 pb-4")]//p[contains(@style,"text-align: right;")]';
 const txtPlanCosts: string = '//div[contains(@class,"lsux-row half children2 content-row mb-4")]//div[contains(@class,"right-label-col")]//p';
+const txtTermTotalLabel: string = '//div[contains(@class,"left-label")]//p[contains(.,"Total:")]';
 const txtMonthlyTotalLabel: string = '//div[contains(@class,"left-label")]//p[contains(.,"Monthly Total:")]';
 const txtMonthlyTotalAmount: string = '//div[contains(@class,"footer-row") and contains(.,"Monthly Total:")]//div[contains(@class,"right-label")]//p';
 const txtAnnualTotalLabel: string = '//div[contains(@class,"left-label")]//p[contains(.,"Annual Total:")]';
 const txtAnnualTotalAmount: string = '//div[contains(@class,"footer-row") and contains(.,"Annual Total:")]//div[contains(@class,"right-label")]//p';
+const txtTermTotalAmount: string = '//div[contains(@class,"footer-row")]//div[contains(@class,"right-label-col")]';
 const txtTotalDueTodayLabel: string = '//div[contains(@class,"left-label")]//p[contains(.,"Total Due Today:")]';
 const txtTotalDueTodayAmount: string =
   '//div[contains(@class, "footer-row") and contains(., "Total Due Today")]//div[contains(@class,"right-label")]//p';
@@ -144,10 +147,10 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
    */
   captureOrderSummaryRowWithoutCost = async (i: number = 0): Promise<OrderSummaryRowWithoutCost> => {
     console.log(' - checkoutOrderSummaryComponent.captureOrderSummaryRowWithoutCost');
-    const planNameJsHandle = (await this.page.$$(txtPlanNames))[i].getProperty('innerText');
-    const planNameText = await (await planNameJsHandle).jsonValue();
-    const tierNameJsHandle = (await this.page.$$(txtTierNames))[i].getProperty('innerText');
-    const tierNameText = await (await tierNameJsHandle).jsonValue();
+    const planAndTierNameText = await this.page.locator(txtPlanNames).nth(i).innerText();
+    const splitted = planAndTierNameText.split(' - ');
+    const planNameText = splitted[0];
+    const tierNameText = splitted[1];
     const planRow = new OrderSummaryRowWithoutCost(planNameText, tierNameText);
     return planRow;
   };
@@ -217,7 +220,11 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
    * @param {string} expectedPlanCost
    * @memberof CheckoutOrderSummaryComponent
    */
-  assertPlanNameTierNameAndCost = async (expectedPlanName: string, expectedTierName: string | undefined, expectedPlanCost: string): Promise<void> => {
+  assertPlanNameFriendlyTierNameAndCost = async (
+    expectedPlanName: string,
+    expectedTierName: string | undefined,
+    expectedPlanCost: string
+  ): Promise<void> => {
     console.log(' - checkoutOrderSummaryComponent.assertPlanNameTierNameAndCost');
     let found: boolean = false;
     orderSummary.orderSummaryRows.forEach(async (row) => {
@@ -256,7 +263,6 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
         await this.assertStringMatch(costs as string, expectedPlanCost);
       }
     });
-
     if (found == false) {
       try {
         await this.assertBoolean(found, true);
@@ -271,14 +277,14 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
    * @param {Array<Array<string>>} productNamesAndCosts
    * @memberof CheckoutOrderSummaryComponent
    */
-  assertAllProductNamesAndCosts = async (productNamesAndCosts: Array<Array<string>>): Promise<void> => {
-    console.log(' - checkoutOrderSummaryComponent.assertAllPlanNamesAndCosts');
-    for (const pnc of productNamesAndCosts) {
+  assertAllProductNamesAndCosts = async (productDetails: Array<ProductDetails>): Promise<void> => {
+    console.log(' - checkoutOrderSummaryComponent.assertAllProductNamesAndCosts');
+    for (const pd of productDetails) {
       let found: boolean = false;
-      let expectedProductName: string = pnc[0];
+      let expectedProductName: string = pd.productName;
       // remove plan prefix if it is a supplement
-      if (pnc[0].includes('-')) {
-        expectedProductName = await this.extractSupplementName(pnc[0]);
+      if (pd.productName.includes('-')) {
+        expectedProductName = await this.extractSupplementName(pd.productName);
       }
       for (const row of orderSummary.orderSummaryRows) {
         const planName = row.planName;
@@ -286,7 +292,7 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
         // If product is a supplement, need to remove the name of the parent plan from the string
         if (planName == expectedProductName) {
           found = true;
-          await this.assertStringMatch(costs, pnc[1]);
+          await this.assertStringMatch(costs, pd.cost);
           // break out of productAndNames For loop if found
           break;
         }
@@ -326,20 +332,43 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
    * @param {string} tierName
    * @memberof CheckoutOrderSummaryComponent
    */
-  assertPlanNameAndTierName = async (planName: string, tierName: string): Promise<void> => {
-    console.log(' - checkoutOrderSummaryComponent.assertPlanName');
-    await this.assertElementContainsText(conOrderSummary, planName);
-    await this.assertElementContainsText(conOrderSummary, tierName);
+  assertPlanNameAndTierName = async (planAndTierName: string): Promise<void> => {
+    console.log(' - checkoutOrderSummaryComponent.assertPlanNameAndTierName');
+    await this.assertElementContainsText(conOrderSummary, planAndTierName);
+  };
+
+  /**
+   * @param {string} term
+   * @memberof CheckoutOrderSummaryComponent
+   */
+  assertTermLabel = async (term: string): Promise<void> => {
+    console.log(' - checkoutOrderSummaryComponent.assertTermLabel');
+    await this.assertElementHasText(txtTermTotalLabel, `${term} Total:`);
   };
 
   /**
    * @param {string} total
    * @memberof CheckoutOrderSummaryComponent
    */
-  assertMonthlyLabelAndTotal = async (total: string): Promise<void> => {
-    console.log(' - checkoutOrderSummaryComponent.assertMonthlyTotal');
-    await this.assertElementHasText(txtMonthlyTotalLabel, 'Monthly Total:');
+  assertTermLabelAndTotal = async (term: string, total: string): Promise<void> => {
+    console.log(' - checkoutOrderSummaryComponent.assertTermTotal');
+    await this.assertElementHasText(txtMonthlyTotalLabel, `${term} Total:`);
     await this.assertElementHasText(txtMonthlyTotalAmount, total);
+  };
+
+  assertBillingFrequenciesForAllProducts = async (productDetails: Array<ProductDetails>): Promise<void> => {
+    console.log(' - checkoutOrderSummaryComponent.assertBillingFrequency');
+    for (const pd of productDetails) {
+      if (pd.productName.includes('-')) {
+        // parse out supplement name from the testharness product name
+        const supplementName = pd.productName.split(' - ');
+        const eleBillingFrequency = `//div[contains(@class,"lsux-row half children2 content-row mb-4 mt-4") and contains(.,"${supplementName[1]}")]/following-sibling::div[1]`;
+        await this.assertElementContainsText(eleBillingFrequency, pd.term);
+      } else {
+        const eleBillingFrequency = `//div[contains(@class,"lsux-row half children2 content-row mb-4 mt-4") and contains(.,"${pd.productName}")]/following-sibling::div[1]`;
+        await this.assertElementContainsText(eleBillingFrequency, pd.term);
+      }
+    }
   };
 
   /**
@@ -347,9 +376,18 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
    * @memberof CheckoutOrderSummaryComponent
    */
   assertAnnualLabelAndTotal = async (total: string): Promise<void> => {
-    console.log(' - checkoutOrderSummaryComponent.assertMonthlyTotal');
+    console.log(' - checkoutOrderSummaryComponent.assertAnnualLabelAndTotal');
     await this.assertElementHasText(txtAnnualTotalLabel, 'Annual Total:');
     await this.assertElementHasText(txtAnnualTotalAmount, total);
+  };
+
+  /**
+   * @param {string} termTotal
+   * @memberof CheckoutOrderSummaryComponent
+   */
+  assertTermTotal = async (termTotal: string): Promise<void> => {
+    console.log(' - checkoutOrderSummaryComponent.assertTermTotal');
+    await this.assertElementHasText(txtTermTotalAmount, termTotal);
   };
 
   /**

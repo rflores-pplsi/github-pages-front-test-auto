@@ -1,6 +1,5 @@
 /* eslint-disable camelcase */
-import EnvironmentUtil from '../utils/env.utils';
-// import { config } from 'dotenv'
+import EnvironmentUtil from './env.utils';
 require('dotenv').config();
 
 const envUrlString = EnvironmentUtil.getEnvUrlString();
@@ -148,19 +147,28 @@ export default class UrlsUtils {
     advantage: {
       url: `https://associate-office.${envUrlString}legalshield.com/advantage`,
     },
-    businesscard: {
+    taxForm: {
+      url: `https://associate-office.${envUrlString}legalshield.com/reports/tax-forms`,
+    },
+    businessCard: {
       url: `https://associate-office.${envUrlString}legalshield.com/business-card`,
     },
     login: {
       url: `https://associate-office.${envUrlString}legalshield.com/`,
     },
+    pplsiProspect: {
+      url: `https://associate-office.${envUrlString}legalshield.com/?vendor=nowapp`,
+    },
     perks: {
       url: `https://associate-office.${envUrlString}legalshield.com/perks`,
     },
-    reportsbusinessorganizational: {
+    reportsBusinessOrganizational: {
       url: `https://associate-office.${envUrlString}legalshield.com/reports/business/organizational`,
     },
-    reportscommissions: {
+    reportsBusinessPersonal: {
+      url: `https://associate-office.${envUrlString}legalshield.com/reports/business/personal`,
+    },
+    reportsCommissions: {
       url: `https://associate-office.${envUrlString}legalshield.com/reports/commissions`,
     },
   };

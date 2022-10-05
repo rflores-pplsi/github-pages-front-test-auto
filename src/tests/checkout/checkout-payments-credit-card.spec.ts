@@ -14,5 +14,5 @@ test('Payments page header is displayed', async ({ page }) => {
   console.log(page.title);
   await checkoutPaymentsCreditCardPage.fillCreditCardForm();
   console.log(page.title);
-  await checkoutPaymentsCreditCardPage.assertWelcomeToLegalshiledFamilyPage();
+  await checkoutPaymentsCreditCardPage.assertWelcomeToLegalShieldFamilyPage();
 });

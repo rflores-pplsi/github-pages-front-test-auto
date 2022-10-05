@@ -1,38 +1,44 @@
 [
   {
     "testCaseName": "Fringe (Legal Plan Family)",
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
     "groupPayConfig": "Fringe",
     "groupNumber": "nnlegaltest23",
     "planName": "Legal Plan Family",
     "tierName": "",
+    "orderSummaryPlanName": "Legal Plan Family",
     "planType": "LegalShield",
     "payFrequency": "Monthly",
     "planCost": "$23.95",
     "totalCost": "$23.95",
-    "run": true
+    "disabled": false
   },
   {
     "testCaseName": "Fringe (IDShield Individual)",
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
     "groupPayConfig": "Fringe",
     "groupNumber": "idshieldtest19",
     "planName": "IDShield Individual",
     "tierName": "1 Bureau Credit Monitoring",
+    "orderSummaryPlanName": "IDShield Individual - Individual 1B",
     "planType": "IDShield",
     "payFrequency": "Monthly",
     "planCost": "$12.95",
     "totalCost": "$12.95",
-    "run": true
+    "disabled": false
   },
   {
     "testCaseName": "Fringe (IDShield Family)",
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
     "groupPayConfig": "Fringe",
     "groupNumber": "idshieldtest19",
     "planName": "IDShield Family",
     "tierName": "1 Bureau Credit Monitoring",
+    "orderSummaryPlanName": "IDShield Family - Family 1B",
     "planType": "IDShield",
     "payFrequency": "Monthly",
     "planCost": "$22.95",
     "totalCost": "$22.95",
-    "run": true
+    "disabled": false
   }
 ]

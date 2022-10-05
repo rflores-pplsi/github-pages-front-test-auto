@@ -13,7 +13,7 @@ test.beforeEach(async ({ page }) => {
   // Create instance of This Page Object
   loginPage = new LoginPage(page);
   profilePickerPage = new ProfilePickerPage(page);
-  await loginPage.goTo(UrlsUtils.channelsUrls.login.url);
+  await loginPage.goTo(UrlsUtils.channelsUrls.taxForm.url);
 });
 
 test('BASIC tier level associate logs in with valid username and password', async ({ page }) => {

@@ -1,0 +1,436 @@
+[
+  {
+    "testCaseName": "Legal Plan",
+    "market": "US",
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
+    "productDetails": [{ "productName": "Legal Plan", "shortCode": "LPUS21", "cost": "$29.95", "productType": "LegalShield", "term": "Monthly" }],
+    "term": "Monthly",
+    "termTotal": "$29.95",
+    "disabled": false
+  },
+  {
+    "testCaseName": "Legal Plan + Trial Defense Supplement",
+    "market": "US",
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
+    "productDetails": [
+      { "productName": "Legal Plan", "shortCode": "LPUS21", "cost": "$29.95", "productType": "LegalShield", "term": "Monthly" },
+      {
+        "productName": "Legal Plan - Trial Defense Supplement",
+        "shortCode": "TD3",
+        "cost": "$14.95",
+        "productType": "LegalShield",
+        "term": "Monthly"
+      }
+    ],
+    "term": "Monthly",
+    "termTotal": "$44.90",
+    "disabled": false
+  },
+  {
+    "testCaseName": "Legal Plan + Home Business Supplement",
+    "market": "US",
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
+    "productDetails": [
+      { "productName": "Legal Plan", "shortCode": "LPUS21", "cost": "$29.95", "productType": "LegalShield", "term": "Monthly" },
+      {
+        "productName": "Legal Plan - Home Business Supplement",
+        "shortCode": "HB3",
+        "cost": "$14.95",
+        "productType": "LegalShield",
+        "term": "Monthly"
+      }
+    ],
+    "term": "Monthly",
+    "termTotal": "$44.90",
+    "disabled": false
+  },
+  {
+    "testCaseName": "Legal Plan + Business Plus Supplement",
+    "market": "US",
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
+    "productDetails": [
+      { "productName": "Legal Plan", "shortCode": "LPUS21", "cost": "$29.95", "productType": "LegalShield", "term": "Monthly" },
+      {
+        "productName": "Legal Plan - Business Plus Supplement",
+        "shortCode": "BPS",
+        "cost": "$14.95",
+        "productType": "LegalShield",
+        "term": "Monthly"
+      }
+    ],
+    "term": "Monthly",
+    "termTotal": "$44.90",
+    "disabled": false
+  },
+  {
+    "testCaseName": "Legal Plan + Gun Owners Supplement",
+    "market": "US",
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
+    "productDetails": [
+      { "productName": "Legal Plan", "shortCode": "LPUS21", "cost": "$29.95", "productType": "LegalShield", "term": "Monthly" },
+      {
+        "productName": "Legal Plan - Gun Owners Supplement",
+        "shortCode": "GO2",
+        "cost": "$14.95",
+        "productType": "LegalShield",
+        "term": "Monthly"
+      }
+    ],
+    "term": "Monthly",
+    "termTotal": "$44.90",
+    "disabled": false
+  },
+  {
+    "testCaseName": "Legal Plan + Ride Share and Delivery Supplement",
+    "market": "US",
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
+    "productDetails": [
+      { "productName": "Legal Plan", "shortCode": "LPUS21", "cost": "$29.95", "productType": "LegalShield", "term": "Monthly" },
+      {
+        "productName": "Legal Plan - Ride Share and Delivery Supplement",
+        "shortCode": "RS2",
+        "cost": "$14.95",
+        "productType": "LegalShield",
+        "term": "Monthly"
+      }
+    ],
+    "term": "Monthly",
+    "termTotal": "$44.90",
+    "disabled": false
+  },
+  {
+    "testCaseName": "Legal Plan + All Supplements",
+    "market": "US",
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
+    "productDetails": [
+      { "productName": "Legal Plan", "shortCode": "LPUS21", "cost": "$29.95", "productType": "LegalShield", "term": "Monthly" },
+      {
+        "productName": "Legal Plan - Trial Defense Supplement",
+        "shortCode": "TD3",
+        "cost": "$14.95",
+        "productType": "LegalShield",
+        "term": "Monthly"
+      },
+      {
+        "productName": "Legal Plan - Home Business Supplement",
+        "shortCode": "HB3",
+        "cost": "$14.95",
+        "productType": "LegalShield",
+        "term": "Monthly"
+      },
+      {
+        "productName": "Legal Plan - Business Plus Supplement",
+        "shortCode": "BPS",
+        "cost": "$14.95",
+        "productType": "LegalShield",
+        "term": "Monthly"
+      },
+      {
+        "productName": "Legal Plan - Gun Owners Supplement",
+        "shortCode": "GO2",
+        "cost": "$14.95",
+        "productType": "LegalShield",
+        "term": "Monthly"
+      },
+      {
+        "productName": "Legal Plan - Ride Share and Delivery Supplement",
+        "shortCode": "RS2",
+        "cost": "$14.95",
+        "productType": "LegalShield",
+        "term": "Monthly"
+      }
+    ],
+    "term": "Monthly",
+    "termTotal": "$104.70",
+    "disabled": false
+  },
+  {
+    "testCaseName": "Small Business Legal Essentials",
+    "market": "US",
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
+    "productDetails": [
+      {
+        "productName": "Small Business Legal Essentials",
+        "shortCode": "ESS",
+        "cost": "$49.00",
+        "productType": "LegalShield",
+        "term": "Monthly"
+      }
+    ],
+    "term": "Monthly",
+    "termTotal": "$49.00",
+    "disabled": false
+  },
+  {
+    "testCaseName": "Small Business Legal Essentials + Business Plus Supplement",
+    "market": "US",
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
+    "productDetails": [
+      {
+        "productName": "Small Business Legal Essentials",
+        "shortCode": "ESS",
+        "cost": "$49.00",
+        "productType": "LegalShield",
+        "term": "Monthly"
+      },
+      {
+        "productName": "Small Business Legal Essentials - Business Plus Supplement",
+        "shortCode": "BPS",
+        "cost": "$14.95",
+        "productType": "LegalShield",
+        "term": "Monthly"
+      }
+    ],
+    "term": "Monthly",
+    "termTotal": "$63.95",
+    "disabled": false
+  },
+  {
+    "testCaseName": "Small Business Legal Plus",
+    "market": "US",
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
+    "productDetails": [
+      {
+        "productName": "Small Business Legal Plus",
+        "shortCode": "PLUS",
+        "cost": "$99.00",
+        "productType": "LegalShield",
+        "term": "Monthly"
+      }
+    ],
+    "term": "Monthly",
+    "termTotal": "$99.00",
+    "disabled": false
+  },
+  {
+    "testCaseName": "Small Business Legal Plus + Business Plus Supplement",
+    "market": "US",
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
+    "productDetails": [
+      {
+        "productName": "Small Business Legal Plus",
+        "shortCode": "PLUS",
+        "cost": "$99.00",
+        "productType": "LegalShield",
+        "term": "Monthly"
+      },
+      {
+        "productName": "Small Business Legal Plus - Business Plus Supplement",
+        "shortCode": "BPS",
+        "cost": "$14.95",
+        "productType": "LegalShield",
+        "term": "Monthly"
+      }
+    ],
+    "term": "Monthly",
+    "termTotal": "$113.95",
+    "disabled": false
+  },
+  {
+    "testCaseName": "Small Business Legal Plus + Trial Defense for Business",
+    "market": "US",
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
+    "productDetails": [
+      {
+        "productName": "Small Business Legal Plus",
+        "shortCode": "PLUS",
+        "cost": "$99.00",
+        "productType": "LegalShield",
+        "term": "Monthly"
+      },
+      {
+        "productName": "Small Business Legal Plus - Trial Defense for Business",
+        "shortCode": "TDB",
+        "cost": "$14.95",
+        "productType": "LegalShield",
+        "term": "Monthly"
+      }
+    ],
+    "term": "Monthly",
+    "termTotal": "$113.95",
+    "disabled": false
+  },
+  {
+    "testCaseName": "Small Business Legal Pro",
+    "market": "US",
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
+    "productDetails": [
+      {
+        "productName": "Small Business Legal Pro",
+        "shortCode": "PRO",
+        "cost": "$169.00",
+        "productType": "LegalShield",
+        "term": "Monthly"
+      }
+    ],
+    "term": "Monthly",
+    "termTotal": "$169.00",
+    "disabled": false
+  },
+  {
+    "testCaseName": "Small Business Legal Pro + Business Plus Supplement",
+    "market": "US",
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
+    "productDetails": [
+      {
+        "productName": "Small Business Legal Pro",
+        "shortCode": "PRO",
+        "cost": "$169.00",
+        "productType": "LegalShield",
+        "term": "Monthly"
+      },
+      {
+        "productName": "Small Business Legal Pro - Business Plus Supplement",
+        "shortCode": "BPS",
+        "cost": "$14.95",
+        "productType": "LegalShield",
+        "term": "Monthly"
+      }
+    ],
+    "term": "Monthly",
+    "termTotal": "$183.95",
+    "disabled": false
+  },
+  {
+    "testCaseName": "Small Business Legal Pro + Trial Defense for Business",
+    "market": "US",
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
+    "productDetails": [
+      {
+        "productName": "Small Business Legal Pro",
+        "shortCode": "PRO",
+        "cost": "$169.00",
+        "productType": "LegalShield",
+        "term": "Monthly"
+      },
+      {
+        "productName": "Small Business Legal Pro - Trial Defense for Business",
+        "shortCode": "TDB",
+        "cost": "$14.95",
+        "productType": "LegalShield",
+        "term": "Monthly"
+      }
+    ],
+    "term": "Monthly",
+    "termTotal": "$183.95",
+    "disabled": false
+  },
+  {
+    "testCaseName": "Two plans",
+    "market": "US",
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
+    "productDetails": [
+      { "productName": "Legal Plan", "shortCode": "LPUS21", "cost": "$29.95", "productType": "LegalShield", "term": "Monthly" },
+      {
+        "productName": "Small Business Legal Essentials",
+        "shortCode": "ESS",
+        "cost": "$49.00",
+        "productType": "LegalShield",
+        "term": "Monthly"
+      }
+    ],
+    "term": "Monthly",
+    "termTotal": "$78.95",
+    "disabled": false
+  },
+  {
+    "testCaseName": "Two plans and a supplement",
+    "market": "US",
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
+    "productDetails": [
+      { "productName": "Legal Plan", "shortCode": "LPUS21", "cost": "$29.95", "productType": "LegalShield", "term": "Monthly" },
+      {
+        "productName": "Small Business Legal Essentials",
+        "shortCode": "ESS",
+        "cost": "$49.00",
+        "productType": "LegalShield",
+        "term": "Monthly"
+      },
+      {
+        "productName": "Legal Plan - Trial Defense Supplement",
+        "shortCode": "TD3",
+        "cost": "$14.95",
+        "productType": "LegalShield",
+        "term": "Monthly"
+      }
+    ],
+    "term": "Monthly",
+    "termTotal": "$93.90",
+    "disabled": false
+  },
+  {
+    "testCaseName": "IDShield for Business Essentials",
+    "market": "US",
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
+    "productDetails": [
+      { "productName": "IDShield for Business Essentials", "shortCode": "IDSBUS", "cost": "$79.95", "productType": "IDShield", "term": "Monthly" }
+    ],
+    "term": "Monthly",
+    "termTotal": "$79.95",
+    "disabled": false
+  },
+  {
+    "testCaseName": "IDShield for Business Plus",
+    "market": "US",
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
+    "productDetails": [
+      { "productName": "IDShield for Business Plus", "shortCode": "IDSBUS2", "cost": "$149.95", "productType": "IDShield", "term": "Monthly" }
+    ],
+    "term": "Monthly",
+    "termTotal": "$149.95",
+    "disabled": false
+  },
+  {
+    "testCaseName": "IDShield Individual",
+    "market": "US",
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
+    "productDetails": [{ "productName": "IDShield Individual", "shortCode": "IDSI", "cost": "$14.95", "productType": "IDShield", "term": "Monthly" }],
+    "term": "Monthly",
+    "termTotal": "$14.95",
+    "disabled": false
+  },
+  {
+    "testCaseName": "IDShield Family",
+    "market": "US",
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
+    "productDetails": [{ "productName": "IDShield Family", "shortCode": "IDSF", "cost": "$29.95", "productType": "IDShield", "term": "Monthly" }],
+    "term": "Monthly",
+    "termTotal": "$29.95",
+    "disabled": false
+  },
+  {
+    "testCaseName": "IDShield Three Bureau Family",
+    "market": "US",
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
+    "productDetails": [
+      { "productName": "IDShield Three Bureau Family", "shortCode": "IDSF3", "cost": "$34.95", "productType": "IDShield", "term": "Monthly" }
+    ],
+    "term": "Monthly",
+    "termTotal": "$34.95",
+    "disabled": false
+  },
+  {
+    "testCaseName": "IDShield Three Bureau Individual",
+    "market": "US",
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
+    "productDetails": [
+      { "productName": "IDShield Three Bureau Individual", "shortCode": "IDSI3", "cost": "$19.95", "productType": "IDShield", "term": "Monthly" }
+    ],
+    "term": "Monthly",
+    "termTotal": "$19.95",
+    "disabled": false
+  },
+  {
+    "testCaseName": "IDShield Individual + IDShield Business Essentials",
+    "market": "US",
+    "regions": ["New York", "California", "Georgia", "Florida", "Texas", "Massachusetts"],
+    "productDetails": [
+      { "productName": "IDShield Individual", "shortCode": "IDSI", "cost": "$14.95", "productType": "IDShield", "term": "Monthly" },
+      { "productName": "IDShield for Business Essentials", "shortCode": "IDSBUS", "cost": "$79.95", "productType": "IDShield", "term": "Monthly" }
+    ],
+    "term": "Monthly",
+    "termTotal": "$94.90",
+    "planType": "IDShield",
+    "disabled": false
+  }
+]

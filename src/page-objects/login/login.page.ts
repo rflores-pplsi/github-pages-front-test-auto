@@ -4,7 +4,7 @@ import { BasePage } from '../base.page';
 
 // ========================== Selectors ==========================
 const txtEmailOrUsername: string = '[placeholder="Email address/Username"]';
-const txtPassword: string = "[type='password']";
+const txtPassword: string = '[name="password"]';
 const btnSignIn: string = '//button[contains(@class,"lsux-button--primary")]/span[contains(.,"Sign in")]';
 const lnkSignUp: string = 'a:has-text("Sign up")';
 const lnkSignIn: string = '//div[@class="content"]//a[contains(.,"Sign in")]';
@@ -39,12 +39,13 @@ export class LoginPage extends BasePage {
       await this.fillTextBox(txtEmailOrUsername, emailOrUsername);
       // Enter password into input
       await this.fillTextBox(txtPassword, password);
-      // Click on Sign In
+      // Click on Sign In to submit login form
       await this.clickOnElement(btnSignIn);
       // Click on Ok pop up to submit login form
       // no Ok pop up button in prod yet -> need to comment out this line before run
       await this.page.waitForLoadState('networkidle', { timeout: 250000 });
       if (await this.page.locator(btnOk).isVisible()) await this.clickOnElement(btnOk);
+
       // Wait for page to finish loading
       await this.page.waitForLoadState('networkidle', { timeout: 250000 });
     } else {

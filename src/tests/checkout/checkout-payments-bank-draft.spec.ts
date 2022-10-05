@@ -11,9 +11,9 @@ test.beforeEach(async ({ page }) => {
 
 test('Payments page header is displayed', async ({ page }) => {
   console.log(page.title);
-  await checkoutPaymentsBankDraftPage.fillBankDraftForm();
+  await checkoutPaymentsBankDraftPage.fillUsBankDraftFormAndSubmit();
   test.slow(); // Easy way to triple the default timeout
-  await checkoutPaymentsBankDraftPage.assertWelcomeToLegalshiledFamilyPage();
+  await checkoutPaymentsBankDraftPage.assertWelcomeToLegalShieldFamilyPage();
 });
 test('Payments bank draft page is displayed', async ({ page }) => {
   expect(

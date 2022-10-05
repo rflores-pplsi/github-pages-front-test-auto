@@ -19,13 +19,28 @@ const txtSearch: string = '[placeholder="Search by name or group number"]';
 const btnSearch: string = '[id="searchButton"]';
 const txtGroup: string = '#root  .lsux-container--flex-items-center.mb-2 > h3';
 const txtEffectiveDate: string = '[name="effectiveDate"]';
-const btnPlan: string =
-  '#root > div > div > div:nth-child(1) > div > div > div > div:nth-child(2) > form:nth-child(2) > div.lsux-container.lsux-container--white > div.mb-4._2nNbq5j54sbQ6MAihmSQg3 > div > div > div._3XfumkavlVQM3FWcqB9M-R > div:nth-child(1) > div > div > div.tEEXP1wEkyj2EVCZvuvw8 > div._2E_HYKNfYafGOziR-TaXG_ > label > div';
+const btnPlanLegalFamilySmallBusiness: string =
+  '.lsux-container.lsux-container--white div:nth-child(11) > div > div > div.tEEXP1wEkyj2EVCZvuvw8  label > div';
 const btnContinuePlanOfferings: string =
   '#root > div > div > div:nth-child(1) > div > div > div > div:nth-child(2) > form:nth-child(2) > div._1yvcEtEbZqaqWyKqhjijeG > button';
 const txtDateOfBirth: string = '[name="birthDay"]';
 const txtSSN: string = '[name="ssn"]';
 const txtFamilyMembers: string = '.lsux-row.plain.children1.pl-4.mb-0.pb-6.pr-5.family-member-heading-row > h4';
+const txtPersonalSection: string = '[class="lsux-row thirds children2 pl-3 pt-5 mb-0"]';
+const txtSmallBusinessSection: string = '[class="lsux-row half children4 iXT0avfKqWlj5YIcRiizJ"]';
+const txtCompanyName: string = '[placeholder="Company name"]';
+const txtTaxID: string = '[placeholder="Tax-ID"]';
+const txtDateOfIncorporation: string = '[placeholder="Date of incorporation"]';
+const txtTypeOfBusiness: string = '[placeholder="Type of business"]';
+const txtDateOfBirthPersonalSection: string = '[name="birthDay"]';
+const txtSSNPersonalSection: string = '[placeholder="000-00-0000"]';
+const btnRadioPubliclyTradedCompany: string = '#root form:nth-child(3) div.small-biz-select > div:nth-child(2) > div > label:nth-child(1) > div';
+const btnRadioNonProfitBusiness: string = '#root  div:nth-child(1)  form:nth-child(3) div.small-biz-select > div:nth-child(4) > div > label:nth-child(1) > div';
+const btnContinueAssociateInfo: string = '#root  div.mb-4._2nNbq5j54sbQ6MAihmSQg3 > div._1yvcEtEbZqaqWyKqhjijeG > button';
+const btnAssociateSelection: string = 'select[type="submit"]';
+const btnSubmit: string = '//span[normalize-space()="Submit"]';
+const txtGroupManagement: string = '.lsux-heading.lsux-heading--t26';
+
 
 /**
  * @export
@@ -75,6 +90,37 @@ export class ShieldAtWorkMemberEnrollment extends OktaPage {
     await this.page.fill(txtZipCode, zipCode);
   };
 
+  fillOutSmallBusinessInformationSection = async (
+    companyName: string,
+    taxID: string,
+    dateOfIncorporation: string,
+    typeOfBusiness: string,
+    
+  ): Promise<void> => {
+    console.log(' - ShieldAtWorkMemberEnrollment.fillOutSmallBusinessInformationSection');
+    // Type in the company name field Tester
+    await this.page.fill(txtCompanyName, companyName);
+    // Type in the tax-ID field 5555
+    await this.page.fill(txtTaxID, taxID);
+    // Select date of incorporation 
+    await this.page.type(txtDateOfIncorporation, dateOfIncorporation);
+    // Type in the type of business field Bakery
+    await this.page.fill(txtTypeOfBusiness, typeOfBusiness);
+};
+
+fillOutPersonalInformationSection = async (
+    dateOfBirthPersonalSection: string,
+    ssn: string,
+    
+    ): Promise<void> => {
+    console.log(' - ShieldAtWorkMemberEnrollment.fillOutPersonalInformationSection');
+    // Type in the date of birth field 09/09/1992
+    await this.page.waitForSelector(txtDateOfBirthPersonalSection);
+    await this.page.type(txtDateOfBirthPersonalSection, dateOfBirthPersonalSection);
+    // Type in the SSN/SIN field 444444444
+    await this.page.fill(txtSSNPersonalSection, ssn);
+};
+
   /**
    *
    *
@@ -116,9 +162,9 @@ export class ShieldAtWorkMemberEnrollment extends OktaPage {
 
   selectPlan = async (): Promise<void> => {
     console.log(' -  ShieldAtWorkMemberEnrollment.selectPlan');
-    // Select Plan
-    await this.waitForElementToBeVisible(btnPlan);
-    await this.clickOnElement(btnPlan);
+    // Select Legal Family Plan + Small Business
+    await this.waitForElementToBeVisible(btnPlanLegalFamilySmallBusiness);
+    await this.clickOnElement(btnPlanLegalFamilySmallBusiness);
   };
 
   // ========================== Navigate Methods ===========================
@@ -133,22 +179,29 @@ export class ShieldAtWorkMemberEnrollment extends OktaPage {
     console.log(' - shieldAtWorkMemberEnrollment.navigateToGroupPage');
     await this.page.goto(url);
     // Login through okta
-    // await this.loginThroughOktaGroupEnrollment();
-    await this.loginThroughOkta();
+    await this.loginThroughOktaGroupEnrollment();
     // Search group by group number
-    await this.groupSearchByGroupNumber('111452');
+    await this.groupSearchByGroupNumber('121076');
+    // Click on Enroll New member button
+    await this.clickEnrollNewMember();
+  };
+
+  selectAnAssociate = async (): Promise<void> => {
+    console.log(' - shieldAtWorkMemberEnrollment.selectAnAssociate');
+    // Select an associate in drop down menu
+    await this.page.selectOption(btnAssociateSelection, { label: 'Legalshield Corporate Office - 1' });
   };
   // ========================== Click Methods ==============================
 
   clickEnrollNewMember = async (): Promise<void> => {
     // Click on Enroll new member button
-    console.log(' - ShieldAtWorkMemberEnrollment .clickEnrollNewMember');
+    console.log(' - ShieldAtWorkMemberEnrollment.clickEnrollNewMember');
     await this.clickOnElement(btnEnrollNewMember);
   };
 
   clickContinueButtonContactInfo = async (): Promise<void> => {
     // Click on Continue button
-    console.log(' - ShieldAtWorkMemberEnrollment .clickContinueButtonContactInfo');
+    console.log(' - ShieldAtWorkMemberEnrollment.clickContinueButtonContactInfo');
     await this.clickOnElement(btnContinueContactInfo);
     // wait for page to load plans
     await this.page.waitForLoadState('networkidle', { timeout: 30000 });
@@ -157,11 +210,38 @@ export class ShieldAtWorkMemberEnrollment extends OktaPage {
 
   clickContinueButtonPlanOfferings = async (): Promise<void> => {
     // Click on Continue button
-    console.log(' - ShieldAtWorkMemberEnrollment .clickContinueButtonPlanOfferings');
+    console.log(' - ShieldAtWorkMemberEnrollment.clickContinueButtonPlanOfferings');
     await this.waitForElementToBeVisible(btnContinuePlanOfferings);
     await this.clickOnElement(btnContinuePlanOfferings);
     // wait for page to load plans
     await this.page.waitForLoadState('networkidle', { timeout: 30000 });
+  };
+
+  clickContinueButtonAssociateInfo = async (): Promise<void> => {
+    // Click on Continue button
+    console.log(' - ShieldAtWorkMemberEnrollment.clickContinueButtonAssociateInfo');
+    await this.waitForElementToBeVisible(btnContinueAssociateInfo);
+    await this.clickOnElement(btnContinueAssociateInfo);
+    // wait for page to load plans
+    await this.page.waitForLoadState('networkidle', { timeout: 30000 });
+  };
+
+  clickNoPubliclyTradedCompanyRadioButton = async (): Promise<void> => {
+    console.log(' - ShieldAtWorkMemberEnrollment.clickNoPubliclyTradedCompanyRadioButton');
+    // Click on No in "Is this a publicly traded company?"
+    await this.clickOnElement(btnRadioPubliclyTradedCompany);
+  };
+
+  clickNonProfitBusinessRadioButton = async (): Promise<void> => {
+    console.log(' - ShieldAtWorkMemberEnrollment.clickNonProfitBusinessRadioButton');
+    // Click on No in "Is this a non-profit business?"
+    await this.clickOnElement(btnRadioNonProfitBusiness);
+  };
+
+  clickSubmitButton = async (): Promise<void> => {
+    console.log(' - ShieldAtWorkMemberEnrollment.clickSubmitButton');
+    // Click on Submit button
+    await this.clickOnElement(btnSubmit);
   };
 
   // ========================== Assertion Methods ==========================
@@ -182,5 +262,23 @@ export class ShieldAtWorkMemberEnrollment extends OktaPage {
     console.log(' - ShieldAtWorkMemberEnrollment .assertFamilyMemberSectionIsDisplayed');
     // Confirm family section is displayed
     await this.assertElementIsVisible(txtFamilyMembers);
+  };
+
+  assertPersonalSectionIsDisplayed = async (): Promise<void> => {
+    console.log(' - ShieldAtWorkMemberEnrollment .assertPersonalSectionIsDisplayed');
+    // Confirm personal section is displayed
+    await this.assertElementIsVisible(txtPersonalSection);
+  };
+
+  assertSmallBusinessSectionIsDisplayed = async (): Promise<void> => {
+    console.log(' - ShieldAtWorkMemberEnrollment .assertSmallBusinessSectionIsDisplayed');
+    // Confirm small business section is displayed
+    await this.assertElementIsVisible(txtPersonalSection);
+  };
+
+  assertGroupManagementPage = async (): Promise<void> => {
+    console.log(' - ShieldAtWorkMemberEnrollment .assertGroupManagementPage');
+    // Confirm group management page is displayed
+    await this.assertElementIsVisible(txtGroupManagement);
   };
 }
