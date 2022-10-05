@@ -28,6 +28,7 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
   fillBankDraftFormAndSubmit = async () => {
     console.log(' - checkoutPaymentPage.fillBankDraftForm');
     // Fillout the Bank Draft form
+    await this.page.waitForLoadState();
     await this.fillAccountNumberTxt(DataUtils.data.testingHarness.us.bd.Account);
     await this.page.keyboard.press('Tab');
     await this.fillRoutingNumberTxt(DataUtils.data.testingHarness.us.bd.Routing);

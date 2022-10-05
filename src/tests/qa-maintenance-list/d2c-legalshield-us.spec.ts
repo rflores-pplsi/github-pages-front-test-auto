@@ -27,10 +27,10 @@ test('D2E LegalShield US using Testing Harness', async ({ page }) => {
     await d2CLegalShieldCaPage.navigateToTestingHarnessPage('d2cLegalShieldUS');
   });
   await test.step('Select "Direct to Consumer" box', async () => {
-    await d2CLegalShieldCaPage.selectDirecttoConsumerD2C();
+    await d2CLegalShieldCaPage.selectDirecttoConsumerD2C('0');
   });
   await test.step('Test from Legalshield', async () => {
-    await d2CLegalShieldUSPage.clickLegalShieldUS(DataUtils.data.testingHarness.lineOfBusiness.LegalShield, 'd2cLegalShieldUS');
+    await d2CLegalShieldUSPage.clickOnALineOfBusiness(DataUtils.data.testingHarness.lineOfBusiness.LegalShield, 'd2cLegalShieldUS');
   });
   await test.step('Select a Region', async () => {
     await d2CLegalShieldUSPage.selectYourCity(DataUtils.data.testingHarness.us.city.VA);

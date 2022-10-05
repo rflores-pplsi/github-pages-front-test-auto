@@ -11,7 +11,7 @@ test.beforeEach(async ({ page }) => {
   test.slow();
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
-test('test', async ({ page }) => {
+test('Primerica Group', async ({ page }) => {
   test.slow;
   // Navigate to Primerica group url
   await primericaGroupPage.navigateToPrimericaGroupPage();

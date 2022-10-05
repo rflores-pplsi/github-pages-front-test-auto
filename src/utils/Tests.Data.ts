@@ -4,14 +4,16 @@ export default class DataUtils {
   static readonly data = {
     testingHarness: {
       lineOfBusiness: {
-        IDShieldCanada: '1',
-        LegalShieldCanada: '2',
-        LegalShield: '3',
-        IDShield: '4',
+        IDShieldCanada: '0',
+        LegalShieldCanada: '1',
+        LegalShield: '2',
+        IDShield: '3',
+        networkShieldAssociate: '0',
+        ProfilesOfSuccess: '1',
       },
       plans: {
         ca: {
-          LegalPlan: 'LPCA21',
+          LegalPlan: 'CA22',
           LegalPlanBusinessPlusSupplement: 'BPS',
           LegalPlanHomeBusinessSupplement: 'HB3',
           LegalPlanTrialDefenceSupplement: 'TD3',
@@ -24,6 +26,8 @@ export default class DataUtils {
           SmallBusinessLegalPro: 'PRO',
           SmallBusinessLegalProBusinessPlusSupplement: 'BPS',
           SmallBusinessLegalProTrialDefenceforBusiness: 'TDB',
+          IDShieldIndividual: 'IDSCI2',
+          IDShieldFamily: 'IDSCF2',
         },
         us: {
           LegalPlan: 'LPUS21',

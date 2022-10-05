@@ -17,10 +17,10 @@ const lblWelcome = '//h1[contains(text(),"Welcome to the Family!")]';
 
 export class D2CLegalShieldCaPage extends OktaPage {
   // ========================== Process Methods ============================
-  selectDirecttoConsumerD2C = async (): Promise<void> => {
+  selectDirecttoConsumerD2C = async (nth: string): Promise<void> => {
     // Select D2C
     await this.page.waitForLoadState();
-    await this.page.click('text=Direct To Consumer Network Calendar >> img >> nth=0', { force: true });
+    await this.page.click('text=Direct To Consumer Network Calendar >> img >> nth=' + nth, { force: true });
   };
   selectYourRegion = async (region: string): Promise<void> => {
     await this.page.waitForSelector(slctChooseYourRegion);
@@ -39,8 +39,18 @@ export class D2CLegalShieldCaPage extends OktaPage {
   };
   selectCheckout = async (lineofbusiness: string): Promise<void> => {
     // Take a screenshot of the cart
-    await this.page.locator('#cart-container').screenshot({ path: 'Screenshots/testingHarness/' + lineofbusiness + 'Cart.png' });
-    await this.clickOnElement('#checkout-btn');
+    if (lineofbusiness != 'd2cIDShieldCA') {
+      await this.page.locator('#cart-container').screenshot({ path: 'Screenshots/testingHarness/' + lineofbusiness + 'Cart.png' });
+      await this.clickOnElement('#checkout-btn');
+    } else {
+      if (await this.page.locator('#lsc-header-cart-icon-desktop img').isVisible()) {
+        await this.page.waitForSelector('button:has-text("Continue")');
+      } else {
+        await this.clickOnElement('#lsc-header-cart-icon-desktop img');
+      }
+      await this.page.locator('#root').screenshot({ path: 'Screenshots/testingHarness/' + lineofbusiness + 'Cart.png' });
+      await this.clickOnElement('button:has-text("Continue")');
+    }
   };
   loginLegalShieldCA = async (lineofbusiness: string): Promise<void> => {
     await this.page.waitForLoadState();

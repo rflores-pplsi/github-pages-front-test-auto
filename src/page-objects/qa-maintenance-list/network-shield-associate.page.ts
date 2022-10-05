@@ -15,7 +15,7 @@ const slctYourCity = 'select.lsc_region_selector';
 const btnUpdateRegion = '//button[contains(text(),"Update region")]';
 const lblWelcome = '//h1[contains(text(),"Welcome to the Family!")]';
 
-export class D2CLegalShieldUSPage extends OktaPage {
+export class NetworkShieldAssociatePage extends OktaPage {
   // ========================== Process Methods ============================
 
   selectYourCity = async (region: string): Promise<void> => {
@@ -26,14 +26,7 @@ export class D2CLegalShieldUSPage extends OktaPage {
   // ========================== Navigate Methods ===========================
 
   // ========================== Click Methods ==============================
-  clickOnALineOfBusiness = async (lofb: string, lineofbusiness: string): Promise<void> => {
-    // navigate to URL
-    await this.page.waitForLoadState();
-    const LineOfBusiness = 'div.et_pb_blurb_' + lofb;
-    await this.page.waitForSelector(LineOfBusiness);
-    await this.page.screenshot({ path: 'Screenshots/testingHarness/' + lineofbusiness + 'LineOfBusiness.png', fullPage: true });
-    await this.clickOnElement(LineOfBusiness);
-  };
+
   // ========================== Assertion Methods ==========================
 
   assertWelcomelabel = async (lineofbusiness: string): Promise<void> => {

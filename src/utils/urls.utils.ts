@@ -177,4 +177,12 @@ export default class UrlsUtils {
     url1UniversalTrucking: `http://www.legalshield.com/info/1universaltrucking`,
     urlPrimericaGroup: `http://groups.legalshield.com/?group=primerica`,
   };
+  static readonly miscellaneousUrls = {
+    opportunityUrl: `http://www.opportunity.legalshield.com`,
+    opportunityRedirectUrl: `http://wearelegalshield.com/income-disclosure`,
+    businessUrl: `https://business.legalshield.com`,
+    businessRedirectUrl: `https://www.legalshield.com/business-plan/plan-summary/`,
+    launchUrl: `http://launchbylegalshield.com`,
+    launchRedirectUrl: `https://www.legalshield.com/start-a-business/`,
+  };
 }

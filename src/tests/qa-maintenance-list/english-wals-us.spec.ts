@@ -42,12 +42,3 @@ test('English WALS-US', async ({ page }) => {
   // Verify that the user made the purchase
   await englishWalsUSPage.assertWelcomelabel();
 });
-test('English WALS-US API verification', async ({ request }) => {
-  test.slow;
-  const _response = await request.get('https://checkoutv3.uat-legalshield.com/o/v1/orders', {
-    headers: {
-      Authorization: 'Basic dHR0ZXN0ZnRzdGVzdGx0czpQYXNzd29yZDE=',
-    },
-  });
-  console.log(await _response.json);
-});
