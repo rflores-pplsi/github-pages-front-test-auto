@@ -57,7 +57,7 @@ test('D2E IDShield CA using Testing Harness', async ({ page }) => {
   });
   await test.step('Proceed to Payment Page > Complete Payment with BD transaction ', async () => {
     await checkoutPaymentsBankDraftPage.clickBankDraftBtn();
-    await checkoutPaymentsBankDraftPage.fillBankDraftFormForCanada();
+    await checkoutPaymentsBankDraftPage.fillCaBankDraftFormAndSubmit();
     page.on('response', (response) => {
       console.log('<<', response);
     });

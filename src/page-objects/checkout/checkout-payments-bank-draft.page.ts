@@ -166,7 +166,7 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
     console.log(' - checkoutPaymentPage.fillAccountNumberTxt');
     // Fill  Account Number
     const txtAccountNumbertst1 = await frmPayment.locator(txtAccountNumber);
-    await txtAccountNumbertst1.type('1000123546');
+    await txtAccountNumbertst1.type(account);
     // await this.fillTextBox(txtAccountNumber, account);
   };
 
@@ -182,7 +182,7 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
     if (frmPayment != null) {
       // Fill  Routing Number
       const txtRoutingNumberTxt = await frmPayment.locator(txtRoutingNumber);
-      await txtRoutingNumberTxt.type('103000648');
+      await txtRoutingNumberTxt.type(routing);
       // await this.fillTextBox(txtRoutingNumber, routing);
     } else throw new Error('No such frame');
   };

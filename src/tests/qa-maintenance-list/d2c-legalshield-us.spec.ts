@@ -53,7 +53,7 @@ test('D2E LegalShield US using Testing Harness', async ({ page }) => {
   });
   await test.step('Proceed to Payment Page > Complete Payment with BD transaction ', async () => {
     await checkoutPaymentsBankDraftPage.clickBankDraftBtn();
-    await checkoutPaymentsBankDraftPage.fillBankDraftForm();
+    await checkoutPaymentsBankDraftPage.fillBankDraftFormAndSubmit();
   });
   await test.step('Continue to Confirmation Page.', async () => {
     await d2CLegalShieldUSPage.assertWelcomelabel('d2cLegalShieldUS');
