@@ -75,6 +75,7 @@ export default class DataUtils {
       us: {
         city: {
           VA: 'Virginia',
+          CA: 'California',
         },
         bd: {
           name: 'Tester',

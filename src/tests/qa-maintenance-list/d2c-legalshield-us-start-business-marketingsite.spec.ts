@@ -1,0 +1,33 @@
+/* eslint-disable no-undef */
+import { test } from '@playwright/test';
+import { LoginPage } from '../../page-objects/login/login.page';
+import { LegalShieldUSPage } from '../../page-objects/qa-maintenance-list/d2c-legalshield-us-marketingsite.page';
+require('dotenv').config();
+// create instance of Page
+let legalShieldUSPage: LegalShieldUSPage;
+let loginPage: LoginPage;
+
+// Setup environment before each test
+test.beforeEach(async ({ page, request }) => {
+  legalShieldUSPage = new LegalShieldUSPage(page);
+  loginPage = new LoginPage(page);
+
+  // test.slow triples the default wait times
+  test.slow();
+  // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
+});
+test('D2C LegalShield US marketing start a business plan', async ({ page }) => {
+  test.slow;
+  await test.step('Navigate to Marketing Site', async () => {
+    await legalShieldUSPage.navigateToLegalShieldUSMarketingSitePage('d2cLegalShieldUSMarketingSite');
+  });
+  await test.step('Pick annual plan', async () => {
+    await legalShieldUSPage.pickAPlan('START_BUSINESS');
+  });
+  await test.step('Checkout', async () => {
+    await legalShieldUSPage.checkout();
+  });
+  await test.step('Login', async () => {
+    await loginPage.login(process.env.LOGIN_EMAIL_UAT, process.env.LOGIN_PASSWORD_UAT);
+  });
+});
