@@ -185,4 +185,9 @@ export default class UrlsUtils {
     launchUrl: `http://launchbylegalshield.com`,
     launchRedirectUrl: `https://www.legalshield.com/start-a-business/`,
   };
+  static readonly marketingSitesUrls = {
+    legalShieldUSUrl: `https://www.${envUrlString}legalshield.com`,
+    legalShieldCAUrl: `https://www.${envUrlString}legalshield.ca`,
+    idShieldUSUrl: `https://www.${envUrlString}idshield.com`,
+  };
 }
