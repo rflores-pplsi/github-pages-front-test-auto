@@ -30,22 +30,7 @@ test.only('D2E idShield US marketing family monthly plan', async ({ page }) => {
     await d2cLegalShieldCaPage.selectYourRegion(DataUtils.data.testingHarness.us.city.VA);
   });
   await test.step('Pick a plan', async () => {
-    await idShieldUSPage.pickAFamilyPlan('MONTHLY');
-  });
-  await test.step('Login', async () => {
-    await loginPage.login(process.env.LOGIN_EMAIL_UAT, process.env.LOGIN_PASSWORD_UAT);
-  });
-});
-test('D2E idShield US marketing family annual plan', async ({ page }) => {
-  test.slow;
-  await test.step('Navigate to legalshield CA marketing site', async () => {
-    await idShieldUSPage.navigateToIDShieldUSMarketingSitePlage('d2cLegalShieldCA');
-  });
-  await test.step('Choose a region', async () => {
-    await d2cLegalShieldCaPage.selectYourRegion(DataUtils.data.testingHarness.us.city.VA);
-  });
-  await test.step('Pick a plan', async () => {
-    await idShieldUSPage.pickAFamilyPlan('ANNUAL');
+    await idShieldUSPage.pickAFamilyPlan('MONTHLY', 'CHECKOUT');
   });
   await test.step('Login', async () => {
     await loginPage.login(process.env.LOGIN_EMAIL_UAT, process.env.LOGIN_PASSWORD_UAT);

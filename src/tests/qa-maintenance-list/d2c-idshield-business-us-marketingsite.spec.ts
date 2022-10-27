@@ -30,7 +30,7 @@ test('D2E idShield US marketing business plan', async ({ page }) => {
     await d2cLegalShieldCaPage.selectYourRegion(DataUtils.data.testingHarness.us.city.VA);
   });
   await test.step('Pick a plan', async () => {
-    await idShieldUSPage.pickABusinessPlan('MONTHLY');
+    await idShieldUSPage.pickABusinessPlan('MONTHLY', 'CHECKOUT');
   });
   await test.step('Login', async () => {
     await loginPage.login(process.env.LOGIN_EMAIL_UAT, process.env.LOGIN_PASSWORD_UAT);

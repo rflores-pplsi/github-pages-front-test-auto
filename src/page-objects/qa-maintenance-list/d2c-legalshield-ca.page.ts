@@ -6,6 +6,7 @@ import UrlsUtils from '../../utils/urls.utils';
 import { basicUser } from '../../utils/user.utils';
 import { LoginPage } from '../login/login.page';
 import { OktaPage } from '../okta/okta.page';
+import { waitNitroPackToLoadElementAsVisible } from '../../utils/pageUtils';
 
 require('dotenv').config;
 
@@ -23,6 +24,7 @@ export class D2CLegalShieldCaPage extends OktaPage {
     await this.page.click('text=Direct To Consumer Network Calendar >> img >> nth=' + nth, { force: true });
   };
   selectYourRegion = async (region: string): Promise<void> => {
+    await waitNitroPackToLoadElementAsVisible(this.page.locator(slctChooseYourRegion), this.page);
     await this.page.waitForSelector(slctChooseYourRegion);
     await this.selectFromDropDownMenu(slctChooseYourRegion, region);
     await this.clickOnElement(btnUpdateRegion);
