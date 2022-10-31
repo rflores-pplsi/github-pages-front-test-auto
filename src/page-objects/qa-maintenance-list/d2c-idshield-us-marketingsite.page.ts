@@ -1,9 +1,9 @@
 /* eslint-disable require-jsdoc */
 import UrlsUtils from '../../utils/urls.utils'; // import class of Urls
-import { LoginPage } from '../login/login.page'; // import the LoginPage for extension
 import { waitNitroPackToLoadElementAsVisible } from '../../utils/pageUtils';
-import { getLocalStorageSelectedProducts } from '../../utils/browser-storage.utils';
+import { getLocalStorageAvailableProducts } from '../../utils/browser-storage.utils';
 import { LocalStorageSelectedItem } from '../../types/types';
+import { BasePage } from '../base.page';
 
 // ========================== Selectors ==================================
 const urlD2CIDShieldUSPage = UrlsUtils.marketingSitesUrls.idShieldUSUrl;
@@ -17,7 +17,7 @@ const BTN_CONTINUE_SHOPPING = '#continue-shopping-link';
 const BTN_FAMILY_PLAN = ':nth-match(:text("Family Plan"), 1)';
 const TEXT_CART_PLAN = '.cart-plan';
 const TEXT_CART_MESSAGE = '#cart-messages p';
-export class IDShieldUSPage extends LoginPage {
+export class IDShieldUSPage extends BasePage {
   // ========================== Process Methods ============================
   pickAnIndividualPlan = async (plan: string, action: string): Promise<void> => {
     await this.page.waitForSelector(BTN_VIEW_PLANS);
@@ -28,7 +28,7 @@ export class IDShieldUSPage extends LoginPage {
       await this.page.getByLabel(RADIO_ANNUALLY).check();
     }
     await this.page.waitForLoadState();
-    const localStorageProducts: LocalStorageSelectedItem[] | undefined = await getLocalStorageSelectedProducts(this.page);
+    const localStorageProducts: LocalStorageSelectedItem[] | null = await getLocalStorageAvailableProducts(this.page);
     const localStorageProductID = localStorageProducts?.find(
       (localStorageProduct) => localStorageProduct.productName == 'IDShield Individual'
     )?.productId;
@@ -45,7 +45,7 @@ export class IDShieldUSPage extends LoginPage {
     if (plan == 'ANNUAL') {
       await this.page.getByLabel(RADIO_ANNUALLY).check();
     }
-    const localStorageProducts: LocalStorageSelectedItem[] | undefined = await getLocalStorageSelectedProducts(this.page);
+    const localStorageProducts: LocalStorageSelectedItem[] | null = await getLocalStorageAvailableProducts(this.page);
     const localStorageProductID = localStorageProducts?.find(
       (localStorageProduct) => localStorageProduct.productName == 'IDShield Family'
     )?.productId;

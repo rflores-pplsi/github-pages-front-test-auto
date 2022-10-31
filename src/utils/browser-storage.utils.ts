@@ -1,20 +1,33 @@
 import { Page } from '@playwright/test';
 // import { getProductIdByName } from './products.utils';
 import { LocalStorageSelectedItem } from '../types/types';
+import { retryAsync } from 'ts-retry';
 /**
  *
  *
  * @export
  * @param {Page} page
- * @return {*}  {(Promise<LocalStorageSelectedItem[] | undefined>)}
+ * @return {*}  {(Promise<LocalStorageSelectedItem[] | null>)}
  */
-export async function getLocalStorageSelectedProducts(page: Page): Promise<LocalStorageSelectedItem[] | undefined> {
-  const selectedProducts = await page.evaluate(() => {
-    // eslint-disable-next-line no-undef
-    return localStorage.getItem('available_products');
-  });
-  if (selectedProducts) {
-    return JSON.parse(selectedProducts);
+export async function getLocalStorageAvailableProducts(page: Page): Promise<LocalStorageSelectedItem[] | null> {
+  const availableProducts = await retryAsync(
+    async () => {
+      return await page.evaluate(() => {
+        // eslint-disable-next-line no-undef
+        return localStorage.getItem('available_products');
+      });
+    },
+    {
+      delay: 500,
+      maxTry: 5,
+      until: (lastResult) => lastResult !== null,
+    }
+  );
+
+  if (availableProducts) {
+    return JSON.parse(availableProducts);
+  } else {
+    return null;
   }
 }
 /**

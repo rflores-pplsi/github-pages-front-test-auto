@@ -24,7 +24,6 @@ export class D2CLegalShieldCaPage extends OktaPage {
     await this.page.click('text=Direct To Consumer Network Calendar >> img >> nth=' + nth, { force: true });
   };
   selectYourRegion = async (region: string): Promise<void> => {
-    await waitNitroPackToLoadElementAsVisible(this.page.locator(slctChooseYourRegion), this.page);
     await this.page.waitForSelector(slctChooseYourRegion);
     await this.selectFromDropDownMenu(slctChooseYourRegion, region);
     await this.clickOnElement(btnUpdateRegion);
