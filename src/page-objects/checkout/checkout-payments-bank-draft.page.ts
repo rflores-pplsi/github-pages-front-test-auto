@@ -265,6 +265,7 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
   };
 
   clickSaveAndContinue = async () => {
+    await this.page.waitForLoadState();
     await this.page.locator(btnSaveAndContinue).click();
   };
 
