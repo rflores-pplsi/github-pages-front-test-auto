@@ -7,6 +7,7 @@ const btnPubliclyTradedNo: string = '#traded-company-no';
 const btnNonProfitNo: string = '#non-profit-no';
 const btnAddToCart: string = '#add-to-cart-btn';
 const icnCart: string = '//div[@id="lsc-header-cart-icon-desktop"]//img';
+const ddlRegionSelector: string = '//select[contains(@class,"lsc_region_selector")]';
 
 /**
  * @export
