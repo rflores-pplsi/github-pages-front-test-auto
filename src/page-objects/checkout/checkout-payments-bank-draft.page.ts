@@ -17,6 +17,7 @@ const conMembershipWrapper = '//div[contains(@class,"membership-wrapper")]';
 // Bank Draft Selectors for Canada
 const txtTransitNumber = "[placeholder='Transit Number']";
 const txtInstitutionNumber = "[placeholder='Institution Number']";
+const btnSaveAndContinue = "button:has-text('Save & Continue')";
 
 /**
  * @export
@@ -261,6 +262,10 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
       const txtInstitutionNumberTxt = await frmPayment.locator(txtInstitutionNumber);
       await txtInstitutionNumberTxt.type(routing);
     } else throw new Error('No such frame');
+  };
+
+  clickSaveAndContinue = async () => {
+    await this.page.locator(btnSaveAndContinue).click();
   };
 
   // ========================== Click Methods ==============================
