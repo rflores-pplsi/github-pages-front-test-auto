@@ -50,6 +50,7 @@ test('D2E LegalShield CA using Testing Harness', async ({ page }) => {
   });
   await test.step('Complete BD transaction and continue to confirmation page.', async () => {
     await checkoutPersonalInfoPage.changeAddressCanada(DataUtils.data.testingHarness.ca.bd.province.BC);
+    await checkoutPaymentsBankDraftPage.clickSaveAndContinue();
     await checkoutPaymentsBankDraftPage.clickBankDraftBtn();
     await checkoutPaymentsBankDraftPage.fillCaBankDraftFormAndSubmit();
     await d2CLegalShieldCaPage.assertWelcomelabel();
