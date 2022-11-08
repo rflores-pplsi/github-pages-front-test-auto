@@ -21,6 +21,7 @@ const selectStatedorpdown = '//span[contains(text(),"Select")]';
 const availablePlansLbl = '//h3[contains(text(),"Available Plans")]';
 const selectFrequencydorpdown = '//span[contains(text(),"Monthly")]';
 const tellUsAboutYourselfLbl = '//h1[contains(text(),"Tell us about yourself")]';
+const linkLegalPlan = 'text="Legal Plan"';
 
 export class BestMoneyMoversGroupPage extends OktaPage {
   // ========================== Process Methods ============================
@@ -73,6 +74,10 @@ export class BestMoneyMoversGroupPage extends OktaPage {
   };
 
   // ========================== Click Methods ==============================
+
+  clickOnLegalPlanTab = async (): Promise<void> => {
+    await this.page.click(linkLegalPlan);
+  };
 
   clickBtnEnrollNow = async (): Promise<void> => {
     console.log(' - BestMoneyMoversGroupPage.clickBtnEnrollNow');
