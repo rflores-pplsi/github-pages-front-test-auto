@@ -164,9 +164,9 @@ for (const tc of legalshieldIdShieldAnnualData.filter((tc) => tc.disabled == fal
       await test.step(`Assert Billing Frequency: ${tc.term}`, async () => {
         await checkoutConfirmationPage.assertBillingFrequenciesForAllProducts(tc.productDetails);
       });
-      // await test.step(`Assert Term Label - Payment Page: ${tc.termTotal}`, async () => {
-      //   await checkoutConfirmationPage.assertTermLabel(tc.term);
-      // });
+      await test.step(`Assert Term Label - Payment Page: ${tc.termTotal}`, async () => {
+        await checkoutConfirmationPage.assertTermLabel(tc.term);
+      });
       await test.step(`Assert Term Total - Payment Page: ${tc.termTotal}`, async () => {
         await checkoutConfirmationPage.assertTermTotal(tc.termTotal);
       });
@@ -200,7 +200,7 @@ for (const tc of legalshieldIdShieldAnnualData.filter((tc) => tc.disabled == fal
 // LegalShield - Canada - Monthly
 for (const tc of legalshieldCanadaMonthlyData.filter((tc) => tc.disabled == false)) {
   for (const region of tc.regions) {
-    test(`${tc.testCaseName} - ${region}`, async ({ page }) => {
+    test.only(`${tc.testCaseName} - ${region}`, async ({ page }) => {
       console.log(`Test Case: ${tc.testCaseName} - ${region}`);
       // Select Plans and get to Personal Info Page
       await test.step(`Navigate to Test Harness - LegalShield}`, async () => {
@@ -226,7 +226,7 @@ for (const tc of legalshieldCanadaMonthlyData.filter((tc) => tc.disabled == fals
         await checkoutConfirmationPage.assertAllProductNamesAndCosts(tc.productDetails);
       });
       await test.step(`Assert Billing Frequency: ${tc.term}`, async () => {
-        // await checkoutConfirmationPage.assertBillingFrequenciesForAllProducts(tc.productDetails);
+        await checkoutConfirmationPage.assertBillingFrequenciesForAllProducts(tc.productDetails);
       });
       await test.step(`Assert Term Label - Personal Info Page: ${tc.term}`, async () => {
         await checkoutConfirmationPage.assertTermLabel(tc.term);
@@ -252,7 +252,7 @@ for (const tc of legalshieldCanadaMonthlyData.filter((tc) => tc.disabled == fals
         await checkoutConfirmationPage.assertAllProductNamesAndCosts(tc.productDetails);
       });
       await test.step(`Assert Billing Frequency: ${tc.term}`, async () => {
-        // await checkoutConfirmationPage.assertBillingFrequenciesForAllProducts(tc.productDetails);
+        await checkoutConfirmationPage.assertBillingFrequenciesForAllProducts(tc.productDetails);
       });
       await test.step(`Assert Term Label - Payment Page: ${tc.termTotal}`, async () => {
         await checkoutConfirmationPage.assertTermLabel(tc.term);

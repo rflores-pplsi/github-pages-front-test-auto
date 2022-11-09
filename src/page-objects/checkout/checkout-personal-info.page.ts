@@ -261,10 +261,8 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     console.log(' - checkoutPersonalInfoPage.enterPostalCode');
     await this.page.keyboard.press('Tab');
     await this.page.keyboard.press('Tab');
-    await this.page.keyboard.press('Backspace');
-    await this.page.keyboard.press('Backspace');
-    await this.page.keyboard.press('Backspace');
-    await this.page.fill(txtPostalCode, postalCode);
+    await this.page.locator(txtPostalCode).fill('');
+    await this.fillTextBox(txtPostalCode, postalCode);
   };
 
   /**

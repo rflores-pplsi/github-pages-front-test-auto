@@ -52,8 +52,9 @@ test('D2E LegalShield US using Testing Harness', async ({ page }) => {
     await checkoutPersonalInfoPage.changeAddressUs(DataUtils.data.testingHarness.us.city.VA);
   });
   await test.step('Proceed to Payment Page > Complete Payment with BD transaction ', async () => {
+    await checkoutPaymentsBankDraftPage.clickSaveAndContinue();
     await checkoutPaymentsBankDraftPage.clickBankDraftBtn();
-    await checkoutPaymentsBankDraftPage.fillBankDraftFormAndSubmit();
+    await checkoutPaymentsBankDraftPage.fillUsBankDraftFormAndSubmit();
   });
   await test.step('Continue to Confirmation Page.', async () => {
     await d2CLegalShieldUSPage.assertWelcomelabel('d2cLegalShieldUS');

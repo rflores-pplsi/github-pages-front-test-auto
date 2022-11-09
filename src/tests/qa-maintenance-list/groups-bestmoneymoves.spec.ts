@@ -15,6 +15,8 @@ test('Best Money Movers Group', async ({ page }) => {
   test.slow;
   // Go to https://www.shieldbenefits.com/bestmoneymoves/overview
   await bestMoneyMoversGroupPage.navigateToBestMoneyMoversGroupPage();
+  // Click on legal plan tab
+  await bestMoneyMoversGroupPage.clickOnLegalPlanTab();
   // Click text=Enroll Now
   await bestMoneyMoversGroupPage.clickBtnEnrollNow();
   // Confirm button takes user to Pricing Page

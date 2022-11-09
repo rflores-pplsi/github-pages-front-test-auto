@@ -63,6 +63,7 @@ const txtTransitNumber = '#transit_number';
 const txtInstitutionNumber = '#institution_number';
 const txtAccountNumber = '#account_number';
 const rdoCheckingAccount = '//input[ @value="Checking"]';
+const txtDependentFamily = 'text=Couverture familiale';
 let street: string;
 let city: string;
 let postalCode: string;
@@ -124,7 +125,7 @@ export class FrenchWalsCaPage extends OktaPage {
   getStartedThenPickAPlan = async (): Promise<void> => {
     console.log(' - FrenchWalsCaPage.getStartedThenPickAPlan');
     if (!(this.page.url() == 'https://lspro.noussommeslegalshield.ca/')) {
-      await this.clickOnElement('text=OBTENIR UN PLAN >> nth=2');
+      await this.clickOnElement('//a[@class="subscriber-ASSOCSTP"]');
       // Check No checkbox
       await this.clickOnElement('#no');
       // Click on Add to Cart Button
@@ -160,20 +161,22 @@ export class FrenchWalsCaPage extends OktaPage {
     await this.typeTextBox(txtDateOfBirth, dob);
     // Fill SSN
     await this.typeTextBox(txtSSN, ssn);
-    // Fill Dependent First Name
-    await this.typeTextBox(txtDependentFirstName, depFirst);
-    // Fill Dependent Last Name
-    await this.typeTextBox(txtDependentLastName, depLast);
-    // Fill Dependent Date of Birth
-    await this.typeTextBox(txtDependentBDay, depDob);
-    // Select a Family member type
-    await this.clickOnElement(selectFamilyMemberType);
-    await this.page.waitForSelector('//span[contains(text()," ' + dependent + ' ")]');
-    await this.clickOnElement('//span[contains(text()," ' + dependent + ' ")]');
-    if (!this.page.$(txtDependentEmail)) {
-      await this.fillTextBox(txtDependentEmail, dependentEmail);
-    } else {
-      console.log("Dependent's email is not displayed");
+    if (await this.page.locator(txtDependentFamily).isVisible()) {
+      // Fill Dependent First Name
+      await this.typeTextBox(txtDependentFirstName, depFirst);
+      // Fill Dependent Last Name
+      await this.typeTextBox(txtDependentLastName, depLast);
+      // Fill Dependent Date of Birth
+      await this.typeTextBox(txtDependentBDay, depDob);
+      // Select a Family member type
+      await this.clickOnElement(selectFamilyMemberType);
+      await this.page.waitForSelector('//span[contains(text()," ' + dependent + ' ")]');
+      await this.clickOnElement('//span[contains(text()," ' + dependent + ' ")]');
+      if (!this.page.$(txtDependentEmail)) {
+        await this.fillTextBox(txtDependentEmail, dependentEmail);
+      } else {
+        console.log("Dependent's email is not displayed");
+      }
     }
 
     // Click continue Button

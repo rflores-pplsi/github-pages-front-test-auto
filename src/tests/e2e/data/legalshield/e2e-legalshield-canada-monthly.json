@@ -11,16 +11,44 @@
   {
     "testCaseName": "LegalShield Canada (Legal Plan) - all provinces",
     "market": "CA",
-    "regions": ["Alberta"],
+    "regions": [
+      "Alberta",
+      "British Columbia",
+      "Manitoba",
+      "New Brunswick",
+      "Newfoundland and Labrador",
+      "Northwest Territories",
+      "Nova Scotia",
+      "Nunavut",
+      "Ontario",
+      "Prince Edward Island",
+      "Saskatchewan",
+      "Yukon",
+      "Quebec"
+    ],
     "productDetails": [{ "productName": "Legal Plan", "shortCode": "CA22", "cost": "$32.95", "productType": "LegalShield", "term": "Monthly" }],
     "term": "Monthly",
     "termTotal": "$32.95",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "LegalShield Canada (Legal Plan - Trial Defence Supplement)",
     "market": "CA",
-    "regions": ["Alberta"],
+    "regions": [
+      "Alberta",
+      "British Columbia",
+      "Manitoba",
+      "New Brunswick",
+      "Newfoundland and Labrador",
+      "Northwest Territories",
+      "Nova Scotia",
+      "Nunavut",
+      "Ontario",
+      "Prince Edward Island",
+      "Saskatchewan",
+      "Yukon",
+      "Quebec"
+    ],
     "productDetails": [
       { "productName": "Legal Plan", "shortCode": "CA22", "cost": "$32.95", "productType": "LegalShield", "term": "Monthly" },
       {
@@ -33,12 +61,26 @@
     ],
     "term": "Monthly",
     "termTotal": "$47.90",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "LegalShield Canada (Legal Plan - Home Business Supplement)",
     "market": "CA",
-    "regions": ["Alberta"],
+    "regions": [
+      "Alberta",
+      "British Columbia",
+      "Manitoba",
+      "New Brunswick",
+      "Newfoundland and Labrador",
+      "Northwest Territories",
+      "Nova Scotia",
+      "Nunavut",
+      "Ontario",
+      "Prince Edward Island",
+      "Saskatchewan",
+      "Yukon",
+      "Quebec"
+    ],
     "productDetails": [
       { "productName": "Legal Plan", "shortCode": "CA22", "cost": "$32.95", "productType": "LegalShield", "term": "Monthly" },
       {
@@ -51,12 +93,26 @@
     ],
     "term": "Monthly",
     "termTotal": "$47.90",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "LegalShield Canada (Legal Plan - Ride Share and Delivery Supplement)",
     "market": "CA",
-    "regions": ["Alberta"],
+    "regions": [
+      "Alberta",
+      "British Columbia",
+      "Manitoba",
+      "New Brunswick",
+      "Newfoundland and Labrador",
+      "Northwest Territories",
+      "Nova Scotia",
+      "Nunavut",
+      "Ontario",
+      "Prince Edward Island",
+      "Saskatchewan",
+      "Yukon",
+      "Quebec"
+    ],
     "productDetails": [
       { "productName": "Legal Plan", "shortCode": "CA22", "cost": "$32.95", "productType": "LegalShield", "term": "Monthly" },
       {
@@ -69,12 +125,26 @@
     ],
     "term": "Monthly",
     "termTotal": "$47.90",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "LegalShield Canada (Legal Plan - Business Plus Supplement)",
     "market": "CA",
-    "regions": ["Alberta"],
+    "regions": [
+      "Alberta",
+      "British Columbia",
+      "Manitoba",
+      "New Brunswick",
+      "Newfoundland and Labrador",
+      "Northwest Territories",
+      "Nova Scotia",
+      "Nunavut",
+      "Ontario",
+      "Prince Edward Island",
+      "Saskatchewan",
+      "Yukon",
+      "Quebec"
+    ],
     "productDetails": [
       { "productName": "Legal Plan", "shortCode": "CA22", "cost": "$32.95", "productType": "LegalShield", "term": "Monthly" },
       {
@@ -87,23 +157,51 @@
     ],
     "term": "Monthly",
     "termTotal": "$47.90",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "LegalShield Canada (Small Business Legal Essentials)",
     "market": "CA",
-    "regions": ["Alberta"],
+    "regions": [
+      "Alberta",
+      "British Columbia",
+      "Manitoba",
+      "New Brunswick",
+      "Newfoundland and Labrador",
+      "Northwest Territories",
+      "Nova Scotia",
+      "Nunavut",
+      "Ontario",
+      "Prince Edward Island",
+      "Saskatchewan",
+      "Yukon",
+      "Quebec"
+    ],
     "productDetails": [
       { "productName": "Small Business Legal Essentials", "shortCode": "ESS", "cost": "$49.00", "productType": "LegalShield", "term": "Monthly" }
     ],
     "term": "Monthly",
     "termTotal": "$49.00",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "LegalShield Canada (Small Business Legal Essentials - Business Plus Supplement)",
     "market": "CA",
-    "regions": ["Alberta"],
+    "regions": [
+      "Alberta",
+      "British Columbia",
+      "Manitoba",
+      "New Brunswick",
+      "Newfoundland and Labrador",
+      "Northwest Territories",
+      "Nova Scotia",
+      "Nunavut",
+      "Ontario",
+      "Prince Edward Island",
+      "Saskatchewan",
+      "Yukon",
+      "Quebec"
+    ],
     "productDetails": [
       { "productName": "Small Business Legal Essentials", "shortCode": "ESS", "cost": "$49.00", "productType": "LegalShield", "term": "Monthly" },
       {
@@ -116,23 +214,51 @@
     ],
     "term": "Monthly",
     "termTotal": "$63.95",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "LegalShield Canada (Small Business Legal Plus)",
     "market": "CA",
-    "regions": ["Alberta"],
+    "regions": [
+      "Alberta",
+      "British Columbia",
+      "Manitoba",
+      "New Brunswick",
+      "Newfoundland and Labrador",
+      "Northwest Territories",
+      "Nova Scotia",
+      "Nunavut",
+      "Ontario",
+      "Prince Edward Island",
+      "Saskatchewan",
+      "Yukon",
+      "Quebec"
+    ],
     "productDetails": [
       { "productName": "Small Business Legal Plus", "shortCode": "PLUS", "cost": "$99.00", "productType": "LegalShield", "term": "Monthly" }
     ],
     "term": "Monthly",
     "termTotal": "$99.00",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "LegalShield Canada (Small Business Legal Plus + Trial Defence for Business)",
     "market": "CA",
-    "regions": ["Alberta"],
+    "regions": [
+      "Alberta",
+      "British Columbia",
+      "Manitoba",
+      "New Brunswick",
+      "Newfoundland and Labrador",
+      "Northwest Territories",
+      "Nova Scotia",
+      "Nunavut",
+      "Ontario",
+      "Prince Edward Island",
+      "Saskatchewan",
+      "Yukon",
+      "Quebec"
+    ],
     "productDetails": [
       { "productName": "Small Business Legal Plus", "shortCode": "PLUS", "cost": "$99.00", "productType": "LegalShield", "term": "Monthly" },
       {
@@ -145,13 +271,27 @@
     ],
     "term": "Monthly",
     "termTotal": "$113.95",
-    "disabled": false
+    "disabled": true
   },
 
   {
     "testCaseName": "LegalShield Canada (Small Business Legal Plus + Business Plus Supplement)",
     "market": "CA",
-    "regions": ["Alberta"],
+    "regions": [
+      "Alberta",
+      "British Columbia",
+      "Manitoba",
+      "New Brunswick",
+      "Newfoundland and Labrador",
+      "Northwest Territories",
+      "Nova Scotia",
+      "Nunavut",
+      "Ontario",
+      "Prince Edward Island",
+      "Saskatchewan",
+      "Yukon",
+      "Quebec"
+    ],
     "productDetails": [
       { "productName": "Small Business Legal Plus", "shortCode": "PLUS", "cost": "$99.00", "productType": "LegalShield", "term": "Monthly" },
       {
@@ -164,6 +304,6 @@
     ],
     "term": "Monthly",
     "termTotal": "$113.95",
-    "disabled": false
+    "disabled": true
   }
 ]

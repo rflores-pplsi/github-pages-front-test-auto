@@ -187,5 +187,8 @@ export default class UrlsUtils {
   };
   static readonly marketingSitesUrls = {
     legalShieldUSUrl: `https://www.${envUrlString}legalshield.com`,
+    legalShieldCAUrl: `https://www.${envUrlString}legalshield.ca`,
+    idShieldUSUrl: `https://www.${envUrlString}idshield.com`,
+    idShieldCAUrl: `https://www.${envUrlString}idshield.ca`,
   };
 }
