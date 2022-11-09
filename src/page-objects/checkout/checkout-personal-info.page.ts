@@ -257,6 +257,9 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   enterPostalCode = async (postalCode: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.enterPostalCode');
+    await this.page.keyboard.press('Tab');
+    await this.page.keyboard.press('Tab');
+    await this.page.locator(txtPostalCode).fill('');
     await this.fillTextBox(txtPostalCode, postalCode);
   };
 
