@@ -97,9 +97,12 @@ for (const tc of legalshieldIdShieldMonthlyData.filter((tc) => tc.disabled == fa
         await checkoutConfirmationPage.logFriendlyIDs(interceptedResponse, tc.productDetails);
       });
       // // Confirmation Assertions
-      await test.step(`Assert Product Name, Cost, and Billing Frequency are Displayed in Confirmation Order Summary Tiles: ${tc.productDetails} `, async () => {
-        await checkoutConfirmationPage.assertNameCostAndBillingFrequencyOnConfirmationPageForAllProducts(tc.productDetails);
-      });
+      await test.step(
+        `Assert Product Name, Cost, and Billing Frequency are Displayed in Confirmation Order Summary Tiles: ${tc.productDetails} `,
+        async () => {
+          await checkoutConfirmationPage.assertNameCostAndBillingFrequencyOnConfirmationPageForAllProducts(tc.productDetails);
+        }
+      );
       await test.step(`Assert Plan Tiles Displayed on Confirmation Page for: ${tc.productDetails}`, async () => {
         await checkoutConfirmationPage.assertAllPlanTilesOnConfirmationPage(tc.productDetails);
       });
@@ -187,9 +190,12 @@ for (const tc of legalshieldIdShieldAnnualData.filter((tc) => tc.disabled == fal
         await checkoutConfirmationPage.logFriendlyIDs(interceptedResponse, tc.productDetails);
       });
       // // Confirmation Assertions
-      await test.step(`Assert Product Name, Cost, and Billing Frequency are Displayed in Confirmation Order Summary Tiles: ${tc.productDetails} `, async () => {
-        await checkoutConfirmationPage.assertNameCostAndBillingFrequencyOnConfirmationPageForAllProducts(tc.productDetails);
-      });
+      await test.step(
+        `Assert Product Name, Cost, and Billing Frequency are Displayed in Confirmation Order Summary Tiles: ${tc.productDetails} `,
+        async () => {
+          await checkoutConfirmationPage.assertNameCostAndBillingFrequencyOnConfirmationPageForAllProducts(tc.productDetails);
+        }
+      );
       await test.step(`Assert Plan Tiles Displayed on Confirmation Page for: ${tc.productDetails}`, async () => {
         await checkoutConfirmationPage.assertAllPlanTilesOnConfirmationPage(tc.productDetails);
       });
@@ -200,7 +206,7 @@ for (const tc of legalshieldIdShieldAnnualData.filter((tc) => tc.disabled == fal
 // LegalShield - Canada - Monthly
 for (const tc of legalshieldCanadaMonthlyData.filter((tc) => tc.disabled == false)) {
   for (const region of tc.regions) {
-    test.only(`${tc.testCaseName} - ${region}`, async ({ page }) => {
+    test(`${tc.testCaseName} - ${region}`, async ({ page }) => {
       console.log(`Test Case: ${tc.testCaseName} - ${region}`);
       // Select Plans and get to Personal Info Page
       await test.step(`Navigate to Test Harness - LegalShield}`, async () => {
@@ -277,9 +283,12 @@ for (const tc of legalshieldCanadaMonthlyData.filter((tc) => tc.disabled == fals
         await checkoutConfirmationPage.logFriendlyIDs(interceptedResponse, tc.productDetails);
       });
       // // Confirmation Assertions
-      await test.step(`Assert Product Name, Cost, and Billing Frequency are Displayed in Confirmation Order Summary Tiles: ${tc.productDetails} `, async () => {
-        await checkoutConfirmationPage.assertNameCostAndBillingFrequencyOnConfirmationPageForAllProducts(tc.productDetails);
-      });
+      await test.step(
+        `Assert Product Name, Cost, and Billing Frequency are Displayed in Confirmation Order Summary Tiles: ${tc.productDetails} `,
+        async () => {
+          await checkoutConfirmationPage.assertNameCostAndBillingFrequencyOnConfirmationPageForAllProducts(tc.productDetails);
+        }
+      );
       await test.step(`Assert Plan Tiles Displayed on Confirmation Page for: ${tc.productDetails}`, async () => {
         await checkoutConfirmationPage.assertAllPlanTilesOnConfirmationPage(tc.productDetails);
       });
