@@ -9,6 +9,7 @@ const btnAddToCart: string = '#add-to-cart-btn';
 const icnCart: string = '//div[@id="lsc-header-cart-icon-desktop"]//img';
 const ddlRegionSelector: string = '//select[contains(@class,"lsc_region_selector")]';
 
+// eslint-disable-next-line valid-jsdoc
 /**
  * @export
  * @class LegalshieldTestHarnessMenuPage
@@ -83,6 +84,12 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
   clickProductButton = async (productName: string) => {
     console.log(' - legalshieldTestHarnessMenuPage.clickProductButton - ' + productName);
     await this.clickOnElement(`//div[contains(@class,"plan-layout")]//h1[text()="${productName}"]/following-sibling::a`);
+    await this.page.waitForLoadState('domcontentloaded');
+  };
+
+  clickProductButtonByShortCode = async (shortCode: string) => {
+    console.log(' - legalshieldTestHarnessMenuPage.clickProductButtonByShortCode - ' + shortCode);
+    await this.clickOnElement(`//div[contains(@class,"plan-layout")]//a[contains(.,"${shortCode}")]`);
     await this.page.waitForLoadState('domcontentloaded');
   };
 

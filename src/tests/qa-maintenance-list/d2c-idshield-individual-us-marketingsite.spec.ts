@@ -36,7 +36,7 @@ test('D2E idShield US marketing individual monthly plan', async ({ page }) => {
     await loginPage.login(process.env.LOGIN_EMAIL_UAT, process.env.LOGIN_PASSWORD_UAT);
   });
 });
-test.only('D2E idShield US marketing assert only one product can be purchased', async () => {
+test('E2E idShield US marketing assert only one product can be purchased', async () => {
   await test.step('Navigate to legalshield CA marketing site', async () => {
     await idShieldUSPage.navigateToIDShieldUSMarketingSitePlage('d2cLegalShieldCA');
   });
