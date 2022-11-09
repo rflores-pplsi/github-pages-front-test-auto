@@ -30,7 +30,7 @@ const txtLastName = 'input[name="last-name"]';
 const txtAddress = '#address';
 const txtCity = '#city';
 const txtZipCode = '#zipcode';
-const lnkChange = '//div/a[contains(text(),"Change Shopping Region")]';
+const lnkChange = '//a[contains(text(),"Cambiar")]';
 const selectRegion = 'select[name="state_select"]';
 const btnUpdateState = '#edit-submit--3';
 const txtPhoneNumber = '#phone-number';
@@ -105,7 +105,8 @@ export class SpanishWalsUSPage extends OktaPage {
   changeStateinformation = async (state: string): Promise<void> => {
     console.log(' - SpanishWalsUSPage.ChangeStateinformation');
     // Click on change state
-    await this.page.waitForTimeout(3000);
+    await this.page.waitForTimeout(5000);
+    await this.page.waitForSelector(lnkChange);
     await this.page.locator(lnkChange).click({ force: true });
     // Select a state
     await this.page.waitForSelector(selectRegion);
