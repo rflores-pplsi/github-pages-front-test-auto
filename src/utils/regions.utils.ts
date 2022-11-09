@@ -261,9 +261,9 @@ export default class RegionsUtils {
       name: 'Missouri',
       abbrv: 'MO',
       validAddress: {
-        street: '315 Chestnut St',
-        city: 'St. Louis',
-        postalCode: '63102',
+        street: '336 E MAIN ST',
+        city: 'Odessa',
+        postalCode: '64076',
       },
       priority: false,
     },

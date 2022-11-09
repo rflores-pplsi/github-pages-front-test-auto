@@ -29,7 +29,7 @@
     "productDetails": [{ "productName": "Legal Plan", "shortCode": "CA22", "cost": "$32.95", "productType": "LegalShield", "term": "Monthly" }],
     "term": "Monthly",
     "termTotal": "$32.95",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "LegalShield Canada (Legal Plan - Trial Defence Supplement)",
@@ -61,7 +61,7 @@
     ],
     "term": "Monthly",
     "termTotal": "$47.90",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "LegalShield Canada (Legal Plan - Home Business Supplement)",
@@ -93,7 +93,7 @@
     ],
     "term": "Monthly",
     "termTotal": "$47.90",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "LegalShield Canada (Legal Plan - Ride Share and Delivery Supplement)",
@@ -125,7 +125,7 @@
     ],
     "term": "Monthly",
     "termTotal": "$47.90",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "LegalShield Canada (Legal Plan - Business Plus Supplement)",
@@ -157,7 +157,7 @@
     ],
     "term": "Monthly",
     "termTotal": "$47.90",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "LegalShield Canada (Small Business Legal Essentials)",
@@ -182,7 +182,7 @@
     ],
     "term": "Monthly",
     "termTotal": "$49.00",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "LegalShield Canada (Small Business Legal Essentials - Business Plus Supplement)",
@@ -214,7 +214,7 @@
     ],
     "term": "Monthly",
     "termTotal": "$63.95",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "LegalShield Canada (Small Business Legal Plus)",
@@ -239,7 +239,7 @@
     ],
     "term": "Monthly",
     "termTotal": "$99.00",
-    "disabled": false
+    "disabled": true
   },
   {
     "testCaseName": "LegalShield Canada (Small Business Legal Plus + Trial Defence for Business)",
@@ -271,7 +271,7 @@
     ],
     "term": "Monthly",
     "termTotal": "$113.95",
-    "disabled": false
+    "disabled": true
   },
 
   {
@@ -304,6 +304,6 @@
     ],
     "term": "Monthly",
     "termTotal": "$113.95",
-    "disabled": false
+    "disabled": true
   }
 ]
