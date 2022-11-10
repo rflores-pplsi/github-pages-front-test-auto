@@ -21,3 +21,4 @@ Screenshots
 package.json
 package-lock.json
 dist
+.vscode/launch.json

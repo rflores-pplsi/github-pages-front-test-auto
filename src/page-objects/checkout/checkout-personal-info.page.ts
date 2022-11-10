@@ -2,7 +2,6 @@ import UrlsUtils from '../../utils/urls.utils';
 import { basicUser } from '../../utils/user.utils';
 import { CheckoutOrderSummaryComponent } from './checkout-order-summary.component';
 import RegionsUtils from '../../utils/regions.utils';
-import { OrderSummary } from './checkout.helpers';
 
 // ========================== Selectors ==================================
 // const btnSaveAndContinue: string = '';
@@ -149,6 +148,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     await this.enterHomeAddress(homeAddress);
     await this.enterCity(city);
     await this.enterPostalCode(postalCode);
+    await this.clickOnElement(btnSaveAndContinue);
   };
 
   /**
@@ -161,6 +161,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     await this.enterHomeAddress(provinceObject[0].validAddress.street);
     await this.enterCity(provinceObject[0].validAddress.city);
     await this.enterPostalCode(provinceObject[0].validAddress.postalCode);
+    await this.clickOnElement(btnSaveAndContinue);
   };
 
   /**
@@ -173,6 +174,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     await this.enterHomeAddress(regionObject[0].validAddress.street);
     await this.enterCity(regionObject[0].validAddress.city);
     await this.enterPostalCode(regionObject[0].validAddress.postalCode);
+    await this.clickOnElement(btnSaveAndContinue);
   };
 
   /**

@@ -109,7 +109,7 @@ export class FrenchWalsCaPage extends OktaPage {
   changeStateinformation = async (state: string): Promise<void> => {
     console.log(' - FrenchWalsCaPage.ChangeStateinformation');
     // Click on change state
-    await this.page.waitForTimeout(1000);
+    await this.page.waitForTimeout(1500);
     await this.page.waitForSelector(lnkChangeShoppingRegion);
     await this.page.locator(lnkChangeShoppingRegion).click({ force: true });
     // if (!(await this.page.locator(lnkChangeShoppingRegion).isVisible())) {
