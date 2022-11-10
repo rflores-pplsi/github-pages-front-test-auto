@@ -81,9 +81,7 @@ test('D2C Legalshield US marketing add annual plan should remove any existing mo
     await legalShieldUSPage.assertExistingPlanInCart('Monthly Total');
   });
 });
-test.only('D2C LegalShield US marketing supplement should remove annual plan from cart and be replaced with monthly plus supplement', async ({
-  page,
-}) => {
+test('D2C LegalShield US marketing supplement should remove annual plan from cart and be replaced with monthly plus supplement', async ({ page }) => {
   test.slow;
   await test.step('Navigate to Marketing Site', async () => {
     await legalShieldUSPage.navigateToLegalShieldUSMarketingSitePage('d2cLegalShieldUSMarketingSite');
