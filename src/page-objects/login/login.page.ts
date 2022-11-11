@@ -44,7 +44,7 @@ export class LoginPage extends BasePage {
       // Click on Ok pop up to submit login form
       // no Ok pop up button in prod yet -> need to comment out this line before run
       await this.page.waitForLoadState();
-      await this.clickOnElement(btnOk);
+      // await this.clickOnElement(btnOk);
     } else {
       throw new Error('Email or Password parameters are undefined');
     }

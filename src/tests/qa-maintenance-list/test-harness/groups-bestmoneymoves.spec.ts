@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { BestMoneyMoversGroupPage } from '../../page-objects/qa-maintenance-list/bestmoneymoversgroup.page';
+import { BestMoneyMoversGroupPage } from '../../../page-objects/qa-maintenance-list/bestmoneymoversgroup.page';
 // import RegionsUtils from '../../utils/regions.utils';
 // create instance of Page
 let bestMoneyMoversGroupPage: BestMoneyMoversGroupPage;

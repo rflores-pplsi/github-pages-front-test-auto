@@ -161,7 +161,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     await this.enterHomeAddress(provinceObject[0].validAddress.street);
     await this.enterCity(provinceObject[0].validAddress.city);
     await this.enterPostalCode(provinceObject[0].validAddress.postalCode);
-    await this.clickOnElement(btnSaveAndContinue);
+    // await this.clickOnElement(btnSaveAndContinue);
   };
 
   /**

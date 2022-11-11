@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import { test } from '@playwright/test';
-import { EnglishWalsUSPage } from '../../page-objects/qa-maintenance-list/english-wals-us.page';
+import { EnglishWalsUSPage } from '../../../page-objects/qa-maintenance-list/english-wals-us.page';
 // create instance of Page
 let englishWalsUSPage: EnglishWalsUSPage;
 

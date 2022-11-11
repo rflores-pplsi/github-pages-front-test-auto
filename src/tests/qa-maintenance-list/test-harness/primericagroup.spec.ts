@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import { test } from '@playwright/test';
-import { PrimericaGroupPage } from '../../page-objects/qa-maintenance-list/primericagroup.page';
+import { PrimericaGroupPage } from '../../../page-objects/qa-maintenance-list/primericagroup.page';
 // create instance of Page
 let primericaGroupPage: PrimericaGroupPage;
 
