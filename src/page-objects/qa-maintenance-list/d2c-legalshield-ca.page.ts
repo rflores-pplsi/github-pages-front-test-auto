@@ -12,7 +12,7 @@ require('dotenv').config;
 
 // ========================== Selectors ==================================
 const urlD2CLegalShieldCaPage = UrlsUtils.testHarnessUrls.d2c.url;
-const slctChooseYourRegion = 'select.lsc-region-popup__selector';
+const slctChooseYourRegion = 'select.lsc_region_selector.region_select';
 const btnUpdateRegion = '//button[contains(text(),"Update region")]';
 const lblWelcome = '//h1[contains(text(),"Welcome to the Family!")]';
 
@@ -26,7 +26,11 @@ export class D2CLegalShieldCaPage extends OktaPage {
   selectYourRegion = async (region: string): Promise<void> => {
     await this.page.waitForSelector(slctChooseYourRegion);
     await this.selectFromDropDownMenu(slctChooseYourRegion, region);
-    await this.clickOnElement(btnUpdateRegion);
+    if (!(await this.page.locator(btnUpdateRegion).isVisible())) {
+      console.log('Button does not exist');
+    } else {
+      await this.clickOnElement(btnUpdateRegion);
+    }
   };
   addPlanAndSomeSupplements = async (lineOfBusiness: string, planSupp: Array<string>): Promise<void> => {
     for (const ps of planSupp) {

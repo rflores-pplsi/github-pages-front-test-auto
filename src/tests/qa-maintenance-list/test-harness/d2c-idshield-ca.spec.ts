@@ -1,10 +1,10 @@
 /* eslint-disable no-undef */
 import { test } from '@playwright/test';
-import { CheckoutPaymentsBankDraftPage } from '../../page-objects/checkout/checkout-payments-bank-draft.page';
-import { CheckoutPersonalInfoPage } from '../../page-objects/checkout/checkout-personal-info.page';
-import { D2CLegalShieldCaPage } from '../../page-objects/qa-maintenance-list/d2c-legalshield-ca.page';
-import { D2CLegalShieldUSPage } from '../../page-objects/qa-maintenance-list/d2c-legalshield-us.page';
-import DataUtils from '../../utils/Tests.Data';
+import { CheckoutPaymentsBankDraftPage } from '../../../page-objects/checkout/checkout-payments-bank-draft.page';
+import { CheckoutPersonalInfoPage } from '../../../page-objects/checkout/checkout-personal-info.page';
+import { D2CLegalShieldCaPage } from '../../../page-objects/qa-maintenance-list/d2c-legalshield-ca.page';
+import { D2CLegalShieldUSPage } from '../../../page-objects/qa-maintenance-list/d2c-legalshield-us.page';
+import DataUtils from '../../../utils/Tests.Data';
 // let interceptedRequest: any;
 // create instance of Page
 let d2CLegalShieldUSPage: D2CLegalShieldUSPage;

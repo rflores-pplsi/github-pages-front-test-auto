@@ -1,9 +1,9 @@
 /* eslint-disable no-undef */
 import { test } from '@playwright/test';
-import { LoginPage } from '../../page-objects/login/login.page';
-import { IDShieldUSPage } from '../../page-objects/qa-maintenance-list/d2c-idshield-us-marketingsite.page';
-import { D2CLegalShieldCaPage } from '../../page-objects/qa-maintenance-list/d2c-legalshield-ca.page';
-import DataUtils from '../../utils/Tests.Data';
+import { LoginPage } from '../../../page-objects/login/login.page';
+import { IDShieldUSPage } from '../../../page-objects/qa-maintenance-list/d2c-idshield-us-marketingsite.page';
+import { D2CLegalShieldCaPage } from '../../../page-objects/qa-maintenance-list/d2c-legalshield-ca.page';
+import DataUtils from '../../../utils/Tests.Data';
 
 require('dotenv').config();
 // create instance of Page
