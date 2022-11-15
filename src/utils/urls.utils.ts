@@ -134,7 +134,9 @@ export default class UrlsUtils {
       urlSpUS: ' https://lspro.' + envWalsUrlString + 'somoslegalshield.com',
       urlEnCa: ' https://lspro.' + envWalsUrlString + 'wearelegalshield.ca',
       urlFrCa: ' https://lspro.' + envWalsUrlString + 'noussommeslegalshield.ca',
+      urlAssociate: ' https://www.' + envWalsUrlString + 'wearelegalshield.com',
     },
+
     // uatUrl: {
     //   url: 'https://lspro.stage.wearelegalshield.com/launch',
     // },
