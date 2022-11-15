@@ -35,4 +35,11 @@ export class WalsAssociateSearchPage extends WalsLocatorPage {
   assertLabelSalesAssociate = async () => {
     await this.LABEL_SALES_ASSOCIATE.isVisible();
   };
+  /**
+   * @param {string} txt
+   * @memberof assertMsgAssociateNotFound
+   */
+  assertMsgAssociateNotFound = async (txt: string) => {
+    await this.page.locator('//*[contains(text(), "' + txt + '")]').isVisible();
+  };
 }

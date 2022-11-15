@@ -11,6 +11,7 @@ export class WalsLocatorPage {
   readonly INPUT_ASSOCIATE_SEARCH: Locator;
   readonly BTN_ASSOCIATE_SEARCH: Locator;
   readonly LABEL_SALES_ASSOCIATE: Locator;
+  readonly MSG_ASSOCIATE_NOT_FOUND: Locator;
   /**
    * @param {Page} page
    * @memberof WalsLocatorPage
@@ -20,5 +21,6 @@ export class WalsLocatorPage {
     this.INPUT_ASSOCIATE_SEARCH = this.page.locator('#edit-search');
     this.BTN_ASSOCIATE_SEARCH = this.page.locator('role=button[name="Search"]');
     this.LABEL_SALES_ASSOCIATE = this.page.locator('//div[contains(text(), "Find a Sales Associate")]');
+    this.MSG_ASSOCIATE_NOT_FOUND = this.page.locator('//div[contains(text(), "Sorry, we did not find any results for")]');
   }
 }

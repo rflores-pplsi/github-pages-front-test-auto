@@ -10,7 +10,7 @@ test.beforeEach(async ({ page }) => {
   walsAssociateSearchPage = new WalsAssociateSearchPage(page);
 });
 
-test('Associate search', async ({ page }) => {
+test('When I type in a name in the search box and click search, I am given a result and can view the associates website.', async ({ page }) => {
   await test.step('Navigate to WALS', async () => {
     await walsAssociateSearchPage.navigateToUrl();
   });
@@ -18,6 +18,28 @@ test('Associate search', async ({ page }) => {
     await walsAssociateSearchPage.searchForAssociate('App test user');
   });
   await test.step('Assert label sales associate', async () => {
-    await walsAssociateSearchPage.assertLabelSalesAssociate();
+    await walsAssociateSearchPage.assertMsgAssociateNotFound('APP TESTER');
+  });
+});
+test('When I type zip code in the search box and click search, I am given a result and can view the associates website.', async ({ page }) => {
+  await test.step('Navigate to WALS', async () => {
+    await walsAssociateSearchPage.navigateToUrl();
+  });
+  await test.step('Search for associate', async () => {
+    await walsAssociateSearchPage.searchForAssociate('80134');
+  });
+  await test.step('Assert label sales associate', async () => {
+    await walsAssociateSearchPage.assertMsgAssociateNotFound('SUSAN M ALLEY');
+  });
+});
+test('When I type in a nonexisting zip code in the search box and click search, I receive Results not Found message.', async ({ page }) => {
+  await test.step('Navigate to WALS', async () => {
+    await walsAssociateSearchPage.navigateToUrl();
+  });
+  await test.step('Search for associate', async () => {
+    await walsAssociateSearchPage.searchForAssociate('11111');
+  });
+  await test.step('Assert label sales associate', async () => {
+    await walsAssociateSearchPage.assertMsgAssociateNotFound('Sorry, we did not find any results for 11111');
   });
 });
