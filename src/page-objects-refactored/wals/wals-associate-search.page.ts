@@ -39,7 +39,7 @@ export class WalsAssociateSearchPage extends WalsLocatorPage {
    * @param {string} txt
    * @memberof assertMsgAssociateNotFound
    */
-  assertMsgAssociateNotFound = async (txt: string) => {
+  assertMsgAssociate = async (txt: string) => {
     await this.page.locator('//*[contains(text(), "' + txt + '")]').isVisible();
   };
 }

@@ -18,7 +18,7 @@ test('When I type in a name in the search box and click search, I am given a res
     await walsAssociateSearchPage.searchForAssociate('App test user');
   });
   await test.step('Assert label sales associate', async () => {
-    await walsAssociateSearchPage.assertMsgAssociateNotFound('APP TESTER');
+    await walsAssociateSearchPage.assertMsgAssociate('APP TESTER');
   });
 });
 test('When I type zip code in the search box and click search, I am given a result and can view the associates website.', async ({ page }) => {
@@ -29,7 +29,7 @@ test('When I type zip code in the search box and click search, I am given a resu
     await walsAssociateSearchPage.searchForAssociate('80134');
   });
   await test.step('Assert label sales associate', async () => {
-    await walsAssociateSearchPage.assertMsgAssociateNotFound('SUSAN M ALLEY');
+    await walsAssociateSearchPage.assertMsgAssociate('SUSAN M ALLEY');
   });
 });
 test('When I type in a nonexisting zip code in the search box and click search, I receive Results not Found message.', async ({ page }) => {
@@ -40,6 +40,6 @@ test('When I type in a nonexisting zip code in the search box and click search, 
     await walsAssociateSearchPage.searchForAssociate('11111');
   });
   await test.step('Assert label sales associate', async () => {
-    await walsAssociateSearchPage.assertMsgAssociateNotFound('Sorry, we did not find any results for 11111');
+    await walsAssociateSearchPage.assertMsgAssociate('Sorry, we did not find any results for 11111');
   });
 });
