@@ -27,12 +27,19 @@ export class WalsAssociateSearchPage extends WalsLocatorPage {
    * @memberof searchForAssociate
    */
   searchForAssociate = async (associate: string) => {
-    await this.INPUT_ASSOCIATE_SEARCH.fill(associate);
-    await this.BTN_ASSOCIATE_SEARCH.click();
+    await this.locInputAssociateSearch.fill(associate);
+    await this.locBtnAssociateSearch.click();
     await this.page.waitForLoadState();
   };
 
   assertLabelSalesAssociate = async () => {
-    await this.LABEL_SALES_ASSOCIATE.isVisible();
+    await this.locLabelSalesAssociate.isVisible();
+  };
+  /**
+   * @param {string} txt
+   * @memberof assertMsgAssociateNotFound
+   */
+  assertMsgAssociate = async (txt: string) => {
+    await this.page.locator('//*[contains(text(), "' + txt + '")]').isVisible();
   };
 }
