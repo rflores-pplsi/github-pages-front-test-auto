@@ -8,19 +8,19 @@ export class WalsLocatorPage {
   // ========================== Locators ==================================
   protected page: Page;
 
-  readonly INPUT_ASSOCIATE_SEARCH: Locator;
-  readonly BTN_ASSOCIATE_SEARCH: Locator;
-  readonly LABEL_SALES_ASSOCIATE: Locator;
-  readonly MSG_ASSOCIATE_NOT_FOUND: Locator;
+  readonly locInputAssociateSearch: Locator;
+  readonly locBtnAssociateSearch: Locator;
+  readonly locLabelSalesAssociate: Locator;
+  readonly locMsgAssociateNotFound: Locator;
   /**
    * @param {Page} page
    * @memberof WalsLocatorPage
    */
   constructor(page: Page) {
     this.page = page;
-    this.INPUT_ASSOCIATE_SEARCH = this.page.locator('#edit-search');
-    this.BTN_ASSOCIATE_SEARCH = this.page.locator('role=button[name="Search"]');
-    this.LABEL_SALES_ASSOCIATE = this.page.locator('//div[contains(text(), "Find a Sales Associate")]');
-    this.MSG_ASSOCIATE_NOT_FOUND = this.page.locator('//div[contains(text(), "Sorry, we did not find any results for")]');
+    this.locInputAssociateSearch = this.page.locator('#edit-search');
+    this.locBtnAssociateSearch = this.page.locator('role=button[name="Search"]');
+    this.locLabelSalesAssociate = this.page.locator('//div[contains(text(), "Find a Sales Associate")]');
+    this.locMsgAssociateNotFound = this.page.locator('//div[contains(text(), "Sorry, we did not find any results for")]');
   }
 }
