@@ -292,7 +292,24 @@ import { LoginPage } from '../login/login.page';  // import the LoginPage for ex
 
 // ========================== Selectors ==================================
 
-export class PageName extends LoginPage {
+/**
+ * @export
+ * @class PageName
+ */
+export class PageName {
+
+// ========================== Locators ==================================
+  protected page: Page;
+  readonly locator: Locator;
+
+  /**
+   * @param {Page} page
+   * @memberof PageName
+   */
+  constructor(page: Page) {
+    this.page = page;
+    this.locator = this.page.locator('');
+  }
 
 // ========================== Process Methods ============================
 
