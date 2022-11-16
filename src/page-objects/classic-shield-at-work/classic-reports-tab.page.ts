@@ -4,14 +4,16 @@ import { ClassicShieldAtWork } from './classic-login.page';
 
 // ========================== Selectors ==================================
 const url = urlsUtils.legalshieldUrls.classicShieldAtWork.url;
-const btnViewGroupStateOfAlabama = '#franList > tbody > tr:nth-child(1) > td:nth-child(1) > a';
-const btnReports = '[id="reports"]';
-const btnSubmit = '#submitButton > button';
+const BTN_VIEW_GROUP_STATE_OF_ALABAMA = '#franList > tbody > tr:nth-child(1) > td:nth-child(1) > a';
+const BTN_REPORTS = '[id="reports"]';
+const BTN_SUBMIT = '#submitButton > button';
 
 /**
+ *
+ *
  * @export
  * @class ClassicShieldAtWorkReportsTab
- * @extends {LsWorkLoginPage}
+ * @extends {ClassicShieldAtWork}
  */
 export class ClassicShieldAtWorkReportsTab extends ClassicShieldAtWork {
   // ========================== Process Methods ============================
@@ -26,14 +28,14 @@ export class ClassicShieldAtWorkReportsTab extends ClassicShieldAtWork {
   clickViewBtn = async (): Promise<void> => {
     console.log(' - accountClassicShieldAtWorkPage.clickViewBtn');
     // Click on View Group button
-    await this.clickOnElement(btnViewGroupStateOfAlabama);
+    await this.clickOnElement(BTN_VIEW_GROUP_STATE_OF_ALABAMA);
   };
 
   clickReports = async (): Promise<void> => {
     console.log(' - accountClassicShieldAtWorkPage.clickReports');
     // Click on Reports tab
-    await this.clickOnElement(btnReports);
-    await this.page.waitForSelector(btnReports);
+    await this.clickOnElement(BTN_REPORTS);
+    await this.page.waitForSelector(BTN_REPORTS);
   };
   // ========================== Assertion Methods ==========================
 
@@ -44,8 +46,8 @@ export class ClassicShieldAtWorkReportsTab extends ClassicShieldAtWork {
     // Click on Reports tab
     await this.clickReports();
     // Verify that Submit button is enabled on the reports page
-    await this.page.waitForSelector(btnSubmit);
-    const locator = this.page.locator(btnSubmit);
+    await this.page.waitForSelector(BTN_SUBMIT);
+    const locator = this.page.locator(BTN_SUBMIT);
     await expect(locator).toBeEnabled();
   };
 }

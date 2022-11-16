@@ -1,9 +1,9 @@
 import { LoginPage } from './login.page';
 
 // Selectors
-const txtEmailAddress: string = '[placeholder="Email Address"]';
-const btnSendEmail: string = 'button:has-text("Send Email")';
-const alrtSuccess: string = 'text=If we find an email in our system that matches, you will receive an email';
+const TXT_EMAIL_ADDRESS = '[placeholder="Email Address"]';
+const BTN_SEND_EMAIL = 'button:has-text("Send Email")';
+const ALRT_SUCCESS = 'text=If we find an email in our system that matches, you will receive an email';
 
 /**
  * @export
@@ -20,9 +20,9 @@ export class LoginForgotPasswordPage extends LoginPage {
     // Click forgot password link
     await this.clickForgotPasswordLink();
     // Enter email address into Email Address input
-    await this.fillTextBox(txtEmailAddress, 'mattfeeQA@gmail.com');
+    await this.fillTextBox(TXT_EMAIL_ADDRESS, 'mattfeeQA@gmail.com');
     // Click on the Resend Email button to request password reset
-    await this.clickOnElement(btnSendEmail);
+    await this.clickOnElement(BTN_SEND_EMAIL);
   };
 
   // ========================== Click Methods ==========================
@@ -32,7 +32,7 @@ export class LoginForgotPasswordPage extends LoginPage {
   assertSuccessBanner = async (): Promise<void> => {
     console.log(' - loginForgotPasswordPage.assertSuccessBanner');
     // Wait for Success Alert box to display forgot password page
-    await this.assertElementIsVisible(alrtSuccess);
+    await this.assertElementIsVisible(ALRT_SUCCESS);
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
     // TODO: add assertion that email has been received in a test email account (Yopmail?)

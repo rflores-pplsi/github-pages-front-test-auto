@@ -1,11 +1,10 @@
-import { expect } from '@playwright/test';
 import UrlsUtils from '../../utils/urls.utils';
 import { LoginPage } from '../login/login.page';
 import { PlanRow } from './account.helpers';
 import { PlansTable } from './account.helpers';
 
 // ========================== Selectors ==========================
-const hdrBody: string = 'h2';
+const HDR_BODY = 'h2';
 
 // Instantiations
 const plansTable = new PlansTable();
@@ -25,7 +24,7 @@ export class AccountPlansPage extends LoginPage {
     console.log(' - accountPlansPage.createPlansTable');
     await this.page.waitForLoadState('networkidle', { timeout: 100000 });
     const numberOfPlans = (await this.page.$$('.config-tab.p-5')).length;
-    for (let i: number = 0; i < numberOfPlans; i++) {
+    for (let i = 0; i < numberOfPlans; i++) {
       const row = await this.createPlanRow(i);
       plansTable.addRow(row);
     }
@@ -35,7 +34,7 @@ export class AccountPlansPage extends LoginPage {
    * @param {number} [i=0]
    * @memberof AccountPlansPage
    */
-  createPlanRow = async (i: number = 0): Promise<PlanRow> => {
+  createPlanRow = async (i = 0): Promise<PlanRow> => {
     console.log(' - accountPlansPage.createPlanRow');
     await this.page.waitForLoadState('networkidle');
     const planNameJsHandle = (await this.page.$$('h5.lsux-heading'))[i].getProperty('innerText');
@@ -49,10 +48,10 @@ export class AccountPlansPage extends LoginPage {
 
   /**
    * @param {PlansTable} plansTable
-   * @param {String} planName
+   * @param {string} planName
    * @memberof AccountPlansPage
    */
-  getPlanRowIndexFromPlanName = async (plansTable: PlansTable, planName: String): Promise<number> => {
+  getPlanRowIndexFromPlanName = async (plansTable: PlansTable, planName: string): Promise<number> => {
     const entries = Object.entries(plansTable.planRows);
     // the '!' operator tells TS that I will assign the variable before using, there may be a better implementation
     let planRowIndex!: number;
@@ -81,10 +80,10 @@ export class AccountPlansPage extends LoginPage {
   // ========================== Click Methods ==========================
 
   /**
-   * @param {String} planName
+   * @param {string} planName
    * @memberof AccountPlansPage
    */
-  clickGoToWebsiteLink = async (planName: String): Promise<void> => {
+  clickGoToWebsiteLink = async (planName: string): Promise<void> => {
     console.log(' - accountPlansPage.clickGoToWebsiteLink');
     // Click go to website link for the
     const planRowIndex = await this.getPlanRowIndexFromPlanName(plansTable, planName);
@@ -95,7 +94,7 @@ export class AccountPlansPage extends LoginPage {
 
   assertBodyHeader = async (expectedHeader: string): Promise<void> => {
     console.log(' - accountPlansPage.assertBodyHeader');
-    this.assertElementHasText(hdrBody, expectedHeader);
+    this.assertElementHasText(HDR_BODY, expectedHeader);
   };
 
   assertIdShieldForBusinessPageUrl = async (): Promise<void> => {

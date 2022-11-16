@@ -1,20 +1,19 @@
-/* eslint-disable valid-jsdoc */
 import { CheckoutPaymentsPage } from './checkout-payments.page';
 
 // ========================== Selectors ==================================
-const txtCardNumber = '#card_number';
-const txtExpirationDate = '#expiration_date';
-const txtCardholderName = '[placeholder="Name on Card"]';
-const txtSecurityCode = 'input[name="security_code"]';
-const txtPostalCode = '[placeholder="Billing Postal Code"]';
-const btnCreditCardPurchase = '#savecc';
-const txtWelcomeToLegalshiledFamily = 'h1.lsux-heading.confirmation-title.lsux-heading--t28';
+const TXT_CARD_NUMBER = '#card_number';
+const TXT_EXPIRATION_DATE = '#expiration_date';
+const TXT_CARDHOLDER_NAME = '[placeholder="Name on Card"]';
+const TXT_SECURITY_CODE = 'input[name="security_code"]';
+const TXT_POSTAL_CODE = '[placeholder="Billing Postal Code"]';
+const BTN_CREDIT_CARD_PURCHASE = '#savecc';
+const TXT_WELCOME_TO_LEGALSHIELD_FAMILY = 'h1.lsux-heading.confirmation-title.lsux-heading--t28';
 // const conPlans =
 //   "//div[@class='lsux-row half children2 content-row mb-4 mt-4 first-plan']";
-const pPlans = "//div[@class='lsux-row half children2 content-row mb-4 mt-4 first-plan']/div/div/div/p";
-const pPlanPrice = "//div[@class='lsux-row half children2 content-row mb-4 mt-4 first-plan']/div[@class='lsux-col pr-0 right-label-col']/div/p";
-const txtTotalLabel = "//p[contains(text(),'Monthly Total:')]";
-const txtTotalPriceLabel = "//div[@class='lsux-row eight-four children2 footer-row mb-0 py-4']/div[@class='lsux-col pr-0 right-label-col']/div/p";
+const P_PLANS = "//div[@class='lsux-row half children2 content-row mb-4 mt-4 first-plan']/div/div/div/p";
+const P_PLAN_PRICE = "//div[@class='lsux-row half children2 content-row mb-4 mt-4 first-plan']/div[@class='lsux-col pr-0 right-label-col']/div/p";
+const TXT_TOTAL_LABEL = "//p[contains(text(),'Monthly Total:')]";
+const TXT_TOTAL_PRICE_LABEL = "//div[@class='lsux-row eight-four children2 footer-row mb-0 py-4']/div[@class='lsux-col pr-0 right-label-col']/div/p";
 
 // create instance of Page
 
@@ -43,22 +42,22 @@ export class CheckoutPaymentsCreditCardPage extends CheckoutPaymentsPage {
   fillOrderSummaryPlanValue = async (): Promise<string> => {
     console.log(' - checkoutPaymentBankDraftPage.fillOrderSummarypPlanValue');
     // Fillout the Bank Draft form
-    return this.page.locator(pPlans).innerText();
+    return this.page.locator(P_PLANS).innerText();
   };
   fillOrderSummaryPlanPriceValue = async (): Promise<string> => {
     console.log(' - checkoutPaymentBankDraftPage.fillOrderSummarypPlanPriceValue');
     // Fillout the Bank Draft form
-    return this.page.locator(pPlanPrice).innerText();
+    return this.page.locator(P_PLAN_PRICE).innerText();
   };
   fillOrderSummaryTxtTotalLabelValue = async (): Promise<string> => {
     console.log(' - checkoutPaymentBankDraftPage.fillOrderSummarytxtTotalLabelValue');
     // Fillout the Bank Draft form
-    return this.page.locator(txtTotalLabel).innerText();
+    return this.page.locator(TXT_TOTAL_LABEL).innerText();
   };
   fillOrderSummaryTxtTotalPriceLabelValue = async (): Promise<string> => {
     console.log(' - checkoutPaymentBankDraftPage.fillOrderSummarytxtTotalPriceLabelValue');
     // Fillout the Bank Draft form
-    return this.page.locator(txtTotalPriceLabel).innerText();
+    return this.page.locator(TXT_TOTAL_PRICE_LABEL).innerText();
   };
   fillCreditCardFormForCanada = async () => {
     console.log(' - checkoutPaymentPage.fillCreditCardFormForCanada');
@@ -89,7 +88,7 @@ export class CheckoutPaymentsCreditCardPage extends CheckoutPaymentsPage {
     const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
     console.log(' i am here inside fillCreditCardAccountNumberTxt');
     // Fill  Account Number
-    const txtCreditCardNumber = await frmPayment.locator(txtCardNumber);
+    const txtCreditCardNumber = await frmPayment.locator(TXT_CARD_NUMBER);
     await txtCreditCardNumber.type(number);
     // await this.fillTextBox(txtAccountNumber, account);
   };
@@ -100,7 +99,7 @@ export class CheckoutPaymentsCreditCardPage extends CheckoutPaymentsPage {
     const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
     if (frmPayment != null) {
       // Fill  Expiration Date
-      const txtExpDateTxt = frmPayment.locator(txtExpirationDate);
+      const txtExpDateTxt = frmPayment.locator(TXT_EXPIRATION_DATE);
       await txtExpDateTxt.type(expdate);
     } else throw new Error('No such frame');
   };
@@ -110,7 +109,7 @@ export class CheckoutPaymentsCreditCardPage extends CheckoutPaymentsPage {
     const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
     if (frmPayment != null) {
       // Fill  Security Code
-      const txtExpDateTxt = frmPayment.locator(txtSecurityCode);
+      const txtExpDateTxt = frmPayment.locator(TXT_SECURITY_CODE);
       await txtExpDateTxt.type(code);
     } else throw new Error('No such frame');
   };
@@ -120,7 +119,7 @@ export class CheckoutPaymentsCreditCardPage extends CheckoutPaymentsPage {
     const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
     if (frmPayment != null) {
       // Fill  Credit Card Holder Name
-      const txtCreditCardHolderNameTxt = frmPayment.locator(txtCardholderName);
+      const txtCreditCardHolderNameTxt = frmPayment.locator(TXT_CARDHOLDER_NAME);
       await txtCreditCardHolderNameTxt.type(credicardholdrname);
       // await this.fillTextBox(txtAccountHolderName, accountholdrname);
     } else throw new Error('No such frame');
@@ -131,7 +130,7 @@ export class CheckoutPaymentsCreditCardPage extends CheckoutPaymentsPage {
     const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
     if (frmPayment != null) {
       // Fill  Postal Code
-      const txtCreditCardHolderNameTxt = frmPayment.locator(txtPostalCode);
+      const txtCreditCardHolderNameTxt = frmPayment.locator(TXT_POSTAL_CODE);
       await txtCreditCardHolderNameTxt.type(postalcode);
     } else throw new Error('No such frame');
   };
@@ -143,14 +142,14 @@ export class CheckoutPaymentsCreditCardPage extends CheckoutPaymentsPage {
     const frmCCPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
     if (frmCCPayment != null) {
       // Click on Purchase button
-      await frmCCPayment.locator(btnCreditCardPurchase).click({ force: true });
+      await frmCCPayment.locator(BTN_CREDIT_CARD_PURCHASE).click({ force: true });
     } else throw new Error('No such frame');
   };
   // ========================== Assertion Methods ==========================
   assertWelcomeToLegalShieldFamilyPage = async () => {
     console.log(' - checkoutPaymentPage.assertWelcomeToLegalshiledFamilyPage');
-    const welcome = await this.page.waitForSelector(txtWelcomeToLegalshiledFamily);
+    const welcome = await this.page.waitForSelector(TXT_WELCOME_TO_LEGALSHIELD_FAMILY);
     console.log(welcome.innerText());
-    await this.assertElementContainsText(txtWelcomeToLegalshiledFamily, 'Welcome!');
+    await this.assertElementContainsText(TXT_WELCOME_TO_LEGALSHIELD_FAMILY, 'Welcome!');
   };
 }

@@ -2,7 +2,6 @@ import { test } from '@playwright/test';
 import { LoginPage } from '../../page-objects/login/login.page';
 import UrlsUtils from '../../utils/urls.utils';
 import { basicUser, withUsername } from '../../utils/user.utils';
-import { config } from 'dotenv';
 
 // Declare Page Variable for This Page
 let loginPage: LoginPage;
@@ -15,7 +14,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 // Login Page test using Basic Email
-test('Login with basic email', async ({ page }) => {
+test('Login with basic email', async ({}) => {
   console.log('Test Case: Login with basic email');
   // Log in with a basic user account
   await loginPage.testEnv();
@@ -25,7 +24,7 @@ test('Login with basic email', async ({ page }) => {
 });
 
 // Login Page test using Basic Email and submitting with Enter Key
-test('Login by submitting form with Enter key', async ({ page }) => {
+test('Login by submitting form with Enter key', async ({}) => {
   console.log('Test Case: Login by submitting form with Enter key');
   // Log in with a basic user account submitting with Enter key
   await loginPage.loginWithEnterKey(basicUser.email, basicUser.password);
@@ -35,7 +34,7 @@ test('Login by submitting form with Enter key', async ({ page }) => {
 
 // TODO: Get an account with a username and add it to .env
 // Login Page test using username
-test('Login with username', async ({ page }) => {
+test('Login with username', async ({}) => {
   console.log('Test Case: Login with username');
   // Log in with a basic user account with a username
   await loginPage.login(withUsername.username, withUsername.password);
@@ -43,7 +42,7 @@ test('Login with username', async ({ page }) => {
   await loginPage.assertAccountsPlanPageUrl();
 });
 
-test('Login from Accounts app and confirm redirect', async ({ page }) => {
+test('Login from Accounts app and confirm redirect', async ({}) => {
   console.log('Test Case: Login from Accounts app and confirm redirect');
   // Attempt to reach Accounts Plan Page
   await loginPage.navigateToAccountPlansPage();

@@ -2,16 +2,16 @@ import { expect } from '@playwright/test';
 import { AccountProfilePage } from './account-profile.page';
 
 // ========================== Selectors ==========================
-const txtBoxAddress1 = '[name="address1"]';
-const txtBoxAddress1Option = '//ul/li';
-const txtBoxAddress2 = '[name="address2"]';
-const txtBoxCity = '[name="locality"]';
-const selectState = '[name="administrativeArea"]';
-const txtBoxZipPostal = '[name="postalCode"]';
-const txtBoxZipPostalOption = '//div[@class="lsux-container lsux-container--white        lsux-options-list"]//following::li[1]';
-const selectCountry = '[name="country"]';
-const btnSaveAddress = '//span[text()="Save"]';
-const txtBoxFillAddress = 'p.item-editable';
+const TXT_BOX_ADDRESS1 = '[name="address1"]';
+const TXT_BOX_ADDRESS1_OPTION = '//ul/li';
+const TXT_BOX_ADDRESS2 = '[name="address2"]';
+const TXT_BOX_CITY = '[name="locality"]';
+const SELECT_STATE = '[name="administrativeArea"]';
+const TXT_BOX_ZIP_POSTAL = '[name="postalCode"]';
+const TXT_BOX_ZIP_POSTAL_OPTION = '//div[@class="lsux-container lsux-container--white        lsux-options-list"]//following::li[1]';
+const SELECT_COUNTRY = '[name="country"]';
+const BTN_SAVE_ADDRESS = '//span[text()="Save"]';
+const TXT_BOX_FILL_ADDRESS = 'p.item-editable';
 
 /**
  * @export
@@ -41,7 +41,7 @@ export class AccountProfileAddressPage extends AccountProfilePage {
 
   // Click on save button
   clickSaveAddressButton = async (): Promise<void> => {
-    await this.page.locator(btnSaveAddress).click();
+    await this.page.locator(BTN_SAVE_ADDRESS).click();
   };
   // ========================== Select Methods =============================
 
@@ -50,7 +50,7 @@ export class AccountProfileAddressPage extends AccountProfilePage {
    * @memberof AccountProfileAddressPage
    */
   stateSelectMethod = async (label: string): Promise<void> => {
-    const select = await this.page.$(selectState);
+    const select = await this.page.$(SELECT_STATE);
     select?.selectOption({ label: label });
   };
 
@@ -59,7 +59,7 @@ export class AccountProfileAddressPage extends AccountProfilePage {
    * @memberof AccountProfileAddressPage
    */
   countrySelectMethod = async (label: string): Promise<void> => {
-    const select = await this.page.$(selectCountry);
+    const select = await this.page.$(SELECT_COUNTRY);
     select?.selectOption({ label: label });
   };
 
@@ -70,10 +70,10 @@ export class AccountProfileAddressPage extends AccountProfilePage {
    * @memberof AccountProfileAddressPage
    */
   address1EditTxtBox = async (txt: string): Promise<void> => {
-    await this.page.waitForSelector(txtBoxAddress1);
-    await this.fillTextBox(txtBoxAddress1, txt);
-    await this.page.waitForSelector(txtBoxAddress1Option);
-    const opt = await this.page.$$(txtBoxAddress1Option);
+    await this.page.waitForSelector(TXT_BOX_ADDRESS1);
+    await this.fillTextBox(TXT_BOX_ADDRESS1, txt);
+    await this.page.waitForSelector(TXT_BOX_ADDRESS1_OPTION);
+    const opt = await this.page.$$(TXT_BOX_ADDRESS1_OPTION);
     await opt[0].click();
   };
 
@@ -82,8 +82,8 @@ export class AccountProfileAddressPage extends AccountProfilePage {
    * @memberof AccountProfileAddressPage
    */
   address2EditTxtBox = async (txt: string): Promise<void> => {
-    await this.page.waitForSelector(txtBoxAddress2);
-    await this.page.fill(txtBoxAddress2, txt);
+    await this.page.waitForSelector(TXT_BOX_ADDRESS2);
+    await this.page.fill(TXT_BOX_ADDRESS2, txt);
   };
 
   /**
@@ -91,8 +91,8 @@ export class AccountProfileAddressPage extends AccountProfilePage {
    * @memberof AccountProfileAddressPage
    */
   cityEditTxtBox = async (txt: string): Promise<void> => {
-    await this.page.waitForSelector(txtBoxCity);
-    await this.page.fill(txtBoxCity, txt);
+    await this.page.waitForSelector(TXT_BOX_CITY);
+    await this.page.fill(TXT_BOX_CITY, txt);
   };
 
   /**
@@ -100,10 +100,10 @@ export class AccountProfileAddressPage extends AccountProfilePage {
    * @memberof AccountProfileAddressPage
    */
   zipPostalEditTxtBox = async (txt: string): Promise<void> => {
-    await this.page.waitForSelector(txtBoxZipPostal);
-    await this.page.fill(txtBoxZipPostal, txt);
-    await this.page.waitForSelector(txtBoxZipPostalOption);
-    const opt = await this.page.$$(txtBoxZipPostalOption);
+    await this.page.waitForSelector(TXT_BOX_ZIP_POSTAL);
+    await this.page.fill(TXT_BOX_ZIP_POSTAL, txt);
+    await this.page.waitForSelector(TXT_BOX_ZIP_POSTAL_OPTION);
+    const opt = await this.page.$$(TXT_BOX_ZIP_POSTAL_OPTION);
     for (let ele = 0; ele < opt.length; ele++) {
       const zip = await opt[ele].innerHTML();
       if (zip == '20147') {
@@ -118,7 +118,7 @@ export class AccountProfileAddressPage extends AccountProfilePage {
    * @memberof AccountProfileAddressPage
    */
   assertAddress1HasText = async (txt: string): Promise<void> => {
-    const address1txt = await this.page.$(txtBoxAddress1);
+    const address1txt = await this.page.$(TXT_BOX_ADDRESS1);
     console.log(await address1txt?.getAttribute('value'));
     expect(txt).toBe(await address1txt?.getAttribute('value'));
   };
@@ -128,8 +128,8 @@ export class AccountProfileAddressPage extends AccountProfilePage {
    * @memberof AccountProfileAddressPage
    */
   assertAddress2HasText = async (txt: string): Promise<void> => {
-    await this.page.waitForSelector(txtBoxAddress2);
-    await expect(this.page.locator(txtBoxAddress2)).toHaveText(txt);
+    await this.page.waitForSelector(TXT_BOX_ADDRESS2);
+    await expect(this.page.locator(TXT_BOX_ADDRESS2)).toHaveText(txt);
   };
 
   /**
@@ -137,7 +137,7 @@ export class AccountProfileAddressPage extends AccountProfilePage {
    * @memberof AccountProfileAddressPage
    */
   assertCityHasText = async (txt: string): Promise<void> => {
-    const citytxt = await this.page.$(txtBoxCity);
+    const citytxt = await this.page.$(TXT_BOX_CITY);
     expect(txt).toBe(await citytxt?.getAttribute('value'));
   };
 
@@ -146,7 +146,7 @@ export class AccountProfileAddressPage extends AccountProfilePage {
    * @memberof AccountProfileAddressPage
    */
   assertStateHasText = async (txt: string): Promise<void> => {
-    const statetxt = await this.page.$(selectState);
+    const statetxt = await this.page.$(SELECT_STATE);
     expect(txt).toBe(await statetxt?.getAttribute('value'));
   };
 
@@ -155,7 +155,7 @@ export class AccountProfileAddressPage extends AccountProfilePage {
    * @memberof AccountProfileAddressPage
    */
   assertZipPostalHasText = async (txt: string): Promise<void> => {
-    const zipPortaltxt = await this.page.$(txtBoxZipPostal);
+    const zipPortaltxt = await this.page.$(TXT_BOX_ZIP_POSTAL);
     expect(txt).toBe(await zipPortaltxt?.getAttribute('value'));
   };
 
@@ -164,8 +164,8 @@ export class AccountProfileAddressPage extends AccountProfilePage {
    * @memberof AccountProfileAddressPage
    */
   assertCountryHasText = async (txt: string): Promise<void> => {
-    await this.page.waitForSelector(selectCountry);
-    await expect(this.page.locator(selectCountry)).toHaveText(txt);
+    await this.page.waitForSelector(SELECT_COUNTRY);
+    await expect(this.page.locator(SELECT_COUNTRY)).toHaveText(txt);
   };
 
   /**
@@ -173,8 +173,8 @@ export class AccountProfileAddressPage extends AccountProfilePage {
    * @memberof AccountProfileAddressPage
    */
   assertFullAddressHasText = async (txt: string): Promise<void> => {
-    await this.page.waitForSelector(txtBoxFillAddress);
-    const parag = await this.page.$$(txtBoxFillAddress);
+    await this.page.waitForSelector(TXT_BOX_FILL_ADDRESS);
+    const parag = await this.page.$$(TXT_BOX_FILL_ADDRESS);
     console.log(parag.length);
     const pargTxt = parag[2].inputValue();
     console.log(pargTxt);

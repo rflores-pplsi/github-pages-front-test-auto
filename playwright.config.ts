@@ -11,8 +11,8 @@ const config: PlaywrightTestConfig = {
       use: {
         ...devices['Desktop Chrome'],
         screenshot: 'on',
-        video: 'on',
         trace: 'on',
+        video: 'on',
       },
     },
     // {

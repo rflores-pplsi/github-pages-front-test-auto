@@ -11,7 +11,6 @@ import { PlanalyzerCsrCheckoutPage } from '../../page-objects/planalyzer/planaly
 import { expect } from '@playwright/test';
 import DataUtils from '../../utils/Tests.Data';
 
-// eslint-disable-next-line valid-jsdoc
 /**
  * @export
  * @class CheckoutPersonalInfoPage
@@ -29,7 +28,6 @@ export class CheckoutPersonalInfoPage {
 
   // ========================== Selectors ==================================
 
-  // eslint-disable-next-line no-unreachable
   protected page: Page;
 
   // const btnSaveAndContinue: string = '';
@@ -80,7 +78,6 @@ export class CheckoutPersonalInfoPage {
   readonly lineOfBusiness: string;
   readonly planSupp: Array<string>;
 
-  // eslint-disable-next-line require-jsdoc
   constructor(page: Page, lineOfBusiness: string, planSupp: Array<string>) {
     this.page = page;
     this.lineOfBusiness = lineOfBusiness;
@@ -135,7 +132,6 @@ export class CheckoutPersonalInfoPage {
     this.txtTaxId = this.page.locator('[name="taxId"]');
   }
 
-  // eslint-disable-next-line no-undef
   // ========================== Process Methods ============================
 
   // /**
@@ -576,8 +572,8 @@ export class CheckoutPersonalInfoPage {
     subChannel: string,
     region: string,
     marketLocale: string,
-    prepaidMonths: string = '',
-    couponCode: string = '',
+    prepaidMonths = '',
+    couponCode = '',
     plans: Array<string>
   ) => {
     await this.oktaPage.navigateToPlanalyzerCsrCheckoutOktaLogin();
@@ -594,7 +590,8 @@ export class CheckoutPersonalInfoPage {
     await this.loginPage.login(basicUser.email, basicUser.password);
   };
   /**
-   * @param {string} navigateToPersonalInfoPageFromPlanalyzer
+   *
+   *
    * @memberof CheckoutPersonalInfoPage
    */
   navigateToPersonalInfoPageForIdsCaFromPlanalyzer = async () => {
@@ -661,11 +658,11 @@ export class CheckoutPersonalInfoPage {
   };
 
   /**
-   * @param {string} region
+   * Confirm the tool tip displays after hovering over the help icon
+   *
    * @memberof CheckoutPersonalInfoPage
    */
-  // Confirm the tool tip displays after hovering over the help icon
-  assertToolTipIsVisible = async (region: string): Promise<void> => {
+  assertToolTipIsVisible = async (): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.assertToolTipIsVisible');
     // Confirm region is correct
     await expect(this.txaStageChangeToolTip).toBeVisible({ timeout: 100000 });

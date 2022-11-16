@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 // import { test } from '@playwright/test';
 // import { UniversalTruckingPage } from '../..//page-objects/qa-maintenance-list/1UniversalTruckinggroup.page';
 // // create instance of Page

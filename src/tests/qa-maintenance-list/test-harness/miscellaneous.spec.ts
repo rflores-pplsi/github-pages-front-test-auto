@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { expect, test } from '@playwright/test';
 import UrlsUtils from '../../../utils/urls.utils';
 // test('Testing miscellaneous Opportunity links', async ({ page }) => {

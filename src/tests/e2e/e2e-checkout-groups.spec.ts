@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
 import { CheckoutConfirmationPage } from '../../page-objects/checkout/checkout-confirmation.page';
 import { basicUser } from '../../utils/user.utils';
-import checkoutGroupsData from './data/e2e-checkout-groups.json';
+import { checkoutGroupsData } from './data/e2e-checkout-groups';
 // create instance of Page
 let checkoutConfirmationPage: CheckoutConfirmationPage;
 
@@ -14,7 +14,7 @@ test.beforeEach(async ({ page }) => {
 
 // Self-pay Canada One Plan
 for (const tc of checkoutGroupsData.filter((tc) => tc.disabled == false)) {
-  test(`${tc.testCaseName} - ${tc.region} @legalshield @testHarnessCheckoutRegression`, async ({ page }) => {
+  test(`${tc.testCaseName} - ${tc.region} @legalshield @testHarnessCheckoutRegression`, async ({}) => {
     console.log(`Test Case: ${tc.testCaseName} - ${tc.region}`);
 
     // Select Plans and get to Personal Info Page

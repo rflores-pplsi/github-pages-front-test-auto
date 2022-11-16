@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { test } from '@playwright/test';
 import { CheckoutPaymentsBankDraftPage } from '../../../page-objects/checkout/checkout-payments-bank-draft.page';
 import { CheckoutPersonalInfoPage } from '../../../page-objects/checkout/checkout-personal-info.page';
@@ -13,7 +12,7 @@ let checkoutPersonalInfoPage: CheckoutPersonalInfoPage;
 let checkoutPaymentsBankDraftPage: CheckoutPaymentsBankDraftPage;
 
 // Setup environment before each test
-test.beforeEach(async ({ page, request }) => {
+test.beforeEach(async ({ page }) => {
   d2CLegalShieldUSPage = new D2CLegalShieldUSPage(page);
   d2CLegalShieldCaPage = new D2CLegalShieldCaPage(page);
   checkoutPersonalInfoPage = new CheckoutPersonalInfoPage(page);
@@ -35,8 +34,8 @@ test('D2E IDShield CA using Testing Harness', async ({ page }) => {
   });
   await test.step('Select a Region', async () => {
     page.on('response', (response) => {
-      const url = ' https://orders.api.dev-legalshield.com/v1/orders';
-      if (response.url() === url) {
+      const URL = ' https://orders.api.dev-legalshield.com/v1/orders';
+      if (response.url() === URL) {
         // interceptedRequest = response;
         console.log('<<', response.url());
       }

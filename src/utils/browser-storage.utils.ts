@@ -13,7 +13,6 @@ export async function getLocalStorageAvailableProducts(page: Page): Promise<Loca
   const availableProducts = await retryAsync(
     async () => {
       return await page.evaluate(() => {
-        // eslint-disable-next-line no-undef
         return localStorage.getItem('available_products');
       });
     },

@@ -3,7 +3,7 @@ import { PlanalyzerCsrCheckoutPage } from '../planalyzer/planalyzer-csr-checkout
 
 // ========================== Selectors ==================================
 
-const lnkPricingTab: string = 'a:has-text("Pricing")';
+const LNK_PRICING_TAB = 'a:has-text("Pricing")';
 
 /**
  * @export
@@ -35,7 +35,7 @@ export class ShieldBenefitsLegalOverviewPage extends PlanalyzerCsrCheckoutPage {
   clickShieldBenefitsPricingTab = async (): Promise<void> => {
     console.log(' - ShieldBenefitsLegalOverviewPage.clickShieldBenefitsPricingTab');
     // Click on Edit button
-    await this.page.click(lnkPricingTab);
+    await this.page.click(LNK_PRICING_TAB);
   };
 
   // ========================== Assertion Methods ==========================

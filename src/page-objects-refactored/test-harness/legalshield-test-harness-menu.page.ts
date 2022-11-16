@@ -3,11 +3,11 @@ import { LegalshieldTestHarnessCartComponent } from './legalshield-test-harness-
 
 // ========================== Selectors ==================================
 
-const btnPubliclyTradedNo: string = '#traded-company-no';
-const btnNonProfitNo: string = '#non-profit-no';
-const btnAddToCart: string = '#add-to-cart-btn';
-const icnCart: string = '//div[@id="lsc-header-cart-icon-desktop"]//img';
-const ddlRegionSelector: string = '//select[contains(@class,"lsc_region_selector")]';
+const BTN_PUBLICLY_TRADED_NO = '#traded-company-no';
+const BTN_NON_PROFIT_NO = '#non-profit-no';
+const BTN_ADD_TO_CART = '#add-to-cart-btn';
+const ICN_CART = '//div[@id="lsc-header-cart-icon-desktop"]//img';
+const DDL_REGION_SELECTOR = '//select[contains(@class,"lsc_region_selector")]';
 
 /**
  * @export
@@ -23,7 +23,7 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
    */
   selectRegionFromDropdown = async (region: string) => {
     console.log(' - legalshieldTestHarnessMenuPage.selectRegionFromDropdown');
-    await this.selectFromDropDownMenu(ddlRegionSelector, region);
+    await this.selectFromDropDownMenu(DDL_REGION_SELECTOR, region);
     // await this.clickRegionSelectDropdown();
     // await this.clickOnElement(`//select[contains(@class,"lsc_region_selector")]//option[contains(.,"${region}")]`);
   };
@@ -88,7 +88,7 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
 
   clickCartIcon = async () => {
     console.log(' - legalshieldTestHarnessMenuPage.clickCartIcon');
-    await this.clickOnElement(icnCart);
+    await this.clickOnElement(ICN_CART);
   };
 
   /**
@@ -96,7 +96,7 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
    */
   clickRegionSelectDropdown = async () => {
     console.log(' - LegalShieldQualifyingContainerComponent.clickRegionSelectDropdown');
-    await this.clickOnElement(ddlRegionSelector);
+    await this.clickOnElement(DDL_REGION_SELECTOR);
   };
 
   /**
@@ -104,7 +104,7 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
    */
   clickPubliclyTradedNoRadioButton = async () => {
     console.log(' - LegalShieldQualifyingContainerComponent.clickPubliclyTradedNoRadioButton');
-    await this.clickOnElement(btnPubliclyTradedNo);
+    await this.clickOnElement(BTN_PUBLICLY_TRADED_NO);
   };
 
   /**
@@ -112,7 +112,7 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
    */
   clickNonProfitNoRadioButton = async () => {
     console.log(' - LegalShieldQualifyingContainerComponent.clickNonProfitNoRadioButton');
-    await this.clickOnElement(btnNonProfitNo);
+    await this.clickOnElement(BTN_NON_PROFIT_NO);
   };
 
   /**
@@ -120,7 +120,7 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
    */
   clickAddToCartButton = async () => {
     console.log(' - LegalShieldQualifyingContainerComponent.clickAddToCartButton');
-    await this.clickOnElement(btnAddToCart);
+    await this.clickOnElement(BTN_ADD_TO_CART);
   };
   // ========================== Assertion Methods ==========================
 }

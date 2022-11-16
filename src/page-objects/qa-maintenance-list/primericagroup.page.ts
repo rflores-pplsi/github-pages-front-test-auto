@@ -1,42 +1,35 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable require-jsdoc */
 import { expect } from '@playwright/test';
-import RegionsUtils from '../../utils/regions.utils';
 import UrlsUtils from '../../utils/urls.utils';
-import { CheckoutPersonalInfoPage } from '../checkout/checkout-personal-info.page';
 import { LoginPage } from '../login/login.page';
 import { OktaPage } from '../okta/okta.page';
-
-require('dotenv').config;
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 // ========================== Selectors ==================================
 
-let street: string;
-let city: string;
-let postalCode: string;
 const urlPrimericaGroup = UrlsUtils.groupsUrls.urlPrimericaGroup;
-const rdbtnlanguage = 'md-select#select_18';
-const txtAgentID = '//input[@name="id"]';
-const btnSubmit = '//button[contains(text(),"Submit")]';
-const lblRepresentative = '//div/p[contains(text(),"Representative: JANICE S BRAY")]';
-const btnGetStarted = '//div[@class="navContainer__top"]/a[contains(text(),"Get Started")]';
-const btnStateOrProvince = 'span.glyphicon.startNow__section__icon.glyphicon-menu-down';
-const lnkSelectYourPlan = '//h3[contains(text(),"Select Your Legal Plan")]';
-const btnAddToCart = '//button[contains(text(),"ADD TO CART")]';
-const btnContactInfo = '//button[contains(text(),"Contact Information")]';
+const RBDTN_LANGUAGE = 'md-select#select_18';
+const TXT_AGENT_ID = '//input[@name="id"]';
+const BTN_SUBMIT = '//button[contains(text(),"Submit")]';
+const LBL_REPRESENTATIVE = '//div/p[contains(text(),"Representative: JANICE S BRAY")]';
+const BTN_GET_STARTED = '//div[@class="navContainer__top"]/a[contains(text(),"Get Started")]';
+const BTN_STATE_OR_PROVINCE = 'span.glyphicon.startNow__section__icon.glyphicon-menu-down';
+const LNK_SELECT_YOUR_PLAN = '//h3[contains(text(),"Select Your Legal Plan")]';
+const BTN_ADD_TO_CART = '//button[contains(text(),"ADD TO CART")]';
+const BTN_CONTACT_INFO = '//button[contains(text(),"Contact Information")]';
 
 export class PrimericaGroupPage extends OktaPage {
   // ========================== Process Methods ============================
   fillAgentID = async (id: string): Promise<void> => {
     console.log(' - PrimericaGroupPage.fillAgentID');
     // Type Agent ID
-    await this.fillTextBox(txtAgentID, id);
+    await this.fillTextBox(TXT_AGENT_ID, id);
   };
   selectlanguageAndRegion = async (language: number): Promise<void> => {
     console.log(' - PrimericaGroupPage.selectlanguageAndRegion');
     // Locate a language and Region select
-    await this.page.waitForSelector(rdbtnlanguage);
-    await this.page.locator(rdbtnlanguage).click();
+    await this.page.waitForSelector(RBDTN_LANGUAGE);
+    await this.page.locator(RBDTN_LANGUAGE).click();
     // Pick a language
     await this.page.locator('md-option#select_option_' + language).click();
     console.log('language is selected');
@@ -44,8 +37,8 @@ export class PrimericaGroupPage extends OktaPage {
   selectStateOrProvince = async (state: string): Promise<void> => {
     console.log(' - PrimericaGroupPage.selectlanguageAndRegion');
     // Locate state or province selector
-    await this.page.waitForSelector(btnStateOrProvince);
-    await this.page.locator(btnStateOrProvince).click();
+    await this.page.waitForSelector(BTN_STATE_OR_PROVINCE);
+    await this.page.locator(BTN_STATE_OR_PROVINCE).click();
     // Pick a state or province
     await this.page.locator('//a[contains(text(),"' + state + '")]').click();
     console.log('state is selected');
@@ -69,29 +62,29 @@ export class PrimericaGroupPage extends OktaPage {
   clickSubmitBtn = async (): Promise<void> => {
     console.log(' - PrimericaGroupPage.clickSubmitButton');
     // Click Submit button
-    await this.clickOnElement(btnSubmit);
+    await this.clickOnElement(BTN_SUBMIT);
   };
   clickGetStartedBtn = async (): Promise<void> => {
     console.log(' - PrimericaGroupPage.clickGetStartedBtn');
     // Click Get Started button
-    await this.clickOnElement(btnGetStarted);
+    await this.clickOnElement(BTN_GET_STARTED);
   };
   clickSelectYourPlanLnk = async (): Promise<void> => {
     console.log(' - PrimericaGroupPage.clickSelectYourPlanLnk');
     // Click Select your plan Link
-    await this.clickOnElement(lnkSelectYourPlan);
+    await this.clickOnElement(LNK_SELECT_YOUR_PLAN);
   };
   clickAddToCartBtn = async (): Promise<void> => {
     console.log(' - PrimericaGroupPage.clickAddToCartBtn');
     // Click Add to cart button
-    await this.page.waitForSelector(btnAddToCart);
-    const ajouter = await this.page.$$(btnAddToCart);
+    await this.page.waitForSelector(BTN_ADD_TO_CART);
+    const ajouter = await this.page.$$(BTN_ADD_TO_CART);
     await ajouter[0].click();
   };
   clickContactInfoBtn = async (): Promise<void> => {
     console.log(' - PrimericaGroupPage.clickGetStartedBtn');
     // Click Get Started button
-    await this.clickOnElement(btnContactInfo);
+    await this.clickOnElement(BTN_CONTACT_INFO);
   };
   // ========================== Assertion Methods ==========================
 
@@ -99,8 +92,8 @@ export class PrimericaGroupPage extends OktaPage {
     console.log(' - PrimericaGroupPage.assertRepresentativeLbl');
     // Verify that the Representative: JANICE S BRAY is displayed
     await this.page.waitForLoadState();
-    await this.page.locator(lblRepresentative).isVisible();
-    const par = await this.page.$$(lblRepresentative);
+    await this.page.locator(LBL_REPRESENTATIVE).isVisible();
+    const par = await this.page.$$(LBL_REPRESENTATIVE);
     const repLbl = await par[0].innerText();
     await this.assertStringMatch(repLbl, rep);
     console.log('${repLbl} page is displayed ');

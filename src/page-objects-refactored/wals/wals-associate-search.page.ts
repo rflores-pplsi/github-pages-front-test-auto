@@ -16,7 +16,11 @@ export class WalsAssociateSearchPage extends WalsLocatorPage {
     super(page);
     this.page = page;
   }
-
+  /**
+   *
+   *
+   * @memberof WalsAssociateSearchPage
+   */
   navigateToUrl = async () => {
     await this.page.goto(UrlsUtils.wals.urls.urlAssociate);
     await this.page.waitForLoadState();
@@ -31,7 +35,11 @@ export class WalsAssociateSearchPage extends WalsLocatorPage {
     await this.locBtnAssociateSearch.click();
     await this.page.waitForLoadState();
   };
-
+  /**
+   *
+   *
+   * @memberof WalsAssociateSearchPage
+   */
   assertLabelSalesAssociate = async () => {
     await this.locLabelSalesAssociate.isVisible();
   };

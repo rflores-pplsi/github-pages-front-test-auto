@@ -1,14 +1,15 @@
 /* eslint-disable no-undef */
 import { test } from '@playwright/test';
-import { LoginPage } from '../../page-objects/login/login.page';
-import { LegalShieldUSPage } from '../../page-objects/qa-maintenance-list/d2c-legalshield-us-marketingsite.page';
-require('dotenv').config();
+import { LoginPage } from '../../../page-objects/login/login.page';
+import { LegalShieldUSPage } from '../../../page-objects/qa-maintenance-list/d2c-legalshield-us-marketingsite.page';
+import * as dotenv from 'dotenv';
+dotenv.config();
 // create instance of Page
 let legalShieldUSPage: LegalShieldUSPage;
 let loginPage: LoginPage;
 
 // Setup environment before each test
-test.beforeEach(async ({ page, request }) => {
+test.beforeEach(async ({ page }) => {
   legalShieldUSPage = new LegalShieldUSPage(page);
   loginPage = new LoginPage(page);
 
@@ -16,7 +17,7 @@ test.beforeEach(async ({ page, request }) => {
   test.slow();
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
-test('D2C LegalShield US marketing small business plan', async ({ page }) => {
+test('D2C LegalShield US marketing small business plan', async ({}) => {
   test.slow;
   await test.step('Navigate to Marketing Site', async () => {
     await legalShieldUSPage.navigateToLegalShieldUSMarketingSitePage('d2cLegalShieldUSMarketingSite');

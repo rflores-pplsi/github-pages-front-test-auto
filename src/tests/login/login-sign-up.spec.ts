@@ -12,7 +12,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 // Signup as a new user
-test('Sign up as a new user', async ({ page }) => {
+test('Sign up as a new user', async ({}) => {
   console.log('Test Case: Sign up as a new user');
   // Sign up a new random user
   await loginSignUpPage.signUp();

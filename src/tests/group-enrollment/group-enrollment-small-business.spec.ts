@@ -8,7 +8,7 @@ test.beforeEach(async ({ page }) => {
   test.slow();
 });
 
-test('Verify functionality on the small business page - Sign In button redirects to accounts V2', async ({ page }) => {
+test('Verify functionality on the small business page - Sign In button redirects to accounts V2', async ({}) => {
   console.log('Test Case: Verify functionality on the small business page - Sign In button redirects to accounts V2');
   // Navigate to the small business page
   await groupEnrollmentSmallBusinessPage.navigateToGroupEnrollmentSmallBusinessPage();
@@ -18,7 +18,7 @@ test('Verify functionality on the small business page - Sign In button redirects
   await groupEnrollmentSmallBusinessPage.assertAccountsUrl();
 });
 
-test('Verify functionality on the small business page - Law firm information is displayed', async ({ page }) => {
+test('Verify functionality on the small business page - Law firm information is displayed', async ({}) => {
   console.log('Test Case: Verify functionality on the small business page - Law firm information is displayed');
   // Navigate to the small business page
   await groupEnrollmentSmallBusinessPage.navigateToGroupEnrollmentSmallBusinessPage();
@@ -28,7 +28,7 @@ test('Verify functionality on the small business page - Law firm information is 
   await groupEnrollmentSmallBusinessPage.assertLawFirmInformation();
 });
 
-test('Verify functionality on the small business page - App Store link connected to the store site', async ({ page }) => {
+test('Verify functionality on the small business page - App Store link connected to the store site', async ({}) => {
   console.log('Test Case: Verify functionality on the small business page - App Store link connected to the store site');
   // Navigate to the small business page
   await groupEnrollmentSmallBusinessPage.navigateToGroupEnrollmentSmallBusinessPage();
@@ -38,7 +38,7 @@ test('Verify functionality on the small business page - App Store link connected
   await groupEnrollmentSmallBusinessPage.assertAppStoreUrl();
 });
 
-test('Verify functionality on the small business page - Back to top button takes users to top of page', async ({ page }) => {
+test('Verify functionality on the small business page - Back to top button takes users to top of page', async ({}) => {
   console.log('Test Case: Verify functionality on the small business page - Back to top button takes users to top of page');
   // Navigate to the small business page
   await groupEnrollmentSmallBusinessPage.navigateToGroupEnrollmentSmallBusinessPage();

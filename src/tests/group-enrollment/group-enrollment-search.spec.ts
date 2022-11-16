@@ -8,7 +8,7 @@ test.beforeEach(async ({ page }) => {
   test.slow();
 });
 
-test('Newity group is displayed through the group enrollment search page', async ({ page }) => {
+test('Newity group is displayed through the group enrollment search page', async ({}) => {
   console.log('Test Case: Newity group is displayed through the group enrollment search page');
   // Login through Okta
   await groupEnrollmentSearchPage.navigateToGroupEnrollmentSearchPage();

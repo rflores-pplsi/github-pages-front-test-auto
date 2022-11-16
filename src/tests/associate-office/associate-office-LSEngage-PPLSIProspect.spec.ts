@@ -11,7 +11,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 // LS Engage
-test('Verify that one account is redirecting to LSEngage', async ({ page }) => {
+test('Verify that one account is redirecting to LSEngage', async ({}) => {
   await lsEngagePage.navigateToLSEngagePage();
   await lsEngagePage.assertLSEngagePage();
   await lsEngagePage.assertPageHasTitle('LegalShield');
@@ -19,7 +19,7 @@ test('Verify that one account is redirecting to LSEngage', async ({ page }) => {
   await lsEngagePage.clickOnSignOut();
 });
 
-test('Verify that the Profile Picker with multiple accounts is redirecting to LSEngage', async ({ page }) => {
+test('Verify that the Profile Picker with multiple accounts is redirecting to LSEngage', async ({}) => {
   await lsEngagePage.navigateToLSEngagePage2();
   await lsEngagePage.assertProfilePickerPage();
   await lsEngagePage.clickOnAccount();
@@ -30,7 +30,7 @@ test('Verify that the Profile Picker with multiple accounts is redirecting to LS
 });
 
 // PPLSI Prospect
-test('Verify that one account is redirecting to PPLSI Prospect', async ({ page }) => {
+test('Verify that one account is redirecting to PPLSI Prospect', async ({}) => {
   await lsEngagePage.navigateToPPLSIProspectPage();
   await lsEngagePage.assertPPLSIProspectPage();
   await lsEngagePage.assertPageHasTitle('PPLSI Prospect');
@@ -39,7 +39,7 @@ test('Verify that one account is redirecting to PPLSI Prospect', async ({ page }
   await lsEngagePage.clickOnYesButton();
 });
 
-test('Verify that the Profile Picker with multiple accounts is redirecting to PPLSI Prospect', async ({ page }) => {
+test('Verify that the Profile Picker with multiple accounts is redirecting to PPLSI Prospect', async ({}) => {
   await lsEngagePage.navigateToPPLSIProspectPage2();
   await lsEngagePage.assertProfilePickerPage();
   await lsEngagePage.clickOnAccount();

@@ -1,4 +1,3 @@
-/* eslint-disable require-jsdoc */
 import UrlsUtils from '../../utils/urls.utils'; // import class of Urls
 import { waitNitroPackToLoadElementAsVisible } from '../../utils/pageUtils';
 import { getLocalStorageAvailableProducts } from '../../utils/browser-storage.utils';
@@ -85,7 +84,7 @@ export class IDShieldUSPage extends BasePage {
     // navigate to URL
     await this.page.goto(urlD2CIDShieldUSPage);
     await this.page.waitForLoadState();
-    await this.page.screenshot({ path: 'Screenshots/MarketingSite/' + lineofbusiness + 'MarketingSite.png', fullPage: true });
+    await this.page.screenshot({ fullPage: true, path: 'Screenshots/MarketingSite/' + lineofbusiness + 'MarketingSite.png' });
   };
   // ========================== Click Methods ==============================
   // ========================== Assertion Methods ==========================

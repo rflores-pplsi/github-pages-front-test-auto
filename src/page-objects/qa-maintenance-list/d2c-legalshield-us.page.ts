@@ -1,26 +1,18 @@
-/* eslint-disable no-undef */
-/* eslint-disable new-cap */
-/* eslint-disable no-unused-vars */
-/* eslint-disable require-jsdoc */
-import UrlsUtils from '../../utils/urls.utils';
-import { basicUser } from '../../utils/user.utils';
-import { LoginPage } from '../login/login.page';
 import { OktaPage } from '../okta/okta.page';
 
-require('dotenv').config;
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 // ========================== Selectors ==================================
-const urlD2CLegalShieldCaPage = UrlsUtils.testHarnessUrls.d2c.url;
-const slctYourCity = 'select.lsc_region_selector';
-const btnUpdateRegion = '//button[contains(text(),"Update region")]';
-const lblWelcome = '//h1[contains(text(),"Welcome to the Family!")]';
+const SELECT_YOUR_CITY = 'select.lsc_region_selector';
+const LBL_WELCOME = '//h1[contains(text(),"Welcome to the Family!")]';
 
 export class D2CLegalShieldUSPage extends OktaPage {
   // ========================== Process Methods ============================
 
   selectYourCity = async (region: string): Promise<void> => {
-    await this.page.waitForSelector(slctYourCity);
-    await this.selectFromDropDownMenu(slctYourCity, region);
+    await this.page.waitForSelector(SELECT_YOUR_CITY);
+    await this.selectFromDropDownMenu(SELECT_YOUR_CITY, region);
   };
 
   // ========================== Navigate Methods ===========================
@@ -31,7 +23,7 @@ export class D2CLegalShieldUSPage extends OktaPage {
     await this.page.waitForLoadState();
     const LineOfBusiness = 'div.et_pb_blurb_' + lofb;
     await this.page.waitForSelector(LineOfBusiness);
-    await this.page.screenshot({ path: 'Screenshots/testingHarness/' + lineofbusiness + 'LineOfBusiness.png', fullPage: true });
+    await this.page.screenshot({ fullPage: true, path: 'Screenshots/testingHarness/' + lineofbusiness + 'LineOfBusiness.png' });
     await this.clickOnElement(LineOfBusiness);
   };
   // ========================== Assertion Methods ==========================
@@ -39,9 +31,9 @@ export class D2CLegalShieldUSPage extends OktaPage {
   assertWelcomelabel = async (lineofbusiness: string): Promise<void> => {
     // Verify that the user made the purchase
     await this.page.waitForLoadState();
-    await this.page.waitForSelector(lblWelcome);
-    await this.assertElementContainsText(lblWelcome, 'Welcome to the Family!');
+    await this.page.waitForSelector(LBL_WELCOME);
+    await this.assertElementContainsText(LBL_WELCOME, 'Welcome to the Family!');
     console.log('Welcome to the Family!');
-    await this.page.screenshot({ path: 'Screenshots/testingHarness/' + lineofbusiness + 'Confirmation.png', fullPage: true });
+    await this.page.screenshot({ fullPage: true, path: 'Screenshots/testingHarness/' + lineofbusiness + 'Confirmation.png' });
   };
 }

@@ -1,5 +1,3 @@
-/* eslint-disable require-jsdoc */
-import { expect } from '@playwright/test';
 import UrlsUtils from '../../utils/urls.utils'; // import class of Urls
 import { LoginPage } from '../login/login.page'; // import the LoginPage for extension
 import { getLocalStorageAvailableProducts } from '../../utils/browser-storage.utils';
@@ -19,14 +17,13 @@ const BTN_GET_STARTED_START_BUSINESS = ':nth-match(:text("Get Started"), 2)';
 const BTN_CONTINUE_SHOPPING = '#continue-shopping-link a';
 const TEXT_PLAN_IN_CART = 'div.monthly-total > p';
 const LINK_COVERAGE_PRICING = '#menu-business-mvp-1';
-const TEXT_SMALL_BUSINESS = `li:has(a[role='button']:has-text('Small Business')):visible`;
+const textSmallBusiness = `li:has(a[role='button']:has-text('Small Business')):visible`;
 const TEXT_COVERAGE_PRICING = 'Coverage & Pricing';
 const RADIO_PUBLICLY_TRADED_COMPANY = '#traded-company-no';
 const RADIO_NON_PROFIT_BUSINESS = '#non-profit-no';
 const TEXT_CART_PLAN = 'div.cart-plan > p';
 const TEXT_SUPPLEMENT_PLAN = 'div.supplement-plan > p';
 const TEXT_CART_MESSAGE = '#cart-messages p';
-const DIALOG_QUALIFYING_CONTAINER = '#qualifying-container';
 
 export class LegalShieldUSPage extends LoginPage {
   // ========================== Process Methods ============================
@@ -60,7 +57,7 @@ export class LegalShieldUSPage extends LoginPage {
   };
   pickSmallBusinessFromHeader = async () => {
     await this.page.waitForLoadState();
-    await this.page.locator(TEXT_SMALL_BUSINESS).click();
+    await this.page.locator(textSmallBusiness).click();
     await this.page.locator(LINK_COVERAGE_PRICING).getByRole('link', { name: TEXT_COVERAGE_PRICING }).click();
     const localStorageProducts: LocalStorageSelectedItem[] | null = await getLocalStorageAvailableProducts(this.page);
     const localStorageProductParentID = localStorageProducts?.find(
@@ -97,7 +94,7 @@ export class LegalShieldUSPage extends LoginPage {
     // navigate to URL
     await this.page.goto(urlD2CLegalShieldUSPage);
     await this.page.waitForLoadState();
-    await this.page.screenshot({ path: 'Screenshots/testingHarness/' + lineofbusiness + 'TestingHarness.png', fullPage: true });
+    await this.page.screenshot({ fullPage: true, path: 'Screenshots/testingHarness/' + lineofbusiness + 'TestingHarness.png' });
   };
   // ========================== Click Methods ==============================
   // ========================== Assertion Methods ==========================

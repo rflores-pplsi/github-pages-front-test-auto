@@ -1,6 +1,3 @@
-/* eslint-disable camelcase */
-/* eslint-disable no-unused-vars */
-/* eslint-disable require-jsdoc */
 import { expect } from '@playwright/test';
 import { AccountNavigationPage } from './account-navigation.page';
 import { AccountProfilePage } from './account-profile.page';
@@ -8,14 +5,13 @@ import { AccountProfilePage } from './account-profile.page';
 
 // ========================== Selectors ==========================
 
-let newAddedPhoneValue: string;
-const txtBoxEditPhoneNumber_Name = 'input[name="phoneNumber"]';
-const btnDeletePhoneNumber = '.lsux-button.lsux-button--primary.lsux-button--icon-only';
-const btnEditPhoneNumber = '.lsux-button.lsux-button--standard.lsux-button--icon-only.mr-1.ml-2';
-const btnAddPhone = '//span[text()= "Add"]';
-const txtBoxAddPhone = '[pattern="^[0-9]*$"]';
-const txtAlertUpdatedSuccessfully = '.lsux-text.lsux-text--body.lsux-alert__text ml-3 ';
-const selectPhoneType = '[name="phoneType"]';
+const TXT_BOX_EDIT_PHONE_NUMBER_NAME = 'input[name="phoneNumber"]';
+const BTN_DELETE_PHONE_NUMBER = '.lsux-button.lsux-button--primary.lsux-button--icon-only';
+const BTN_EDIT_PHONE_NUMBER = '.lsux-button.lsux-button--standard.lsux-button--icon-only.mr-1.ml-2';
+const BTN_ADD_PHONE = '//span[text()= "Add"]';
+const TXT_BOX_ADD_PHONE = '[pattern="^[0-9]*$"]';
+const TXT_ALERT_UPDATED_SUCCESSFULLY = '.lsux-text.lsux-text--body.lsux-alert__text ml-3 ';
+const SELECT_PHONE_TYPE = '[name="phoneType"]';
 
 export class AccountProfilePhonePage extends AccountProfilePage {
   // Page Instances
@@ -27,13 +23,13 @@ export class AccountProfilePhonePage extends AccountProfilePage {
   // Add a new phone number
   addPhoneNumberFun = async (phone: string): Promise<void> => {
     // Create an array that contains all phone text boxes
-    await this.page.waitForSelector(txtBoxEditPhoneNumber_Name);
-    const phNumAdd = await this.page.$$(txtBoxEditPhoneNumber_Name);
+    await this.page.waitForSelector(TXT_BOX_EDIT_PHONE_NUMBER_NAME);
+    const phNumAdd = await this.page.$$(TXT_BOX_EDIT_PHONE_NUMBER_NAME);
     // Click on the edit button by creating an array then selecting the corresponding Btn
-    await this.page.waitForSelector(btnEditPhoneNumber);
-    const addBtn = await this.page.$$(btnEditPhoneNumber);
+    await this.page.waitForSelector(BTN_EDIT_PHONE_NUMBER);
+    const addBtn = await this.page.$$(BTN_EDIT_PHONE_NUMBER);
     // Selecting a phone type
-    const editTypeSelect = await this.page.$$(selectPhoneType);
+    const editTypeSelect = await this.page.$$(SELECT_PHONE_TYPE);
     for (const phele of phNumAdd) {
       console.log(await phele.innerText());
     }
@@ -47,13 +43,11 @@ export class AccountProfilePhonePage extends AccountProfilePage {
       if (ph === '^[0-9]*$') {
         console.log('inside editBtn if');
         // Add the phone number text box
-        await this.fillTextBox(txtBoxAddPhone, phone);
+        await this.fillTextBox(TXT_BOX_ADD_PHONE, phone);
         // Update the phone type text box
         await editTypeSelect[count]?.selectOption({ label: 'Work' });
         // Click the confirm Btn
         await addBtn[count].click();
-        // Assign the new phone to newPhoneValue instance variable for later verification
-        newAddedPhoneValue = phone;
       }
       // increasing count variable
       count = count + 1;
@@ -65,14 +59,14 @@ export class AccountProfilePhonePage extends AccountProfilePage {
   editPhoneNumberFun = async (phone: string, edPhone: string): Promise<void> => {
     console.log(' - accountProfilePage.editPhoneNumberBtn');
     // Click on the edit button by creating an array then selecting the corresponding Btn
-    await this.page.waitForSelector(btnEditPhoneNumber);
-    const editBtn = await this.page.$$(btnEditPhoneNumber);
+    await this.page.waitForSelector(BTN_EDIT_PHONE_NUMBER);
+    const editBtn = await this.page.$$(BTN_EDIT_PHONE_NUMBER);
     console.log(await editBtn.length);
     // Create an array that contains all phone text boxes
-    await this.page.waitForSelector(txtBoxEditPhoneNumber_Name);
-    const phNum = await this.page.$$(txtBoxEditPhoneNumber_Name);
+    await this.page.waitForSelector(TXT_BOX_EDIT_PHONE_NUMBER_NAME);
+    const phNum = await this.page.$$(TXT_BOX_EDIT_PHONE_NUMBER_NAME);
     // Selecting a phone type
-    const editTypeSelect = await this.page.$$(selectPhoneType);
+    const editTypeSelect = await this.page.$$(SELECT_PHONE_TYPE);
     for (const phele of phNum) {
       console.log(await phele.innerText());
     }
@@ -102,12 +96,12 @@ export class AccountProfilePhonePage extends AccountProfilePage {
   deletePhoneNumberFun = async (phone: string): Promise<void> => {
     console.log(' - accountProfilePage.deletePhoneNumberFun');
     // Click on the edit button by creating an array then selecting the corresponding Btn
-    await this.page.waitForSelector(btnDeletePhoneNumber);
-    const deleteBtn = await this.page.$$(btnDeletePhoneNumber);
+    await this.page.waitForSelector(BTN_DELETE_PHONE_NUMBER);
+    const deleteBtn = await this.page.$$(BTN_DELETE_PHONE_NUMBER);
     console.log(await deleteBtn.length);
     // Create an array that contains all phone text boxes
-    await this.page.waitForSelector(txtBoxEditPhoneNumber_Name);
-    const phNum = await this.page.$$(txtBoxEditPhoneNumber_Name);
+    await this.page.waitForSelector(TXT_BOX_EDIT_PHONE_NUMBER_NAME);
+    const phNum = await this.page.$$(TXT_BOX_EDIT_PHONE_NUMBER_NAME);
     for (const phele of phNum) {
       console.log(await phele.innerText());
     }
@@ -140,7 +134,7 @@ export class AccountProfilePhonePage extends AccountProfilePage {
   // Clicking the Add Phone button
   clickAddPhoneNumberButton = async (): Promise<void> => {
     console.log(' - accountProfilePhonePage.addPhoneNumberBtn');
-    await this.clickOnElement(btnAddPhone);
+    await this.clickOnElement(BTN_ADD_PHONE);
   };
 
   // ========================== Assertion Methods ==========================
@@ -158,7 +152,7 @@ export class AccountProfilePhonePage extends AccountProfilePage {
   assertProfileDeletePhoneNumberMsg = async (): Promise<void> => {
     console.log(' - profilePhoneNumberPage.assertProfileDeletePhoneNumberMsg');
     // Confirm the Phone Number  is deleted
-    const ele = await this.page.$(txtAlertUpdatedSuccessfully);
+    const ele = await this.page.$(TXT_ALERT_UPDATED_SUCCESSFULLY);
     await this.page.on('dialog', (dialog) => {
       console.log(dialog.message());
     });

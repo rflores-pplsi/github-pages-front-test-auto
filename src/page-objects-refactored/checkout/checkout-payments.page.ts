@@ -3,11 +3,11 @@ import RegionsUtils from '../../utils/regions.utils';
 import { CheckoutPersonalInfoPage } from './checkout-personal-info.page';
 
 // ========================== Selectors ==================================
-const txtHowWouldYouLikeToPay = 'h1.translate.checkout-v3-h2';
-const btnBankDraft = 'span.options.right.translate';
-const btnCreditCard = 'span.options.left.translate';
-const lnkTermsOfService = '#cc_form >> text=Terms of Service';
-const txtBankDraftTermsOfServiceAgreement = '//form[@id="bd_form"]//span[contains(@class,"termsConditions")]//br';
+const TXT_HOW_WOULD_YOU_LIKE_TO_PAY = 'h1.translate.checkout-v3-h2';
+const BTN_BANK_DRAFT = 'span.options.right.translate';
+const BTN_CREDIT_CARD = 'span.options.left.translate';
+const LNK_TERMS_OF_SERVICE = '#cc_form >> text=Terms of Service';
+const TXT_BANK_DRAFT_TERMS_OF_SERVICE_AGREEMENT = '//form[@id="bd_form"]//span[contains(@class,"termsConditions")]//br';
 
 // create instance of Page
 /**
@@ -51,7 +51,7 @@ export class CheckoutPaymentsPage extends CheckoutPersonalInfoPage {
     const frame = this.page.frameLocator("//iframe[@title='payment iframe']");
     if (frame != null) {
       // Click on Add Payment button
-      await frame.locator(btnBankDraft).click();
+      await frame.locator(BTN_BANK_DRAFT).click();
     } else throw new Error('No such frame');
   };
 
@@ -64,7 +64,7 @@ export class CheckoutPaymentsPage extends CheckoutPersonalInfoPage {
     const frame = this.page.frameLocator("//iframe[@title='payment iframe']");
     if (frame != null) {
       // Click on Add Payment button
-      await frame.locator(btnCreditCard).click();
+      await frame.locator(BTN_CREDIT_CARD).click();
     } else throw new Error('No such frame');
   };
 
@@ -77,7 +77,7 @@ export class CheckoutPaymentsPage extends CheckoutPersonalInfoPage {
     const frame = this.page.frameLocator("//iframe[@title='payment iframe']");
     if (frame != null) {
       // Click on Add Payment button
-      const locator = frame.locator(txtHowWouldYouLikeToPay);
+      const locator = frame.locator(TXT_HOW_WOULD_YOU_LIKE_TO_PAY);
       await expect(locator).toContainText('How would you like to pay?');
     } else throw new Error('No such frame');
   };
@@ -85,7 +85,7 @@ export class CheckoutPaymentsPage extends CheckoutPersonalInfoPage {
    * @memberof CheckoutPaymentsPage
    */
   assertTermsOfServiceNewTab = async (): Promise<Page> => {
-    const [newPage] = await Promise.all([this.context.waitForEvent('page'), await this.page.click(lnkTermsOfService)]);
+    const [newPage] = await Promise.all([this.context.waitForEvent('page'), await this.page.click(LNK_TERMS_OF_SERVICE)]);
     await newPage.waitForLoadState();
     await expect(newPage).toHaveTitle('Terms of Service Notice - LegalShield');
     return newPage;
@@ -105,7 +105,7 @@ export class CheckoutPaymentsPage extends CheckoutPersonalInfoPage {
       // Click on Add Payment button
       await this.clickBankDraftBtn();
       await this.assertElementHasText(
-        txtBankDraftTermsOfServiceAgreement,
+        TXT_BANK_DRAFT_TERMS_OF_SERVICE_AGREEMENT,
         `authorize ${term.toLowerCase()} recurring subscription charge of ${cost}.`
       );
     } else throw new Error('No such frame');

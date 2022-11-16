@@ -13,7 +13,7 @@ test.beforeEach(async ({ page }) => {
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
 
-test('Verify FreeTrial purchase for IDS Individual on IDS Canada with BankDraft', async ({ page }) => {
+test('Verify FreeTrial purchase for IDS Individual on IDS Canada with BankDraft', async ({}) => {
   console.log('Test Case: Verify FreeTrial purchase IDS Individual on IDS Canada with BankDraft - Personal Info Page');
   // Navigate to Personal Info Page
   await checkoutConfirmationPage.navigateToPersonalInfoPageFromPlanalyzer('D2C', 'IDShield', 'Ontario', 'en-CA', '', 'F30', ['IDShield Individual']);
@@ -23,9 +23,9 @@ test('Verify FreeTrial purchase for IDS Individual on IDS Canada with BankDraft'
   await checkoutConfirmationPage.assertTotalDueToday('$0.00');
   // Navigate to Payment Page
   const regionObj = RegionsUtils.caProvinces;
-  const stateObj = 'Ontario';
+  const STATE_OBJ = 'Ontario';
   for (const obj of regionObj) {
-    if (obj.name == stateObj)
+    if (obj.name == STATE_OBJ)
       await checkoutConfirmationPage.changeAddress(obj.validAddress.street, obj.validAddress.city, obj.validAddress.postalCode);
   }
   await checkoutConfirmationPage.clickSaveAndContinueButton();
@@ -40,7 +40,7 @@ test('Verify FreeTrial purchase for IDS Individual on IDS Canada with BankDraft'
   await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName('IDShield Individual');
 });
 
-test('Verify FreeTrial purchase for IDS Family on IDS Canada with CreditCard', async ({ page }) => {
+test('Verify FreeTrial purchase for IDS Family on IDS Canada with CreditCard', async ({}) => {
   console.log('Test Case: Verify FreeTrial purchase for IDS Family on IDS Canada - Personal Info Page');
   // Navigate to Personal Info Page
   await checkoutConfirmationPage.navigateToPersonalInfoPageFromPlanalyzer('D2C', 'IDShield', 'Ontario', 'en-CA', '', 'F30', ['IDShield Family']);
@@ -50,9 +50,9 @@ test('Verify FreeTrial purchase for IDS Family on IDS Canada with CreditCard', a
   await checkoutConfirmationPage.assertTotalDueToday('$0.00');
   // Navigate to Payment Page
   const regionObj = RegionsUtils.caProvinces;
-  const stateObj = 'Ontario';
+  const STATE_OBJ = 'Ontario';
   for (const obj of regionObj) {
-    if (obj.name == stateObj)
+    if (obj.name == STATE_OBJ)
       await checkoutConfirmationPage.changeAddress(obj.validAddress.street, obj.validAddress.city, obj.validAddress.postalCode);
   }
   await checkoutConfirmationPage.clickSaveAndContinueButton();
@@ -66,14 +66,14 @@ test('Verify FreeTrial purchase for IDS Family on IDS Canada with CreditCard', a
   await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName('IDShield Family');
 });
 
-test('Self-Pay (IDShield Individual) using Planalyzer and Bank Draft', async ({ page }) => {
+test('Self-Pay (IDShield Individual) using Planalyzer and Bank Draft', async ({}) => {
   test.slow();
   await checkoutConfirmationPage.navigateToCheckoutConfirmationPageUsingPlanalyzer('Virginia', 'BD');
   await checkoutConfirmationPage.assertWelcomeToLegalShieldFamilyPage();
   await checkoutConfirmationPage.assertOrderSummaryPlanLabelConfirmationPage('Legal Plan');
   await checkoutConfirmationPage.assertOrderSummaryPlanPriceConfirmationPage();
 });
-test('Self-Pay (IDShield Individual) using Planalyzer and Credit Card', async ({ page }) => {
+test('Self-Pay (IDShield Individual) using Planalyzer and Credit Card', async ({}) => {
   test.slow();
   await checkoutConfirmationPage.navigateToCheckoutConfirmationPageUsingPlanalyzer('Virginia', 'CC');
   await checkoutConfirmationPage.assertWelcomeToLegalShieldFamilyPage();

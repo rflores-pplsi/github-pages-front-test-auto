@@ -11,7 +11,7 @@ test.beforeEach(async ({ page }) => {
   test.slow();
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
-test('Best Money Movers Group', async ({ page }) => {
+test('Best Money Movers Group', async ({}) => {
   test.slow;
   // Go to https://www.shieldbenefits.com/bestmoneymoves/overview
   await bestMoneyMoversGroupPage.navigateToBestMoneyMoversGroupPage();

@@ -4,14 +4,14 @@ import { OktaPage } from '../okta/okta.page';
 // ========================== Selectors ==================================
 
 const url = UrlsUtils.legalshieldUrls.groupEnrollment.url;
-const urlGroup = 'https://www.uat-shieldbenefits.com/';
-const txtSearch = '[placeholder="Search"]';
-const btnSearchGroup = '.lsux-button--primary';
-const btnEdit = '.group-item-controls > div:nth-child(3) > a > div > img';
-const btnCopyLink = '.lsux-button:nth-child(3) > .lsux-text--description';
-const tabSmallBusiness = '//*[@id="root"]/div/nav/div/div/ul/li[1]/a';
-const txtGroupInfo = '[class="group-item-info"]';
-const txbNewGroupURLId = '.lsux-grid div:nth-child(4) > div > div > form > div:nth-child(1) input';
+const URL_GROUP = 'https://www.uat-shieldbenefits.com/';
+const TXT_SEARCH = '[placeholder="Search"]';
+const BTN_SEARCH_GROUP = '.lsux-button--primary';
+const BTN_EDIT = '.group-item-controls > div:nth-child(3) > a > div > img';
+const BTN_COPY_LINK = '.lsux-button:nth-child(3) > .lsux-text--description';
+const TAB_SMALL_BUSINESS = '//*[@id="root"]/div/nav/div/div/ul/li[1]/a';
+const TXT_GROUP_INFO = '[class="group-item-info"]';
+const TXB_NEW_GROUP_URL_ID = '.lsux-grid div:nth-child(4) > div > div > form > div:nth-child(1) input';
 
 /**
  * @export
@@ -24,17 +24,17 @@ export class GroupEnrollmentSearchPage extends OktaPage {
   searchGroup = async (): Promise<void> => {
     console.log(' - groupEnrollmentSearch.searchGroup');
     // Type in the search field group 99645
-    await this.page.fill(txtSearch, '99645');
+    await this.page.fill(TXT_SEARCH, '99645');
     // Click on Group Search button
-    await this.page.click(btnSearchGroup);
+    await this.page.click(BTN_SEARCH_GROUP);
     // Confirm search was successful
-    await this.page.waitForSelector(txtGroupInfo);
+    await this.page.waitForSelector(TXT_GROUP_INFO);
   };
 
   copyNewGroupURL = async (): Promise<void> => {
     console.log(' - GroupEnrollmentGroupPage.copyNewGroupURL');
     // Copy link, paste it in a another tab
-    await this.page.click(btnCopyLink);
+    await this.page.click(BTN_COPY_LINK);
     await this.page.waitForTimeout(1000);
   };
 
@@ -45,9 +45,9 @@ export class GroupEnrollmentSearchPage extends OktaPage {
     // Click on Edit button
     await this.clickBtnEditGroup();
     // Verify after pasting url in another browser tab group is displayed
-    const valNewGroupURL = await this.page.getAttribute(txbNewGroupURLId, 'value');
+    const valNewGroupURL = await this.page.getAttribute(TXB_NEW_GROUP_URL_ID, 'value');
     await this.page.waitForTimeout(1000);
-    await this.page.goto(urlGroup + valNewGroupURL);
+    await this.page.goto(URL_GROUP + valNewGroupURL);
     await this.page.waitForLoadState('networkidle');
   };
 
@@ -62,7 +62,7 @@ export class GroupEnrollmentSearchPage extends OktaPage {
   clickBtnEditGroup = async (): Promise<void> => {
     console.log(' - groupEnrollmentSearchPage.clickBtnEditGroup');
     // Click on Edit button
-    await this.page.click(btnEdit);
+    await this.page.click(BTN_EDIT);
   };
 
   // ========================== Assertion Methods ==========================
@@ -70,6 +70,6 @@ export class GroupEnrollmentSearchPage extends OktaPage {
   assertGroupEnrollmentSearchPageSmallBusinessTab = async (): Promise<void> => {
     console.log(' - GroupEnrollmentSearchPage.assertGroupEnrollmentSearchPagePageSmallBusinessTab');
     // Verify that Small Business tab is displayed for Newity group
-    await this.assertElementIsVisible(tabSmallBusiness);
+    await this.assertElementIsVisible(TAB_SMALL_BUSINESS);
   };
 }

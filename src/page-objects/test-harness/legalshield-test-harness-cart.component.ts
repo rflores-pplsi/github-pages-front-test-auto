@@ -2,7 +2,7 @@ import { LoginPage } from '../login/login.page'; // import the LoginPage for ext
 
 // ========================== Selectors ==================================
 
-const btnCheckout = '#checkout-btn';
+const BTN_CHECKOUT = '#checkout-btn';
 
 /**
  *
@@ -18,7 +18,7 @@ export class LegalshieldTestHarnessCartComponent extends LoginPage {
 
   clickCheckoutButton = async () => {
     console.log(' - legalshieldTestHarnessCartComponent.clickCheckoutButton');
-    await this.clickOnElement(btnCheckout);
+    await this.clickOnElement(BTN_CHECKOUT);
   };
   // ========================== Assertion Methods ==========================
 }

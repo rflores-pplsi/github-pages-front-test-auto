@@ -1,4 +1,3 @@
-/* eslint-disable require-jsdoc */
 import UrlsUtils from '../../utils/urls.utils'; // import class of Urls
 import { LoginPage } from '../login/login.page'; // import the LoginPage for extension
 
@@ -31,7 +30,7 @@ export class LegalShieldCAPage extends LoginPage {
     // navigate to URL
     await this.page.goto(urlD2CLegalShieldCAPage);
     await this.page.waitForLoadState();
-    await this.page.screenshot({ path: 'Screenshots/MarketingSite/' + lineofbusiness + 'MarketingSite.png', fullPage: true });
+    await this.page.screenshot({ fullPage: true, path: 'Screenshots/MarketingSite/' + lineofbusiness + 'MarketingSite.png' });
   };
   // ========================== Click Methods ==============================
   // ========================== Assertion Methods ==========================

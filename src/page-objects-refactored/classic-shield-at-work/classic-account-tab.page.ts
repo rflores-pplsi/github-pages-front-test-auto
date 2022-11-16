@@ -4,17 +4,19 @@ import { ClassicShieldAtWork } from './classic-login.page';
 
 // ========================== Selectors ==================================
 const url = urlsUtils.legalshieldUrls.classicShieldAtWork.url;
-const btnViewGroupStateOfAlabama = '#franList > tbody > tr:nth-child(1) > td:nth-child(1) > a';
-const btnMenu = '[id="header-menu-button"]';
-const btnSecurity = '#dropdownRightId > a:nth-child(2) > div';
-const txtSecurity = 'body > div > div.content > div > div:nth-child(1)';
-const btnEditEmployee = 'div:nth-child(2) > #submitButton > .lsux-button';
-const txtNumberOfEmployees = '[class="nfSpacerW230"]';
+const BTN_VIEW_GROUP_STATE_OF_ALABAMA = '#franList > tbody > tr:nth-child(1) > td:nth-child(1) > a';
+const BTN_MENU = '[id="header-menu-button"]';
+const BTN_SECURITY = '#dropdownRightId > a:nth-child(2) > div';
+const TXT_SECURITY = 'body > div > div.content > div > div:nth-child(1)';
+const BTN_EDIT_EMPLOYEE = 'div:nth-child(2) > #submitButton > .lsux-button';
+const TXT_NUMBER_OF_EMPLOYEES = '[class="nfSpacerW230"]';
 
 /**
+ *
+ *
  * @export
- * @class ShieldAtWorkAccountTab
- * @extends {LsWorkLoginPage}
+ * @class ClassicShieldAtWorkAccountTab
+ * @extends {ClassicShieldAtWork}
  */
 export class ClassicShieldAtWorkAccountTab extends ClassicShieldAtWork {
   // ========================== Process Methods ============================
@@ -29,25 +31,25 @@ export class ClassicShieldAtWorkAccountTab extends ClassicShieldAtWork {
   clickViewBtn = async (): Promise<void> => {
     console.log(' - accountClassicShieldAtWorkPage.clickViewBtn');
     // Click on View Group button
-    await this.clickOnElement(btnViewGroupStateOfAlabama);
+    await this.clickOnElement(BTN_VIEW_GROUP_STATE_OF_ALABAMA);
   };
 
   clickMenuBtn = async (): Promise<void> => {
     console.log(' - accountClassicShieldAtWorkPage.clickMenuBtn');
     // Click on Menu button
-    await this.clickOnElement(btnMenu);
+    await this.clickOnElement(BTN_MENU);
   };
 
   clickSecurityBtn = async (): Promise<void> => {
     console.log(' - accountClassicShieldAtWorkPage.clickSecurityBtn');
     // Click on Security button
-    await this.clickOnElement(btnSecurity);
+    await this.clickOnElement(BTN_SECURITY);
   };
 
   clickEditEmployeeBtn = async (): Promise<void> => {
     console.log(' - accountClassicShieldAtWorkPage.clickSecurityBtn');
     // Click on Edit Employee button
-    await this.clickOnElement(btnEditEmployee);
+    await this.clickOnElement(BTN_EDIT_EMPLOYEE);
   };
 
   // ========================== Assertion Methods ==========================
@@ -61,7 +63,7 @@ export class ClassicShieldAtWorkAccountTab extends ClassicShieldAtWork {
     // Click on Security button
     await this.clickSecurityBtn();
     // Verify that Security page is displayed on the account tab
-    const locator = this.page.locator(txtSecurity);
+    const locator = this.page.locator(TXT_SECURITY);
     await expect(locator).toContainText('Security');
   };
 
@@ -72,7 +74,7 @@ export class ClassicShieldAtWorkAccountTab extends ClassicShieldAtWork {
     // Click on Edit Employee button
     await this.clickEditEmployeeBtn();
     // Verify that Edit Employee button redirects to the correct page to update the number of employees
-    const locator = this.page.locator(txtNumberOfEmployees);
+    const locator = this.page.locator(TXT_NUMBER_OF_EMPLOYEES);
     await expect(locator).toContainText('Number of Employees: ');
   };
 }

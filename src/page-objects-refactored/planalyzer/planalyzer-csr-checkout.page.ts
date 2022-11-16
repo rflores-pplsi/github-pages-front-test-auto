@@ -1,16 +1,16 @@
 import { OktaPage } from '../okta/okta.page';
 import EnvironmentUtil from '../../utils/env.utils';
 // ========================== Selectors ==================================
-const ddlEnvironment: string = 'text=EnvironmentUATSTGPROD >> select';
-const ddlChannel: string = 'text=ChannelChoose ChannelD2CNetworkSolutions >> select';
-const ddlSubChannel: string = 'text=SubchannelChoose SubchannelLegalShieldIDShield >> select';
-const ddlRegion: string = 'text=RegionChoose RegionAlabamaAlaskaArizonaArkansasCaliforniaColoradoConnecticutDela >> select';
-const ddlMarketLocal: string = 'text=MarketLocaleChoose MarketLocaleen-CAen-USes-USfr-CA >> select';
-const txtPrepaidMonth: string = '[placeholder="Pre-paid months"]';
-const txtCouponCode: string = '[placeholder="Coupon code"]';
-const btnShowResults: string = 'button:has-text("Show Results")';
-const btnGoToCheckout: string = 'button:has-text("GO TO CHECKOUT")';
-const btnContinue: string = 'button:has-text("Continue")';
+const DDL_ENVIRONMENT = 'text=EnvironmentUATSTGPROD >> select';
+const DDL_CHANNEL = 'text=ChannelChoose ChannelD2CNetworkSolutions >> select';
+const DDL_SUB_CHANNEL = 'text=SubchannelChoose SubchannelLegalShieldIDShield >> select';
+const DDL_REGION = 'text=RegionChoose RegionAlabamaAlaskaArizonaArkansasCaliforniaColoradoConnecticutDela >> select';
+const DDL_MARKET_LOCAL = 'text=MarketLocaleChoose MarketLocaleen-CAen-USes-USfr-CA >> select';
+const TXT_PREPAID_MONTH = '[placeholder="Pre-paid months"]';
+const TXT_COUPON_CODE = '[placeholder="Coupon code"]';
+const BTN_SHOW_RESULTS = 'button:has-text("Show Results")';
+const BTN_GO_TO_CHECKOUT = 'button:has-text("GO TO CHECKOUT")';
+const BTN_CONTINUE = 'button:has-text("Continue")';
 
 /**
  *
@@ -35,8 +35,8 @@ export class PlanalyzerCsrCheckoutPage extends OktaPage {
     subChannel: string,
     region: string,
     marketLocale: string,
-    prepaidMonths: string = '',
-    couponCode: string = '',
+    prepaidMonths = '',
+    couponCode = '',
     plans: Array<string>
   ): Promise<void> => {
     console.log(' - planalyzerCsrCheckoutPage.createOrderRedirectToCheckoutFromPlanalyzer');
@@ -60,7 +60,7 @@ export class PlanalyzerCsrCheckoutPage extends OktaPage {
   selectEnvironment = async (): Promise<void> => {
     console.log(' - planalyzerCsrCheckoutPage.selectEnvironment');
     const environmentDropDownString = EnvironmentUtil.getDropDownEnvironmentOptions();
-    await this.selectFromDropDownMenu(ddlEnvironment, environmentDropDownString);
+    await this.selectFromDropDownMenu(DDL_ENVIRONMENT, environmentDropDownString);
   };
 
   /**
@@ -69,7 +69,7 @@ export class PlanalyzerCsrCheckoutPage extends OktaPage {
    */
   selectChannel = async (channel: string): Promise<void> => {
     console.log(' - planalyzerCsrCheckoutPage.selectChannel');
-    await this.selectFromDropDownMenu(ddlChannel, channel);
+    await this.selectFromDropDownMenu(DDL_CHANNEL, channel);
   };
 
   /**
@@ -78,7 +78,7 @@ export class PlanalyzerCsrCheckoutPage extends OktaPage {
    */
   selectSubChannel = async (subChannel: string): Promise<void> => {
     console.log(' - planalyzerCsrCheckoutPage.selectSubChannel');
-    await this.selectFromDropDownMenu(ddlSubChannel, subChannel);
+    await this.selectFromDropDownMenu(DDL_SUB_CHANNEL, subChannel);
   };
 
   /**
@@ -87,7 +87,7 @@ export class PlanalyzerCsrCheckoutPage extends OktaPage {
    */
   selectRegion = async (region: string): Promise<void> => {
     console.log(' - planalyzerCsrCheckoutPage.selectRegion');
-    await this.selectFromDropDownMenu(ddlRegion, region);
+    await this.selectFromDropDownMenu(DDL_REGION, region);
   };
 
   /**
@@ -96,7 +96,7 @@ export class PlanalyzerCsrCheckoutPage extends OktaPage {
    */
   selectMarketLocale = async (marketLocale: string): Promise<void> => {
     console.log(' - planalyzerCsrCheckoutPage.selectMarketLocale');
-    await this.selectFromDropDownMenu(ddlMarketLocal, marketLocale);
+    await this.selectFromDropDownMenu(DDL_MARKET_LOCAL, marketLocale);
   };
 
   /**
@@ -105,7 +105,7 @@ export class PlanalyzerCsrCheckoutPage extends OktaPage {
    */
   enterPrepaidMonths = async (prepaidMonths: string): Promise<void> => {
     console.log(' - planalyzerCsrCheckoutPage.enterPrepaidMonths');
-    await this.fillTextBox(txtPrepaidMonth, prepaidMonths);
+    await this.fillTextBox(TXT_PREPAID_MONTH, prepaidMonths);
   };
 
   /**
@@ -114,7 +114,7 @@ export class PlanalyzerCsrCheckoutPage extends OktaPage {
    */
   enterCouponCode = async (couponCode: string): Promise<void> => {
     console.log(' - planalyzerCsrCheckoutPage.enterCouponCode');
-    await this.fillTextBox(txtCouponCode, couponCode);
+    await this.fillTextBox(TXT_COUPON_CODE, couponCode);
   };
 
   // ========================== Navigate Methods ===========================
@@ -141,7 +141,7 @@ export class PlanalyzerCsrCheckoutPage extends OktaPage {
   clickShowResults = async (): Promise<void> => {
     console.log(' - planalyzerCsrCheckoutPage.clickShowResults');
     // Click on the Search Results Button
-    await this.clickOnElement(btnShowResults);
+    await this.clickOnElement(BTN_SHOW_RESULTS);
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };
@@ -152,7 +152,7 @@ export class PlanalyzerCsrCheckoutPage extends OktaPage {
   clickGoToCheckout = async (): Promise<void> => {
     console.log(' - planalyzerCsrCheckoutPage.clickGoToCheckout');
     // Click on the Search Results Button
-    await this.clickOnElement(btnGoToCheckout);
+    await this.clickOnElement(BTN_GO_TO_CHECKOUT);
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };
@@ -160,7 +160,7 @@ export class PlanalyzerCsrCheckoutPage extends OktaPage {
   clickContinueButton = async (): Promise<void> => {
     console.log(' - planalyzerCsrCheckoutPage.clickContinueButton');
     // Click on the Search Results Button
-    await this.clickOnElement(btnContinue);
+    await this.clickOnElement(BTN_CONTINUE);
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };

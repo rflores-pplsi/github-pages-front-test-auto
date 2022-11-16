@@ -1,17 +1,13 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable require-jsdoc */
 import { expect } from '@playwright/test';
 import { AccountNavigationPage } from './account-navigation.page';
 import { AccountProfilePage } from './account-profile.page';
 // require('dotenv').config;
 
 // ========================== Selectors ==========================
-const btnEmailAddressAdd = 'button.lsux-button.lsux-button--primary.mt-4 img';
-const txtBoxEditEmailAddress =
+const BTN_EMAIL_ADDRESS_ADD = 'button.lsux-button.lsux-button--primary.mt-4 img';
+const TXT_BOX_EDIT_EMAIL_ADDRESS =
   '//div[@class="lsux-container lsux-container--white  lsux-container--flexbox   lsux-container--flex-justify-space-between   mobile-profile-grid-container"]';
-const btnConfirmEmailAddress = '//*[@class="inputs--wrapper inputs--wrapper-list"]/div/div[3]/button[1]';
-// eslint-disable-next-line no-unused-vars
-let newAddedEmailValue;
+const BTN_CONFIRM_EMAIL_ADDRESS = '//*[@class="inputs--wrapper inputs--wrapper-list"]/div/div[3]/button[1]';
 
 export class AccountProfileEmailPage extends AccountProfilePage {
   // Page Instances
@@ -22,22 +18,22 @@ export class AccountProfileEmailPage extends AccountProfilePage {
 
   addEmailAddressFun = async (email: string): Promise<void> => {
     // Create an array that contains all Email text boxes
-    await this.page.waitForSelector(txtBoxEditEmailAddress);
-    const emailAddressAdd = await this.page.$$(txtBoxEditEmailAddress);
+    await this.page.waitForSelector(TXT_BOX_EDIT_EMAIL_ADDRESS);
+    const emailAddressAdd = await this.page.$$(TXT_BOX_EDIT_EMAIL_ADDRESS);
     console.log(emailAddressAdd.length);
-    for (const emailAddress of emailAddressAdd) {
-      // console.log(await emailEle.getAttribute('value'));
-    }
+    // for (const emailAddress of emailAddressAdd) {
+    // console.log(await emailEle.getAttribute('value'));
+    // }
     // Click on the edit button by creating an array then selecting the corresponding Btn
-    await this.page.waitForSelector(btnConfirmEmailAddress);
-    const confirmBtn = await this.page.$$(btnConfirmEmailAddress);
+    await this.page.waitForSelector(BTN_CONFIRM_EMAIL_ADDRESS);
+    const confirmBtn = await this.page.$$(BTN_CONFIRM_EMAIL_ADDRESS);
     console.log(confirmBtn.length);
     // Click on Add Button
     // await this.page.waitForSelector(btnEmailAddressAdd);
     await this.page.waitForLoadState('domcontentloaded');
     // Force Click on Add Button
-    await this.page.waitForSelector(btnEmailAddressAdd);
-    await this.page.locator(btnEmailAddressAdd).click();
+    await this.page.waitForSelector(BTN_EMAIL_ADDRESS_ADD);
+    await this.page.locator(BTN_EMAIL_ADDRESS_ADD).click();
     await this.page.waitForTimeout(1000);
     // await this.page.waitForTimeout(5000);
     console.log('I clicked on the Add button');
@@ -49,15 +45,13 @@ export class AccountProfileEmailPage extends AccountProfilePage {
     const btn = await this.page.$('//div[@class="inputs--wrapper inputs--wrapper-list"]/div[' + (emailAddressAdd.length + 1) + ']/div[3]/button[1]');
     btn?.click({ force: true });
     await this.page.waitForTimeout(1000);
-    // Assign the new email to newAddedEmailValue instance variable for later verification
-    newAddedEmailValue = email;
   };
 
   editEmailAddressFun = async (email: string, newEmail: string): Promise<void> => {
     console.log(' - accountProfilePage.editPhoneNumberBtn');
     // Create an array that contains all Email text boxes
-    await this.page.waitForSelector(txtBoxEditEmailAddress);
-    const emailAddressEdit = await this.page.$$(txtBoxEditEmailAddress);
+    await this.page.waitForSelector(TXT_BOX_EDIT_EMAIL_ADDRESS);
+    const emailAddressEdit = await this.page.$$(TXT_BOX_EDIT_EMAIL_ADDRESS);
     console.log(emailAddressEdit.length);
     for (let i = 1; i < emailAddressEdit.length + 1; i++) {
       const oEmail = await this.page
@@ -90,8 +84,8 @@ export class AccountProfileEmailPage extends AccountProfilePage {
   deleteEmailAddressFun = async (email: string): Promise<void> => {
     console.log(' - accountProfilePage.deleteEmailAddressFun');
     // Create an array that contains all Email text boxes
-    await this.page.waitForSelector(txtBoxEditEmailAddress);
-    const emailAddressAdd = await this.page.$$(txtBoxEditEmailAddress);
+    await this.page.waitForSelector(TXT_BOX_EDIT_EMAIL_ADDRESS);
+    const emailAddressAdd = await this.page.$$(TXT_BOX_EDIT_EMAIL_ADDRESS);
     console.log(emailAddressAdd.length);
     // Click on the edit button by creating an array then selecting the corresponding Btn
     for (let i = 1; i < emailAddressAdd.length + 1; i++) {

@@ -14,7 +14,6 @@ export class OrderSummaryRow {
    * @param {string} planName
    * @param {string} tierName
    * @param {string} planCost
-
    * @memberof PlanRow
    */
   constructor(planName: string | null, tierName: string | null, planCost: string | null) {
@@ -217,6 +216,6 @@ export class NavigateToTestingHarnessPage {
     const LineOfBusiness = this.page.locator('div.et_pb_blurb_' + lofb);
     await this.page.waitForLoadState();
     await LineOfBusiness.click();
-    this.page.screenshot({ path: 'Screenshots/testingHarness/' + lineOfBusiness + 'TestingHarness.png', fullPage: true });
+    this.page.screenshot({ fullPage: true, path: 'Screenshots/testingHarness/' + lineOfBusiness + 'TestingHarness.png' });
   };
 }

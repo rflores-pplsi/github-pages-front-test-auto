@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable require-jsdoc */
 import { expect } from '@playwright/test';
 import UrlsUtils from '../../utils/urls.utils';
 import { OktaPage } from '../okta/okta.page';
@@ -10,13 +8,12 @@ import { OktaPage } from '../okta/okta.page';
 // let Produrl: string = UrlsUtils.launchUrls.devUrl.url;
 // let Devurl: string = UrlsUtils.launchUrls.devUrl.url;
 // let Uaturl: string = UrlsUtils.launchUrls.uatUrl.url;
-const startYourBusinessBtn = 'xpath=//div[@class="et_pb_button_module_wrapper et_pb_button_2_wrapper  et_pb_module "]/a';
-const updateRegionBtn = 'text=Update region';
-const yourRegionSelector = 'select.lsc_region_selector';
-const yourRegionCity = 'Virginia';
-const welcomeH3Locator = '.lsux-heading--t20';
-const welcomeH3Txt = 'Welcome, let’s get started! To complete your purchase, sign up for an account.';
-const continueShopping = '//a[text()= "Continue shopping"]';
+const START_YOUR_BUSINESS_BTN = 'xpath=//div[@class="et_pb_button_module_wrapper et_pb_button_2_wrapper  et_pb_module "]/a';
+const UPDATE_REGION_BTN = 'text=Update region';
+const YOUR_REGION_SELECTOR = 'select.lsc_region_selector';
+const YOUR_REGION_CITY = 'Virginia';
+const WELCOME_H3_LOCATOR = '.lsux-heading--t20';
+const WELCOME_H3_TEXT = 'Welcome, let´s get started! To complete your purchase, sign up for an account.';
 export class CheckoutConfirmationPage extends OktaPage {
   // Page Instances
 
@@ -90,8 +87,8 @@ export class CheckoutConfirmationPage extends OktaPage {
   // Select your region
   selectYourRegionMenu = async () => {
     // Click on Start your business button
-    await this.page.waitForSelector(yourRegionSelector);
-    await this.selectFromDropDownMenu(yourRegionSelector, yourRegionCity);
+    await this.page.waitForSelector(YOUR_REGION_SELECTOR);
+    await this.selectFromDropDownMenu(YOUR_REGION_SELECTOR, YOUR_REGION_CITY);
     await this.page.waitForLoadState('domcontentloaded');
   };
 
@@ -125,13 +122,13 @@ export class CheckoutConfirmationPage extends OktaPage {
 
     console.log('I am inside of clickStart');
     await this.page.waitForLoadState('domcontentloaded');
-    await this.clickOnElement(startYourBusinessBtn);
+    await this.clickOnElement(START_YOUR_BUSINESS_BTN);
     console.log('I clicked clickStart');
     await this.page.waitForLoadState('domcontentloaded');
   };
   clickUpdateRegionBtn = async () => {
     // Click on Start your business button
-    await this.clickOnElement(updateRegionBtn);
+    await this.clickOnElement(UPDATE_REGION_BTN);
     await this.page.waitForLoadState('networkidle');
   };
 
@@ -141,6 +138,6 @@ export class CheckoutConfirmationPage extends OktaPage {
     // Confirm the welcome text
     // await this.assertElementHasText(welcomeH3Locator,welcomeH3Txt);
     await this.page.waitForLoadState('domcontentloaded');
-    await expect(this.page.locator(welcomeH3Locator)).toHaveText(welcomeH3Txt);
+    await expect(this.page.locator(WELCOME_H3_LOCATOR)).toHaveText(WELCOME_H3_TEXT);
   };
 }

@@ -11,7 +11,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 // Edit Profile Name button should be disabled
-test('Verify the Edit button for Name should be disabled', async ({ page }) => {
+test('Verify the Edit button for Name should be disabled', async ({}) => {
   console.log('Test Case: Verify the Edit button for Name should be disabled');
   // Verify the landing on the Profile Name page
   await accountProfilePage.assertNameEditButtonIsDisabled();
@@ -50,7 +50,7 @@ test('Navigate to the Profile Phone Number page by clicking the Phone Number Edi
 });
 
 // Edit Profile Address button should be disabled
-test('Verify the Edit button for Address should be disabled', async ({ page }) => {
+test('Verify the Edit button for Address should be disabled', async ({}) => {
   console.log('Test Case: Verify the Edit button for Address should be disabled');
   // Verify the landing on the Profile Address page
   await accountProfilePage.assertAddressButtonIsDisabled();

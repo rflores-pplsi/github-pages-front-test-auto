@@ -1,17 +1,16 @@
-/* eslint-disable no-undef */
 import { test } from '@playwright/test';
 import { EnglishWalsCAPage } from '../../../page-objects/qa-maintenance-list/english-wals-ca.page';
 // create instance of Page
 let englishWalsCaPage: EnglishWalsCAPage;
 
 // Setup environment before each test
-test.beforeEach(async ({ page, request }) => {
+test.beforeEach(async ({ page }) => {
   englishWalsCaPage = new EnglishWalsCAPage(page);
   // test.slow triples the default wait times
   test.slow();
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
-test('English WALS-US', async ({ page }) => {
+test('English WALS-US', async ({}) => {
   test.slow;
   await test.step('Navigate to English-WALS-Ca page', async () => {
     await englishWalsCaPage.navigateToEnglishWalsCaPage();

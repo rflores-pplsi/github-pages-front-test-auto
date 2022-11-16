@@ -3,59 +3,58 @@ import UrlsUtils from '../../utils/urls.utils';
 import { associateReportsCommissions } from '../../utils/user.utils';
 import { expect } from '@playwright/test';
 // ========================== Selectors ==================================
-const lblTitleMarketingWebsitePreferences: string = 'h1.lsux-heading.lsux-heading--t28';
-const lblProfileInformation: string = 'h3:has-text("Profile information")';
-const lblFillContactInformationMsg: string = 'span:has-text("Please fill in your contact information that you wish to be displayed on your website")';
-const lblYourURL: string = 'h4:has-text("Your URL:")';
-const lnkWeAreLegalShield: string = "(//span[contains(@class,'textPointer')])[1]";
-const msgCopied: string = '.lsux-alert.p-4.lsux-alert--success.lsux-alert--bold';
-const lnkMyTeam: string = '.lsux-navigation :nth-child(1) > div.lsux-link-content';
-const lnkReports: string = '.lsux-navigation :nth-child(2) > div';
-const lnkAllReports: string = '.lsux-navigation :nth-child(3) > div';
-const lnkCommissions: string = '.lsux-navigation :nth-child(4) > div';
-const lnkTaxes: string = '.lsux-navigation :nth-child(5) > div';
-const lnkResources: string = '.lsux-navigation :nth-child(6) > div';
-const lnkMessages: string = '.lsux-navigation :nth-child(7) > div';
-const lnkCompensation: string = '.lsux-navigation :nth-child(8) > div';
-const lnkLsAdvantage: string = '.lsux-navigation :nth-child(7) > div';
-const lnkAssociatePerks: string = '.lsux-navigation :nth-child(8) > div';
-const headerLogo: string = '.fixedheader img.largemediumscreen';
-const nameAO: string = '#lsdsTitle';
-const helpIcon: string = '#helpButton > img';
-const customerSupport: string = '#helpContentCustom > a:nth-child(1) > div';
-const supportPhone: string = 'a.lsux-link-content.lsux-link-content';
-const downCaret: string = '#downCaret';
-const myAccount: string = '#myDropdown > a:nth-child(1) > div';
-const signOut: string = '#myDropdown > a:nth-child(3) > div';
-const lblFirstName: string = "(//label[@class='lsux-form-field-container__label '])[1]";
-const txtFirstName: string = '[name="firstName"]';
-const lblLastName: string = "(//label[@class='lsux-form-field-container__label '])[2]";
-const txtLastName: string = '[name="lastName"]';
-const lblEmailAddress: string = "(//label[@class='lsux-form-field-container__label '])[3]";
-const txtEmailAddress: string = '[name="email"]';
-const lblPhoneNumber: string = "(//label[@class='lsux-form-field-container__label '])[4]";
-const txtPhoneNumber: string = '[name="cellPhone"]';
-const chkDisplayOnWebsite: string = 'label.lsux-cb-container';
-const btnPhotoIcon: string = "(//button[contains(@class,'lsux-button--icon-only   mb-3')])[1]";
-const lnkUpdateProfilePicture: string = "(//div[contains(@class,'py-3 px-4')])[1]";
-const lnkEditProfilePicture: string = "(//div[contains(@class,'py-3 px-4')])[2]";
-const lnkResetProfilePicture: string = "(//div[contains(@class,'py-3 px-4')])[3]";
-const lblPlanSelection: string = 'h3:has-text("Plan selection")';
-const lblSelectPlanMsg: string = 'span:has-text("Please select the plans you want to be visible on your marketing site.")';
-const lblDisplayingPlans: string = 'p:has-text("Displaying")';
-const lblDisplayingPlans2: string = 'p:has-text(" plan(s) on your marketing site")';
-const lblLegalShieldPlan: string = 'h3:has-text("LegalShield Plan")';
-const lblIDShieldPlan: string = 'h3:has-text("IDShield Plan")';
-const lblSmallBusinessPlan: string = 'h3:has-text("Small Business Plan")';
-const lblUpdatesWillAppearMsg: string = 'span:has-text("Updates will appear within 3 days.")';
-const lblNamePhotoApprovedMsg: string = 'span:has-text("The name and photo needs to be approved for updates to take place.")';
-const btnPublish: string = "(//button[contains(@class,'right-align mobile-stretch')])[1]";
-const termsOfService: string = "a[href*='terms-service']";
-const privacyPolicy: string = '.lsux-footer a:nth-child(2)';
-const disclaimer: string = "a[href*='disclaimer']";
-const logo: string = '.lsux-footer > span > span';
+const LBL_TITLE_MARKETING_WEBSITE_PREFERENCES = 'h1.lsux-heading.lsux-heading--t28';
+const LBL_PROFILE_INFORMATION = 'h3:has-text("Profile information")';
+const LBL_FILL_CONTACT_INFORMATION_MSG = 'span:has-text("Please fill in your contact information that you wish to be displayed on your website")';
+const LBL_YOUR_URL = 'h4:has-text("Your URL:")';
+const LNK_WE_ARE_LEGAL_SHIELD = "(//span[contains(@class,'textPointer')])[1]";
+const MSG_COPIED = '.lsux-alert.p-4.lsux-alert--success.lsux-alert--bold';
+const LNK_MY_TEAM = '.lsux-navigation :nth-child(1) > div.lsux-link-content';
+const LNK_REPORTS = '.lsux-navigation :nth-child(2) > div';
+const LNK_ALL_REPORTS = '.lsux-navigation :nth-child(3) > div';
+const LNK_COMMISSIONS = '.lsux-navigation :nth-child(4) > div';
+const LNK_TAXES = '.lsux-navigation :nth-child(5) > div';
+const LNK_RESOURCES = '.lsux-navigation :nth-child(6) > div';
+const LNK_MESSAGES = '.lsux-navigation :nth-child(7) > div';
+const LNK_COMPENSATION = '.lsux-navigation :nth-child(8) > div';
+const LNK_LS_ADVANTAGE = '.lsux-navigation :nth-child(7) > div';
+const LNK_ASSOCIATE_PERKS = '.lsux-navigation :nth-child(8) > div';
+const HEADER_LOGO = '.fixedheader img.largemediumscreen';
+const NAME_AO = '#lsdsTitle';
+const HELP_ICON = '#helpButton > img';
+const CUSTOMER_SUPPORT = '#helpContentCustom > a:nth-child(1) > div';
+const SUPPORT_PHONE = 'a.lsux-link-content.lsux-link-content';
+const DOWN_CARET = '#downCaret';
+const MY_ACCOUNT = '#myDropdown > a:nth-child(1) > div';
+const SIGN_OUT = '#myDropdown > a:nth-child(3) > div';
+const LBL_FIRST_NAME = "(//label[@class='lsux-form-field-container__label '])[1]";
+const TXT_FIRST_NAME = '[name="firstName"]';
+const LBL_LAST_NAME = "(//label[@class='lsux-form-field-container__label '])[2]";
+const TXT_LAST_NAME = '[name="lastName"]';
+const LBL_EMAIL_ADDRESS = "(//label[@class='lsux-form-field-container__label '])[3]";
+const TXT_EMAIL_ADDRESS = '[name="email"]';
+const LBL_PHONE_NUMBER = "(//label[@class='lsux-form-field-container__label '])[4]";
+const TXT_PHONE_NUMBER = '[name="cellPhone"]';
+const CHK_DISPLAY_ON_WEBSITE = 'label.lsux-cb-container';
+const BTN_PHOTO_ICON = "(//button[contains(@class,'lsux-button--icon-only   mb-3')])[1]";
+const LNK_UPDATE_PROFILE_PICTURE = "(//div[contains(@class,'py-3 px-4')])[1]";
+const LNK_EDIT_PROFILE_PICTURE = "(//div[contains(@class,'py-3 px-4')])[2]";
+const LNK_RESET_PROFILE_PICTURE = "(//div[contains(@class,'py-3 px-4')])[3]";
+const LBL_PLAN_SELECTION = 'h3:has-text("Plan selection")';
+const LBL_SELECT_PLAN_MSG = 'span:has-text("Please select the plans you want to be visible on your marketing site.")';
+const LBL_DISPLAYING_PLANS = 'p:has-text("Displaying")';
+const LBL_DISPLAYING_PLANS2 = 'p:has-text(" plan(s) on your marketing site")';
+const LBL_LEGAL_SHIELD_PLAN = 'h3:has-text("LegalShield Plan")';
+const LBL_ID_SHIELD_PLAN = 'h3:has-text("IDShield Plan")';
+const LBL_SMALL_BUSINESS_PLAN = 'h3:has-text("Small Business Plan")';
+const LBL_UPDATES_WILL_APPEAR_MSG = 'span:has-text("Updates will appear within 3 days.")';
+const LBL_NAME_PHOTO_APPROVED_MSG = 'span:has-text("The name and photo needs to be approved for updates to take place.")';
+const BTN_PUBLISH = "(//button[contains(@class,'right-align mobile-stretch')])[1]";
+const TERMS_OF_SERVICE = "a[href*='terms-service']";
+const PRIVACY_POLICY = '.lsux-footer a:nth-child(2)';
+const DISCLAIMER = "a[href*='disclaimer']";
+const LOGO = '.lsux-footer > span > span';
 
-// eslint-disable-next-line valid-jsdoc
 /**
  *
  *
@@ -71,17 +70,17 @@ export class BusinessCard extends LoginPage {
     // Navigate to Marketing Website Preferences/ Business Card Page
     await this.goTo(UrlsUtils.channelsUrls.businessCard.url);
     await this.login(associateReportsCommissions.username, associateReportsCommissions.password);
-    await this.page.waitForSelector(lblTitleMarketingWebsitePreferences);
+    await this.page.waitForSelector(LBL_TITLE_MARKETING_WEBSITE_PREFERENCES);
   };
   // ========================== Click Methods ==============================
   clickOnWeAreLegalShieldURL = async (): Promise<void> => {
     console.log(' - profilePickerPage.clickOnWeAreLegalShieldURL');
-    await this.clickOnElement(lnkWeAreLegalShield);
+    await this.clickOnElement(LNK_WE_ARE_LEGAL_SHIELD);
   };
 
   clickOnPhotoLink = async (): Promise<void> => {
     console.log(' - profilePickerPage.clickOnPhotoLink');
-    await this.clickOnElement(btnPhotoIcon);
+    await this.clickOnElement(BTN_PHOTO_ICON);
   };
 
   // ========================== Assertion Methods ==========================
@@ -92,146 +91,146 @@ export class BusinessCard extends LoginPage {
   };
   assertPageHasCorrectTitle = async (): Promise<void> => {
     console.log(' - BusinessCardPage.assertPageHasCorrectTitle');
-    const title = 'Marketing Site Preferences';
-    await expect(this.page).toHaveTitle(title);
+    const TITLE = 'Marketing Site Preferences';
+    await expect(this.page).toHaveTitle(TITLE);
   };
 
   assertNavMenuOnPage = async (): Promise<void> => {
     console.log(' - BusinessCardPage.assertNavMenuOnPage');
-    await this.page.locator(lnkMyTeam).isVisible();
-    await this.page.locator(lnkReports).isVisible();
-    await this.page.locator(lnkAllReports).isVisible();
-    await this.page.locator(lnkCommissions).isVisible();
-    await this.page.locator(lnkTaxes).isVisible();
-    await this.page.locator(lnkResources).isVisible();
-    await this.page.locator(lnkMessages).isVisible();
-    await this.page.locator(lnkCompensation).isVisible();
-    await this.page.locator(lnkLsAdvantage).isVisible();
-    await this.page.locator(lnkAssociatePerks).isVisible();
+    await this.page.locator(LNK_MY_TEAM).isVisible();
+    await this.page.locator(LNK_REPORTS).isVisible();
+    await this.page.locator(LNK_ALL_REPORTS).isVisible();
+    await this.page.locator(LNK_COMMISSIONS).isVisible();
+    await this.page.locator(LNK_TAXES).isVisible();
+    await this.page.locator(LNK_RESOURCES).isVisible();
+    await this.page.locator(LNK_MESSAGES).isVisible();
+    await this.page.locator(LNK_COMPENSATION).isVisible();
+    await this.page.locator(LNK_LS_ADVANTAGE).isVisible();
+    await this.page.locator(LNK_ASSOCIATE_PERKS).isVisible();
   };
 
   assertPageHasCorrectHeader = async (): Promise<void> => {
     console.log(' - BusinessCardPage.assertPageHasCorrectHeader');
-    await this.assertElementIsVisible(headerLogo);
-    await this.assertElementIsVisible(nameAO);
-    await this.assertElementIsVisible(helpIcon);
-    await this.clickOnElement(helpIcon);
-    await this.assertElementIsVisible(customerSupport);
-    await this.assertElementIsVisible(supportPhone);
-    await this.assertElementHasText(supportPhone, '1-580-436-7424');
-    await this.assertElementIsVisible(downCaret);
-    await this.clickOnElement(downCaret);
-    await this.assertElementIsVisible(myAccount);
-    await this.assertElementIsVisible(signOut);
-    await this.assertElementIsVisible(lblTitleMarketingWebsitePreferences);
+    await this.assertElementIsVisible(HEADER_LOGO);
+    await this.assertElementIsVisible(NAME_AO);
+    await this.assertElementIsVisible(HELP_ICON);
+    await this.clickOnElement(HELP_ICON);
+    await this.assertElementIsVisible(CUSTOMER_SUPPORT);
+    await this.assertElementIsVisible(SUPPORT_PHONE);
+    await this.assertElementHasText(SUPPORT_PHONE, '1-580-436-7424');
+    await this.assertElementIsVisible(DOWN_CARET);
+    await this.clickOnElement(DOWN_CARET);
+    await this.assertElementIsVisible(MY_ACCOUNT);
+    await this.assertElementIsVisible(SIGN_OUT);
+    await this.assertElementIsVisible(LBL_TITLE_MARKETING_WEBSITE_PREFERENCES);
   };
 
   assertProfileInfoMsg = async (): Promise<void> => {
     console.log(' - BusinessCardPage.assertProfileInfoMsg');
-    await this.assertElementIsVisible(lblProfileInformation);
-    await expect(this.page.locator(lblProfileInformation)).toContainText('Profile information');
-    await this.assertElementIsVisible(lblFillContactInformationMsg);
-    await expect(this.page.locator(lblFillContactInformationMsg)).toContainText(
+    await this.assertElementIsVisible(LBL_PROFILE_INFORMATION);
+    await expect(this.page.locator(LBL_PROFILE_INFORMATION)).toContainText('Profile information');
+    await this.assertElementIsVisible(LBL_FILL_CONTACT_INFORMATION_MSG);
+    await expect(this.page.locator(LBL_FILL_CONTACT_INFORMATION_MSG)).toContainText(
       'Please fill in your contact information that you wish to be displayed on your website'
     );
   };
 
   assertWeAreLegalShieldURL = async (): Promise<void> => {
     console.log(' - BusinessCardPage.assertWeAreLegalShieldURL');
-    await this.assertElementIsVisible(lblYourURL);
-    await expect(this.page.locator(lblYourURL)).toContainText('Your URL:');
-    await this.assertElementIsVisible(lnkWeAreLegalShield);
+    await this.assertElementIsVisible(LBL_YOUR_URL);
+    await expect(this.page.locator(LBL_YOUR_URL)).toContainText('Your URL:');
+    await this.assertElementIsVisible(LNK_WE_ARE_LEGAL_SHIELD);
   };
 
   assertCopiedMsg = async (): Promise<void> => {
     console.log(' - BusinessCardPage.assertCopiedMsg');
-    await this.assertElementIsVisible(msgCopied);
-    await expect(this.page.locator(msgCopied)).toContainText('Copied!');
+    await this.assertElementIsVisible(MSG_COPIED);
+    await expect(this.page.locator(MSG_COPIED)).toContainText('Copied!');
   };
 
   assertFirstAndLastNamesBox = async (): Promise<void> => {
     console.log(' - BusinessCardPage.assertFirstAndLastNamesBox');
-    await this.assertElementIsVisible(lblFirstName);
-    await expect(this.page.locator(lblFirstName)).toContainText('First name');
-    await this.assertElementIsVisible(txtFirstName);
-    await this.assertElementIsVisible(lblLastName);
-    await expect(this.page.locator(lblLastName)).toContainText('Last name');
-    await this.assertElementIsVisible(txtLastName);
+    await this.assertElementIsVisible(LBL_FIRST_NAME);
+    await expect(this.page.locator(LBL_FIRST_NAME)).toContainText('First name');
+    await this.assertElementIsVisible(TXT_FIRST_NAME);
+    await this.assertElementIsVisible(LBL_LAST_NAME);
+    await expect(this.page.locator(LBL_LAST_NAME)).toContainText('Last name');
+    await this.assertElementIsVisible(TXT_LAST_NAME);
   };
 
   assertEmailAddressBox = async (): Promise<void> => {
     console.log(' - BusinessCardPage.assertEmailAddressBox');
-    await this.assertElementIsVisible(lblEmailAddress);
-    await expect(this.page.locator(lblEmailAddress)).toContainText('Email address');
-    await this.assertElementIsVisible(txtEmailAddress);
+    await this.assertElementIsVisible(LBL_EMAIL_ADDRESS);
+    await expect(this.page.locator(LBL_EMAIL_ADDRESS)).toContainText('Email address');
+    await this.assertElementIsVisible(TXT_EMAIL_ADDRESS);
   };
 
   assertPhoneNumberBoxAndCheckbox = async (): Promise<void> => {
     console.log(' - BusinessCardPage.assertPhoneNumberBoxAndCheckbox');
-    await this.assertElementIsVisible(lblPhoneNumber);
-    await expect(this.page.locator(lblPhoneNumber)).toContainText('Phone number');
-    await this.assertElementIsVisible(txtPhoneNumber);
-    await this.assertElementIsVisible(chkDisplayOnWebsite);
-    await expect(this.page.locator(chkDisplayOnWebsite)).toContainText('Display phone number on site');
+    await this.assertElementIsVisible(LBL_PHONE_NUMBER);
+    await expect(this.page.locator(LBL_PHONE_NUMBER)).toContainText('Phone number');
+    await this.assertElementIsVisible(TXT_PHONE_NUMBER);
+    await this.assertElementIsVisible(CHK_DISPLAY_ON_WEBSITE);
+    await expect(this.page.locator(CHK_DISPLAY_ON_WEBSITE)).toContainText('Display phone number on site');
   };
 
   assertPhotoIconBtn = async (): Promise<void> => {
     console.log(' - BusinessCardPage.assertPhotoIconBtn');
-    await this.assertElementIsVisible(btnPhotoIcon);
+    await this.assertElementIsVisible(BTN_PHOTO_ICON);
   };
 
   assertUpdateEditResetProfilePicture = async (): Promise<void> => {
     console.log(' - BusinessCardPage.assertUpdateEditResetProfilePicture');
-    await this.assertElementIsVisible(lnkUpdateProfilePicture);
-    await expect(this.page.locator(lnkUpdateProfilePicture)).toContainText('Update profile picture');
-    await this.assertElementIsVisible(lnkEditProfilePicture);
-    await expect(this.page.locator(lnkEditProfilePicture)).toContainText('Edit profile picture');
-    await this.assertElementIsVisible(lnkResetProfilePicture);
-    await expect(this.page.locator(lnkResetProfilePicture)).toContainText('Reset profile picture');
+    await this.assertElementIsVisible(LNK_UPDATE_PROFILE_PICTURE);
+    await expect(this.page.locator(LNK_UPDATE_PROFILE_PICTURE)).toContainText('Update profile picture');
+    await this.assertElementIsVisible(LNK_EDIT_PROFILE_PICTURE);
+    await expect(this.page.locator(LNK_EDIT_PROFILE_PICTURE)).toContainText('Edit profile picture');
+    await this.assertElementIsVisible(LNK_RESET_PROFILE_PICTURE);
+    await expect(this.page.locator(LNK_RESET_PROFILE_PICTURE)).toContainText('Reset profile picture');
   };
 
   assertPlanSelection = async (): Promise<void> => {
     console.log(' - BusinessCardPage.assertPlanSelection');
-    await this.assertElementIsVisible(lblPlanSelection);
-    await expect(this.page.locator(lblPlanSelection)).toContainText('Plan selection');
-    await this.assertElementIsVisible(lblSelectPlanMsg);
-    await expect(this.page.locator(lblSelectPlanMsg)).toContainText('Please select the plans you want to be visible on your marketing site.');
-    await this.assertElementIsVisible(lblDisplayingPlans);
-    await expect(this.page.locator(lblDisplayingPlans)).toContainText('Displaying');
-    await this.assertElementIsVisible(lblDisplayingPlans2);
-    await expect(this.page.locator(lblDisplayingPlans2)).toContainText(' plan(s) on your marketing site');
+    await this.assertElementIsVisible(LBL_PLAN_SELECTION);
+    await expect(this.page.locator(LBL_PLAN_SELECTION)).toContainText('Plan selection');
+    await this.assertElementIsVisible(LBL_SELECT_PLAN_MSG);
+    await expect(this.page.locator(LBL_SELECT_PLAN_MSG)).toContainText('Please select the plans you want to be visible on your marketing site.');
+    await this.assertElementIsVisible(LBL_DISPLAYING_PLANS);
+    await expect(this.page.locator(LBL_DISPLAYING_PLANS)).toContainText('Displaying');
+    await this.assertElementIsVisible(LBL_DISPLAYING_PLANS2);
+    await expect(this.page.locator(LBL_DISPLAYING_PLANS2)).toContainText(' plan(s) on your marketing site');
   };
 
   assertLegalShieldPlanISDisplaying = async (): Promise<void> => {
     console.log(' - BusinessCardPage.assertLegalShieldPlanISDisplaying');
-    await this.assertElementIsVisible(lblLegalShieldPlan);
-    await expect(this.page.locator(lblLegalShieldPlan)).toContainText('LegalShield Plan');
+    await this.assertElementIsVisible(LBL_LEGAL_SHIELD_PLAN);
+    await expect(this.page.locator(LBL_LEGAL_SHIELD_PLAN)).toContainText('LegalShield Plan');
   };
 
   assertIDShieldPlanISDisplaying = async (): Promise<void> => {
     console.log(' - BusinessCardPage.assertIDShieldPlanISDisplaying');
-    await this.assertElementIsVisible(lblIDShieldPlan);
-    await expect(this.page.locator(lblIDShieldPlan)).toContainText('IDShield Plan');
+    await this.assertElementIsVisible(LBL_ID_SHIELD_PLAN);
+    await expect(this.page.locator(LBL_ID_SHIELD_PLAN)).toContainText('IDShield Plan');
   };
 
   assertSmallBusinessPlanISDisplaying = async (): Promise<void> => {
     console.log(' - BusinessCardPage.assertSmallBusinessPlanISDisplaying');
-    await this.assertElementIsVisible(lblSmallBusinessPlan);
-    await expect(this.page.locator(lblSmallBusinessPlan)).toContainText('Small Business Plan');
+    await this.assertElementIsVisible(LBL_SMALL_BUSINESS_PLAN);
+    await expect(this.page.locator(LBL_SMALL_BUSINESS_PLAN)).toContainText('Small Business Plan');
   };
 
-  assertEyeIconIsDisplaying = async (number: number = 0): Promise<void> => {
+  assertEyeIconIsDisplaying = async (number = 0): Promise<void> => {
     console.log(' - BusinessCardPage.assertEyeIconIsDisplaying');
     await this.assertElementIsVisible(`(//img[@class='lsux-icon  lsux-icon--medium  '])[${number}]`);
   };
 
-  assertHiddenLabelIsDisplaying = async (number: number = 0): Promise<void> => {
+  assertHiddenLabelIsDisplaying = async (number = 0): Promise<void> => {
     console.log(' - BusinessCardPage.assertHiddenLabelIsDisplaying');
     await this.assertElementIsVisible(`(//p[@class='plan-icon'])[${number}]`);
     await expect(this.page.locator(`(//p[@class='plan-icon'])[${number}]`)).toContainText('Hidden');
   };
 
-  assertDisplayBtnIsDisplaying = async (number: number = 0): Promise<void> => {
+  assertDisplayBtnIsDisplaying = async (number = 0): Promise<void> => {
     console.log(' - BusinessCardPage.assertDisplayBtnIsDisplaying');
     await this.assertElementIsVisible(`(//button[@type='button'])[${number}]`);
     await expect(this.page.locator(`(//button[@type='button'])[${number}]`)).toContainText('Display');
@@ -239,19 +238,19 @@ export class BusinessCard extends LoginPage {
 
   assertPublishButton = async (): Promise<void> => {
     console.log(' - BusinessCardPage.assertPublishButton');
-    await this.assertElementIsVisible(lblUpdatesWillAppearMsg);
-    await expect(this.page.locator(lblUpdatesWillAppearMsg)).toContainText('Updates will appear within 3 days.');
-    await this.assertElementIsVisible(lblNamePhotoApprovedMsg);
-    await expect(this.page.locator(lblNamePhotoApprovedMsg)).toContainText('The name and photo needs to be approved for updates to take place.');
-    await this.assertElementIsVisible(btnPublish);
-    await expect(this.page.locator(btnPublish)).toContainText('Publish');
+    await this.assertElementIsVisible(LBL_UPDATES_WILL_APPEAR_MSG);
+    await expect(this.page.locator(LBL_UPDATES_WILL_APPEAR_MSG)).toContainText('Updates will appear within 3 days.');
+    await this.assertElementIsVisible(LBL_NAME_PHOTO_APPROVED_MSG);
+    await expect(this.page.locator(LBL_NAME_PHOTO_APPROVED_MSG)).toContainText('The name and photo needs to be approved for updates to take place.');
+    await this.assertElementIsVisible(BTN_PUBLISH);
+    await expect(this.page.locator(BTN_PUBLISH)).toContainText('Publish');
   };
 
   assertPageHasCorrectFooter = async (): Promise<void> => {
     console.log(' - BusinessCardPage.assertPageHasCorrectFooter');
-    await this.assertElementIsVisible(termsOfService);
-    await this.assertElementIsVisible(privacyPolicy);
-    await this.assertElementIsVisible(disclaimer);
-    await this.assertElementIsVisible(logo);
+    await this.assertElementIsVisible(TERMS_OF_SERVICE);
+    await this.assertElementIsVisible(PRIVACY_POLICY);
+    await this.assertElementIsVisible(DISCLAIMER);
+    await this.assertElementIsVisible(LOGO);
   };
 }

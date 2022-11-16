@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { test } from '@playwright/test';
 import { PrimericaGroupPage } from '../../../page-objects/qa-maintenance-list/primericagroup.page';
 // create instance of Page
@@ -11,7 +10,7 @@ test.beforeEach(async ({ page }) => {
   test.slow();
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
-test('Primerica Group', async ({ page }) => {
+test('Primerica Group', async ({}) => {
   test.slow;
   // Navigate to Primerica group url
   await primericaGroupPage.navigateToPrimericaGroupPage();

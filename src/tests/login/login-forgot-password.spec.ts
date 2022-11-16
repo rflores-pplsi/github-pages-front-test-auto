@@ -12,7 +12,7 @@ test.beforeEach(async ({ page }) => {
   await loginForgotPasswordPage.navigateToLoginPage();
 });
 
-test('Request a password reset', async ({ page }) => {
+test('Request a password reset', async ({}) => {
   console.log('Test Case: Request a password reset');
   // Click Forgot Password link and submit email address on the Login Forgot Password page
   await loginForgotPasswordPage.requestPasswordResetEmail();
