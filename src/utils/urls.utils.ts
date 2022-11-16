@@ -135,6 +135,8 @@ export default class UrlsUtils {
       urlEnCa: ' https://lspro.' + envWalsUrlString + 'wearelegalshield.ca',
       urlFrCa: ' https://lspro.' + envWalsUrlString + 'noussommeslegalshield.ca',
       urlAssociate: ' https://www.' + envWalsUrlString + 'wearelegalshield.com',
+      ddev: 'http://lspro.' + envWalsUrlString + 'wearelegalshield.com/',
+      urlBenefits: 'https://apptestuser.' + envWalsUrlString + 'wearelegalshield.com/',
     },
 
     // uatUrl: {
