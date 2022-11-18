@@ -43,7 +43,7 @@ export class CheckoutPaymentsPage extends CheckoutPersonalInfoPage {
   /**
    * @memberof CheckoutPaymentsPage
    */
-  clickBankDraftBtn = async () => {
+  clickBankDraftBtn = async (): Promise<void> => {
     // Force a wait time
     // Switch to frame
     await this.page.waitForLoadState();
@@ -58,7 +58,7 @@ export class CheckoutPaymentsPage extends CheckoutPersonalInfoPage {
   /**
    * @memberof CheckoutPaymentsPage
    */
-  clickCreditCardBtn = async () => {
+  clickCreditCardBtn = async (): Promise<void> => {
     // Switch to frame
     this.page.frameLocator("//iframe[@title='payment iframe']");
     const frame = this.page.frameLocator("//iframe[@title='payment iframe']");
@@ -72,7 +72,7 @@ export class CheckoutPaymentsPage extends CheckoutPersonalInfoPage {
   /**
    * @memberof CheckoutPaymentsPage
    */
-  assertAccountPaymentsPage = async () => {
+  assertAccountPaymentsPage = async (): Promise<void> => {
     this.page.frameLocator("//iframe[@title='payment iframe']");
     const frame = this.page.frameLocator("//iframe[@title='payment iframe']");
     if (frame != null) {

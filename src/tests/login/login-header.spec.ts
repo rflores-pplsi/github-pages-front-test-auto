@@ -54,7 +54,7 @@ test('Navigate to https://www.pplsi.com/ by clicking logo', async () => {
   await loginHeaderPage.assertPplsiUrl();
 });
 
-test('View customer and associate support numbers by clicking the help button', async ({}) => {
+test('View customer and associate support numbers by clicking the help button', async () => {
   console.log('Test Case: Can view customer and associate support numbers by clicking the help button');
   // Click on the Help Button
   await loginHeaderPage.clickHelpButton();

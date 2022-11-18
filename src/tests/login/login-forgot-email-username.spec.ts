@@ -13,7 +13,7 @@ test.beforeEach(async ({ page }) => {
   await loginForgotEmailUsernamePage.navigateToLoginPage();
 });
 
-test('Find contact numbers to obtain forgotten Email/Username', async ({}) => {
+test('Find contact numbers to obtain forgotten Email/Username', async () => {
   console.log('Test Case: Find contact numbers to obtain forgotten Email/Username');
   // Click on Forgot Email/Username to navigate to Forgot Username Or Email Page
   await loginForgotEmailUsernamePage.navigateToLoginForgotUsernameOrEmailPage();

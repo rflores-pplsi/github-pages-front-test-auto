@@ -4,6 +4,7 @@ import { CheckoutPersonalInfoPage } from '../../page-objects/checkout/checkout-p
 import { LoginPage } from '../../page-objects/login/login.page';
 import { OktaPage } from '../okta/okta.page';
 import * as dotenv from 'dotenv';
+import { expect } from '@playwright/test';
 dotenv.config();
 
 // ========================== Selectors ==================================
@@ -112,8 +113,7 @@ export class UniversalTruckingPage extends OktaPage {
     console.log(' - UniversalTruckingPage.assertTellUsAboutYourselfTxt');
     console.log('logged in and redirected to personal info page');
     // Verify that Available Plans label is displayed
-    await this.waitForElementToBeVisible(TELL_US_ABOUT_YOURSELF_LBL);
-    this.page.locator(TELL_US_ABOUT_YOURSELF_LBL).isVisible;
+    await expect(this.page.locator(TELL_US_ABOUT_YOURSELF_LBL)).toBeVisible();
     console.log('On Personal Info page');
   };
   assertSelectedPlanAndParMoiTxt = async (): Promise<void> => {

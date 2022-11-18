@@ -17,7 +17,7 @@ test.beforeEach(async ({ page }) => {
   test.slow();
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
-test('D2C LegalShield US marketing small business plan', async ({}) => {
+test('D2C LegalShield US marketing small business plan', async () => {
   test.slow;
   await test.step('Navigate to Marketing Site', async () => {
     await legalShieldUSPage.navigateToLegalShieldUSMarketingSitePage('d2cLegalShieldUSMarketingSite');

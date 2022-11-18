@@ -9,7 +9,7 @@ const BTN_VIEW_PLAN = 'text=View plan';
 
 export class IDShieldCAPage extends BasePage {
   // ========================== Process Methods ============================
-  pickAPlan = async (plan: string) => {
+  pickAPlan = async (plan: string): Promise<void> => {
     await this.page.locator(BTN_VIEW_PLAN).click();
     if (plan == 'INDIVIDUAL') {
       const localStorageProducts: LocalStorageSelectedItem[] | null = await getLocalStorageAvailableProducts(this.page);

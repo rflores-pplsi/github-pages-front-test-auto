@@ -27,7 +27,7 @@ test('Navigate to Privacy Policy page', async () => {
   // const newPage = await accountFooterPage.clickPrivacyPolicyLink();
 });
 
-test('Navigate to Legal Disclaimer page', async ({}) => {
+test('Navigate to Legal Disclaimer page', async () => {
   test.skip(); // Not working in lower environments need to still resolve for prod
   console.log('Test Case: Navigate to Legal Disclaimer page');
   // const newPage = await accountFooterPage.clickDisclaimerLink();

@@ -27,7 +27,7 @@ const TEXT_CART_MESSAGE = '#cart-messages p';
 
 export class LegalShieldUSPage extends LoginPage {
   // ========================== Process Methods ============================
-  pickAPlan = async (plan: string) => {
+  pickAPlan = async (plan: string): Promise<void> => {
     await this.page.locator(BTN_VIEW_PLAN).click();
     await this.page.locator(BTN_SEE_PLAN_OPTIONS).click();
     if (plan.toUpperCase() == 'ANNUAL') {
@@ -49,13 +49,13 @@ export class LegalShieldUSPage extends LoginPage {
       console.log('Pick Annual or Monthly or Small Business or Start a Business');
     }
   };
-  pickAnnualPlan = async () => {
+  pickAnnualPlan = async (): Promise<void> => {
     await this.page.locator(BTN_START_ANNUAL_PLAN).click();
   };
-  pickMonthlyPlan = async () => {
+  pickMonthlyPlan = async (): Promise<void> => {
     await this.page.locator(BTN_START_MONTHLY_PLAN).click();
   };
-  pickSmallBusinessFromHeader = async () => {
+  pickSmallBusinessFromHeader = async (): Promise<void> => {
     await this.page.waitForLoadState();
     await this.page.locator(textSmallBusiness).click();
     await this.page.locator(LINK_COVERAGE_PRICING).getByRole('link', { name: TEXT_COVERAGE_PRICING }).click();
@@ -72,16 +72,16 @@ export class LegalShieldUSPage extends LoginPage {
     await this.page.locator(RADIO_NON_PROFIT_BUSINESS).check();
     await this.page.locator(BTN_ADD_TO_CART).click();
   };
-  checkout = async () => {
+  checkout = async (): Promise<void> => {
     await this.page.locator(BTN_CHECKOUT).click();
   };
-  continueShopping = async () => {
+  continueShopping = async (): Promise<void> => {
     await this.page.locator(BTN_CONTINUE_SHOPPING).click();
   };
-  assertExistingPlanInCart = async (plan: string) => {
+  assertExistingPlanInCart = async (plan: string): Promise<void> => {
     await this.assertElementContainsText(TEXT_PLAN_IN_CART, plan);
   };
-  assertMonthlyPlanAndSupplementInCart = async () => {
+  assertMonthlyPlanAndSupplementInCart = async (): Promise<void> => {
     await this.assertElementContainsText(TEXT_CART_PLAN, 'Small Business Legal Essentials');
     await this.assertElementContainsText(TEXT_SUPPLEMENT_PLAN, '+ Business Plus Supplement');
     await this.assertElementContainsText(
@@ -90,7 +90,7 @@ export class LegalShieldUSPage extends LoginPage {
     );
   };
   // ========================== Navigate Methods ===========================
-  navigateToLegalShieldUSMarketingSitePage = async (lineofbusiness: string) => {
+  navigateToLegalShieldUSMarketingSitePage = async (lineofbusiness: string): Promise<void> => {
     // navigate to URL
     await this.page.goto(urlD2CLegalShieldUSPage);
     await this.page.waitForLoadState();

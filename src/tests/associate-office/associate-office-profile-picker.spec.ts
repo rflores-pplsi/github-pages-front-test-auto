@@ -11,12 +11,12 @@ test.beforeEach(async ({ page }) => {
   await profilePickerPage.navigateToProfilePickerPage();
 });
 
-test('The Profile Picker Page is loading and the Left Nav Menu is not appearing', async ({}) => {
+test('The Profile Picker Page is loading and the Left Nav Menu is not appearing', async () => {
   await profilePickerPage.assertProfilePickerPage();
   await profilePickerPage.assertNoLeftNavMenuOnPage();
 });
 
-test('Verify that the Profile Picker has multiple accounts', async ({}) => {
+test('Verify that the Profile Picker has multiple accounts', async () => {
   await profilePickerPage.assertAssociateAccounts(1);
   await profilePickerPage.assertAssociateAccounts(2);
   await profilePickerPage.assertAssociateAccounts(3);
@@ -28,13 +28,13 @@ test('Verify that the Profile Picker has multiple accounts', async ({}) => {
   await profilePickerPage.assertAssociateAccounts(9);
 });
 
-test('One of the Profile Picker accounts is redirecting correctly', async ({}) => {
+test('One of the Profile Picker accounts is redirecting correctly', async () => {
   await profilePickerPage.assertProfilePickerPage();
   await profilePickerPage.clickOnAccount(3);
   await profilePickerPage.assertLSEngagePage();
 });
 
-test('One of the Profile Picker accounts is redirecting correctly 2', async ({}) => {
+test('One of the Profile Picker accounts is redirecting correctly 2', async () => {
   await profilePickerPage.assertProfilePickerPage();
   await profilePickerPage.clickOnAccount(8);
   await profilePickerPage.assertLSEngagePage();

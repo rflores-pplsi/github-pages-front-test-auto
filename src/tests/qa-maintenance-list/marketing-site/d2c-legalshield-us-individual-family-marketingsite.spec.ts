@@ -16,7 +16,7 @@ test.beforeEach(async ({ page }) => {
   test.slow();
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
-test('D2C LegalShield US marketing annual plan', async ({}) => {
+test('D2C LegalShield US marketing annual plan', async () => {
   test.slow;
   await test.step('Navigate to Marketing Site', async () => {
     await legalShieldUSPage.navigateToLegalShieldUSMarketingSitePage('d2cLegalShieldUSMarketingSite');
@@ -31,7 +31,7 @@ test('D2C LegalShield US marketing annual plan', async ({}) => {
     await loginPage.login(process.env.LOGIN_EMAIL_UAT, process.env.LOGIN_PASSWORD_UAT);
   });
 });
-test('D2C LegalShield US marketing monthly plan', async ({}) => {
+test('D2C LegalShield US marketing monthly plan', async () => {
   test.slow;
   await test.step('Navigate to Marketing Site', async () => {
     await legalShieldUSPage.navigateToLegalShieldUSMarketingSitePage('d2cLegalShieldUSMarketingSite');
@@ -46,7 +46,7 @@ test('D2C LegalShield US marketing monthly plan', async ({}) => {
     await loginPage.login(process.env.LOGIN_EMAIL_UAT, process.env.LOGIN_PASSWORD_UAT);
   });
 });
-test('D2C LegalShield US marketing user unable to purchase monthly and annual plan simultaneously', async ({}) => {
+test('D2C LegalShield US marketing user unable to purchase monthly and annual plan simultaneously', async () => {
   test.slow;
   await test.step('Navigate to Marketing Site', async () => {
     await legalShieldUSPage.navigateToLegalShieldUSMarketingSitePage('d2cLegalShieldUSMarketingSite');
@@ -64,7 +64,7 @@ test('D2C LegalShield US marketing user unable to purchase monthly and annual pl
     await legalShieldUSPage.assertExistingPlanInCart('Annual Total');
   });
 });
-test('D2C Legalshield US marketing add annual plan should remove any existing monthly plans', async ({}) => {
+test('D2C Legalshield US marketing add annual plan should remove any existing monthly plans', async () => {
   await test.step('Navigate to Marketing Site', async () => {
     await legalShieldUSPage.navigateToLegalShieldUSMarketingSitePage('d2cLegalShieldUSMarketingSite');
   });
@@ -81,7 +81,7 @@ test('D2C Legalshield US marketing add annual plan should remove any existing mo
     await legalShieldUSPage.assertExistingPlanInCart('Monthly Total');
   });
 });
-test('D2C LegalShield US marketing supplement should remove annual plan from cart and be replaced with monthly plus supplement', async ({}) => {
+test('D2C LegalShield US marketing supplement should remove annual plan from cart and be replaced with monthly plus supplement', async () => {
   test.slow;
   await test.step('Navigate to Marketing Site', async () => {
     await legalShieldUSPage.navigateToLegalShieldUSMarketingSitePage('d2cLegalShieldUSMarketingSite');

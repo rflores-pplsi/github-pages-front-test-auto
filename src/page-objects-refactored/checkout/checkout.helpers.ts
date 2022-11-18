@@ -164,7 +164,7 @@ export class AddPlanAndSomeSupplements {
    * @param {string} lineOfBusiness
    * @memberof AddPlanAndSomeSupplements
    */
-  pickAPlan = async (planSupp: Array<string>, lineOfBusiness: string) => {
+  pickAPlan = async (planSupp: Array<string>, lineOfBusiness: string): Promise<void> => {
     for (const ps of planSupp) {
       // Add a plan
       if (lineOfBusiness == 'd2cLegalShieldCA' || lineOfBusiness == 'd2cLegalShieldUS') {
@@ -205,7 +205,7 @@ export class NavigateToTestingHarnessPage {
    * @param {string} lofb
    * @memberof NavigateToTestingHarnessPage
    */
-  navigate = async (url: string, lineOfBusiness: string, lofb: string) => {
+  navigate = async (url: string, lineOfBusiness: string, lofb: string): Promise<void> => {
     // navigate to URL
     await this.page.goto(url);
     await this.page.waitForLoadState();

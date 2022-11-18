@@ -29,7 +29,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
    * @param {Array<ProductDetails>} productDetails
    * @memberof CheckoutConfirmationPage
    */
-  logFriendlyIDs = async (response: Response, productDetails: Array<ProductDetails>) => {
+  logFriendlyIDs = async (response: Response, productDetails: Array<ProductDetails>): Promise<void> => {
     const responseBody = await response.json();
     let i = 0;
     for (const pd of productDetails) {
@@ -94,7 +94,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   /**
    * @memberof CheckoutConfirmationPage
    */
-  clickCompleteEnrollmentButton = async () => {
+  clickCompleteEnrollmentButton = async (): Promise<void> => {
     console.log(' - checkoutConfirmationPage.clickCompleteEnrollmentButton');
     // Click on Complete Enrollment Button
     await this.clickOnElement(BTN_COMPLETE_ENROLLMENT);
@@ -103,7 +103,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   /**
    * @memberof CheckoutConfirmationPage
    */
-  clickAgreementCheckbox = async () => {
+  clickAgreementCheckbox = async (): Promise<void> => {
     console.log(' - checkoutConfirmationPage.clickAgreementCheckbox');
     // Click on Complete Enrollment Button
     await this.checkCheckbox(CHK_AGREEMENT);
@@ -115,7 +115,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
    * @param {Array<ProductDetails>} productDetails
    * @memberof CheckoutConfirmationPage
    */
-  assertNameCostAndBillingFrequencyOnConfirmationPageForAllProducts = async (productDetails: Array<ProductDetails>) => {
+  assertNameCostAndBillingFrequencyOnConfirmationPageForAllProducts = async (productDetails: Array<ProductDetails>): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertNameCostAndBillingFrequencyForAllProducts');
     for (const pd of productDetails) {
       // Name
@@ -138,7 +138,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
    * @param {Array<Array<string>>} productDetails
    * @memberof CheckoutConfirmationPage
    */
-  assertShortCodesInPurchaseResponse = async (response: Response, productDetails: Array<ProductDetails>) => {
+  assertShortCodesInPurchaseResponse = async (response: Response, productDetails: Array<ProductDetails>): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertShortCodeInPurchaseResponse');
     const responseBody = await response.json();
     let i = 0;
@@ -155,7 +155,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   /**
    * @memberof CheckoutConfirmationPage
    */
-  assertWelcomeToLegalShieldFamilyPage = async () => {
+  assertWelcomeToLegalShieldFamilyPage = async (): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertWelcomeToLegalshiledFamilyPage');
     const welcome = await this.page.waitForSelector(TXT_WELCOME_TO_LEGALSHILED_FAMILY);
     console.log(welcome.innerText());
@@ -165,7 +165,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   /**
    * @memberof CheckoutConfirmationPage
    */
-  assertOrderSummaryPlanPriceConfirmationPage = async () => {
+  assertOrderSummaryPlanPriceConfirmationPage = async (): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertOrderSummaryPlanPriceConfirmationPage');
     const planPrice = this.page.locator('div.lsux-card--inset.p-6 h3.lsux-heading.plan-price.lsux-heading--t20');
     await expect(planPrice).toHaveText(CheckoutConfirmationPage.pPlanPrice);
@@ -175,7 +175,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
    * @param {string} planName
    * @memberof CheckoutConfirmationPage
    */
-  assertOrderSummaryPlanLabelConfirmationPage = async (planName: string) => {
+  assertOrderSummaryPlanLabelConfirmationPage = async (planName: string): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertOrderSummaryPlanLabelConfirmationPage');
     const lblplan = this.page.locator(`text=${planName}`);
     await expect(lblplan).toHaveText(CheckoutConfirmationPage.pPlan);
@@ -184,7 +184,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   /**
    * @memberof CheckoutConfirmationPage
    */
-  assertOrderSummaryLegalShieldMembershipConfirmationPage = async () => {
+  assertOrderSummaryLegalShieldMembershipConfirmationPage = async (): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertOrderSummaryMonthlyConfirmationPage');
     const lblplan = this.page.locator('text = LegalShield Membership');
     await expect(lblplan).toHaveText('LegalShield Membership');
@@ -193,7 +193,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   /**
    * @memberof CheckoutConfirmationPage
    */
-  assertOrderSummaryMonthlyConfirmationPage = async () => {
+  assertOrderSummaryMonthlyConfirmationPage = async (): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertOrderSummaryMonthlyConfirmationPage');
     const lblplan = this.page.locator('text = Monthly Subscription');
     await expect(lblplan).toHaveText('Monthly Subscription');
@@ -202,7 +202,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   /**
    * @memberof CheckoutConfirmationPage
    */
-  assertNoMemberNumbersAreDisplayed = async () => {
+  assertNoMemberNumbersAreDisplayed = async (): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertNoMemberNumbersAreDisplayed');
     await this.assertElementNotOnPage(LBL_MEMBER_NUMBER);
   };
@@ -210,7 +210,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   /**
    * @memberof CheckoutConfirmationPage
    */
-  assertIdShieldMembershipIsDisplayed = async () => {
+  assertIdShieldMembershipIsDisplayed = async (): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertIdShieldMembershipIsDisplayed');
     const ELE = '//h2[contains(@class,"membership-title") and contains (.,"IDShield Membership")]';
     await this.assertElementIsVisible(ELE);
@@ -220,7 +220,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
    * @param {string} planType
    * @memberof CheckoutConfirmationPage
    */
-  assertLegalShieldMembershipIsDisplayed = async (planType: string) => {
+  assertLegalShieldMembershipIsDisplayed = async (planType: string): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertLegalShieldMembershipIsDisplayed');
     const ele = `//h2[contains(@class,"membership-title") and contains (.,"${planType} Membership")]`;
     await this.assertElementIsVisible(ele);
@@ -230,7 +230,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
    * @param {string} planType
    * @memberof CheckoutConfirmationPage
    */
-  assertMembershipTileIsDisplayed = async (planType: string) => {
+  assertMembershipTileIsDisplayed = async (planType: string): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertMembershipTileIsDisplayed');
     const ele = `//h2[contains(@class,"membership-title") and contains (.,"${planType} Membership")]`;
     await this.assertElementIsVisible(ele);
@@ -240,7 +240,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
    * @param {string} planName
    * @memberof CheckoutConfirmationPage
    */
-  assertPlanNameDisplayedInConfirmationPageOrderSummary = async (planName: string) => {
+  assertPlanNameDisplayedInConfirmationPageOrderSummary = async (planName: string): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary');
     if (planName.includes('-')) {
       const splitString = planName.split(' - ');
@@ -268,7 +268,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
    * @param {string} planName
    * @memberof CheckoutConfirmationPage
    */
-  assertPlanCostIsNotDisplayedInConfirmationPageOrderSummaryForPlanName = async (planName: string) => {
+  assertPlanCostIsNotDisplayedInConfirmationPageOrderSummaryForPlanName = async (planName: string): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertPlanCostIsNotDisplayedInConfirmationPageOrderSummaryForPlanName');
     if (planName.includes('-')) {
       const splitString = planName.split(' - ');
@@ -281,7 +281,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   /**
    * @memberof CheckoutConfirmationPage
    */
-  assertNoPlanCostsAreDisplayedInConfirmationPageOrderSummary = async () => {
+  assertNoPlanCostsAreDisplayedInConfirmationPageOrderSummary = async (): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertNoPlanCostsAreDisplayedInConfirmationPageOrderSummary');
     const ele = `//div[contains(@class,"plan-details-card")]//h3[contains(@class,"plan-price")]`;
     await this.assertElementNotOnPage(ele);
@@ -291,7 +291,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
    * @param {string} planName
    * @memberof CheckoutConfirmationPage
    */
-  assertPlanCostNotEmpty = async (planName: string) => {
+  assertPlanCostNotEmpty = async (planName: string): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertPlanCostNotEmpty');
     const ele = `//div[contains(@class,"plan-details-card") and contains(.,"${planName}")]//h3[contains(@class,"plan-price")]`;
     await this.assertInnerTextIsTruthy(ele);
@@ -301,7 +301,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
    * @param {string} planName
    * @memberof CheckoutConfirmationPage
    */
-  assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName = async (planName: string) => {
+  assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName = async (planName: string): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName ');
     if (planName.includes('-')) {
       const splitString = planName.split(' - ');
@@ -315,7 +315,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
    * @param {string} planName
    * @memberof CheckoutConfirmationPage
    */
-  assertPlanCostIsHidden = async (planName: string) => {
+  assertPlanCostIsHidden = async (planName: string): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertPlanCostIsHidden');
     const ele = `//div[contains(@class,"plan-details-card") and contains(.,"${planName}")]//h3[contains(@class,"plan-price")]`;
     await this.assertElementIsHidden(ele);
@@ -326,7 +326,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
    * @param {string} totalCost
    * @memberof CheckoutConfirmationPage
    */
-  assertDisclaimerLanguage = async (groupPayConfig: string, totalCost: string) => {
+  assertDisclaimerLanguage = async (groupPayConfig: string, totalCost: string): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertDisclaimerLanguage');
     await this.page.waitForSelector(TXA_DISCLAIMER, { timeout: 100000 });
     switch (groupPayConfig) {
@@ -351,7 +351,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   /**
    * @memberof CheckoutConfirmationPage
    */
-  assertTermsOfServiceLanguageAndLink = async () => {
+  assertTermsOfServiceLanguageAndLink = async (): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertTermsOfServiceLanguageAndLink');
     await this.assertElementIsVisible(TXA_TERMS_OF_SERVICE_LANGUAGE);
     await this.assertElementIsVisible(LNK_TERMS_OF_SERVICE);

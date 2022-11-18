@@ -8,6 +8,8 @@
   },
   "plugins": ["@typescript-eslint", "sort-keys-fix", "const-case", "jsdoc"],
   "rules": {
+    "no-empty-pattern": "warn",
+    "@typescript-eslint/explicit-function-return-type": "warn",
     "@typescript-eslint/no-explicit-any": 2,
     "@typescript-eslint/no-misused-promises": [
       "error",

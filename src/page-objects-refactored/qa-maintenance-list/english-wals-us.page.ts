@@ -2,6 +2,7 @@ import RegionsUtils from '../../utils/regions.utils';
 import UrlsUtils from '../../utils/urls.utils';
 import { OktaPage } from '../okta/okta.page';
 import * as dotenv from 'dotenv';
+import { expect } from '@playwright/test';
 dotenv.config();
 
 // ========================== Selectors ==================================
@@ -97,8 +98,7 @@ export class EnglishWalsUSPage extends OktaPage {
   changeStateinformation = async (state: string): Promise<void> => {
     console.log(' - EnglishWalsUSPage.ChangeStateinformation');
     // Click on change state
-    this.page.waitForLoadState;
-    this.page.locator(LNK_CHANGE).isVisible;
+    await expect(this.page.locator(LNK_CHANGE)).toBeVisible();
     await this.page.locator(LNK_CHANGE).click({ force: true });
     // Select a state
     await this.page.waitForSelector(SELECT_REGION);
@@ -300,7 +300,6 @@ export class EnglishWalsUSPage extends OktaPage {
   assertWelcomelabel = async (): Promise<void> => {
     console.log(' - PrimericaGroupPage.assertContactInformationTxt');
     // Verify that the user made the purchase
-    this.page.waitForLoadState;
     await this.page.waitForSelector(LBL_WELCOME);
     await this.assertElementContainsText(LBL_WELCOME, 'Welcome to the LegalShield Family!');
     console.log('Welcome to the LegalShield Family!');

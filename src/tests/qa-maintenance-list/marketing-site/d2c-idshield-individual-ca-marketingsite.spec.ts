@@ -20,7 +20,7 @@ test.beforeEach(async ({ page }) => {
   // test.slow triples the default wait times
   test.slow();
 });
-test('D2E idShield CA marketing individual plan', async ({}) => {
+test('D2E idShield CA marketing individual plan', async () => {
   test.slow();
   await test.step('Navigate to legalshield CA marketing site', async () => {
     await idShieldCAPage.navigateToIDShieldUSMarketingSitePlage('d2cLegalShieldCA');

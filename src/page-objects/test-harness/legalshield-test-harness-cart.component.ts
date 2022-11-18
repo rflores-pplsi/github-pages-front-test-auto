@@ -16,7 +16,7 @@ export class LegalshieldTestHarnessCartComponent extends LoginPage {
   // ========================== Navigate Methods ===========================
   // ========================== Click Methods ==============================
 
-  clickCheckoutButton = async () => {
+  clickCheckoutButton = async (): Promise<void> => {
     console.log(' - legalshieldTestHarnessCartComponent.clickCheckoutButton');
     await this.clickOnElement(BTN_CHECKOUT);
   };

@@ -16,7 +16,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 // Click website link for a ID Shield for Business plan and redirect to IDS4B page
-test('Click website link for an ID Shield for Business plan and redirect to IDS4B application', async ({}) => {
+test('Click website link for an ID Shield for Business plan and redirect to IDS4B application', async () => {
   console.log('Test Case: Click website link for an ID Shield for Business plan and redirect to IDS4B application');
   // Click on the website link based on the plan name
   await accountPlansPage.clickGoToWebsiteLink('IDShield for Business');
@@ -24,7 +24,7 @@ test('Click website link for an ID Shield for Business plan and redirect to IDS4
   await accountPlansPage.assertIdShieldForBusinessPageUrl();
 });
 
-test('Click website link for a Legal Plan Family plan and redirect to Legal application', async ({}) => {
+test('Click website link for a Legal Plan Family plan and redirect to Legal application', async () => {
   console.log('Test Case: Click website link for a ID Shield for Business plan and redirect to the Legal application');
   // Click on the website link based on the plan name
   await accountPlansPage.clickGoToWebsiteLink('Legal Plan Family');
@@ -32,7 +32,7 @@ test('Click website link for a Legal Plan Family plan and redirect to Legal appl
   await accountPlansPage.assertLegalPageUrl();
 });
 
-test('Click website link for a IDShield Individual plan and redirect to IDS application', async ({}) => {
+test('Click website link for a IDShield Individual plan and redirect to IDS application', async () => {
   console.log('Test Case: Click website link for a IDShield Individual plan and redirect to the IDS application');
   // Click on the website link based on the plan name
   await accountPlansPage.clickGoToWebsiteLink('IDShield Individual');
@@ -40,7 +40,7 @@ test('Click website link for a IDShield Individual plan and redirect to IDS appl
   await accountPlansPage.assertIdShieldPageUrl();
 });
 
-test('Click website link for a Launch plan and redirect to mybusiness application', async ({}) => {
+test('Click website link for a Launch plan and redirect to mybusiness application', async () => {
   console.log('Test Case: Click website link for a Launch plan and redirect to mybusiness application');
   // Click on the website link based on the plan name
   await accountPlansPage.clickGoToWebsiteLink('Small Business Launch Supplement');

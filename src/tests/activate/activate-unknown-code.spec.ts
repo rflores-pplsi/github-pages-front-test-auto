@@ -17,7 +17,7 @@ test.beforeEach(async ({ page }) => {
   await activateUnknownCodePage.clickDontKnowYourCodeLink();
 });
 
-test('Invalid email address triggers hint', async ({}) => {
+test('Invalid email address triggers hint', async () => {
   console.log('Test Case: Invalid email address triggers hint');
   // Enter invalid email to trigger hint
   await activateUnknownCodePage.enterEmail('invalidemail');

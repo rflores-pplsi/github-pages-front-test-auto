@@ -12,7 +12,7 @@ import { LoginPage } from '../login/login.page'; // import the LoginPage for ext
 export class LegalshieldCanadaTestHarnessMenuPage extends LoginPage {
   // ========================== Process Methods ============================
 
-  addProducts = async () => {
+  addProducts = async (): Promise<void> => {
     console.log(' -legalshieldCanadaTestHarnessMenuPage.clickProductButton');
     // await this.clickOnElement();
     await this.page.waitForLoadState('domcontentloaded');
@@ -20,7 +20,7 @@ export class LegalshieldCanadaTestHarnessMenuPage extends LoginPage {
   // ========================== Navigate Methods ===========================
   // ========================== Click Methods ==============================
 
-  clickProductButton = async () => {
+  clickProductButton = async (): Promise<void> => {
     console.log(' -legalshieldCanadaTestHarnessMenuPage.clickProductButton');
     // await this.clickOnElement();
     await this.page.waitForLoadState('domcontentloaded');

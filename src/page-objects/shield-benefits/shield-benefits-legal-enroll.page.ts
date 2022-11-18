@@ -12,7 +12,7 @@ export class ShieldBenefitsIdentityEnrollPage extends BasePage {
   // ========================== Process Methods ============================
   // ========================== Navigate Methods ===========================
   // ========================== Click Methods ==============================
-  clickEnrollNowButton = async () => {
+  clickEnrollNowButton = async (): Promise<void> => {
     console.log(' - shieldBenefitsIdentityEnrollPage.clickEnrollButton');
     // Click on Enroll Now button to reach the pricing page
     await this.clickOnElement(BTN_ENROLL);

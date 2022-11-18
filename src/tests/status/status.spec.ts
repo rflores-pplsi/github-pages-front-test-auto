@@ -13,7 +13,7 @@ test.beforeEach(async ({ page }) => {
   await statusPage.goTo(UrlsUtils.legalshieldUrls.status.url);
 });
 
-test('Login from Status app and confirm redirect', async ({}) => {
+test('Login from Status app and confirm redirect', async () => {
   console.log('Test Case: Login from Status app and confirm redirect');
   // Click Sign In from the status header page to reach Login application
   await statusPage.clickSignInFromHeader();

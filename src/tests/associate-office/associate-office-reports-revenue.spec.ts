@@ -11,12 +11,12 @@ test.beforeEach(async ({ page }) => {
   await reportsCommissionsPage.navigateToReportsCommissionsPage();
 });
 
-test('Add tab for Revenue Report', async ({}) => {
+test('Add tab for Revenue Report', async () => {
   await reportsCommissionsPage.assertReportsCommissionsPageShow();
   await reportsCommissionsPage.assertTabRevenueReportIsDisplayed();
 });
 
-test('Create Revenue Report Statement Selection List for US', async ({}) => {
+test('Create Revenue Report Statement Selection List for US', async () => {
   await reportsCommissionsPage.clickOnRevenueReportTab();
   await reportsCommissionsPage.assertSearchDatesIsDisplayed();
   await reportsCommissionsPage.clickOnSearchDates();
@@ -27,7 +27,7 @@ test('Create Revenue Report Statement Selection List for US', async ({}) => {
   await reportsCommissionsPage.clickOnSearchButton();
 });
 
-test('Create Revenue Report Statement Selection List for Canada', async ({}) => {
+test('Create Revenue Report Statement Selection List for Canada', async () => {
   await reportsCommissionsPage.clickOnRevenueReportTab();
   await reportsCommissionsPage.assertSearchDatesIsDisplayed();
   await reportsCommissionsPage.clickOnSearchDates();

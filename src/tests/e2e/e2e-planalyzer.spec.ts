@@ -17,7 +17,7 @@ test.beforeEach(async ({ page }) => {
 
 // Free Trial for IDShield CA using Bank Draft
 for (const tc of idshieldCanadaData.filter((tc) => tc.disabled == false)) {
-  test(`${tc.testCaseName} - ${tc.province} @IdShield @Canada @checkoutRegression`, async ({}) => {
+  test(`${tc.testCaseName} - ${tc.province} @IdShield @Canada @checkoutRegression`, async () => {
     console.log(`Test Case: ${tc.testCaseName} - ${tc.province}`);
     // Navigate to personal Info page through planalyzer
     // Note: TODO: Convert this method to one that uses the marketing site instead of planalyzer
@@ -80,7 +80,7 @@ for (const tc of idshieldCanadaData.filter((tc) => tc.disabled == false)) {
 
 // Legal Shield
 for (const tc of legalshieldUsData.filter((tc) => tc.run == true)) {
-  test(`${tc.testCaseName} - ${tc.region} @LegalShield @MA @Massachusetts`, async ({}) => {
+  test(`${tc.testCaseName} - ${tc.region} @LegalShield @MA @Massachusetts`, async () => {
     console.log(`Test Case: ${tc.testCaseName} - ${tc.region}`);
     // Navigate to personal Info page through planalyzer
     // Note: TODO: Convert this method to one that uses the marketing site instead of planalyzer

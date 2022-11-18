@@ -14,7 +14,7 @@ test.beforeEach(async ({ page }) => {
 
 // Self-pay Canada One Plan
 for (const tc of checkoutGroupsData.filter((tc) => tc.disabled == false)) {
-  test(`${tc.testCaseName} - ${tc.region} @legalshield @testHarnessCheckoutRegression`, async ({}) => {
+  test(`${tc.testCaseName} - ${tc.region} @legalshield @testHarnessCheckoutRegression`, async () => {
     console.log(`Test Case: ${tc.testCaseName} - ${tc.region}`);
 
     // Select Plans and get to Personal Info Page

@@ -21,7 +21,7 @@ test.beforeEach(async ({ page }) => {
   test.slow();
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
-test('D2E LegalShield CA marketing individual and family plan', async ({}) => {
+test('D2E LegalShield CA marketing individual and family plan', async () => {
   test.slow;
   await test.step('Navigate to legalshield CA marketing site', async () => {
     await legalShieldCAPage.navigateToLegalShieldCAMarketingSitePlage('d2cLegalShieldCA');

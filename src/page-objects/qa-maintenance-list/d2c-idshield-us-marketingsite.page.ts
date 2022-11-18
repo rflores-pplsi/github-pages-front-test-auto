@@ -62,21 +62,21 @@ export class IDShieldUSPage extends BasePage {
       await this.page.locator(BTN_CHECKOUT).click();
     }
   };
-  assertShoppingCartIncludesFamilyPlan = async () => {
+  assertShoppingCartIncludesFamilyPlan = async (): Promise<void> => {
     await this.assertElementContainsText(TEXT_CART_PLAN, 'IDShield Family');
     await this.assertElementContainsText(
       TEXT_CART_MESSAGE,
       "Only one plan may be purchased by an individual at one time. We've removed the initial plan from your cart and replaced it with the new plan selected."
     );
   };
-  assertShoppingCartIncludesBusinessPlan = async () => {
+  assertShoppingCartIncludesBusinessPlan = async (): Promise<void> => {
     await this.assertElementContainsText(TEXT_CART_PLAN, 'IDShield for Business Essentials');
     await this.assertElementContainsText(
       TEXT_CART_MESSAGE,
       "Only one plan may be purchased by an individual at one time. We've removed the initial plan from your cart and replaced it with the new plan selected."
     );
   };
-  continueShopping = async () => {
+  continueShopping = async (): Promise<void> => {
     await this.page.locator(BTN_CONTINUE_SHOPPING).click();
   };
   // ========================== Navigate Methods ===========================

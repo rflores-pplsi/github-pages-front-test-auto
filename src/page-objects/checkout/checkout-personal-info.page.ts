@@ -428,7 +428,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     street: string,
     city: string,
     postalCode: string
-  ) => {
+  ): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.navigatePersonalInfoPageFromLogin');
     await this.navigateToShieldBenefitsPricingPage(groupNumber);
     if (groupPayConfig == 'Fringe') {
@@ -465,7 +465,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     street: string,
     city: string,
     postalCode: string
-  ) => {
+  ): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.navigatePersonalInfoPageFromLogin');
     await this.navigateToShieldBenefitsPricingPage(groupNumber);
     await this.selectPlanWithoutPaymentFrequencyFromShieldBenefitsPricingPage(stateName, planName, tierName);
@@ -501,7 +501,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     street: string,
     city: string,
     postalCode: string
-  ) => {
+  ): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.navigatePersonalInfoPageFromLogin');
     await this.navigateToShieldBenefitsPricingPage(groupNumber);
     await this.selectCombinationPlanFromShieldBenefitsPricingPage(stateName, payTerm, planName, plan2Name);
@@ -514,7 +514,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @param {string} groupNumber
    * @memberof CheckoutPersonalInfoPage
    */
-  navigateToBusinessSolutionsLegalEnrollPage = async (groupNumber: string) => {
+  navigateToBusinessSolutionsLegalEnrollPage = async (groupNumber: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.navigateToBusinessSolutionsLegalEnrollPage');
     // Navigate to enroll page
     await this.page.goto(UrlsUtils.shieldBenefits.home.url + '/' + groupNumber + '/overview');
@@ -524,7 +524,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @param {string} groupNumber
    * @memberof CheckoutPersonalInfoPage
    */
-  navigateToShieldBenefitsPricingPage = async (groupNumber: string) => {
+  navigateToShieldBenefitsPricingPage = async (groupNumber: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.navigateToBusinessSolutionsLegalPricingPage');
     // Login with a basic user
     await this.page.goto(UrlsUtils.shieldBenefits.home.url + '/' + groupNumber + '/pricing');
@@ -534,7 +534,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @param {string} groupNumber
    * @memberof CheckoutPersonalInfoPage
    */
-  navigateToBusinessSolutionsIdentityEnrollPage = async (groupNumber: string) => {
+  navigateToBusinessSolutionsIdentityEnrollPage = async (groupNumber: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.navigateToBusinessSolutionsIdentityEnrollPage');
     // Navigate to enroll page
     await this.page.goto(UrlsUtils.shieldBenefits.home.url + '/' + groupNumber + '/idshield');
@@ -557,7 +557,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     prepaidMonths = '',
     couponCode = '',
     plans: Array<string>
-  ) => {
+  ): Promise<void> => {
     await this.navigateToPlanalyzerCsrCheckoutOktaLogin();
     await this.loginThroughOkta();
     await this.createOrderRedirectToCheckoutFromPlanalyzer(channel, subChannel, region, marketLocale, prepaidMonths, couponCode, plans);
@@ -568,7 +568,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    *
    * @memberof CheckoutPersonalInfoPage
    */
-  navigateToPersonalInfoPageForIdsCaFromPlanalyzer = async () => {
+  navigateToPersonalInfoPageForIdsCaFromPlanalyzer = async (): Promise<void> => {
     await this.navigateToPlanalyzerCsrCheckoutOktaLogin();
     await this.loginThroughOkta();
     await this.createOrderRedirectToCheckoutFromPlanalyzer('D2C', 'IDShield', 'Ontario', 'en-CA', '', 'F30', ['IDShield Individual']);
@@ -602,7 +602,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   /**
    * @memberof CheckoutPersonalInfoPage
    */
-  clickChangeStateLink = async () => {
+  clickChangeStateLink = async (): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.clickChangeStateLink');
     // Click on Change State link
     await this.clickOnElement(LNK_CHANGE_STATE);
@@ -611,7 +611,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   /**
    * @memberof CheckoutPersonalInfoPage
    */
-  clickSaveAndContinueButton = async () => {
+  clickSaveAndContinueButton = async (): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.clickSaveAndContinueButton');
     // Click the Save and Continue button
     await this.clickOnElement(BTN_SAVE_AND_CONTINUE);

@@ -23,7 +23,7 @@ const TXT_TOTAL_PRICE_LABEL = "//div[@class='lsux-row eight-four children2 foote
  */
 export class CheckoutPaymentsCreditCardPage extends CheckoutPaymentsPage {
   // ========================== Process Methods ============================
-  fillCreditCardForm = async () => {
+  fillCreditCardForm = async (): Promise<void> => {
     console.log(' - checkoutPaymentPage.fillCreditCardForm');
     // Fillout the Credit Card form
     await this.fillCreditCardNumberTxt('4444333322221111');
@@ -59,7 +59,7 @@ export class CheckoutPaymentsCreditCardPage extends CheckoutPaymentsPage {
     // Fillout the Bank Draft form
     return this.page.locator(TXT_TOTAL_PRICE_LABEL).innerText();
   };
-  fillCreditCardFormForCanada = async () => {
+  fillCreditCardFormForCanada = async (): Promise<void> => {
     console.log(' - checkoutPaymentPage.fillCreditCardFormForCanada');
     // Fillout the Credit Card form
     await this.fillCreditCardNumberTxt('4444333322221111');
@@ -84,7 +84,7 @@ export class CheckoutPaymentsCreditCardPage extends CheckoutPaymentsPage {
   };
   // ========================== fill Text Box Methods ======================
   // Fill  Credit Card Number Method
-  fillCreditCardNumberTxt = async (number: string) => {
+  fillCreditCardNumberTxt = async (number: string): Promise<void> => {
     const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
     console.log(' i am here inside fillCreditCardAccountNumberTxt');
     // Fill  Account Number
@@ -93,7 +93,7 @@ export class CheckoutPaymentsCreditCardPage extends CheckoutPaymentsPage {
     // await this.fillTextBox(txtAccountNumber, account);
   };
   // Fill  Expiration Date Method
-  fillExpirationDateTxt = async (expdate: string) => {
+  fillExpirationDateTxt = async (expdate: string): Promise<void> => {
     console.log(' i am here inside fillExpirationDateTxt');
     // Switch to frame
     const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
@@ -103,7 +103,7 @@ export class CheckoutPaymentsCreditCardPage extends CheckoutPaymentsPage {
       await txtExpDateTxt.type(expdate);
     } else throw new Error('No such frame');
   };
-  fillSecurityCodeTxt = async (code: string) => {
+  fillSecurityCodeTxt = async (code: string): Promise<void> => {
     console.log(' i am here inside fillSecurityCodeTxt');
     // Switch to frame
     const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
@@ -113,7 +113,7 @@ export class CheckoutPaymentsCreditCardPage extends CheckoutPaymentsPage {
       await txtExpDateTxt.type(code);
     } else throw new Error('No such frame');
   };
-  fillCardholderNameTxt = async (credicardholdrname: string) => {
+  fillCardholderNameTxt = async (credicardholdrname: string): Promise<void> => {
     console.log(' i am here inside fillCardholderNameTxt');
     // Switch to frame
     const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
@@ -124,7 +124,7 @@ export class CheckoutPaymentsCreditCardPage extends CheckoutPaymentsPage {
       // await this.fillTextBox(txtAccountHolderName, accountholdrname);
     } else throw new Error('No such frame');
   };
-  fillPostalCodeTxt = async (postalcode: string) => {
+  fillPostalCodeTxt = async (postalcode: string): Promise<void> => {
     console.log(' i am here inside fillPostalCodeTxt');
     // Switch to frame
     const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
@@ -136,7 +136,7 @@ export class CheckoutPaymentsCreditCardPage extends CheckoutPaymentsPage {
   };
 
   // ========================== Click Methods ==============================
-  clickCreditCardPurchaseBtn = async () => {
+  clickCreditCardPurchaseBtn = async (): Promise<void> => {
     console.log(' i am here inside clickPurchaseBtn');
     // Switch to frame
     const frmCCPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
@@ -146,7 +146,7 @@ export class CheckoutPaymentsCreditCardPage extends CheckoutPaymentsPage {
     } else throw new Error('No such frame');
   };
   // ========================== Assertion Methods ==========================
-  assertWelcomeToLegalShieldFamilyPage = async () => {
+  assertWelcomeToLegalShieldFamilyPage = async (): Promise<void> => {
     console.log(' - checkoutPaymentPage.assertWelcomeToLegalshiledFamilyPage');
     const welcome = await this.page.waitForSelector(TXT_WELCOME_TO_LEGALSHILED_FAMILY);
     console.log(welcome.innerText());

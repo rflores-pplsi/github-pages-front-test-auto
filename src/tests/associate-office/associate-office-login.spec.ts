@@ -16,21 +16,21 @@ test.beforeEach(async ({ page }) => {
   await loginPage.goTo(UrlsUtils.channelsUrls.taxForm.url);
 });
 
-test('BASIC tier level associate logs in with valid username and password', async ({}) => {
+test('BASIC tier level associate logs in with valid username and password', async () => {
   console.log('Test Case: BASIC tier level associate log in');
   await loginPage.login(associateBasic.username, associateBasic.password);
   // Confirm that login is successful
   await profilePickerPage.assertLoginUrl();
 });
 
-test('LEGACY tier level associate logs in with valid username and password', async ({}) => {
+test('LEGACY tier level associate logs in with valid username and password', async () => {
   console.log('Test Case: LEGACY tier level associate log in');
   await loginPage.login(associateLegacy.username, associateLegacy.password);
   // Confirm that login is successful
   await profilePickerPage.assertLoginUrl();
 });
 
-test('ADVANTAGE PLUS tier level associate logs in with valid username and password', async ({}) => {
+test('ADVANTAGE PLUS tier level associate logs in with valid username and password', async () => {
   console.log('Test Case: ADVANTAGE PLUS tier level associate log in');
   await loginPage.login(associateAdvantagePlus.username, associateAdvantagePlus.password);
   // Confirm that login is successful

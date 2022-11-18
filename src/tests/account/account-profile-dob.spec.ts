@@ -13,7 +13,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 // Edit Date Of Birth
-test('Edit Date of Birth', async ({}) => {
+test('Edit Date of Birth', async () => {
   console.log('Test Case: Edit Date of Birth');
   // Edit Date of Birth Text Box
   await accountProfileDoBPage.editDateOfBirthTxtBox();

@@ -10,13 +10,13 @@ test.beforeEach(async ({ page }) => {
   await reportsCommissionsPage.navigateToReportsCommissionsPage4();
 });
 
-test('Pending Statements is displayed', async ({}) => {
+test('Pending Statements is displayed', async () => {
   await reportsCommissionsPage.assertReportsCommissionsPageShow();
   await reportsCommissionsPage.assertTabPendingStatementsIsDisplayed();
 });
 
 // run in dev and uat only, because we don't have those dates and statements available in prod
-test('Displays Pending Statement report for US', async ({}) => {
+test('Displays Pending Statement report for US', async () => {
   await reportsCommissionsPage.clickOnPendingStatements();
   await reportsCommissionsPage.assertSearchDatesIsDisplayed();
   await reportsCommissionsPage.clickOnSearchDates();
@@ -27,7 +27,7 @@ test('Displays Pending Statement report for US', async ({}) => {
   await reportsCommissionsPage.assertPendingStatementsIsDisplayed();
 });
 
-test('Displays Pending Statement report for Canada', async ({}) => {
+test('Displays Pending Statement report for Canada', async () => {
   await reportsCommissionsPage.clickOnPendingStatements();
   await reportsCommissionsPage.assertSearchDatesIsDisplayed();
   await reportsCommissionsPage.clickOnSearchDates();
@@ -39,7 +39,7 @@ test('Displays Pending Statement report for Canada', async ({}) => {
 });
 
 // run in prod only, because we don't have those dates and statements available in dev and uat
-test.skip('Displays Pending Statement report for US (prod only)', async ({}) => {
+test.skip('Displays Pending Statement report for US (prod only)', async () => {
   await reportsCommissionsPage.clickOnPendingStatements();
   await reportsCommissionsPage.assertSearchDatesIsDisplayed();
   await reportsCommissionsPage.clickOnSearchDates();

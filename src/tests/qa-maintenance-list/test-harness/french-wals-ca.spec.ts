@@ -10,7 +10,7 @@ test.beforeEach(async ({ page }) => {
   test.slow();
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
-test('French WALS-US', async ({}) => {
+test('French WALS-US', async () => {
   test.slow;
   await test.step('Navigate to French-WALS-Ca page', async () => {
     await frenchWalsCaPage.navigateToFrenchWalsCaPage();

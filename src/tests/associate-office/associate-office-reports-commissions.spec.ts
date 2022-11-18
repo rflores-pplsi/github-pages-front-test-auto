@@ -10,12 +10,12 @@ test.beforeEach(async ({ page }) => {
   await reportsCommissionsPage.navigateToReportsCommissionsPage2();
 });
 
-test('Associate Info is displayed', async ({}) => {
+test('Associate Info is displayed', async () => {
   await reportsCommissionsPage.assertReportsCommissionsPageShow();
   await reportsCommissionsPage.assertAssociateAddressInfo();
 });
 
-test('Associate Statements Tab is displayed', async ({}) => {
+test('Associate Statements Tab is displayed', async () => {
   await reportsCommissionsPage.assertTabAssociateStatementsIsDisplayed();
   await reportsCommissionsPage.assertLblSearchCommissionStatementsIsDisplayed();
   await reportsCommissionsPage.assertSearchDatesIsDisplayed();
@@ -24,7 +24,7 @@ test('Associate Statements Tab is displayed', async ({}) => {
   await reportsCommissionsPage.assertBtnSearchIsDisplayed();
 });
 
-test('Pending Statements Tab is displayed', async ({}) => {
+test('Pending Statements Tab is displayed', async () => {
   await reportsCommissionsPage.assertTabPendingStatementsIsDisplayed();
   await reportsCommissionsPage.clickOnPendingStatements();
   await reportsCommissionsPage.assertLblSearchCommissionStatementsIsDisplayed();
@@ -33,7 +33,7 @@ test('Pending Statements Tab is displayed', async ({}) => {
   await reportsCommissionsPage.assertBtnSearchIsDisplayed();
 });
 
-test('Fast Start Statement Tab is displayed', async ({}) => {
+test('Fast Start Statement Tab is displayed', async () => {
   await reportsCommissionsPage.assertTabFastStartStatementsIsDisplayed();
   await reportsCommissionsPage.clickOnFastStartStatements();
   await reportsCommissionsPage.assertSearchDatesIsDisplayed();

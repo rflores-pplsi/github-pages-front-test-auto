@@ -14,19 +14,19 @@ test.beforeEach(async ({ page }) => {
   await accountResourcesPage.login(basicUser.email, basicUser.password);
 });
 
-test('Forms Logo is displayed', async ({}) => {
+test('Forms Logo is displayed', async () => {
   console.log('Test Case: Forms Logo is displayed');
   // Confirm Forms Logo is displayed
   await accountResourcesPage.assertFormsLogoIsDisplayed();
 });
 
-test('Forms label is displayed', async ({}) => {
+test('Forms label is displayed', async () => {
   console.log('Test Case: Forms label is displayed');
   // Confirm Forms Label is displayed
   await accountResourcesPage.assertFormsLabelIsDisplayed();
 });
 
-test('Click website link for Forms resources and redirect to Forms application', async ({}) => {
+test('Click website link for Forms resources and redirect to Forms application', async () => {
   console.log('Test Case: Click website link for Forms resources and redirect to Forms application');
   // Click on the website link for Forms resources
   await accountResourcesPage.clickFormsGoToWebsiteLink();
@@ -34,19 +34,19 @@ test('Click website link for Forms resources and redirect to Forms application',
   await accountResourcesPage.assertFormsPageUrl();
 });
 
-test('Member Perks Logo is displayed', async ({}) => {
+test('Member Perks Logo is displayed', async () => {
   console.log('Test Case: Member Perks Logo is displayed');
   // Confirm Member Perks Logo is displayed
   await accountResourcesPage.assertMemberPerksLogoIsDisplayed();
 });
 
-test('Member Perks label is displayed', async ({}) => {
+test('Member Perks label is displayed', async () => {
   console.log('Test Case: Member Perks label is displayed');
   // Confirm Member Perks Logo is displayed
   await accountResourcesPage.assertMemberPerksLabelIsDisplayed();
 });
 
-test('Click website link for Member Perks resources and redirect to Member Perks application', async ({}) => {
+test('Click website link for Member Perks resources and redirect to Member Perks application', async () => {
   console.log('Test Case: Click website link for Member Perks resources and redirect to Member Perks application');
   // Click on the website link based for Member Perks
   await accountResourcesPage.clickMemberPerksGoToWebsiteLink();

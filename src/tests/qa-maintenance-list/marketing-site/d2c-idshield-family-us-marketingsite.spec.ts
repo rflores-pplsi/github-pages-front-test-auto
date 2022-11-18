@@ -21,7 +21,7 @@ test.beforeEach(async ({ page }) => {
   test.slow();
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
-test('E2E idShield US marketing family monthly plan', async ({}) => {
+test('E2E idShield US marketing family monthly plan', async () => {
   test.slow;
   await test.step('Navigate to legalshield CA marketing site', async () => {
     await idShieldUSPage.navigateToIDShieldUSMarketingSitePlage('d2cLegalShieldCA');
