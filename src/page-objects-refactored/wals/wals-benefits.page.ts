@@ -1,4 +1,4 @@
-import { Page } from '@playwright/test';
+import { expect, Page } from '@playwright/test';
 import UrlsUtils from '../../utils/urls.utils';
 import { WalsLocatorPage } from './wals-locators.page';
 
@@ -22,7 +22,6 @@ export class WalsBenefitsPage extends WalsLocatorPage {
    */
   navigateToWALSBenefitsUrl = async (): Promise<void> => {
     await this.page.goto(UrlsUtils.wals.urls.urlBenefits);
-    await this.page.waitForLoadState();
   };
 
   /**
@@ -30,7 +29,7 @@ export class WalsBenefitsPage extends WalsLocatorPage {
    * @memberof assertBannerHeader
    */
   assertBannerHeader = async (txt: string): Promise<void> => {
-    await this.page.locator('role=heading[name="' + txt + '"]').isVisible();
+    await expect(this.page.locator('role=heading[name="' + txt + '"]')).toBeVisible();
   };
 
   /**
@@ -38,6 +37,6 @@ export class WalsBenefitsPage extends WalsLocatorPage {
    * @memberof assertBannerPlanPrice
    */
   assertBannerPlanPrice = async (txt: string): Promise<void> => {
-    await this.page.locator('//p[contains(text(), "' + txt + '")]').isVisible();
+    await expect(this.page.locator('//p[contains(text(), "' + txt + '")]')).toBeVisible();
   };
 }
