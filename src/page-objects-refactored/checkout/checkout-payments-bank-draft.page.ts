@@ -1,5 +1,6 @@
+import { expect } from '@playwright/test';
 import DataUtils from '../../utils/Tests.Data';
-import { CheckoutPaymentsCreditCardPage } from './checkout-payments-credit-card.page';
+import { CheckoutLocatorsPage } from './checkout-locators.page';
 
 // ========================== Selectors ==================================
 const TXT_ACCOUNT_NUMBER = "[placeholder='Account Number']";
@@ -21,9 +22,9 @@ const BTN_SAVE_AND_CONTINUE = "button:has-text('Save & Continue')";
 /**
  * @export
  * @class CheckoutPaymentsBankDraftPage
- * @extends {CheckoutPaymentsCreditCardPage}
+ * @extends {CheckoutLocatorsPage}
  */
-export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPage {
+export class CheckoutPaymentsBankDraftPage extends CheckoutLocatorsPage {
   // ========================== Process Methods ============================
   fillBankDraftFormAndSubmit = async (): Promise<void> => {
     console.log(' - checkoutPaymentPage.fillBankDraftForm');
@@ -139,8 +140,9 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
    */
   navigateToPaymentsBankDraftPage = async (state: string): Promise<void> => {
     console.log(' - checkoutPaymentPage.navigateToPaymentsBankDraftPage');
-    await this.navigateToPaymentsPage(state);
-    await this.clickBankDraftBtn();
+    console.log(state);
+    // await this.navigateToPaymentsPage(state);
+    // await this.clickBankDraftBtn();
   };
 
   /**
@@ -152,10 +154,10 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
    */
   navigateFromPersonalInfoPageToPaymentPage = async (groupPayConfig: string, planName: string): Promise<void> => {
     if (planName.includes('Business')) {
-      await this.completeBusinessInfoForm();
+      // await this.completeBusinessInfoForm();
     }
-    await this.clickSaveAndContinueButton();
-    await this.captureOrderSummary(groupPayConfig);
+    await this.page.locator(BTN_SAVE_AND_CONTINUE).click;
+    await this.checkoutOrderSummaryComponent.captureOrderSummary(groupPayConfig);
   };
 
   // ========================== fill Text Box Methods ======================
@@ -218,7 +220,7 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
     const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
     if (frmPayment != null) {
       // Fill  Bank Name
-      await this.fillTextBox(TXT_BANK_NAME, bankname);
+      await this.page.locator(TXT_BANK_NAME).fill(bankname);
     } else throw new Error('No such frame');
   };
 
@@ -295,6 +297,6 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutPaymentsCreditCardPag
     console.log(' - checkoutPaymentPage.assertWelcomeToLegalshiledFamilyPage');
     const welcome = await this.page.waitForSelector(TXT_WELCOME_TO_LEGAL_SHIELD_FAMILY);
     console.log(welcome.innerText());
-    await this.assertElementContainsText(TXT_WELCOME_TO_LEGAL_SHIELD_FAMILY, 'Welcome!');
+    await expect(this.page.locator(TXT_WELCOME_TO_LEGAL_SHIELD_FAMILY)).toContainText('Welcome!');
   };
 }

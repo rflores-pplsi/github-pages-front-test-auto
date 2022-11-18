@@ -1,3 +1,4 @@
+import { expect } from '@playwright/test';
 import { CheckoutPaymentsPage } from './checkout-payments.page';
 
 // ========================== Selectors ==================================
@@ -78,7 +79,8 @@ export class CheckoutPaymentsCreditCardPage extends CheckoutPaymentsPage {
   // ========================== Navigate Methods ===========================
   navigateToPaymentsCreditCardPage = async (state: string): Promise<void> => {
     console.log(' - checkoutPaymentPage.navigateToPaymentsCreditCardPage');
-    await this.navigateToPaymentsPage(state);
+    console.log(state);
+    // await this.navigateToPaymentsPage(state);
     // await this.clickCreditCardBtn();
     // await this.clickCreditCardBtn();
   };
@@ -150,6 +152,6 @@ export class CheckoutPaymentsCreditCardPage extends CheckoutPaymentsPage {
     console.log(' - checkoutPaymentPage.assertWelcomeToLegalshiledFamilyPage');
     const welcome = await this.page.waitForSelector(TXT_WELCOME_TO_LEGALSHILED_FAMILY);
     console.log(welcome.innerText());
-    await this.assertElementContainsText(TXT_WELCOME_TO_LEGALSHILED_FAMILY, 'Welcome!');
+    await expect(this.page.locator(TXT_WELCOME_TO_LEGALSHILED_FAMILY)).toContainText('Welcome!');
   };
 }

@@ -588,7 +588,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     await this.navigateToPlanalyzerCsrCheckoutOktaLogin();
     await this.loginThroughOkta();
     await this.createOrderRedirectToCheckoutFromPlanalyzer('D2C', 'IDShield', 'Ontario', 'en-CA', '', 'F30', ['IDShield Individual']);
-    await this.navigatePersonalInfoPageFromLogin(basicUser.email, basicUser.password);
+    // await this.navigatePersonalInfoPageFromLogin(basicUser.email, basicUser.password);
     const regionObj = RegionsUtils.caProvinces;
     const stateObj = state;
     for (const obj of regionObj) {

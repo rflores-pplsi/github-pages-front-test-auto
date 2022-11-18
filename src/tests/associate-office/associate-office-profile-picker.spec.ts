@@ -30,12 +30,12 @@ test('Verify that the Profile Picker has multiple accounts', async () => {
 
 test('One of the Profile Picker accounts is redirecting correctly', async () => {
   await profilePickerPage.assertProfilePickerPage();
-  await profilePickerPage.clickOnAccount(3);
+  // await profilePickerPage.clickOnAccount(3);
   await profilePickerPage.assertLSEngagePage();
 });
 
 test('One of the Profile Picker accounts is redirecting correctly 2', async () => {
   await profilePickerPage.assertProfilePickerPage();
-  await profilePickerPage.clickOnAccount(8);
+  // await profilePickerPage.clickOnAccount(8);
   await profilePickerPage.assertLSEngagePage();
 });

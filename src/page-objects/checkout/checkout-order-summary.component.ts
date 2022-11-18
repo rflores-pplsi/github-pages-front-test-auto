@@ -89,7 +89,7 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
     const numberOfSupplements = (await this.page.$$(TXT_SUPPLEMENT_NAMES)).length;
     for (let i = 0; i < numberOfSupplements; i++) {
       const row = await this.captureOrderSummarySupplementRowWithoutTier(i);
-      orderSummary.addRow(row);
+      orderSummary.addRow(row as unknown as OrderSummaryRow);
     }
   };
 
