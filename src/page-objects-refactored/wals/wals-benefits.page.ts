@@ -20,7 +20,7 @@ export class WalsBenefitsPage extends WalsLocatorPage {
   /**
    * @memberof navigateToWALSBenefitsUrl
    */
-  navigateToWALSBenefitsUrl = async () => {
+  navigateToWALSBenefitsUrl = async (): Promise<void> => {
     await this.page.goto(UrlsUtils.wals.urls.urlBenefits);
     await this.page.waitForLoadState();
   };
@@ -29,7 +29,7 @@ export class WalsBenefitsPage extends WalsLocatorPage {
    * @param {string} txt
    * @memberof assertBannerHeader
    */
-  assertBannerHeader = async (txt: string) => {
+  assertBannerHeader = async (txt: string): Promise<void> => {
     await this.page.locator('role=heading[name="' + txt + '"]').isVisible();
   };
 
@@ -37,7 +37,7 @@ export class WalsBenefitsPage extends WalsLocatorPage {
    * @param {string} txt
    * @memberof assertBannerPlanPrice
    */
-  assertBannerPlanPrice = async (txt: string) => {
+  assertBannerPlanPrice = async (txt: string): Promise<void> => {
     await this.page.locator('//p[contains(text(), "' + txt + '")]').isVisible();
   };
 }

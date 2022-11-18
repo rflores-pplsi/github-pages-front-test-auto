@@ -10,7 +10,7 @@ test.beforeEach(async ({ page }) => {
   walsBenefitsPage = new WalsBenefitsPage(page);
 });
 
-test('I can review information on the hero banners.', async ({ page }) => {
+test('I can review information on the hero banners.', async () => {
   await test.step('Navigate to WALS Benefits', async () => {
     await walsBenefitsPage.navigateToWALSBenefitsUrl();
   });

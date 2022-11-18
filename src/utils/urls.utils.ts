@@ -130,8 +130,8 @@ export default class UrlsUtils {
 
   static readonly wals = {
     urls: {
-      urlAssociate: ' https://www.' + envWalsUrlString + 'wearelegalshield.com',
       ddev: 'http://lspro.' + envWalsUrlString + 'wearelegalshield.com/',
+      urlAssociate: ' https://www.' + envWalsUrlString + 'wearelegalshield.com',
       urlBenefits: 'https://apptestuser.' + envWalsUrlString + 'wearelegalshield.com/',
       urlEnCa: ' https://lspro.' + envWalsUrlString + 'wearelegalshield.ca',
       urlEnUS: ' https://lspro.' + envWalsUrlString + 'wearelegalshield.com',
