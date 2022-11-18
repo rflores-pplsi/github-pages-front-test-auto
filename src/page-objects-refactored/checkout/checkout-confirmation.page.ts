@@ -353,7 +353,7 @@ export class CheckoutConfirmationPage extends CheckoutLocatorsPage {
   /**
    * @memberof CheckoutConfirmationPage
    */
-  assertWelcomeToLegalShieldFamilyPage = async () => {
+  assertWelcomeToLegalShieldFamilyPage = async (): Promise<void> => {
     await this.txtWelcomeToLegalshiledFamily.waitFor();
     await expect(this.txtWelcomeToLegalshiledFamily).toBe('Welcome!');
   };

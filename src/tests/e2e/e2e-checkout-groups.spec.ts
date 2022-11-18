@@ -5,7 +5,7 @@ import { test } from '@playwright/test';
 // let checkoutConfirmationPage: CheckoutConfirmationPage;
 
 // Setup environment before each test
-test.beforeEach(async ({}) => {
+test.beforeEach(async () => {
   // checkoutConfirmationPage = new CheckoutConfirmationPage(page);
   // test.slow triples the default wait times
   test.slow();
