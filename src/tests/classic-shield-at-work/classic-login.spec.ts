@@ -8,10 +8,10 @@ test.beforeEach(async ({ page }) => {
   await classicShieldAtWork.navigateToClassicShieldAtWork();
 });
 
-test('Login with credentials', async ({}) => {
+test('Login with credentials', async () => {
   await classicShieldAtWork.loginWithCredentials();
 });
 
-test('Type Form Url is displayed after clicking on Sign Up link', async ({}) => {
+test('Type Form Url is displayed after clicking on Sign Up link', async () => {
   await classicShieldAtWork.assertTypeFormPageUrl();
 });

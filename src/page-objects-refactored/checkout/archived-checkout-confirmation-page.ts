@@ -18,7 +18,7 @@ export class CheckoutConfirmationPage extends OktaPage {
   // Page Instances
 
   // Process Methods
-  getEnv() {
+  getEnv(): string {
     let env = null;
 
     if (process.env.USE_PROD == 'true' || process.env.USE_PRODUCTION == 'true') {
@@ -32,7 +32,7 @@ export class CheckoutConfirmationPage extends OktaPage {
     return env;
   }
 
-  checkoutLegalShieldLoginPage = async () => {
+  checkoutLegalShieldLoginPage = async (): Promise<void> => {
     // Choose your region
     try {
       console.log('I am inside of the try block');
@@ -85,7 +85,7 @@ export class CheckoutConfirmationPage extends OktaPage {
   };
 
   // Select your region
-  selectYourRegionMenu = async () => {
+  selectYourRegionMenu = async (): Promise<void> => {
     // Click on Start your business button
     await this.page.waitForSelector(YOUR_REGION_SELECTOR);
     await this.selectFromDropDownMenu(YOUR_REGION_SELECTOR, YOUR_REGION_CITY);
@@ -117,7 +117,7 @@ export class CheckoutConfirmationPage extends OktaPage {
 
   // Click Methods
 
-  clickStartYourBusiness = async () => {
+  clickStartYourBusiness = async (): Promise<void> => {
     // Click on Start your business button
 
     console.log('I am inside of clickStart');
@@ -126,7 +126,7 @@ export class CheckoutConfirmationPage extends OktaPage {
     console.log('I clicked clickStart');
     await this.page.waitForLoadState('domcontentloaded');
   };
-  clickUpdateRegionBtn = async () => {
+  clickUpdateRegionBtn = async (): Promise<void> => {
     // Click on Start your business button
     await this.clickOnElement(UPDATE_REGION_BTN);
     await this.page.waitForLoadState('networkidle');

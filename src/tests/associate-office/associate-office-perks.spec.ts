@@ -18,59 +18,59 @@ test.beforeEach(async ({ page }) => {
   await perksPage.waitForPageIsLoaded();
 });
 
-test('Banner is displayed', async ({}) => {
+test('Banner is displayed', async () => {
   console.log('Test Case: Banner is displayed');
   test.slow();
   await perksPage.assertBannerIsDisplayed();
 });
 
-test('Banner Title Text', async ({}) => {
+test('Banner Title Text', async () => {
   console.log('Test Case: Verify Banner Title Text');
   await perksPage.assertBannerTitleText();
 });
 
-test('Banner Description Text', async ({}) => {
+test('Banner Description Text', async () => {
   console.log('Test Case: Verify Banner Description Text');
   await perksPage.assertBannerDescriptionText();
 });
 
-test("Perk's Disclaimer", async ({}) => {
+test("Perk's Disclaimer", async () => {
   console.log("Test Case: Verify Perk's Disclaimer");
   await perksPage.assertPerkDisclaimerIsDisplayed();
 });
 
-test('Perks Text', async ({}) => {
+test('Perks Text', async () => {
   console.log('Test Case: Verify Perks Text');
   await perksPage.assertPerkText();
 });
 
-test('Featured Offer Title Text', async ({}) => {
+test('Featured Offer Title Text', async () => {
   console.log('Test Case: Verify Featured Offer Title Text');
   await perksPage.assertFeaturedOfferTitleText();
 });
 
-test('Featured Perk Description Text', async ({}) => {
+test('Featured Perk Description Text', async () => {
   console.log('Test Case: Verify Featured Perk Description Text');
   test.slow();
   await perksPage.assertFeaturedPerkDescriptionText();
 });
 
-test('Featured Perk Image is displayed', async ({}) => {
+test('Featured Perk Image is displayed', async () => {
   console.log('Test Case: Featured Perk Image is displayed');
   await perksPage.assertFeaturedPerkImageDisplayed();
 });
 
-test('ASSOCIATEPerks is displayed', async ({}) => {
+test('ASSOCIATEPerks is displayed', async () => {
   console.log('Test Case: ASSOCIATEPerks is displayed');
   await perksPage.assertASSOCIATEPerksDisplayed();
 });
 
-test('Available in Canada is displayed', async ({}) => {
+test('Available in Canada is displayed', async () => {
   console.log('Test Case: Available in Canada is displayed');
   await perksPage.assertAvailableCanDisplayed();
 });
 
-test('Available in Canada image is displayed', async ({}) => {
+test('Available in Canada image is displayed', async () => {
   console.log('Test Case: Available in Canada image is displayed');
   await perksPage.assertAvailableCanImageDisplayed();
 });
@@ -171,7 +171,7 @@ test('Diamond Physicians perk is displayed', async ({ page, context }) => {
   await perksPage.assertNewPageIsOpened(5, TITLE_DIAMOND_PAGE, context, page);
 });
 
-test('Unity Insurance Partners perk is displayed', async ({}) => {
+test('Unity Insurance Partners perk is displayed', async () => {
   console.log('Test Case: Unity Insurance Partners perk is displayed');
   const PERK_TITLE = 'Unity Insurance Partners';
   const DESCRIPTION = 'Insuring customers for over 100 years';
@@ -277,7 +277,7 @@ test('Best Buy perk is displayed', async ({ page, context }) => {
   await perksPage.assertNewPageIsOpened(11, TITLE_BEST_BUY_PAGE, context, page);
 });
 
-test('National & Enterprise perk is displayed', async ({}) => {
+test('National & Enterprise perk is displayed', async () => {
   console.log('Test Case: National & Enterprise perk is displayed');
   const PERK_TITLE = 'National & Enterprise';
   const DESCRIPTION = 'Use code XZ51449 at checkout';
@@ -329,7 +329,7 @@ test('HP Inc. perk is displayed', async ({ page, context }) => {
   await perksPage.assertNewPageIsOpened2(3, TITLE_MY_LSE_PAGE, context, page);
 });
 
-test('JoS A. Bank. perk is displayed', async ({}) => {
+test('JoS A. Bank. perk is displayed', async () => {
   console.log('Test Case: JoS A. Bank perk is displayed');
   const PERK_TITLE = 'JoS A. Bank';
   const DESCRIPTION = 'See Our New Lower Prices & Save Today';
@@ -342,7 +342,7 @@ test('JoS A. Bank. perk is displayed', async ({}) => {
   await perksPage.assertPerkShopNowButtonIsDisplayed(14);
 });
 
-test("Men's Wearhouse perk is displayed", async ({}) => {
+test("Men's Wearhouse perk is displayed", async () => {
   console.log("Test Case: Men's Wearhouse perk is displayed");
   const PERK_TITLE = "Men's Wearhouse";
   const DESCRIPTION = "Shop Men's Wearhouse New Arrivals & Collection Today";
@@ -355,7 +355,7 @@ test("Men's Wearhouse perk is displayed", async ({}) => {
   await perksPage.assertPerkShopNowButtonIsDisplayed(15);
 });
 
-test('Moores perk is displayed', async ({}) => {
+test('Moores perk is displayed', async () => {
   console.log('Test Case: Moores perk is displayed');
   const PERK_TITLE = 'Moores';
   const DESCRIPTION = 'Moores has been outfitting men for more than 30 years';
@@ -429,7 +429,7 @@ test('Don Yaeger Store perk is displayed', async ({ page, context }) => {
   await perksPage.assertNewPageIsOpened(20, TITLE_DY_STORE_PAGE, context, page);
 });
 
-test('Liberty Mutual perk is displayed', async ({}) => {
+test('Liberty Mutual perk is displayed', async () => {
   console.log('Test Case: Liberty Mutual perk is displayed');
   const PERK_TITLE = 'Liberty Mutual';
   const DESCRIPTION = 'Customized insurance coverage!';

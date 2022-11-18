@@ -8,7 +8,7 @@ test.beforeEach(async ({ page }) => {
   webBuilderShieldBenefits = new WebBuilderShieldBenefits(page);
 });
 
-test('Web-builder ShieldBenefits page : Verify functionality on the customize section,', async ({}) => {
+test('Web-builder ShieldBenefits page : Verify functionality on the customize section,', async () => {
   console.log('Verify functionality on the web-builder ShieldBenefits page, Customize section');
   await webBuilderShieldBenefits.navigateToWebBuilderShieldBenefitsPage();
   await webBuilderShieldBenefits.clickEnrollmentTab();
@@ -21,7 +21,7 @@ test('Web-builder ShieldBenefits page : Verify functionality on the customize se
   await webBuilderShieldBenefits.assertUserNameAndPasswordAreDisabled();
 });
 
-test('Web-builder ShieldBenefits page : Verify functionality on the checkout section', async ({}) => {
+test('Web-builder ShieldBenefits page : Verify functionality on the checkout section', async () => {
   console.log('Web-builder ShieldBenefits page : Verify functionality on the checkout section');
   await webBuilderShieldBenefits.navigateToWebBuilderShieldBenefitsPage();
   await webBuilderShieldBenefits.clickEnrollmentTab();
@@ -31,7 +31,7 @@ test('Web-builder ShieldBenefits page : Verify functionality on the checkout sec
   await webBuilderShieldBenefits.assertCheckoutMessageIsDisabled();
 });
 
-test('Web-builder ShieldBenefits page : Verify functionality on the contact information section', async ({}) => {
+test('Web-builder ShieldBenefits page : Verify functionality on the contact information section', async () => {
   console.log('Web-builder ShieldBenefits page : Verify functionality on the contact information section');
   await webBuilderShieldBenefits.navigateToWebBuilderShieldBenefitsPage();
   await webBuilderShieldBenefits.clickEnrollmentTab();

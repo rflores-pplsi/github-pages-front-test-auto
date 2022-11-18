@@ -21,7 +21,7 @@ export class WalsAssociateSearchPage extends WalsLocatorPage {
    *
    * @memberof WalsAssociateSearchPage
    */
-  navigateToUrl = async () => {
+  navigateToUrl = async (): Promise<void> => {
     await this.page.goto(UrlsUtils.wals.urls.urlAssociate);
     await this.page.waitForLoadState();
   };
@@ -30,7 +30,7 @@ export class WalsAssociateSearchPage extends WalsLocatorPage {
    * @param {string} associate
    * @memberof searchForAssociate
    */
-  searchForAssociate = async (associate: string) => {
+  searchForAssociate = async (associate: string): Promise<void> => {
     await this.locInputAssociateSearch.fill(associate);
     await this.locBtnAssociateSearch.click();
     await this.page.waitForLoadState();
@@ -40,14 +40,14 @@ export class WalsAssociateSearchPage extends WalsLocatorPage {
    *
    * @memberof WalsAssociateSearchPage
    */
-  assertLabelSalesAssociate = async () => {
+  assertLabelSalesAssociate = async (): Promise<void> => {
     await this.locLabelSalesAssociate.isVisible();
   };
   /**
    * @param {string} txt
    * @memberof assertMsgAssociateNotFound
    */
-  assertMsgAssociate = async (txt: string) => {
+  assertMsgAssociate = async (txt: string): Promise<void> => {
     await this.page.locator('//*[contains(text(), "' + txt + '")]').isVisible();
   };
 }

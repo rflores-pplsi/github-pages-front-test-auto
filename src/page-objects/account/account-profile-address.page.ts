@@ -24,7 +24,7 @@ export class AccountProfileAddressPage extends AccountProfilePage {
    * @param {string} zip
    * @memberof AccountProfileAddressPage
    */
-  addressForm = async (address1: string, zip: string) => {
+  addressForm = async (address1: string, zip: string): Promise<void> => {
     await this.address1EditTxtBox(address1);
     await this.zipPostalEditTxtBox(zip);
   };

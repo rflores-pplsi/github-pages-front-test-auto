@@ -35,7 +35,8 @@ test.beforeEach(async ({ page }) => {
   test.slow();
 });
 
-test('Verify confirmation page of purchase for LS plan and supplement', async ({}) => {
+test('Verify FreeTrial purchase for IDS Individual on IDS Canada with BankDraft', async () => {
+  console.log('Test Case: Verify FreeTrial purchase IDS Individual on IDS Canada with BankDraft - Personal Info Page');
   // Navigate to Personal Info Page
   await test.step('Navigate to Testing Harness', async () => {
     await d2CLegalShieldCaPage.navigateToTestingHarnessPage('d2cIDShieldUS');
@@ -76,7 +77,7 @@ test('Verify confirmation page of purchase for LS plan and supplement', async ({
   await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName('IDShield Individual');
 });
 
-test('Verify FreeTrial purchase for IDS Family on IDS Canada with CreditCard', async ({}) => {
+test('Verify FreeTrial purchase for IDS Family on IDS Canada with CreditCard', async () => {
   console.log('Test Case: Verify FreeTrial purchase for IDS Family on IDS Canada - Personal Info Page');
   // Navigate to Personal Info Page
   await checkoutPersonalInfoPage.navigateToPersonalInfoPageFromPlanalyzer('D2C', 'IDShield', 'Ontario', 'en-CA', '', 'F30', ['IDShield Family']);
@@ -101,14 +102,14 @@ test('Verify FreeTrial purchase for IDS Family on IDS Canada with CreditCard', a
   await checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName('IDShield Family');
 });
 
-test('Self-Pay (IDShield Individual) using Planalyzer and Bank Draft', async ({}) => {
+test('Self-Pay (IDShield Individual) using Planalyzer and Bank Draft', async () => {
   test.slow();
   await checkoutConfirmationPage.navigateToCheckoutConfirmationPageUsingPlanalyzer('Virginia', 'BD');
   await checkoutConfirmationPage.assertWelcomeToLegalShieldFamilyPage();
   await checkoutConfirmationPage.assertOrderSummaryPlanLabelConfirmationPage('Legal Plan');
   await checkoutConfirmationPage.assertOrderSummaryPlanPriceConfirmationPage();
 });
-test('Self-Pay (IDShield Individual) using Planalyzer and Credit Card', async ({}) => {
+test('Self-Pay (IDShield Individual) using Planalyzer and Credit Card', async () => {
   test.slow();
   await checkoutConfirmationPage.navigateToCheckoutConfirmationPageUsingPlanalyzer('Virginia', 'CC');
   await checkoutConfirmationPage.assertWelcomeToLegalShieldFamilyPage();

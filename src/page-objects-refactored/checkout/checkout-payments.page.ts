@@ -61,7 +61,7 @@ export class CheckoutPaymentsPage {
    * @param {string} paymentMethod
    * @memberof CheckoutPaymentsPage
    */
-  clickPaymentBtn = async (paymentMethod: string) => {
+  clickPaymentBtn = async (paymentMethod: string): Promise<void> => {
     // Force a wait time
     // Switch to frame
     await this.page.waitForLoadState();
@@ -69,7 +69,16 @@ export class CheckoutPaymentsPage {
       // Click on Add Payment button
       await this.btnBankDraft.click();
     } else throw new Error('No such frame');
-    if (paymentMethod.toLowerCase() === 'cc' && this.paymentFrame != null) {
+  };
+
+  /**
+   * @memberof CheckoutPaymentsPage
+   */
+  clickCreditCardBtn = async (): Promise<void> => {
+    // Switch to frame
+    this.page.frameLocator("//iframe[@title='payment iframe']");
+    const frame = this.page.frameLocator("//iframe[@title='payment iframe']");
+    if (frame != null) {
       // Click on Add Payment button
       await this.btnCreditCard.click();
     } else throw new Error('No such frame');
@@ -79,7 +88,7 @@ export class CheckoutPaymentsPage {
   /**
    * @memberof CheckoutPaymentsPage
    */
-  assertAccountPaymentsPage = async () => {
+  assertAccountPaymentsPage = async (): Promise<void> => {
     await this.page.waitForLoadState();
     if (this.paymentFrame != null) {
       await expect(this.txtHowWouldYouLikeToPay).toContainText('How would you like to pay?');

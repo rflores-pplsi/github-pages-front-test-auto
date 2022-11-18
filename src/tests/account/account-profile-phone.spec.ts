@@ -10,7 +10,7 @@ test.beforeEach(async ({ page }) => {
   accountProfilePhonePage.navigateToProfilePhoneNumberPage();
 });
 // Add a new Phone Number
-test('Add a new Phone Number ', async ({}) => {
+test('Add a new Phone Number ', async () => {
   console.log('Test Case: Add Phone Number');
   // Click on Add  Phone number Button
   await accountProfilePhonePage.clickAddPhoneNumberButton();
@@ -22,7 +22,7 @@ test('Add a new Phone Number ', async ({}) => {
 });
 
 // Edit the Profile Phone Number page
-test('Edit Phone Number by clicking the Phone Edit button', async ({}) => {
+test('Edit Phone Number by clicking the Phone Edit button', async () => {
   // skipping this test as it will pass even when it doesn't find the phone number it wants to edit (often an account gets modified elsewhere)
   test.skip();
   console.log('Test Case: Edit Phone Number by clicking the Phone Edit button');
@@ -33,7 +33,7 @@ test('Edit Phone Number by clicking the Phone Edit button', async ({}) => {
 });
 
 // Delete a new Phone Number
-test('Delete a Phone Number ', async ({}) => {
+test('Delete a Phone Number ', async () => {
   console.log('Test Case: Delete Phone Number');
   // Click on Delete a Phone number Button
   await accountProfilePhonePage.deletePhoneNumberFun('(771) 777-7777');

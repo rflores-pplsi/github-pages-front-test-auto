@@ -20,7 +20,7 @@ test.beforeEach(async ({ page }) => {
 //   await checkoutPersonalInfoPage.assertPersonalInfoHeaderIsDisplayed();
 // });
 
-test('Verify Error for all fields on Personal Info Page Displays', async ({}) => {
+test('Verify Error for all fields on Personal Info Page Displays', async () => {
   console.log('Test Case: Verify Error for all fields on Personal Info Page Displays');
   await checkoutPersonalInfoPage.clearAllFieldsOnPersonalInfoPageAndSave();
   await checkoutPersonalInfoPage.assertPersonalInfoPageErrorsAreDisplayed();

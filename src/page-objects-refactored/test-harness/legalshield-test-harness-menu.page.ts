@@ -21,7 +21,7 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
    * @param {string} region
    * @memberof LegalshieldTestHarnessMenuPage
    */
-  selectRegionFromDropdown = async (region: string) => {
+  selectRegionFromDropdown = async (region: string): Promise<void> => {
     console.log(' - legalshieldTestHarnessMenuPage.selectRegionFromDropdown');
     await this.selectFromDropDownMenu(DDL_REGION_SELECTOR, region);
     // await this.clickRegionSelectDropdown();
@@ -32,7 +32,7 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
    * @param {Array<Array<string>>} productNamesAndCosts
    * @memberof LegalshieldTestHarnessMenuPage
    */
-  addProducts = async (productNamesAndCosts: Array<Array<string>>) => {
+  addProducts = async (productNamesAndCosts: Array<Array<string>>): Promise<void> => {
     console.log(' - legalshieldTestHarnessMenuPage.addProducts');
     for (const pn of productNamesAndCosts) {
       // TODO: Loop through productNames and click on the button associated with them as many times as needed
@@ -50,7 +50,7 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
    * @param {Array<Array<string>>} productDetails
    * @memberof LegalshieldTestHarnessMenuPage
    */
-  addProductsByNameAndShortCode = async (productDetails: Array<ProductDetails>) => {
+  addProductsByNameAndShortCode = async (productDetails: Array<ProductDetails>): Promise<void> => {
     console.log(' - legalshieldTestHarnessMenuPage.addProducts');
     for (const pd of productDetails) {
       await this.clickOnElement(
@@ -67,7 +67,7 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
   /**
    * @memberof LegalshieldTestHarnessMenuPage
    */
-  completeQualifyingQuestionnaireWithNos = async () => {
+  completeQualifyingQuestionnaireWithNos = async (): Promise<void> => {
     console.log(' - legalshieldTestHarnessMenuPage.completeQualifyingQuestionnaireWithNos');
     await this.clickPubliclyTradedNoRadioButton();
     await this.clickNonProfitNoRadioButton();
@@ -80,13 +80,13 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
    * @param {string} productName
    * @memberof LegalshieldTestHarnessMenuPage
    */
-  clickProductButton = async (productName: string) => {
+  clickProductButton = async (productName: string): Promise<void> => {
     console.log(' - legalshieldTestHarnessMenuPage.clickProductButton - ' + productName);
     await this.clickOnElement(`//div[contains(@class,"plan-layout")]//h1[text()="${productName}"]/following-sibling::a`);
     await this.page.waitForLoadState('domcontentloaded');
   };
 
-  clickCartIcon = async () => {
+  clickCartIcon = async (): Promise<void> => {
     console.log(' - legalshieldTestHarnessMenuPage.clickCartIcon');
     await this.clickOnElement(ICN_CART);
   };
@@ -94,7 +94,7 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
   /**
    * @memberof LegalshieldTestHarnessMenuPage
    */
-  clickRegionSelectDropdown = async () => {
+  clickRegionSelectDropdown = async (): Promise<void> => {
     console.log(' - LegalShieldQualifyingContainerComponent.clickRegionSelectDropdown');
     await this.clickOnElement(DDL_REGION_SELECTOR);
   };
@@ -102,7 +102,7 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
   /**
    * @memberof LegalshieldTestHarnessMenuPage
    */
-  clickPubliclyTradedNoRadioButton = async () => {
+  clickPubliclyTradedNoRadioButton = async (): Promise<void> => {
     console.log(' - LegalShieldQualifyingContainerComponent.clickPubliclyTradedNoRadioButton');
     await this.clickOnElement(BTN_PUBLICLY_TRADED_NO);
   };
@@ -110,7 +110,7 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
   /**
    * @memberof LegalshieldTestHarnessMenuPage
    */
-  clickNonProfitNoRadioButton = async () => {
+  clickNonProfitNoRadioButton = async (): Promise<void> => {
     console.log(' - LegalShieldQualifyingContainerComponent.clickNonProfitNoRadioButton');
     await this.clickOnElement(BTN_NON_PROFIT_NO);
   };
@@ -118,7 +118,7 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
   /**
    * @memberof LegalshieldTestHarnessMenuPage
    */
-  clickAddToCartButton = async () => {
+  clickAddToCartButton = async (): Promise<void> => {
     console.log(' - LegalShieldQualifyingContainerComponent.clickAddToCartButton');
     await this.clickOnElement(BTN_ADD_TO_CART);
   };

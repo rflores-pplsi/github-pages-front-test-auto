@@ -20,7 +20,7 @@ test.beforeEach(async ({ page }) => {
 // Self-Pay Configurations - Single Plan
 for (const tc of selfPayData.filter((tc) => tc.disabled == false)) {
   for (const region of tc.regions) {
-    test(`${tc.testCaseName} - ${region} @selfPay @shieldBenefits`, async ({}) => {
+    test(`${tc.testCaseName} - ${region} @selfPay @shieldBenefits`, async () => {
       console.log(`Test Case: ${tc.testCaseName} - ${region}`);
       // Crete Cart from Pricing Page and Continue to Personal Info Page
       await test.step(`Navigate to Shield Benefits Pricing Page for Group: ${tc.groupNameOrNumber}`, async () => {
@@ -90,7 +90,7 @@ for (const tc of selfPayData.filter((tc) => tc.disabled == false)) {
 // Fringe Group Configurations - Single Plan
 for (const tc of fringeData.filter((tc) => tc.disabled == false)) {
   for (const state of tc.regions) {
-    test(`${tc.testCaseName} - ${state} @fringe @shieldBenefits`, async ({}) => {
+    test(`${tc.testCaseName} - ${state} @fringe @shieldBenefits`, async () => {
       console.log(`Test Case: ${tc.testCaseName} - ${state}`);
       // Crete Cart from Pricing Page and Continue to Personal Info Page
       await test.step(`Navigate to Shield Benefits Pricing Page for Group: ${tc.groupNumber}`, async () => {
@@ -149,7 +149,7 @@ for (const tc of fringeData.filter((tc) => tc.disabled == false)) {
 // Payroll Deduct Configurations - Single Plan
 for (const tc of payrollDeductData.filter((tc) => tc.disabled == false)) {
   for (const state of tc.regions) {
-    test(`${tc.testCaseName} - ${state} @payrollDeduct @shieldBenefits`, async ({}) => {
+    test(`${tc.testCaseName} - ${state} @payrollDeduct @shieldBenefits`, async () => {
       console.log(`Test Case: ${tc.testCaseName} - ${state}`);
       // Crete Cart from Pricing Page and Continue to Personal Info Page
       await test.step(`Navigate to Shield Benefits Pricing Page for Group: ${tc.groupNumber}`, async () => {
@@ -212,7 +212,7 @@ for (const tc of payrollDeductData.filter((tc) => tc.disabled == false)) {
 // Partial-Fringe Group Configurations - Single Plan
 for (const tc of partialFringeData.filter((tc) => tc.disabled == false)) {
   for (const state of tc.regions) {
-    test(`${tc.testCaseName} - ${state} @partialFringe @shieldBenefits`, async ({}) => {
+    test(`${tc.testCaseName} - ${state} @partialFringe @shieldBenefits`, async () => {
       console.log(`Test Case: ${tc.testCaseName} - ${state}`);
       // Crete Cart from Pricing Page and Continue to Personal Info Page
       await test.step(`Navigate to Shield Benefits Pricing Page for Group: ${tc.groupNumber}`, async () => {

@@ -8,7 +8,7 @@ test.beforeEach(async ({ page }) => {
   await classicShieldAtWorkReportsTab.navigateToClassicShieldAtWork();
 });
 
-test('Reports page is displayed, Submit button is enabled', async ({}) => {
+test('Reports page is displayed, Submit button is enabled', async () => {
   await classicShieldAtWorkReportsTab.loginWithCredentials();
   await classicShieldAtWorkReportsTab.assertReportsPage();
 });

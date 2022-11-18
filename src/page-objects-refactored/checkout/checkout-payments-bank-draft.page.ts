@@ -26,7 +26,7 @@ const BTN_SAVE_AND_CONTINUE = "button:has-text('Save & Continue')";
  */
 export class CheckoutPaymentsBankDraftPage extends CheckoutLocatorsPage {
   // ========================== Process Methods ============================
-  fillBankDraftFormAndSubmit = async () => {
+  fillBankDraftFormAndSubmit = async (): Promise<void> => {
     console.log(' - checkoutPaymentPage.fillBankDraftForm');
     // Fillout the Bank Draft form
     await this.page.waitForLoadState();
@@ -80,7 +80,7 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutLocatorsPage {
    * @param {string} market
    * @memberof CheckoutPaymentsBankDraftPage
    */
-  fillMarketBankDraftFormAndSubmit = async (market: string) => {
+  fillMarketBankDraftFormAndSubmit = async (market: string): Promise<void> => {
     console.log(' - checkoutPaymentPage.fillMarketBankDraftFormAndSubmit');
     switch (market) {
       case 'US': {
@@ -101,7 +101,7 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutLocatorsPage {
   /**
    * @memberof CheckoutPaymentsBankDraftPage
    */
-  fillUsBankDraftFormAndSubmit = async () => {
+  fillUsBankDraftFormAndSubmit = async (): Promise<void> => {
     console.log(' - checkoutPaymentPage.fillBankDraftForm');
     // Fill out the Bank Draft form
     await this.fillAccountNumberTxt();
@@ -117,7 +117,7 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutLocatorsPage {
   /**
    * @memberof CheckoutPaymentsBankDraftPage
    */
-  fillCaBankDraftFormAndSubmit = async () => {
+  fillCaBankDraftFormAndSubmit = async (): Promise<void> => {
     console.log(' - checkoutPaymentPage.fillCaBankDraftFormAndSubmit');
     // Fill out the Bank Draft form
     await this.page.waitForLoadState();
@@ -167,7 +167,7 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutLocatorsPage {
    *
    * @memberof CheckoutPaymentsBankDraftPage
    */
-  fillAccountNumberTxt = async () => {
+  fillAccountNumberTxt = async (): Promise<void> => {
     const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
     console.log(' - checkoutPaymentPage.fillAccountNumberTxt');
     // Fill  Account Number
@@ -181,7 +181,7 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutLocatorsPage {
    *
    * @memberof CheckoutPaymentsBankDraftPage
    */
-  fillRoutingNumberTxt = async () => {
+  fillRoutingNumberTxt = async (): Promise<void> => {
     console.log(' - checkoutPaymentPage.fillRoutingNumberTxt');
     // Switch to frame
     const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
@@ -198,7 +198,7 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutLocatorsPage {
    *
    * @memberof CheckoutPaymentsBankDraftPage
    */
-  fillAccountHolderNameTxt = async () => {
+  fillAccountHolderNameTxt = async (): Promise<void> => {
     console.log(' - checkoutPaymentPage.fillAccountHolderNameTxt');
     // Switch to frame
     const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
@@ -214,7 +214,7 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutLocatorsPage {
    * @param {string} bankname
    * @memberof CheckoutPaymentsBankDraftPage
    */
-  fillBankNameTxt = async (bankname: string) => {
+  fillBankNameTxt = async (bankname: string): Promise<void> => {
     console.log(' - checkoutPaymentPage.fillBankNameTxt');
     // Switch to frame
     const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
@@ -229,7 +229,7 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutLocatorsPage {
    * @param {string} account
    * @memberof CheckoutPaymentsBankDraftPage
    */
-  fillAccountNumberForCaTxt = async (account: string) => {
+  fillAccountNumberForCaTxt = async (account: string): Promise<void> => {
     const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
     console.log(' - checkoutPaymentPage.fillAccountNumberForCaTxt');
     // Fill  Account Number
@@ -243,7 +243,7 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutLocatorsPage {
    * @param {string} transitNumber
    * @memberof CheckoutPaymentsBankDraftPage
    */
-  fillTransitNumberTxt = async (transitNumber: string) => {
+  fillTransitNumberTxt = async (transitNumber: string): Promise<void> => {
     console.log(' - checkoutPaymentPage.fillTransitNumberTxt');
     // Switch to frame
     const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
@@ -259,7 +259,7 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutLocatorsPage {
    * @param {string} routing
    * @memberof CheckoutPaymentsBankDraftPage
    */
-  fillInstitutionNumberTxt = async (routing: string) => {
+  fillInstitutionNumberTxt = async (routing: string): Promise<void> => {
     console.log(' - checkoutPaymentPage.fillInstitutionNumberTxt');
     // Switch to frame
     const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
@@ -270,7 +270,7 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutLocatorsPage {
     } else throw new Error('No such frame');
   };
 
-  clickSaveAndContinue = async () => {
+  clickSaveAndContinue = async (): Promise<void> => {
     await this.page.waitForLoadState();
     await this.page.locator(BTN_SAVE_AND_CONTINUE).click();
   };
@@ -279,7 +279,7 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutLocatorsPage {
   /**
    * @memberof CheckoutPaymentsBankDraftPage
    */
-  clickPurchaseBtn = async () => {
+  clickPurchaseBtn = async (): Promise<void> => {
     console.log(' - checkoutPaymentPage.clickPurchaseBtn');
     // Switch to frame
     const frmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
@@ -293,7 +293,7 @@ export class CheckoutPaymentsBankDraftPage extends CheckoutLocatorsPage {
   /**
    * @memberof CheckoutPaymentsBankDraftPage
    */
-  assertWelcomeToLegalShieldFamilyPage = async () => {
+  assertWelcomeToLegalShieldFamilyPage = async (): Promise<void> => {
     console.log(' - checkoutPaymentPage.assertWelcomeToLegalshiledFamilyPage');
     const welcome = await this.page.waitForSelector(TXT_WELCOME_TO_LEGAL_SHIELD_FAMILY);
     console.log(welcome.innerText());

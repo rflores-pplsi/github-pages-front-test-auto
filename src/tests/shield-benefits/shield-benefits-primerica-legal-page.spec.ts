@@ -8,7 +8,7 @@ test.beforeEach(async ({ page }) => {
   test.slow();
 });
 
-test('Verify functionality on the Primerica Overview Page- ? in top right corner to verify correct number and website for Member services is displayed', async ({}) => {
+test('Verify functionality on the Primerica Overview Page- ? in top right corner to verify correct number and website for Member services is displayed', async () => {
   console.log(
     'Test Case: Verify functionality on the Primerica Overview Page  - ? in top right corner to verify correct number and website for Member services is displayed'
   );
@@ -17,20 +17,20 @@ test('Verify functionality on the Primerica Overview Page- ? in top right corner
   await shieldBenefitsPrimericaLegalPage.assertNumberAndWebsiteIsDisplayed();
 });
 
-test('Verify functionality on the Primerica Overview Page - More Information button is displayed', async ({}) => {
+test('Verify functionality on the Primerica Overview Page - More Information button is displayed', async () => {
   console.log('Test Case: Verify functionality on the Primerica Overview Page - More Information button is displayed');
   await shieldBenefitsPrimericaLegalPage.navigateToPrimericaOverviewPage();
   await shieldBenefitsPrimericaLegalPage.assertMoreInformationButtonIsDisplayed();
 });
 
-test('Verify functionality on the Primerica Legal page - App Store button is displayed', async ({}) => {
+test('Verify functionality on the Primerica Legal page - App Store button is displayed', async () => {
   console.log('Test Case: Verify functionality on the Primerica Legal page - App Store button is displayed');
   await shieldBenefitsPrimericaLegalPage.navigateToPrimericaLegalPage();
   await shieldBenefitsPrimericaLegalPage.clickBtnLegalPage();
   await shieldBenefitsPrimericaLegalPage.assertAppStoreButtonISDisplayed();
 });
 
-test('Verify functionality on the Primerica Legal page - Back to top button takes users to top of page', async ({}) => {
+test('Verify functionality on the Primerica Legal page - Back to top button takes users to top of page', async () => {
   console.log('Test Case: Verify functionality on the Primerica Legal page - Back to top button takes users to top of page');
   await shieldBenefitsPrimericaLegalPage.navigateToPrimericaLegalPage();
   await shieldBenefitsPrimericaLegalPage.clickBtnLegalPage();
@@ -38,7 +38,7 @@ test('Verify functionality on the Primerica Legal page - Back to top button take
   await shieldBenefitsPrimericaLegalPage.assertShieldBenefitsPrimericaLegalPage();
 });
 
-test('Verify functionality on the Primerica Legal page - Enroll now button redirects to to Checkout V1', async ({}) => {
+test('Verify functionality on the Primerica Legal page - Enroll now button redirects to to Checkout V1', async () => {
   console.log('Test Case: Verify functionality on the Primerica Legal page - View details button redirects to products and benefits page');
   await shieldBenefitsPrimericaLegalPage.navigateToPrimericaLegalPage();
   await shieldBenefitsPrimericaLegalPage.clickBtnPricing();
@@ -46,7 +46,7 @@ test('Verify functionality on the Primerica Legal page - Enroll now button redir
   await shieldBenefitsPrimericaLegalPage.assertEnrollNowButtonIsDisplayed();
 });
 
-test('Verify functionality on the Primerica Legal page - Law firm information is displayed', async ({}) => {
+test('Verify functionality on the Primerica Legal page - Law firm information is displayed', async () => {
   console.log('Test Case: Verify functionality on the Primerica Legal page - Law firm information is displayed');
   await shieldBenefitsPrimericaLegalPage.navigateToPrimericaLegalPage();
   await shieldBenefitsPrimericaLegalPage.clickBtnLegalPage();
@@ -54,21 +54,21 @@ test('Verify functionality on the Primerica Legal page - Law firm information is
   await shieldBenefitsPrimericaLegalPage.assertLawFirmInformation();
 });
 
-test('Verify functionality on the Primerica Legal page - Terms of services are displayed', async ({}) => {
+test('Verify functionality on the Primerica Legal page - Terms of services are displayed', async () => {
   console.log('Test Case: Verify functionality on the Primerica Legal page - Terms of services are displayed');
   await shieldBenefitsPrimericaLegalPage.navigateToPrimericaLegalPage();
   await shieldBenefitsPrimericaLegalPage.clickBtnLegalPage();
   await shieldBenefitsPrimericaLegalPage.assertTermsOfServicesBtnIsDisplayed();
 });
 
-test('Verify functionality on the Primerica Legal page - Privacy Policy is displayed', async ({}) => {
+test('Verify functionality on the Primerica Legal page - Privacy Policy is displayed', async () => {
   console.log('Test Case: Verify functionality on the Primerica Legal page - Privacy Policy is displayed');
   await shieldBenefitsPrimericaLegalPage.navigateToPrimericaLegalPage();
   await shieldBenefitsPrimericaLegalPage.clickBtnLegalPage();
   await shieldBenefitsPrimericaLegalPage.assertPrivacyPolicyBtnIsDisplayed();
 });
 
-test('Verify functionality on the Primerica Legal page - Code of Ethics is displayed', async ({}) => {
+test('Verify functionality on the Primerica Legal page - Code of Ethics is displayed', async () => {
   console.log('Test Case: Verify functionality on the Primerica Legal page - Code of Ethics is displayed');
   await shieldBenefitsPrimericaLegalPage.navigateToPrimericaLegalPage();
   await shieldBenefitsPrimericaLegalPage.clickBtnLegalPage();

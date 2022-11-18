@@ -14,7 +14,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 // Navigate to Plans Page from Account Navigation
-test('Navigate to plans page', async ({}) => {
+test('Navigate to plans page', async () => {
   console.log('Test Case: Navigate to plans page');
   // Verify the Plans Link Works. Click Plans Link
   await accountNavigationPage.clickProfileLink();
@@ -24,7 +24,7 @@ test('Navigate to plans page', async ({}) => {
 });
 
 // Navigate to Profile Page from Account Navigation
-test('Navigate to profile page', async ({}) => {
+test('Navigate to profile page', async () => {
   console.log('Test Case: Navigate to profile page');
   // Click Profile Link
   await accountNavigationPage.clickProfileLink();
@@ -33,7 +33,7 @@ test('Navigate to profile page', async ({}) => {
 });
 
 // Navigate to Payments Page from Account Navigation
-test('Navigate to payments page', async ({}) => {
+test('Navigate to payments page', async () => {
   console.log('Test Case: Navigate to payments page');
   // Click Payments Link
   await accountNavigationPage.clickPaymentsLink();
@@ -42,7 +42,7 @@ test('Navigate to payments page', async ({}) => {
 });
 
 // Navigate to Security Page from Account Navigation
-test('Navigate to security page', async ({}) => {
+test('Navigate to security page', async () => {
   console.log('Test Case: Navigate to security page');
   // Click Security Link
   await accountNavigationPage.clickSecurityLink();
@@ -51,7 +51,7 @@ test('Navigate to security page', async ({}) => {
 });
 
 // Navigate to Resources Page from Account Navigation
-test('Navigate to resources page', async ({}) => {
+test('Navigate to resources page', async () => {
   console.log('Test Case: Navigate to resources page');
   // Click Resources Link
   await accountNavigationPage.clickResourcesLink();
@@ -60,7 +60,7 @@ test('Navigate to resources page', async ({}) => {
 });
 
 // Navigate to Preferences Page from Account Navigation
-test('Navigate to preferences page', async ({}) => {
+test('Navigate to preferences page', async () => {
   console.log('Test Case: Navigate to preferences resources page');
   // Click Preferences Link
   await accountNavigationPage.clickPreferencesLink();
@@ -69,7 +69,7 @@ test('Navigate to preferences page', async ({}) => {
 });
 
 // Navigate to MultiFactor Page from Account Navigation
-test('Navigate to multifactor page', async ({}) => {
+test('Navigate to multifactor page', async () => {
   console.log('Test Case: Navigate to multifactor page');
   // Click Resources Link
   await accountNavigationPage.clickMfaLink();

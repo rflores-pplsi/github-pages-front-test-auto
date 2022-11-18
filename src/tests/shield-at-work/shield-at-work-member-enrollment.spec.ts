@@ -7,7 +7,7 @@ test.beforeEach(async ({ page }) => {
   shieldAtWorkMemberEnrollment = new ShieldAtWorkMemberEnrollment(page);
 });
 
-test('Contact information, available plan offerings section, member information , personal and small business sections are displayed on the member enrollment page', async ({}) => {
+test('Contact information, available plan offerings section, member information , personal and small business sections are displayed on the member enrollment page', async () => {
   await shieldAtWorkMemberEnrollment.navigateToGroupPage();
   await shieldAtWorkMemberEnrollment.fillOutContactInformation(
     'Test',
@@ -29,7 +29,7 @@ test('Contact information, available plan offerings section, member information 
   await shieldAtWorkMemberEnrollment.assertSmallBusinessSectionIsDisplayed();
 });
 
-test('New member has been successfully enrolled on the member enrollment page', async ({}) => {
+test('New member has been successfully enrolled on the member enrollment page', async () => {
   await shieldAtWorkMemberEnrollment.navigateToGroupPage();
   await shieldAtWorkMemberEnrollment.fillOutContactInformation(
     'Test',

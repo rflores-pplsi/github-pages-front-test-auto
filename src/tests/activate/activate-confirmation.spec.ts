@@ -13,7 +13,7 @@ test.beforeEach(async ({ page }) => {
   await activatePage.goTo(UrlsUtils.legalshieldUrls.activate.url);
 });
 
-test('Login from Activate app and confirm redirect', async ({}) => {
+test('Login from Activate app and confirm redirect', async () => {
   console.log('Test Case: Login from Activate app and confirm redirect');
   // Login with basic account after being redirected to Login application
   await activatePage.login(basicUser.email, basicUser.password);

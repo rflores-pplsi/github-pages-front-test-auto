@@ -185,7 +185,7 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
   /**
    * @memberof CheckoutOrderSummaryComponent
    */
-  clickEditOrderLink = async () => {
+  clickEditOrderLink = async (): Promise<void> => {
     console.log(' - checkoutOrderSummaryComponent.clickEditOrderLink');
     // Click on Plans Link from Accounts Navigation
     await this.clickOnElement(LNK_EDIT_ORDER);
@@ -194,7 +194,7 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
   /**
    * @memberof CheckoutOrderSummaryComponent
    */
-  clickOrderSummaryUpChevron = async () => {
+  clickOrderSummaryUpChevron = async (): Promise<void> => {
     console.log(' - checkoutOrderSummaryComponent.clickOrderSummaryUpChevron');
     // Click on Plans Link from Accounts Navigation
     await this.clickOnElement(IMG_HIDE_ORDER_SUMMARY_CHEVRON);
@@ -203,7 +203,7 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
   /**
    * @memberof CheckoutOrderSummaryComponent
    */
-  clickOrderSummaryDownChevron = async () => {
+  clickOrderSummaryDownChevron = async (): Promise<void> => {
     console.log(' - checkoutOrderSummaryComponent.clickOrderSummaryDownChevron');
     // Click on Plans Link from Accounts Navigation
     await this.clickOnElement(IMG_SHOW_ORDER_SUMMARY_CHEVRON);

@@ -7,7 +7,7 @@ test.beforeEach(async ({ page }) => {
   shieldAtWorkGroupManagement = new ShieldAtWorkGroupManagement(page);
 });
 
-test('Home button takes to the group management page', async ({}) => {
+test('Home button takes to the group management page', async () => {
   await shieldAtWorkGroupManagement.navigateToGroupPage();
   await shieldAtWorkGroupManagement.groupSearchByGroupNumber('111452');
   await shieldAtWorkGroupManagement.clickNameIcon();
