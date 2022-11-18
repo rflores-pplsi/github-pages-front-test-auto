@@ -1,10 +1,10 @@
 import { ShieldBenefitsLegalOverviewPage } from './shield-benefits-legal-overview.page';
 
 // ========================== Selectors ==================================
-const btnStateSelect = '//div[contains(@class,"mr-custom")]//button';
-const btnStateOrProvinceSelect = '//div[contains(@class,"mr-custom")]//button';
-const btnPaymentFrequencySelect = '//p[contains (.,"Payment frequency")]/following-sibling::div//button';
-const conAvailablePlans = '//div[contains (@class,"filters mt-5 mb-5") and contains(.,"Available")]';
+const BTN_STATE_SELECT = '//div[contains(@class,"mr-custom")]//button';
+const BTN_STATE_OR_PROVINCE_SELECT = '//div[contains(@class,"mr-custom")]//button';
+const BTN_PAYMENT_FREQUENCY_SELECT = '//p[contains (.,"Payment frequency")]/following-sibling::div//button';
+const CON_AVAILABLE_PLANS = '//div[contains (@class,"filters mt-5 mb-5") and contains(.,"Available")]';
 
 /**
  *
@@ -23,13 +23,13 @@ export class ShieldBenefitsLegalPricingPage extends ShieldBenefitsLegalOverviewP
    * @param {string} tierName
    * @memberof ShieldBenefitsLegalPricingPage
    */
-  selectPlanFromShieldBenefitsPricingPage = async (state: string, paymentFrequency: string, planName: string, tierName: string) => {
+  selectPlanFromShieldBenefitsPricingPage = async (state: string, paymentFrequency: string, planName: string, tierName: string): Promise<void> => {
     console.log(' - shieldBenefitsLegalPricingPage.selectPlanFromShieldBenefitsPricingPage');
-    await this.clickOnElement(btnStateSelect);
+    await this.clickOnElement(BTN_STATE_SELECT);
     await this.clickOnElement(`//div[contains(@class,"lsux-link-content--menu") and contains (.,"${state}")]`);
-    await this.clickOnElement(btnPaymentFrequencySelect);
+    await this.clickOnElement(BTN_PAYMENT_FREQUENCY_SELECT);
     await this.clickOnElement(`//div[contains(@class,"lsux-link-content--menu") and contains (.,"${paymentFrequency}")]`);
-    await this.waitForElementToBeVisible(conAvailablePlans);
+    await this.waitForElementToBeVisible(CON_AVAILABLE_PLANS);
     await this.clickEnrollNowButtonFromShieldBenefitsPricingPage(planName, tierName);
   };
 
@@ -39,11 +39,11 @@ export class ShieldBenefitsLegalPricingPage extends ShieldBenefitsLegalOverviewP
    * @param {string} tierName
    * @memberof ShieldBenefitsLegalPricingPage
    */
-  selectPlanAndEnrollNoPaymentFrequency = async (state: string, planName: string, tierName: string) => {
+  selectPlanAndEnrollNoPaymentFrequency = async (state: string, planName: string, tierName: string): Promise<void> => {
     console.log(' - shieldBenefitsLegalPricingPage.selectPlanAndEnroll');
-    await this.clickOnElement(btnStateSelect);
+    await this.clickOnElement(BTN_STATE_SELECT);
     await this.clickOnElement(`//div[contains(@class,"lsux-link-content--menu") and contains (.,"${state}")]`);
-    await this.waitForElementToBeVisible(conAvailablePlans);
+    await this.waitForElementToBeVisible(CON_AVAILABLE_PLANS);
     await this.clickEnrollNowButtonFromShieldBenefitsPricingPage(planName, tierName);
   };
 
@@ -54,13 +54,13 @@ export class ShieldBenefitsLegalPricingPage extends ShieldBenefitsLegalOverviewP
    * @param {string} planName2
    * @memberof ShieldBenefitsLegalPricingPage
    */
-  selectCombinationPlanAndEnroll = async (state: string, paymentFrequency: string, planName1: string, planName2: string) => {
+  selectCombinationPlanAndEnroll = async (state: string, paymentFrequency: string, planName1: string, planName2: string): Promise<void> => {
     console.log(' - shieldBenefitsLegalPricingPage.selectCombinationPlanAndEnroll');
-    await this.clickOnElement(btnStateSelect);
+    await this.clickOnElement(BTN_STATE_SELECT);
     await this.clickOnElement(`//div[contains(@class,"lsux-link-content--menu") and contains (.,"${state}")]`);
-    await this.clickOnElement(btnPaymentFrequencySelect);
+    await this.clickOnElement(BTN_PAYMENT_FREQUENCY_SELECT);
     await this.clickOnElement(`//div[contains(@class,"lsux-link-content--menu") and contains (.,"${paymentFrequency}")]`);
-    await this.waitForElementToBeVisible(conAvailablePlans);
+    await this.waitForElementToBeVisible(CON_AVAILABLE_PLANS);
     await this.clickCombinationPlanEnrollNowButton(planName1, planName2);
   };
 
@@ -68,18 +68,18 @@ export class ShieldBenefitsLegalPricingPage extends ShieldBenefitsLegalOverviewP
    * @param {string} province
    * @memberof ShieldBenefitsLegalPricingPage
    */
-  selectProvince = async (province: string) => {
+  selectProvince = async (province: string): Promise<void> => {
     console.log(' - shieldBenefitsLegalPricingPage.selectPProvince');
     await this.clickStateOrProvinceSelectDropdown();
     await this.clickOnElement(`//div[contains(@class,"lsux-link-content lsux-link-content--menu py-3 px-4") and contains (.,"${province}")]`);
-    await this.waitForElementToBeVisible(conAvailablePlans);
+    await this.waitForElementToBeVisible(CON_AVAILABLE_PLANS);
   };
 
   /**
    * @param {string} stateOrProvince
    * @memberof ShieldBenefitsLegalPricingPage
    */
-  selectStateOrProvince = async (stateOrProvince: string) => {
+  selectStateOrProvince = async (stateOrProvince: string): Promise<void> => {
     console.log(' - shieldBenefitsLegalPricingPage.selectState');
     await this.clickStateOrProvinceSelectDropdown();
     await this.clickOnElement(`//div[contains(@class,"lsux-link-content--menu") and contains (.,"${stateOrProvince}")]`);
@@ -89,7 +89,7 @@ export class ShieldBenefitsLegalPricingPage extends ShieldBenefitsLegalOverviewP
    * @param {string} paymentFrequency
    * @memberof ShieldBenefitsLegalPricingPage
    */
-  selectPaymentFrequency = async (paymentFrequency: string) => {
+  selectPaymentFrequency = async (paymentFrequency: string): Promise<void> => {
     console.log(' - shieldBenefitsLegalPricingPage.selectPaymentFrequency');
     await this.clickPaymentFrequencyDropdown();
     await this.clickOnElement(`//div[contains(@class,"lsux-link-content--menu") and contains (.,"${paymentFrequency}")]`);
@@ -101,17 +101,17 @@ export class ShieldBenefitsLegalPricingPage extends ShieldBenefitsLegalOverviewP
   /**
    * @memberof ShieldBenefitsLegalPricingPage
    */
-  clickStateOrProvinceSelectDropdown = async () => {
+  clickStateOrProvinceSelectDropdown = async (): Promise<void> => {
     console.log(' - shieldBenefitsLegalPricingPage.clickStateOrProvinceSelectDropdown');
-    await this.clickOnElement(btnStateOrProvinceSelect);
+    await this.clickOnElement(BTN_STATE_OR_PROVINCE_SELECT);
   };
 
   /**
    * @memberof ShieldBenefitsLegalPricingPage
    */
-  clickPaymentFrequencyDropdown = async () => {
+  clickPaymentFrequencyDropdown = async (): Promise<void> => {
     console.log(' - shieldBenefitsLegalPricingPage.clickPaymentFrequencyDropdown');
-    await this.clickOnElement(btnPaymentFrequencySelect);
+    await this.clickOnElement(BTN_PAYMENT_FREQUENCY_SELECT);
   };
 
   /**
@@ -119,9 +119,9 @@ export class ShieldBenefitsLegalPricingPage extends ShieldBenefitsLegalOverviewP
    *
    * @memberof ShieldBenefitsLegalPricingPage
    */
-  clickPaymentFrequencyButton = async () => {
+  clickPaymentFrequencyButton = async (): Promise<void> => {
     console.log(' - shieldBenefitsLegalPricingPage.clickPaymentFrequencyButton');
-    await this.clickOnElement(btnPaymentFrequencySelect);
+    await this.clickOnElement(BTN_PAYMENT_FREQUENCY_SELECT);
   };
 
   /**
@@ -129,10 +129,10 @@ export class ShieldBenefitsLegalPricingPage extends ShieldBenefitsLegalOverviewP
    * @param {string} tierName
    * @memberof ShieldBenefitsLegalPricingPage
    */
-  clickEnrollNowButtonFromShieldBenefitsPricingPage = async (planName: string, tierName: string) => {
+  clickEnrollNowButtonFromShieldBenefitsPricingPage = async (planName: string, tierName: string): Promise<void> => {
     console.log(' - shieldBenefitsLegalPricingPage.clickEnrollNowButtonFromShieldBenefitsPricingPage');
     // Click on Enroll Now button for selected Plan
-    await this.waitForElementToBeVisible(conAvailablePlans);
+    await this.waitForElementToBeVisible(CON_AVAILABLE_PLANS);
     await this.clickOnElement(`//div[@class="groupTokenCard" and contains(.,"${planName}") and contains(.,"${tierName}")]//button`);
   };
 
@@ -142,7 +142,7 @@ export class ShieldBenefitsLegalPricingPage extends ShieldBenefitsLegalOverviewP
    * @memberof ShieldBenefitsLegalPricingPage
    */
   // TODO research how to capture only a specific call - this may or not be the right approach
-  selectStateOrProvinceAndFrequencyAndCaptureResponse = async (stateOrProvince: string, payFrequency: string) => {
+  selectStateOrProvinceAndFrequencyAndCaptureResponse = async (stateOrProvince: string, payFrequency: string): Promise<void> => {
     const [response] = await Promise.all([
       await this.page.waitForResponse((res) => res.status() == 200 && res.url().includes('products/benefits-and-supplements')),
       await this.selectStateOrProvince(stateOrProvince),
@@ -155,9 +155,9 @@ export class ShieldBenefitsLegalPricingPage extends ShieldBenefitsLegalOverviewP
    * @param {string} planSupplementName
    * @memberof ShieldBenefitsLegalPricingPage
    */
-  clickPricingPageSinglePlanEnrollNowButton = async (planSupplementName: string) => {
+  clickPricingPageSinglePlanEnrollNowButton = async (planSupplementName: string): Promise<void> => {
     console.log(' - shieldBenefitsLegalPricingPage.clickPricingPageSinglePlanEnrollNowButton');
-    await this.waitForElementToBeVisible(conAvailablePlans);
+    await this.waitForElementToBeVisible(CON_AVAILABLE_PLANS);
     if (planSupplementName.includes('+')) {
       if (planSupplementName.includes(',')) {
         // 2 supplement case (if group configured with 3 or more we need to revisit this approach)
@@ -177,7 +177,7 @@ export class ShieldBenefitsLegalPricingPage extends ShieldBenefitsLegalOverviewP
    * @param {string} planName2
    * @memberof ShieldBenefitsLegalPricingPage
    */
-  clickCombinationPlanEnrollNowButton = async (planName1: string, planName2: string) => {
+  clickCombinationPlanEnrollNowButton = async (planName1: string, planName2: string): Promise<void> => {
     console.log(' - shieldBenefitsLegalPricingPage.clickCombinationPlanEnrollNowButton');
     // Click on Enroll Now button for selected Plan
     await this.clickOnElement(`//div[@class="groupTokenCardCombine" and contains(.,"${planName1}") and contains(.,"${planName2}")]//button`);

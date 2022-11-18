@@ -3,16 +3,16 @@ import UrlsUtils from '../../utils/urls.utils';
 import { LoginPage } from '../login/login.page';
 
 // Selectors
-const lnkPlans = '//a[contains(.,"Plans")]';
-const lnkProfile = '//a[contains(.,"Profile")]';
-const lnkPayments = '//a[contains(.,"Payments")]';
-const lnkSecurity = '//a[contains(.,"Security")]';
-const lnkResources = '//a[contains(.,"Resources")]';
-const lnkPreferences = '//a[contains(.,"Preferences")]';
-const lnkMultifactor = '//a[contains(.,"Multifactor")]';
+const LNK_PLANS = '//a[contains(.,"Plans")]';
+const LNK_PROFILE = '//a[contains(.,"Profile")]';
+const LNK_PAYMENTS = '//a[contains(.,"Payments")]';
+const LNK_SECURITY = '//a[contains(.,"Security")]';
+const LNK_RESOURCES = '//a[contains(.,"Resources")]';
+const LNK_PREFERENCES = '//a[contains(.,"Preferences")]';
+const LNK_MULTIFACTOR = '//a[contains(.,"Multifactor")]';
 
 /**
- * * @export
+ * @export
  * @class AccountNavigationPage
  * @extends {LoginPage}
  */
@@ -22,51 +22,51 @@ export class AccountNavigationPage extends LoginPage {
 
   // ========================== Click Methods ==========================
 
-  clickPlansLink = async () => {
+  clickPlansLink = async (): Promise<void> => {
     console.log(' - accountNavigationPage.clickPlansLink');
     // Click on Plans Link from Accounts Navigation
-    await this.clickOnElement(lnkPlans);
+    await this.clickOnElement(LNK_PLANS);
   };
 
-  clickProfileLink = async () => {
+  clickProfileLink = async (): Promise<void> => {
     console.log(' - accountNavigationPage.clickProfileLink');
     // Click on Profile Link from Accounts Navigation
-    await this.clickOnElement(lnkProfile);
+    await this.clickOnElement(LNK_PROFILE);
   };
 
-  clickPaymentsLink = async () => {
+  clickPaymentsLink = async (): Promise<void> => {
     console.log(' - accountNavigationPage.clickPaymentsLink');
     // Click on Payments Link from Accounts Navigation
-    await this.clickOnElement(lnkPayments);
+    await this.clickOnElement(LNK_PAYMENTS);
   };
 
-  clickSecurityLink = async () => {
+  clickSecurityLink = async (): Promise<void> => {
     console.log(' - accountNavigationPage.clickSecurityLink');
     // Click on Security Link from Accounts Navigation
-    await this.clickOnElement(lnkSecurity);
+    await this.clickOnElement(LNK_SECURITY);
   };
 
-  clickResourcesLink = async () => {
+  clickResourcesLink = async (): Promise<void> => {
     console.log(' - accountNavigationPage.clickResourcesLink');
     // Click on Resources Link from Accounts Navigation
-    await this.clickOnElement(lnkResources);
+    await this.clickOnElement(LNK_RESOURCES);
   };
 
-  clickPreferencesLink = async () => {
+  clickPreferencesLink = async (): Promise<void> => {
     console.log(' - accountNavigationPage.clickPreferencesLink');
     // Click on Preferences Link from Accounts Navigation
-    await this.clickOnElement(lnkPreferences);
+    await this.clickOnElement(LNK_PREFERENCES);
   };
 
-  clickMfaLink = async () => {
+  clickMfaLink = async (): Promise<void> => {
     console.log(' - accountNavigationPage.clickMfaLink');
     // Click on Multifactor Link from Accounts Navigation
-    await this.clickOnElement(lnkMultifactor);
+    await this.clickOnElement(LNK_MULTIFACTOR);
   };
 
   // ========================== Navigate Methods ==========================
 
-  navigateToAccountPlansPage = async () => {
+  navigateToAccountPlansPage = async (): Promise<void> => {
     console.log(' - accountNavigationPage.navigateToAccountPlansPage');
     // Login with a basic user
     await this.loginPage.goTo(UrlsUtils.legalshieldUrls.account.url + '/plans');
@@ -75,7 +75,7 @@ export class AccountNavigationPage extends LoginPage {
 
   // ========================== Assertion Methods ==========================
 
-  assertAccountProfileUrl = async () => {
+  assertAccountProfileUrl = async (): Promise<void> => {
     console.log(' - accountNavigationPage.assertAccountProfileUrl');
     // Confirm the Account Profile Page URL
     await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.account.url + '/profile');
@@ -83,7 +83,7 @@ export class AccountNavigationPage extends LoginPage {
     await this.page.waitForLoadState('domcontentloaded');
   };
 
-  assertAccountPaymentsUrl = async () => {
+  assertAccountPaymentsUrl = async (): Promise<void> => {
     console.log(' - accountNavigationPage.assertAccountPaymentsUrl');
     // Confirm the Account Payments Page URL
     await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.account.url + '/payments');
@@ -91,7 +91,7 @@ export class AccountNavigationPage extends LoginPage {
     await this.page.waitForLoadState('domcontentloaded');
   };
 
-  assertAccountSecurityUrl = async () => {
+  assertAccountSecurityUrl = async (): Promise<void> => {
     console.log(' - accountNavigationPage.assertAccountSecurityUrl');
     // Confirm the Account Security Page URL
     await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.account.url + '/security');
@@ -99,7 +99,7 @@ export class AccountNavigationPage extends LoginPage {
     await this.page.waitForLoadState('domcontentloaded');
   };
 
-  assertAccountResourcesUrl = async () => {
+  assertAccountResourcesUrl = async (): Promise<void> => {
     console.log(' - accountNavigationPage.assertAccountResourcesUrl');
     // Confirm the Account Resources Page URL
     await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.account.url + '/resources');
@@ -107,7 +107,7 @@ export class AccountNavigationPage extends LoginPage {
     await this.page.waitForLoadState('domcontentloaded');
   };
 
-  assertAccountPreferencesUrl = async () => {
+  assertAccountPreferencesUrl = async (): Promise<void> => {
     console.log(' - accountNavigationPage.assertAccountPreferencesUrl');
     // Confirm the Account Preferences Page URL
     await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.account.url + '/preferences');
@@ -115,7 +115,7 @@ export class AccountNavigationPage extends LoginPage {
     await this.page.waitForLoadState('domcontentloaded');
   };
 
-  assertAccountMultifactorUrl = async () => {
+  assertAccountMultifactorUrl = async (): Promise<void> => {
     console.log(' - accountNavigationPage.assertAccountMultifactorUrl');
     // Confirm the Account Multifactor Page URL
     await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.account.url + '/mfa');
@@ -123,7 +123,7 @@ export class AccountNavigationPage extends LoginPage {
     await this.page.waitForLoadState('domcontentloaded');
   };
 
-  assertAccountPlansUrl = async () => {
+  assertAccountPlansUrl = async (): Promise<void> => {
     console.log(' - accountNavigationPage.assertAccountPlansUrl');
     // Confirm the Account Plans Page URL
     await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.account.url + '/plans');

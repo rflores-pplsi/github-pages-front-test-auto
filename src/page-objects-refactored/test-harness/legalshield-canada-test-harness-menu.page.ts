@@ -2,8 +2,6 @@ import { LoginPage } from '../login/login.page'; // import the LoginPage for ext
 
 // ========================== Selectors ==================================
 
-const ddlRegionSelector = '//select[contains(@class,"lsc_region_selector")]';
-
 /**
  *
  *
@@ -14,7 +12,7 @@ const ddlRegionSelector = '//select[contains(@class,"lsc_region_selector")]';
 export class LegalshieldCanadaTestHarnessMenuPage extends LoginPage {
   // ========================== Process Methods ============================
 
-  addProducts = async (productNames: Promise<Object>) => {
+  addProducts = async (): Promise<void> => {
     console.log(' -legalshieldCanadaTestHarnessMenuPage.clickProductButton');
     // await this.clickOnElement();
     await this.page.waitForLoadState('domcontentloaded');
@@ -22,7 +20,7 @@ export class LegalshieldCanadaTestHarnessMenuPage extends LoginPage {
   // ========================== Navigate Methods ===========================
   // ========================== Click Methods ==============================
 
-  clickProductButton = async (productName: string) => {
+  clickProductButton = async (): Promise<void> => {
     console.log(' -legalshieldCanadaTestHarnessMenuPage.clickProductButton');
     // await this.clickOnElement();
     await this.page.waitForLoadState('domcontentloaded');

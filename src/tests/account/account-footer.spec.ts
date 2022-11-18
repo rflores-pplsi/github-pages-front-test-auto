@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { test } from '@playwright/test';
 import { basicUser } from '../../utils/user.utils';
 import { AccountFooterPage } from '../../page-objects/account/account-footer.page';
@@ -25,11 +24,11 @@ test('Navigate to Terms of Service page', async () => {
 test('Navigate to Privacy Policy page', async () => {
   test.skip(); // Not working in lower environments need to still resolve for prod
   console.log('Test Case: Navigate to Privacy Policy page');
-  const newPage = await accountFooterPage.clickPrivacyPolicyLink();
+  // const newPage = await accountFooterPage.clickPrivacyPolicyLink();
 });
 
-test('Navigate to Legal Disclaimer page', async ({ page }) => {
+test('Navigate to Legal Disclaimer page', async () => {
   test.skip(); // Not working in lower environments need to still resolve for prod
   console.log('Test Case: Navigate to Legal Disclaimer page');
-  const newPage = await accountFooterPage.clickDisclaimerLink();
+  // const newPage = await accountFooterPage.clickDisclaimerLink();
 });

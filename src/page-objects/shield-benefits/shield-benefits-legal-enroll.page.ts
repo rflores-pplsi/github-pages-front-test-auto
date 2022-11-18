@@ -1,7 +1,7 @@
 import { BasePage } from '../base.page';
 
 // ========================== Selectors ==================================
-const btnEnroll = 'a:has-text("Enroll Now")';
+const BTN_ENROLL = 'a:has-text("Enroll Now")';
 
 /**
  * @export
@@ -12,10 +12,10 @@ export class ShieldBenefitsIdentityEnrollPage extends BasePage {
   // ========================== Process Methods ============================
   // ========================== Navigate Methods ===========================
   // ========================== Click Methods ==============================
-  clickEnrollNowButton = async () => {
+  clickEnrollNowButton = async (): Promise<void> => {
     console.log(' - shieldBenefitsIdentityEnrollPage.clickEnrollButton');
     // Click on Enroll Now button to reach the pricing page
-    await this.clickOnElement(btnEnroll);
+    await this.clickOnElement(BTN_ENROLL);
   };
   // ========================== Assertion Methods ==========================
 }

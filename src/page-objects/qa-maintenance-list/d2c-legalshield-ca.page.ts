@@ -1,20 +1,15 @@
-/* eslint-disable no-undef */
-/* eslint-disable new-cap */
-/* eslint-disable no-unused-vars */
-/* eslint-disable require-jsdoc */
 import UrlsUtils from '../../utils/urls.utils';
 import { basicUser } from '../../utils/user.utils';
 import { LoginPage } from '../login/login.page';
 import { OktaPage } from '../okta/okta.page';
-import { waitNitroPackToLoadElementAsVisible } from '../../utils/pageUtils';
-
-require('dotenv').config;
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 // ========================== Selectors ==================================
 const urlD2CLegalShieldCaPage = UrlsUtils.testHarnessUrls.d2c.url;
-const slctChooseYourRegion = 'select.lsc_region_selector.region_select';
-const btnUpdateRegion = '//button[contains(text(),"Update region")]';
-const lblWelcome = '//h1[contains(text(),"Welcome to the Family!")]';
+const SELECT_CHOOSE_YOUR_REGION = 'select.lsc-region-popup__selector';
+const BTN_UPDATE_REGION = '//button[contains(text(),"Update region")]';
+const LBL_WELCOME = '//h1[contains(text(),"Welcome to the Family!")]';
 
 export class D2CLegalShieldCaPage extends OktaPage {
   // ========================== Process Methods ============================
@@ -24,12 +19,12 @@ export class D2CLegalShieldCaPage extends OktaPage {
     await this.page.click('text=Direct To Consumer Network Calendar >> img >> nth=' + nth, { force: true });
   };
   selectYourRegion = async (region: string): Promise<void> => {
-    await this.page.waitForSelector(slctChooseYourRegion);
-    await this.selectFromDropDownMenu(slctChooseYourRegion, region);
-    if (!(await this.page.locator(btnUpdateRegion).isVisible())) {
+    await this.page.waitForSelector(SELECT_CHOOSE_YOUR_REGION);
+    await this.selectFromDropDownMenu(SELECT_CHOOSE_YOUR_REGION, region);
+    if (!(await this.page.locator(BTN_UPDATE_REGION).isVisible())) {
       console.log('Button does not exist');
     } else {
-      await this.clickOnElement(btnUpdateRegion);
+      await this.clickOnElement(BTN_UPDATE_REGION);
     }
   };
   addPlanAndSomeSupplements = async (lineOfBusiness: string, planSupp: Array<string>): Promise<void> => {
@@ -62,14 +57,14 @@ export class D2CLegalShieldCaPage extends OktaPage {
     const loginPage = new LoginPage(this.page);
     await loginPage.login(basicUser.email, basicUser.password);
     await this.page.waitForLoadState();
-    await this.page.screenshot({ path: 'Screenshots/testingHarness/' + lineofbusiness + 'Checkout.png', fullPage: true });
+    await this.page.screenshot({ fullPage: true, path: 'Screenshots/testingHarness/' + lineofbusiness + 'Checkout.png' });
   };
   // ========================== Navigate Methods ===========================
   navigateToTestingHarnessPage = async (lineofbusiness: string): Promise<void> => {
     // navigate to URL
     await this.page.goto(urlD2CLegalShieldCaPage);
     await this.page.waitForLoadState();
-    await this.page.screenshot({ path: 'Screenshots/testingHarness/' + lineofbusiness + 'TestingHarness.png', fullPage: true });
+    await this.page.screenshot({ fullPage: true, path: 'Screenshots/testingHarness/' + lineofbusiness + 'TestingHarness.png' });
   };
 
   // ========================== Click Methods ==============================
@@ -78,7 +73,7 @@ export class D2CLegalShieldCaPage extends OktaPage {
     await this.page.waitForLoadState();
     const LineOfBusiness = 'div.et_pb_column_' + lofb;
     await this.page.waitForSelector(LineOfBusiness);
-    await this.page.screenshot({ path: 'Screenshots/testingHarness/d2cLegalShieldLineOfBusiness.png', fullPage: true });
+    await this.page.screenshot({ fullPage: true, path: 'Screenshots/testingHarness/d2cLegalShieldLineOfBusiness.png' });
     await this.clickOnElement(LineOfBusiness);
   };
   // ========================== Assertion Methods ==========================
@@ -86,9 +81,9 @@ export class D2CLegalShieldCaPage extends OktaPage {
   assertWelcomelabel = async (): Promise<void> => {
     // Verify that the user made the purchase
     await this.page.waitForLoadState();
-    await this.page.waitForSelector(lblWelcome);
-    await this.assertElementContainsText(lblWelcome, 'Welcome to the Family!');
+    await this.page.waitForSelector(LBL_WELCOME);
+    await this.assertElementContainsText(LBL_WELCOME, 'Welcome to the Family!');
     console.log('Welcome to the Family!');
-    await this.page.screenshot({ path: 'Screenshots/testingHarness/d2cLegalShieldConfirmation.png', fullPage: true });
+    await this.page.screenshot({ fullPage: true, path: 'Screenshots/testingHarness/d2cLegalShieldConfirmation.png' });
   };
 }

@@ -5,10 +5,10 @@ import { LoginPage } from '../login/login.page';
 // ========================== Selectors ==========================
 
 const url = urlsUtils.legalshieldUrls.classicShieldAtWork.url;
-const txtUsername = '[id="login"]';
-const txtPassword = '[id="Password"]';
-const btnSignIn = '#submitButton > button';
-const btnSignUp = 'body > div > div.content > div > div > div > a';
+const TXT_USERNAME = '[id="login"]';
+const TXT_PASSWORD = '[id="Password"]';
+const BTN_SIGN_IN = '#submitButton > button';
+const BTN_SIGN_UP = 'body > div > div.content > div > div > div > a';
 
 /**
  * @export
@@ -19,9 +19,9 @@ export class ClassicShieldAtWork extends LoginPage {
   // ========================== Process Methods ==========================
   loginWithCredentials = async (): Promise<void> => {
     console.log(' - accountShieldAtWorkPage.loginWithCredentials');
-    await this.page.fill(txtUsername, 'admin@test.com');
-    await this.page.fill(txtPassword, 'Testpass1');
-    await this.page.click(btnSignIn);
+    await this.page.fill(TXT_USERNAME, 'admin@test.com');
+    await this.page.fill(TXT_PASSWORD, 'Testpass1');
+    await this.page.click(BTN_SIGN_IN);
     await this.page.waitForTimeout(1000);
   };
 
@@ -37,7 +37,7 @@ export class ClassicShieldAtWork extends LoginPage {
   clickSignUp = async (): Promise<void> => {
     console.log(' - accountClassicShieldAtWorkPage.clickReports');
     // Click on Sign Up button
-    await this.clickOnElement(btnSignUp);
+    await this.clickOnElement(BTN_SIGN_UP);
   };
 
   // ========================== Assertion Methods ==========================

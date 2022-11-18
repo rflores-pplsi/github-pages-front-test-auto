@@ -1,18 +1,18 @@
-/* eslint-disable no-undef */
 import { test } from '@playwright/test';
-import { LoginPage } from '../../page-objects/login/login.page';
-import { IDShieldUSPage } from '../../page-objects/qa-maintenance-list/d2c-idshield-us-marketingsite.page';
-import { D2CLegalShieldCaPage } from '../../page-objects/qa-maintenance-list/d2c-legalshield-ca.page';
-import DataUtils from '../../utils/Tests.Data';
+import { LoginPage } from '../../../page-objects/login/login.page';
+import { IDShieldUSPage } from '../../../page-objects/qa-maintenance-list/d2c-idshield-us-marketingsite.page';
+import { D2CLegalShieldCaPage } from '../../../page-objects/qa-maintenance-list/d2c-legalshield-ca.page';
+import DataUtils from '../../../utils/Tests.Data';
+import * as dotenv from 'dotenv';
+dotenv.config();
 
-require('dotenv').config();
 // create instance of Page
 let idShieldUSPage: IDShieldUSPage;
 let loginPage: LoginPage;
 let d2cLegalShieldCaPage: D2CLegalShieldCaPage;
 
 // Setup environment before each test
-test.beforeEach(async ({ page, request }) => {
+test.beforeEach(async ({ page }) => {
   idShieldUSPage = new IDShieldUSPage(page);
   loginPage = new LoginPage(page);
   d2cLegalShieldCaPage = new D2CLegalShieldCaPage(page);
@@ -21,7 +21,7 @@ test.beforeEach(async ({ page, request }) => {
   test.slow();
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
-test('E2E idShield US marketing family monthly plan', async ({ page }) => {
+test('E2E idShield US marketing family monthly plan', async () => {
   test.slow;
   await test.step('Navigate to legalshield CA marketing site', async () => {
     await idShieldUSPage.navigateToIDShieldUSMarketingSitePlage('d2cLegalShieldCA');

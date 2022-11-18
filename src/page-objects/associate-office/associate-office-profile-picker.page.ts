@@ -4,23 +4,22 @@ import { associateReportsCommissions, profilePicker } from '../../utils/user.uti
 import { LoginPage } from '../login/login.page';
 
 // ========================== Selectors =================================
-const lblMyAccounts: string = 'h1:has-text("My Accounts")';
-const lblMessage: string = 'p:has-text("Please select the account you would like to manage")';
-const lnkMyEngage: string = "(//a[@data-label='MyEvo'])[2]";
-const lnkMyTeam: string = '.lsux-navigation :nth-child(1) > div.lsux-link-content';
-const lnkReports: string = '.lsux-navigation :nth-child(2) > div';
-const lnkAllReports: string = '.lsux-navigation :nth-child(3) > div';
-const lnkCommissions: string = '.lsux-navigation :nth-child(4) > div';
-const lnkTaxes: string = '.lsux-navigation :nth-child(5) > div';
-const lnkResources: string = '.lsux-navigation :nth-child(6) > div';
-const lnkMessages: string = '.lsux-navigation :nth-child(7) > div';
-const lnkCompensation: string = '.lsux-navigation :nth-child(8) > div';
-const lnkLsAdvantage: string = '.lsux-navigation :nth-child(7) > div';
-const lnkAssociatePerks: string = '.lsux-navigation :nth-child(8) > div';
-const ddlDropdownBox: string = 'select.associate-selector';
-const lblTaxFormRequest: string = "//h3[.='Tax form request']";
+const LBL_MY_ACCOUNTS = 'h1:has-text("My Accounts")';
+const LBL_MESSAGE = 'p:has-text("Please select the account you would like to manage")';
+const LNK_MY_ENGAGE = "(//a[@data-label='MyEvo'])[2]";
+const LNK_MY_TEAM = '.lsux-navigation :nth-child(1) > div.lsux-link-content';
+const LNK_REPORTS = '.lsux-navigation :nth-child(2) > div';
+const LNK_ALL_REPORTS = '.lsux-navigation :nth-child(3) > div';
+const LNK_COMMISSIONS = '.lsux-navigation :nth-child(4) > div';
+const LNK_TAXES = '.lsux-navigation :nth-child(5) > div';
+const LNK_RESOURCES = '.lsux-navigation :nth-child(6) > div';
+const LNK_MESSAGES = '.lsux-navigation :nth-child(7) > div';
+const LNK_COMPENSATION = '.lsux-navigation :nth-child(8) > div';
+const LNK_LS_ADVANTAGE = '.lsux-navigation :nth-child(7) > div';
+const LNK_ASSOCIATE_PERKS = '.lsux-navigation :nth-child(8) > div';
+const DDL_DROPDOWN_BOX = 'select.associate-selector';
+const LBL_TAX_FORM_REQUEST = "//h3[.='Tax form request']";
 
-// eslint-disable-next-line valid-jsdoc
 /**
  * @export
  * @class ProfilePickerPage
@@ -30,7 +29,7 @@ export class ProfilePickerPage extends LoginPage {
   // ========================== Process Methods ==========================
   selectAssociateAccount = async (): Promise<void> => {
     console.log(' - profilePickerPage.selectAssociateAccount');
-    await this.selectFromDropDownMenu(ddlDropdownBox, 'PINNACLE1 - 106664600');
+    await this.selectFromDropDownMenu(DDL_DROPDOWN_BOX, 'PINNACLE1 - 106664600');
   };
   // ========================== Navigate Methods =========================
   navigateToProfilePickerPage = async (): Promise<void> => {
@@ -38,32 +37,32 @@ export class ProfilePickerPage extends LoginPage {
     // Navigate to LS Engage Page
     await this.goTo(UrlsUtils.channelsUrls.login.url);
     await this.login(profilePicker.username, profilePicker.password);
-    await this.page.waitForSelector(lblMyAccounts);
+    await this.page.waitForSelector(LBL_MY_ACCOUNTS);
   };
 
   navigateToProfilePickerPage2 = async (): Promise<void> => {
     console.log(' - profilePickerPage.navigateToProfilePickerPage');
     await this.goTo(UrlsUtils.channelsUrls.taxForm.url);
     await this.login(profilePicker.username, profilePicker.password);
-    await this.page.waitForSelector(lblMyAccounts);
+    await this.page.waitForSelector(LBL_MY_ACCOUNTS);
   };
 
   navigateToProfilePickerPage3 = async (): Promise<void> => {
     console.log(' - profilePickerPage.navigateToProfilePickerPage');
     await this.goTo(UrlsUtils.channelsUrls.taxForm.url);
     await this.login(associateReportsCommissions.username, associateReportsCommissions.password);
-    await this.page.waitForSelector(lblTaxFormRequest);
+    await this.page.waitForSelector(LBL_TAX_FORM_REQUEST);
   };
 
   // ========================== Click Methods ============================
-  clickOnAssociateAccount = async (number: number = 0): Promise<void> => {
+  clickOnAssociateAccount = async (number = 0): Promise<void> => {
     console.log(' - profilePickerPage.clickOnAssociateAccount');
     await this.page.click(`(//div[@class="lsux-card--inset p-6"])[${number}]`);
   };
 
   clickOnDropdownBox = async (): Promise<void> => {
     console.log(' - profilePickerPage.clickOnDropdownBox');
-    await this.page.click(ddlDropdownBox);
+    await this.page.click(DDL_DROPDOWN_BOX);
   };
 
   // ========================== Assertion Methods ========================
@@ -78,35 +77,35 @@ export class ProfilePickerPage extends LoginPage {
 
   assertProfilePickerPage = async (): Promise<void> => {
     console.log(' - profilePickerPage.assertProfilePickerPage');
-    await this.assertElementIsVisible(lblMyAccounts);
-    await expect(this.page.locator(lblMyAccounts)).toContainText('My Accounts');
-    await this.assertElementIsVisible(lblMessage);
-    await expect(this.page.locator(lblMessage)).toContainText('Please select the account you would like to manage');
+    await this.assertElementIsVisible(LBL_MY_ACCOUNTS);
+    await expect(this.page.locator(LBL_MY_ACCOUNTS)).toContainText('My Accounts');
+    await this.assertElementIsVisible(LBL_MESSAGE);
+    await expect(this.page.locator(LBL_MESSAGE)).toContainText('Please select the account you would like to manage');
   };
 
   assertNoLeftNavMenuOnPage = async (): Promise<void> => {
     console.log(' - profilePickerPage.assertNoLeftNavMenuOnPage');
-    expect(await this.page.locator(lnkMyTeam).isVisible()).toBe(false);
-    expect(await this.page.locator(lnkReports).isVisible()).toBe(false);
-    expect(await this.page.locator(lnkAllReports).isVisible()).toBe(false);
-    expect(await this.page.locator(lnkCommissions).isVisible()).toBe(false);
-    expect(await this.page.locator(lnkTaxes).isVisible()).toBe(false);
-    expect(await this.page.locator(lnkResources).isVisible()).toBe(false);
-    expect(await this.page.locator(lnkMessages).isVisible()).toBe(false);
-    expect(await this.page.locator(lnkCompensation).isVisible()).toBe(false);
-    expect(await this.page.locator(lnkLsAdvantage).isVisible()).toBe(false);
-    expect(await this.page.locator(lnkAssociatePerks).isVisible()).toBe(false);
+    expect(await this.page.locator(LNK_MY_TEAM).isVisible()).toBe(false);
+    expect(await this.page.locator(LNK_REPORTS).isVisible()).toBe(false);
+    expect(await this.page.locator(LNK_ALL_REPORTS).isVisible()).toBe(false);
+    expect(await this.page.locator(LNK_COMMISSIONS).isVisible()).toBe(false);
+    expect(await this.page.locator(LNK_TAXES).isVisible()).toBe(false);
+    expect(await this.page.locator(LNK_RESOURCES).isVisible()).toBe(false);
+    expect(await this.page.locator(LNK_MESSAGES).isVisible()).toBe(false);
+    expect(await this.page.locator(LNK_COMPENSATION).isVisible()).toBe(false);
+    expect(await this.page.locator(LNK_LS_ADVANTAGE).isVisible()).toBe(false);
+    expect(await this.page.locator(LNK_ASSOCIATE_PERKS).isVisible()).toBe(false);
   };
 
-  assertAssociateAccounts = async (number: number = 0): Promise<void> => {
+  assertAssociateAccounts = async (number = 0): Promise<void> => {
     console.log(' - profilePickerPage.assertAssociateAccounts');
     await this.assertElementIsVisible(`(//div[@class="lsux-card--inset p-6"])[${number}]`);
   };
 
   assertLSEngagePage = async (): Promise<void> => {
     console.log(' - profilePickerPage.assertLSEngagePage');
-    await this.assertElementIsVisible(lnkMyEngage);
-    await expect(this.page.locator(lnkMyEngage)).toContainText('My Engage');
+    await this.assertElementIsVisible(LNK_MY_ENGAGE);
+    await expect(this.page.locator(LNK_MY_ENGAGE)).toContainText('My Engage');
   };
 
   assertAssociateDropdownProfiles = async (): Promise<void> => {
@@ -123,16 +122,16 @@ export class ProfilePickerPage extends LoginPage {
 
   assertDropdownBoxIsDisplayed = async (): Promise<void> => {
     console.log(' - profilePickerPage.assertDropdownBoxIsDisplayed ');
-    await this.page.locator(ddlDropdownBox).isVisible();
+    await this.page.locator(DDL_DROPDOWN_BOX).isVisible();
   };
 
   assertDropdownBoxIsNotDisplayed = async (): Promise<void> => {
     console.log(' - profilePickerPage.assertDropdownBoxIsNotDisplayed ');
-    expect(await this.page.locator(ddlDropdownBox).isVisible()).toBe(false);
+    expect(await this.page.locator(DDL_DROPDOWN_BOX).isVisible()).toBe(false);
   };
 
   assertAssociateIsSwitched = async (): Promise<void> => {
     console.log(' - profilePickerPage.assertAssociateIsSwitched ');
-    await expect(this.page.locator(ddlDropdownBox)).toContainText('PINNACLE1 - 106664600');
+    await expect(this.page.locator(DDL_DROPDOWN_BOX)).toContainText('PINNACLE1 - 106664600');
   };
 }

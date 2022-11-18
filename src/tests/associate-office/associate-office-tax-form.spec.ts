@@ -10,11 +10,11 @@ test.beforeEach(async ({ page }) => {
   await taxFormPage.navigateToTaxFormPage();
 });
 
-test('Assert all Tax Form elements on the page', async ({ page }) => {
+test('Assert all Tax Form elements on the page', async () => {
   await taxFormPage.assertTaxFormPageElements();
 });
 
-test('Displays the validation message when requesting a tax form with wrong ss#', async ({ page }) => {
+test('Displays the validation message when requesting a tax form with wrong ss#', async () => {
   await taxFormPage.insertSSNorEIN('2424242');
   await taxFormPage.selectYear('2019');
   await taxFormPage.clickOnSubmitButton();

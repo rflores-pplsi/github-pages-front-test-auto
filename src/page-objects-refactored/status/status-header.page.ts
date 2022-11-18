@@ -1,7 +1,7 @@
 import { LoginPage } from '../login/login.page';
 
 // Selectors
-const lnkSignIn: string = '#signedout';
+const LNK_SIGN_IN = '#signedout';
 
 /**
  * @export
@@ -14,7 +14,7 @@ export class StatusHeaderPage extends LoginPage {
   clickSignIn = async (): Promise<void> => {
     console.log(' - statusHeaderPage.clickSignIn');
     // Click on Sign In link
-    await this.clickOnElement(lnkSignIn);
+    await this.clickOnElement(LNK_SIGN_IN);
     // Wait for page to finish loading
     await this.page.waitForLoadState('load');
   };

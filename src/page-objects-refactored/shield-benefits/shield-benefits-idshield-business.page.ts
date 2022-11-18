@@ -4,23 +4,23 @@ import { OktaPage } from '../okta/okta.page';
 // ========================== Selectors ==================================
 
 const url: string = UrlsUtils.legalshieldUrls.groupEnrollment.url;
-const urlGroup: string = 'https://www.uat-shieldbenefits.com/test48/overview';
-const btnEnroll = 'a:has-text("Enroll Now")';
-const txtSearch: string = '[placeholder="Search"]';
-const btnSearchGroup: string = '.lsux-button--primary';
-const btnEdit: string = '.group-item-controls > div:nth-child(3) > a > div > img';
-const btnCopyLink: string = '.lsux-button:nth-child(3) > .lsux-text--description';
-const tabIDShieldBusinessPage: string = '#root > div > nav > div > div > ul > li:nth-child(5) > a';
-const txtGroupInfo: string = '[class="group-item-info"]';
-const txbNewGroupURLId: string = '.lsux-grid div:nth-child(4) > div > div > form > div:nth-child(1) input';
-const btnSignIn: string = '[id="signedout"]';
-const btnBackToTop: string = 'main > div > div > button > span';
-const btnPaymentFrequency: string = '//p[contains (.,"Payment frequency")]/following-sibling::div//button';
-const btnViewDetails: string = '#root  div:nth-child(1) > div > div > div.groupTokenCardLeft > a';
-const lnkMemberPerks: string = ' section div:nth-child(1) > div > p > a';
-const btnPricing: string = '#root > div > nav > div > div > ul > li:nth-child(7) > a';
-const btnSelect: string = '#root div.filters.mt-5.mb-5.false > div > div.mr-custom > div > button';
-const btnState: string = '#root  div.mr-custom  div:nth-child(6)';
+const URL_GROUP = 'https://www.uat-shieldbenefits.com/test48/overview';
+const BTN_ENROLL = 'a:has-text("Enroll Now")';
+const TXT_SEARCH = '[placeholder="Search"]';
+const BTN_SEARCH_GROUP = '.lsux-button--primary';
+const BTN_EDIT = '.group-item-controls > div:nth-child(3) > a > div > img';
+const BTN_COPY_LINK = '.lsux-button:nth-child(3) > .lsux-text--description';
+const TAB_ID_SHIELD_BUSINESS_PAGE = '#root > div > nav > div > div > ul > li:nth-child(5) > a';
+const TXT_GROUP_INFO = '[class="group-item-info"]';
+const TXB_NEW_GROUP_URL_ID = '.lsux-grid div:nth-child(4) > div > div > form > div:nth-child(1) input';
+const BTN_SIGN_IN = '[id="signedout"]';
+const BTN_BACK_TO_TOP = 'main > div > div > button > span';
+const BTN_PAYMENT_FREQUENCY = '//p[contains (.,"Payment frequency")]/following-sibling::div//button';
+const BTN_VIEW_DETAILS = '#root  div:nth-child(1) > div > div > div.groupTokenCardLeft > a';
+const LNK_MEMBER_PERKS = ' section div:nth-child(1) > div > p > a';
+const BTN_PRICING = '#root > div > nav > div > div > ul > li:nth-child(7) > a';
+const BTN_SELECT = '#root div.filters.mt-5.mb-5.false > div > div.mr-custom > div > button';
+const BTN_STATE = '#root  div.mr-custom  div:nth-child(6)';
 
 /**
  * @export
@@ -38,34 +38,31 @@ export class ShieldBenefitsIDShieldBusinessPage extends OktaPage {
   searchGroup = async (group: string): Promise<void> => {
     console.log(' - ShieldBenefitsIDShieldBusinessPage.searchGroup');
     // Type in the search field group 83696
-    await this.page.fill(txtSearch, group);
+    await this.page.fill(TXT_SEARCH, group);
     // Click on Group Search button
-    await this.clickOnElement(btnSearchGroup);
+    await this.clickOnElement(BTN_SEARCH_GROUP);
     // Confirm search was successful
-    await this.page.waitForSelector(txtGroupInfo);
+    await this.page.waitForSelector(TXT_GROUP_INFO);
   };
 
   copyNewGroupURL = async (): Promise<void> => {
     console.log(' - ShieldBenefitsIDShieldBusinessPage.copyNewGroupURL');
     // Copy link, paste it in a another tab
-    await this.clickOnElement(btnCopyLink);
+    await this.clickOnElement(BTN_COPY_LINK);
     await this.page.waitForTimeout(1000);
   };
   /**
    *
    *
-   * @param {string} state
-   * @param {string} paymentFrequency
    * @memberof ShieldBenefitsIDShieldBusinessPage
    */
-
-  selectStateAndPaymentFrequency = async (state: string, paymentFrequency: string): Promise<void> => {
+  selectStateAndPaymentFrequency = async (): Promise<void> => {
     console.log(' - ShieldBenefitsIDShieldBusinessPage.selectStateAndPaymentFrequency');
     // Select State
-    await this.clickOnElement(btnSelect);
-    await this.clickOnElement(btnState);
+    await this.clickOnElement(BTN_SELECT);
+    await this.clickOnElement(BTN_STATE);
     // Select Payment Frequency
-    await this.clickOnElement(btnPaymentFrequency);
+    await this.clickOnElement(BTN_PAYMENT_FREQUENCY);
   };
 
   // ========================== Navigate Methods ===========================
@@ -80,9 +77,9 @@ export class ShieldBenefitsIDShieldBusinessPage extends OktaPage {
     // Click on Edit button
     await this.clickBtnEditGroup();
     // Verify after pasting url in another browser tab group is displayed
-    const valNewGroupURL = await this.page.getAttribute(txbNewGroupURLId, value);
+    const valNewGroupURL = await this.page.getAttribute(TXB_NEW_GROUP_URL_ID, value);
     await this.page.waitForTimeout(1000);
-    await this.page.goto(urlGroup + valNewGroupURL);
+    await this.page.goto(URL_GROUP + valNewGroupURL);
   };
 
   navigateToGroupEnrollmentSearchPage = async (): Promise<void> => {
@@ -94,49 +91,48 @@ export class ShieldBenefitsIDShieldBusinessPage extends OktaPage {
   /**
    *
    *
-   * @param {string} group
-   * @memberof ShieldBenefitsCommercialDriverPage
+   * @memberof ShieldBenefitsIDShieldBusinessPage
    */
-  navigateToGroupEnrollmentIDShieldBusinessPage = async (group: string): Promise<void> => {
+  navigateToGroupEnrollmentIDShieldBusinessPage = async (): Promise<void> => {
     console.log(' - ShieldBenefitsIDShieldBusinessPage.navigateToGroupEnrollmentIDShieldBusinessPage');
-    await this.page.goto(urlGroup);
+    await this.page.goto(URL_GROUP);
   };
   // ========================== Click Methods ==============================
 
   clickBtnEditGroup = async (): Promise<void> => {
     console.log(' - ShieldBenefitsIDShieldBusinessPage.clickBtnEditGroup');
     // Click on Edit button
-    await this.page.click(btnEdit);
+    await this.page.click(BTN_EDIT);
   };
 
   clickBtnSignIn = async (): Promise<void> => {
     console.log(' - ShieldBenefitsIDShieldBusinessPage.clickBtnSignIn');
     // Click on Sign In button
-    await this.page.click(btnSignIn);
+    await this.page.click(BTN_SIGN_IN);
   };
 
   clickBtnBackToTop = async (): Promise<void> => {
     console.log(' - ShieldBenefitsIDShieldBusinessPage.clickAppStoreLink');
     // Click on Back to top button
-    await this.page.click(btnBackToTop);
+    await this.page.click(BTN_BACK_TO_TOP);
   };
 
   clickBtnEnroll = async (): Promise<void> => {
     console.log(' - ShieldBenefitsIDShieldBusinessPage.clickBtnPricing');
     // Click on Enroll button
-    await this.clickOnElement(btnEnroll);
+    await this.clickOnElement(BTN_ENROLL);
   };
 
   clickBtnPricing = async (): Promise<void> => {
     console.log(' - ShieldBenefitsIdShieldBusinessPage.clickBtnPricing');
     // Click on Pricing tab
-    await this.clickOnElement(btnPricing);
+    await this.clickOnElement(BTN_PRICING);
   };
 
   clickBtnIDShieldBusinessPage = async (): Promise<void> => {
     console.log(' - ShieldBenefitsIDShieldBusinessPage.clickBtnIDShieldBusinessPage');
     // Click on IDShield for Business page
-    await this.clickOnElement(tabIDShieldBusinessPage);
+    await this.clickOnElement(TAB_ID_SHIELD_BUSINESS_PAGE);
   };
 
   // ========================== Assertion Methods ==========================
@@ -144,30 +140,30 @@ export class ShieldBenefitsIDShieldBusinessPage extends OktaPage {
   assertShieldBenefitsIDShieldBusinessPage = async (): Promise<void> => {
     console.log(' - ShieldBenefitsIDShieldBusinessPage.assertShieldBenefitsIDShieldBusinessPage');
     // Verify that IDShield for Business tab is displayed for  group 83696
-    await this.assertElementIsVisible(tabIDShieldBusinessPage);
+    await this.assertElementIsVisible(TAB_ID_SHIELD_BUSINESS_PAGE);
   };
 
   assertSignInButtonIsDisplayed = async (): Promise<void> => {
     console.log(' - ShieldBenefitsIDShieldBusinessPage.assertSignInButtonIsDisplayed');
     // Confirm Sign In button is displayed
-    await this.assertElementIsVisible(btnSignIn);
+    await this.assertElementIsVisible(BTN_SIGN_IN);
   };
 
   assertEnrollNowButtonIsDisplayed = async (): Promise<void> => {
     console.log(' - ShieldBenefitsIDShieldBusinessPage.assertEnrollButtonIsDisplayed');
     // Confirm Enroll button is displayed
-    await this.assertElementIsVisible(btnEnroll);
+    await this.assertElementIsVisible(BTN_ENROLL);
   };
 
   assertButtonViewDetailsIsDisplayed = async (): Promise<void> => {
     console.log(' - ShieldBenefitsIDShieldBusinessPage.assertButtonViewDetailsIsVisible');
     // Confirm that View Details button is displayed
-    await this.assertElementIsVisible(btnViewDetails);
+    await this.assertElementIsVisible(BTN_VIEW_DETAILS);
   };
 
   assertLinkMemberPerksIsDisplayed = async (): Promise<void> => {
     console.log(' - ShieldBenefitsIDShieldBusinessPage.assertLinkMemberPerksIsDisplayed');
     // Confirm that Member Perks link is displayed
-    await this.assertElementIsVisible(lnkMemberPerks);
+    await this.assertElementIsVisible(LNK_MEMBER_PERKS);
   };
 }

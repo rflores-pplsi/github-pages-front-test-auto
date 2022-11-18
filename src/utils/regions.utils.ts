@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import { Locator, Page } from '@playwright/test';
 
 /**
@@ -8,653 +7,653 @@ import { Locator, Page } from '@playwright/test';
 export default class RegionsUtils {
   static readonly usStates = [
     {
-      name: 'Alabama',
       abbrv: 'AL',
+      name: 'Alabama',
+      priority: false,
       validAddress: {
-        street: '2021 Park Pl',
         city: 'Birmingham',
         postalCode: '35203',
+        street: '2021 Park Pl',
       },
-      priority: false,
     },
     {
-      name: 'Alaska',
       abbrv: 'AK',
+      name: 'Alaska',
+      priority: false,
       validAddress: {
-        street: '1110 John Kalinas Rd',
         city: 'Fairbanks',
         postalCode: '99712',
+        street: '1110 John Kalinas Rd',
       },
-      priority: false,
     },
     {
-      name: 'Arizona',
       abbrv: 'AZ',
+      name: 'Arizona',
+      priority: false,
       validAddress: {
-        street: '4400 S Rural Rd',
         city: 'Tempe',
         postalCode: '85282',
+        street: '4400 S Rural Rd',
       },
-      priority: false,
     },
     {
-      name: 'Arkansas',
       abbrv: 'AR',
+      name: 'Arkansas',
+      priority: false,
       validAddress: {
-        street: '2630 W Clark Rd',
         city: 'Clarksville',
         postalCode: '72830',
+        street: '2630 W Clark Rd',
       },
-      priority: false,
     },
     {
-      name: 'California',
       abbrv: 'CA',
+      name: 'California',
+      priority: true,
       validAddress: {
-        street: '750 Kearny St',
         city: 'San Francisco',
         postalCode: '94108',
+        street: '750 Kearny St',
       },
-      priority: true,
     },
     {
-      name: 'Colorado',
       abbrv: 'CO',
+      name: 'Colorado',
+      priority: false,
       validAddress: {
-        street: ' 1050 Plaza Dr',
         city: 'Highlands Ranch',
         postalCode: '80126',
+        street: ' 1050 Plaza Dr',
       },
-      priority: false,
     },
     {
-      name: 'Connecticut',
       abbrv: 'CT',
+      name: 'Connecticut',
+      priority: false,
       validAddress: {
-        street: '351 Pitkin St',
         city: 'East Hartford',
         postalCode: '06108',
+        street: '351 Pitkin St',
       },
-      priority: false,
     },
     {
-      name: 'Delaware',
       abbrv: 'DE',
+      name: 'Delaware',
+      priority: false,
       validAddress: {
-        street: '22871 Sussex Hwy',
         city: 'Seaford',
         postalCode: '19973',
+        street: '22871 Sussex Hwy',
       },
-      priority: false,
     },
     {
-      name: 'District of Columbia',
       abbrv: 'DC',
+      name: 'District of Columbia',
+      priority: false,
       validAddress: {
-        street: '1525 15th St NW',
         city: 'Washington',
         postalCode: '20005',
+        street: '1525 15th St NW',
       },
-      priority: false,
     },
     {
-      name: 'Florida',
       abbrv: 'FL',
+      name: 'Florida',
+      priority: true,
       validAddress: {
-        street: '3550 NW 74th Ave',
         city: 'Miami',
         postalCode: '33122',
+        street: '3550 NW 74th Ave',
       },
-      priority: true,
     },
     {
-      name: 'Georgia',
       abbrv: 'GA',
+      name: 'Georgia',
+      priority: true,
       validAddress: {
-        street: '251 Avalon Ct',
         city: 'McDonough',
         postalCode: '30253',
+        street: '251 Avalon Ct',
       },
-      priority: true,
     },
     {
-      name: 'Hawaii',
       abbrv: 'HI',
+      name: 'Hawaii',
+      priority: false,
       validAddress: {
-        street: '3900 Wailea Alanui Dr',
         city: 'Kihei',
         postalCode: '96753',
+        street: '3900 Wailea Alanui Dr',
       },
-      priority: false,
     },
     {
-      name: 'Idaho',
       abbrv: 'ID',
+      name: 'Idaho',
+      priority: false,
       validAddress: {
-        street: '5750 E Franklin Rd',
         city: 'Nampa',
         postalCode: '83687',
+        street: '5750 E Franklin Rd',
       },
-      priority: false,
     },
     {
-      name: 'Illinois',
       abbrv: 'IL',
+      name: 'Illinois',
+      priority: false,
       validAddress: {
-        street: '370 Eastgate Dr',
         city: 'Danville',
         postalCode: '61834',
+        street: '370 Eastgate Dr',
       },
-      priority: false,
     },
     {
-      name: 'Indiana',
       abbrv: 'IN',
+      name: 'Indiana',
+      priority: false,
       validAddress: {
-        street: ' 200 Prosperity Dr',
         city: 'Warsaw',
         postalCode: '46580',
+        street: ' 200 Prosperity Dr',
       },
-      priority: false,
     },
     {
-      name: 'Iowa',
       abbrv: 'IA',
+      name: 'Iowa',
+      priority: false,
       validAddress: {
-        street: '255 E Court St',
         city: 'Iowa City',
         postalCode: '52240',
+        street: '255 E Court St',
       },
-      priority: false,
     },
     {
-      name: 'Kansas',
       abbrv: 'KS',
+      name: 'Kansas',
+      priority: false,
       validAddress: {
-        street: '17250 Midland Dr',
         city: 'Shawnee',
         postalCode: '66217',
+        street: '17250 Midland Dr',
       },
-      priority: false,
     },
     {
-      name: 'Kentucky',
       abbrv: 'KY',
+      name: 'Kentucky',
+      priority: false,
       validAddress: {
-        street: '120 W 2nd St',
         city: 'Lexington',
         postalCode: '40507',
+        street: '120 W 2nd St',
       },
-      priority: false,
     },
     {
-      name: 'Louisiana',
       abbrv: 'LA',
+      name: 'Louisiana',
+      priority: false,
       validAddress: {
-        street: '555 Canal St',
         city: 'New Orleans',
         postalCode: '70130',
+        street: '555 Canal St',
       },
-      priority: false,
     },
     {
-      name: 'Maine',
       abbrv: 'ME',
+      name: 'Maine',
+      priority: false,
       validAddress: {
-        street: '1050 Westbrook St',
         city: 'Portland',
         postalCode: '04102',
+        street: '1050 Westbrook St',
       },
-      priority: false,
     },
     {
-      name: 'Maryland',
       abbrv: 'MD',
+      name: 'Maryland',
+      priority: false,
       validAddress: {
-        street: '6600 Coastal Hwy',
         city: 'Ocean City',
         postalCode: '21842',
+        street: '6600 Coastal Hwy',
       },
-      priority: false,
     },
     {
-      name: 'Massachusetts',
       abbrv: 'MA',
+      name: 'Massachusetts',
+      priority: false,
       validAddress: {
-        street: '40 Berkeley St',
         city: 'Boston',
         postalCode: '02116',
+        street: '40 Berkeley St',
       },
-      priority: false,
     },
     {
-      name: 'Michigan',
       abbrv: 'MI',
+      name: 'Michigan',
+      priority: false,
       validAddress: {
-        street: '3600 Village Harbor Dr',
         city: 'Bay Harbor',
         postalCode: '49770',
+        street: '3600 Village Harbor Dr',
       },
-      priority: false,
     },
     {
-      name: 'Minnesota',
       abbrv: 'MN',
+      name: 'Minnesota',
+      priority: false,
       validAddress: {
-        street: '19 N 8th St',
         city: 'Minneapolis',
         postalCode: '55403',
+        street: '19 N 8th St',
       },
-      priority: false,
     },
     {
-      name: 'Mississippi',
       abbrv: 'MS',
+      name: 'Mississippi',
+      priority: false,
       validAddress: {
-        street: '493 Springridge Rd',
         city: 'Clinton',
         postalCode: '39056',
+        street: '493 Springridge Rd',
       },
-      priority: false,
     },
     {
-      name: 'Missouri',
       abbrv: 'MO',
+      name: 'Missouri',
+      priority: false,
       validAddress: {
-        street: '336 E MAIN ST',
         city: 'Odessa',
         postalCode: '64076',
+        street: '336 E MAIN ST',
       },
-      priority: false,
     },
     {
-      name: 'Montana',
       abbrv: 'MT',
+      name: 'Montana',
+      priority: false,
       validAddress: {
-        street: '1380 Wisconsin Ave',
         city: 'Whitefish',
         postalCode: '59937',
+        street: '1380 Wisconsin Ave',
       },
-      priority: false,
     },
     {
-      name: 'Nebraska',
       abbrv: 'NE',
+      name: 'Nebraska',
+      priority: false,
       validAddress: {
-        street: '10220 Regency Cir',
         city: 'Omaha',
         postalCode: '68114',
+        street: '10220 Regency Cir',
       },
-      priority: false,
     },
     {
-      name: 'Nevada',
       abbrv: 'NV',
+      name: 'Nevada',
+      priority: false,
       validAddress: {
-        street: '3900 S Las Vegas Blvd',
         city: 'Las Vegas',
         postalCode: '89119',
+        street: '3900 S Las Vegas Blvd',
       },
-      priority: false,
     },
     {
-      name: 'New Hampshire',
       abbrv: 'NH',
+      name: 'New Hampshire',
+      priority: false,
       validAddress: {
-        street: '72 Common Ct',
         city: 'North Conway',
         postalCode: '03860',
+        street: '72 Common Ct',
       },
-      priority: false,
     },
     {
-      name: 'New Jersey',
       abbrv: 'NJ',
+      name: 'New Jersey',
+      priority: false,
       validAddress: {
-        street: '2831 Boardwalk',
         city: 'Atlantic City',
         postalCode: '08401',
+        street: '2831 Boardwalk',
       },
-      priority: false,
     },
     {
-      name: 'New Mexico',
       abbrv: 'NM',
+      name: 'New Mexico',
+      priority: false,
       validAddress: {
-        street: '6150 Iliff Rd NW',
         city: 'Albuquerque',
         postalCode: '87121',
+        street: '6150 Iliff Rd NW',
       },
-      priority: false,
     },
     {
-      name: 'New York',
       abbrv: 'NY',
+      name: 'New York',
+      priority: true,
       validAddress: {
-        street: '234 W 48th St',
         city: 'New York',
         postalCode: '10036',
+        street: '234 W 48th St',
       },
-      priority: true,
     },
     {
-      name: 'North Carolina',
       abbrv: 'NC',
+      name: 'North Carolina',
+      priority: false,
       validAddress: {
-        street: '3415 Wake Forest Rd',
         city: 'Raleigh',
         postalCode: '27609',
+        street: '3415 Wake Forest Rd',
       },
-      priority: false,
     },
     {
-      name: 'North Dakota',
       abbrv: 'ND',
+      name: 'North Dakota',
+      priority: false,
       validAddress: {
-        street: '3316 13th Ave S',
         city: 'Fargo',
         postalCode: '58103',
+        street: '3316 13th Ave S',
       },
-      priority: false,
     },
     {
-      name: 'Ohio',
       abbrv: 'OH',
+      name: 'Ohio',
+      priority: false,
       validAddress: {
-        street: '631 S Main St',
         city: 'Findlay',
         postalCode: '45840',
+        street: '631 S Main St',
       },
-      priority: false,
     },
     {
-      name: 'Oklahoma',
       abbrv: 'OK',
+      name: 'Oklahoma',
+      priority: false,
       validAddress: {
-        street: '741 N Phillips Ave',
         city: 'Oklahoma City',
         postalCode: '73104',
+        street: '741 N Phillips Ave',
       },
-      priority: false,
     },
     {
-      name: 'Oregon',
       abbrv: 'OR',
+      name: 'Oregon',
+      priority: false,
       validAddress: {
-        street: '203 NW 3rd Ave',
         city: 'Portland',
         postalCode: '97209',
+        street: '203 NW 3rd Ave',
       },
-      priority: false,
     },
     {
-      name: 'Pennsylvania',
       abbrv: 'PA',
+      name: 'Pennsylvania',
+      priority: false,
       validAddress: {
-        street: '8000 Jonestown Rd',
         city: 'Harrisburg',
         postalCode: '17112',
+        street: '8000 Jonestown Rd',
       },
-      priority: false,
     },
     {
-      name: 'Rhode Island',
       abbrv: 'RI',
+      name: 'Rhode Island',
+      priority: false,
       validAddress: {
-        street: '1 Wave Ave',
         city: 'Middletown',
         postalCode: '02842',
+        street: '1 Wave Ave',
       },
-      priority: false,
     },
     {
-      name: 'South Carolina',
       abbrv: 'SC',
+      name: 'South Carolina',
+      priority: false,
       validAddress: {
-        street: '1735 Stokes Rd',
         city: 'Florence',
         postalCode: '29501',
+        street: '1735 Stokes Rd',
       },
-      priority: false,
     },
     {
-      name: 'South Dakota',
       abbrv: 'SD',
+      name: 'South Dakota',
+      priority: false,
       validAddress: {
-        street: '1314 N Elk Vale Rd',
         city: 'Rapid City',
         postalCode: '57703',
+        street: '1314 N Elk Vale Rd',
       },
-      priority: false,
     },
     {
-      name: 'Tennessee',
       abbrv: 'TN',
+      name: 'Tennessee',
+      priority: false,
       validAddress: {
-        street: '2800 Opryland Dr',
         city: 'Nashville',
         postalCode: '37214',
+        street: '2800 Opryland Dr',
       },
-      priority: false,
     },
     {
-      name: 'Texas',
       abbrv: 'TX',
+      name: 'Texas',
+      priority: true,
       validAddress: {
-        street: '3000 Gulf Fwy',
         city: 'Texas City',
         postalCode: '77591',
+        street: '3000 Gulf Fwy',
       },
-      priority: true,
     },
     {
-      name: 'Utah',
       abbrv: 'UT',
+      name: 'Utah',
+      priority: false,
       validAddress: {
-        street: '30 N 100 E',
         city: 'Bryce Canyon City',
         postalCode: '84764',
+        street: '30 N 100 E',
       },
-      priority: false,
     },
     {
-      name: 'Vermont',
       abbrv: 'VT',
+      name: 'Vermont',
+      priority: false,
       validAddress: {
-        street: '870 Williston Rd',
         city: 'South Burlington',
         postalCode: '05403',
+        street: '870 Williston Rd',
       },
-      priority: false,
     },
     {
-      name: 'Virginia',
       abbrv: 'VA',
+      name: 'Virginia',
+      priority: false,
       validAddress: {
-        street: '16250 International St',
         city: 'Doswell',
         postalCode: '23047',
+        street: '16250 International St',
       },
-      priority: false,
     },
     {
-      name: 'Washington',
       abbrv: 'WA',
+      name: 'Washington',
+      priority: false,
       validAddress: {
-        street: '3100 S 192nd St',
         city: 'Seattle',
         postalCode: '98188',
+        street: '3100 S 192nd St',
       },
-      priority: false,
     },
     {
-      name: 'West Virginia',
       abbrv: 'WV',
+      name: 'West Virginia',
+      priority: false,
       validAddress: {
-        street: '417 Hurricane Creek Rd',
         city: 'Hurricane',
         postalCode: '25526',
+        street: '417 Hurricane Creek Rd',
       },
-      priority: false,
     },
     {
-      name: 'Wisconsin',
       abbrv: 'WI',
+      name: 'Wisconsin',
+      priority: false,
       validAddress: {
-        street: '1001 Wisconsin Pl',
         city: 'Madison',
         postalCode: '53703',
+        street: '1001 Wisconsin Pl',
       },
-      priority: false,
     },
     {
-      name: 'Wyoming',
       abbrv: 'WY',
+      name: 'Wyoming',
+      priority: false,
       validAddress: {
-        street: '1055 Wild Horse Canyon Rd',
         city: 'Green River',
         postalCode: '82935',
+        street: '1055 Wild Horse Canyon Rd',
       },
-      priority: false,
     },
   ];
 
   static readonly caProvinces = [
     {
-      name: 'Alberta',
       abbrv: 'AB',
+      name: 'Alberta',
+      priority: true,
       validAddress: {
-        street: '5940 Blackfoot Trail SE',
         city: 'Calgary',
         postalCode: 'T2H 2B5',
+        street: '5940 Blackfoot Trail SE',
       },
-      priority: true,
     },
     {
-      name: 'British Columbia',
       abbrv: 'BC',
+      name: 'British Columbia',
+      priority: true,
       validAddress: {
-        street: '4050 Whistler Way',
         city: 'Whistler',
         postalCode: 'V8E 1H9',
+        street: '4050 Whistler Way',
       },
-      priority: true,
     },
     {
-      name: 'Manitoba',
       abbrv: 'MB',
+      name: 'Manitoba',
+      priority: true,
       validAddress: {
-        street: '222 Broadway',
         city: 'Winnipeg',
         postalCode: 'R3C 0R3',
+        street: '222 Broadway',
       },
-      priority: true,
     },
     {
-      name: 'New Brunswick',
       abbrv: 'NB',
+      name: 'New Brunswick',
+      priority: true,
       validAddress: {
-        street: '39 King St',
         city: 'Saint John',
         postalCode: 'E2L 4W3',
+        street: '39 King St',
       },
-      priority: true,
     },
     {
-      name: 'Newfoundland and Labrador',
       abbrv: 'NL',
+      name: 'Newfoundland and Labrador',
+      priority: true,
       validAddress: {
-        street: '115 Cavendish Square',
         city: 'St. Johns',
         postalCode: 'A1C 3K2',
+        street: '115 Cavendish Square',
       },
-      priority: true,
     },
     {
-      name: 'Northwest Territories',
       abbrv: 'NT',
+      name: 'Northwest Territories',
+      priority: true,
       validAddress: {
-        street: '4825 49th Ave',
         city: 'Yellowknife',
         postalCode: 'X1A 2R3',
+        street: '4825 49th Ave',
       },
-      priority: true,
     },
     {
-      name: 'Nova Scotia',
       abbrv: 'NS',
+      name: 'Nova Scotia',
+      priority: true,
       validAddress: {
-        street: '1919 Upper Water St',
         city: 'Halifax',
         postalCode: 'B3J 3J5',
+        street: '1919 Upper Water St',
       },
-      priority: true,
     },
     {
-      name: 'Nunavut',
       abbrv: 'NU',
+      name: 'Nunavut',
+      priority: true,
       validAddress: {
-        street: '4110 Road to Nowhere',
         city: 'Iqaluit',
         postalCode: 'X0A 0H0',
+        street: '4110 Road to Nowhere',
       },
-      priority: true,
     },
     {
-      name: 'Ontario',
       abbrv: 'ON',
+      name: 'Ontario',
+      priority: true,
       validAddress: {
-        street: '6361 Fallsview Blvd',
         city: 'Niagara Falls',
         postalCode: 'L2G 3V9',
+        street: '6361 Fallsview Blvd',
       },
-      priority: true,
     },
     {
-      name: 'Prince Edward Island',
       abbrv: 'PE',
+      name: 'Prince Edward Island',
+      priority: true,
       validAddress: {
-        street: '55 Weymouth St',
         city: 'Charlottetown',
         postalCode: 'C1A 1H1',
+        street: '55 Weymouth St',
       },
-      priority: true,
     },
     {
-      name: 'Quebec',
       abbrv: 'QC',
+      name: 'Quebec',
+      priority: true,
       validAddress: {
-        street: '1 Rue des Carrieres',
         city: 'Quebec',
         postalCode: 'G1R 4P5',
+        street: '1 Rue des Carrieres',
       },
-      priority: true,
     },
     {
-      name: 'Saskatchewan',
       abbrv: 'SK',
+      name: 'Saskatchewan',
+      priority: true,
       validAddress: {
-        street: '2125 Victoria Ave',
         city: 'Regina',
         postalCode: 'S4P 0S3',
+        street: '2125 Victoria Ave',
       },
-      priority: true,
     },
     {
-      name: 'Yukon',
       abbrv: 'YT',
+      name: 'Yukon',
+      priority: true,
       validAddress: {
-        street: '411 Main St',
         city: 'Whitehorse',
         postalCode: 'Y1A 2B6',
+        street: '411 Main St',
       },
-      priority: true,
     },
   ];
   private page: Page;
   private baseURL: string;
-  readonly ele_sddFooterProvince: Locator;
-  readonly ele_sopFooterSelectedProvince: Locator;
+  readonly eleSDDFooterProvince: Locator;
+  readonly eleSOPFooterSelectedProvince: Locator;
   /**
    * Creates an instance of RegionsUtils.
    * @param {Page} page
@@ -664,8 +663,8 @@ export default class RegionsUtils {
   constructor(page: Page, baseURL: string) {
     this.page = page;
     this.baseURL = baseURL;
-    this.ele_sddFooterProvince = page.locator('#lsc_footer_region_selector_default .lsc_region_selector');
-    this.ele_sopFooterSelectedProvince = page.locator('#lsc_footer_region_selector_default .lsc_region_selector option:checked');
+    this.eleSDDFooterProvince = page.locator('#lsc_footer_region_selector_default .lsc_region_selector');
+    this.eleSOPFooterSelectedProvince = page.locator('#lsc_footer_region_selector_default .lsc_region_selector option:checked');
   }
 
   /**
@@ -675,7 +674,7 @@ export default class RegionsUtils {
    * @memberof RegionsUtils
    */
   async getCurrentSelectedProvinceFromFooter(): Promise<string> {
-    return await this.ele_sopFooterSelectedProvince.innerText();
+    return await this.eleSOPFooterSelectedProvince.innerText();
   }
 
   /**
@@ -685,18 +684,18 @@ export default class RegionsUtils {
    * @return {*}  {Promise<void>}
    * @memberof RegionsUtils
    */
-  async selectProvinceFromFooter(province: string): Promise<void> {
-    // // eslint-disable-next-line no-undef
-    // await retryAsync(
-    //   async () => {
-    //     await this.ele_sddFooterProvince.selectOption({ label: `${province}` });
-    //     return this.ele_sopFooterSelectedProvince.innerText();
-    //   },
-    //   {
-    //     delay: 500,
-    //     maxTry: 5,
-    //     until: (lastResult) => lastResult === province,
-    //   }
-    // );
-  }
+  // async selectProvinceFromFooter(province: string): Promise<void> {
+  // // eslint-disable-next-line no-undef
+  // await retryAsync(
+  //   async () => {
+  //     await this.ele_sddFooterProvince.selectOption({ label: `${province}` });
+  //     return this.ele_sopFooterSelectedProvince.innerText();
+  //   },
+  //   {
+  //     delay: 500,
+  //     maxTry: 5,
+  //     until: (lastResult) => lastResult === province,
+  //   }
+  // );
+  // }
 }

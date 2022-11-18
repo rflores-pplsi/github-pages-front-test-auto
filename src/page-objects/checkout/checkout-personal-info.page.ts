@@ -5,58 +5,57 @@ import RegionsUtils from '../../utils/regions.utils';
 
 // ========================== Selectors ==================================
 // const btnSaveAndContinue: string = '';
-const btnSaveAndContinue: string = 'button:has-text("Save & Continue")';
+const BTN_SAVE_AND_CONTINUE = 'button:has-text("Save & Continue")';
 
 // ========================== Personal Info Selectors ====================
-const stpPersonalInfoCurrent: string = '//div[contains(@class,"step-circle--current") and contains(.,"2")]';
-const hdrPersonalInfoHeader: string = 'text = Tell us about yourself';
-const msgFirstNameValidation: string = 'text = Must provide first name';
-const msgLastNameValidation: string = 'text = Must provide last name';
-const msgPhoneNumberValidation: string = 'text = Must provide phone number';
-const msgPhoneTypeValidation: string = 'text = Must select phone type';
-const msgHomeAddressValidation: string = 'text = Must provide home address';
-const msgCityValidation: string = 'text = Must include name of city';
-const msgPostalCodeValidation: string = 'text = Must provide valid postal code';
-
-const txtFirstName: string = '[name="firstName"]';
-const txtLastName: string = '[name="lastName"]';
-const txtPhoneNumber: string = '[name="phoneNumber"]';
-const txtPhoneType: string = '[name="phoneType"]';
-const txtHomeAddress: string = '[name="homeAddress"]';
-const txtCity: string = '[name="city"]';
-const txtPostalCode: string = '[name="postalCode"]';
-const txtRegion: string = '//span[contains(@class, "contact-region")]';
-const lnkChangeState: string = 'a:has-text("Change")';
-const imgStateChangeInformationIcon: string = '[alt="info"';
-const txaStageChangeToolTip: string = '//div[contains(@class,"info-tooltip-text")]';
+const STP_PERSONAL_INFO_CURRENT = '//div[contains(@class,"step-circle--current") and contains(.,"2")]';
+const HDR_PERSONAL_INFO_HEADER = 'text = Tell us about yourself';
+const MSG_FIRST_NAME_VALIDATION = 'text = Must provide first name';
+const MSG_LAST_NAME_VALIDATION = 'text = Must provide last name';
+const MSG_PHONE_NUMBER_VALIDATION = 'text = Must provide phone number';
+const MSG_PHONE_TYPE_VALIDATION = 'text = Must select phone type';
+const MSG_HOME_ADDRESS_VALIDATION = 'text = Must provide home address';
+const MSG_CITY_VALIDATION = 'text = Must include name of city';
+const MSG_POSTAL_CODE_VALIDATION = 'text = Must provide valid postal code';
+const TXT_FIRST_NAME = '[name="firstName"]';
+const TXT_LAST_NAME = '[name="lastName"]';
+const TXT_PHONE_NUMBER = '[name="phoneNumber"]';
+const TXT_PHONE_TYPE = '[name="phoneType"]';
+const TXT_HOME_ADDRESS = '[name="homeAddress"]';
+const TXT_CITY = '[name="city"]';
+const TXT_POSTAL_CODE = '[name="postalCode"]';
+const TXT_REGION = '//span[contains(@class, "contact-region")]';
+const LNK_CHANGE_STATE = 'a:has-text("Change")';
+const IMG_STATE_CHANEG_INFORMATION_ICON = '[alt="info"';
+const TXT_STAGE_CHANGE_TOOLTIP = '//div[contains(@class,"info-tooltip-text")]';
 // ========================== Support Card Selectors ======================
-const conSupportInfo: string = '//div[contains(@class, "support-card-container")]';
-const btnCallSupport: string = 'button:has-text("Call (833)-951-2754")';
+const CON_SUPPORT_INFO = '//div[contains(@class, "support-card-container")]';
+const BTN_CALL_SUPPORT = 'button:has-text("Call (833)-951-2754")';
 
 // ========================== Security Info Selectors ======================
-const msgBirthMonthDayYearValidation: string = 'text = Must provide date of birth';
-const msgSocialSecurityValidation: string = 'text = Must provide SSN or SIN';
+const MSG_BIRHT_MONTH_DAY_YEAR_VALIDATION = 'text = Must provide date of birth';
+const MSG_SOCIAL_SECURITY_VALIDATION = 'text = Must provide SSN or SIN';
 
-const txtBirthMonth: string = '[name="dobMonth"]';
-const txtBirthDay: string = '[name="dobDay"]';
-const txtBirthYear: string = '[name="dobYear"]';
-const txtSocialSecurityNumber: string = '[placeholder="Last 4 SSN or SIN"]';
+const TXT_BIRTH_MONTH = '[name="dobMonth"]';
+const TXT_BIRTH_DAY = '[name="dobDay"]';
+const TXT_BIRTH_YEAR = '[name="dobYear"]';
+const TXT_SOCIAL_SECURITY_NUMBER = '[placeholder="Last 4 SSN or SIN"]';
 
 // ========================== Business Info Selectors ======================
-const txtBusinessName: string = '[name="businessName"]';
-const txtIncorporationMonth: string = '[name="doiMonth"]';
-const txtIncorporationDay: string = '[name="doiDay"]';
-const txtIncorporationYear: string = '[name="doiYear"]';
-const txtTaxId: string = '[name="taxId"]';
+const TXT_BUSINESS_NAME = '[name="businessName"]';
+const TXT_INCORPORATION_MONTH = '[name="doiMonth"]';
+const TXT_INCORPORATION_DAY = '[name="doiDay"]';
+const TXT_INCORPORATION_YEAR = '[name="doiYear"]';
+const TXT_TAX_ID = '[name="taxId"]';
 
-// eslint-disable-next-line valid-jsdoc
 /**
+ *
+ *
  * @export
  * @class CheckoutPersonalInfoPage
- * @extends {LoginPage}
+ * @extends {CheckoutOrderSummaryComponent}
  */
 export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
-  // eslint-disable-next-line no-undef
   // ========================== Process Methods ============================
 
   // /**
@@ -128,7 +127,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   };
 
   completeBusinessInfoForm = async (): Promise<void> => {
-    if (await this.page.isVisible(txtBusinessName)) {
+    if (await this.page.isVisible(TXT_BUSINESS_NAME)) {
       await this.enterBusinessName('test business');
       await this.enterIncorporationMonth('01');
       await this.enterIncorporationDay('01');
@@ -148,7 +147,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     await this.enterHomeAddress(homeAddress);
     await this.enterCity(city);
     await this.enterPostalCode(postalCode);
-    await this.clickOnElement(btnSaveAndContinue);
+    await this.clickOnElement(BTN_SAVE_AND_CONTINUE);
   };
 
   /**
@@ -174,7 +173,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     await this.enterHomeAddress(regionObject[0].validAddress.street);
     await this.enterCity(regionObject[0].validAddress.city);
     await this.enterPostalCode(regionObject[0].validAddress.postalCode);
-    await this.clickOnElement(btnSaveAndContinue);
+    await this.clickOnElement(BTN_SAVE_AND_CONTINUE);
   };
 
   /**
@@ -205,7 +204,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   enterFirstName = async (firstName: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.enterFirstName');
-    await this.fillTextBox(txtFirstName, firstName);
+    await this.fillTextBox(TXT_FIRST_NAME, firstName);
   };
 
   /**
@@ -214,7 +213,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   enterLastName = async (lastName: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.enterLastName');
-    await this.fillTextBox(txtLastName, lastName);
+    await this.fillTextBox(TXT_LAST_NAME, lastName);
   };
 
   /**
@@ -223,7 +222,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   enterPhoneNumber = async (phoneNumber: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.enterPhoneNumber');
-    await this.fillTextBox(txtPhoneNumber, phoneNumber);
+    await this.fillTextBox(TXT_PHONE_NUMBER, phoneNumber);
   };
 
   /**
@@ -232,7 +231,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   enterPhoneType = async (phoneType: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.enterPhoneType');
-    await this.fillTextBox(txtPhoneType, phoneType);
+    await this.fillTextBox(TXT_PHONE_TYPE, phoneType);
   };
 
   /**
@@ -241,7 +240,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   enterHomeAddress = async (homeAddress: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.enterHomeAddress');
-    await this.fillTextBox(txtHomeAddress, homeAddress);
+    await this.fillTextBox(TXT_HOME_ADDRESS, homeAddress);
   };
 
   /**
@@ -250,7 +249,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   enterCity = async (city: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.enterCity');
-    await this.fillTextBox(txtCity, city);
+    await this.fillTextBox(TXT_CITY, city);
   };
 
   /**
@@ -261,8 +260,8 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     console.log(' - checkoutPersonalInfoPage.enterPostalCode');
     await this.page.keyboard.press('Tab');
     await this.page.keyboard.press('Tab');
-    await this.page.locator(txtPostalCode).fill('');
-    await this.fillTextBox(txtPostalCode, postalCode);
+    await this.page.locator(TXT_POSTAL_CODE).fill('');
+    await this.fillTextBox(TXT_POSTAL_CODE, postalCode);
   };
 
   /**
@@ -270,7 +269,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   hoverInformationIcon = async (): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.enterPostalCode');
-    await this.hoverElement(imgStateChangeInformationIcon);
+    await this.hoverElement(IMG_STATE_CHANEG_INFORMATION_ICON);
   };
 
   /**
@@ -279,7 +278,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   enterMonth = async (month: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.enterMonth');
-    await this.fillTextBox(txtBirthMonth, month);
+    await this.fillTextBox(TXT_BIRTH_MONTH, month);
   };
 
   /**
@@ -288,7 +287,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   enterDay = async (day: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.enterDay');
-    await this.fillTextBox(txtBirthDay, day);
+    await this.fillTextBox(TXT_BIRTH_DAY, day);
   };
 
   /**
@@ -297,7 +296,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   enterYear = async (year: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.enterYear');
-    await this.fillTextBox(txtBirthYear, year);
+    await this.fillTextBox(TXT_BIRTH_YEAR, year);
   };
 
   /**
@@ -306,7 +305,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   enterSocialSecurityNumber = async (socialSecurityNumber: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.enterSocialSecurityNumber');
-    await this.fillTextBox(txtSocialSecurityNumber, socialSecurityNumber);
+    await this.fillTextBox(TXT_SOCIAL_SECURITY_NUMBER, socialSecurityNumber);
   };
 
   /**
@@ -315,7 +314,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   enterBusinessName = async (businessName: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.enterBusinessName');
-    await this.fillTextBox(txtBusinessName, businessName);
+    await this.fillTextBox(TXT_BUSINESS_NAME, businessName);
   };
 
   /**
@@ -324,7 +323,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   enterIncorporationMonth = async (Month: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.enterIncorporationMonth');
-    await this.fillTextBox(txtIncorporationMonth, Month);
+    await this.fillTextBox(TXT_INCORPORATION_MONTH, Month);
   };
 
   /**
@@ -333,7 +332,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   enterIncorporationDay = async (day: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.enterIncorporationDay');
-    await this.fillTextBox(txtIncorporationDay, day);
+    await this.fillTextBox(TXT_INCORPORATION_DAY, day);
   };
 
   /**
@@ -342,7 +341,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   enterIncorporationYear = async (Year: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.enterIncorporationYear');
-    await this.fillTextBox(txtIncorporationYear, Year);
+    await this.fillTextBox(TXT_INCORPORATION_YEAR, Year);
   };
 
   /**
@@ -351,7 +350,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   enterTaxId = async (taxId: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.enterTaxId');
-    await this.fillTextBox(txtTaxId, taxId);
+    await this.fillTextBox(TXT_TAX_ID, taxId);
   };
 
   /**
@@ -359,13 +358,13 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   clearAllFieldsOnPersonalInfoPageAndSave = async (): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.clearAllFieldsOnPersonalInfoPageAndSave');
-    await this.clearTextBox(txtFirstName);
-    await this.clearTextBox(txtLastName);
-    await this.clearTextBox(txtPhoneNumber);
-    await this.selectFromDropDownMenu(txtPhoneType, 'Select Type');
-    await this.clearTextBox(txtHomeAddress);
-    await this.clearTextBox(txtCity);
-    await this.clearTextBox(txtPostalCode);
+    await this.clearTextBox(TXT_FIRST_NAME);
+    await this.clearTextBox(TXT_LAST_NAME);
+    await this.clearTextBox(TXT_PHONE_NUMBER);
+    await this.selectFromDropDownMenu(TXT_PHONE_TYPE, 'Select Type');
+    await this.clearTextBox(TXT_HOME_ADDRESS);
+    await this.clearTextBox(TXT_CITY);
+    await this.clearTextBox(TXT_POSTAL_CODE);
     await this.clickSaveAndContinueButton();
   };
 
@@ -374,11 +373,11 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   clearAllFieldsInSecurityInfoSectionPersonalInfoPage = async (): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.clearAllFieldsInSecurityInfoSectionPersonalInfoPage');
-    await this.clearTextBox(txtBirthMonth);
-    await this.clearTextBox(txtBirthDay);
-    await this.clearTextBox(txtBirthYear);
+    await this.clearTextBox(TXT_BIRTH_MONTH);
+    await this.clearTextBox(TXT_BIRTH_DAY);
+    await this.clearTextBox(TXT_BIRTH_YEAR);
     // await this.clearTextBox(txtBirthMonth, txtBirthDay, txtBirthYear);
-    await this.clearTextBox(txtSocialSecurityNumber);
+    await this.clearTextBox(TXT_SOCIAL_SECURITY_NUMBER);
     await this.clickSaveAndContinueButton();
   };
 
@@ -429,7 +428,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     street: string,
     city: string,
     postalCode: string
-  ) => {
+  ): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.navigatePersonalInfoPageFromLogin');
     await this.navigateToShieldBenefitsPricingPage(groupNumber);
     if (groupPayConfig == 'Fringe') {
@@ -466,7 +465,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     street: string,
     city: string,
     postalCode: string
-  ) => {
+  ): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.navigatePersonalInfoPageFromLogin');
     await this.navigateToShieldBenefitsPricingPage(groupNumber);
     await this.selectPlanWithoutPaymentFrequencyFromShieldBenefitsPricingPage(stateName, planName, tierName);
@@ -502,7 +501,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     street: string,
     city: string,
     postalCode: string
-  ) => {
+  ): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.navigatePersonalInfoPageFromLogin');
     await this.navigateToShieldBenefitsPricingPage(groupNumber);
     await this.selectCombinationPlanFromShieldBenefitsPricingPage(stateName, payTerm, planName, plan2Name);
@@ -515,7 +514,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @param {string} groupNumber
    * @memberof CheckoutPersonalInfoPage
    */
-  navigateToBusinessSolutionsLegalEnrollPage = async (groupNumber: string) => {
+  navigateToBusinessSolutionsLegalEnrollPage = async (groupNumber: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.navigateToBusinessSolutionsLegalEnrollPage');
     // Navigate to enroll page
     await this.page.goto(UrlsUtils.shieldBenefits.home.url + '/' + groupNumber + '/overview');
@@ -525,7 +524,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @param {string} groupNumber
    * @memberof CheckoutPersonalInfoPage
    */
-  navigateToShieldBenefitsPricingPage = async (groupNumber: string) => {
+  navigateToShieldBenefitsPricingPage = async (groupNumber: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.navigateToBusinessSolutionsLegalPricingPage');
     // Login with a basic user
     await this.page.goto(UrlsUtils.shieldBenefits.home.url + '/' + groupNumber + '/pricing');
@@ -535,7 +534,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @param {string} groupNumber
    * @memberof CheckoutPersonalInfoPage
    */
-  navigateToBusinessSolutionsIdentityEnrollPage = async (groupNumber: string) => {
+  navigateToBusinessSolutionsIdentityEnrollPage = async (groupNumber: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.navigateToBusinessSolutionsIdentityEnrollPage');
     // Navigate to enroll page
     await this.page.goto(UrlsUtils.shieldBenefits.home.url + '/' + groupNumber + '/idshield');
@@ -555,20 +554,21 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     subChannel: string,
     region: string,
     marketLocale: string,
-    prepaidMonths: string = '',
-    couponCode: string = '',
+    prepaidMonths = '',
+    couponCode = '',
     plans: Array<string>
-  ) => {
+  ): Promise<void> => {
     await this.navigateToPlanalyzerCsrCheckoutOktaLogin();
     await this.loginThroughOkta();
     await this.createOrderRedirectToCheckoutFromPlanalyzer(channel, subChannel, region, marketLocale, prepaidMonths, couponCode, plans);
     await this.login(basicUser.email, basicUser.password);
   };
   /**
-   * @param {string} navigateToPersonalInfoPageFromPlanalyzer
+   *
+   *
    * @memberof CheckoutPersonalInfoPage
    */
-  navigateToPersonalInfoPageForIdsCaFromPlanalyzer = async () => {
+  navigateToPersonalInfoPageForIdsCaFromPlanalyzer = async (): Promise<void> => {
     await this.navigateToPlanalyzerCsrCheckoutOktaLogin();
     await this.loginThroughOkta();
     await this.createOrderRedirectToCheckoutFromPlanalyzer('D2C', 'IDShield', 'Ontario', 'en-CA', '', 'F30', ['IDShield Individual']);
@@ -588,7 +588,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     await this.navigateToPlanalyzerCsrCheckoutOktaLogin();
     await this.loginThroughOkta();
     await this.createOrderRedirectToCheckoutFromPlanalyzer('D2C', 'IDShield', 'Ontario', 'en-CA', '', 'F30', ['IDShield Individual']);
-    await this.navigatePersonalInfoPageFromLogin(basicUser.email, basicUser.password);
+    // await this.navigatePersonalInfoPageFromLogin(basicUser.email, basicUser.password);
     const regionObj = RegionsUtils.caProvinces;
     const stateObj = state;
     for (const obj of regionObj) {
@@ -602,19 +602,19 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   /**
    * @memberof CheckoutPersonalInfoPage
    */
-  clickChangeStateLink = async () => {
+  clickChangeStateLink = async (): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.clickChangeStateLink');
     // Click on Change State link
-    await this.clickOnElement(lnkChangeState);
+    await this.clickOnElement(LNK_CHANGE_STATE);
   };
 
   /**
    * @memberof CheckoutPersonalInfoPage
    */
-  clickSaveAndContinueButton = async () => {
+  clickSaveAndContinueButton = async (): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.clickSaveAndContinueButton');
     // Click the Save and Continue button
-    await this.clickOnElement(btnSaveAndContinue);
+    await this.clickOnElement(BTN_SAVE_AND_CONTINUE);
   };
 
   // ========================== Assertion Methods ==========================
@@ -626,18 +626,18 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   assertState = async (region: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.assertState');
     // Confirm region is correct
-    await this.assertElementHasText(txtRegion, region);
+    await this.assertElementHasText(TXT_REGION, region);
   };
 
   /**
-   * @param {string} region
+   *
+   *
    * @memberof CheckoutPersonalInfoPage
    */
-  // Confirm the tool tip displays after hovering over the help icon
-  assertToolTipIsVisible = async (region: string): Promise<void> => {
+  assertToolTipIsVisible = async (): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.assertToolTipIsVisible');
     // Confirm region is correct
-    await this.assertElementIsVisible(txaStageChangeToolTip);
+    await this.assertElementIsVisible(TXT_STAGE_CHANGE_TOOLTIP);
   };
 
   /**
@@ -646,7 +646,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   // Confirm that the stepper displays the step 2 - personal info as the current step
   assertPersonalInfoStepIsCurrent = async (): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.assertPersonalInfoStepIsCurrent');
-    await this.assertElementIsVisible(stpPersonalInfoCurrent);
+    await this.assertElementIsVisible(STP_PERSONAL_INFO_CURRENT);
   };
 
   /**
@@ -655,7 +655,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   // Confirm that the help information card is displayed
   assertSupportCardIsDisplayed = async (): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.assertSupportCardIsDisplayed');
-    await this.assertElementIsVisible(conSupportInfo);
+    await this.assertElementIsVisible(CON_SUPPORT_INFO);
   };
 
   /**
@@ -664,7 +664,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   // Confirm that the Call Support button is displayed
   assertCallSupportButtonIsDisplayed = async (): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.assertCallSupportButtonIsDisplayed');
-    await this.assertElementIsVisible(btnCallSupport);
+    await this.assertElementIsVisible(BTN_CALL_SUPPORT);
   };
 
   /**
@@ -673,7 +673,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   // Confirm that the Header displays: Tell us about you
   assertPersonalInfoHeaderIsDisplayed = async (): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.assertPersonalInfoHeaderIsDisplayed');
-    await this.assertElementIsVisible(hdrPersonalInfoHeader);
+    await this.assertElementIsVisible(HDR_PERSONAL_INFO_HEADER);
   };
 
   /**
@@ -682,13 +682,13 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   // Confirm that the Header displays: Tell us about you
   assertPersonalInfoPageErrorsAreDisplayed = async (): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.assertPersonalInfoPageErrorIsDisplayed');
-    await this.assertElementIsVisible(msgFirstNameValidation);
-    await this.assertElementIsVisible(msgLastNameValidation);
-    await this.assertElementIsVisible(msgPhoneNumberValidation);
-    await this.assertElementIsVisible(msgPhoneTypeValidation);
-    await this.assertElementIsVisible(msgHomeAddressValidation);
-    await this.assertElementIsVisible(msgCityValidation);
-    await this.assertElementIsVisible(msgPostalCodeValidation);
+    await this.assertElementIsVisible(MSG_FIRST_NAME_VALIDATION);
+    await this.assertElementIsVisible(MSG_LAST_NAME_VALIDATION);
+    await this.assertElementIsVisible(MSG_PHONE_NUMBER_VALIDATION);
+    await this.assertElementIsVisible(MSG_PHONE_TYPE_VALIDATION);
+    await this.assertElementIsVisible(MSG_HOME_ADDRESS_VALIDATION);
+    await this.assertElementIsVisible(MSG_CITY_VALIDATION);
+    await this.assertElementIsVisible(MSG_POSTAL_CODE_VALIDATION);
   };
 
   /**
@@ -700,7 +700,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     // await this.assertElementIsVisible(msgBirthMonthValidation);
     // await this.assertElementIsVisible(msgBirthDayValidation);
     // await this.assertElementIsVisible(msgBirthYearValidation);
-    await this.assertElementIsVisible(msgBirthMonthDayYearValidation);
-    await this.assertElementIsVisible(msgSocialSecurityValidation);
+    await this.assertElementIsVisible(MSG_BIRHT_MONTH_DAY_YEAR_VALIDATION);
+    await this.assertElementIsVisible(MSG_SOCIAL_SECURITY_VALIDATION);
   };
 }

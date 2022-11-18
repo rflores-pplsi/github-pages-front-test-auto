@@ -1,0 +1,38 @@
+export const checkoutGroupsData = [
+  {
+    disabled: false,
+    groupNameOrNumber: 'victoryfancysausage',
+    monthlyTotal: '$23.95',
+    planType: 'LegalShield',
+    productNamesAndCosts: ['Legal Plan Family', '$23.95'],
+    regions: 'Alberta',
+    testCaseName: 'Legal Plan Family',
+  },
+  {
+    disabled: true,
+    groupNameOrNumber: 'victoryfancysausage',
+    monthlyTotal: '$29.95',
+    planSupplementName: 'Legal Plan Family + Home Business Supplement',
+    planType: 'LegalShield',
+    region: 'Alberta',
+    testCaseName: 'Legal Plan Family + Home Business Supplement',
+  },
+  {
+    disabled: true,
+    groupNameOrNumber: 'victoryfancysausage',
+    monthlyTotal: '$29.95',
+    planSupplementName: 'Legal Plan Family + Trial Defense Supplement',
+    planType: 'LegalShield',
+    region: 'Alberta',
+    testCaseName: 'Legal Plan Family + Trial Defense Supplement',
+  },
+  {
+    disabled: true,
+    groupNameOrNumber: 'victoryfancysausage',
+    monthlyTotal: '$29.95',
+    planSupplementName: 'Legal Plan Family + Home Business Supplement, Trial Defense Supplement',
+    planType: 'LegalShield',
+    region: 'Alberta',
+    testCaseName: 'Legal Plan Family + Home Business Supplement, Trial Defense Supplement',
+  },
+];

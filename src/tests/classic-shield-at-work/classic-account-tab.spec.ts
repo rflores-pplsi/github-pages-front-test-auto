@@ -8,12 +8,12 @@ test.beforeEach(async ({ page }) => {
   await classicShieldAtWorkAccountTab.navigateToClassicShieldAtWork();
 });
 
-test('Security page is displayed on the account information page', async ({ page }) => {
+test('Security page is displayed on the account information page', async () => {
   await classicShieldAtWorkAccountTab.loginWithCredentials();
   await classicShieldAtWorkAccountTab.assertSecurityPage();
 });
 
-test('Edit Employee button redirects to the correct page to update the number of employees', async ({ page }) => {
+test('Edit Employee button redirects to the correct page to update the number of employees', async () => {
   await classicShieldAtWorkAccountTab.loginWithCredentials();
   await classicShieldAtWorkAccountTab.assertEditEmployeePage();
 });

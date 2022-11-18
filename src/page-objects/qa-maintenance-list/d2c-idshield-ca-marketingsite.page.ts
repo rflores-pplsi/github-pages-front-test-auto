@@ -1,4 +1,3 @@
-/* eslint-disable require-jsdoc */
 import UrlsUtils from '../../utils/urls.utils'; // import class of Urls
 import { LocalStorageSelectedItem } from '../../types/types';
 import { getLocalStorageAvailableProducts } from '../../utils/browser-storage.utils';
@@ -10,7 +9,7 @@ const BTN_VIEW_PLAN = 'text=View plan';
 
 export class IDShieldCAPage extends BasePage {
   // ========================== Process Methods ============================
-  pickAPlan = async (plan: string) => {
+  pickAPlan = async (plan: string): Promise<void> => {
     await this.page.locator(BTN_VIEW_PLAN).click();
     if (plan == 'INDIVIDUAL') {
       const localStorageProducts: LocalStorageSelectedItem[] | null = await getLocalStorageAvailableProducts(this.page);
@@ -31,7 +30,7 @@ export class IDShieldCAPage extends BasePage {
     // navigate to URL
     await this.page.goto(urlD2CIDShieldCAPage);
     await this.page.waitForLoadState();
-    await this.page.screenshot({ path: 'Screenshots/MarketingSite/' + lineofbusiness + 'MarketingSite.png', fullPage: true });
+    await this.page.screenshot({ fullPage: true, path: 'Screenshots/MarketingSite/' + lineofbusiness + 'MarketingSite.png' });
   };
   // ========================== Click Methods ==============================
   // ========================== Assertion Methods ==========================

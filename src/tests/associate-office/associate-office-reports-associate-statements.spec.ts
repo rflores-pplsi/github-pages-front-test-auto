@@ -9,14 +9,14 @@ test.beforeEach(async ({ page }) => {
   reportsCommissionsPage = new ReportsCommissionsPage(page);
 });
 
-test('Associate Statements is displayed', async ({ page }) => {
+test('Associate Statements is displayed', async () => {
   await reportsCommissionsPage.navigateToReportsCommissionsPage2();
   await reportsCommissionsPage.assertReportsCommissionsPageShow();
   await reportsCommissionsPage.assertTabAssociateStatementsIsDisplayed();
 });
 
 // US
-test('Displays all reports titles of Associate Statements section on the calendar', async ({ page }) => {
+test('Displays all reports titles of Associate Statements section on the calendar', async () => {
   await reportsCommissionsPage.navigateToReportsCommissionsPage2();
   await reportsCommissionsPage.assertSearchDatesIsDisplayed();
   await reportsCommissionsPage.clickOnSearchDates();
@@ -27,7 +27,7 @@ test('Displays all reports titles of Associate Statements section on the calenda
   await reportsCommissionsPage.assertAllReportsAreDisplayed();
 });
 
-test('Displays Advanced Commission report for US', async ({ page }) => {
+test('Displays Advanced Commission report for US', async () => {
   await reportsCommissionsPage.navigateToReportsCommissionsPage2();
   await reportsCommissionsPage.assertSearchDatesIsDisplayed();
   await reportsCommissionsPage.clickOnSearchDates();
@@ -39,7 +39,7 @@ test('Displays Advanced Commission report for US', async ({ page }) => {
   await reportsCommissionsPage.assertAdvancedCommissionIsDisplayed();
 });
 
-test('Displays Earned Commission report for US', async ({ page }) => {
+test('Displays Earned Commission report for US', async () => {
   await reportsCommissionsPage.navigateToReportsCommissionsPage2();
   await reportsCommissionsPage.assertSearchDatesIsDisplayed();
   await reportsCommissionsPage.clickOnSearchDates();
@@ -51,7 +51,7 @@ test('Displays Earned Commission report for US', async ({ page }) => {
   await reportsCommissionsPage.assertEarnedCommissionIsDisplayed();
 });
 
-test('Displays Commission Advance Balance / Reserve Balance report for US', async ({ page }) => {
+test('Displays Commission Advance Balance / Reserve Balance report for US', async () => {
   await reportsCommissionsPage.navigateToReportsCommissionsPage2();
   await reportsCommissionsPage.assertSearchDatesIsDisplayed();
   await reportsCommissionsPage.clickOnSearchDates();
@@ -63,7 +63,7 @@ test('Displays Commission Advance Balance / Reserve Balance report for US', asyn
   await reportsCommissionsPage.assertCommissionAdvanceBalanceIsDisplayed();
 });
 
-test('Displays Commissions by Organization Calculation report for US', async ({ page }) => {
+test('Displays Commissions by Organization Calculation report for US', async () => {
   await reportsCommissionsPage.navigateToReportsCommissionsPage2();
   await reportsCommissionsPage.assertSearchDatesIsDisplayed();
   await reportsCommissionsPage.clickOnSearchDates();
@@ -76,7 +76,7 @@ test('Displays Commissions by Organization Calculation report for US', async ({ 
 });
 
 // Canada
-test('Displays all reports titles of Associate Statements section on the calendar for Canada', async ({ page }) => {
+test('Displays all reports titles of Associate Statements section on the calendar for Canada', async () => {
   await reportsCommissionsPage.navigateToReportsCommissionsPage3();
   await reportsCommissionsPage.assertSearchDatesIsDisplayed();
   await reportsCommissionsPage.clickOnSearchDates();
@@ -87,7 +87,7 @@ test('Displays all reports titles of Associate Statements section on the calenda
   await reportsCommissionsPage.assertAllReportsAreDisplayed();
 });
 
-test('Displays Advanced Commission report for Canada', async ({ page }) => {
+test('Displays Advanced Commission report for Canada', async () => {
   await reportsCommissionsPage.navigateToReportsCommissionsPage3();
   await reportsCommissionsPage.assertSearchDatesIsDisplayed();
   await reportsCommissionsPage.clickOnSearchDates();
@@ -99,7 +99,7 @@ test('Displays Advanced Commission report for Canada', async ({ page }) => {
   await reportsCommissionsPage.assertAdvancedCommissionIsDisplayed();
 });
 
-test('Displays Earned Commission report for Canada', async ({ page }) => {
+test('Displays Earned Commission report for Canada', async () => {
   await reportsCommissionsPage.navigateToReportsCommissionsPage3();
   await reportsCommissionsPage.assertSearchDatesIsDisplayed();
   await reportsCommissionsPage.clickOnSearchDates();
@@ -111,7 +111,7 @@ test('Displays Earned Commission report for Canada', async ({ page }) => {
   await reportsCommissionsPage.assertEarnedCommissionIsDisplayed();
 });
 
-test('Displays Commission Advance Balance / Reserve Balance report for Canada', async ({ page }) => {
+test('Displays Commission Advance Balance / Reserve Balance report for Canada', async () => {
   await reportsCommissionsPage.navigateToReportsCommissionsPage3();
   await reportsCommissionsPage.assertSearchDatesIsDisplayed();
   await reportsCommissionsPage.clickOnSearchDates();
@@ -123,7 +123,7 @@ test('Displays Commission Advance Balance / Reserve Balance report for Canada', 
   await reportsCommissionsPage.assertCommissionAdvanceBalanceIsDisplayed();
 });
 
-test('Displays Commissions by Organization Calculation report for Canada', async ({ page }) => {
+test('Displays Commissions by Organization Calculation report for Canada', async () => {
   await reportsCommissionsPage.navigateToReportsCommissionsPage3();
   await reportsCommissionsPage.assertSearchDatesIsDisplayed();
   await reportsCommissionsPage.clickOnSearchDates();

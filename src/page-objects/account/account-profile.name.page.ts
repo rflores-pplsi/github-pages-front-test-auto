@@ -3,9 +3,9 @@ import UrlsUtils from '../../utils/urls.utils';
 import { AccountProfilePage } from './account-profile.page';
 
 // ========================== Selectors ==========================
-const txtBoxEditFirstName = "input[name='firstName']";
-const txtBoxEditLastName = "input[name='lastName']";
-const txtBoxEditMiddleName = "input[name='middleName']";
+const TXT_BOX_EDIT_FIRST_NAME = "input[name='firstName']";
+const TXT_BOX_EDIT_LAST_NAME = "input[name='lastName']";
+const TXT_BOX_EDIT_MIDDLE_NAME = "input[name='middleName']";
 
 /**
  * @export
@@ -27,17 +27,17 @@ export class AccountProfileNamePage extends AccountProfilePage {
   // Edit First Name text box
   editFirstNameTxtBox = async (): Promise<void> => {
     console.log(' - accountProfilePage.editFirstNameTxtBox');
-    await this.fillTextBox(txtBoxEditFirstName, 'AMTesteditName');
+    await this.fillTextBox(TXT_BOX_EDIT_FIRST_NAME, 'AMTesteditName');
   };
   // Edit Last Name text box
   editLastNameTxtBox = async (): Promise<void> => {
     console.log(' - accountProfilePage.editLastNameTxtBox');
-    await this.fillTextBox(txtBoxEditLastName, 'TestDEditLastName');
+    await this.fillTextBox(TXT_BOX_EDIT_LAST_NAME, 'TestDEditLastName');
   };
   // Edit Middle Name text box
   editMiddleNameTxtBox = async (): Promise<void> => {
     console.log(' - accountProfilePage.editMiddleNameTxtBox');
-    await this.fillTextBox(txtBoxEditMiddleName, 'TestEditMiddleName');
+    await this.fillTextBox(TXT_BOX_EDIT_MIDDLE_NAME, 'TestEditMiddleName');
   };
   // ========================== Navigate Methods ==========================
 

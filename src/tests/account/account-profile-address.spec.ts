@@ -13,7 +13,7 @@ test.beforeEach(async ({ page }) => {
 
 // Navigate to the Profile Address page
 // test.fixme - The Edit button is now disabled
-test.fixme('Navigate to the Profile Address page by clicking the Address Edit button', async ({ page }) => {
+test.fixme('Navigate to the Profile Address page by clicking the Address Edit button', async () => {
   console.log('Test Case: Navigate to the Profile Address page by clicking the Address Edit button');
 
   // Edit the Address Form

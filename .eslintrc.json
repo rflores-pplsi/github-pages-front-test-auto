@@ -1,17 +1,41 @@
 {
-  "env": {
-    "node": true,
-    "es2021": true
-  },
-  "extends": ["eslint:recommended", "google", "plugin:prettier/recommended"],
+  "extends": ["plugin:@typescript-eslint/recommended", "prettier", "plugin:prettier/recommended", "plugin:jsdoc/recommended"],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaVersion": "latest",
+    "project": "tsconfig.json",
     "sourceType": "module"
   },
-  "plugins": ["@typescript-eslint"],
+  "plugins": ["@typescript-eslint", "sort-keys-fix", "const-case", "jsdoc"],
   "rules": {
+    "no-empty-pattern": "warn",
+    "@typescript-eslint/explicit-function-return-type": "warn",
+    "@typescript-eslint/no-explicit-any": 2,
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {
+        "checksConditionals": true,
+        "checksVoidReturn": {
+          "arguments": false
+        }
+      }
+    ],
     "camelcase": [2, { "properties": "always" }],
-    "prettier/prettier": ["error", { "endOfLine": "auto" }]
+    "const-case/uppercase": "error",
+    "jsdoc/newline-after-description": 0,
+    "jsdoc/require-param-description": 0,
+    "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 0 }],
+    "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    "sort-keys": ["error", "asc", { "caseSensitive": true, "minKeys": 2, "natural": false }],
+    "sort-keys-fix/sort-keys-fix": "warn"
+  },
+  "settings": {
+    "jsdoc": {
+      "tagNamePreference": {
+        "exports": "export",
+        "returns": "return",
+        "extends": "extends"
+      }
+    }
   }
 }

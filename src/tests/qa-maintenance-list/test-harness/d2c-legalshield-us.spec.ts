@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 import { test } from '@playwright/test';
 import { CheckoutPaymentsBankDraftPage } from '../../../page-objects/checkout/checkout-payments-bank-draft.page';
 import { CheckoutPersonalInfoPage } from '../../../page-objects/checkout/checkout-personal-info.page';
@@ -12,7 +11,7 @@ let checkoutPersonalInfoPage: CheckoutPersonalInfoPage;
 let checkoutPaymentsBankDraftPage: CheckoutPaymentsBankDraftPage;
 
 // Setup environment before each test
-test.beforeEach(async ({ page, request }) => {
+test.beforeEach(async ({ page }) => {
   d2CLegalShieldUSPage = new D2CLegalShieldUSPage(page);
   d2CLegalShieldCaPage = new D2CLegalShieldCaPage(page);
   checkoutPersonalInfoPage = new CheckoutPersonalInfoPage(page);
@@ -21,7 +20,7 @@ test.beforeEach(async ({ page, request }) => {
   test.slow();
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
-test('D2E LegalShield US using Testing Harness', async ({ page }) => {
+test('D2E LegalShield US using Testing Harness', async () => {
   test.slow;
   await test.step('Navigate to Testing Harness', async () => {
     await d2CLegalShieldCaPage.navigateToTestingHarnessPage('d2cLegalShieldUS');

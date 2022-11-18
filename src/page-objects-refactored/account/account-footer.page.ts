@@ -1,11 +1,10 @@
-/* eslint-disable require-jsdoc */
 import { expect, Page } from '@playwright/test';
 import { LoginPage } from '../login/login.page';
 
 // ========================== Selectors ==========================
-const lnkTermsOfService = 'a:has-text("Terms of Service")';
-const lnkPrivacyPolicy = 'a:has-text("Privacy Policy")';
-const lnkLegalDisclaimer = 'a:has-text("Legal")';
+const LNK_TERMS_OF_SERVICE = 'a:has-text("Terms of Service")';
+const LNK_PRIVACY_POLICY = 'a:has-text("Privacy Policy")';
+const LNK_LEGAL_DISCLAIMER = 'a:has-text("Legal")';
 
 export class AccountFooterPage extends LoginPage {
   // ========================== Process Methods ==========================
@@ -19,20 +18,20 @@ export class AccountFooterPage extends LoginPage {
     console.log(' - accountFooterPage.clickTermsOfServiceLink');
     const [newPage] = await Promise.all([this.context.waitForEvent('page'), await this.page.click('a:has-text("Terms of Service")')]);
     await newPage.waitForLoadState();
-    await this.page.click(lnkTermsOfService);
+    await this.page.click(LNK_TERMS_OF_SERVICE);
     return newPage;
   };
 
   clickPrivacyPolicyLink = async (): Promise<void> => {
     // Click Terms of Service link
     console.log(' - accountFooterPage.clickPrivacyPolicyLink');
-    await this.page.click(lnkPrivacyPolicy);
+    await this.page.click(LNK_PRIVACY_POLICY);
   };
 
   clickDisclaimerLink = async (): Promise<void> => {
     // Click Terms of Service link
     console.log(' - accountFooterPage.clickDisclaimerLink');
-    await this.page.click(lnkLegalDisclaimer);
+    await this.page.click(LNK_LEGAL_DISCLAIMER);
   };
 
   // ========================== Assertion Methods ==========================

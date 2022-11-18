@@ -11,8 +11,8 @@ const config: PlaywrightTestConfig = {
       use: {
         ...devices['Desktop Chrome'],
         screenshot: 'on',
-        video: 'on',
         trace: 'on',
+        video: 'on',
       },
     },
     // {
@@ -24,7 +24,7 @@ const config: PlaywrightTestConfig = {
     //     use: { ...devices['Desktop Safari'], screenshot: 'on', video: 'on', trace: 'on' },
     //   },
   ],
-  reporter: [['dot'], ['json', { outputFile: 'test-result.json' }], ['html', { open: 'always' }]],
+  reporter: [['dot'], ['html', { open: 'always' }]],
   retries: 1,
   // setting workers to '1' disables parallel running, workers can also be set at runtime in the command line
   workers: 1,

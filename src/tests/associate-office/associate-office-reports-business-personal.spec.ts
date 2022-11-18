@@ -10,28 +10,28 @@ test.beforeEach(async ({ page }) => {
   await reportsBusinessOrganizationalPage.navigateToReportsBusinessPersonalPage();
 });
 
-test('Personal Business Report Routing is displayed', async ({ page }) => {
+test('Personal Business Report Routing is displayed', async () => {
   console.log('Test Case: Personal Business Report Routing is displayed');
-  const breadcrumbLinkTxt = 'Personal Business Report';
-  await reportsBusinessOrganizationalPage.assertPageTitle(breadcrumbLinkTxt);
-  await reportsBusinessOrganizationalPage.assertBreadcrumbLinkIsDisplayed(breadcrumbLinkTxt);
+  const BREADCRUMB_LINK_TEXT = 'Personal Business Report';
+  await reportsBusinessOrganizationalPage.assertPageTitle(BREADCRUMB_LINK_TEXT);
+  await reportsBusinessOrganizationalPage.assertBreadcrumbLinkIsDisplayed(BREADCRUMB_LINK_TEXT);
   await reportsBusinessOrganizationalPage.assertPersonalBusinessReportTabIsDisplayed();
 });
 
-test('Search Component is displayed', async ({ page }) => {
+test('Search Component is displayed', async () => {
   console.log('Test Case: Search Component is displayed');
   await reportsBusinessOrganizationalPage.assertTxaSearchByTxtIsDisplayed();
   await reportsBusinessOrganizationalPage.assertTxtBoxSearchIsDisplayed();
   await reportsBusinessOrganizationalPage.assertBtnSearchIsDisplayed();
 });
 
-test('Verify that the input box says “Associate name or number”', async ({ page }) => {
+test('Verify that the input box says “Associate name or number”', async () => {
   console.log('Test Case: Verify that the input box says “Associate name or number”');
   await reportsBusinessOrganizationalPage.assertBoxSearchHasText();
 });
 
 // prod only, no available reports in dev and uat
-test('Verify the ability to search by Associate Name', async ({ page }) => {
+test('Verify the ability to search by Associate Name', async () => {
   console.log('Test Case: Verify the ability to search by Associate Name');
   await reportsBusinessOrganizationalPage.fillTxtBoxSearch('RECOGNITION');
   await reportsBusinessOrganizationalPage.clickOnOption();
@@ -39,7 +39,7 @@ test('Verify the ability to search by Associate Name', async ({ page }) => {
   await reportsBusinessOrganizationalPage.assertAssociateName();
 });
 
-test('Verify the ability to search by Associate Number', async ({ page }) => {
+test('Verify the ability to search by Associate Number', async () => {
   console.log('Test Case: Verify the ability to search by Associate Number');
   await reportsBusinessOrganizationalPage.fillTxtBoxSearch('1275');
   await reportsBusinessOrganizationalPage.clickOnOption();
@@ -47,13 +47,13 @@ test('Verify the ability to search by Associate Number', async ({ page }) => {
   await reportsBusinessOrganizationalPage.assertAssociateName();
 });
 
-test('The appropriate message is displayed when no associate had found.', async ({ page }) => {
+test('The appropriate message is displayed when no associate had found.', async () => {
   console.log('Test Case: The appropriate message is displayed when no associate had found.');
   await reportsBusinessOrganizationalPage.fillTxtBoxSearch('111222333');
   await reportsBusinessOrganizationalPage.assertNoAssociateFoundMessage();
 });
 
-test('Associate Name and Number is displayed', async ({ page }) => {
+test('Associate Name and Number is displayed', async () => {
   console.log('Test Case: Associate Name and Number is displayed');
   await reportsBusinessOrganizationalPage.fillTxtBoxSearch('1275');
   await reportsBusinessOrganizationalPage.clickOnOption();
@@ -62,7 +62,7 @@ test('Associate Name and Number is displayed', async ({ page }) => {
   await reportsBusinessOrganizationalPage.assertAssociateNumber();
 });
 
-test('The tables are displayed', async ({ page }) => {
+test('The tables are displayed', async () => {
   console.log('Test Case: The tables are displayed');
   await reportsBusinessOrganizationalPage.fillTxtBoxSearch('1275');
   await reportsBusinessOrganizationalPage.clickOnOption();

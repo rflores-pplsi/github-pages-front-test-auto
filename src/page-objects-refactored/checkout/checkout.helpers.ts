@@ -14,7 +14,6 @@ export class OrderSummaryRow {
    * @param {string} planName
    * @param {string} tierName
    * @param {string} planCost
-
    * @memberof PlanRow
    */
   constructor(planName: string | null, tierName: string | null, planCost: string | null) {
@@ -165,7 +164,7 @@ export class AddPlanAndSomeSupplements {
    * @param {string} lineOfBusiness
    * @memberof AddPlanAndSomeSupplements
    */
-  pickAPlan = async (planSupp: Array<string>, lineOfBusiness: string) => {
+  pickAPlan = async (planSupp: Array<string>, lineOfBusiness: string): Promise<void> => {
     for (const ps of planSupp) {
       // Add a plan
       if (lineOfBusiness == 'd2cLegalShieldCA' || lineOfBusiness == 'd2cLegalShieldUS') {
@@ -206,7 +205,7 @@ export class NavigateToTestingHarnessPage {
    * @param {string} lofb
    * @memberof NavigateToTestingHarnessPage
    */
-  navigate = async (url: string, lineOfBusiness: string, lofb: string) => {
+  navigate = async (url: string, lineOfBusiness: string, lofb: string): Promise<void> => {
     // navigate to URL
     await this.page.goto(url);
     await this.page.waitForLoadState();
@@ -217,6 +216,6 @@ export class NavigateToTestingHarnessPage {
     const LineOfBusiness = this.page.locator('div.et_pb_blurb_' + lofb);
     await this.page.waitForLoadState();
     await LineOfBusiness.click();
-    this.page.screenshot({ path: 'Screenshots/testingHarness/' + lineOfBusiness + 'TestingHarness.png', fullPage: true });
+    this.page.screenshot({ fullPage: true, path: 'Screenshots/testingHarness/' + lineOfBusiness + 'TestingHarness.png' });
   };
 }

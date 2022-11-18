@@ -3,12 +3,12 @@ import UrlsUtils from '../../utils/urls.utils';
 import { LoginPage } from '../login/login.page';
 
 // ========================== Selectors ==================================
-const imgFormsLogoLarge: string = '//img[contains(@alt,"Legalshield Forms logo large")]';
-const lblForms: string = '//h5[contains(text(),"Forms")]';
-const btnFormsGoToWebsite: string = '//div[contains(@class,"resources--forms-ls")]//button';
-const imgMemberPerksLogoLarge: string = '//img[contains(@alt,"Member Perks logo large")]';
-const lblMemberPerks: string = '//h5[contains(text(),"Member Perks")]';
-const btnMemberPerksGoToWebsite: string = '//div[contains(@class,"resources--member-perks")]//button';
+const IMG_FORMS_LOGO_LARGE = '//img[contains(@alt,"Legalshield Forms logo large")]';
+const LBL_FORMS = '//h5[contains(text(),"Forms")]';
+const BTN_FORMS_GO_TO_WEBSITE = '//div[contains(@class,"resources--forms-ls")]//button';
+const IMG_MEMBER_PERKS_LOGO_LARGE = '//img[contains(@alt,"Member Perks logo large")]';
+const LBL_MEMBER_PERKS = '//h5[contains(text(),"Member Perks")]';
+const BTN_MEMBER_PERKS_GO_TO_WEBSITE = '//div[contains(@class,"resources--member-perks")]//button';
 
 /**
  * @export
@@ -29,7 +29,7 @@ export class AccountResourcesPage extends LoginPage {
   clickFormsGoToWebsiteLink = async (): Promise<void> => {
     console.log(' - accountResourcesPage.clickFormsGoToWebsiteLink');
     // Click on the Forms Go To Website Link
-    await this.clickOnElement(btnFormsGoToWebsite);
+    await this.clickOnElement(BTN_FORMS_GO_TO_WEBSITE);
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };
@@ -37,7 +37,7 @@ export class AccountResourcesPage extends LoginPage {
   clickMemberPerksGoToWebsiteLink = async (): Promise<void> => {
     console.log(' - accountResourcesPage.clickMemberPerksGoToWebsiteLink');
     // Click on the Forgot Password Link
-    await this.clickOnElement(btnMemberPerksGoToWebsite);
+    await this.clickOnElement(BTN_MEMBER_PERKS_GO_TO_WEBSITE);
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };
@@ -46,13 +46,13 @@ export class AccountResourcesPage extends LoginPage {
   assertFormsLogoIsDisplayed = async (): Promise<void> => {
     console.log(' - accountResourcesPage.assertFormsLogoIsDisplayed');
     // Confirm that the Forms label is displayed in the Forms Panel
-    await this.assertElementIsVisible(imgFormsLogoLarge);
+    await this.assertElementIsVisible(IMG_FORMS_LOGO_LARGE);
   };
 
   assertFormsLabelIsDisplayed = async (): Promise<void> => {
     console.log(' - accountResourcesPage.assertFormsLabelIsDisplayed');
     // Confirm that the Forms label is displayed in the Forms Panel
-    await this.assertElementIsVisible(lblForms);
+    await this.assertElementIsVisible(LBL_FORMS);
   };
 
   // Confirm URL for Forms page
@@ -67,13 +67,13 @@ export class AccountResourcesPage extends LoginPage {
   assertMemberPerksLogoIsDisplayed = async (): Promise<void> => {
     console.log(' - accountResourcesPage.assertMemberPerksLogoIsDisplayed');
     // Confirm that the Member Perks logo is displayed in the Member Perks Panel
-    await this.assertElementIsVisible(imgMemberPerksLogoLarge);
+    await this.assertElementIsVisible(IMG_MEMBER_PERKS_LOGO_LARGE);
   };
 
   assertMemberPerksLabelIsDisplayed = async (): Promise<void> => {
     console.log(' - accountResourcesPage.assertMemberPerksLabelIsDisplayed');
     // Confirm that the Member Perks label is displayed in the Member Perks Panel
-    await this.assertElementIsVisible(lblMemberPerks);
+    await this.assertElementIsVisible(LBL_MEMBER_PERKS);
   };
 
   assertMemberPerksPageUrl = async (): Promise<void> => {

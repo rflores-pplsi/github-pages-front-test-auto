@@ -11,12 +11,12 @@ test.beforeEach(async ({ page }) => {
   await reportsCommissionsPage.navigateToReportsCommissionsPage3();
 });
 
-test('Fast Start Statements is displayed', async ({ page }) => {
+test('Fast Start Statements is displayed', async () => {
   await reportsCommissionsPage.assertReportsCommissionsPageShow();
   await reportsCommissionsPage.assertTabFastStartStatementsIsDisplayed();
 });
 
-test('Displays Fast Start Statement report for Canada', async ({ page }) => {
+test('Displays Fast Start Statement report for Canada', async () => {
   await reportsCommissionsPage.clickOnFastStartStatements();
   await reportsCommissionsPage.assertSearchDatesIsDisplayed();
   await reportsCommissionsPage.clickOnSearchDates();

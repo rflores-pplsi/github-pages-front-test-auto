@@ -4,11 +4,11 @@ import { expect } from '@playwright/test';
 
 // ========================== Selectors ==========================
 
-const imgLargeLogo: string = '#lsdsLargeLogoId';
-const btnHelp: string = '#helpButton';
-const ddName: string = '#myButton';
-const lnkSignOut: string = 'div#myDropdown a:has-text("Sign out")';
-const ddHelp: string = '#helpDropdown';
+const IMG_LARGE_LOGO = '#lsdsLargeLogoId';
+const BTN_HELP = '#helpButton';
+const DD_NAME = '#myButton';
+const LNK_SIGN_OUT = 'div#myDropdown a:has-text("Sign out")';
+const DD_HELP = '#helpDropdown';
 
 /**
  * @export
@@ -20,9 +20,9 @@ export class ActivateHeaderPage extends LoginPage {
   logout = async (): Promise<void> => {
     console.log(' - activateHeaderPage.logout');
     // Click name dropdown to reveal signout link
-    await this.clickOnElement(ddName);
+    await this.clickOnElement(DD_NAME);
     // Click signout link to log out of account
-    await this.clickOnElement(lnkSignOut);
+    await this.clickOnElement(LNK_SIGN_OUT);
   };
   // ========================== Navigate Methods ==========================
   // ========================== Click Methods ==========================
@@ -30,13 +30,13 @@ export class ActivateHeaderPage extends LoginPage {
   clickLargeLogo = async (): Promise<void> => {
     console.log(' - activateHeaderPage.clickLargeLogo');
     // Click large logo that is displayed when viewport width is > 639px
-    await this.clickOnElement(imgLargeLogo);
+    await this.clickOnElement(IMG_LARGE_LOGO);
   };
 
   clickHelpButton = async (): Promise<void> => {
     console.log(' - activateHeaderPage.clickHelpButton');
     // Click help button
-    await this.clickOnElement(btnHelp);
+    await this.clickOnElement(BTN_HELP);
   };
 
   // ========================== Assertion Methods ==========================
@@ -44,11 +44,11 @@ export class ActivateHeaderPage extends LoginPage {
   assertHelpDropdownInformation = async (): Promise<void> => {
     console.log(' - activateHeaderPage.assertHelpDropdownInformation');
     // Confirm Member Services dropdown displays
-    await this.assertElementIsVisible(ddHelp);
+    await this.assertElementIsVisible(DD_HELP);
     // Confirm Member Services phone number link is displayed
-    await this.assertElementContainsText(ddHelp, '800-654-7757');
+    await this.assertElementContainsText(DD_HELP, '800-654-7757');
     // Confirm Member Services phone number link is displayed
-    await this.assertElementContainsText(ddHelp, '580-436-7424');
+    await this.assertElementContainsText(DD_HELP, '580-436-7424');
   };
 
   assertLoggedOutPageUrl = async (): Promise<void> => {

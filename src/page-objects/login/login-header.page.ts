@@ -3,14 +3,14 @@ import { LoginPage } from './login.page';
 import UrlsUtils from '../../utils/urls.utils';
 
 // ========================== Selectors ==========================
-const imgLargeLogo: string = '#lsdsLargeLogoId';
-const btnHelp: string = '#helpButton';
-const btnMarketSelect: string = '#openDropdownRightButtonId';
-const ddUnitedStateEnglishOption: string = 'a[onclick*=en-US]';
-const ddUnitedStateSpanishOption: string = 'a[onclick*=es-US]';
-const ddCanadaEnglishOption: string = 'a[onclick*=en-CA]';
-const ddCanadaFrenchOption: string = 'a[onclick*=fr-CA]';
-const ddHelp: string = '#helpDropdown';
+const IMG_LARGE_LOGO = '#lsdsLargeLogoId';
+const BTN_HELP = '#helpButton';
+const BTN_MARKET_SELECT = '#openDropdownRightButtonId';
+const DD_UNITED_STATE_ENGLISH_OPTION = 'a[onclick*=en-US]';
+const DD_UNITED_STATE_SPANISH_OPTION = 'a[onclick*=es-US]';
+const DD_CANADA_ENGLISH_OPTION = 'a[onclick*=en-CA]';
+const DD_CANADA_FRENCH_OPTION = 'a[onclick*=fr-CA]';
+const DD_HELP = '#helpDropdown';
 
 /**
  * @export
@@ -26,9 +26,9 @@ export class LoginHeaderPage extends LoginPage {
   changeMarketToEnUs = async (): Promise<void> => {
     console.log(' - loginHeaderPage.changeMarketToEnUs');
     // Click on Market Select button to expand dropdown
-    await this.clickOnElement(btnMarketSelect);
+    await this.clickOnElement(BTN_MARKET_SELECT);
     // Select Market from option list
-    await this.clickOnElement(ddUnitedStateEnglishOption);
+    await this.clickOnElement(DD_UNITED_STATE_ENGLISH_OPTION);
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };
@@ -37,9 +37,9 @@ export class LoginHeaderPage extends LoginPage {
   changeMarketToEsUS = async (): Promise<void> => {
     console.log(' - loginHeaderPage.changeMarketToEsUS');
     // Click on Market Select button to expand dropdown
-    await this.clickOnElement(btnMarketSelect);
+    await this.clickOnElement(BTN_MARKET_SELECT);
     // Select Market from option list
-    await this.clickOnElement(ddUnitedStateSpanishOption);
+    await this.clickOnElement(DD_UNITED_STATE_SPANISH_OPTION);
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };
@@ -48,9 +48,9 @@ export class LoginHeaderPage extends LoginPage {
   changeMarketToEnCa = async (): Promise<void> => {
     console.log(' - loginHeaderPage.changeMarketToEnCa');
     // Click on Market Select button to expand dropdown
-    await this.clickOnElement(btnMarketSelect);
+    await this.clickOnElement(BTN_MARKET_SELECT);
     // Select Market from option list
-    await this.clickOnElement(ddCanadaEnglishOption);
+    await this.clickOnElement(DD_CANADA_ENGLISH_OPTION);
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };
@@ -59,9 +59,9 @@ export class LoginHeaderPage extends LoginPage {
   changeMarketToFrCa = async (): Promise<void> => {
     console.log(' - loginHeaderPage.changeMarketToFrCa');
     // Click on Market Select button to expand dropdown
-    await this.clickOnElement(btnMarketSelect);
+    await this.clickOnElement(BTN_MARKET_SELECT);
     // Select Market from option list
-    await this.clickOnElement(ddCanadaFrenchOption);
+    await this.clickOnElement(DD_CANADA_FRENCH_OPTION);
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };
@@ -71,13 +71,13 @@ export class LoginHeaderPage extends LoginPage {
   clickPplsiLogo = async (): Promise<void> => {
     console.log(' - loginHeaderPage.clickPplsiLogo');
     // Click on the PPLSI logo
-    await this.clickOnElement(imgLargeLogo);
+    await this.clickOnElement(IMG_LARGE_LOGO);
   };
 
   clickHelpButton = async (): Promise<void> => {
     console.log(' - loginHeaderPage.clickHelpButton');
     // Click on the Help Button
-    await this.clickOnElement(btnHelp);
+    await this.clickOnElement(BTN_HELP);
   };
 
   // ========================== Navigate Methods ==========================
@@ -95,28 +95,28 @@ export class LoginHeaderPage extends LoginPage {
   assertMarketIsUnitedStatesEnglish = async (): Promise<void> => {
     console.log(' - loginHeaderPage.assertMarketIsUnitedStatesEnglish');
     // Confirm the Market Selection button has the text for United States - English
-    await this.assertElementHasText(btnMarketSelect, 'United States - English');
+    await this.assertElementHasText(BTN_MARKET_SELECT, 'United States - English');
   };
 
   // Market Selection button should have text United States - English
   assertMarketIsEstadosUnidosEspanol = async (): Promise<void> => {
     console.log(' - loginHeaderPage.assertMarketIsEstadosUnidosEspanol');
     // Confirm the Market Selection button has the text for Estados Unidos - Español
-    await this.assertElementHasText(btnMarketSelect, 'Estados Unidos - Español');
+    await this.assertElementHasText(BTN_MARKET_SELECT, 'Estados Unidos - Español');
   };
 
   // Market Selection button should have text United States - English
   assertMarketIsCanadaEnglish = async (): Promise<void> => {
     console.log(' - loginHeaderPage.assertMarketIsCanadaEnglish');
     // Confirm the Market Selection button has the text for Canada - English
-    await this.assertElementHasText(btnMarketSelect, 'Canada - English');
+    await this.assertElementHasText(BTN_MARKET_SELECT, 'Canada - English');
   };
 
   // Market Selection button should have text United States - English
   assertMarketIsCanadaFrench = async (): Promise<void> => {
     console.log(' - loginHeaderPage.assertMarketIsCanadaFrench');
     // Confirm the Market Selection button has the text for Canada - Français
-    await this.assertElementHasText(btnMarketSelect, 'Canada - Français');
+    await this.assertElementHasText(BTN_MARKET_SELECT, 'Canada - Français');
   };
 
   // Confirm URL for PPLSI page
@@ -132,8 +132,8 @@ export class LoginHeaderPage extends LoginPage {
   assertSupportNumbersInHelpDropdown = async (): Promise<void> => {
     console.log(' - loginHeaderPage.assertSupportNumbersInHelpDropdown');
     // Confirm the Sales and Customer Service phone number is displayed
-    await this.assertElementContainsText(ddHelp, '800-654-7757');
+    await this.assertElementContainsText(DD_HELP, '800-654-7757');
     // Confirm the Associate Support phone number is displayed
-    await this.assertElementContainsText(ddHelp, '580-436-7424');
+    await this.assertElementContainsText(DD_HELP, '580-436-7424');
   };
 }

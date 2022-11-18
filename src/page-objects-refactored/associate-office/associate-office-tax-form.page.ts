@@ -4,19 +4,20 @@ import { associateReportsCommissions } from '../../utils/user.utils';
 import UrlsUtils from '../../utils/urls.utils';
 
 // ========================== Selectors ==================================
-const lblTaxFormRequest: string = "//h3[.='Tax form request']";
-const lblSSNorEIN: string = 'label[for=ssn]';
-const txaSSNInput: string = '//input';
-const lblTaxYear: string = "//label[contains(@for,'taxYear')]";
-const dtpTaxYear: string = '//select';
-const btnSubmit: string = "(//span[contains(@class,'lsux-text--body')])[2]";
-const lblContentText: string = "(//span[contains(@class,'lsux-text--body ')])[2]";
-const msgAlert: string = "//div[contains(@class,'lsux-form-field-container__hint')]";
+const LBL_TAX_FORM_REQUEST = "//h3[.='Tax form request']";
+const LBL_SS_NOR_EIN = 'label[for=ssn]';
+const TXA_SSN_INPUT = '//input';
+const LBL_TAX_YEAR = "//label[contains(@for,'taxYear')]";
+const DTP_TAX_YEAR = '//select';
+const BTN_SUBMIT = "(//span[contains(@class,'lsux-text--body')])[2]";
+const LBL_CONTENT_TEXT = "(//span[contains(@class,'lsux-text--body ')])[2]";
+const MSG_ALERT = "//div[contains(@class,'lsux-form-field-container__hint')]";
 /**
+ *
  *
  * @export
  * @class TaxFormPage
- * @extends
+ * @extends {LoginPage}
  */
 export class TaxFormPage extends LoginPage {
   // ========================== Process Methods ============================
@@ -27,8 +28,8 @@ export class TaxFormPage extends LoginPage {
    */
   insertSSNorEIN = async (SSNorEIN: string): Promise<void> => {
     console.log(' - TaxFormPage.insertSSNorEIN');
-    await this.page.waitForSelector(txaSSNInput);
-    await this.fillTextBox(txaSSNInput, SSNorEIN);
+    await this.page.waitForSelector(TXA_SSN_INPUT);
+    await this.fillTextBox(TXA_SSN_INPUT, SSNorEIN);
   };
   /**
    * select a year
@@ -37,7 +38,7 @@ export class TaxFormPage extends LoginPage {
    */
   selectYear = async (year: string): Promise<void> => {
     console.log(' - TaxFormPage.selectYear');
-    await this.selectFromDropDownMenu(dtpTaxYear, year);
+    await this.selectFromDropDownMenu(DTP_TAX_YEAR, year);
   };
   // ========================== Navigate Methods ===========================
   navigateToTaxFormPage = async (): Promise<void> => {
@@ -45,40 +46,40 @@ export class TaxFormPage extends LoginPage {
     // Navigate to Tax Form Page
     await this.goTo(UrlsUtils.channelsUrls.taxForm.url);
     await this.login(associateReportsCommissions.username, associateReportsCommissions.password);
-    await this.page.waitForSelector(lblTaxFormRequest);
+    await this.page.waitForSelector(LBL_TAX_FORM_REQUEST);
   };
   // ========================== Click Methods ==============================
   clickOnSubmitButton = async (): Promise<void> => {
     // Click on data picker
     console.log(' - TaxFormPage.clickOnSubmitButton');
-    await this.page.click(btnSubmit);
+    await this.page.click(BTN_SUBMIT);
   };
   // ========================== Assertion Methods ==========================
   assertTaxFormPageElements = async (): Promise<void> => {
     console.log(' - TaxFormPage.assertTaxFormPageElements');
-    await this.page.waitForSelector(lblTaxFormRequest);
-    await this.assertElementIsVisible(lblTaxFormRequest);
-    await expect(this.page.locator(lblTaxFormRequest)).toContainText('Tax form request');
-    console.log(await this.page.locator(lblTaxFormRequest).textContent());
-    await this.assertElementIsVisible(lblSSNorEIN);
-    await expect(this.page.locator(lblSSNorEIN)).toContainText('SSN or EIN');
-    console.log(await this.page.locator(lblSSNorEIN).textContent());
-    await this.assertElementIsVisible(txaSSNInput);
-    await this.assertElementIsVisible(lblTaxYear);
-    await expect(this.page.locator(lblTaxYear)).toContainText('Tax year');
-    console.log(await this.page.locator(lblTaxYear).textContent());
-    await this.assertElementIsVisible(dtpTaxYear);
-    await this.assertElementIsVisible(btnSubmit);
-    await this.assertElementIsVisible(lblContentText);
-    await expect(this.page.locator(lblContentText)).toContainText("Complete the fields, and we'll find what you're looking for!");
-    console.log(await this.page.locator(lblContentText).textContent());
+    await this.page.waitForSelector(LBL_TAX_FORM_REQUEST);
+    await this.assertElementIsVisible(LBL_TAX_FORM_REQUEST);
+    await expect(this.page.locator(LBL_TAX_FORM_REQUEST)).toContainText('Tax form request');
+    console.log(await this.page.locator(LBL_TAX_FORM_REQUEST).textContent());
+    await this.assertElementIsVisible(LBL_SS_NOR_EIN);
+    await expect(this.page.locator(LBL_SS_NOR_EIN)).toContainText('SSN or EIN');
+    console.log(await this.page.locator(LBL_SS_NOR_EIN).textContent());
+    await this.assertElementIsVisible(TXA_SSN_INPUT);
+    await this.assertElementIsVisible(LBL_TAX_YEAR);
+    await expect(this.page.locator(LBL_TAX_YEAR)).toContainText('Tax year');
+    console.log(await this.page.locator(LBL_TAX_YEAR).textContent());
+    await this.assertElementIsVisible(DTP_TAX_YEAR);
+    await this.assertElementIsVisible(BTN_SUBMIT);
+    await this.assertElementIsVisible(LBL_CONTENT_TEXT);
+    await expect(this.page.locator(LBL_CONTENT_TEXT)).toContainText("Complete the fields, and we'll find what you're looking for!");
+    console.log(await this.page.locator(LBL_CONTENT_TEXT).textContent());
   };
 
   assertTaxFormAlertMessage = async (): Promise<void> => {
     console.log(' - TaxFormPage.assertTaxFormAlertMessage');
-    await this.page.waitForSelector(lblTaxFormRequest);
-    await this.assertElementIsVisible(msgAlert);
-    await expect(this.page.locator(msgAlert)).toContainText('ID number does not match this account');
-    console.log(await this.page.locator(msgAlert).textContent());
+    await this.page.waitForSelector(LBL_TAX_FORM_REQUEST);
+    await this.assertElementIsVisible(MSG_ALERT);
+    await expect(this.page.locator(MSG_ALERT)).toContainText('ID number does not match this account');
+    console.log(await this.page.locator(MSG_ALERT).textContent());
   };
 }

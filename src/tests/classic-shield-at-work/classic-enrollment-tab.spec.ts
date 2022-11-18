@@ -8,12 +8,12 @@ test.beforeEach(async ({ page }) => {
   await classicShieldAtWorkEnrollmentTab.navigateToClassicShieldAtWork();
 });
 
-test('Member list is displayed on the enrollment page', async ({ page }) => {
+test('Member list is displayed on the enrollment page', async () => {
   await classicShieldAtWorkEnrollmentTab.loginWithCredentials();
   await classicShieldAtWorkEnrollmentTab.assertMemberList();
 });
 
-test('Enrollment form is displayed on the enrollment page', async ({ page }) => {
+test('Enrollment form is displayed on the enrollment page', async () => {
   await classicShieldAtWorkEnrollmentTab.loginWithCredentials();
   await classicShieldAtWorkEnrollmentTab.assertMemberEnrollmentForm();
 });

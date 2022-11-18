@@ -9,10 +9,10 @@ test.beforeEach(async ({ page }) => {
   await checkoutPaymentsPage.navigateToPaymentsPage('Virginia');
 });
 
-test('Payments page header is displayed', async ({ page }) => {
+test('Payments page header is displayed', async () => {
   await checkoutPaymentsPage.assertAccountPaymentsPage();
 });
-test('Payments page Terms of Service Link is Clickable', async ({ page }) => {
+test('Payments page Terms of Service Link is Clickable', async () => {
   // await checkoutPaymentsPage.clickTermsOfServiceLnk();
   await checkoutPaymentsPage.assertTermsOfServiceNewTab();
 });

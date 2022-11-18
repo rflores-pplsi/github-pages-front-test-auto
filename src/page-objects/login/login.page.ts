@@ -3,14 +3,14 @@ import UrlsUtils from '../../utils/urls.utils';
 import { BasePage } from '../base.page';
 
 // ========================== Selectors ==========================
-const txtEmailOrUsername: string = '[placeholder="Email address/Username"]';
-const txtPassword: string = '[name="password"]';
-const btnSignIn: string = '//button[contains(@class,"lsux-button--primary")]/span[contains(.,"Sign in")]';
-const lnkSignUp: string = 'a:has-text("Sign up")';
-const lnkSignIn: string = '//div[@class="content"]//a[contains(.,"Sign in")]';
-const lnkForgotPassword: string = 'a:has-text("Forgot Password?")';
-const lnkForgotEmailUsername: string = 'a:has-text("Forgot Email/Username?")';
-const btnOk: string = '//span[contains(text(),"OK")]';
+const TXT_EMAIL_OR_USER_NAME = '[placeholder="Email address/Username"]';
+const TXT_PASSWORD = '[name="password"]';
+const BTN_SIGN_IN = '//button[contains(@class,"lsux-button--primary")]/span[contains(.,"Sign in")]';
+const LNK_SIGN_UP = 'a:has-text("Sign up")';
+const LNK_SIGN_IN = '//div[@class="content"]//a[contains(.,"Sign in")]';
+const LNK_FORGOT_PASSWORD = 'a:has-text("Forgot Password?")';
+const LNK_FORGOT_EMAIL_USERNAME = 'a:has-text("Forgot Email/Username?")';
+const BTN_OK = '//span[contains(text(),"OK")]';
 
 /**
  * @export
@@ -33,18 +33,18 @@ export class LoginPage extends BasePage {
       // Sign in element is hidden by a span, so the isHidden check still indicates I need to get to sign in page
       const title = await this.page.title();
       if (title != 'Welcome back! Sign in to your account.') {
-        await this.page.locator(lnkSignIn).click();
+        await this.page.locator(LNK_SIGN_IN).click();
       }
       // Enter email or username into input
-      await this.fillTextBox(txtEmailOrUsername, emailOrUsername);
+      await this.fillTextBox(TXT_EMAIL_OR_USER_NAME, emailOrUsername);
       // Enter password into input
-      await this.fillTextBox(txtPassword, password);
+      await this.fillTextBox(TXT_PASSWORD, password);
       // Click on Sign In to submit login form
-      await this.clickOnElement(btnSignIn);
+      await this.clickOnElement(BTN_SIGN_IN);
       // Click on Ok pop up to submit login form
       // no Ok pop up button in prod yet -> need to comment out this line before run
       await this.page.waitForLoadState();
-      // await this.clickOnElement(btnOk);
+      await this.clickOnElement(BTN_OK);
     } else {
       throw new Error('Email or Password parameters are undefined');
     }
@@ -60,9 +60,9 @@ export class LoginPage extends BasePage {
     console.log(' - loginPage.loginWithEnterKey');
     if (emailOrUsername && password) {
       // Enter email or username into input
-      await this.fillTextBox(txtEmailOrUsername, emailOrUsername);
+      await this.fillTextBox(TXT_EMAIL_OR_USER_NAME, emailOrUsername);
       // Enter password into input
-      await this.fillTextBox(txtPassword, password);
+      await this.fillTextBox(TXT_PASSWORD, password);
       // Press Enter key to submit login form
       await this.page.keyboard.press('Enter');
       // Wait for page to finish loading
@@ -97,7 +97,7 @@ export class LoginPage extends BasePage {
   navigateToLoginForgotUsernameOrEmailPage = async (): Promise<void> => {
     console.log(' - loginPage.navigateToLoginForgotUsernameOrEmailPage');
     // Click on Forgot Email/Username to navigate to Forgot Username Or Email Page
-    await this.clickOnElement(lnkForgotEmailUsername);
+    await this.clickOnElement(LNK_FORGOT_EMAIL_USERNAME);
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };
@@ -107,7 +107,7 @@ export class LoginPage extends BasePage {
   clickForgotPasswordLink = async (): Promise<void> => {
     console.log(' - loginPage.clickForgotPasswordLink');
     // Click on the Forgot Password Link
-    await this.clickOnElement(lnkForgotPassword);
+    await this.clickOnElement(LNK_FORGOT_PASSWORD);
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };
@@ -115,7 +115,7 @@ export class LoginPage extends BasePage {
   clickSignUpLink = async (): Promise<void> => {
     console.log(' - loginPage.clickSignUpLink');
     // Click on the Forgot Password Link
-    await this.clickOnElement(lnkSignUp);
+    await this.clickOnElement(LNK_SIGN_UP);
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };

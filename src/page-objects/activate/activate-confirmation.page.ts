@@ -3,8 +3,8 @@ import { LoginPage } from '../login/login.page';
 import { expect } from '@playwright/test';
 
 // ========================== Selectors ==========================
-const stpConfirm: string = '//div[contains(@class, "step-container") and contains(.,"Confirm")]//div[contains(@class,"step-circle--current")]';
-const btnContinueToYourBenefits: string = 'button:has-text("Continue to your benefits")';
+const STP_CONFIRM = '//div[contains(@class, "step-container") and contains(.,"Confirm")]//div[contains(@class,"step-circle--current")]';
+const BTN_CONTINUE_TO_YOUR_BENEFITS = 'button:has-text("Continue to your benefits")';
 /**
  *
  *
@@ -20,7 +20,7 @@ export class ActivateConfirmationPage extends LoginPage {
 
   clickContinueToYourBenefits = async (): Promise<void> => {
     console.log(' - activateEnterCodePage.clickDontKnowCodeLink');
-    await this.clickOnElement(btnContinueToYourBenefits);
+    await this.clickOnElement(BTN_CONTINUE_TO_YOUR_BENEFITS);
   };
   // ========================== Assertion Methods ==========================
 
@@ -35,6 +35,6 @@ export class ActivateConfirmationPage extends LoginPage {
   assertOnTheActivateConfirmationPage = async (): Promise<void> => {
     console.log(' - activateEnterCodePage.assertOnTheActivateConfirmationPage');
     // Confirm Stepper displays Step 3 Confirm as current step
-    await this.assertElementIsVisible(stpConfirm);
+    await this.assertElementIsVisible(STP_CONFIRM);
   };
 }

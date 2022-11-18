@@ -1,4 +1,3 @@
-/* eslint-disable require-jsdoc */
 import UrlsUtils from '../../utils/urls.utils'; // import class of Urls
 import { waitNitroPackToLoadElementAsVisible } from '../../utils/pageUtils';
 import { getLocalStorageAvailableProducts } from '../../utils/browser-storage.utils';
@@ -63,21 +62,21 @@ export class IDShieldUSPage extends BasePage {
       await this.page.locator(BTN_CHECKOUT).click();
     }
   };
-  assertShoppingCartIncludesFamilyPlan = async () => {
+  assertShoppingCartIncludesFamilyPlan = async (): Promise<void> => {
     await this.assertElementContainsText(TEXT_CART_PLAN, 'IDShield Family');
     await this.assertElementContainsText(
       TEXT_CART_MESSAGE,
       "Only one plan may be purchased by an individual at one time. We've removed the initial plan from your cart and replaced it with the new plan selected."
     );
   };
-  assertShoppingCartIncludesBusinessPlan = async () => {
+  assertShoppingCartIncludesBusinessPlan = async (): Promise<void> => {
     await this.assertElementContainsText(TEXT_CART_PLAN, 'IDShield for Business Essentials');
     await this.assertElementContainsText(
       TEXT_CART_MESSAGE,
       "Only one plan may be purchased by an individual at one time. We've removed the initial plan from your cart and replaced it with the new plan selected."
     );
   };
-  continueShopping = async () => {
+  continueShopping = async (): Promise<void> => {
     await this.page.locator(BTN_CONTINUE_SHOPPING).click();
   };
   // ========================== Navigate Methods ===========================
@@ -85,7 +84,7 @@ export class IDShieldUSPage extends BasePage {
     // navigate to URL
     await this.page.goto(urlD2CIDShieldUSPage);
     await this.page.waitForLoadState();
-    await this.page.screenshot({ path: 'Screenshots/MarketingSite/' + lineofbusiness + 'MarketingSite.png', fullPage: true });
+    await this.page.screenshot({ fullPage: true, path: 'Screenshots/MarketingSite/' + lineofbusiness + 'MarketingSite.png' });
   };
   // ========================== Click Methods ==============================
   // ========================== Assertion Methods ==========================

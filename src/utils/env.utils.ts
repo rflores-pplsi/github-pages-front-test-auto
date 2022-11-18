@@ -1,16 +1,17 @@
-/* eslint-disable require-jsdoc */
-// import { load_dotenv } from 'dotenv';
-require('dotenv').config();
+import * as dotenv from 'dotenv';
+dotenv.config();
 
 /**
  * @class EnvironmentUtil
  */
 class EnvironmentUtil {
   /**
-   * @return {*}
+   *
+   *
+   * @return {*}  {string}
    * @memberof EnvironmentUtil
    */
-  getEnv(): any {
+  getEnv(): string {
     let env = null;
     if (process.env.USE_PROD == 'true' || process.env.USE_PRODUCTION == 'true') {
       env = 'prod';
@@ -24,10 +25,10 @@ class EnvironmentUtil {
   /**
    *
    *
-   * @return {*}
+   * @return {*}  {(string | null)}
    * @memberof EnvironmentUtil
    */
-  getEnvUrlString(): any {
+  getEnvUrlString(): string | null {
     let envUrlString = null;
     const env = this.getEnv();
     switch (env) {
@@ -43,8 +44,13 @@ class EnvironmentUtil {
     }
     return envUrlString;
   }
-
-  getWalsEnvUrlString(): any {
+  /**
+   *
+   *
+   * @return {*}  {(string | null)}
+   * @memberof EnvironmentUtil
+   */
+  getWalsEnvUrlString(): string | null {
     let envWalsUrlString = null;
     const env = this.getEnv();
     switch (env) {
@@ -63,10 +69,10 @@ class EnvironmentUtil {
   /**
    *
    *
-   * @return {*}
+   * @return {*}  {string}
    * @memberof EnvironmentUtil
    */
-  getDropDownEnvironmentOptions(): any {
+  getDropDownEnvironmentOptions(): string {
     let envDropDownString = '';
     const env = this.getEnv();
     // This is to convert Environment variable set in the command line to a format usable by planalyzer dropdown
@@ -87,10 +93,10 @@ class EnvironmentUtil {
   /**
    *
    *
-   * @return {*}
+   * @return {*}  {(string | null)}
    * @memberof EnvironmentUtil
    */
-  getLaunchUrlString(): any {
+  getLaunchUrlString(): string | null {
     let envLaunchUrlString = null;
     const env = this.getEnv();
     switch (env) {
@@ -110,10 +116,10 @@ class EnvironmentUtil {
   /**
    *
    *
-   * @return {*}
+   * @return {*}  {(string | null)}
    * @memberof EnvironmentUtil
    */
-  getTestHarnessUrlString(): any {
+  getTestHarnessUrlString(): string | null {
     let envTestHarnessUrlString = null;
     const env = this.getEnv();
     switch (env) {
@@ -132,10 +138,10 @@ class EnvironmentUtil {
   /**
    *
    *
-   * @return {*}
+   * @return {*}  {(string | null)}
    * @memberof EnvironmentUtil
    */
-  getWordpessEnvURLString(): any {
+  getWordpressEnvURLString(): string | null {
     let wordPressEnvUrlString = null;
     const env = this.getEnv();
     switch (env) {
@@ -155,10 +161,10 @@ class EnvironmentUtil {
   /**
    *
    *
-   * @return {*}
+   * @return {*}  {(string | null)}
    * @memberof EnvironmentUtil
    */
-  getEnvUrlWPString(): any {
+  getEnvUrlWPString(): string | null {
     let envUrlString = null;
     const env = this.getEnv();
     switch (env) {

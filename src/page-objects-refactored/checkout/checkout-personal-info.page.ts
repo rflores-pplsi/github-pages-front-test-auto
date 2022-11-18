@@ -11,7 +11,6 @@ import { PlanalyzerCsrCheckoutPage } from '../../page-objects/planalyzer/planaly
 import { expect } from '@playwright/test';
 import DataUtils from '../../utils/Tests.Data';
 
-// eslint-disable-next-line valid-jsdoc
 /**
  * @export
  * @class CheckoutPersonalInfoPage
@@ -29,7 +28,6 @@ export class CheckoutPersonalInfoPage {
 
   // ========================== Selectors ==================================
 
-  // eslint-disable-next-line no-unreachable
   protected page: Page;
 
   // const btnSaveAndContinue: string = '';
@@ -80,7 +78,6 @@ export class CheckoutPersonalInfoPage {
   readonly lineOfBusiness: string;
   readonly planSupp: Array<string>;
 
-  // eslint-disable-next-line require-jsdoc
   constructor(page: Page, lineOfBusiness: string, planSupp: Array<string>) {
     this.page = page;
     this.lineOfBusiness = lineOfBusiness;
@@ -135,7 +132,6 @@ export class CheckoutPersonalInfoPage {
     this.txtTaxId = this.page.locator('[name="taxId"]');
   }
 
-  // eslint-disable-next-line no-undef
   // ========================== Process Methods ============================
 
   // /**
@@ -435,7 +431,7 @@ export class CheckoutPersonalInfoPage {
     street: string,
     city: string,
     postalCode: string
-  ) => {
+  ): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.navigatePersonalInfoPageFromLogin');
     await this.navigateToShieldBenefitsPricingPage(groupNumber);
     if (groupPayConfig == 'Fringe') {
@@ -477,7 +473,7 @@ export class CheckoutPersonalInfoPage {
     street: string,
     city: string,
     postalCode: string
-  ) => {
+  ): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.navigatePersonalInfoPageFromLogin');
     await this.navigateToShieldBenefitsPricingPage(groupNumber);
     await this.selectPlanWithoutPaymentFrequencyFromShieldBenefitsPricingPage(stateName, planName, tierName);
@@ -518,7 +514,7 @@ export class CheckoutPersonalInfoPage {
     street: string,
     city: string,
     postalCode: string
-  ) => {
+  ): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.navigatePersonalInfoPageFromLogin');
     await this.navigateToShieldBenefitsPricingPage(groupNumber);
     await this.selectCombinationPlanFromShieldBenefitsPricingPage(stateName, payTerm, planName, plan2Name);
@@ -536,7 +532,7 @@ export class CheckoutPersonalInfoPage {
    * @param {string} groupNumber
    * @memberof CheckoutPersonalInfoPage
    */
-  navigateToBusinessSolutionsLegalEnrollPage = async (groupNumber: string) => {
+  navigateToBusinessSolutionsLegalEnrollPage = async (groupNumber: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.navigateToBusinessSolutionsLegalEnrollPage');
     // Navigate to enroll page
     await this.page.goto(UrlsUtils.shieldBenefits.home.url + '/' + groupNumber + '/overview');
@@ -546,7 +542,7 @@ export class CheckoutPersonalInfoPage {
    * @param {string} groupNumber
    * @memberof CheckoutPersonalInfoPage
    */
-  navigateToShieldBenefitsPricingPage = async (groupNumber: string) => {
+  navigateToShieldBenefitsPricingPage = async (groupNumber: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.navigateToBusinessSolutionsLegalPricingPage');
     // Login with a basic user
     await this.page.goto(UrlsUtils.shieldBenefits.home.url + '/' + groupNumber + '/pricing');
@@ -556,7 +552,7 @@ export class CheckoutPersonalInfoPage {
    * @param {string} groupNumber
    * @memberof CheckoutPersonalInfoPage
    */
-  navigateToBusinessSolutionsIdentityEnrollPage = async (groupNumber: string) => {
+  navigateToBusinessSolutionsIdentityEnrollPage = async (groupNumber: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.navigateToBusinessSolutionsIdentityEnrollPage');
     // Navigate to enroll page
     await this.page.goto(UrlsUtils.shieldBenefits.home.url + '/' + groupNumber + '/idshield');
@@ -576,10 +572,10 @@ export class CheckoutPersonalInfoPage {
     subChannel: string,
     region: string,
     marketLocale: string,
-    prepaidMonths: string = '',
-    couponCode: string = '',
+    prepaidMonths = '',
+    couponCode = '',
     plans: Array<string>
-  ) => {
+  ): Promise<void> => {
     await this.oktaPage.navigateToPlanalyzerCsrCheckoutOktaLogin();
     await this.oktaPage.loginThroughOkta();
     await this.planalyzerCsrCheckoutPage.createOrderRedirectToCheckoutFromPlanalyzer(
@@ -594,10 +590,11 @@ export class CheckoutPersonalInfoPage {
     await this.loginPage.login(basicUser.email, basicUser.password);
   };
   /**
-   * @param {string} navigateToPersonalInfoPageFromPlanalyzer
+   *
+   *
    * @memberof CheckoutPersonalInfoPage
    */
-  navigateToPersonalInfoPageForIdsCaFromPlanalyzer = async () => {
+  navigateToPersonalInfoPageForIdsCaFromPlanalyzer = async (): Promise<void> => {
     await this.oktaPage.navigateToPlanalyzerCsrCheckoutOktaLogin();
     await this.oktaPage.loginThroughOkta();
     await this.planalyzerCsrCheckoutPage.createOrderRedirectToCheckoutFromPlanalyzer('D2C', 'IDShield', 'Ontario', 'en-CA', '', 'F30', [
@@ -642,7 +639,7 @@ export class CheckoutPersonalInfoPage {
   /**
    * @memberof CheckoutPersonalInfoPage
    */
-  clickChangeStateLink = async () => {
+  clickChangeStateLink = async (): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.clickChangeStateLink');
     // Click on Change State link
     await this.lnkChangeState.click();
@@ -661,11 +658,11 @@ export class CheckoutPersonalInfoPage {
   };
 
   /**
-   * @param {string} region
+   * Confirm the tool tip displays after hovering over the help icon
+   *
    * @memberof CheckoutPersonalInfoPage
    */
-  // Confirm the tool tip displays after hovering over the help icon
-  assertToolTipIsVisible = async (region: string): Promise<void> => {
+  assertToolTipIsVisible = async (): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.assertToolTipIsVisible');
     // Confirm region is correct
     await expect(this.txaStageChangeToolTip).toBeVisible({ timeout: 100000 });

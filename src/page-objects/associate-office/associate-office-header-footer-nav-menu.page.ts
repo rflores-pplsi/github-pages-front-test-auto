@@ -1,35 +1,33 @@
-import { expect } from '@playwright/test';
-import UrlsUtils from '../../utils/urls.utils';
 import { BasePage } from '../base.page';
 
 // ========================== Selectors ==========================
 // Header
-const headerLogo: string = '.fixedheader img.largemediumscreen';
-const nameAO: string = '#lsdsTitle';
-const helpIcon: string = '#helpButton > img';
-const customerSupport: string = '#helpContentCustom > a:nth-child(1) > div';
-const supportPhone: string = 'a.lsux-link-content.lsux-link-content';
-const downCaret: string = '#downCaret';
-const myAccount: string = '#myDropdown > a:nth-child(1) > div';
-const signOut: string = '#myDropdown > a:nth-child(3) > div';
+const HEADER_LOGO = '.fixedheader img.largemediumscreen';
+const NAME_AO = '#lsdsTitle';
+const HELP_ICON = '#helpButton > img';
+const CUSTOMER_SUPPORT = '#helpContentCustom > a:nth-child(1) > div';
+const SUPPORT_PHONE = 'a.lsux-link-content.lsux-link-content';
+const DOWN_CARET = '#downCaret';
+const MY_ACCOUNT = '#myDropdown > a:nth-child(1) > div';
+const SIGN_OUT = '#myDropdown > a:nth-child(3) > div';
 
 // Left nav menu
-const myTeam: string = '.lsux-navigation :nth-child(1) > div.lsux-link-content';
-const reports: string = '.lsux-navigation :nth-child(2) > div';
-const allReports: string = '.lsux-navigation :nth-child(3) > div';
-const commissions: string = '.lsux-navigation :nth-child(4) > div';
-const taxes: string = '.lsux-navigation :nth-child(5) > div';
-const resources: string = '.lsux-navigation :nth-child(6) > div';
-const messages: string = '.lsux-navigation :nth-child(7) > div';
-const compensation: string = '.lsux-navigation :nth-child(8) > div';
-const lsAdvantage: string = '.lsux-navigation :nth-child(7) > div';
-const associatePerks: string = '.lsux-navigation :nth-child(8) > div';
+const MY_TEAM = '.lsux-navigation :nth-child(1) > div.lsux-link-content';
+const REPORTS = '.lsux-navigation :nth-child(2) > div';
+const ALL_REPORTS = '.lsux-navigation :nth-child(3) > div';
+const COMMISSIONS = '.lsux-navigation :nth-child(4) > div';
+const TAXES = '.lsux-navigation :nth-child(5) > div';
+const RESOURCES = '.lsux-navigation :nth-child(6) > div';
+const MESSAGES = '.lsux-navigation :nth-child(7) > div';
+const COMPENSATION = '.lsux-navigation :nth-child(8) > div';
+const LS_ADVANTAGE = '.lsux-navigation :nth-child(7) > div';
+const ASSOCIATE_PERKS = '.lsux-navigation :nth-child(8) > div';
 
 // Footer
-const termsOfService: string = "a[href*='terms-service']";
-const privacyPolicy: string = '.lsux-footer a:nth-child(2)';
-const disclaimer: string = "a[href*='disclaimer']";
-const logo: string = '.lsux-footer > span > span';
+const TERMS_OF_SERVICE = "a[href*='terms-service']";
+const PRIVACY_POLICY = '.lsux-footer a:nth-child(2)';
+const DISCLAIMER = "a[href*='disclaimer']";
+const LOGO = '.lsux-footer > span > span';
 
 /**
  * @export
@@ -48,128 +46,128 @@ export class NavMenuPage extends BasePage {
   // Header
   assertHeaderLogoIsDisplayed = async (): Promise<void> => {
     console.log(' - navMenuPage.assertHeaderLogoIsDisplayed');
-    await this.assertElementIsVisible(headerLogo);
+    await this.assertElementIsVisible(HEADER_LOGO);
   };
 
   assertNameAOIsDisplayed = async (): Promise<void> => {
     console.log(' - navMenuPage.assertNameAOIsDisplayed');
-    await this.assertElementIsVisible(nameAO);
+    await this.assertElementIsVisible(NAME_AO);
   };
 
   assertHelpIconIsDisplayed = async (): Promise<void> => {
     console.log(' - navMenuPage.assertHelpIconIsDisplayed');
-    await this.assertElementIsVisible(helpIcon);
+    await this.assertElementIsVisible(HELP_ICON);
   };
 
   assertCustomerSupportIsDisplayed = async (): Promise<void> => {
     console.log(' - navMenuPage.assertCustomerSupportIsDisplayed');
-    await this.clickOnElement(helpIcon);
-    await this.assertElementIsVisible(customerSupport);
-    await this.assertElementIsVisible(supportPhone);
+    await this.clickOnElement(HELP_ICON);
+    await this.assertElementIsVisible(CUSTOMER_SUPPORT);
+    await this.assertElementIsVisible(SUPPORT_PHONE);
   };
 
   assertSupportPhone = async (): Promise<void> => {
     console.log(' - navMenuPage.assertSupportPhone');
-    await this.assertElementHasText(supportPhone, '1-580-436-7424');
+    await this.assertElementHasText(SUPPORT_PHONE, '1-580-436-7424');
   };
 
   assertDownCaretIsDisplayed = async (): Promise<void> => {
     console.log(' - navMenuPage.assertDownCaretIsDisplayed');
-    await this.assertElementIsVisible(downCaret);
+    await this.assertElementIsVisible(DOWN_CARET);
   };
 
   assertMyAccountIsDisplayed = async (): Promise<void> => {
     console.log(' - navMenuPage.assertMyAccountIsDisplayed');
-    await this.clickOnElement(downCaret);
-    await this.assertElementIsVisible(myAccount);
+    await this.clickOnElement(DOWN_CARET);
+    await this.assertElementIsVisible(MY_ACCOUNT);
   };
 
   assertSignOutIsDisplayed = async (): Promise<void> => {
     console.log(' - navMenuPage.assertSignOutIsDisplayed');
-    await this.clickOnElement(downCaret);
-    await this.assertElementIsVisible(signOut);
+    await this.clickOnElement(DOWN_CARET);
+    await this.assertElementIsVisible(SIGN_OUT);
   };
 
   // Left Navigation Menu
   assertMyTeamIsDisplayed = async (): Promise<void> => {
     console.log(' - navMenuPage.assertMyTeamIsDisplayed');
-    await this.page.waitForSelector(myTeam);
-    await this.assertElementIsVisible(myTeam);
+    await this.page.waitForSelector(MY_TEAM);
+    await this.assertElementIsVisible(MY_TEAM);
   };
 
   assertReportsIsDisplayed = async (): Promise<void> => {
     console.log(' - navMenuPage.assertReportsIsDisplayed');
-    await this.page.waitForSelector(reports);
-    await this.assertElementIsVisible(reports);
+    await this.page.waitForSelector(REPORTS);
+    await this.assertElementIsVisible(REPORTS);
   };
 
   assertAllReportsIsDisplayed = async (): Promise<void> => {
     console.log(' - navMenuPage.assertAllReportsIsDisplayed');
-    await this.page.waitForSelector(allReports);
-    await this.assertElementIsVisible(allReports);
+    await this.page.waitForSelector(ALL_REPORTS);
+    await this.assertElementIsVisible(ALL_REPORTS);
   };
 
   assertCommissionsIsDisplayed = async (): Promise<void> => {
     console.log(' - navMenuPage.assertCommissionsIsDisplayed');
-    await this.page.waitForSelector(commissions);
-    await this.assertElementIsVisible(commissions);
+    await this.page.waitForSelector(COMMISSIONS);
+    await this.assertElementIsVisible(COMMISSIONS);
   };
 
   assertTaxesIsDisplayed = async (): Promise<void> => {
     console.log(' - navMenuPage.assertTaxesIsDisplayed');
-    await this.page.waitForSelector(taxes);
-    await this.assertElementIsVisible(taxes);
+    await this.page.waitForSelector(TAXES);
+    await this.assertElementIsVisible(TAXES);
   };
 
   assertResourcesIsDisplayed = async (): Promise<void> => {
     console.log(' - navMenuPage.assertResourcesIsDisplayed');
-    await this.page.waitForSelector(resources);
-    await this.assertElementIsVisible(resources);
+    await this.page.waitForSelector(RESOURCES);
+    await this.assertElementIsVisible(RESOURCES);
   };
 
   assertMessagesIsDisplayed = async (): Promise<void> => {
     console.log(' - navMenuPage.assertMessagesIsDisplayed');
-    await this.page.waitForSelector(messages);
-    await this.assertElementIsVisible(messages);
+    await this.page.waitForSelector(MESSAGES);
+    await this.assertElementIsVisible(MESSAGES);
   };
 
   assertCompensationIsDisplayed = async (): Promise<void> => {
     console.log(' - navMenuPage.assertCompensationIsDisplayed');
-    await this.page.waitForSelector(compensation);
-    await this.assertElementIsVisible(compensation);
+    await this.page.waitForSelector(COMPENSATION);
+    await this.assertElementIsVisible(COMPENSATION);
   };
 
   assertLSAdvantageIsDisplayed = async (): Promise<void> => {
     console.log(' - navMenuPage.assertLSAdvantageIsDisplayed');
-    await this.page.waitForSelector(lsAdvantage);
-    await this.assertElementIsVisible(lsAdvantage);
+    await this.page.waitForSelector(LS_ADVANTAGE);
+    await this.assertElementIsVisible(LS_ADVANTAGE);
   };
 
   assertAssociatePerksIsDisplayed = async (): Promise<void> => {
     console.log(' - navMenuPage.assertAssociatePerksIsDisplayed');
-    await this.page.waitForSelector(associatePerks);
-    await this.assertElementIsVisible(associatePerks);
+    await this.page.waitForSelector(ASSOCIATE_PERKS);
+    await this.assertElementIsVisible(ASSOCIATE_PERKS);
   };
 
   // Footer
   assertTermsOfServiceIsDisplayed = async (): Promise<void> => {
     console.log(' - navMenuPage.assertTermsOfServiceIsDisplayed');
-    await this.page.waitForSelector(termsOfService);
-    await this.assertElementIsVisible(termsOfService);
+    await this.page.waitForSelector(TERMS_OF_SERVICE);
+    await this.assertElementIsVisible(TERMS_OF_SERVICE);
   };
 
   assertPrivacyPolicyIsDisplayed = async (): Promise<void> => {
     console.log(' - navMenuPage.assertPrivacyPolicyIsDisplayed');
-    await this.assertElementIsVisible(privacyPolicy);
+    await this.assertElementIsVisible(PRIVACY_POLICY);
   };
 
   assertDisclaimerIsDisplayed = async (): Promise<void> => {
     console.log(' - navMenuPage.assertDisclaimerIsDisplayed');
-    await this.assertElementIsVisible(disclaimer);
+    await this.assertElementIsVisible(DISCLAIMER);
   };
 
   assertLogoIsDisplayed = async (): Promise<void> => {
     console.log(' - navMenuPage.assertLogoIsDisplayed');
-    await this.assertElementIsVisible(logo);
+    await this.assertElementIsVisible(LOGO);
   };
 }

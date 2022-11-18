@@ -12,7 +12,6 @@ export class OrderSummaryRow {
    * @param {string} planName
    * @param {string} tierName
    * @param {string} planCost
-
    * @memberof PlanRow
    */
   constructor(planName: string | null, tierName: string | null, planCost: string | null) {
