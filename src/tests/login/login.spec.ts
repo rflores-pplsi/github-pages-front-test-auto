@@ -17,7 +17,7 @@ test.beforeEach(async ({ page }) => {
 test('Login with basic email', async ({}) => {
   console.log('Test Case: Login with basic email');
   // Log in with a basic user account
-  await loginPage.testEnv();
+  // await loginPage.testEnv();
   await loginPage.login(basicUser.email, basicUser.password);
   // Confirm that login is successful by asserting the login url
   await loginPage.assertAccountsPlanPageUrl();

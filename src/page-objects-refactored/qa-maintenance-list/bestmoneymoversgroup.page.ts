@@ -12,6 +12,8 @@ dotenv.config();
 let street: string;
 let city: string;
 let postalCode: string;
+// let city: string;
+// let postalCode: string;
 const urlBestMoneyMovers = UrlsUtils.groupsUrls.urlBestMoneyMovers;
 const BTN_ENROLL_NOW = 'text=Enroll Now';
 const SELECT_STATE_DROPDOWN = '//span[contains(text(),"Select")]';
@@ -53,13 +55,13 @@ export class BestMoneyMoversGroupPage extends OktaPage {
   };
   updateAddressTestingHarnesGroupsPage = async (state: string): Promise<void> => {
     console.log(' - BestMoneyMoversGroupPage.updateAddressTestingHarnesGroupsPage');
-    const checkoutPersonalInfoPage = new CheckoutPersonalInfoPage(this.page);
+    const checkoutPersonalInfoPage = new CheckoutPersonalInfoPage(this.page, '', ['']);
     for (const stte of RegionsUtils.usStates.filter((ste) => ste.name == state)) {
       street = stte.validAddress.street;
       city = stte.validAddress.city;
       postalCode = stte.validAddress.postalCode;
     }
-    await checkoutPersonalInfoPage.changeAddress(street, city, postalCode);
+    await checkoutPersonalInfoPage.changeAddressUs(street);
   };
 
   // ========================== Navigate Methods ===========================
