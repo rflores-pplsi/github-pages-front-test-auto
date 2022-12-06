@@ -22,7 +22,6 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
    * @memberof LegalshieldTestHarnessMenuPage
    */
   selectRegionFromDropdown = async (region: string): Promise<void> => {
-    console.log(' - legalshieldTestHarnessMenuPage.selectRegionFromDropdown');
     await this.selectFromDropDownMenu(DDL_REGION_SELECTOR, region);
     // await this.clickRegionSelectDropdown();
     // await this.clickOnElement(`//select[contains(@class,"lsc_region_selector")]//option[contains(.,"${region}")]`);
@@ -33,7 +32,6 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
    * @memberof LegalshieldTestHarnessMenuPage
    */
   addProducts = async (productNamesAndCosts: Array<Array<string>>): Promise<void> => {
-    console.log(' - legalshieldTestHarnessMenuPage.addProducts');
     for (const pn of productNamesAndCosts) {
       // TODO: Loop through productNames and click on the button associated with them as many times as needed
 
@@ -51,7 +49,6 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
    * @memberof LegalshieldTestHarnessMenuPage
    */
   addProductsByNameAndShortCode = async (productDetails: Array<ProductDetails>): Promise<void> => {
-    console.log(' - legalshieldTestHarnessMenuPage.addProducts');
     for (const pd of productDetails) {
       await this.clickOnElement(
         `//div[contains(@class,"plan-layout")]//h1[text()="${pd.productName}"]/following-sibling::a[contains(.,"${pd.shortCode}")]`
@@ -68,7 +65,6 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
    * @memberof LegalshieldTestHarnessMenuPage
    */
   completeQualifyingQuestionnaireWithNos = async (): Promise<void> => {
-    console.log(' - legalshieldTestHarnessMenuPage.completeQualifyingQuestionnaireWithNos');
     await this.clickPubliclyTradedNoRadioButton();
     await this.clickNonProfitNoRadioButton();
     await this.clickAddToCartButton();
@@ -81,13 +77,11 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
    * @memberof LegalshieldTestHarnessMenuPage
    */
   clickProductButton = async (productName: string): Promise<void> => {
-    console.log(' - legalshieldTestHarnessMenuPage.clickProductButton - ' + productName);
     await this.clickOnElement(`//div[contains(@class,"plan-layout")]//h1[text()="${productName}"]/following-sibling::a`);
     await this.page.waitForLoadState('domcontentloaded');
   };
 
   clickCartIcon = async (): Promise<void> => {
-    console.log(' - legalshieldTestHarnessMenuPage.clickCartIcon');
     await this.clickOnElement(ICN_CART);
   };
 
@@ -95,7 +89,6 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
    * @memberof LegalshieldTestHarnessMenuPage
    */
   clickRegionSelectDropdown = async (): Promise<void> => {
-    console.log(' - LegalShieldQualifyingContainerComponent.clickRegionSelectDropdown');
     await this.clickOnElement(DDL_REGION_SELECTOR);
   };
 
@@ -103,7 +96,6 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
    * @memberof LegalshieldTestHarnessMenuPage
    */
   clickPubliclyTradedNoRadioButton = async (): Promise<void> => {
-    console.log(' - LegalShieldQualifyingContainerComponent.clickPubliclyTradedNoRadioButton');
     await this.clickOnElement(BTN_PUBLICLY_TRADED_NO);
   };
 
@@ -111,7 +103,6 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
    * @memberof LegalshieldTestHarnessMenuPage
    */
   clickNonProfitNoRadioButton = async (): Promise<void> => {
-    console.log(' - LegalShieldQualifyingContainerComponent.clickNonProfitNoRadioButton');
     await this.clickOnElement(BTN_NON_PROFIT_NO);
   };
 
@@ -119,7 +110,6 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
    * @memberof LegalshieldTestHarnessMenuPage
    */
   clickAddToCartButton = async (): Promise<void> => {
-    console.log(' - LegalShieldQualifyingContainerComponent.clickAddToCartButton');
     await this.clickOnElement(BTN_ADD_TO_CART);
   };
   // ========================== Assertion Methods ==========================

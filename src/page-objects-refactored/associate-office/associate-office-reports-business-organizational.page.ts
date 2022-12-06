@@ -44,7 +44,7 @@ export class ReportsBusinessOrganizationalPage extends LoginPage {
     console.log(' - ReportsBusinessOrganizationalPage.navigateToReportsBusinessOrganizationalPage');
     // Navigate to Business Organizational Page
     await this.goTo(UrlsUtils.channelsUrls.reportsBusinessOrganizational.url);
-    await this.login(associateReportsCommissions.username, associateReportsCommissions.password);
+    await this.login(associateReportsCommissions.username as string, associateReportsCommissions.password as string);
     await this.page.waitForSelector(TXA_SEARCH_BY);
   };
 
@@ -52,7 +52,7 @@ export class ReportsBusinessOrganizationalPage extends LoginPage {
     console.log(' - ReportsBusinessOrganizationalPage.navigateToReportsBusinessPersonalPage');
     // Navigate to Business Personal Page
     await this.goTo(UrlsUtils.channelsUrls.reportsBusinessPersonal.url);
-    await this.login(businessReports.username, businessReports.password);
+    await this.login(businessReports.username as string, businessReports.password as string);
     await this.page.waitForSelector(TXA_SEARCH_BY);
   };
   // ========================== Click Methods ==============================

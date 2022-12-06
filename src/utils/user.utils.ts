@@ -8,8 +8,8 @@ export const associateUser = {
 };
 export const basicUser = {
   email: process.env[`LOGIN_EMAIL_${env.toUpperCase()}`],
-  password: process.env[`LOGIN_PASSWORD_${env.toUpperCase()}`],
-  username: process.env[`LOGIN_USERNAME_${env.toUpperCase()}`],
+  password: process.env[`LOGIN_PASSWORD_${env.toUpperCase()}`] as string,
+  username: process.env[`LOGIN_USERNAME_${env.toUpperCase()}`] as string,
 };
 export const oktaUser = {
   email: process.env[`OKTA_EMAIL_${env.toUpperCase()}`],

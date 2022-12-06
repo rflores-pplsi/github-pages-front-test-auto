@@ -1,4 +1,4 @@
-import { Locator, Page } from 'playwright-core';
+import { Locator, Page } from '@playwright/test';
 
 /**
  * @export
@@ -217,5 +217,23 @@ export class NavigateToTestingHarnessPage {
     await this.page.waitForLoadState();
     await LineOfBusiness.click();
     this.page.screenshot({ fullPage: true, path: 'Screenshots/testingHarness/' + lineOfBusiness + 'TestingHarness.png' });
+  };
+}
+export class UpdateRegion {
+  protected page: Page;
+  /**
+   * Creates an instance of OrderSummaryRowWithoutCost.
+   * @param {Page} page
+   * @memberof UpdateRegion
+   */
+  constructor(page: Page) {
+    this.page = page;
+  }
+  /**
+   * @param {string} region
+   * @memberof UpdateRegion
+   */
+  selectRegion = async (region: string): Promise<void> => {
+    await this.page.selectOption('select.lsc_region_selector.region_select', { label: region });
   };
 }

@@ -18,7 +18,7 @@ const LNK_MULTIFACTOR = '//a[contains(.,"Multifactor")]';
  */
 export class AccountNavigationPage extends LoginPage {
   // Page Instances
-  loginPage = new LoginPage(this.page);
+  loginPage = new LoginPage(this.context, this.page);
 
   // ========================== Click Methods ==========================
 

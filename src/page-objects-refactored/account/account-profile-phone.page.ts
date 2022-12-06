@@ -15,8 +15,8 @@ const SELECT_PHONE_TYPE = '[name="phoneType"]';
 
 export class AccountProfilePhonePage extends AccountProfilePage {
   // Page Instances
-  accountProfilePage = new AccountProfilePage(this.page);
-  accoutNavigationPage = new AccountNavigationPage(this.page);
+  accountProfilePage = new AccountProfilePage(this.context, this.page);
+  accoutNavigationPage = new AccountNavigationPage(this.context, this.page);
 
   // ========================== Process Methods ==========================
 

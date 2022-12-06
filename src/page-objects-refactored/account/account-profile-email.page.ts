@@ -12,7 +12,7 @@ const BTN_CONFIRM_EMAIL_ADDRESS = '//*[@class="inputs--wrapper inputs--wrapper-l
 export class AccountProfileEmailPage extends AccountProfilePage {
   // Page Instances
 
-  accoutNavigationPage = new AccountNavigationPage(this.page);
+  accoutNavigationPage = new AccountNavigationPage(this.context, this.page);
 
   // ========================== Process Methods ==========================
 

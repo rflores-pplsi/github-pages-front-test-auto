@@ -7,6 +7,7 @@ export default class DataUtils {
           Institution: '260',
           Transit: '11242',
           name: 'Tester',
+          postalCode: '20147',
           province: {
             BC: 'British Columbia',
           },
@@ -16,6 +17,7 @@ export default class DataUtils {
           cvv: '111',
           exp: '1 / 23',
           name: 'Tester',
+          postalCode: '20147',
         },
       },
       lineOfBusiness: {
@@ -75,11 +77,14 @@ export default class DataUtils {
           Account: '000000',
           Routing: '103000648',
           name: 'Tester',
+          postalCode: '20147',
         },
         cc: {
           cn: '4444333322221111',
           cvv: '111',
-          exp: '1 / 23',
+          exp: '01/23',
+          name: 'Tester',
+          postalCode: '20147',
         },
         city: {
           VA: 'Virginia',

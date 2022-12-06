@@ -1,58 +1,76 @@
-import { BrowserContext, expect, FrameLocator, Locator, Page } from '@playwright/test';
+import { BrowserContext, expect, Page } from '@playwright/test';
 import RegionsUtils from '../../utils/regions.utils';
-import { CheckoutPersonalInfoPage } from '../../page-objects-refactored/checkout/checkout-personal-info.page';
+import { basicUser } from '../../utils/user.utils';
+import { CheckoutLocatorsPage } from './checkout-locators.page';
+import { CheckoutPersonalInfoPage } from './checkout-personal-info.page';
 
-// ========================== Selectors ==================================
+// ========================== Create instance of Page ==================================
 
-// create instance of Page
 /**
  * @export
- * @class AccountPaymentsPage
+ * @class CheckoutPaymentsPage
  */
-export class CheckoutPaymentsPage {
+export class CheckoutPaymentsPage extends CheckoutLocatorsPage {
   readonly checkoutPersonalInfoPage: CheckoutPersonalInfoPage;
-  protected page: Page;
-  readonly txtHowWouldYouLikeToPay: Locator;
-  readonly btnBankDraft: Locator;
-  readonly btnCreditCard: Locator;
-  readonly lnkTermsOfService: Locator;
-  readonly txtBankDraftTermsOfServiceAgreement: Locator;
-  readonly paymentFrame: FrameLocator;
   /**
+   * @param {BrowserContext} context
    * @param {Page} page
    * @param {string} lineOfBusiness
    * @param {Array<string>} planSupp
    * @memberof CheckoutPaymentsPage
    */
-  constructor(page: Page, lineOfBusiness: string, planSupp: Array<string>) {
+  constructor(context: BrowserContext, page: Page, lineOfBusiness: string, planSupp: Array<string>) {
+    super(context, page);
+    this.checkoutPersonalInfoPage = new CheckoutPersonalInfoPage(context, page, lineOfBusiness, planSupp);
     this.page = page;
-    this.paymentFrame = this.page.frameLocator("//iframe[@title='payment iframe']");
-    this.txtHowWouldYouLikeToPay = this.paymentFrame.locator('h1.translate.checkout-v3-h2');
-    this.btnBankDraft = this.paymentFrame.locator('span.options.right.translate');
-    this.btnCreditCard = this.page.locator('span.options.left.translate');
-    this.lnkTermsOfService = this.page.locator('#cc_form >> text=Terms of Service');
-    this.txtBankDraftTermsOfServiceAgreement = this.page.locator('//form[@id="bd_form"]//span[contains(@class,"termsConditions")]//br');
-    this.checkoutPersonalInfoPage = new CheckoutPersonalInfoPage(page, lineOfBusiness, planSupp);
   }
   // ========================== Process Methods ============================
-
-  // ========================== Navigate Methods ===========================
   /**
    * @param {Page} page
    * @param {string} state
+   * @param {string} url
+   * @param {string} lineOfBusiness
+   * @param {string} lofb
+   * @param {Array<string>} planSupp
    * @memberof CheckoutPaymentsPage
    */
-  navigateToPaymentsPage = async (page: Page, state: string): Promise<void> => {
-    await this.checkoutPersonalInfoPage.navigateToPaymentsPageForF30IdsCa('Virginia');
-    // await this.navigatePersonalInfoPageFromLogin(basicUser.email, basicUser.password);
+  navigateToPaymentsPage = async (
+    page: Page,
+    state: string,
+    url: string,
+    lineOfBusiness: string,
+    lofb: string,
+    planSupp: Array<string>
+  ): Promise<void> => {
+    await this.checkoutPersonalInfoPage.navigateToPersonalInfoPage(page, state, url, lineOfBusiness, lofb, planSupp);
+    await this.page.waitForLoadState();
     const regionObj = RegionsUtils.usStates;
     const stateObj = state;
     for (const obj of regionObj) {
       if (obj.name == stateObj) await this.checkoutPersonalInfoPage.changeAddressUs(state);
     }
-    // await this.checkoutPersonalInfoPage.btnSaveAndContinue.click();
-    // await this.page.waitForTimeout(3500);
-    this.txtHowWouldYouLikeToPay.waitFor();
+    await this.checkoutPersonalInfoPage.btnSaveAndContinue.click();
+    this.page.waitForLoadState();
+  };
+  /**
+   * @param {Page} page
+   * @param {string} state
+   * @param {string} url
+   * @memberof CheckoutPaymentsPage
+   */
+  navigateToMarketingSitePaymentsPage = async (page: Page, state: string, url: string): Promise<void> => {
+    await this.page.goto(url);
+    this.page.waitForLoadState();
+    await this.commonLoginPage.login(basicUser.email as string, basicUser.password as string);
+    this.page.waitForLoadState();
+    this.page.waitForLoadState();
+    const regionObj = RegionsUtils.usStates;
+    const stateObj = state;
+    for (const obj of regionObj) {
+      if (obj.name == stateObj) await this.checkoutPersonalInfoPage.changeAddressUs(state);
+    }
+    await this.checkoutPersonalInfoPage.btnSaveAndContinue.click();
+    this.page.waitForLoadState();
   };
 
   // ========================== Click Methods ==============================
@@ -62,12 +80,9 @@ export class CheckoutPaymentsPage {
    * @memberof CheckoutPaymentsPage
    */
   clickPaymentBtn = async (paymentMethod: string): Promise<void> => {
-    // Force a wait time
-    // Switch to frame
     await this.page.waitForLoadState();
-    if (paymentMethod.toLowerCase() === 'bd' && this.paymentFrame != null) {
-      // Click on Add Payment button
-      await this.btnBankDraft.click();
+    if (paymentMethod.toLowerCase() === 'bd' && this.paymentsLocFrmPayment != null) {
+      await this.paymentsLocBtnBankDraft.click();
     } else throw new Error('No such frame');
   };
 
@@ -75,12 +90,8 @@ export class CheckoutPaymentsPage {
    * @memberof CheckoutPaymentsPage
    */
   clickCreditCardBtn = async (): Promise<void> => {
-    // Switch to frame
-    this.page.frameLocator("//iframe[@title='payment iframe']");
-    const frame = this.page.frameLocator("//iframe[@title='payment iframe']");
-    if (frame != null) {
-      // Click on Add Payment button
-      await this.btnCreditCard.click();
+    if (this.paymentsLocFrmPayment != null) {
+      await this.paymentsLocBtnCreditCard.click();
     } else throw new Error('No such frame');
   };
 
@@ -90,35 +101,39 @@ export class CheckoutPaymentsPage {
    */
   assertAccountPaymentsPage = async (): Promise<void> => {
     await this.page.waitForLoadState();
-    if (this.paymentFrame != null) {
-      await expect(this.txtHowWouldYouLikeToPay).toContainText('How would you like to pay?');
+    await this.paymentsLocTxtHowWouldYouLikeToPay.waitFor();
+    if (this.paymentsLocFrmPayment != null) {
+      await expect(this.paymentsLocTxtHowWouldYouLikeToPay).toContainText('How would you like to pay?');
     } else throw new Error('No such frame');
   };
   /**
-   * @param {BrowserContext} context
    * @memberof CheckoutPaymentsPage
    */
-  assertTermsOfServiceNewTab = async (context: BrowserContext): Promise<Page> => {
-    const [newPage] = await Promise.all([context.waitForEvent('page'), await this.lnkTermsOfService.click()]);
+  assertTermsOfServiceNewTab = async (): Promise<void> => {
+    await this.page.waitForLoadState();
+    await this.paymentsLocLnkTermsOfService.click();
+    await this.page.waitForLoadState();
+    const [newPage] = await Promise.all([
+      this.page.waitForEvent('popup'),
+      await this.paymentsLocFrmPayment.locator('form#cc_form div div span a').click(),
+    ]);
     await newPage.waitForLoadState();
-    await expect(newPage).toHaveTitle('Terms of Service Notice - LegalShield');
-    return newPage;
+    await expect(newPage).toHaveTitle('Terms of Service - PPLSI');
   };
 
-  // TODO: research why this method not finding text and implement step in e2e tests
   /**
-   * @param {string} term
    * @param {string} cost
    * @memberof CheckoutPaymentsPage
    */
-  assertPurchaseAgreementVerbiage = async (term: string, cost: string): Promise<void> => {
-    console.log(term, cost);
-    if (this.paymentFrame != null) {
-      // Click on Add Payment button
+  assertPurchaseAgreementVerbiage = async (cost: string): Promise<void> => {
+    await this.page.waitForLoadState();
+    console.log(cost);
+    if (this.paymentsLocFrmPayment != null) {
       await this.clickPaymentBtn('bd');
-      await expect(this.txtBankDraftTermsOfServiceAgreement).toContainText(
-        'authorize ${term.toLowerCase()} recurring subscription charge of ${cost}.'
+      await expect(this.paymentsLocTxtBankDraftTermsOfServiceAgreement).toContainText(
+        'By clicking Purchase I agree to LegalShield’s Terms of Service agreement and  authorize recurring subscription charges of ' + cost
       );
     } else throw new Error('No such frame');
+    await this.paymentsLocTxtBankDraftTermsOfServiceAgreement.waitFor();
   };
 }

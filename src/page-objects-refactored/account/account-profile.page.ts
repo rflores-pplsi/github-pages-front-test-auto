@@ -26,7 +26,7 @@ const TXT_EMAIL_H3 = 'h3.lsux-heading.lsux-heading--t20';
  */
 export class AccountProfilePage extends LoginPage {
   // ========================== Page Instances ==========================
-  accountNavigationPage = new AccountNavigationPage(this.page);
+  accountNavigationPage = new AccountNavigationPage(this.context, this.page);
 
   // ========================== Process Methods ==========================
 

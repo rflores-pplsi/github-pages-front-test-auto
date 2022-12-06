@@ -50,13 +50,13 @@ export class BestMoneyMoversGroupPage extends OktaPage {
   loginBestMoneyMoversGroupPage = async (): Promise<void> => {
     console.log(' - BestMoneyMoversGroupPage.loginBestMoneyMoversGroupPage');
     console.log('Redirected to login page');
-    const loginPage = new LoginPage(this.page);
-    await loginPage.login(basicUser.email, basicUser.password);
+    const loginPage = new LoginPage(this.context, this.page);
+    await loginPage.login(basicUser.email as string, basicUser.password as string);
   };
   updateAddressTestingHarnesGroupsPage = async (state: string): Promise<void> => {
     console.log(city, postalCode);
     console.log(' - BestMoneyMoversGroupPage.updateAddressTestingHarnesGroupsPage');
-    const checkoutPersonalInfoPage = new CheckoutPersonalInfoPage(this.page, '', ['']);
+    const checkoutPersonalInfoPage = new CheckoutPersonalInfoPage(this.context, this.page, '', ['']);
     for (const stte of RegionsUtils.usStates.filter((ste) => ste.name == state)) {
       street = stte.validAddress.street;
       city = stte.validAddress.city;

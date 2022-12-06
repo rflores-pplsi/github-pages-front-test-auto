@@ -50,8 +50,8 @@ export class D2CLegalShieldCaPage extends OktaPage {
   };
   loginLegalShieldCA = async (lineofbusiness: string): Promise<void> => {
     await this.page.waitForLoadState();
-    const loginPage = new LoginPage(this.page);
-    await loginPage.login(basicUser.email, basicUser.password);
+    const loginPage = new LoginPage(this.context, this.page);
+    await loginPage.login(basicUser.email as string, basicUser.password as string);
     await this.page.waitForLoadState();
     await this.page.screenshot({ fullPage: true, path: 'Screenshots/testingHarness/' + lineofbusiness + 'Checkout.png' });
   };

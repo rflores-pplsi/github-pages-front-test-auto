@@ -73,7 +73,7 @@ export class AccountPlansPage extends LoginPage {
   loginToNavigateToAccountsPlanPage = async (emailOrUsername: string | undefined, password: string | undefined): Promise<void> => {
     console.log(' - accountPlansPage.loginToNavigateToAccountsPlanPage');
     await this.goTo(UrlsUtils.legalshieldUrls.account.url + '/plans');
-    await this.login(emailOrUsername, password);
+    await this.login(emailOrUsername as string, password as string);
     await this.page.waitForURL(UrlsUtils.legalshieldUrls.account.url + '/plans?login_redirect=1');
   };
 

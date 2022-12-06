@@ -46,7 +46,7 @@ export class PrimericaGroupPage extends OktaPage {
   loginBestMoneyMoversGroupPage = async (): Promise<void> => {
     console.log(' - BestMoneyMoversGroupPage.loginBestMoneyMoversGroupPage');
     console.log('Redirected to login page');
-    const loginPage = new LoginPage(this.page);
+    const loginPage = new LoginPage(this.context, this.page);
     await loginPage.login('mattfeeqa@gmail.com', 'Password10!');
   };
 

@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import { test } from '@playwright/test';
-import { LoginPage } from '../../../page-objects/login/login.page';
-import { LegalShieldUSPage } from '../../../page-objects/qa-maintenance-list/d2c-legalshield-us-marketingsite.page';
+import { LoginPage } from '../../../page-objects-refactored/login/login.page';
+import { LegalShieldUSPage } from '../../../page-objects-refactored/qa-maintenance-list/d2c-legalshield-us-marketingsite.page';
 import * as dotenv from 'dotenv';
 dotenv.config();
 // create instance of Page
@@ -9,9 +9,9 @@ let legalShieldUSPage: LegalShieldUSPage;
 let loginPage: LoginPage;
 
 // Setup environment before each test
-test.beforeEach(async ({ page }) => {
-  legalShieldUSPage = new LegalShieldUSPage(page);
-  loginPage = new LoginPage(page);
+test.beforeEach(async ({ context, page }) => {
+  legalShieldUSPage = new LegalShieldUSPage(context, page);
+  loginPage = new LoginPage(context, page);
 
   // test.slow triples the default wait times
   test.slow();
@@ -29,6 +29,6 @@ test('D2C LegalShield US marketing small business plan', async () => {
     await legalShieldUSPage.checkout();
   });
   await test.step('Login', async () => {
-    await loginPage.login(process.env.LOGIN_EMAIL_UAT, process.env.LOGIN_PASSWORD_UAT);
+    await loginPage.login(process.env.LOGIN_EMAIL_UAT as string, process.env.LOGIN_PASSWORD_UAT as string);
   });
 });

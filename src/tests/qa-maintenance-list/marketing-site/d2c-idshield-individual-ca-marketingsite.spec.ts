@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
-import { LoginPage } from '../../../page-objects/login/login.page';
-import { IDShieldCAPage } from '../../../page-objects/qa-maintenance-list/d2c-idshield-ca-marketingsite.page';
-import { D2CLegalShieldCaPage } from '../../../page-objects/qa-maintenance-list/d2c-legalshield-ca.page';
+import { LoginPage } from '../../../page-objects-refactored/login/login.page';
+import { IDShieldCAPage } from '../../../page-objects-refactored/qa-maintenance-list/d2c-idshield-ca-marketingsite.page';
+import { D2CLegalShieldCaPage } from '../../../page-objects-refactored/qa-maintenance-list/d2c-legalshield-ca.page';
 import DataUtils from '../../../utils/Tests.Data';
 import * as dotenv from 'dotenv';
 dotenv.config();
@@ -12,9 +12,9 @@ let loginPage: LoginPage;
 let d2cLegalShieldCaPage: D2CLegalShieldCaPage;
 
 // Setup environment before each test
-test.beforeEach(async ({ page }) => {
+test.beforeEach(async ({ context, page }) => {
   idShieldCAPage = new IDShieldCAPage(page);
-  loginPage = new LoginPage(page);
+  loginPage = new LoginPage(context, page);
   d2cLegalShieldCaPage = new D2CLegalShieldCaPage(page);
 
   // test.slow triples the default wait times
@@ -33,6 +33,6 @@ test('D2E idShield CA marketing individual plan', async () => {
     await idShieldCAPage.pickAPlan('INDIVIDUAL');
   });
   await test.step('Login', async () => {
-    await loginPage.login(process.env.LOGIN_EMAIL_UAT, process.env.LOGIN_PASSWORD_UAT);
+    await loginPage.login(process.env.LOGIN_EMAIL_UAT as string, process.env.LOGIN_PASSWORD_UAT as string);
   });
 });

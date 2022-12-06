@@ -36,21 +36,21 @@ export class ProfilePickerPage extends LoginPage {
     console.log(' - profilePickerPage.navigateToProfilePickerPage');
     // Navigate to LS Engage Page
     await this.goTo(UrlsUtils.channelsUrls.login.url);
-    await this.login(profilePicker.username, profilePicker.password);
+    await this.login(profilePicker.username as string, profilePicker.password as string);
     await this.page.waitForSelector(LBL_MY_ACCOUNTS);
   };
 
   navigateToProfilePickerPage2 = async (): Promise<void> => {
     console.log(' - profilePickerPage.navigateToProfilePickerPage');
     await this.goTo(UrlsUtils.channelsUrls.taxForm.url);
-    await this.login(profilePicker.username, profilePicker.password);
+    await this.login(profilePicker.username as string, profilePicker.password as string);
     await this.page.waitForSelector(LBL_MY_ACCOUNTS);
   };
 
   navigateToProfilePickerPage3 = async (): Promise<void> => {
     console.log(' - profilePickerPage.navigateToProfilePickerPage');
     await this.goTo(UrlsUtils.channelsUrls.taxForm.url);
-    await this.login(associateReportsCommissions.username, associateReportsCommissions.password);
+    await this.login(associateReportsCommissions.username as string, associateReportsCommissions.password as string);
     await this.page.waitForSelector(LBL_TAX_FORM_REQUEST);
   };
 
