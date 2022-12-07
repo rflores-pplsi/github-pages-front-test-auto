@@ -31,8 +31,8 @@ export class WalsAssociateSearchPage extends WalsLocatorPage {
    * @memberof searchForAssociate
    */
   searchForAssociate = async (associate: string): Promise<void> => {
-    await this.locInputAssociateSearch.fill(associate);
-    await this.locBtnAssociateSearch.click();
+    await this.weAreLegalShieldLocInputAssociateSearch.fill(associate);
+    await this.weAreLegalShieldLocBtnAssociateSearch.click();
     await this.page.waitForLoadState();
   };
   /**
@@ -41,7 +41,7 @@ export class WalsAssociateSearchPage extends WalsLocatorPage {
    * @memberof WalsAssociateSearchPage
    */
   assertLabelSalesAssociate = async (): Promise<void> => {
-    await this.locLabelSalesAssociate.isVisible();
+    await this.weAreLegalShieldLocLabelSalesAssociate.isVisible();
   };
   /**
    * @param {string} txt
