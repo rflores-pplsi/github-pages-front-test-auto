@@ -1,5 +1,4 @@
 import { Page } from '@playwright/test';
-import UrlsUtils from '../../utils/urls.utils';
 import { WalsLocatorPage } from './wals-locators.page';
 
 /**
