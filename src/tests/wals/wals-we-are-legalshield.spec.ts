@@ -1,13 +1,13 @@
 import { test } from '@playwright/test';
-import { WalsAssociateSearchPage } from '../../page-objects-refactored/wals/wals-associate-search.page';
+import { WeAreLegalShieldPage } from '../../page-objects-refactored/wals/wals-we-are-legalshield.page';
 
 // define the instance of Page declaration
-let walsAssociateSearchPage: WalsAssociateSearchPage;
+let walsAssociateSearchPage: WeAreLegalShieldPage;
 
 // Setup environment before each test
 test.beforeEach(async ({ page }) => {
   test.slow();
-  walsAssociateSearchPage = new WalsAssociateSearchPage(page);
+  walsAssociateSearchPage = new WeAreLegalShieldPage(page);
 });
 
 test('When I type in a name in the search box and click search, I am given a result and can view the associates website.', async () => {

@@ -7,7 +7,7 @@ import { WalsLocatorPage } from './wals-locators.page';
  * @extends WalsLocatorPage
  * @class WalsAssociateSearchPage
  */
-export class WalsAssociateSearchPage extends WalsLocatorPage {
+export class WeAreLegalShieldPage extends WalsLocatorPage {
   /**
    * @param {Page} page
    * @memberof WalsAssociateSearchPage
