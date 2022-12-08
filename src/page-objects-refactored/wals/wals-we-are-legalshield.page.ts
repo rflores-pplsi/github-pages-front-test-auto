@@ -18,11 +18,11 @@ export class WeAreLegalShieldPage extends WalsLocatorPage {
   }
   /**
    *
-   *
+   *@param {string} url
    * @memberof WalsAssociateSearchPage
    */
-  navigateToUrl = async (): Promise<void> => {
-    await this.page.goto(UrlsUtils.wals.urls.urlAssociate);
+  navigateToUrl = async (url: string): Promise<void> => {
+    await this.page.goto(url);
     await this.page.waitForLoadState();
   };
 
@@ -41,13 +41,13 @@ export class WeAreLegalShieldPage extends WalsLocatorPage {
    * @memberof WalsAssociateSearchPage
    */
   assertLabelSalesAssociate = async (): Promise<void> => {
-    await this.weAreLegalShieldLocLabelSalesAssociate.isVisible();
+    (await this.WeAreLegalShieldLocContainsText('Find a Sales Associate')).isVisible();
   };
   /**
    * @param {string} txt
    * @memberof assertMsgAssociateNotFound
    */
   assertMsgAssociate = async (txt: string): Promise<void> => {
-    await this.page.locator('//*[contains(text(), "' + txt + '")]').isVisible();
+    (await this.WeAreLegalShieldLocContainsText(txt)).isVisible();
   };
 }
