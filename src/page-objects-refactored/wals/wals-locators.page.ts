@@ -1,4 +1,4 @@
-import { Locator, Page } from '@playwright/test';
+import { expect, Locator, Page } from '@playwright/test';
 
 /**
  * @export
@@ -26,7 +26,18 @@ export class WalsLocatorPage {
     this.weAreLegalShieldLocMsgAssociateNotFound = this.page.locator('//div[contains(text(), "Sorry, we did not find any results for")]');
     this.weAreLegalShieldLocBannerHeader = this.page.locator('//h3[contains(text(), "Business Builder")]');
   }
+  /**
+   * @param {string} txt
+   * @memberof WalsLocatorPage
+   */
   WeAreLegalShieldLocContainsText = async (txt: string): Promise<Locator> => {
-    return this.page.locator('//div[contains(text(), "' + txt + '")]');
+    return this.page.locator(`//div[contains(text(), "${txt}")]`);
+  };
+  /**
+   * @param {string} url
+   * @memberof WalsLocatorPage
+   */
+  WeAreLegalShieldAssertUrl = async (url: string): Promise<void> => {
+    expect(this.page.url()).toEqual(url);
   };
 }

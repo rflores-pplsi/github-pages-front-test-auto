@@ -49,4 +49,11 @@ export class WeAreLegalShieldPage extends WalsLocatorPage {
   assertMsgAssociate = async (txt: string): Promise<void> => {
     (await this.WeAreLegalShieldLocContainsText(txt)).isVisible();
   };
+  /**
+   * @param {string} url
+   * @memberof assertMsgAssociateNotFound
+   */
+  assertAssociateUrl = async (url: string): Promise<void> => {
+    (await this.WeAreLegalShieldLocContainsText(url)).isVisible();
+  };
 }

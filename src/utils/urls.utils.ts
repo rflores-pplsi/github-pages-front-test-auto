@@ -131,18 +131,18 @@ export default class UrlsUtils {
   static readonly wals = {
     urls: {
       ddev: 'http://lspro.' + envWalsUrlString + 'wearelegalshield.com/',
-      urlAssociate: ' https://www.' + envWalsUrlString + 'wearelegalshield.com',
+      urlAssociate: 'https://www.' + envWalsUrlString + 'wearelegalshield.com',
       urlBenefits: 'https://apptestuser.' + envWalsUrlString + 'wearelegalshield.com/',
       urlDamesOfJustice: 'https://www.damesdejustice.ca/',
-      urlEnCa: ' https://lspro.' + envWalsUrlString + 'wearelegalshield.ca',
-      urlEnCanada: ' https://www.' + envWalsUrlString + 'wearelegalshield.ca',
-      urlEnUS: ' https://lspro.' + envWalsUrlString + 'wearelegalshield.com',
-      urlFrCa: ' https://lspro.' + envWalsUrlString + 'noussommeslegalshield.ca',
+      urlEnCa: 'https://lspro.' + envWalsUrlString + 'wearelegalshield.ca',
+      urlEnCanada: 'https://www.' + envWalsUrlString + 'wearelegalshield.ca',
+      urlEnUS: 'https://lspro.' + envWalsUrlString + 'wearelegalshield.com',
+      urlFrCa: 'https://lspro.' + envWalsUrlString + 'noussommeslegalshield.ca',
       urlLadies: 'https://www.ladiesofjustice.com/',
       urlLadiesCa: 'https://www.ladiesofjustice.ca/',
-      urlNous: ' https://www.' + envWalsUrlString + 'noussommeslegalshield.ca',
-      urlSomos: ' https://www.' + envWalsUrlString + 'somoslegalshield.com',
-      urlSpUS: ' https://lspro.' + envWalsUrlString + 'somoslegalshield.com',
+      urlNous: 'https://www.' + envWalsUrlString + 'noussommeslegalshield.ca',
+      urlSomos: 'https://www.' + envWalsUrlString + 'somoslegalshield.com',
+      urlSpUS: 'https://lspro.' + envWalsUrlString + 'somoslegalshield.com',
     },
 
     // uatUrl: {

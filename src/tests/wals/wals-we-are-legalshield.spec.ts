@@ -11,7 +11,14 @@ test.describe('Test We vAre LegalShield', () => {
     walsAssociateSearchPage = new WeAreLegalShieldPage(page);
     await walsAssociateSearchPage.navigateToUrl(UrlsUtils.wals.urls.urlAssociate);
   });
-
+  test.only("When I type in Jessen in the search box and click search, I'll be directed to https://www.wearelegalshield.com/opportunity/search?search_api_fulltext=Jessen", async () => {
+    await test.step('Search for associate', async () => {
+      await walsAssociateSearchPage.searchForAssociate('Jessen');
+    });
+    await test.step('Assert url https://www.wearelegalshield.com/opportunity/search?search_api_fulltext=Jessen   ', async () => {
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlAssociate + '/results?queryParam=Jessen');
+    });
+  });
   test('When I type in a name in the search box and click search, I am given a result and can view the associates website.', async () => {
     await test.step('Search for associate', async () => {
       await walsAssociateSearchPage.searchForAssociate('App test user');
@@ -44,7 +51,14 @@ test.describe('Test Somos legalshield', () => {
     walsAssociateSearchPage = new WeAreLegalShieldPage(page);
     await walsAssociateSearchPage.navigateToUrl(UrlsUtils.wals.urls.urlSomos);
   });
-
+  test.only("When I type in Jessen in the search box and click search, I'll be directed to https://www.somoslegalshield.com/opportunity/search?search_api_fulltext=Jessen", async () => {
+    await test.step('Search for associate', async () => {
+      await walsAssociateSearchPage.searchForAssociate('Jessen');
+    });
+    await test.step('Assert url https://www.somoslegalshield.com/opportunity/search?search_api_fulltext=Jessen   ', async () => {
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlAssociate + '/results?queryParam=Jessen');
+    });
+  });
   test('When I type in a name in the search box and click search, I am given a result and can view the associates website.', async () => {
     await test.step('Search for associate', async () => {
       await walsAssociateSearchPage.searchForAssociate('App test user');
@@ -77,7 +91,14 @@ test.describe('Test Nous Sommes legalshield', () => {
     walsAssociateSearchPage = new WeAreLegalShieldPage(page);
     await walsAssociateSearchPage.navigateToUrl(UrlsUtils.wals.urls.urlNous);
   });
-
+  test.only("When I type in Jessen in the search box and click search, I'll be directed to https://www.noussommeslegalshield.com/opportunity/search?search_api_fulltext=Jessen", async () => {
+    await test.step('Search for associate', async () => {
+      await walsAssociateSearchPage.searchForAssociate('Jessen');
+    });
+    await test.step('Assert url https://www.noussommeslegalshield.com/opportunity/search?search_api_fulltext=Jessen   ', async () => {
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlAssociate + '/results?queryParam=Jessen');
+    });
+  });
   test('When I type in a name in the search box and click search, I am given a result and can view the associates website.', async () => {
     await test.step('Search for associate', async () => {
       await walsAssociateSearchPage.searchForAssociate('App test user');
@@ -110,7 +131,14 @@ test.describe('Test We Are LegalShield CA', () => {
     walsAssociateSearchPage = new WeAreLegalShieldPage(page);
     await walsAssociateSearchPage.navigateToUrl(UrlsUtils.wals.urls.urlEnCanada);
   });
-
+  test.only("When I type in Jessen in the search box and click search, I'll be directed to https://www.wearelegalshield.com/opportunity/search?search_api_fulltext=Jessen", async () => {
+    await test.step('Search for associate', async () => {
+      await walsAssociateSearchPage.searchForAssociate('Jessen');
+    });
+    await test.step('Assert url https://www.wearelegalshield.com/opportunity/search?search_api_fulltext=Jessen   ', async () => {
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlAssociate + '/results?queryParam=Jessen');
+    });
+  });
   test('When I type in a name in the search box and click search, I am given a result and can view the associates website.', async () => {
     await test.step('Search for associate', async () => {
       await walsAssociateSearchPage.searchForAssociate('App test user');
@@ -143,7 +171,14 @@ test.describe('Test Ladies of Justice US', () => {
     walsAssociateSearchPage = new WeAreLegalShieldPage(page);
     await walsAssociateSearchPage.navigateToUrl(UrlsUtils.wals.urls.urlLadies);
   });
-
+  test.only("When I type in Jessen in the search box and click search, I'll be directed to https://www.ladiesofjustice.com/opportunity/search?search_api_fulltext=Jessen", async () => {
+    await test.step('Search for associate', async () => {
+      await walsAssociateSearchPage.searchForAssociate('Jessen');
+    });
+    await test.step('Assert url https://www.ladiesofjustice.com/opportunity/search?search_api_fulltext=Jessen   ', async () => {
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlAssociate + '/results?queryParam=Jessen');
+    });
+  });
   test('When I type in a name in the search box and click search, I am given a result and can view the associates website.', async () => {
     await test.step('Search for associate', async () => {
       await walsAssociateSearchPage.searchForAssociate('App test user');
@@ -176,7 +211,14 @@ test.describe('Test Ladies of Justice CA', () => {
     walsAssociateSearchPage = new WeAreLegalShieldPage(page);
     await walsAssociateSearchPage.navigateToUrl(UrlsUtils.wals.urls.urlLadiesCa);
   });
-
+  test.only("When I type in Jessen in the search box and click search, I'll be directed to https://www.ladiesofjustice.ca/opportunity/search?search_api_fulltext=Jessen", async () => {
+    await test.step('Search for associate', async () => {
+      await walsAssociateSearchPage.searchForAssociate('Jessen');
+    });
+    await test.step('Assert url https://www.ladiesofjustice.ca/opportunity/search?search_api_fulltext=Jessen   ', async () => {
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlAssociate + '/results?queryParam=Jessen');
+    });
+  });
   test('When I type in a name in the search box and click search, I am given a result and can view the associates website.', async () => {
     await test.step('Search for associate', async () => {
       await walsAssociateSearchPage.searchForAssociate('App test user');
