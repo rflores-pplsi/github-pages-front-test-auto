@@ -2,7 +2,7 @@ import RegionsUtils from '../../utils/regions.utils';
 import UrlsUtils from '../../utils/urls.utils';
 import { OktaPage } from '../okta/okta.page';
 import * as dotenv from 'dotenv';
-import { expect } from '@playwright/test';
+import { expect, Page } from '@playwright/test';
 dotenv.config();
 
 // ========================== Selectors ==================================
@@ -59,7 +59,10 @@ let postalCode: string;
 
 export class EnglishWalsUSPage extends OktaPage {
   // ========================== Process Methods ============================
-
+  constructor(page: Page) {
+    super(page);
+    this.page = page;
+  }
   filloutContactInformationForm = async (
     state: string,
     email: string,
