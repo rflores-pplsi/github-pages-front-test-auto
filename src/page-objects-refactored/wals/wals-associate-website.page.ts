@@ -52,7 +52,7 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
       await this.associateWebsiteLocTxtPhoneNumber.type(phone);
       // Select a phone type
       await this.associateWebsiteLocSlctPhoneType.click();
-      await this.page.click('//span[contains(text(),"' + type + '")]');
+      await this.page.click('#mat-option-' + type);
     }
   };
   /**
@@ -61,11 +61,12 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
    */
   changeStateinformation = async (state: string): Promise<void> => {
     // Click on change state
-    await expect(this.associateWebsiteLocLnkChange).toBeVisible();
+    await this.page.waitForTimeout(3000);
+    await this.associateWebsiteLocLnkChange.waitFor();
     await this.associateWebsiteLocLnkChange.click({ force: true });
     // Select a state
     await this.associateWebsiteLocSlctRegion.waitFor();
-    await this.associateWebsiteLocSlctRegion.selectOption(state);
+    await this.associateWebsiteLocSlctRegion.selectOption({ label: state });
     // Click the Update State button
     await this.associateWebsiteLocBtnUpdateState.click();
   };
@@ -89,6 +90,24 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
     await this.clickContinueBtn();
     // Click on Checkout Button
     await this.clickCheckoutBtn();
+  };
+  /**
+   * @param {string} dob
+   * @param {string} ssn
+   * @memberof WalsAssociateWebsitePage
+   */
+  filloutSecurityInfo = async (dob: string, ssn: string): Promise<void> => {
+    // Fill date of birth
+    await this.associateWebsiteLocTxtDateOfBirth.type(dob);
+    // Fill SSN
+    await this.associateWebsiteLocTxtSSN.type(ssn);
+  };
+  /**
+   * @memberof WalsAssociateWebsitePage
+   */
+  becomeAssociate = async (): Promise<void> => {
+    await this.page.waitForLoadState();
+    await this.associateWebsiteLocBtnBecomeAssociate.click();
   };
   /**
    * @param {string} dob
@@ -143,9 +162,8 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
   createAUser = async (pass: string, confirmpass: string): Promise<void> => {
     console.log(' - EnglishWalsUSPage.createAUser');
     // Select a username
-    await this.associateWebsiteLocRdoBtnUsername.waitFor();
-    const radioUsernames = await this.page.$$('.mat-radio-container');
-    radioUsernames[0].click();
+    await this.page.waitForSelector('div.component-wrapper');
+    await this.page.locator('div.mat-radio-container >> nth=0').click();
     await this.page.waitForSelector('//div[contains(text(),"test")]');
     await this.page.locator('//*[@class="mat-radio-button mat-accent ng-star-inserted"][1]/label/div[2]').screenshot({ path: 'screenshot.png' });
     console.log(this.page.locator('//*[@class="mat-radio-button mat-accent ng-star-inserted"][1]/label/div[2]').innerHTML());
@@ -166,7 +184,7 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
     // Check by mail
     await this.associateWebsiteLocRdoCheckByMail.click();
     // Click on Continue button
-    await this.associateWebsiteLocBtnCommissionOptionContinue.click();
+    await this.associateWebsiteLocBtnContinuePersonalInfoForm.click();
   };
   /**
    * @param {string} name
