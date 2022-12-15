@@ -32,6 +32,8 @@ export class WalsLocatorPage {
   readonly associateWebsiteLocSlctRegion: Locator;
   readonly associateWebsiteLocBtnUpdateState: Locator;
   readonly associateWebsiteLocFrmPayment: FrameLocator;
+  readonly associateWebsiteLocfrmPaymentsParent: FrameLocator;
+  readonly associateWebsiteLocfrmPayments: FrameLocator;
   readonly associateWebsiteLocTxtPhoneNumber: Locator;
   readonly associateWebsiteLocSlctPhoneType: Locator;
   readonly associateWebsiteLocTxtDateOfBirth: Locator;
@@ -68,11 +70,13 @@ export class WalsLocatorPage {
    */
   constructor(page: Page) {
     this.page = page;
-    this.associateWebsiteLocFrmPayment = this.page.frameLocator('//iframe[@title="Create Payment Method"]');
+    this.associateWebsiteLocFrmPayment = this.page.frameLocator('iframe.ng-star-inserted');
+    this.associateWebsiteLocfrmPaymentsParent = this.page.frameLocator('iframe.ng-star-inserted');
+    this.associateWebsiteLocfrmPayments = this.associateWebsiteLocfrmPaymentsParent.frameLocator('iframe.us-payment-form');
     this.associateResultLocViewWebsite = this.page.locator('div.profile-link a');
     this.associateResultLocViewWebsite = this.page.locator('');
     this.associateWebsiteLocUlEnglishWalsUSPage = this.page.locator('');
-    this.associateWebsiteLocBtnGetAPlan = this.page.locator('a.plan-associate.subscriber-ASSOCSTP');
+    this.associateWebsiteLocBtnGetAPlan = this.page.locator('a.subscriber-ASSOCSTP >> nth=1');
     this.associateWebsiteLocBtnBecomeAssociate = this.page.locator(
       'div#plans-menu-filters ul.menu-dropdown.dropdown:not(.plans-menu-filters-mobile) > .become-associate-plans a'
     );
@@ -91,7 +95,7 @@ export class WalsLocatorPage {
     this.associateWebsiteLocTxtLastName = this.page.locator('input[name="last-name"]');
     this.associateWebsiteLocTxtAddress = this.page.locator('#address');
     this.associateWebsiteLocTxtCity = this.page.locator('#city');
-    this.associateWebsiteLocTxtZipCode = this.page.locator('#zipcode');
+    this.associateWebsiteLocTxtZipCode = this.page.locator('input[name="zipcode"]');
     this.associateWebsiteLocLnkChange = this.page.locator('a.open-modal-lgs-geolocate.button-region-state.la');
     this.associateWebsiteLocSlctRegion = this.page.locator('select[name="state_select"]');
     this.associateWebsiteLocBtnUpdateState = this.page.locator('#edit-submit--3');
@@ -117,11 +121,11 @@ export class WalsLocatorPage {
     this.associateWebsiteLocLblWelcome = this.page.locator(
       '//div[@class="confirmation-col col-sm-12 col-tb-12 col-dk-6 confirmation-wrapper wals-content ng-star-inserted"]/h1'
     );
-    this.associateWebsiteLocRdoBankDraft = this.associateWebsiteLocFrmPayment.locator('bd_payment_method');
+    this.associateWebsiteLocRdoBankDraft = this.associateWebsiteLocfrmPayments.locator('form#cc_form div#app_bdform div div input#bd_payment_method');
     this.associateWebsiteLocTxtNameOfAccountHolder = this.page.locator('#accountholder_name');
     this.associateWebsiteLocTxtRoutingNumber = this.page.locator('#routing_number');
     this.associateWebsiteLocTxtAccountNumber = this.page.locator('#account_number');
-    this.associateWebsiteLocRdoCheckingAccount = this.page.locator('//input[ @value="Checking"]');
+    this.associateWebsiteLocRdoCheckingAccount = this.associateWebsiteLocfrmPayments.locator('//input[ @value="Checking"]');
     this.weAreLegalShieldLocInputAssociateSearch = this.page.locator('#edit-search');
     this.weAreLegalShieldLocBtnAssociateSearch = this.page.locator('div.search-form.form--inline.clearfix input#edit-submit');
     // this.weAreLegalShieldLocLabelSalesAssociate = this.page.locator('//div[contains(text(), "Find a Sales Associate")]');

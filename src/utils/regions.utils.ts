@@ -540,6 +540,16 @@ export default class RegionsUtils {
       },
     },
     {
+      abbrv: 'LBC',
+      name: 'la Colombie-Britannique',
+      priority: true,
+      validAddress: {
+        city: 'Whistler',
+        postalCode: 'V8E 1H9',
+        street: '4050 Whistler Way',
+      },
+    },
+    {
       abbrv: 'MB',
       name: 'Manitoba',
       priority: true,

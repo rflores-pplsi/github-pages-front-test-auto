@@ -4,7 +4,7 @@ import UrlsUtils from '../../utils/urls.utils';
 
 // define the instance of Page declaration
 let walsAssociateSearchPage: WeAreLegalShieldPage;
-test.describe('Test We vAre LegalShield', () => {
+test.describe('Test We are LegalShield', () => {
   // Setup environment before each test
   test.beforeEach(async ({ page }) => {
     test.slow();

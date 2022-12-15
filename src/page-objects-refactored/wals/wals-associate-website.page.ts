@@ -21,7 +21,50 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
    * @param {string} type
    * @memberof WalsAssociateWebsitePage
    */
-  filloutContactInformationForm = async (
+  filloutCaContactInformationForm = async (
+    state: string,
+    email: string,
+    firstName: string,
+    lastName: string,
+    phone: string,
+    type: string
+  ): Promise<void> => {
+    for (const stte of RegionsUtils.caProvinces.filter((ste) => ste.name == state)) {
+      street = stte.validAddress.street;
+      city = stte.validAddress.city;
+      postalCode = stte.validAddress.postalCode;
+      // Fill Email
+      await this.associateWebsiteLocTxtEmail.fill(email);
+      // Fill first-name text box
+      await this.associateWebsiteLocTxtFirstName.fill(firstName);
+      // Fill input[name="last-name"]
+      await this.associateWebsiteLocTxtLastName.fill(lastName);
+      // Fill Address
+      await this.associateWebsiteLocTxtAddress.fill(street);
+      // Fill City
+      await this.associateWebsiteLocTxtCity.fill(city);
+      await this.page.keyboard.press('Tab');
+      // Fill Zip Code
+      await this.associateWebsiteLocTxtZipCode.fill(postalCode);
+      await this.page.keyboard.press('Tab');
+      // Fill Phone Number
+      // await this.page.waitForSelector(txtPhoneNumber);
+      await this.associateWebsiteLocTxtPhoneNumber.type(phone);
+      // Select a phone type
+      await this.associateWebsiteLocSlctPhoneType.click();
+      await this.page.click('#mat-option-' + type);
+    }
+  };
+  /**
+   * @param {string} state
+   * @param {string} email
+   * @param {string} firstName
+   * @param {string} lastName
+   * @param {string} phone
+   * @param {string} type
+   * @memberof WalsAssociateWebsitePage
+   */
+  filloutUsContactInformationForm = async (
     state: string,
     email: string,
     firstName: string,
@@ -61,7 +104,7 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
    */
   changeStateinformation = async (state: string): Promise<void> => {
     // Click on change state
-    await this.page.waitForTimeout(3000);
+    await this.page.waitForTimeout(5000);
     await this.associateWebsiteLocLnkChange.waitFor();
     await this.associateWebsiteLocLnkChange.click({ force: true });
     // Select a state
@@ -74,7 +117,6 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
    * @memberof WalsAssociateWebsitePage
    */
   getStartedThenPickAPlan = async (): Promise<void> => {
-    console.log(' - EnglishWalsUSPage.getStartedThenPickAPlan');
     await this.clickGetStartedBtn();
     // Click on label Add Home Business Supplement
     await this.selectHomeBusinessSupplement();
@@ -128,7 +170,6 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
     dependent: string,
     dependentEmail: string
   ): Promise<void> => {
-    console.log(' - EnglishWalsUSPage.filloutSecurityInfo');
     // Fill date of birth
     await this.associateWebsiteLocTxtDateOfBirth.type(dob);
     // Fill SSN
@@ -160,8 +201,8 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
    * @memberof WalsAssociateWebsitePage
    */
   createAUser = async (pass: string, confirmpass: string): Promise<void> => {
-    console.log(' - EnglishWalsUSPage.createAUser');
     // Select a username
+    this.page.waitForLoadState();
     await this.page.waitForSelector('div.component-wrapper');
     await this.page.locator('div.mat-radio-container >> nth=0').click();
     await this.page.waitForSelector('//div[contains(text(),"test")]');
@@ -180,7 +221,6 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
    * @memberof WalsAssociateWebsitePage
    */
   commissionOptions = async (): Promise<void> => {
-    console.log(' - EnglishWalsUSPage.commissionOptions');
     // Check by mail
     await this.associateWebsiteLocRdoCheckByMail.click();
     // Click on Continue button
@@ -194,25 +234,21 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
    * @memberof WalsAssociateWebsitePage
    */
   filloutCreditCardInfo = async (name: string, cardNum: string, expDate: string, cvv: string): Promise<void> => {
-    console.log(' - EnglishWalsUSPage.filloutCreditCardInfo');
-    // Locate an switch to the frame
-    const frmParent = this.page.frameLocator('#payment-method');
-    const frmPayment = frmParent.frameLocator('#paymentMethodFramePsx');
     // Fill name on card
     // Fill  Account Number
-    const NameOnCard = frmPayment.locator('#cardholder_name');
+    const NameOnCard = this.associateWebsiteLocfrmPayments.locator('#cardholder_name');
     await NameOnCard.type(name);
     // Fill card number
-    const CardNumber = frmPayment.locator('#card_number');
+    const CardNumber = this.associateWebsiteLocfrmPayments.locator('#card_number');
     await CardNumber.type(cardNum);
     // Fill Expiration date
-    const ExpDate = frmPayment.locator('#expiration_date');
+    const ExpDate = this.associateWebsiteLocfrmPayments.locator('#expiration_date');
     await ExpDate.type(expDate);
     // Fill security code
-    const Cvv = frmPayment.locator('#security_code');
+    const Cvv = this.associateWebsiteLocfrmPayments.locator('#security_code');
     await Cvv.type(cvv);
     // Click purchase button
-    const btnPur = frmPayment.locator('#savecc');
+    const btnPur = this.associateWebsiteLocfrmPayments.locator('#savecc');
     await btnPur.click();
   };
   /**
@@ -222,29 +258,53 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
    * @memberof WalsAssociateWebsitePage
    */
   filloutBankAccountInfo = async (name: string, routingNum: string, accountNumber: string): Promise<void> => {
-    console.log(' - EnglishWalsUSPage.filloutBankAccountInfo');
     // Locate an switch to the frame
     await this.page.waitForLoadState();
     await this.page.waitForTimeout(7000);
-    this.page.frameLocator('#payment-method');
-    const frmParent = this.page.frameLocator('#payment-method');
-    this.page.frameLocator('#paymentMethodFramePsx');
-    const frmPayment = frmParent.frameLocator('#paymentMethodFramePsx');
     // Check Bank Draft name
-    const bankDraft = frmPayment.locator('//form[@id="cc_form"]/div[2]/div/div/input');
-    await bankDraft.click();
+    // const bankDraft = this.associateWebsiteLocfrmPayments.locator('//form[@id="cc_form"]/div[2]/div/div/input');
+    await this.associateWebsiteLocRdoBankDraft.click();
     // Fill  Name of account holder
-    const NameOfAccountHolder = frmPayment.locator('#accountholder_name');
+    const NameOfAccountHolder = this.associateWebsiteLocfrmPayments.locator('#accountholder_name');
     await NameOfAccountHolder.type(name);
     // Fill Routing number
-    const RoutingNumber = frmPayment.locator('#routing_number');
+    const RoutingNumber = this.associateWebsiteLocfrmPayments.locator('#routing_number');
     await RoutingNumber.type(routingNum);
     // Fill Account Number
-    const AccountNumber = frmPayment.locator('#account_number');
+    const AccountNumber = this.associateWebsiteLocfrmPayments.locator('#account_number');
     await AccountNumber.type(accountNumber);
     // Check Checking Account
-    const CheckingAccount = frmPayment.locator('//input[ @value="Checking"]');
+    const CheckingAccount = this.associateWebsiteLocfrmPayments.locator('//input[ @value="Checking"]');
     await CheckingAccount.click();
+    // Click purchase button
+    await this.page.keyboard.press('Enter');
+    await this.page.keyboard.press('Enter');
+  };
+  /**
+   * @param {string} name
+   * @param {string} transNum
+   * @param {string} institutionNum
+   * @param {string} accountNumber
+   * @memberof WalsAssociateWebsitePage
+   */
+  filloutCABankAccountInfo = async (name: string, transNum: string, institutionNum: string, accountNumber: string): Promise<void> => {
+    console.log(' - EnglishWalsCaPage.filloutBankAccountInfo');
+    // Locate an switch to the frame
+    await this.page.waitForLoadState();
+    // Check Bank Draft name
+    await this.associateWebsiteLocRdoBankDraft.click();
+    // Fill  Name of account holder
+    const NameOfAccountHolder = this.associateWebsiteLocfrmPayments.locator('#accountholder_name');
+    await NameOfAccountHolder.type(name);
+    // Fill Transit number
+    const transitNumber = this.associateWebsiteLocfrmPayments.locator('#transit_number');
+    await transitNumber.type(transNum);
+    const InstitutionNumber = this.associateWebsiteLocfrmPayments.locator('#institution_number');
+    await InstitutionNumber.type(institutionNum);
+    // Fill Account Number
+    const AccountNumber = this.associateWebsiteLocfrmPayments.locator('#account_number');
+    await AccountNumber.type(accountNumber);
+    await this.associateWebsiteLocRdoCheckingAccount.click();
     // Click purchase button
     await this.page.keyboard.press('Enter');
     await this.page.keyboard.press('Enter');
@@ -255,7 +315,6 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
    * @memberof WalsAssociateWebsitePage
    */
   navigateToEnglishWalsUSPage = async (url: string): Promise<void> => {
-    console.log(' - EnglishWalsUSPage.navigateToEnglishWalsUSPage');
     // navigate to URL
     await this.page.goto(url);
   };
@@ -311,16 +370,17 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
   // ========================== Assertion Methods ==========================
 
   assertContactInformationTxt = async (): Promise<void> => {
-    console.log(' - PrimericaGroupPage.assertContactInformationTxt');
     // Verify that  it takes user to checkout
     await this.associateWebsiteLocTtlContactInfo.waitFor();
     await expect(this.associateWebsiteLocTtlContactInfo).toContainText('Contact information');
-    console.log('Landed on checkout page');
   };
-  assertWelcomelabel = async (): Promise<void> => {
-    console.log(' - PrimericaGroupPage.assertContactInformationTxt');
+  /**
+   * @param {string} txt
+   * @memberof WalsAssociateWebsitePage
+   */
+  assertWelcomelabel = async (txt: string): Promise<void> => {
     // Verify that the user made the purchase
     await this.associateWebsiteLocLblWelcome.waitFor();
-    await expect(this.associateWebsiteLocLblWelcome).toContainText('Welcome to the LegalShield Family!');
+    await expect(this.associateWebsiteLocLblWelcome).toContainText(txt);
   };
 }

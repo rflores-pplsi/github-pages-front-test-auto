@@ -1,92 +1,384 @@
 import { test } from '@playwright/test';
-// import { LoginPage } from '../../page-objects-refactored/login/login.page';
-import { IDShieldUSPage } from '../../page-objects-refactored/qa-maintenance-list/d2c-idshield-us-marketingsite.page';
-import { D2CLegalShieldCaPage } from '../../page-objects-refactored/qa-maintenance-list/d2c-legalshield-ca.page';
 import DataUtils from '../../utils/Tests.Data';
 import * as dotenv from 'dotenv';
 import { WalsAssociateWebsitePage } from '../../page-objects-refactored/wals/wals-associate-website.page';
 import UrlsUtils from '../../utils/urls.utils';
 dotenv.config();
 
-// create instance of Page
-let idShieldUSPage: IDShieldUSPage;
-// let loginPage: LoginPage;
-let d2cLegalShieldCaPage: D2CLegalShieldCaPage;
 let walsAssociateWebsitePage: WalsAssociateWebsitePage;
 
-// Setup environment before each test
-test.beforeEach(async ({ page }) => {
-  idShieldUSPage = new IDShieldUSPage(page);
-  // loginPage = new LoginPage(context, page);
-  d2cLegalShieldCaPage = new D2CLegalShieldCaPage(page);
-  walsAssociateWebsitePage = new WalsAssociateWebsitePage(page);
-
-  // test.slow triples the default wait times
-  test.slow();
-});
-test('D2E idShield US marketing individual monthly plan', async () => {
-  test.slow;
-  await test.step('Navigate to legalshield CA marketing site', async () => {
-    await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlSpUS);
+test.describe('Somos legalshield', () => {
+  test.beforeEach(async ({ page }) => {
+    walsAssociateWebsitePage = new WalsAssociateWebsitePage(page);
+    test.slow();
   });
-  await test.step('Choose a region', async () => {
-    await walsAssociateWebsitePage.changeStateinformation(DataUtils.data.testingHarness.us.city.VA);
-  });
-  await test.step('Become an associate', async () => {
-    await walsAssociateWebsitePage.becomeAssociate();
-  });
-  await test.step('Pick a plan', async () => {
+  test('User is able to purchase Associate Startup for Individual at $49 instead of $99', async () => {
     test.slow;
-    await walsAssociateWebsitePage.associateWebsiteLocBtnGetAPlan.click();
-    await walsAssociateWebsitePage.associateWebsiteLocChkBNo.click();
-    await walsAssociateWebsitePage.associateWebsiteLocBtnContinue.click();
-    await walsAssociateWebsitePage.associateWebsiteLocBtnCheckout.click();
+    await test.step('Navigate to legalshield marketing site', async () => {
+      await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlAppTestUserSpUS);
+    });
+    await test.step('Choose a region', async () => {
+      await walsAssociateWebsitePage.changeStateinformation(DataUtils.data.testingHarness.us.city.VA);
+    });
+    await test.step('Become an associate', async () => {
+      await walsAssociateWebsitePage.becomeAssociate();
+    });
+    await test.step('Pick a plan', async () => {
+      test.slow;
+      await walsAssociateWebsitePage.associateWebsiteLocBtnGetAPlan.click();
+      await walsAssociateWebsitePage.associateWebsiteLocChkBNo.click();
+      await walsAssociateWebsitePage.associateWebsiteLocBtnContinue.click();
+      await walsAssociateWebsitePage.associateWebsiteLocBtnCheckout.click();
+    });
+    await test.step('Fill out personal and security info', async () => {
+      await walsAssociateWebsitePage.filloutUsContactInformationForm(
+        DataUtils.data.testingHarness.us.city.VA,
+        'enepa@gmail.com',
+        'TesterF',
+        'TesterL',
+        '5714001234',
+        '0'
+      );
+      await walsAssociateWebsitePage.filloutSecurityInfo('01011999', '222445555');
+      await walsAssociateWebsitePage.associateWebsiteLocBtnContinuePersonalInfoForm.click();
+    });
+    await test.step('Create user', async () => {
+      await walsAssociateWebsitePage.createAUser('Hello@358!', 'Hello@358!');
+    });
+    await test.step('Use a Check', async () => {
+      await walsAssociateWebsitePage.commissionOptions();
+    });
+    await test.step('Use bank draft payment method', async () => {
+      await walsAssociateWebsitePage.filloutBankAccountInfo(
+        DataUtils.data.testingHarness.us.bd.name,
+        DataUtils.data.testingHarness.us.bd.Routing,
+        DataUtils.data.testingHarness.us.bd.Account
+      );
+    });
+    await test.step('Confirm payment', async () => {
+      await walsAssociateWebsitePage.assertWelcomelabel('¡Bienvenido a la familia LegalShield!');
+    });
   });
-  await test.step('Fill out personal info', async () => {
-    await walsAssociateWebsitePage.filloutContactInformationForm(
-      DataUtils.data.testingHarness.us.city.VA,
-      'enepa20@gmail.com',
-      'TesterFirst',
-      'TesterLast',
-      '5714001234',
-      '0'
-    );
-    await walsAssociateWebsitePage.filloutSecurityInfo('01011999', '222445555');
-  });
-  await walsAssociateWebsitePage.associateWebsiteLocBtnContinuePersonalInfoForm.click();
-  await walsAssociateWebsitePage.createAUser('Hello@358', 'Hello@358');
-  await walsAssociateWebsitePage.commissionOptions();
-  await walsAssociateWebsitePage.associateWebsiteLocRdoBankDraft.click();
-  await walsAssociateWebsitePage.filloutBankAccountInfo(
-    DataUtils.data.testingHarness.us.bd.name,
-    DataUtils.data.testingHarness.us.bd.Routing,
-    DataUtils.data.testingHarness.us.bd.Account
-  );
 });
-test('E2E idShield US marketing assert only one product can be purchased', async () => {
-  await test.step('Navigate to legalshield CA marketing site', async () => {
-    await idShieldUSPage.navigateToIDShieldUSMarketingSitePlage('d2cLegalShieldCA');
+test.describe('Test We are LegalShield', () => {
+  test.beforeEach(async ({ page }) => {
+    walsAssociateWebsitePage = new WalsAssociateWebsitePage(page);
+    test.slow();
   });
-  await test.step('Choose a region', async () => {
-    await d2cLegalShieldCaPage.selectYourRegion(DataUtils.data.testingHarness.us.city.VA);
-  });
-  await test.step('Pick individual plan', async () => {
+  test('User is able to purchase Associate Startup for Individual at $49 instead of $99', async () => {
     test.slow;
-    await idShieldUSPage.pickAnIndividualPlan('MONTHLY', 'CONTINUE_SHOPPING');
+    await test.step('Navigate to legalshield marketing site', async () => {
+      await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlBenefits);
+    });
+    await test.step('Choose a region', async () => {
+      await walsAssociateWebsitePage.changeStateinformation(DataUtils.data.testingHarness.us.city.VA);
+    });
+    await test.step('Become an associate', async () => {
+      await walsAssociateWebsitePage.becomeAssociate();
+    });
+    await test.step('Pick a plan', async () => {
+      test.slow;
+      await walsAssociateWebsitePage.associateWebsiteLocBtnGetAPlan.click();
+      await walsAssociateWebsitePage.associateWebsiteLocChkBNo.click();
+      await walsAssociateWebsitePage.associateWebsiteLocBtnContinue.click();
+      await walsAssociateWebsitePage.associateWebsiteLocBtnCheckout.click();
+    });
+    await test.step('Fill out personal and security info', async () => {
+      await walsAssociateWebsitePage.filloutUsContactInformationForm(
+        DataUtils.data.testingHarness.us.city.VA,
+        'enepa@gmail.com',
+        'TesterF',
+        'TesterL',
+        '5714001234',
+        '0'
+      );
+      await walsAssociateWebsitePage.filloutSecurityInfo('01011999', '222445555');
+      await walsAssociateWebsitePage.associateWebsiteLocBtnContinuePersonalInfoForm.click();
+    });
+    await test.step('Create user', async () => {
+      await walsAssociateWebsitePage.createAUser('Hello@358!', 'Hello@358!');
+    });
+    await test.step('Use a Check', async () => {
+      await walsAssociateWebsitePage.commissionOptions();
+    });
+    await test.step('Use bank draft payment method', async () => {
+      await walsAssociateWebsitePage.filloutBankAccountInfo(
+        DataUtils.data.testingHarness.us.bd.name,
+        DataUtils.data.testingHarness.us.bd.Routing,
+        DataUtils.data.testingHarness.us.bd.Account
+      );
+    });
+    await test.step('Confirm payment', async () => {
+      await walsAssociateWebsitePage.assertWelcomelabel('Welcome to the LegalShield Family!');
+    });
   });
-  await test.step('Pick family plan', async () => {
-    await idShieldUSPage.pickAFamilyPlan('MONTHLY', '');
+});
+test.describe('Test nous sommes legalshield.ca', () => {
+  test.beforeEach(async ({ page }) => {
+    walsAssociateWebsitePage = new WalsAssociateWebsitePage(page);
+    test.slow();
   });
-  await test.step('Assert the shopping cart only includes family plan and message box popped up to indicate that', async () => {
-    await idShieldUSPage.assertShoppingCartIncludesFamilyPlan();
+  test('User is able to purchase Associate Startup for Individual at $49 instead of $99', async () => {
+    test.slow;
+    await test.step('Navigate to legalshield CA marketing site', async () => {
+      await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlAppTestUserFrCa);
+    });
+    await test.step('Choose a region', async () => {
+      await walsAssociateWebsitePage.changeStateinformation(DataUtils.data.testingHarness.ca.bd.province.LBC);
+    });
+    await test.step('Become an associate', async () => {
+      await walsAssociateWebsitePage.becomeAssociate();
+    });
+    await test.step('Pick a plan', async () => {
+      test.slow;
+      await walsAssociateWebsitePage.associateWebsiteLocBtnGetAPlan.click();
+      await walsAssociateWebsitePage.associateWebsiteLocChkBNo.click();
+      await walsAssociateWebsitePage.associateWebsiteLocBtnContinue.click();
+      await walsAssociateWebsitePage.associateWebsiteLocBtnCheckout.click();
+    });
+    await test.step('Fill out personal and security info', async () => {
+      await walsAssociateWebsitePage.filloutCaContactInformationForm(
+        DataUtils.data.testingHarness.ca.bd.province.BC,
+        'enepa@gmail.com',
+        'TesterF',
+        'TesterL',
+        '5714001234',
+        '0'
+      );
+      await walsAssociateWebsitePage.filloutSecurityInfo('01011999', '222445555');
+      await walsAssociateWebsitePage.associateWebsiteLocBtnContinuePersonalInfoForm.click();
+    });
+    await test.step('Create user', async () => {
+      await walsAssociateWebsitePage.createAUser('Hello@358!', 'Hello@358!');
+    });
+    await test.step('Use a Check', async () => {
+      await walsAssociateWebsitePage.commissionOptions();
+    });
+    await test.step('Use bank draft payment method', async () => {
+      await walsAssociateWebsitePage.filloutCABankAccountInfo(
+        DataUtils.data.testingHarness.ca.bd.name,
+        DataUtils.data.testingHarness.ca.bd.Transit,
+        DataUtils.data.testingHarness.ca.bd.Institution,
+        DataUtils.data.testingHarness.ca.bd.Account
+      );
+    });
+    await test.step('Confirm payment', async () => {
+      await walsAssociateWebsitePage.assertWelcomelabel('Bienvenue dans la Famille LegalShield!');
+    });
   });
-  await test.step('Continue shopping', async () => {
-    await idShieldUSPage.continueShopping();
+});
+test.describe('Test We Are legalshield.ca', () => {
+  test.beforeEach(async ({ page }) => {
+    walsAssociateWebsitePage = new WalsAssociateWebsitePage(page);
+    test.slow();
   });
-  await test.step('Pick business plan', async () => {
-    await idShieldUSPage.pickABusinessPlan('MONTHLY', '');
+  test('User is able to purchase Associate Startup for Individual at $49 instead of $99', async () => {
+    test.slow;
+    await test.step('Navigate to legalshield CA marketing site', async () => {
+      await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlAppTestUserEnCa);
+    });
+    await test.step('Choose a region', async () => {
+      await walsAssociateWebsitePage.changeStateinformation(DataUtils.data.testingHarness.ca.bd.province.BC);
+    });
+    await test.step('Become an associate', async () => {
+      await walsAssociateWebsitePage.becomeAssociate();
+    });
+    await test.step('Pick a plan', async () => {
+      test.slow;
+      await walsAssociateWebsitePage.associateWebsiteLocBtnGetAPlan.click();
+      await walsAssociateWebsitePage.associateWebsiteLocChkBNo.click();
+      await walsAssociateWebsitePage.associateWebsiteLocBtnContinue.click();
+      await walsAssociateWebsitePage.associateWebsiteLocBtnCheckout.click();
+    });
+    await test.step('Fill out personal and security info', async () => {
+      await walsAssociateWebsitePage.filloutCaContactInformationForm(
+        DataUtils.data.testingHarness.ca.bd.province.BC,
+        'enepa@gmail.com',
+        'TesterF',
+        'TesterL',
+        '5714001234',
+        '0'
+      );
+      await walsAssociateWebsitePage.filloutSecurityInfo('01011999', '222445555');
+      await walsAssociateWebsitePage.associateWebsiteLocBtnContinuePersonalInfoForm.click();
+    });
+    await test.step('Create user', async () => {
+      await walsAssociateWebsitePage.createAUser('Hello@358!', 'Hello@358!');
+    });
+    await test.step('Use a Check', async () => {
+      await walsAssociateWebsitePage.commissionOptions();
+    });
+    await test.step('Use bank draft payment method', async () => {
+      await walsAssociateWebsitePage.filloutCABankAccountInfo(
+        DataUtils.data.testingHarness.ca.bd.name,
+        DataUtils.data.testingHarness.ca.bd.Transit,
+        DataUtils.data.testingHarness.ca.bd.Institution,
+        DataUtils.data.testingHarness.ca.bd.Account
+      );
+    });
+    await test.step('Confirm payment', async () => {
+      await walsAssociateWebsitePage.assertWelcomelabel('Welcome to the LegalShield Family!');
+    });
   });
-  await test.step('Assert the shopping cart only includes Business plan and message box popped up to indicate that', async () => {
-    await idShieldUSPage.assertShoppingCartIncludesBusinessPlan();
+});
+test.describe('Test Ladies of justice US', () => {
+  test.beforeEach(async ({ page }) => {
+    walsAssociateWebsitePage = new WalsAssociateWebsitePage(page);
+    test.slow();
+  });
+  test('User is able to purchase Associate Startup for Individual at $49 instead of $99', async () => {
+    test.slow;
+    await test.step('Navigate to legalshield marketing site', async () => {
+      await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlAppTestUserLadiesUs);
+    });
+    await test.step('Choose a region', async () => {
+      await walsAssociateWebsitePage.changeStateinformation(DataUtils.data.testingHarness.us.city.VA);
+    });
+    await test.step('Become an associate', async () => {
+      await walsAssociateWebsitePage.becomeAssociate();
+    });
+    await test.step('Pick a plan', async () => {
+      test.slow;
+      await walsAssociateWebsitePage.associateWebsiteLocBtnGetAPlan.click();
+      await walsAssociateWebsitePage.associateWebsiteLocChkBNo.click();
+      await walsAssociateWebsitePage.associateWebsiteLocBtnContinue.click();
+      await walsAssociateWebsitePage.associateWebsiteLocBtnCheckout.click();
+    });
+    await test.step('Fill out personal and security info', async () => {
+      await walsAssociateWebsitePage.filloutUsContactInformationForm(
+        DataUtils.data.testingHarness.us.city.VA,
+        'enepa@gmail.com',
+        'TesterF',
+        'TesterL',
+        '5714001234',
+        '0'
+      );
+      await walsAssociateWebsitePage.filloutSecurityInfo('01011999', '222445555');
+      await walsAssociateWebsitePage.associateWebsiteLocBtnContinuePersonalInfoForm.click();
+    });
+    await test.step('Create user', async () => {
+      await walsAssociateWebsitePage.createAUser('Hello@358!', 'Hello@358!');
+    });
+    await test.step('Use a Check', async () => {
+      await walsAssociateWebsitePage.commissionOptions();
+    });
+    await test.step('Use bank draft payment method', async () => {
+      await walsAssociateWebsitePage.filloutBankAccountInfo(
+        DataUtils.data.testingHarness.us.bd.name,
+        DataUtils.data.testingHarness.us.bd.Routing,
+        DataUtils.data.testingHarness.us.bd.Account
+      );
+    });
+    await test.step('Confirm payment', async () => {
+      await walsAssociateWebsitePage.assertWelcomelabel('Welcome to the LegalShield Family!');
+    });
+  });
+});
+test.describe('Test Dames de justice ca', () => {
+  test.beforeEach(async ({ page }) => {
+    walsAssociateWebsitePage = new WalsAssociateWebsitePage(page);
+    test.slow();
+  });
+  test('User is able to purchase Associate Startup for Individual at $49 instead of $99', async () => {
+    test.slow;
+    await test.step('Navigate to legalshield CA marketing site', async () => {
+      await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlAppTestUserDamesDeJusticeCa);
+    });
+    await test.step('Choose a region', async () => {
+      await walsAssociateWebsitePage.changeStateinformation(DataUtils.data.testingHarness.ca.bd.province.LBC);
+    });
+    await test.step('Become an associate', async () => {
+      await walsAssociateWebsitePage.becomeAssociate();
+    });
+    await test.step('Pick a plan', async () => {
+      test.slow;
+      await walsAssociateWebsitePage.associateWebsiteLocBtnGetAPlan.click();
+      await walsAssociateWebsitePage.associateWebsiteLocChkBNo.click();
+      await walsAssociateWebsitePage.associateWebsiteLocBtnContinue.click();
+      await walsAssociateWebsitePage.associateWebsiteLocBtnCheckout.click();
+    });
+    await test.step('Fill out personal and security info', async () => {
+      await walsAssociateWebsitePage.filloutCaContactInformationForm(
+        DataUtils.data.testingHarness.ca.bd.province.LBC,
+        'enepa@gmail.com',
+        'TesterF',
+        'TesterL',
+        '5714001234',
+        '0'
+      );
+      await walsAssociateWebsitePage.filloutSecurityInfo('01011999', '222445555');
+      await walsAssociateWebsitePage.associateWebsiteLocBtnContinuePersonalInfoForm.click();
+    });
+    await test.step('Create user', async () => {
+      await walsAssociateWebsitePage.createAUser('Hello@358!', 'Hello@358!');
+    });
+    await test.step('Use a Check', async () => {
+      await walsAssociateWebsitePage.commissionOptions();
+    });
+    await test.step('Use bank draft payment method', async () => {
+      await walsAssociateWebsitePage.filloutCABankAccountInfo(
+        DataUtils.data.testingHarness.ca.bd.name,
+        DataUtils.data.testingHarness.ca.bd.Transit,
+        DataUtils.data.testingHarness.ca.bd.Institution,
+        DataUtils.data.testingHarness.ca.bd.Account
+      );
+    });
+    await test.step('Confirm payment', async () => {
+      await walsAssociateWebsitePage.assertWelcomelabel('Bienvenue dans la Famille LegalShield!');
+    });
+  });
+});
+test.describe('Test Ladies of justice ca', () => {
+  test.beforeEach(async ({ page }) => {
+    walsAssociateWebsitePage = new WalsAssociateWebsitePage(page);
+    test.slow();
+  });
+  test('User is able to purchase Associate Startup for Individual at $49 instead of $99', async () => {
+    test.slow;
+    await test.step('Navigate to legalshield CA marketing site', async () => {
+      await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlAppTestUserLadiesCa);
+    });
+    await test.step('Choose a region', async () => {
+      await walsAssociateWebsitePage.changeStateinformation(DataUtils.data.testingHarness.ca.bd.province.BC);
+    });
+    await test.step('Become an associate', async () => {
+      await walsAssociateWebsitePage.becomeAssociate();
+    });
+    await test.step('Pick a plan', async () => {
+      test.slow;
+      await walsAssociateWebsitePage.associateWebsiteLocBtnGetAPlan.click();
+      await walsAssociateWebsitePage.associateWebsiteLocChkBNo.click();
+      await walsAssociateWebsitePage.associateWebsiteLocBtnContinue.click();
+      await walsAssociateWebsitePage.associateWebsiteLocBtnCheckout.click();
+    });
+    await test.step('Fill out personal and security info', async () => {
+      await walsAssociateWebsitePage.filloutCaContactInformationForm(
+        DataUtils.data.testingHarness.ca.bd.province.BC,
+        'enepa@gmail.com',
+        'TesterF',
+        'TesterL',
+        '5714001234',
+        '0'
+      );
+      await walsAssociateWebsitePage.filloutSecurityInfo('01011999', '222445555');
+      await walsAssociateWebsitePage.associateWebsiteLocBtnContinuePersonalInfoForm.click();
+    });
+    await test.step('Create user', async () => {
+      await walsAssociateWebsitePage.createAUser('Hello@358!', 'Hello@358!');
+    });
+    await test.step('Use a Check', async () => {
+      await walsAssociateWebsitePage.commissionOptions();
+    });
+    await test.step('Use bank draft payment method', async () => {
+      await walsAssociateWebsitePage.filloutCABankAccountInfo(
+        DataUtils.data.testingHarness.ca.bd.name,
+        DataUtils.data.testingHarness.ca.bd.Transit,
+        DataUtils.data.testingHarness.ca.bd.Institution,
+        DataUtils.data.testingHarness.ca.bd.Account
+      );
+    });
+    await test.step('Confirm payment', async () => {
+      await walsAssociateWebsitePage.assertWelcomelabel('Welcome to the LegalShield Family!');
+    });
   });
 });

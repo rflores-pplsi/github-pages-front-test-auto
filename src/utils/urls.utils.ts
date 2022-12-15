@@ -131,6 +131,12 @@ export default class UrlsUtils {
   static readonly wals = {
     urls: {
       ddev: 'http://lspro.' + envWalsUrlString + 'wearelegalshield.com/',
+      urlAppTestUserDamesDeJusticeCa: 'https://apptestuser.' + envWalsUrlString + 'damesdejustice.ca/',
+      urlAppTestUserEnCa: 'https://lspro.' + envWalsUrlString + 'wearelegalshield.ca',
+      urlAppTestUserFrCa: 'https://apptestuser.' + envWalsUrlString + 'noussommeslegalshield.ca',
+      urlAppTestUserLadiesCa: 'https://apptestuser.' + envWalsUrlString + 'ladiesofjustice.ca/',
+      urlAppTestUserLadiesUs: 'https://apptestuser.' + envWalsUrlString + 'ladiesofjustice.com/',
+      urlAppTestUserSpUS: 'https://apptestuser.' + envWalsUrlString + 'somoslegalshield.com',
       urlAssociate: 'https://www.' + envWalsUrlString + 'wearelegalshield.com',
       urlBenefits: 'https://apptestuser.' + envWalsUrlString + 'wearelegalshield.com/',
       urlDamesOfJustice: 'https://www.damesdejustice.ca/',
