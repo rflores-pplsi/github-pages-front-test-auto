@@ -10,6 +10,8 @@ export class WalsLocatorPage {
 
   readonly associateResultLocViewWebsite: Locator;
   readonly associateWebsiteLocUlEnglishWalsUSPage: Locator;
+  readonly associateWebsiteLocCartSummaryOneTimeFees;
+  readonly associateWebsiteLocCartSummaryTotalDueToday;
   readonly associateWebsiteLocBtnGetAPlan: Locator;
   readonly associateWebsiteLocBtnBecomeAssociate: Locator;
   readonly associateWebsiteLocLblHomeBusinessSupplement: Locator;
@@ -84,6 +86,8 @@ export class WalsLocatorPage {
     this.associateWebsiteLocLblTotalPrice = this.page.locator('a#minicart_btn_checkout span');
     this.associateWebsiteLocBtnNext = this.page.locator('#builder_modal_checkout_btn_continue');
     this.associateWebsiteLocBtnNextWithForm = this.page.locator('#builder_modal_checkout_btn_withform');
+    this.associateWebsiteLocCartSummaryOneTimeFees = this.page.locator('div#fee-total p >> nth=1');
+    this.associateWebsiteLocCartSummaryTotalDueToday = this.page.locator('div#today-total p >> nth=1');
     this.associateWebsiteLocChkBIndividual = this.page.locator('#individual-bdl');
     this.associateWebsiteLocChkBNo = this.page.locator('#no');
     this.associateWebsiteLocBtnContinue = this.page.locator('#associate-startup_modal_checkout_btn');

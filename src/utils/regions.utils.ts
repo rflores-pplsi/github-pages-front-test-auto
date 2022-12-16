@@ -640,6 +640,16 @@ export default class RegionsUtils {
       },
     },
     {
+      abbrv: 'FQC',
+      name: 'Québec',
+      priority: true,
+      validAddress: {
+        city: 'Québec',
+        postalCode: 'G1R 4P5',
+        street: '1 Rue des Carrieres',
+      },
+    },
+    {
       abbrv: 'SK',
       name: 'Saskatchewan',
       priority: true,

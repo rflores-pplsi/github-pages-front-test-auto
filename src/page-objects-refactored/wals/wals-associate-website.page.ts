@@ -369,10 +369,10 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
   };
   // ========================== Assertion Methods ==========================
 
-  assertContactInformationTxt = async (): Promise<void> => {
+  assertCartSummary = async (fees: string, total: string): Promise<void> => {
     // Verify that  it takes user to checkout
-    await this.associateWebsiteLocTtlContactInfo.waitFor();
-    await expect(this.associateWebsiteLocTtlContactInfo).toContainText('Contact information');
+    await expect(this.associateWebsiteLocCartSummaryOneTimeFees).toContainText(fees);
+    await expect(this.associateWebsiteLocCartSummaryTotalDueToday).toContainText(total);
   };
   /**
    * @param {string} txt

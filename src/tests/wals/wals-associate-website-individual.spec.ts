@@ -48,6 +48,9 @@ test.describe('Somos legalshield', () => {
     await test.step('Use a Check', async () => {
       await walsAssociateWebsitePage.commissionOptions();
     });
+    await test.step('Verify the one time fee and total due today prices ', async () => {
+      await walsAssociateWebsitePage.assertCartSummary('$49.00', '$49.00');
+    });
     await test.step('Use bank draft payment method', async () => {
       await walsAssociateWebsitePage.filloutBankAccountInfo(
         DataUtils.data.testingHarness.us.bd.name,
@@ -101,6 +104,9 @@ test.describe('Test We are LegalShield', () => {
     await test.step('Use a Check', async () => {
       await walsAssociateWebsitePage.commissionOptions();
     });
+    await test.step('Verify the one time fee and total due today prices ', async () => {
+      await walsAssociateWebsitePage.assertCartSummary('$49.00', '$49.00');
+    });
     await test.step('Use bank draft payment method', async () => {
       await walsAssociateWebsitePage.filloutBankAccountInfo(
         DataUtils.data.testingHarness.us.bd.name,
@@ -124,7 +130,7 @@ test.describe('Test nous sommes legalshield.ca', () => {
       await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlAppTestUserFrCa);
     });
     await test.step('Choose a region', async () => {
-      await walsAssociateWebsitePage.changeStateinformation(DataUtils.data.testingHarness.ca.bd.province.LBC);
+      await walsAssociateWebsitePage.changeStateinformation(DataUtils.data.testingHarness.ca.bd.province.FQC);
     });
     await test.step('Become an associate', async () => {
       await walsAssociateWebsitePage.becomeAssociate();
@@ -138,7 +144,7 @@ test.describe('Test nous sommes legalshield.ca', () => {
     });
     await test.step('Fill out personal and security info', async () => {
       await walsAssociateWebsitePage.filloutCaContactInformationForm(
-        DataUtils.data.testingHarness.ca.bd.province.BC,
+        DataUtils.data.testingHarness.ca.bd.province.FQC,
         'enepa@gmail.com',
         'TesterF',
         'TesterL',
@@ -153,6 +159,9 @@ test.describe('Test nous sommes legalshield.ca', () => {
     });
     await test.step('Use a Check', async () => {
       await walsAssociateWebsitePage.commissionOptions();
+    });
+    await test.step('Verify the one time fee and total due today prices ', async () => {
+      await walsAssociateWebsitePage.assertCartSummary('$49.00', '$49.00');
     });
     await test.step('Use bank draft payment method', async () => {
       await walsAssociateWebsitePage.filloutCABankAccountInfo(
@@ -208,6 +217,9 @@ test.describe('Test We Are legalshield.ca', () => {
     await test.step('Use a Check', async () => {
       await walsAssociateWebsitePage.commissionOptions();
     });
+    await test.step('Verify the one time fee and total due today prices ', async () => {
+      await walsAssociateWebsitePage.assertCartSummary('$49.00', '$49.00');
+    });
     await test.step('Use bank draft payment method', async () => {
       await walsAssociateWebsitePage.filloutCABankAccountInfo(
         DataUtils.data.testingHarness.ca.bd.name,
@@ -262,6 +274,9 @@ test.describe('Test Ladies of justice US', () => {
     await test.step('Use a Check', async () => {
       await walsAssociateWebsitePage.commissionOptions();
     });
+    await test.step('Verify the one time fee and total due today prices ', async () => {
+      await walsAssociateWebsitePage.assertCartSummary('$49.00', '$49.00');
+    });
     await test.step('Use bank draft payment method', async () => {
       await walsAssociateWebsitePage.filloutBankAccountInfo(
         DataUtils.data.testingHarness.us.bd.name,
@@ -314,6 +329,9 @@ test.describe('Test Dames de justice ca', () => {
     });
     await test.step('Use a Check', async () => {
       await walsAssociateWebsitePage.commissionOptions();
+    });
+    await test.step('Verify the one time fee and total due today prices ', async () => {
+      await walsAssociateWebsitePage.assertCartSummary('$49.00', '$49.00');
     });
     await test.step('Use bank draft payment method', async () => {
       await walsAssociateWebsitePage.filloutCABankAccountInfo(
@@ -368,6 +386,9 @@ test.describe('Test Ladies of justice ca', () => {
     });
     await test.step('Use a Check', async () => {
       await walsAssociateWebsitePage.commissionOptions();
+    });
+    await test.step('Verify the one time fee and total due today prices ', async () => {
+      await walsAssociateWebsitePage.assertCartSummary('$49.00', '$49.00');
     });
     await test.step('Use bank draft payment method', async () => {
       await walsAssociateWebsitePage.filloutCABankAccountInfo(
