@@ -7,11 +7,14 @@ import { expect, FrameLocator, Locator, Page } from '@playwright/test';
 export class WalsLocatorPage {
   // ========================== Locators ==================================
   protected page: Page;
-
+  readonly associateWebsiteCartSummaryLocOneTimeFees: Locator;
+  readonly associateWebsiteCartSummaryLocTotalDueToday: Locator;
+  readonly associateWebsiteCreateUserLocLblUsername: Locator;
+  readonly associateWebsiteCreateUserLocRdoBtnUsername: Locator;
+  readonly associateWebsiteCreateUserLocTxtUsername: Locator;
+  readonly associateWebsiteCreateUserLocWrapper: Locator;
   readonly associateResultLocViewWebsite: Locator;
   readonly associateWebsiteLocUlEnglishWalsUSPage: Locator;
-  readonly associateWebsiteLocCartSummaryOneTimeFees;
-  readonly associateWebsiteLocCartSummaryTotalDueToday;
   readonly associateWebsiteLocBtnGetAPlan: Locator;
   readonly associateWebsiteLocBtnBecomeAssociate: Locator;
   readonly associateWebsiteLocLblHomeBusinessSupplement: Locator;
@@ -86,8 +89,12 @@ export class WalsLocatorPage {
     this.associateWebsiteLocLblTotalPrice = this.page.locator('a#minicart_btn_checkout span');
     this.associateWebsiteLocBtnNext = this.page.locator('#builder_modal_checkout_btn_continue');
     this.associateWebsiteLocBtnNextWithForm = this.page.locator('#builder_modal_checkout_btn_withform');
-    this.associateWebsiteLocCartSummaryOneTimeFees = this.page.locator('div#fee-total p >> nth=1');
-    this.associateWebsiteLocCartSummaryTotalDueToday = this.page.locator('div#today-total p >> nth=1');
+    this.associateWebsiteCartSummaryLocOneTimeFees = this.page.locator('div#fee-total p >> nth=1');
+    this.associateWebsiteCartSummaryLocTotalDueToday = this.page.locator('div#today-total p >> nth=1');
+    this.associateWebsiteCreateUserLocWrapper = this.page.locator('div.component-wrapper');
+    this.associateWebsiteCreateUserLocRdoBtnUsername = this.page.locator('div.mat-radio-container >> nth=0');
+    this.associateWebsiteCreateUserLocTxtUsername = this.page.locator('//div[contains(text(),"test")] >> nth=0');
+    this.associateWebsiteCreateUserLocLblUsername = this.page.locator('//*[@class="mat-radio-button mat-accent ng-star-inserted"][1]/label/div[2]');
     this.associateWebsiteLocChkBIndividual = this.page.locator('#individual-bdl');
     this.associateWebsiteLocChkBNo = this.page.locator('#no');
     this.associateWebsiteLocBtnContinue = this.page.locator('#associate-startup_modal_checkout_btn');
@@ -117,18 +124,18 @@ export class WalsLocatorPage {
     this.associateWebsiteLocTxtPassword = this.page.locator('#password');
     this.associateWebsiteLocTxtConfirmPassword = this.page.locator('#confirm-password');
     this.associateWebsiteLocRdoCheckByMail = this.page.locator('//mat-radio-button[@id="mat-radio-13"]/label/div[1]');
-    this.associateWebsiteLocTxtNameOnCard = this.page.locator('#cardholder_name');
-    this.associateWebsiteLocTxtCardNumber = this.page.locator('#card_number');
-    this.associateWebsiteLocTxtExpDate = this.page.locator('#expiration_date');
-    this.associateWebsiteLocTxtCVV = this.page.locator('#security_code');
-    this.associateWebsiteLocBtnPurchase = this.page.locator('#savecc');
+    this.associateWebsiteLocTxtNameOnCard = this.associateWebsiteLocfrmPayments.locator('#cardholder_name');
+    this.associateWebsiteLocTxtCardNumber = this.associateWebsiteLocfrmPayments.locator('#card_number');
+    this.associateWebsiteLocTxtExpDate = this.associateWebsiteLocFrmPayment.locator('#expiration_date');
+    this.associateWebsiteLocTxtCVV = this.associateWebsiteLocfrmPayments.locator('#security_code');
+    this.associateWebsiteLocBtnPurchase = this.associateWebsiteLocFrmPayment.locator('#savecc');
     this.associateWebsiteLocLblWelcome = this.page.locator(
       '//div[@class="confirmation-col col-sm-12 col-tb-12 col-dk-6 confirmation-wrapper wals-content ng-star-inserted"]/h1'
     );
     this.associateWebsiteLocRdoBankDraft = this.associateWebsiteLocfrmPayments.locator('form#cc_form div#app_bdform div div input#bd_payment_method');
-    this.associateWebsiteLocTxtNameOfAccountHolder = this.page.locator('#accountholder_name');
-    this.associateWebsiteLocTxtRoutingNumber = this.page.locator('#routing_number');
-    this.associateWebsiteLocTxtAccountNumber = this.page.locator('#account_number');
+    this.associateWebsiteLocTxtNameOfAccountHolder = this.associateWebsiteLocfrmPayments.locator('#accountholder_name');
+    this.associateWebsiteLocTxtRoutingNumber = this.associateWebsiteLocfrmPayments.locator('#routing_number');
+    this.associateWebsiteLocTxtAccountNumber = this.associateWebsiteLocfrmPayments.locator('#account_number');
     this.associateWebsiteLocRdoCheckingAccount = this.associateWebsiteLocfrmPayments.locator('//input[ @value="Checking"]');
     this.weAreLegalShieldLocInputAssociateSearch = this.page.locator('#edit-search');
     this.weAreLegalShieldLocBtnAssociateSearch = this.page.locator('div.search-form.form--inline.clearfix input#edit-submit');

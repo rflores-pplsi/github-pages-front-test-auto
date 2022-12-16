@@ -203,11 +203,11 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
   createAUser = async (pass: string, confirmpass: string): Promise<void> => {
     // Select a username
     this.page.waitForLoadState();
-    await this.page.waitForSelector('div.component-wrapper');
-    await this.page.locator('div.mat-radio-container >> nth=0').click();
-    await this.page.waitForSelector('//div[contains(text(),"test")]');
-    await this.page.locator('//*[@class="mat-radio-button mat-accent ng-star-inserted"][1]/label/div[2]').screenshot({ path: 'screenshot.png' });
-    console.log(this.page.locator('//*[@class="mat-radio-button mat-accent ng-star-inserted"][1]/label/div[2]').innerHTML());
+    await this.associateWebsiteCreateUserLocWrapper.waitFor();
+    await this.associateWebsiteCreateUserLocRdoBtnUsername.click();
+    await this.associateWebsiteCreateUserLocTxtUsername.waitFor();
+    await this.associateWebsiteCreateUserLocLblUsername.screenshot({ path: 'screenshot.png' });
+    console.log(this.associateWebsiteCreateUserLocLblUsername.innerHTML());
     // Enter a password
     await this.associateWebsiteLocTxtPassword.waitFor();
     await this.associateWebsiteLocTxtPassword.fill(pass);
@@ -234,22 +234,11 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
    * @memberof WalsAssociateWebsitePage
    */
   filloutCreditCardInfo = async (name: string, cardNum: string, expDate: string, cvv: string): Promise<void> => {
-    // Fill name on card
-    // Fill  Account Number
-    const NameOnCard = this.associateWebsiteLocfrmPayments.locator('#cardholder_name');
-    await NameOnCard.type(name);
-    // Fill card number
-    const CardNumber = this.associateWebsiteLocfrmPayments.locator('#card_number');
-    await CardNumber.type(cardNum);
-    // Fill Expiration date
-    const ExpDate = this.associateWebsiteLocfrmPayments.locator('#expiration_date');
-    await ExpDate.type(expDate);
-    // Fill security code
-    const Cvv = this.associateWebsiteLocfrmPayments.locator('#security_code');
-    await Cvv.type(cvv);
-    // Click purchase button
-    const btnPur = this.associateWebsiteLocfrmPayments.locator('#savecc');
-    await btnPur.click();
+    await this.associateWebsiteLocTxtNameOnCard.type(name);
+    await this.associateWebsiteLocTxtCardNumber.type(cardNum);
+    await this.associateWebsiteLocTxtExpDate.type(expDate);
+    await this.associateWebsiteLocTxtCVV.type(cvv);
+    await this.associateWebsiteLocBtnPurchase.click();
   };
   /**
    * @param {string} name
@@ -258,24 +247,13 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
    * @memberof WalsAssociateWebsitePage
    */
   filloutBankAccountInfo = async (name: string, routingNum: string, accountNumber: string): Promise<void> => {
-    // Locate an switch to the frame
     await this.page.waitForLoadState();
     await this.page.waitForTimeout(7000);
-    // Check Bank Draft name
-    // const bankDraft = this.associateWebsiteLocfrmPayments.locator('//form[@id="cc_form"]/div[2]/div/div/input');
     await this.associateWebsiteLocRdoBankDraft.click();
-    // Fill  Name of account holder
-    const NameOfAccountHolder = this.associateWebsiteLocfrmPayments.locator('#accountholder_name');
-    await NameOfAccountHolder.type(name);
-    // Fill Routing number
-    const RoutingNumber = this.associateWebsiteLocfrmPayments.locator('#routing_number');
-    await RoutingNumber.type(routingNum);
-    // Fill Account Number
-    const AccountNumber = this.associateWebsiteLocfrmPayments.locator('#account_number');
-    await AccountNumber.type(accountNumber);
-    // Check Checking Account
-    const CheckingAccount = this.associateWebsiteLocfrmPayments.locator('//input[ @value="Checking"]');
-    await CheckingAccount.click();
+    await this.associateWebsiteLocTxtNameOfAccountHolder.type(name);
+    await this.associateWebsiteLocTxtRoutingNumber.type(routingNum);
+    await this.associateWebsiteLocTxtAccountNumber.type(accountNumber);
+    await this.associateWebsiteLocRdoCheckingAccount.click();
     // Click purchase button
     await this.page.keyboard.press('Enter');
     await this.page.keyboard.press('Enter');
@@ -371,8 +349,8 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
 
   assertCartSummary = async (fees: string, total: string): Promise<void> => {
     // Verify that  it takes user to checkout
-    await expect(this.associateWebsiteLocCartSummaryOneTimeFees).toContainText(fees);
-    await expect(this.associateWebsiteLocCartSummaryTotalDueToday).toContainText(total);
+    await expect(this.associateWebsiteCartSummaryLocOneTimeFees).toContainText(fees);
+    await expect(this.associateWebsiteCartSummaryLocTotalDueToday).toContainText(total);
   };
   /**
    * @param {string} txt
