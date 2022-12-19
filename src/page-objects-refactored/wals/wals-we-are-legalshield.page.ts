@@ -1,5 +1,4 @@
 import { Page } from '@playwright/test';
-import UrlsUtils from '../../utils/urls.utils';
 import { WalsLocatorPage } from './wals-locators.page';
 
 /**
@@ -7,7 +6,7 @@ import { WalsLocatorPage } from './wals-locators.page';
  * @extends WalsLocatorPage
  * @class WalsAssociateSearchPage
  */
-export class WalsAssociateSearchPage extends WalsLocatorPage {
+export class WeAreLegalShieldPage extends WalsLocatorPage {
   /**
    * @param {Page} page
    * @memberof WalsAssociateSearchPage
@@ -18,11 +17,11 @@ export class WalsAssociateSearchPage extends WalsLocatorPage {
   }
   /**
    *
-   *
+   *@param {string} url
    * @memberof WalsAssociateSearchPage
    */
-  navigateToUrl = async (): Promise<void> => {
-    await this.page.goto(UrlsUtils.wals.urls.urlAssociate);
+  navigateToUrl = async (url: string): Promise<void> => {
+    await this.page.goto(url);
     await this.page.waitForLoadState();
   };
 
@@ -31,8 +30,8 @@ export class WalsAssociateSearchPage extends WalsLocatorPage {
    * @memberof searchForAssociate
    */
   searchForAssociate = async (associate: string): Promise<void> => {
-    await this.locInputAssociateSearch.fill(associate);
-    await this.locBtnAssociateSearch.click();
+    await this.weAreLegalShieldLocInputAssociateSearch.fill(associate);
+    await this.weAreLegalShieldLocBtnAssociateSearch.click();
     await this.page.waitForLoadState();
   };
   /**
@@ -41,13 +40,20 @@ export class WalsAssociateSearchPage extends WalsLocatorPage {
    * @memberof WalsAssociateSearchPage
    */
   assertLabelSalesAssociate = async (): Promise<void> => {
-    await this.locLabelSalesAssociate.isVisible();
+    (await this.WeAreLegalShieldLocContainsText('Find a Sales Associate')).isVisible();
   };
   /**
    * @param {string} txt
    * @memberof assertMsgAssociateNotFound
    */
   assertMsgAssociate = async (txt: string): Promise<void> => {
-    await this.page.locator('//*[contains(text(), "' + txt + '")]').isVisible();
+    (await this.WeAreLegalShieldLocContainsText(txt)).isVisible();
+  };
+  /**
+   * @param {string} url
+   * @memberof assertMsgAssociateNotFound
+   */
+  assertAssociateUrl = async (url: string): Promise<void> => {
+    (await this.WeAreLegalShieldLocContainsText(url)).isVisible();
   };
 }

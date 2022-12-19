@@ -10,6 +10,8 @@ export default class DataUtils {
           postalCode: '20147',
           province: {
             BC: 'British Columbia',
+            FQC: 'Québec',
+            LBC: 'la Colombie-Britannique',
           },
         },
         cc: {
