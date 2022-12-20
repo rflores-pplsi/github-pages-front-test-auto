@@ -25,7 +25,7 @@ test.describe('Somos legalshield', () => {
     });
     await test.step('Pick a plan', async () => {
       test.slow;
-      await walsAssociateWebsitePage.associateWebsiteLocBtnGetAPlan.click();
+      await (await walsAssociateWebsitePage.associateWebsiteLocBtnGetAPlan('ASSOCSTP', 1)).click();
       await walsAssociateWebsitePage.associateWebsiteLocChkBNo.click();
       await walsAssociateWebsitePage.associateWebsiteLocBtnContinue.click();
       await walsAssociateWebsitePage.associateWebsiteLocBtnCheckout.click();
@@ -81,7 +81,7 @@ test.describe('Test We are LegalShield', () => {
     });
     await test.step('Pick a plan', async () => {
       test.slow;
-      await walsAssociateWebsitePage.associateWebsiteLocBtnGetAPlan.click();
+      await (await walsAssociateWebsitePage.associateWebsiteLocBtnGetAPlan('ASSOCSTP', 1)).click();
       await walsAssociateWebsitePage.associateWebsiteLocChkBNo.click();
       await walsAssociateWebsitePage.associateWebsiteLocBtnContinue.click();
       await walsAssociateWebsitePage.associateWebsiteLocBtnCheckout.click();
@@ -137,7 +137,7 @@ test.describe('Test nous sommes legalshield.ca', () => {
     });
     await test.step('Pick a plan', async () => {
       test.slow;
-      await walsAssociateWebsitePage.associateWebsiteLocBtnGetAPlan.click();
+      await (await walsAssociateWebsitePage.associateWebsiteLocBtnGetAPlan('ASSOCSTP', 1)).click();
       await walsAssociateWebsitePage.associateWebsiteLocChkBNo.click();
       await walsAssociateWebsitePage.associateWebsiteLocBtnContinue.click();
       await walsAssociateWebsitePage.associateWebsiteLocBtnCheckout.click();
@@ -194,7 +194,7 @@ test.describe('Test We Are legalshield.ca', () => {
     });
     await test.step('Pick a plan', async () => {
       test.slow;
-      await walsAssociateWebsitePage.associateWebsiteLocBtnGetAPlan.click();
+      await (await walsAssociateWebsitePage.associateWebsiteLocBtnGetAPlan('ASSOCSTP', 1)).click();
       await walsAssociateWebsitePage.associateWebsiteLocChkBNo.click();
       await walsAssociateWebsitePage.associateWebsiteLocBtnContinue.click();
       await walsAssociateWebsitePage.associateWebsiteLocBtnCheckout.click();
@@ -251,7 +251,7 @@ test.describe('Test Ladies of justice US', () => {
     });
     await test.step('Pick a plan', async () => {
       test.slow;
-      await walsAssociateWebsitePage.associateWebsiteLocBtnGetAPlan.click();
+      await (await walsAssociateWebsitePage.associateWebsiteLocBtnGetAPlan('ASSOCSTP', 1)).click();
       await walsAssociateWebsitePage.associateWebsiteLocChkBNo.click();
       await walsAssociateWebsitePage.associateWebsiteLocBtnContinue.click();
       await walsAssociateWebsitePage.associateWebsiteLocBtnCheckout.click();
@@ -307,7 +307,7 @@ test.describe('Test Dames de justice ca', () => {
     });
     await test.step('Pick a plan', async () => {
       test.slow;
-      await walsAssociateWebsitePage.associateWebsiteLocBtnGetAPlan.click();
+      await (await walsAssociateWebsitePage.associateWebsiteLocBtnGetAPlan('ASSOCSTP', 1)).click();
       await walsAssociateWebsitePage.associateWebsiteLocChkBNo.click();
       await walsAssociateWebsitePage.associateWebsiteLocBtnContinue.click();
       await walsAssociateWebsitePage.associateWebsiteLocBtnCheckout.click();
@@ -364,7 +364,7 @@ test.describe('Test Ladies of justice ca', () => {
     });
     await test.step('Pick a plan', async () => {
       test.slow;
-      await walsAssociateWebsitePage.associateWebsiteLocBtnGetAPlan.click();
+      await (await walsAssociateWebsitePage.associateWebsiteLocBtnGetAPlan('ASSOCSTP', 1)).click();
       await walsAssociateWebsitePage.associateWebsiteLocChkBNo.click();
       await walsAssociateWebsitePage.associateWebsiteLocBtnContinue.click();
       await walsAssociateWebsitePage.associateWebsiteLocBtnCheckout.click();

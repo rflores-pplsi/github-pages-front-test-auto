@@ -309,7 +309,7 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
    * @memberof WalsAssociateWebsitePage
    */
   clickGetStartedBtn = async (): Promise<void> => {
-    await this.associateWebsiteLocBtnGetAPlan.click();
+    await (await this.associateWebsiteLocBtnGetAPlan('ASSOCSTP', 1)).click();
   };
   /**
    * @memberof WalsAssociateWebsitePage
