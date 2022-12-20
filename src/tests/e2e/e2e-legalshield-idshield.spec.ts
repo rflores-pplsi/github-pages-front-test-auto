@@ -200,7 +200,7 @@ for (const tc of legalshieldIdShieldAnnualData.filter((tc) => tc.disabled == fal
 // LegalShield - Canada - Monthly
 for (const tc of legalshieldCanadaMonthlyData.filter((tc) => tc.disabled == false)) {
   for (const region of tc.regions) {
-    test.only(`${tc.testCaseName} - ${region}`, async ({ page }) => {
+    test(`${tc.testCaseName} - ${region}`, async ({ page }) => {
       console.log(`Test Case: ${tc.testCaseName} - ${region}`);
       // Select Plans and get to Personal Info Page
       await test.step(`Navigate to Test Harness - LegalShield}`, async () => {
