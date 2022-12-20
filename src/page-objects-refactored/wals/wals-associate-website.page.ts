@@ -361,4 +361,11 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
     await this.associateWebsiteLocLblWelcome.waitFor();
     await expect(this.associateWebsiteLocLblWelcome).toContainText(txt);
   };
+
+  /**
+   * @memberof WalsAssociateCTAPage
+   */
+  clickOnLogo = async (): Promise<void> => {
+    await this.associateWebsiteLocLogo.click();
+  };
 }

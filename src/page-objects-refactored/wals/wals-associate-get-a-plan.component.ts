@@ -3,15 +3,8 @@ import * as dotenv from 'dotenv';
 import { WalsLocatorPage } from './wals-locators.page';
 dotenv.config();
 
-export class WalsAssociateCTAPage extends WalsLocatorPage {
+export class WalsAssociateGetAPlanPage extends WalsLocatorPage {
   // ========================== Process Methods ============================
-
-  /**
-   * @memberof WalsAssociateCTAPage
-   */
-  clickOnLogo = async (): Promise<void> => {
-    await this.associateWebsiteLocLogo.click();
-  };
 
   /**
    * @param {string} classParameter
