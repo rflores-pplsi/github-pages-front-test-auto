@@ -309,7 +309,7 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
    * @memberof WalsAssociateWebsitePage
    */
   clickGetStartedBtn = async (): Promise<void> => {
-    await this.associateWebsiteLocBtnGetAPlan.click();
+    await (await this.associateWebsiteLocBtnGetAPlan('ASSOCSTP', 1)).click();
   };
   /**
    * @memberof WalsAssociateWebsitePage
@@ -360,5 +360,12 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
     // Verify that the user made the purchase
     await this.associateWebsiteLocLblWelcome.waitFor();
     await expect(this.associateWebsiteLocLblWelcome).toContainText(txt);
+  };
+
+  /**
+   * @memberof WalsAssociateCTAPage
+   */
+  clickOnLogo = async (): Promise<void> => {
+    await this.associateWebsiteLocLogo.click();
   };
 }
