@@ -106,7 +106,7 @@ export class WalsLocatorPage {
     this.associateWebsiteLocTxtLastName = this.page.locator('input[name="last-name"]');
     this.associateWebsiteLocTxtAddress = this.page.locator('#address');
     this.associateWebsiteLocTxtCity = this.page.locator('#city');
-    this.associateWebsiteLocTxtZipCode = this.page.locator('input[name="zipcode"]');
+    this.associateWebsiteLocTxtZipCode = this.page.locator('//input[@name="zipcode"]');
     this.associateWebsiteLocLnkChange = this.page.locator('a.open-modal-lgs-geolocate.button-region-state.la');
     this.associateWebsiteLocSlctRegion = this.page.locator('select[name="state_select"]');
     this.associateWebsiteLocBtnUpdateState = this.page.locator('#edit-submit--3');
@@ -149,7 +149,7 @@ export class WalsLocatorPage {
    * @memberof WalsLocatorPage
    */
   WeAreLegalShieldLocContainsText = async (txt: string): Promise<Locator> => {
-    return this.page.locator(`//div[contains(text(), "${txt}")]`);
+    return this.page.locator(`//*[contains(text(), "${txt}")]`);
   };
   // /**
   //  * @param {string} txt

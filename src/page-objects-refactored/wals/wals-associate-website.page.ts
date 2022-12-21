@@ -33,24 +33,49 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
       street = stte.validAddress.street;
       city = stte.validAddress.city;
       postalCode = stte.validAddress.postalCode;
-      // Fill Email
       await this.associateWebsiteLocTxtEmail.fill(email);
-      // Fill first-name text box
       await this.associateWebsiteLocTxtFirstName.fill(firstName);
-      // Fill input[name="last-name"]
       await this.associateWebsiteLocTxtLastName.fill(lastName);
-      // Fill Address
       await this.associateWebsiteLocTxtAddress.fill(street);
-      // Fill City
       await this.associateWebsiteLocTxtCity.fill(city);
       await this.page.keyboard.press('Tab');
-      // Fill Zip Code
       await this.associateWebsiteLocTxtZipCode.fill(postalCode);
       await this.page.keyboard.press('Tab');
-      // Fill Phone Number
-      // await this.page.waitForSelector(txtPhoneNumber);
       await this.associateWebsiteLocTxtPhoneNumber.type(phone);
-      // Select a phone type
+      await this.associateWebsiteLocSlctPhoneType.click();
+      await this.page.click('#mat-option-' + type);
+    }
+  };
+  /**
+   * @param {string} state
+   * @param {string} email
+   * @param {string} firstName
+   * @param {string} lastName
+   * @param {string} phone
+   * @param {string} type
+   * @memberof WalsAssociateWebsitePage
+   */
+  filloutFrenchCaContactInformationForm = async (
+    state: string,
+    email: string,
+    firstName: string,
+    lastName: string,
+    phone: string,
+    type: string
+  ): Promise<void> => {
+    for (const stte of RegionsUtils.caFrenchProvinces.filter((ste) => ste.name == state)) {
+      street = stte.validAddress.street;
+      city = stte.validAddress.city;
+      postalCode = stte.validAddress.postalCode;
+      await this.associateWebsiteLocTxtEmail.fill(email);
+      await this.associateWebsiteLocTxtFirstName.fill(firstName);
+      await this.associateWebsiteLocTxtLastName.fill(lastName);
+      await this.associateWebsiteLocTxtAddress.fill(street);
+      await this.associateWebsiteLocTxtCity.fill(city);
+      await this.page.keyboard.press('Tab');
+      await this.associateWebsiteLocTxtZipCode.fill(postalCode);
+      await this.page.keyboard.press('Tab');
+      await this.associateWebsiteLocTxtPhoneNumber.type(phone);
       await this.associateWebsiteLocSlctPhoneType.click();
       await this.page.click('#mat-option-' + type);
     }
@@ -76,24 +101,51 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
       street = stte.validAddress.street;
       city = stte.validAddress.city;
       postalCode = stte.validAddress.postalCode;
-      // Fill Email
       await this.associateWebsiteLocTxtEmail.fill(email);
-      // Fill first-name text box
       await this.associateWebsiteLocTxtFirstName.fill(firstName);
-      // Fill input[name="last-name"]
       await this.associateWebsiteLocTxtLastName.fill(lastName);
-      // Fill Address
       await this.associateWebsiteLocTxtAddress.fill(street);
-      // Fill City
       await this.associateWebsiteLocTxtCity.fill(city);
       await this.page.keyboard.press('Tab');
-      // Fill Zip Code
-      await this.associateWebsiteLocTxtZipCode.fill(postalCode);
+      await (await this.WeAreLegalShieldLocContainsText(postalCode)).click();
+      // await this.associateWebsiteLocTxtZipCode.type(postalCode);
       await this.page.keyboard.press('Tab');
-      // Fill Phone Number
-      // await this.page.waitForSelector(txtPhoneNumber);
       await this.associateWebsiteLocTxtPhoneNumber.type(phone);
-      // Select a phone type
+      await this.associateWebsiteLocSlctPhoneType.click();
+      await this.page.click('#mat-option-' + type);
+    }
+  };
+  /**
+   * @param {string} state
+   * @param {string} email
+   * @param {string} firstName
+   * @param {string} lastName
+   * @param {string} phone
+   * @param {string} type
+   * @memberof WalsAssociateWebsitePage
+   */
+  filloutSpanishUsContactInformationForm = async (
+    state: string,
+    email: string,
+    firstName: string,
+    lastName: string,
+    phone: string,
+    type: string
+  ): Promise<void> => {
+    for (const stte of RegionsUtils.usSpanishStates.filter((ste) => ste.name == state)) {
+      street = stte.validAddress.street;
+      city = stte.validAddress.city;
+      postalCode = stte.validAddress.postalCode;
+      await this.associateWebsiteLocTxtEmail.fill(email);
+      await this.associateWebsiteLocTxtFirstName.fill(firstName);
+      await this.associateWebsiteLocTxtLastName.fill(lastName);
+      await this.associateWebsiteLocTxtAddress.fill(street);
+      await this.associateWebsiteLocTxtCity.fill(city);
+      await this.page.keyboard.press('Tab');
+      await (await this.WeAreLegalShieldLocContainsText(postalCode)).click();
+      // await this.associateWebsiteLocTxtZipCode.type(postalCode);
+      await this.page.keyboard.press('Tab');
+      await this.associateWebsiteLocTxtPhoneNumber.type(phone);
       await this.associateWebsiteLocSlctPhoneType.click();
       await this.page.click('#mat-option-' + type);
     }
@@ -103,35 +155,25 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
    * @memberof WalsAssociateWebsitePage
    */
   changeStateinformation = async (state: string): Promise<void> => {
-    // Click on change state
     await this.page.waitForTimeout(5000);
     await this.associateWebsiteLocLnkChange.waitFor();
     await this.associateWebsiteLocLnkChange.click({ force: true });
-    // Select a state
     await this.associateWebsiteLocSlctRegion.waitFor();
     await this.associateWebsiteLocSlctRegion.selectOption({ label: state });
-    // Click the Update State button
     await this.associateWebsiteLocBtnUpdateState.click();
   };
   /**
    * @memberof WalsAssociateWebsitePage
    */
   getStartedThenPickAPlan = async (): Promise<void> => {
-    await this.clickGetStartedBtn();
-    // Click on label Add Home Business Supplement
-    await this.selectHomeBusinessSupplement();
-    // Click on Next button
-    await this.clickNextBtn();
-    // Check #individual-bdl
-    await this.clickIndividualChkBox();
-    // Click on Next button
-    await this.clickNextWithFormBtn();
-    // Check No checkbox
-    await this.clickNoChkBox();
-    // Click on Add to Cart Button
-    await this.clickContinueBtn();
-    // Click on Checkout Button
-    await this.clickCheckoutBtn();
+    await this.associateWebsiteLocBtnGetAPlan.click();
+    await this.associateWebsiteLocLblHomeBusinessSupplement.click();
+    await this.associateWebsiteLocBtnNext.click();
+    await this.associateWebsiteLocChkBIndividual.click();
+    await this.associateWebsiteLocBtnNextWithForm.click();
+    await this.associateWebsiteLocChkBNo.click();
+    await this.associateWebsiteLocBtnContinue.click();
+    await this.associateWebsiteLocBtnCheckout.click();
   };
   /**
    * @param {string} dob
@@ -139,9 +181,7 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
    * @memberof WalsAssociateWebsitePage
    */
   filloutSecurityInfo = async (dob: string, ssn: string): Promise<void> => {
-    // Fill date of birth
     await this.associateWebsiteLocTxtDateOfBirth.type(dob);
-    // Fill SSN
     await this.associateWebsiteLocTxtSSN.type(ssn);
   };
   /**
@@ -170,17 +210,11 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
     dependent: string,
     dependentEmail: string
   ): Promise<void> => {
-    // Fill date of birth
     await this.associateWebsiteLocTxtDateOfBirth.type(dob);
-    // Fill SSN
     await this.associateWebsiteLocTxtSSN.type(ssn);
-    // Fill Dependent First Name
     await this.associateWebsiteLocTxtDependentFirstName.type(depFirst);
-    // Fill Dependent Last Name
     await this.associateWebsiteLocTxtDependentLastName.type(depLast);
-    // Fill Dependent Date of Birth
     await this.associateWebsiteLocTxtDependentBDay.type(depDob);
-    // Select a Family member type
     await this.associateWebsiteLocSlctFamilyMemberType.click();
     await this.page.waitForSelector('//span[contains(text()," ' + dependent + ' ")]');
     await this.page.locator('//span[contains(text()," ' + dependent + ' ")]').click();
@@ -189,9 +223,6 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
     } else {
       console.log("Dependent's email is not displayed");
     }
-
-    // Click continue Button
-    // await this.page.keyboard.press('Tab');
     await this.associateWebsiteLocBtnContactInfoContinue.waitFor();
     await this.associateWebsiteLocBtnContactInfoContinue.click();
   };
@@ -201,29 +232,23 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
    * @memberof WalsAssociateWebsitePage
    */
   createAUser = async (pass: string, confirmpass: string): Promise<void> => {
-    // Select a username
     this.page.waitForLoadState();
     await this.associateWebsiteCreateUserLocWrapper.waitFor();
     await this.associateWebsiteCreateUserLocRdoBtnUsername.click();
     await this.associateWebsiteCreateUserLocTxtUsername.waitFor();
     await this.associateWebsiteCreateUserLocLblUsername.screenshot({ path: 'screenshot.png' });
     console.log(this.associateWebsiteCreateUserLocLblUsername.innerHTML());
-    // Enter a password
     await this.associateWebsiteLocTxtPassword.waitFor();
     await this.associateWebsiteLocTxtPassword.fill(pass);
-    // Confirm Password
     await this.associateWebsiteLocTxtConfirmPassword.waitFor();
     await this.associateWebsiteLocTxtConfirmPassword.fill(confirmpass);
-    // click on continue button
     await this.associateWebsiteLocBtnContactInfoContinue.click();
   };
   /**
    * @memberof WalsAssociateWebsitePage
    */
   commissionOptions = async (): Promise<void> => {
-    // Check by mail
     await this.associateWebsiteLocRdoCheckByMail.click();
-    // Click on Continue button
     await this.associateWebsiteLocBtnContinuePersonalInfoForm.click();
   };
   /**
@@ -267,23 +292,17 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
    */
   filloutCABankAccountInfo = async (name: string, transNum: string, institutionNum: string, accountNumber: string): Promise<void> => {
     console.log(' - EnglishWalsCaPage.filloutBankAccountInfo');
-    // Locate an switch to the frame
     await this.page.waitForLoadState();
-    // Check Bank Draft name
     await this.associateWebsiteLocRdoBankDraft.click();
-    // Fill  Name of account holder
     const NameOfAccountHolder = this.associateWebsiteLocfrmPayments.locator('#accountholder_name');
     await NameOfAccountHolder.type(name);
-    // Fill Transit number
     const transitNumber = this.associateWebsiteLocfrmPayments.locator('#transit_number');
     await transitNumber.type(transNum);
     const InstitutionNumber = this.associateWebsiteLocfrmPayments.locator('#institution_number');
     await InstitutionNumber.type(institutionNum);
-    // Fill Account Number
     const AccountNumber = this.associateWebsiteLocfrmPayments.locator('#account_number');
     await AccountNumber.type(accountNumber);
     await this.associateWebsiteLocRdoCheckingAccount.click();
-    // Click purchase button
     await this.page.keyboard.press('Enter');
     await this.page.keyboard.press('Enter');
   };
@@ -293,58 +312,10 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
    * @memberof WalsAssociateWebsitePage
    */
   navigateToEnglishWalsUSPage = async (url: string): Promise<void> => {
-    // navigate to URL
     await this.page.goto(url);
   };
 
   // ========================== Click Methods ==============================
-  /**
-   * @memberof WalsAssociateWebsitePage
-   */
-  clickBecomeAssociateBtn = async (): Promise<void> => {
-    // await this.page.mouse.click(220, 800);
-    await this.associateWebsiteLocBtnBecomeAssociate.click();
-  };
-  /**
-   * @memberof WalsAssociateWebsitePage
-   */
-  clickGetStartedBtn = async (): Promise<void> => {
-    await this.associateWebsiteLocBtnGetAPlan.click();
-  };
-  /**
-   * @memberof WalsAssociateWebsitePage
-   */
-  selectHomeBusinessSupplement = async (): Promise<void> => {
-    // Click Select your plan Link
-    await this.associateWebsiteLocLblHomeBusinessSupplement.click();
-  };
-  /**
-   * @memberof WalsAssociateWebsitePage
-   */
-  clickNextBtn = async (): Promise<void> => {
-    // Click on Next button
-    await this.associateWebsiteLocBtnNext.click();
-  };
-  clickIndividualChkBox = async (): Promise<void> => {
-    // Check individual checkbox
-    await this.associateWebsiteLocChkBIndividual.click();
-  };
-  clickNextWithFormBtn = async (): Promise<void> => {
-    // Click on Next button
-    await this.associateWebsiteLocBtnNextWithForm.click();
-  };
-  clickNoChkBox = async (): Promise<void> => {
-    // Check No checkbox
-    await this.associateWebsiteLocChkBNo.click();
-  };
-  clickContinueBtn = async (): Promise<void> => {
-    // Click on Continue button
-    await this.associateWebsiteLocBtnContinue.click();
-  };
-  clickCheckoutBtn = async (): Promise<void> => {
-    // Click on Checkout button
-    await this.associateWebsiteLocBtnCheckout.click();
-  };
   // ========================== Assertion Methods ==========================
 
   assertCartSummary = async (fees: string, total: string): Promise<void> => {
