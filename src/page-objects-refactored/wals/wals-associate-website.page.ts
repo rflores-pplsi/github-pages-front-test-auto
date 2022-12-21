@@ -368,4 +368,14 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
   clickOnLogo = async (): Promise<void> => {
     await this.associateWebsiteLocLogo.click();
   };
+
+  /**
+   * @param {string} buttonName
+   * @param {number} index
+   * @memberof WalsAssociateCTAPage
+   */
+  clickOnCTAButton = async (buttonName: string, index: number): Promise<void> => {
+    await this.page.waitForLoadState();
+    await (await this.associateWebsiteLocCTAButton(buttonName, index)).click();
+  };
 }
