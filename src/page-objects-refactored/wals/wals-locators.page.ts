@@ -20,6 +20,7 @@ export class WalsLocatorPage {
   readonly associateWebsiteLocBtnNext: Locator;
   readonly associateWebsiteLocBtnNextWithForm: Locator;
   readonly associateWebsiteLocBtnContinueWithForm: Locator;
+  readonly associateWebsiteLocBtnContinueCart: Locator;
   readonly associateWebsiteLocChkBIndividual: Locator;
   readonly associateWebsiteLocChkBNo: Locator;
   readonly associateWebsiteLocBtnContinue: Locator;
@@ -90,6 +91,7 @@ export class WalsLocatorPage {
     this.associateWebsiteLocBtnNext = this.page.locator('#builder_modal_checkout_btn_continue');
     this.associateWebsiteLocBtnNextWithForm = this.page.locator('#builder_modal_checkout_btn_withform');
     this.associateWebsiteLocBtnContinueWithForm = this.page.locator('#builder_modal_checkout_btn');
+    this.associateWebsiteLocBtnContinueCart = this.page.locator('#legal_modal_checkout_btn.close_modal_btn');
     this.associateWebsiteCartSummaryLocOneTimeFees = this.page.locator('div#fee-total p >> nth=1');
     this.associateWebsiteCartSummaryLocTotalDueToday = this.page.locator('div#today-total p >> nth=1');
     this.associateWebsiteCreateUserLocWrapper = this.page.locator('div.component-wrapper');
@@ -187,6 +189,23 @@ export class WalsLocatorPage {
    */
   associateWebsiteLocCartItem = async (productName: string, className: string, index: number): Promise<Locator> => {
     return this.page.locator(`[data-plan-short-name=${productName}] div.${className} >> nth=${index}`);
+  };
+
+  /**
+   * @param {string} productName
+   * @param {number} index
+   * @memberof WalsLocatorPage
+   */
+  associateWebsiteLocCartItemLayoverName = async (productName: string, index: number): Promise<Locator> => {
+    return this.page.locator(`[data-rider-short-name=${productName}] div.field--name--field-heading >> nth=${index}`);
+  };
+
+  /**
+   * @param {string} productName
+   * @memberof WalsLocatorPage
+   */
+  associateWebsiteLocCartItemLayoverPrice = async (productName: string): Promise<Locator> => {
+    return this.page.locator(`[data-rider-short-name=${productName}] div.price span`);
   };
 
   /**
