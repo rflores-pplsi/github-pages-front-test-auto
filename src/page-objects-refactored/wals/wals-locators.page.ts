@@ -21,6 +21,7 @@ export class WalsLocatorPage {
   readonly associateWebsiteLocBtnNextWithForm: Locator;
   readonly associateWebsiteLocBtnContinueWithForm: Locator;
   readonly associateWebsiteLocBtnContinueCart: Locator;
+  readonly associateWebsiteLocBtnContinueIDShield: Locator;
   readonly associateWebsiteLocChkBIndividual: Locator;
   readonly associateWebsiteLocChkBNo: Locator;
   readonly associateWebsiteLocBtnContinue: Locator;
@@ -92,6 +93,7 @@ export class WalsLocatorPage {
     this.associateWebsiteLocBtnNextWithForm = this.page.locator('#builder_modal_checkout_btn_withform');
     this.associateWebsiteLocBtnContinueWithForm = this.page.locator('#builder_modal_checkout_btn');
     this.associateWebsiteLocBtnContinueCart = this.page.locator('#legal_modal_checkout_btn.close_modal_btn');
+    this.associateWebsiteLocBtnContinueIDShield = this.page.locator('#idshield_modal_checkout_btn');
     this.associateWebsiteCartSummaryLocOneTimeFees = this.page.locator('div#fee-total p >> nth=1');
     this.associateWebsiteCartSummaryLocTotalDueToday = this.page.locator('div#today-total p >> nth=1');
     this.associateWebsiteCreateUserLocWrapper = this.page.locator('div.component-wrapper');
@@ -215,5 +217,13 @@ export class WalsLocatorPage {
    */
   associateWebsiteLocCTAButton = async (buttonName: string, index: number): Promise<Locator> => {
     return this.page.locator(`a[href="${buttonName}"] >> nth=${index}`);
+  };
+
+  /**
+   * @param {string} idName
+   * @memberof WalsLocatorPage
+   */
+  associateWebsiteLocCoverageLvlOpt = async (idName?: string): Promise<Locator> => {
+    return this.page.locator(`#plan-text-link-${idName}`);
   };
 }

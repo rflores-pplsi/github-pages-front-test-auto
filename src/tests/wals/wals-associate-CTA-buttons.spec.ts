@@ -93,10 +93,34 @@ test.describe('Test CTA buttons', () => {
       await walsAssociateGetAPlanPage.addAPlan('ASSOCSTP', 0, 'LegalShield', ['input-TD3', 'input-GSBS', 'input-RS2']);
     });
     await test.step('Assert checkout products and prices', async () => {
-      await walsAssociateGetAPlanPage.associateWebsiteCartItem('TD3', 'Trial Defense Supplement', '14.95', 0);
-      await walsAssociateGetAPlanPage.associateWebsiteCartItem('GSBS', 'Business Plus Supplement', '14.95', 0);
-      await walsAssociateGetAPlanPage.associateWebsiteCartItem('RS2', 'Ride Share Supplement', '14.95', 0);
+      await walsAssociateGetAPlanPage.associateWebsiteCartItemLegalShield('TD3', 'Trial Defense Supplement', '14.95', 0);
+      await walsAssociateGetAPlanPage.associateWebsiteCartItemLegalShield('GSBS', 'Business Plus Supplement', '14.95', 0);
+      await walsAssociateGetAPlanPage.associateWebsiteCartItemLegalShield('RS2', 'Ride Share Supplement', '14.95', 0);
       await walsAssociateGetAPlanPage.associateWebsiteCartTotalAmt([29.95, 14.95, 14.95, 14.95]);
+    });
+  });
+  test('User can click on IDShield CTA button and be redirected to the right page and checkout correctly', async () => {
+    await test.step('Navigate to legalshield marketing site', async () => {
+      await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlBenefits);
+    });
+    await test.step('Choose a region', async () => {
+      await walsAssociateWebsitePage.changeStateinformation(DataUtils.data.testingHarness.us.city.VA);
+    });
+    await test.step('Click on logo', async () => {
+      await walsAssociateWebsitePage.clickOnLogo();
+    });
+    await test.step('Verify Hero Banners for IDShield button', async () => {
+      await walsAssociateWebsitePage.clickOnCTAButton('ids', 1);
+      await walsBenefitsPage.assertBannerHeader('IDShield');
+      await walsBenefitsPage.assertBannerPlanPrice('$14.95/month');
+    });
+    await test.step('Verify the Get Plan button changes to Added after click and pick a plan', async () => {
+      await walsAssociateGetAPlanPage.addAPlan('IDS', 1, 'IDShield', [], 'IDSF');
+    });
+    await test.step('Assert checkout products and prices', async () => {
+      await walsAssociateGetAPlanPage.associateWebsiteCartItem('IDSF', 'name', 'IDShield Family', 0);
+      await walsAssociateGetAPlanPage.associateWebsiteCartItem('IDSF', 'price', '$ 29.95', 0);
+      await walsAssociateGetAPlanPage.associateWebsiteCartTotalAmt([29.95]);
     });
   });
 });
