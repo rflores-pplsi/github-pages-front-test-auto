@@ -15,11 +15,13 @@ export class WalsLocatorPage {
   readonly associateWebsiteCreateUserLocWrapper: Locator;
   readonly associateResultLocViewWebsite: Locator;
   readonly associateWebsiteLocUlEnglishWalsUSPage: Locator;
-  readonly associateWebsiteLocBtnGetAPlan: Locator;
   readonly associateWebsiteLocBtnBecomeAssociate: Locator;
   readonly associateWebsiteLocLblHomeBusinessSupplement: Locator;
   readonly associateWebsiteLocBtnNext: Locator;
   readonly associateWebsiteLocBtnNextWithForm: Locator;
+  readonly associateWebsiteLocBtnContinueWithForm: Locator;
+  readonly associateWebsiteLocBtnContinueCart: Locator;
+  readonly associateWebsiteLocBtnContinueIDShield: Locator;
   readonly associateWebsiteLocChkBIndividual: Locator;
   readonly associateWebsiteLocChkBNo: Locator;
   readonly associateWebsiteLocBtnContinue: Locator;
@@ -69,6 +71,7 @@ export class WalsLocatorPage {
   //readonly weAreLegalShieldLocLabelSalesAssociate: Locator;
   readonly weAreLegalShieldLocMsgAssociateNotFound: Locator;
   readonly weAreLegalShieldLocBannerHeader: Locator;
+  readonly associateWebsiteLocLogo: Locator;
   /**
    * @param {Page} page
    * @memberof WalsLocatorPage
@@ -81,7 +84,6 @@ export class WalsLocatorPage {
     this.associateResultLocViewWebsite = this.page.locator('div.profile-link a');
     this.associateResultLocViewWebsite = this.page.locator('');
     this.associateWebsiteLocUlEnglishWalsUSPage = this.page.locator('');
-    this.associateWebsiteLocBtnGetAPlan = this.page.locator('a.subscriber-ASSOCSTP >> nth=1');
     this.associateWebsiteLocBtnBecomeAssociate = this.page.locator(
       'div#plans-menu-filters ul.menu-dropdown.dropdown:not(.plans-menu-filters-mobile) > .become-associate-plans a'
     );
@@ -89,6 +91,9 @@ export class WalsLocatorPage {
     this.associateWebsiteLocLblTotalPrice = this.page.locator('a#minicart_btn_checkout span');
     this.associateWebsiteLocBtnNext = this.page.locator('#builder_modal_checkout_btn_continue');
     this.associateWebsiteLocBtnNextWithForm = this.page.locator('#builder_modal_checkout_btn_withform');
+    this.associateWebsiteLocBtnContinueWithForm = this.page.locator('#builder_modal_checkout_btn');
+    this.associateWebsiteLocBtnContinueCart = this.page.locator('#legal_modal_checkout_btn.close_modal_btn');
+    this.associateWebsiteLocBtnContinueIDShield = this.page.locator('#idshield_modal_checkout_btn');
     this.associateWebsiteCartSummaryLocOneTimeFees = this.page.locator('div#fee-total p >> nth=1');
     this.associateWebsiteCartSummaryLocTotalDueToday = this.page.locator('div#today-total p >> nth=1');
     this.associateWebsiteCreateUserLocWrapper = this.page.locator('div.component-wrapper');
@@ -143,6 +148,7 @@ export class WalsLocatorPage {
     //this.weAreLegalShieldLocLabelSalesAssociate = this.WeAreLegalShieldLocLabelSalesAssociate('Hello');
     this.weAreLegalShieldLocMsgAssociateNotFound = this.page.locator('//div[contains(text(), "Sorry, we did not find any results for")]');
     this.weAreLegalShieldLocBannerHeader = this.page.locator('//h3[contains(text(), "Business Builder")]');
+    this.associateWebsiteLocLogo = this.page.locator('div#block-headerlogowalsus img.image-style-large');
   }
   /**
    * @param {string} txt
@@ -151,18 +157,73 @@ export class WalsLocatorPage {
   WeAreLegalShieldLocContainsText = async (txt: string): Promise<Locator> => {
     return this.page.locator(`//*[contains(text(), "${txt}")]`);
   };
-  // /**
-  //  * @param {string} txt
-  //  * @memberof WalsLocatorPage
-  //  */
-  // WeAreLegalShieldLocContainsText = async (txt: string): Promise<Locator> => {
-  //   return this.page.locator(`//div[contains(text(), "${txt}")]`);
-  // };
+
   /**
    * @param {string} url
    * @memberof WalsLocatorPage
    */
   WeAreLegalShieldAssertUrl = async (url: string): Promise<void> => {
     expect(this.page.url()).toEqual(url);
+  };
+
+  /**
+   * @param {string} classParameter
+   * @param {number} getAPlanNum
+   * @memberof WalsLocatorPage
+   */
+  associateWebsiteLocBtnGetAPlan = async (classParameter: string, getAPlanNum: number): Promise<Locator> => {
+    return this.page.locator(`a.subscriber-${classParameter} >> nth=${getAPlanNum}`);
+  };
+
+  /**
+   * @param {number} index
+   * @memberof WalsLocatorPage
+   */
+  associateWebsiteRdBtn = async (index: number): Promise<Locator> => {
+    return this.page.locator(`*[type="radio"] >> nth=${index}`);
+  };
+
+  /**
+   * @param {string} productName
+   * @param {string} className
+   * @param {number} index
+   * @memberof WalsLocatorPage
+   */
+  associateWebsiteLocCartItem = async (productName: string, className: string, index: number): Promise<Locator> => {
+    return this.page.locator(`[data-plan-short-name=${productName}] div.${className} >> nth=${index}`);
+  };
+
+  /**
+   * @param {string} productName
+   * @param {number} index
+   * @memberof WalsLocatorPage
+   */
+  associateWebsiteLocCartItemLayoverName = async (productName: string, index: number): Promise<Locator> => {
+    return this.page.locator(`[data-rider-short-name=${productName}] div.field--name--field-heading >> nth=${index}`);
+  };
+
+  /**
+   * @param {string} productName
+   * @memberof WalsLocatorPage
+   */
+  associateWebsiteLocCartItemLayoverPrice = async (productName: string): Promise<Locator> => {
+    return this.page.locator(`[data-rider-short-name=${productName}] div.price span`);
+  };
+
+  /**
+   * @param {string} buttonName
+   * @param {number} index
+   * @memberof WalsLocatorPage
+   */
+  associateWebsiteLocCTAButton = async (buttonName: string, index: number): Promise<Locator> => {
+    return this.page.locator(`a[href="${buttonName}"] >> nth=${index}`);
+  };
+
+  /**
+   * @param {string} idName
+   * @memberof WalsLocatorPage
+   */
+  associateWebsiteLocCoverageLvlOpt = async (idName?: string): Promise<Locator> => {
+    return this.page.locator(`#plan-text-link-${idName}`);
   };
 }

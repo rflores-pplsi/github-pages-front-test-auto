@@ -166,7 +166,7 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
    * @memberof WalsAssociateWebsitePage
    */
   getStartedThenPickAPlan = async (): Promise<void> => {
-    await this.associateWebsiteLocBtnGetAPlan.click();
+    await (await this.associateWebsiteLocBtnGetAPlan('ASSOCSTP', 1)).click();
     await this.associateWebsiteLocLblHomeBusinessSupplement.click();
     await this.associateWebsiteLocBtnNext.click();
     await this.associateWebsiteLocChkBIndividual.click();
@@ -315,6 +315,7 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
   };
 
   // ========================== Click Methods ==============================
+
   // ========================== Assertion Methods ==========================
 
   assertCartSummary = async (fees: string, total: string): Promise<void> => {
@@ -330,5 +331,22 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
     // Verify that the user made the purchase
     await this.associateWebsiteLocLblWelcome.waitFor();
     await expect(this.associateWebsiteLocLblWelcome).toContainText(txt);
+  };
+
+  /**
+   * @memberof WalsAssociateCTAPage
+   */
+  clickOnLogo = async (): Promise<void> => {
+    await this.associateWebsiteLocLogo.click();
+  };
+
+  /**
+   * @param {string} buttonName
+   * @param {number} index
+   * @memberof WalsAssociateCTAPage
+   */
+  clickOnCTAButton = async (buttonName: string, index: number): Promise<void> => {
+    await this.page.waitForLoadState();
+    await (await this.associateWebsiteLocCTAButton(buttonName, index)).click();
   };
 }
