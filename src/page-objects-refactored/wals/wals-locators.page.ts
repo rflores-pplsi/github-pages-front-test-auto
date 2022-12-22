@@ -22,6 +22,9 @@ export class WalsLocatorPage {
   readonly associateWebsiteLocBtnContinueWithForm: Locator;
   readonly associateWebsiteLocBtnContinueCart: Locator;
   readonly associateWebsiteLocBtnContinueIDShield: Locator;
+  readonly associateWebsiteLocBtnContinueSmallBiz: Locator;
+  readonly associateWebsiteLocBtnContinueToSuppsSmallBiz: Locator;
+  readonly associateWebsiteLocBtnBizModalCheckout: Locator;
   readonly associateWebsiteLocChkBIndividual: Locator;
   readonly associateWebsiteLocChkBNo: Locator;
   readonly associateWebsiteLocBtnContinue: Locator;
@@ -72,6 +75,7 @@ export class WalsLocatorPage {
   readonly weAreLegalShieldLocMsgAssociateNotFound: Locator;
   readonly weAreLegalShieldLocBannerHeader: Locator;
   readonly associateWebsiteLocLogo: Locator;
+  readonly associateWebsiteLocRdSmallBiz: Locator;
   /**
    * @param {Page} page
    * @memberof WalsLocatorPage
@@ -94,6 +98,9 @@ export class WalsLocatorPage {
     this.associateWebsiteLocBtnContinueWithForm = this.page.locator('#builder_modal_checkout_btn');
     this.associateWebsiteLocBtnContinueCart = this.page.locator('#legal_modal_checkout_btn.close_modal_btn');
     this.associateWebsiteLocBtnContinueIDShield = this.page.locator('#idshield_modal_checkout_btn');
+    this.associateWebsiteLocBtnContinueSmallBiz = this.page.locator('a.close_modal_continue.js-continue-to-questions');
+    this.associateWebsiteLocBtnContinueToSuppsSmallBiz = this.page.locator('a.js-continue-to-supps.close_modal_continue');
+    this.associateWebsiteLocBtnBizModalCheckout = this.page.locator('#biz_modal_checkout_btn');
     this.associateWebsiteCartSummaryLocOneTimeFees = this.page.locator('div#fee-total p >> nth=1');
     this.associateWebsiteCartSummaryLocTotalDueToday = this.page.locator('div#today-total p >> nth=1');
     this.associateWebsiteCreateUserLocWrapper = this.page.locator('div.component-wrapper');
@@ -149,6 +156,7 @@ export class WalsLocatorPage {
     this.weAreLegalShieldLocMsgAssociateNotFound = this.page.locator('//div[contains(text(), "Sorry, we did not find any results for")]');
     this.weAreLegalShieldLocBannerHeader = this.page.locator('//h3[contains(text(), "Business Builder")]');
     this.associateWebsiteLocLogo = this.page.locator('div#block-headerlogowalsus img.image-style-large');
+    this.associateWebsiteLocRdSmallBiz = this.page.locator('#no-traded-label');
   }
   /**
    * @param {string} txt
@@ -194,6 +202,15 @@ export class WalsLocatorPage {
   };
 
   /**
+   * @param {string} className
+   * @param {string} assert
+   * @memberof WalsLocatorPage
+   */
+  associateWebsiteLocCartItemSmallBiz = async (className: string, assert: string): Promise<Locator> => {
+    return this.page.locator(`.detail_plan.${className} .${assert}`);
+  };
+
+  /**
    * @param {string} productName
    * @param {number} index
    * @memberof WalsLocatorPage
@@ -225,5 +242,13 @@ export class WalsLocatorPage {
    */
   associateWebsiteLocCoverageLvlOpt = async (idName?: string): Promise<Locator> => {
     return this.page.locator(`#plan-text-link-${idName}`);
+  };
+
+  /**
+   * @param {string} idName
+   * @memberof WalsLocatorPage
+   */
+  associateWebsiteLocSmallBizOpt = async (idName?: string): Promise<Locator> => {
+    return this.page.locator(`#plan-container-${idName}`);
   };
 }

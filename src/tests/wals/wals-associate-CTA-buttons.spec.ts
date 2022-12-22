@@ -123,4 +123,30 @@ test.describe('Test CTA buttons', () => {
       await walsAssociateGetAPlanPage.associateWebsiteCartTotalAmt([29.95]);
     });
   });
+  test('User can click on Small Business CTA button and be redirected to the right page and checkout correctly', async () => {
+    await test.step('Navigate to legalshield marketing site', async () => {
+      await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlBenefits);
+    });
+    await test.step('Choose a region', async () => {
+      await walsAssociateWebsitePage.changeStateinformation(DataUtils.data.testingHarness.us.city.VA);
+    });
+    await test.step('Click on logo', async () => {
+      await walsAssociateWebsitePage.clickOnLogo();
+    });
+    await test.step('Verify Hero Banners for Small Business button', async () => {
+      await walsAssociateWebsitePage.clickOnCTAButton('biz', 1);
+      await walsBenefitsPage.assertBannerHeader('Small Business Plan');
+      await walsBenefitsPage.assertBannerPlanPrice('$49.00/month');
+    });
+    await test.step('Verify the Get Plan button changes to Added after click and pick a plan', async () => {
+      await walsAssociateGetAPlanPage.addAPlan('BIZ', 1, 'Small Business', [], 'PLUS');
+    });
+    await test.step('Assert checkout products and prices', async () => {
+      await walsAssociateGetAPlanPage.associateWebsiteCartItemSmallBiz('plan', 'name', 'Small Business Legal Plus');
+      await walsAssociateGetAPlanPage.associateWebsiteCartItemSmallBiz('plan', 'price', '$ 99.00');
+      await walsAssociateGetAPlanPage.associateWebsiteCartItemSmallBiz('rider', 'name', 'Business Plus Supplement');
+      await walsAssociateGetAPlanPage.associateWebsiteCartItemSmallBiz('rider', 'price', '$ 14.95');
+      await walsAssociateGetAPlanPage.associateWebsiteCartTotalAmt([99.0, 14.95]);
+    });
+  });
 });
