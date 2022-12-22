@@ -11,7 +11,7 @@ export class WalsAssociateGetAPlanPage extends WalsLocatorPage {
    * @param {number} getAPlanNum
    * @param {string} buttonType
    * @param {Array<string>} selectionArray
-   * @param {string} IDShieldSelection
+   * @param {string} selectionVal
    * @memberof WalsAssociateCTAPage
    */
   addAPlan = async (
@@ -19,7 +19,7 @@ export class WalsAssociateGetAPlanPage extends WalsLocatorPage {
     getAPlanNum: number,
     buttonType: string,
     selectionArray?: Array<string>,
-    IDShieldSelection?: string
+    selectionVal?: string
   ): Promise<void> => {
     await (await this.associateWebsiteLocBtnGetAPlan(classParameter, getAPlanNum)).click();
     expect(await (await this.associateWebsiteLocBtnGetAPlan(classParameter, getAPlanNum)).innerText()).toEqual('✔ ADDED');
@@ -38,8 +38,15 @@ export class WalsAssociateGetAPlanPage extends WalsLocatorPage {
       }
       await this.associateWebsiteLocBtnContinueCart.click();
     } else if (buttonType == 'IDShield') {
-      await (await this.associateWebsiteLocCoverageLvlOpt(IDShieldSelection)).click();
+      await (await this.associateWebsiteLocCoverageLvlOpt(selectionVal)).click();
       await this.associateWebsiteLocBtnContinueIDShield.click();
+    } else if (buttonType == 'Small Business') {
+      await (await this.associateWebsiteLocSmallBizOpt(selectionVal)).click();
+      await this.associateWebsiteLocBtnContinueSmallBiz.click();
+      await this.associateWebsiteLocRdSmallBiz.click();
+      await this.associateWebsiteLocBtnContinueToSuppsSmallBiz.click();
+      await this.page.setChecked('#input-GSBS', true, { force: true });
+      await this.associateWebsiteLocBtnBizModalCheckout.click();
     }
   };
 
@@ -52,6 +59,16 @@ export class WalsAssociateGetAPlanPage extends WalsLocatorPage {
    */
   associateWebsiteCartItem = async (productName: string, className: string, productValue: string, index: number): Promise<void> => {
     expect(await (await this.associateWebsiteLocCartItem(productName, className, index)).innerText()).toEqual(productValue);
+  };
+
+  /**
+   * @param {string} className
+   * @param {string} assert
+   * @param {string} productValue
+   * @memberof WalsAssociateCTAPage
+   */
+  associateWebsiteCartItemSmallBiz = async (className: string, assert: string, productValue: string): Promise<void> => {
+    expect(await (await this.associateWebsiteLocCartItemSmallBiz(className, assert)).innerText()).toEqual(productValue);
   };
 
   /**
