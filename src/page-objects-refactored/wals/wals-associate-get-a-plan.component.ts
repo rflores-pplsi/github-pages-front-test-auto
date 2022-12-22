@@ -47,6 +47,9 @@ export class WalsAssociateGetAPlanPage extends WalsLocatorPage {
       await this.associateWebsiteLocBtnContinueToSuppsSmallBiz.click();
       await this.page.setChecked('#input-GSBS', true, { force: true });
       await this.associateWebsiteLocBtnBizModalCheckout.click();
+    } else if (buttonType == 'Commercial Drivers') {
+      await this.page.setChecked(`#input-${selectionVal}`, true, { force: true });
+      await this.associateWebsiteLocBtnCommercialDrCheckout.click();
     }
   };
 
