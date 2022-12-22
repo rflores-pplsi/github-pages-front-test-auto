@@ -11,9 +11,16 @@ export class WalsAssociateGetAPlanPage extends WalsLocatorPage {
    * @param {number} getAPlanNum
    * @param {string} buttonType
    * @param {Array<string>} selectionArray
+   * @param {string} IDShieldSelection
    * @memberof WalsAssociateCTAPage
    */
-  addAPlan = async (classParameter: string, getAPlanNum: number, buttonType: string, selectionArray?: Array<string>): Promise<void> => {
+  addAPlan = async (
+    classParameter: string,
+    getAPlanNum: number,
+    buttonType: string,
+    selectionArray?: Array<string>,
+    IDShieldSelection?: string
+  ): Promise<void> => {
     await (await this.associateWebsiteLocBtnGetAPlan(classParameter, getAPlanNum)).click();
     expect(await (await this.associateWebsiteLocBtnGetAPlan(classParameter, getAPlanNum)).innerText()).toEqual('✔ ADDED');
     if (buttonType == 'All Memberships' || buttonType == 'Business Builder') {
@@ -30,7 +37,21 @@ export class WalsAssociateGetAPlanPage extends WalsLocatorPage {
         }
       }
       await this.associateWebsiteLocBtnContinueCart.click();
+    } else if (buttonType == 'IDShield') {
+      await (await this.associateWebsiteLocCoverageLvlOpt(IDShieldSelection)).click();
+      await this.associateWebsiteLocBtnContinueIDShield.click();
     }
+  };
+
+  /**
+   * @param {string} productName
+   * @param {string} className
+   * @param {string} productValue
+   * @param {number} index
+   * @memberof WalsAssociateCTAPage
+   */
+  associateWebsiteCartItem = async (productName: string, className: string, productValue: string, index: number): Promise<void> => {
+    expect(await (await this.associateWebsiteLocCartItem(productName, className, index)).innerText()).toEqual(productValue);
   };
 
   /**
@@ -40,7 +61,7 @@ export class WalsAssociateGetAPlanPage extends WalsLocatorPage {
    * @param {number} index
    * @memberof WalsAssociateCTAPage
    */
-  associateWebsiteCartItem = async (productName: string, productText: string, productPrice: string, index: number): Promise<void> => {
+  associateWebsiteCartItemLegalShield = async (productName: string, productText: string, productPrice: string, index: number): Promise<void> => {
     expect(await (await this.associateWebsiteLocCartItemLayoverName(productName, index)).textContent()).toContain(productText);
     expect(await (await this.associateWebsiteLocCartItemLayoverPrice(productName)).textContent()).toEqual(productPrice);
   };
