@@ -135,7 +135,7 @@ test.describe('Test nous sommes legalshield.ca', () => {
         await walsAssociateWebsitePage.associateWebsiteLocBtnCheckout.click();
       });
       await test.step('Fill out personal and security info', async () => {
-        await walsAssociateWebsitePage.filloutCaContactInformationForm(stte.name, 'enepa@gmail.com', 'TesterF', 'TesterL', '5714001234', '0');
+        await walsAssociateWebsitePage.filloutFrenchCaContactInformationForm(stte.name, 'enepa@gmail.com', 'TesterF', 'TesterL', '5714001234', '0');
         await walsAssociateWebsitePage.filloutSecurityInfo('01011999', '222445555');
         await walsAssociateWebsitePage.associateWebsiteLocBtnContinuePersonalInfoForm.click();
       });

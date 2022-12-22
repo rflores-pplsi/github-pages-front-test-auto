@@ -291,7 +291,6 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
    * @memberof WalsAssociateWebsitePage
    */
   filloutCABankAccountInfo = async (name: string, transNum: string, institutionNum: string, accountNumber: string): Promise<void> => {
-    console.log(' - EnglishWalsCaPage.filloutBankAccountInfo');
     await this.page.waitForLoadState();
     await this.associateWebsiteLocRdoBankDraft.click();
     const NameOfAccountHolder = this.associateWebsiteLocfrmPayments.locator('#accountholder_name');

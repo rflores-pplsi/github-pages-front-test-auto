@@ -840,12 +840,12 @@ export default class RegionsUtils {
     },
     {
       abbrv: 'NY',
-      name: 'Nueva York ',
+      name: 'Nueva York',
       priority: true,
       validAddress: {
-        city: 'Nueva York',
-        postalCode: '10036',
-        street: '234 W 48th St',
+        city: 'Brooklyn',
+        postalCode: '11249',
+        street: '2 Franklin Ave',
       },
     },
     {
