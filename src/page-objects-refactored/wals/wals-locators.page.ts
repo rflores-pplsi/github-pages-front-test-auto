@@ -47,6 +47,8 @@ export class WalsLocatorPage {
   readonly associateWebsiteLocfrmPayments: FrameLocator;
   readonly associateWebsiteLocTxtPhoneNumber: Locator;
   readonly associateWebsiteLocSlctPhoneType: Locator;
+  readonly associateWebsiteLocTxtCorporationName: Locator;
+  readonly associateWebsiteLocTxtCorporationTaxId: Locator;
   readonly associateWebsiteLocTxtDateOfBirth: Locator;
   readonly associateWebsiteLocTxtDependentFirstName: Locator;
   readonly associateWebsiteLocTxtDependentLastName: Locator;
@@ -56,6 +58,7 @@ export class WalsLocatorPage {
   readonly associateWebsiteLocTxtSSN: Locator;
   readonly associateWebsiteLocBtnContactInfoContinue: Locator;
   readonly associateWebsiteLocRdoBtnUsername: Locator;
+  readonly associateWebsiteLocRdoBBusiness: Locator;
   readonly associateWebsiteLocTxtPassword: Locator;
   readonly associateWebsiteLocTxtConfirmPassword: Locator;
   readonly associateWebsiteLocRdoCheckByMail: Locator;
@@ -114,18 +117,20 @@ export class WalsLocatorPage {
     this.associateWebsiteLocBtnContinue = this.page.locator('#associate-startup_modal_checkout_btn');
     this.associateWebsiteLocBtnContinuePersonalInfoForm = this.page.locator('button.shared-button.small');
     this.associateWebsiteLocBtnCheckout = this.page.locator('a#minicart_btn_checkout');
+    this.associateWebsiteLocTxtCorporationName = this.page.locator('#corporation-name');
+    this.associateWebsiteLocTxtCorporationTaxId = this.page.locator('#corporation-tax-id');
     this.associateWebsiteLocTtlContactInfo = this.page.locator('//h2[contains(text(),"Contact information")]');
     this.associateWebsiteLocTxtEmail = this.page.locator('#email-start-form');
     this.associateWebsiteLocTxtFirstName = this.page.locator('input[name="first-name"]');
     this.associateWebsiteLocTxtLastName = this.page.locator('input[name="last-name"]');
     this.associateWebsiteLocTxtAddress = this.page.locator('#address');
     this.associateWebsiteLocTxtCity = this.page.locator('#city');
-    this.associateWebsiteLocTxtZipCode = this.page.locator('//input[@name="zipcode"]');
+    this.associateWebsiteLocTxtZipCode = this.page.locator('input[name="zipcode"]');
     this.associateWebsiteLocLnkChange = this.page.locator('a.open-modal-lgs-geolocate.button-region-state.la');
     this.associateWebsiteLocSlctRegion = this.page.locator('select[name="state_select"]');
     this.associateWebsiteLocBtnUpdateState = this.page.locator('#edit-submit--3');
     this.associateWebsiteLocTxtPhoneNumber = this.page.locator('#phone-number');
-    this.associateWebsiteLocSlctPhoneType = this.page.locator('phone-number-form div.row .ng-tns-c9-11 .ng-tns-c23-12 .mat-select-trigger');
+    this.associateWebsiteLocSlctPhoneType = this.page.locator('div.mat-select-arrow');
     this.associateWebsiteLocTxtDateOfBirth = this.page.locator('#date-birth');
     this.associateWebsiteLocTxtDependentFirstName = this.page.locator('#first-name-dependant-form');
     this.associateWebsiteLocTxtDependentLastName = this.page.locator('#last-name-dependant-form');
@@ -135,6 +140,7 @@ export class WalsLocatorPage {
     this.associateWebsiteLocTxtSSN = this.page.locator('#s-security');
     this.associateWebsiteLocBtnContactInfoContinue = this.page.locator('button.shared-button.small');
     this.associateWebsiteLocRdoBtnUsername = this.page.locator('.mat-radio-container');
+    this.associateWebsiteLocRdoBBusiness = this.page.locator('input#business');
     this.associateWebsiteLocTxtPassword = this.page.locator('#password');
     this.associateWebsiteLocTxtConfirmPassword = this.page.locator('#confirm-password');
     this.associateWebsiteLocRdoCheckByMail = this.page.locator('//mat-radio-button[@id="mat-radio-13"]/label/div[1]');

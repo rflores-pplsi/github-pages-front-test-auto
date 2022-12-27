@@ -107,12 +107,13 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
       await this.associateWebsiteLocTxtAddress.fill(street);
       await this.associateWebsiteLocTxtCity.fill(city);
       await this.page.keyboard.press('Tab');
-      await (await this.WeAreLegalShieldLocContainsText(postalCode)).click();
-      // await this.associateWebsiteLocTxtZipCode.type(postalCode);
+      await this.associateWebsiteLocTxtZipCode.type(stte.validAddress.postalCode);
+      // (await this.WeAreLegalShieldLocContainsText(postalCode)).click();
       await this.page.keyboard.press('Tab');
       await this.associateWebsiteLocTxtPhoneNumber.type(phone);
+      await this.page.keyboard.press('Tab');
       await this.associateWebsiteLocSlctPhoneType.click();
-      await this.page.click('#mat-option-' + type);
+      await this.page.click('mat-option#mat-option-' + type);
     }
   };
   /**
@@ -163,15 +164,12 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
     await this.associateWebsiteLocBtnUpdateState.click();
   };
   /**
+   * @param {number} yesNoIndex
    * @memberof WalsAssociateWebsitePage
    */
-  getStartedThenPickAPlan = async (): Promise<void> => {
-    await (await this.associateWebsiteLocBtnGetAPlan('ASSOCSTP', 1)).click();
-    await this.associateWebsiteLocLblHomeBusinessSupplement.click();
-    await this.associateWebsiteLocBtnNext.click();
-    await this.associateWebsiteLocChkBIndividual.click();
-    await this.associateWebsiteLocBtnNextWithForm.click();
-    await this.associateWebsiteLocChkBNo.click();
+  walsAssociateWebsitePickAPlan = async (yesNoIndex: number): Promise<void> => {
+    await this.associateWebsiteLocRdoBBusiness.click();
+    (await this.associateWebsiteRdBtn(yesNoIndex)).click();
     await this.associateWebsiteLocBtnContinue.click();
     await this.associateWebsiteLocBtnCheckout.click();
   };
@@ -182,7 +180,20 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
    */
   filloutSecurityInfo = async (dob: string, ssn: string): Promise<void> => {
     await this.associateWebsiteLocTxtDateOfBirth.type(dob);
-    await this.associateWebsiteLocTxtSSN.type(ssn);
+    if (await this.associateWebsiteLocTxtSSN.isVisible()) {
+      await this.associateWebsiteLocTxtSSN.type(ssn);
+    } else {
+      console.log('No SSN text box');
+    }
+  };
+  /**
+   * @param {string} CorporationName
+   * @param {string} CorporationTaxId
+   * @memberof WalsAssociateWebsitePage
+   */
+  filloutAssociateCompanyDetailsInfo = async (CorporationName: string, CorporationTaxId: string): Promise<void> => {
+    await this.associateWebsiteLocTxtCorporationName.type(CorporationName);
+    await this.associateWebsiteLocTxtCorporationTaxId.type(CorporationTaxId);
   };
   /**
    * @memberof WalsAssociateWebsitePage
@@ -242,6 +253,9 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
     await this.associateWebsiteLocTxtPassword.fill(pass);
     await this.associateWebsiteLocTxtConfirmPassword.waitFor();
     await this.associateWebsiteLocTxtConfirmPassword.fill(confirmpass);
+    if (await this.associateWebsiteLocTxtCorporationName.isVisible()) {
+      this.filloutAssociateCompanyDetailsInfo('pplsiTestCompany', '111234444');
+    }
     await this.associateWebsiteLocBtnContactInfoContinue.click();
   };
   /**
