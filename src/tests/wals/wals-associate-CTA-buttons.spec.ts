@@ -149,4 +149,28 @@ test.describe('Test CTA buttons', () => {
       await walsAssociateGetAPlanPage.associateWebsiteCartTotalAmt([99.0, 14.95]);
     });
   });
+  test('User can click on Commercial Drivers CTA button and be redirected to the right page and checkout correctly', async () => {
+    await test.step('Navigate to legalshield marketing site', async () => {
+      await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlBenefits);
+    });
+    await test.step('Choose a region', async () => {
+      await walsAssociateWebsitePage.changeStateinformation(DataUtils.data.testingHarness.us.city.VA);
+    });
+    await test.step('Click on logo', async () => {
+      await walsAssociateWebsitePage.clickOnLogo();
+    });
+    await test.step('Verify Hero Banners for Commercial Drivers button', async () => {
+      await walsAssociateWebsitePage.clickOnCTAButton('cdlp', 1);
+      await walsBenefitsPage.assertBannerHeader('Commercial Drivers Legal Plan');
+      await walsBenefitsPage.assertBannerPlanPrice('$32.95/month');
+    });
+    await test.step('Verify the Get Plan button changes to Added after click and pick a plan', async () => {
+      await walsAssociateGetAPlanPage.addAPlan('CDLP', 1, 'Commercial Drivers', [], 'CDLP');
+    });
+    await test.step('Assert checkout products and prices', async () => {
+      await walsAssociateGetAPlanPage.associateWebsiteCartItem('CDLP', 'name', 'Commercial Drivers', 0);
+      await walsAssociateGetAPlanPage.associateWebsiteCartItem('CDLP', 'price', '$ 32.95', 0);
+      await walsAssociateGetAPlanPage.associateWebsiteCartTotalAmt([32.95]);
+    });
+  });
 });

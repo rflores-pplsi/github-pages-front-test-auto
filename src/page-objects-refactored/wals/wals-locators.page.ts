@@ -25,6 +25,7 @@ export class WalsLocatorPage {
   readonly associateWebsiteLocBtnContinueSmallBiz: Locator;
   readonly associateWebsiteLocBtnContinueToSuppsSmallBiz: Locator;
   readonly associateWebsiteLocBtnBizModalCheckout: Locator;
+  readonly associateWebsiteLocBtnCommercialDrCheckout: Locator;
   readonly associateWebsiteLocChkBIndividual: Locator;
   readonly associateWebsiteLocChkBNo: Locator;
   readonly associateWebsiteLocBtnContinue: Locator;
@@ -101,6 +102,7 @@ export class WalsLocatorPage {
     this.associateWebsiteLocBtnContinueSmallBiz = this.page.locator('a.close_modal_continue.js-continue-to-questions');
     this.associateWebsiteLocBtnContinueToSuppsSmallBiz = this.page.locator('a.js-continue-to-supps.close_modal_continue');
     this.associateWebsiteLocBtnBizModalCheckout = this.page.locator('#biz_modal_checkout_btn');
+    this.associateWebsiteLocBtnCommercialDrCheckout = this.page.locator('#commercial_modal_checkout_btn');
     this.associateWebsiteCartSummaryLocOneTimeFees = this.page.locator('div#fee-total p >> nth=1');
     this.associateWebsiteCartSummaryLocTotalDueToday = this.page.locator('div#today-total p >> nth=1');
     this.associateWebsiteCreateUserLocWrapper = this.page.locator('div.component-wrapper');
