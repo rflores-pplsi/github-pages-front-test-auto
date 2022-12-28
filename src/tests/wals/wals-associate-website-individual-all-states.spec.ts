@@ -272,7 +272,7 @@ test.describe('Test Dames de justice ca', () => {
     test.slow();
   });
   for (const stte of RegionsUtils.caFrenchProvinces) {
-    test.only(`For French ${stte.name} the User is able to purchase Associate Startup for Individual at $49 instead of $99`, async () => {
+    test(`For French ${stte.name} the User is able to purchase Associate Startup for Individual at $49 instead of $99`, async () => {
       test.slow;
       await test.step('Navigate to legalshield CA marketing site', async () => {
         await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlAppTestUserDamesDeJusticeCa);

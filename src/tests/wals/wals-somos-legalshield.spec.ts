@@ -8,16 +8,16 @@ let walsAssociateSearchPage: WeAreLegalShieldPage;
 test.beforeEach(async ({ page }) => {
   test.slow();
   walsAssociateSearchPage = new WeAreLegalShieldPage(page);
-  await walsAssociateSearchPage.navigateToUrl(UrlsUtils.wals.urls.urlAssociate);
+  await walsAssociateSearchPage.navigateToUrl(UrlsUtils.wals.urls.urlSomos);
 });
 
-test.describe('Test We are LegalShield', () => {
-  test("When I type in Jessen in the search box and click search, I'll be directed to https://www.wearelegalshield.com/opportunity/search?search_api_fulltext=Jessen", async () => {
+test.describe('Test Somos legalshield', () => {
+  test("When I type in Jessen in the search box and click search, I'll be directed to https://www.somoslegalshield.com/opportunity/search?search_api_fulltext=Jessen", async () => {
     await test.step('Search for associate', async () => {
       await walsAssociateSearchPage.searchForAssociate('Jessen');
     });
-    await test.step('Assert url https://www.wearelegalshield.com/opportunity/search?search_api_fulltext=Jessen   ', async () => {
-      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlAssociate + '/results?queryParam=Jessen');
+    await test.step('Assert url https://www.somoslegalshield.com/opportunity/search?search_api_fulltext=Jessen   ', async () => {
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlSomos + '/results?queryParam=Jessen');
     });
   });
   test('When I type in a name in the search box and click search, I am given a result and can view the associates website.', async () => {
@@ -41,7 +41,7 @@ test.describe('Test We are LegalShield', () => {
       await walsAssociateSearchPage.searchForAssociate('11111');
     });
     await test.step('Assert label sales associate', async () => {
-      await walsAssociateSearchPage.assertMsgAssociate('Sorry, we did not find any results for 11111');
+      await walsAssociateSearchPage.assertMsgAssociate('Lo sentimos, no encontramos ningún resultado para 11111');
     });
   });
 
@@ -50,7 +50,7 @@ test.describe('Test We are LegalShield', () => {
       await walsAssociateSearchPage.weAreLegalShieldFooterLocTermsOfServiceLink.click();
     });
     await test.step('Assert url ', async () => {
-      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlAssociate + '/terms-service');
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlSomos + '/terms-service');
     });
   });
 
@@ -59,7 +59,7 @@ test.describe('Test We are LegalShield', () => {
       await walsAssociateSearchPage.weAreLegalShieldFooterLocPrivacyPolicyLink.click();
     });
     await test.step('Assert url ', async () => {
-      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlAssociate + '/privacy-policy');
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlSomos + '/privacy-policy');
     });
   });
 
@@ -68,7 +68,7 @@ test.describe('Test We are LegalShield', () => {
       await walsAssociateSearchPage.weAreLegalShieldFooterLocCodeOfEthicsLink.click();
     });
     await test.step('Assert url ', async () => {
-      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlAssociate + '/code-ethics');
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlSomos + '/code-ethics');
     });
   });
 

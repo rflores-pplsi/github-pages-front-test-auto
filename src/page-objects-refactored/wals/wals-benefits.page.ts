@@ -33,10 +33,14 @@ export class WalsBenefitsPage extends WalsLocatorPage {
   };
 
   /**
-   * @param {string} txt
-   * @memberof assertBannerPlanPrice
+   *
+   *
+   * @param {string} plan
+   * @param {string} price
+   * @memberof WalsBenefitsPage
    */
-  assertBannerPlanPrice = async (txt: string): Promise<void> => {
-    await expect(this.page.locator('//p[contains(text(), "' + txt + '")]')).toBeVisible();
+  assertBannerPlanPrice = async (plan: string, price: string): Promise<void> => {
+    const planCardLocator = this.page.locator(`//h3[normalize-space() = "${plan}"]/../div[@class="pricing"]`);
+    await expect(planCardLocator).toContainText(price);
   };
 }

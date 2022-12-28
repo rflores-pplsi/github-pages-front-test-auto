@@ -25,7 +25,7 @@ export default class UrlsUtils {
       url: `https://checkoutv3.${envUrlString}legalshield.com`,
     },
     classicShieldAtWork: {
-      url: 'https://classic.dev-shieldatwork.com/',
+      url: `https://classic.dev-shieldatwork.com/`,
     },
     forms: {
       url: `https://forms.${envUrlString}legalshield.com/`,
@@ -55,7 +55,7 @@ export default class UrlsUtils {
       url: `https://status.${envUrlString}legalshield.com`,
     },
     typeForm: {
-      url: 'https://legalshield.typeform.com/to/lJtBMp?typeform-source=classic.dev-shieldatwork.com',
+      url: `https://legalshield.typeform.com/to/lJtBMp?typeform-source=classic.dev-shieldatwork.com`,
     },
   };
 
@@ -80,7 +80,7 @@ export default class UrlsUtils {
   static readonly legalshieldInternalUrls = {
     // TODO - find this url if it is even a thing?
     // status: {
-    //   'url': `https://status.${envUrlString}legalshieldinternal.com`,
+    //   `url`: `https://status.${envUrlString}legalshieldinternal.com`,
     // },
 
     memberSearch: {
@@ -102,60 +102,60 @@ export default class UrlsUtils {
 
   static readonly pplsiUrls = {
     home: {
-      url: 'https://www.pplsi.com',
+      url: `https://www.pplsi.com`,
     },
     termsOfService: {
-      url: 'https://www.pplsi.com/terms-service?',
+      url: `https://www.pplsi.com/terms-service?`,
     },
   };
 
   static readonly memberPerksUrls = {
     login: {
-      // url: 'https://legalshield.perkspot.com/login',
-      url: 'https://pslogin.perkspot.com/login?communityId=588',
+      // url: `https://legalshield.perkspot.com/login`,
+      url: `https://pslogin.perkspot.com/login?communityId=588`,
     },
   };
 
   static readonly launchUrls = {
     devUrl: {
-      url: 'https://' + envLaunchUrlString + '.wpengine.com/start-a-business/legal-support/',
+      url: `https://` + envLaunchUrlString + `.wpengine.com/start-a-business/legal-support/`,
     },
     prodUrl: {
-      url: 'https://legalshield.com/start-a-business/legal-support//',
+      url: `https://legalshield.com/start-a-business/legal-support//`,
     },
     uatUrl: {
-      url: 'https://' + envLaunchUrlString + '-legalshield.com/start-a-business/legal-support/',
+      url: `https://` + envLaunchUrlString + `-legalshield.com/start-a-business/legal-support/`,
     },
   };
 
   static readonly wals = {
     urls: {
-      ddev: 'http://lspro.' + envWalsUrlString + 'wearelegalshield.com/',
-      urlAppTestUserDamesDeJusticeCa: 'https://apptestuser.' + envWalsUrlString + 'damesdejustice.ca/',
-      urlAppTestUserEnCa: 'https://lspro.' + envWalsUrlString + 'wearelegalshield.ca',
-      urlAppTestUserFrCa: 'https://apptestuser.' + envWalsUrlString + 'noussommeslegalshield.ca',
-      urlAppTestUserLadiesCa: 'https://apptestuser.' + envWalsUrlString + 'ladiesofjustice.ca/',
-      urlAppTestUserLadiesUs: 'https://apptestuser.' + envWalsUrlString + 'ladiesofjustice.com/',
-      urlAppTestUserSpUS: 'https://apptestuser.' + envWalsUrlString + 'somoslegalshield.com',
-      urlAssociate: 'https://www.' + envWalsUrlString + 'wearelegalshield.com',
-      urlBenefits: 'https://apptestuser.' + envWalsUrlString + 'wearelegalshield.com/',
-      urlDamesOfJustice: 'https://www.damesdejustice.ca/',
-      urlEnCa: 'https://lspro.' + envWalsUrlString + 'wearelegalshield.ca',
-      urlEnCanada: 'https://www.' + envWalsUrlString + 'wearelegalshield.ca',
-      urlEnUS: 'https://lspro.' + envWalsUrlString + 'wearelegalshield.com',
-      urlFrCa: 'https://lspro.' + envWalsUrlString + 'noussommeslegalshield.ca',
-      urlLadies: 'https://www.ladiesofjustice.com/',
-      urlLadiesCa: 'https://www.ladiesofjustice.ca/',
-      urlNous: 'https://www.' + envWalsUrlString + 'noussommeslegalshield.ca',
-      urlSomos: 'https://www.' + envWalsUrlString + 'somoslegalshield.com',
-      urlSpUS: 'https://lspro.' + envWalsUrlString + 'somoslegalshield.com',
+      ddev: `http://lspro.${envWalsUrlString}wearelegalshield.com`,
+      urlAppTestUserDamesDeJusticeCa: `https://apptestuser.${envWalsUrlString}damesdejustice.ca`,
+      urlAppTestUserEnCa: `https://lspro.${envWalsUrlString}wearelegalshield.ca`,
+      urlAppTestUserFrCa: `https://apptestuser.${envWalsUrlString}noussommeslegalshield.ca`,
+      urlAppTestUserLadiesCa: `https://apptestuser.${envWalsUrlString}ladiesofjustice.ca`,
+      urlAppTestUserLadiesUs: `https://apptestuser.${envWalsUrlString}ladiesofjustice.com`,
+      urlAppTestUserSpUS: `https://apptestuser.${envWalsUrlString}somoslegalshield.com`,
+      urlAssociate: `https://www.${envWalsUrlString}wearelegalshield.com`,
+      urlBenefits: `https://apptestuser.${envWalsUrlString}wearelegalshield.com`,
+      urlDamesOfJustice: `https://www.${envWalsUrlString}damesdejustice.ca`,
+      urlEnCa: `https://lspro.${envWalsUrlString}wearelegalshield.ca`,
+      urlEnCanada: `https://www.${envWalsUrlString}wearelegalshield.ca`,
+      urlEnUS: `https://lspro.${envWalsUrlString}wearelegalshield.com`,
+      urlFrCa: `https://lspro.${envWalsUrlString}noussommeslegalshield.ca`,
+      urlLadies: `https://www.${envWalsUrlString}ladiesofjustice.com`,
+      urlLadiesCa: `https://www.${envWalsUrlString}ladiesofjustice.ca`,
+      urlNous: `https://www.${envWalsUrlString}noussommeslegalshield.ca`,
+      urlSomos: `https://www.${envWalsUrlString}somoslegalshield.com`,
+      urlSpUS: `https://lspro.${envWalsUrlString}somoslegalshield.com`,
     },
 
     // uatUrl: {
-    //   url: 'https://lspro.stage.wearelegalshield.com/launch',
+    //   url: `https://lspro.stage.wearelegalshield.com/launch`,
     // },
     // prodUrl: {
-    //   url: 'https://lspro.wearelegalshield.com/launch',
+    //   url: `https://lspro.wearelegalshield.com/launch`,
     // },
   };
 

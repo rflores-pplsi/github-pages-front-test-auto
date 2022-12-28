@@ -73,11 +73,17 @@ export class WalsLocatorPage {
   readonly associateWebsiteLocTxtRoutingNumber: Locator;
   readonly associateWebsiteLocTxtAccountNumber: Locator;
   readonly associateWebsiteLocRdoCheckingAccount: Locator;
+  // wearelegalshield locators
   readonly weAreLegalShieldLocInputAssociateSearch: Locator;
   readonly weAreLegalShieldLocBtnAssociateSearch: Locator;
   //readonly weAreLegalShieldLocLabelSalesAssociate: Locator;
   readonly weAreLegalShieldLocMsgAssociateNotFound: Locator;
   readonly weAreLegalShieldLocBannerHeader: Locator;
+  readonly weAreLegalShieldFooterLocTermsOfServiceLink: Locator;
+  readonly weAreLegalShieldFooterLocPrivacyPolicyLink: Locator;
+  readonly weAreLegalShieldFooterLocCodeOfEthicsLink: Locator;
+  readonly weAreLegalShieldFooterLocLegalShieldSOC3Link: Locator;
+
   readonly associateWebsiteLocLogo: Locator;
   readonly associateWebsiteLocRdSmallBiz: Locator;
   /**
@@ -163,6 +169,10 @@ export class WalsLocatorPage {
     //this.weAreLegalShieldLocLabelSalesAssociate = this.WeAreLegalShieldLocLabelSalesAssociate('Hello');
     this.weAreLegalShieldLocMsgAssociateNotFound = this.page.locator('//div[contains(text(), "Sorry, we did not find any results for")]');
     this.weAreLegalShieldLocBannerHeader = this.page.locator('//h3[contains(text(), "Business Builder")]');
+    this.weAreLegalShieldFooterLocTermsOfServiceLink = this.page.locator('//a[contains(@href,"/terms-service")]');
+    this.weAreLegalShieldFooterLocPrivacyPolicyLink = this.page.locator('//a[contains(@href,"/privacy-policy")]');
+    this.weAreLegalShieldFooterLocCodeOfEthicsLink = this.page.locator('//a[contains(@href,"/code-ethics")]');
+    this.weAreLegalShieldFooterLocLegalShieldSOC3Link = this.page.locator('//a[contains(@href,"LegalShield_SOC_3_Issued_Report.pdf")]');
     this.associateWebsiteLocLogo = this.page.locator('div#block-headerlogowalsus img.image-style-large');
     this.associateWebsiteLocRdSmallBiz = this.page.locator('#no-traded-label');
   }
@@ -183,6 +193,18 @@ export class WalsLocatorPage {
   };
 
   /**
+   *
+   *
+   * @param {string} substring
+   * @memberof WalsLocatorPage
+   */
+  WeAreLegalShieldAssertUrlContains = async (substring: string): Promise<void> => {
+    await expect(this.page).toHaveURL(new RegExp(substring));
+  };
+
+  /**
+   *
+   *
    * @param {string} classParameter
    * @param {number} getAPlanNum
    * @memberof WalsLocatorPage

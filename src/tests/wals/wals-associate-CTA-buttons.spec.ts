@@ -31,7 +31,7 @@ test.describe('Test CTA buttons', () => {
     });
     await test.step('Verify Hero Banners for All Memberships button', async () => {
       await walsBenefitsPage.assertBannerHeader('Business Builder');
-      await walsBenefitsPage.assertBannerPlanPrice('$49.90/month + $49.00 one time fee');
+      await walsBenefitsPage.assertBannerPlanPrice('Business Builder', '$49.90/month + $49.00 one time fee');
     });
     await test.step('Verify the Get Plan button changes to Added after click and pick a plan', async () => {
       await walsAssociateGetAPlanPage.addAPlan('BLD', 0, 'All Memberships');
@@ -59,7 +59,7 @@ test.describe('Test CTA buttons', () => {
     await test.step('Verify Hero Banners for Business Builder button', async () => {
       await walsAssociateWebsitePage.clickOnCTAButton('business-builder', 1);
       await walsBenefitsPage.assertBannerHeader('Business Builder');
-      await walsBenefitsPage.assertBannerPlanPrice('$49.90/month + $49.00 one time fee');
+      await walsBenefitsPage.assertBannerPlanPrice('Business Builder', '$49.90/month + $49.00 one time fee');
     });
     await test.step('Verify the Get Plan button changes to Added after click and pick a plan', async () => {
       await walsAssociateGetAPlanPage.addAPlan('BLD', 0, 'Business Builder');
@@ -87,7 +87,7 @@ test.describe('Test CTA buttons', () => {
     await test.step('Verify Hero Banners for LegalShield button', async () => {
       await walsAssociateWebsitePage.clickOnCTAButton('legal', 1);
       await walsBenefitsPage.assertBannerHeader('Legal Plan');
-      await walsBenefitsPage.assertBannerPlanPrice('$29.95/month');
+      await walsBenefitsPage.assertBannerPlanPrice('Legal Plan', '$29.95/month');
     });
     await test.step('Verify the Get Plan button changes to Added after click and pick a plan', async () => {
       await walsAssociateGetAPlanPage.addAPlan('ASSOCSTP', 0, 'LegalShield', ['input-TD3', 'input-GSBS', 'input-RS2']);
@@ -112,7 +112,7 @@ test.describe('Test CTA buttons', () => {
     await test.step('Verify Hero Banners for IDShield button', async () => {
       await walsAssociateWebsitePage.clickOnCTAButton('ids', 1);
       await walsBenefitsPage.assertBannerHeader('IDShield');
-      await walsBenefitsPage.assertBannerPlanPrice('$14.95/month');
+      await walsBenefitsPage.assertBannerPlanPrice('IDShield', '$14.95/month');
     });
     await test.step('Verify the Get Plan button changes to Added after click and pick a plan', async () => {
       await walsAssociateGetAPlanPage.addAPlan('IDS', 1, 'IDShield', [], 'IDSF');
@@ -136,7 +136,7 @@ test.describe('Test CTA buttons', () => {
     await test.step('Verify Hero Banners for Small Business button', async () => {
       await walsAssociateWebsitePage.clickOnCTAButton('biz', 1);
       await walsBenefitsPage.assertBannerHeader('Small Business Plan');
-      await walsBenefitsPage.assertBannerPlanPrice('$49.00/month');
+      await walsBenefitsPage.assertBannerPlanPrice('Small Business Plan', '$49.00/month');
     });
     await test.step('Verify the Get Plan button changes to Added after click and pick a plan', async () => {
       await walsAssociateGetAPlanPage.addAPlan('BIZ', 1, 'Small Business', [], 'PLUS');
@@ -162,7 +162,7 @@ test.describe('Test CTA buttons', () => {
     await test.step('Verify Hero Banners for Commercial Drivers button', async () => {
       await walsAssociateWebsitePage.clickOnCTAButton('cdlp', 1);
       await walsBenefitsPage.assertBannerHeader('Commercial Drivers Legal Plan');
-      await walsBenefitsPage.assertBannerPlanPrice('$32.95/month');
+      await walsBenefitsPage.assertBannerPlanPrice('Commercial Drivers Legal Plan', '$32.95/month');
     });
     await test.step('Verify the Get Plan button changes to Added after click and pick a plan', async () => {
       await walsAssociateGetAPlanPage.addAPlan('CDLP', 1, 'Commercial Drivers', [], 'CDLP');

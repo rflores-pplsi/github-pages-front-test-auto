@@ -8,16 +8,15 @@ let walsAssociateSearchPage: WeAreLegalShieldPage;
 test.beforeEach(async ({ page }) => {
   test.slow();
   walsAssociateSearchPage = new WeAreLegalShieldPage(page);
-  await walsAssociateSearchPage.navigateToUrl(UrlsUtils.wals.urls.urlAssociate);
+  await walsAssociateSearchPage.navigateToUrl(UrlsUtils.wals.urls.urlDamesOfJustice);
 });
-
-test.describe('Test We are LegalShield', () => {
-  test("When I type in Jessen in the search box and click search, I'll be directed to https://www.wearelegalshield.com/opportunity/search?search_api_fulltext=Jessen", async () => {
+test.describe('Test Dames de justice', () => {
+  test("When I type in Jessen in the search box and click search, I'll be directed to https://www.damesdejustice.ca/opportunity/search?search_api_fulltext=Jessen", async () => {
     await test.step('Search for associate', async () => {
       await walsAssociateSearchPage.searchForAssociate('Jessen');
     });
-    await test.step('Assert url https://www.wearelegalshield.com/opportunity/search?search_api_fulltext=Jessen   ', async () => {
-      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlAssociate + '/results?queryParam=Jessen');
+    await test.step('Assert url https://www.damesdejustice.ca/opportunity/search?search_api_fulltext=Jessen   ', async () => {
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlDamesOfJustice + '/results?queryParam=Jessen');
     });
   });
   test('When I type in a name in the search box and click search, I am given a result and can view the associates website.', async () => {
@@ -41,38 +40,37 @@ test.describe('Test We are LegalShield', () => {
       await walsAssociateSearchPage.searchForAssociate('11111');
     });
     await test.step('Assert label sales associate', async () => {
-      await walsAssociateSearchPage.assertMsgAssociate('Sorry, we did not find any results for 11111');
+      await walsAssociateSearchPage.assertMsgAssociate("Désolé, nous n'avons trouvé aucun résultat pour 11111");
     });
   });
-
-  test('When I click on the Terms of Service Link in the Footer ', async () => {
+  test('When I click on the Terms of Service Link in the Footer', async () => {
     await test.step('Click on Terms of Service Link', async () => {
       await walsAssociateSearchPage.weAreLegalShieldFooterLocTermsOfServiceLink.click();
     });
     await test.step('Assert url ', async () => {
-      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlAssociate + '/terms-service');
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlDamesOfJustice + '/terms-service');
     });
   });
 
-  test('When I click on the Privacy Policy Link in the Footer ', async () => {
+  test('When I click on the Privacy Policy Link in the Footer', async () => {
     await test.step('Click on Privacy Policy Link', async () => {
       await walsAssociateSearchPage.weAreLegalShieldFooterLocPrivacyPolicyLink.click();
     });
     await test.step('Assert url ', async () => {
-      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlAssociate + '/privacy-policy');
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlDamesOfJustice + '/privacy-policy');
     });
   });
 
-  test('When I click on the Code of Ethics Link in the Footer ', async () => {
+  test('When I click on the Code of Ethics Link in the Footer', async () => {
     await test.step('Click on Code of Ethics Link', async () => {
       await walsAssociateSearchPage.weAreLegalShieldFooterLocCodeOfEthicsLink.click();
     });
     await test.step('Assert url ', async () => {
-      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlAssociate + '/code-ethics');
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlDamesOfJustice + '/code-ethics');
     });
   });
 
-  test('When I click on the LegalShield SOC 3 Link in the Footer ', async ({ page, browserName, headless }) => {
+  test('When I click on the LegalShield SOC 3 Link in the Footer', async ({ page, browserName, headless }) => {
     if ((browserName === 'chromium' && headless === true) || browserName === 'firefox') {
       test.skip; // cannot navigate to pdf for headless chrome test configs or any firefox automation
       console.log('Skipped test for Firefox or Chromium/Headless configuration, as it downloads the pdf instead of navigating to it');
