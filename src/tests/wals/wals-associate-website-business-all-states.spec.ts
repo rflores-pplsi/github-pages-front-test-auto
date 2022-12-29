@@ -15,7 +15,7 @@ test.describe('Somos legalshield', () => {
     walsAssociateWebsitePage = new WalsAssociateWebsitePage(page);
     test.slow();
   });
-  for (const stte of RegionsUtils.usSpanishStates.filter((ste) => ste.abbrv == 'NY')) {
+  for (const stte of RegionsUtils.usSpanishStates) {
     test(`${stte.name} User is able to purchase Associate Startup for Business at $49 instead of $99 in`, async () => {
       test.slow;
       await test.step('Navigate to legalshield marketing site', async () => {
@@ -69,8 +69,8 @@ test.describe('Test We are LegalShield', () => {
     walsAssociateWebsitePage = new WalsAssociateWebsitePage(page);
     test.slow();
   });
-  for (const stte of RegionsUtils.usSpanishStates.filter((ste) => ste.abbrv == 'AR')) {
-    test.only(`${stte.name} User is able to purchase Associate Startup for Business at $49 instead of $99`, async () => {
+  for (const stte of RegionsUtils.usStates) {
+    test(`${stte.name} User is able to purchase Associate Startup for Business at $49 instead of $99`, async () => {
       test.slow;
       await test.step('Navigate to legalshield marketing site', async () => {
         await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlBenefits);
@@ -123,7 +123,7 @@ test.describe('Test nous sommes legalshield.ca', () => {
     walsAssociateWebsitePage = new WalsAssociateWebsitePage(page);
     test.slow();
   });
-  for (const stte of RegionsUtils.caFrenchProvinces.filter((ste) => ste.abbrv == 'QC')) {
+  for (const stte of RegionsUtils.caFrenchProvinces) {
     test(`${stte.name} User is able to purchase Associate Startup for Business at $49 instead of $99`, async () => {
       test.slow;
       await test.step('Navigate to legalshield CA marketing site', async () => {
@@ -180,7 +180,7 @@ test.describe('Test We Are legalshield.ca', () => {
     walsAssociateWebsitePage = new WalsAssociateWebsitePage(page);
     test.slow();
   });
-  for (const stte of RegionsUtils.caProvinces.filter((ste) => ste.abbrv == 'QC')) {
+  for (const stte of RegionsUtils.caProvinces) {
     test(`${stte.name} User is able to purchase Associate Startup for Business at $49 instead of $99`, async () => {
       test.slow;
       await test.step('Navigate to legalshield CA marketing site', async () => {
@@ -237,7 +237,7 @@ test.describe('Test Ladies of justice US', () => {
     walsAssociateWebsitePage = new WalsAssociateWebsitePage(page);
     test.slow();
   });
-  for (const stte of RegionsUtils.usStates.filter((ste) => ste.abbrv == 'VA')) {
+  for (const stte of RegionsUtils.usStates) {
     test(`${stte.name} User is able to purchase Associate Startup for Business at $49 instead of $99`, async () => {
       test.slow;
       await test.step('Navigate to legalshield marketing site', async () => {
@@ -293,14 +293,14 @@ test.describe('Test Dames de justice ca', () => {
     walsAssociateWebsitePage = new WalsAssociateWebsitePage(page);
     test.slow();
   });
-  for (const stte of RegionsUtils.caFrenchProvinces.filter((ste) => ste.abbrv == 'QC')) {
+  for (const stte of RegionsUtils.caFrenchProvinces) {
     test(`${stte.name} User is able to purchase Associate Startup for Business at $49 instead of $99`, async () => {
       test.slow;
       await test.step('Navigate to legalshield CA marketing site', async () => {
         await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlAppTestUserDamesDeJusticeCa);
       });
       await test.step('Choose a region', async () => {
-        await walsAssociateWebsitePage.changeStateinformation(DataUtils.data.testingHarness.ca.bd.province.LBC);
+        await walsAssociateWebsitePage.changeStateinformation(stte.name);
       });
       await test.step('Become an associate', async () => {
         await walsAssociateWebsitePage.becomeAssociate();
@@ -350,7 +350,7 @@ test.describe('Test Ladies of justice ca', () => {
     walsAssociateWebsitePage = new WalsAssociateWebsitePage(page);
     test.slow();
   });
-  for (const stte of RegionsUtils.caProvinces.filter((ste) => ste.abbrv == 'QC')) {
+  for (const stte of RegionsUtils.caProvinces) {
     test(`${stte.name} User is able to purchase Associate Startup for Business at $49 instead of $99`, async () => {
       test.slow;
       await test.step('Navigate to legalshield CA marketing site', async () => {

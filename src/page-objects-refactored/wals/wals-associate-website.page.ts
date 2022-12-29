@@ -39,7 +39,7 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
       await this.associateWebsiteLocTxtAddress.fill(street);
       await this.associateWebsiteLocTxtCity.fill(city);
       await this.page.keyboard.press('Tab');
-      await this.associateWebsiteLocTxtZipCode.fill(postalCode);
+      await this.associateWebsiteLocTxtZipCode.type(postalCode);
       await this.page.keyboard.press('Tab');
       await this.associateWebsiteLocTxtPhoneNumber.type(phone);
       await this.associateWebsiteLocSlctPhoneType.click();
@@ -73,7 +73,7 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
       await this.associateWebsiteLocTxtAddress.fill(street);
       await this.associateWebsiteLocTxtCity.fill(city);
       await this.page.keyboard.press('Tab');
-      await this.associateWebsiteLocTxtZipCode.fill(postalCode);
+      await this.associateWebsiteLocTxtZipCode.type(postalCode);
       await this.page.keyboard.press('Tab');
       await this.associateWebsiteLocTxtPhoneNumber.type(phone);
       await this.associateWebsiteLocSlctPhoneType.click();
@@ -107,8 +107,12 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
       await this.associateWebsiteLocTxtAddress.fill(street);
       await this.associateWebsiteLocTxtCity.fill(city);
       await this.page.keyboard.press('Tab');
-      await this.associateWebsiteLocTxtZipCode.type(stte.validAddress.postalCode);
-      // (await this.WeAreLegalShieldLocContainsText(postalCode)).click();
+      if (!expect(this.associateWebsiteLocTxtZipCode).toBeHidden) {
+        await this.associateWebsiteLocTxtZipCode.type(postalCode);
+      } else {
+        const locator = await this.WeAreLegalShieldLocContainsText(postalCode);
+        await locator.click();
+      }
       await this.page.keyboard.press('Tab');
       await this.associateWebsiteLocTxtPhoneNumber.type(phone);
       await this.page.keyboard.press('Tab');
@@ -143,8 +147,12 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
       await this.associateWebsiteLocTxtAddress.fill(street);
       await this.associateWebsiteLocTxtCity.fill(city);
       await this.page.keyboard.press('Tab');
-      await (await this.WeAreLegalShieldLocContainsText(postalCode)).click();
-      // await this.associateWebsiteLocTxtZipCode.type(postalCode);
+      if (!expect(this.associateWebsiteLocTxtZipCode).toBeHidden) {
+        await this.associateWebsiteLocTxtZipCode.type(postalCode);
+      } else {
+        const locator = await this.WeAreLegalShieldLocContainsText(postalCode);
+        await locator.click();
+      }
       await this.page.keyboard.press('Tab');
       await this.associateWebsiteLocTxtPhoneNumber.type(phone);
       await this.associateWebsiteLocSlctPhoneType.click();

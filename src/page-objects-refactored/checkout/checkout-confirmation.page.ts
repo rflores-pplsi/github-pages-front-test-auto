@@ -330,12 +330,12 @@ export class CheckoutConfirmationPage extends CheckoutLocatorsPage {
             pd.cost
           }") and contains(.,"Monthly")]`
         );
-        await locator.isVisible();
+        await expect(locator).toBeVisible();
       } else {
         const locator = this.page.locator(
           `//div[contains(@class,"plan-details-card") and contains(.,"${pd.productName}") and contains (.,"${pd.cost}") and contains(.,"Monthly")]`
         );
-        await locator.isVisible();
+        await expect(locator).toBeVisible();
       }
     }
   };
@@ -353,7 +353,7 @@ export class CheckoutConfirmationPage extends CheckoutLocatorsPage {
       if (!pd.productName.includes('-')) {
         // do not look for shortcodes for supplements
         const shortName = responseBody.offers[i].products[0].planDetails.short_name;
-        await expect(shortName).toEqual(pd.shortCode);
+        expect(shortName).toEqual(pd.shortCode);
       }
       i++;
     }
@@ -373,7 +373,7 @@ export class CheckoutConfirmationPage extends CheckoutLocatorsPage {
   assertOrderSummaryPlanPriceConfirmationPage = async (): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertOrderSummaryPlanPriceConfirmationPage');
     const planPrice = this.page.locator('div.lsux-card--inset.p-6 h3.lsux-heading.plan-price.lsux-heading--t20');
-    await expect(planPrice).toBe(CheckoutConfirmationPage.pPlanPrice);
+    expect(planPrice).toBe(CheckoutConfirmationPage.pPlanPrice);
   };
 
   /**
@@ -383,7 +383,7 @@ export class CheckoutConfirmationPage extends CheckoutLocatorsPage {
   assertOrderSummaryPlanLabelConfirmationPage = async (planName: string): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertOrderSummaryPlanLabelConfirmationPage');
     const lblplan = this.page.locator(`text=${planName}`);
-    await expect(lblplan).toBe(CheckoutConfirmationPage.pPlan);
+    expect(lblplan).toBe(CheckoutConfirmationPage.pPlan);
   };
 
   /**
@@ -392,7 +392,7 @@ export class CheckoutConfirmationPage extends CheckoutLocatorsPage {
   assertOrderSummaryLegalShieldMembershipConfirmationPage = async (): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertOrderSummaryMonthlyConfirmationPage');
     const lblplan = this.page.locator('text = LegalShield Membership');
-    await expect(lblplan).toBe('LegalShield Membership');
+    expect(lblplan).toBe('LegalShield Membership');
   };
 
   /**
@@ -401,7 +401,7 @@ export class CheckoutConfirmationPage extends CheckoutLocatorsPage {
   assertOrderSummaryMonthlyConfirmationPage = async (): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertOrderSummaryMonthlyConfirmationPage');
     const lblplan = this.page.locator('ext = Monthly Subscription');
-    await expect(lblplan).toBe('Monthly Subscription');
+    expect(lblplan).toBe('Monthly Subscription');
   };
 
   /**
@@ -427,7 +427,7 @@ export class CheckoutConfirmationPage extends CheckoutLocatorsPage {
   assertLegalShieldMembershipIsDisplayed = async (planType: string): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertLegalShieldMembershipIsDisplayed');
     const ele = `//h2[contains(@class,"membership-title") and contains (.,"${planType} Membership")]`;
-    await this.page.locator(ele).isVisible({ timeout: 100000 });
+    await expect(this.page.locator(ele)).toBeVisible({ timeout: 100000 });
   };
 
   /**
@@ -437,7 +437,7 @@ export class CheckoutConfirmationPage extends CheckoutLocatorsPage {
   assertMembershipTileIsDisplayed = async (planType: string): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertMembershipTileIsDisplayed');
     const ele = `//h2[contains(@class,"membership-title") and contains (.,"${planType} Membership")]`;
-    await this.page.locator(ele).isVisible({ timeout: 100000 });
+    await expect(this.page.locator(ele)).toBeVisible({ timeout: 100000 });
   };
 
   /**
@@ -462,7 +462,7 @@ export class CheckoutConfirmationPage extends CheckoutLocatorsPage {
   assertAllPlanTilesOnConfirmationPage = async (productDetails: Array<ProductDetails>): Promise<void> => {
     for (const pd of productDetails) {
       const ele = `//div[contains(@class,"plan-details-card") and contains(.,"${pd.productName}") and contains(.,"${pd.shortCode}")]`;
-      await this.page.isVisible(ele);
+      await expect(this.page.locator(ele)).toBeVisible();
     }
   };
 
