@@ -1,14 +1,19 @@
 import { test } from '@playwright/test';
 import { WeAreLegalShieldPage } from '../../page-objects-refactored/wals/wals-we-are-legalshield.page';
+import { WeAreLegalShieldOpportunitySuccessPage } from '../../page-objects-refactored/wals/wals-we-are-legalshield-opportunity-success.page';
+
 import UrlsUtils from '../../utils/urls.utils';
 
 // define the instance of Page declaration
 let walsAssociateSearchPage: WeAreLegalShieldPage;
+let weAreLegalShieldOpportunitySuccessPage: WeAreLegalShieldOpportunitySuccessPage;
+
 // Setup environment before each test
 test.beforeEach(async ({ page }) => {
   test.slow();
   walsAssociateSearchPage = new WeAreLegalShieldPage(page);
   await walsAssociateSearchPage.navigateToUrl(UrlsUtils.wals.urls.urlEnCanada);
+  weAreLegalShieldOpportunitySuccessPage = new WeAreLegalShieldOpportunitySuccessPage(page);
 });
 
 test.describe('Test We Are LegalShield CA', () => {
@@ -84,5 +89,17 @@ test.describe('Test We Are LegalShield CA', () => {
         await page.waitForLoadState();
       });
     }
+  });
+
+  test('Search Profiles of Success by Occupation and displays at least one', async () => {
+    await test.step('Navigate to Profiles of Success Page', async () => {
+      await walsAssociateSearchPage.WeAreLegalShieldHeaderLocProfilesOfSuccessLink.click();
+    });
+    await test.step('Search by Occupation', async () => {
+      await weAreLegalShieldOpportunitySuccessPage.searchForProfile('Business Owner');
+    });
+    await test.step('Verify search by Occupation returns results and displays tile', async () => {
+      await weAreLegalShieldOpportunitySuccessPage.assertNoResultsFoundMessageIsNotDisplayed();
+    });
   });
 });

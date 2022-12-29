@@ -1,13 +1,17 @@
 import { test } from '@playwright/test';
 import { WeAreLegalShieldPage } from '../../page-objects-refactored/wals/wals-we-are-legalshield.page';
+import { WeAreLegalShieldOpportunitySuccessPage } from '../../page-objects-refactored/wals/wals-we-are-legalshield-opportunity-success.page';
+
 import UrlsUtils from '../../utils/urls.utils';
 
 // define the instance of Page declaration
 let walsAssociateSearchPage: WeAreLegalShieldPage;
+let weAreLegalShieldOpportunitySuccessPage: WeAreLegalShieldOpportunitySuccessPage;
 // Setup environment before each test
 test.beforeEach(async ({ page }) => {
   test.slow();
   walsAssociateSearchPage = new WeAreLegalShieldPage(page);
+  weAreLegalShieldOpportunitySuccessPage = new WeAreLegalShieldOpportunitySuccessPage(page);
   await walsAssociateSearchPage.navigateToUrl(UrlsUtils.wals.urls.urlAssociate);
 });
 
@@ -69,6 +73,33 @@ test.describe('Test We are LegalShield', () => {
     });
     await test.step('Assert url ', async () => {
       await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlAssociate + '/code-ethics');
+    });
+  });
+
+  test('When I click on the LegalShield SOC 3 Link in the Footer ', async ({ page, browserName, headless }) => {
+    if ((browserName === 'chromium' && headless === true) || browserName === 'firefox') {
+      test.skip; // cannot navigate to pdf for headless chrome test configs or any firefox automation
+      console.log('Skipped test for Firefox or Chromium/Headless configuration, as it downloads the pdf instead of navigating to it');
+    } else {
+      await test.step('Click on LegalShield SOC 3 Link', async () => {
+        await walsAssociateSearchPage.weAreLegalShieldFooterLocLegalShieldSOC3Link.click();
+      });
+      await test.step('Assert url ', async () => {
+        await walsAssociateSearchPage.WeAreLegalShieldAssertUrlContains('LegalShield_SOC_3_Issued_Report.pdf');
+        await page.waitForLoadState();
+      });
+    }
+  });
+
+  test('Search Profiles of Success by Occupation and displays at least one', async () => {
+    await test.step('Navigate to Profiles of Success Page', async () => {
+      await walsAssociateSearchPage.WeAreLegalShieldHeaderLocProfilesOfSuccessLink.click();
+    });
+    await test.step('Search by Occupation', async () => {
+      await weAreLegalShieldOpportunitySuccessPage.searchForProfile('Business Owner');
+    });
+    await test.step('Verify search by Occupation returns results and displays tile', async () => {
+      await weAreLegalShieldOpportunitySuccessPage.assertNoResultsFoundMessageIsNotDisplayed();
     });
   });
 
