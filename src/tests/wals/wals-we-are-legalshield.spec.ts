@@ -1,17 +1,20 @@
 import { test } from '@playwright/test';
 import { WeAreLegalShieldPage } from '../../page-objects-refactored/wals/wals-we-are-legalshield.page';
 import { WeAreLegalShieldOpportunitySuccessPage } from '../../page-objects-refactored/wals/wals-we-are-legalshield-opportunity-success.page';
+import { WeAreLegalShieldExecutiveTeamPage } from '../../page-objects-refactored/wals/wals-we-are-legalshield-executive-team.page';
 
 import UrlsUtils from '../../utils/urls.utils';
 
 // define the instance of Page declaration
 let walsAssociateSearchPage: WeAreLegalShieldPage;
 let weAreLegalShieldOpportunitySuccessPage: WeAreLegalShieldOpportunitySuccessPage;
+let weAreLegalShieldExecutiveTeamPage: WeAreLegalShieldExecutiveTeamPage;
 // Setup environment before each test
 test.beforeEach(async ({ page }) => {
   test.slow();
   walsAssociateSearchPage = new WeAreLegalShieldPage(page);
   weAreLegalShieldOpportunitySuccessPage = new WeAreLegalShieldOpportunitySuccessPage(page);
+  weAreLegalShieldExecutiveTeamPage = new WeAreLegalShieldExecutiveTeamPage(page);
   await walsAssociateSearchPage.navigateToUrl(UrlsUtils.wals.urls.urlAssociate);
 });
 
@@ -103,18 +106,15 @@ test.describe('Test We are LegalShield', () => {
     });
   });
 
-  test('When I click on the LegalShield SOC 3 Link in the Footer ', async ({ page, browserName, headless }) => {
-    if ((browserName === 'chromium' && headless === true) || browserName === 'firefox') {
-      test.skip; // cannot navigate to pdf for headless chrome test configs or any firefox automation
-      console.log('Skipped test for Firefox or Chromium/Headless configuration, as it downloads the pdf instead of navigating to it');
-    } else {
-      await test.step('Click on LegalShield SOC 3 Link', async () => {
-        await walsAssociateSearchPage.weAreLegalShieldFooterLocLegalShieldSOC3Link.click();
-      });
-      await test.step('Assert url ', async () => {
-        await walsAssociateSearchPage.WeAreLegalShieldAssertUrlContains('LegalShield_SOC_3_Issued_Report.pdf');
-        await page.waitForLoadState();
-      });
-    }
+  test('When I click on Read Full Bio on the Executive Team page the modal pops up and Name is Displayed', async () => {
+    await test.step('Navigate to Executive Team Page', async () => {
+      await walsAssociateSearchPage.WeAreLegalShieldHeaderLocExecutiveTeamLink.click();
+    });
+    await test.step('Click on Read Full Bio Link for Name', async () => {
+      await weAreLegalShieldExecutiveTeamPage.clickOnReadFullBioLink('Steve Williamson');
+    });
+    await test.step('Close Bio Modal and assert Not Displayed', async () => {
+      await weAreLegalShieldExecutiveTeamPage.closeBioModalAndAssertNotVisible();
+    });
   });
 });

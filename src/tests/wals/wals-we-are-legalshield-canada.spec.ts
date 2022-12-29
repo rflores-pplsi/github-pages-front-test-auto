@@ -1,12 +1,14 @@
 import { test } from '@playwright/test';
 import { WeAreLegalShieldPage } from '../../page-objects-refactored/wals/wals-we-are-legalshield.page';
 import { WeAreLegalShieldOpportunitySuccessPage } from '../../page-objects-refactored/wals/wals-we-are-legalshield-opportunity-success.page';
+import { WeAreLegalShieldExecutiveTeamPage } from '../../page-objects-refactored/wals/wals-we-are-legalshield-executive-team.page';
 
 import UrlsUtils from '../../utils/urls.utils';
 
 // define the instance of Page declaration
 let walsAssociateSearchPage: WeAreLegalShieldPage;
 let weAreLegalShieldOpportunitySuccessPage: WeAreLegalShieldOpportunitySuccessPage;
+let weAreLegalShieldExecutiveTeamPage: WeAreLegalShieldExecutiveTeamPage;
 
 // Setup environment before each test
 test.beforeEach(async ({ page }) => {
@@ -14,6 +16,7 @@ test.beforeEach(async ({ page }) => {
   walsAssociateSearchPage = new WeAreLegalShieldPage(page);
   await walsAssociateSearchPage.navigateToUrl(UrlsUtils.wals.urls.urlEnCanada);
   weAreLegalShieldOpportunitySuccessPage = new WeAreLegalShieldOpportunitySuccessPage(page);
+  weAreLegalShieldExecutiveTeamPage = new WeAreLegalShieldExecutiveTeamPage(page);
 });
 
 test.describe('Test We Are LegalShield CA', () => {
@@ -100,6 +103,18 @@ test.describe('Test We Are LegalShield CA', () => {
     });
     await test.step('Verify search by Occupation returns results and displays tile', async () => {
       await weAreLegalShieldOpportunitySuccessPage.assertNoResultsFoundMessageIsNotDisplayed();
+    });
+  });
+
+  test.only('When I click on Read Full Bio on the Executive Team page the modal pops up and Name is Displayed', async () => {
+    await test.step('Navigate to Executive Team Page', async () => {
+      await walsAssociateSearchPage.WeAreLegalShieldHeaderLocExecutiveTeamLink.click();
+    });
+    await test.step('Click on Read Full Bio Link for Name', async () => {
+      await weAreLegalShieldExecutiveTeamPage.clickOnReadFullBioLink('Jeff Bell');
+    });
+    await test.step('Close Bio Modal and assert Not Displayed', async () => {
+      await weAreLegalShieldExecutiveTeamPage.closeBioModalAndAssertNotVisible();
     });
   });
 });

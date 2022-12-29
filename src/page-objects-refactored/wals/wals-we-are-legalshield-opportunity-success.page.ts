@@ -45,6 +45,6 @@ export class WeAreLegalShieldOpportunitySuccessPage extends WalsLocatorPage {
    * @memberof WeAreLegalShieldOpportunitySuccessPage
    */
   assertNoResultsFoundMessageIsNotDisplayed = async (): Promise<void> => {
-    await expect(this.weAreLegalShieldOpportunitySuccessNoResultsFoundMessage).not.toBeVisible();
+    await expect(this.weAreLegalShieldOpportunitySuccessLOCNoResultsFoundMessage).not.toBeVisible();
   };
 }

@@ -80,13 +80,16 @@ export class WalsLocatorPage {
   readonly weAreLegalShieldLocMsgAssociateNotFound: Locator;
   readonly weAreLegalShieldLocBannerHeader: Locator;
   readonly WeAreLegalShieldHeaderLocProfilesOfSuccessLink: Locator;
+  readonly WeAreLegalShieldHeaderLocExecutiveTeamLink: Locator;
   readonly weAreLegalShieldFooterLocTermsOfServiceLink: Locator;
   readonly weAreLegalShieldFooterLocPrivacyPolicyLink: Locator;
   readonly weAreLegalShieldFooterLocCodeOfEthicsLink: Locator;
   readonly weAreLegalShieldFooterLocLegalShieldSOC3Link: Locator;
   readonly weAreLegalShieldOpportunitySuccessLocSearchInput: Locator;
   readonly weAreLegalShieldOpportunitySuccessLocSearchButton: Locator;
-  readonly weAreLegalShieldOpportunitySuccessNoResultsFoundMessage: Locator;
+  readonly weAreLegalShieldOpportunitySuccessLOCNoResultsFoundMessage: Locator;
+  readonly weAreLegalShieldExecutiveTeamLocDisplayedBioContainer: Locator;
+  readonly weAreLegalShieldExecutiveTeamLocDisplayedBioContainerCloseButton: Locator;
 
   readonly associateWebsiteLocLogo: Locator;
   readonly associateWebsiteLocRdSmallBiz: Locator;
@@ -174,6 +177,7 @@ export class WalsLocatorPage {
     this.weAreLegalShieldLocMsgAssociateNotFound = this.page.locator('//div[contains(text(), "Sorry, we did not find any results for")]');
     this.weAreLegalShieldLocBannerHeader = this.page.locator('//h3[contains(text(), "Business Builder")]');
     this.WeAreLegalShieldHeaderLocProfilesOfSuccessLink = this.page.locator('//a[contains(@href,"/opportunity/success")]');
+    this.WeAreLegalShieldHeaderLocExecutiveTeamLink = this.page.locator('//a[contains(@href,"/executive-team")]');
     this.weAreLegalShieldFooterLocTermsOfServiceLink = this.page.locator('//a[contains(@href,"/terms-service")]');
     this.weAreLegalShieldFooterLocPrivacyPolicyLink = this.page.locator('//a[contains(@href,"/privacy-policy")]');
     this.weAreLegalShieldFooterLocCodeOfEthicsLink = this.page.locator('//a[contains(@href,"/code-ethics")]');
@@ -182,7 +186,13 @@ export class WalsLocatorPage {
     this.associateWebsiteLocRdSmallBiz = this.page.locator('#no-traded-label');
     this.weAreLegalShieldOpportunitySuccessLocSearchInput = this.page.locator('#edit-search-api-fulltext');
     this.weAreLegalShieldOpportunitySuccessLocSearchButton = this.page.locator('#edit-submit-profiles-of-success-search');
-    this.weAreLegalShieldOpportunitySuccessNoResultsFoundMessage = this.page.locator('//div[contains(@class,"view-empty")]');
+    this.weAreLegalShieldOpportunitySuccessLOCNoResultsFoundMessage = this.page.locator('//div[contains(@class,"view-empty")]');
+    this.weAreLegalShieldExecutiveTeamLocDisplayedBioContainer = this.page.locator(
+      '//div[contains(@id,"bio-complete") and not(contains(@class,"mfp-hide"))]'
+    );
+    this.weAreLegalShieldExecutiveTeamLocDisplayedBioContainerCloseButton = this.page.locator(
+      '//div[contains(@id,"bio-complete") and not(contains(@class,"mfp-hide"))]//button'
+    );
   }
   /**
    * @param {string} txt
