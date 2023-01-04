@@ -101,7 +101,7 @@ export class PrimericaGroupPage extends OktaPage {
   assertCheckoutURL = async (): Promise<void> => {
     console.log(' - PrimericaGroupPage.assertCheckoutURL');
     // Verify that  it takes user to checkout
-    await expect(this.page).toHaveURL('https://checkout.legalshield.ca/groups/primericacaeng?agent=12345&region=MB');
+    await expect(this.page).toHaveURL('https://checkout.legalshield.ca/groups/primericacaeng?agent=12345&region=ON');
     console.log('Landed on checkout page');
   };
 }

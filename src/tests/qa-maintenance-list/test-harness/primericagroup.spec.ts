@@ -25,7 +25,7 @@ test('Primerica Group', async () => {
   // Click on Get Started Button
   await primericaGroupPage.clickGetStartedBtn();
   // Verify the Plan name
-  await primericaGroupPage.selectStateOrProvince('Manitoba');
+  await primericaGroupPage.selectStateOrProvince('Ontario');
   // Click select your plan link
   await primericaGroupPage.clickSelectYourPlanLnk();
   // Click on Add to Cart Button

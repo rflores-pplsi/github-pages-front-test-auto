@@ -149,7 +149,7 @@ export class EnglishWalsUSPage extends OktaPage {
     await this.clickOnElement(SELECT_FAMILY_MEMBER_TYPE);
     await this.page.waitForSelector('//span[contains(text()," ' + dependent + ' ")]');
     await this.clickOnElement('//span[contains(text()," ' + dependent + ' ")]');
-    if (!(await this.page.$(TXT_DEPENDENT_EMAIL))) {
+    if (!(await this.page.locator(TXT_DEPENDENT_EMAIL).isHidden)) {
       await this.fillTextBox(TXT_DEPENDENT_EMAIL, dependentEmail);
     } else {
       console.log("Dependent's email is not displayed");

@@ -47,7 +47,7 @@ test('D2E IDShield US using Testing Harness', async () => {
     await checkoutPersonalInfoPage.changeAddressUs(DataUtils.data.testingHarness.us.city.VA);
   });
   await test.step('Proceed to Payment Page > Complete Payment with BD transaction ', async () => {
-    await checkoutPaymentsBankDraftPage.clickSaveAndContinue();
+    // await checkoutPaymentsBankDraftPage.clickSaveAndContinue();
     await checkoutPaymentsBankDraftPage.clickBankDraftBtn();
     await checkoutPaymentsBankDraftPage.fillUsBankDraftFormAndSubmit();
   });

@@ -10,7 +10,7 @@ const LNK_SIGN_UP = 'a:has-text("Sign up")';
 const LNK_SIGN_IN = '//div[@class="content"]//a[contains(.,"Sign in")]';
 const LNK_FORGOT_PASSWORD = 'a:has-text("Forgot Password?")';
 const LNK_FORGOT_EMAIL_USERNAME = 'a:has-text("Forgot Email/Username?")';
-const BTN_OK = '//span[contains(text(),"OK")]';
+//const BTN_OK = '//span[contains(text(),"OK")]';
 
 /**
  * @export
@@ -44,7 +44,7 @@ export class LoginPage extends BasePage {
       // Click on Ok pop up to submit login form
       // no Ok pop up button in prod yet -> need to comment out this line before run
       await this.page.waitForLoadState();
-      await this.clickOnElement(BTN_OK);
+      //await this.clickOnElement(BTN_OK);
     } else {
       throw new Error('Email or Password parameters are undefined');
     }
