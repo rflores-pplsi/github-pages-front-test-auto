@@ -9,23 +9,22 @@ import UrlsUtils from '../../utils/urls.utils';
 let walsAssociateSearchPage: WeAreLegalShieldPage;
 let weAreLegalShieldOpportunitySuccessPage: WeAreLegalShieldOpportunitySuccessPage;
 let weAreLegalShieldExecutiveTeamPage: WeAreLegalShieldExecutiveTeamPage;
+
 // Setup environment before each test
 test.beforeEach(async ({ page }) => {
   test.slow();
   walsAssociateSearchPage = new WeAreLegalShieldPage(page);
   weAreLegalShieldOpportunitySuccessPage = new WeAreLegalShieldOpportunitySuccessPage(page);
   weAreLegalShieldExecutiveTeamPage = new WeAreLegalShieldExecutiveTeamPage(page);
-
-  await walsAssociateSearchPage.navigateToUrl(UrlsUtils.wals.urls.urlSomos);
+  await walsAssociateSearchPage.navigateToUrl(UrlsUtils.wals.urls.urlDamesOfJustice);
 });
-
-test.describe('Test Somos legalshield', () => {
-  test("When I type in Jessen in the search box and click search, I'll be directed to https://www.somoslegalshield.com/opportunity/search?search_api_fulltext=Jessen", async () => {
+test.describe('Test Dames de justice', () => {
+  test("When I type in Jessen in the search box and click search, I'll be directed to https://www.damesdejustice.ca/opportunity/search?search_api_fulltext=Jessen", async () => {
     await test.step('Search for associate', async () => {
       await walsAssociateSearchPage.searchForAssociate('Jessen');
     });
-    await test.step('Assert url https://www.somoslegalshield.com/opportunity/search?search_api_fulltext=Jessen   ', async () => {
-      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlSomos + '/results?queryParam=Jessen');
+    await test.step('Assert url https://www.damesdejustice.ca/opportunity/search?search_api_fulltext=Jessen   ', async () => {
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlDamesOfJustice + '/results?queryParam=Jessen');
     });
   });
   test('When I type in a name in the search box and click search, I am given a result and can view the associates website.', async () => {
@@ -49,38 +48,37 @@ test.describe('Test Somos legalshield', () => {
       await walsAssociateSearchPage.searchForAssociate('11111');
     });
     await test.step('Assert label sales associate', async () => {
-      await walsAssociateSearchPage.assertMsgAssociate('Lo sentimos, no encontramos ningún resultado para 11111');
+      await walsAssociateSearchPage.assertMsgAssociate("Désolé, nous n'avons trouvé aucun résultat pour 11111");
     });
   });
-
-  test('When I click on the Terms of Service Link in the Footer ', async () => {
+  test('When I click on the Terms of Service Link in the Footer', async () => {
     await test.step('Click on Terms of Service Link', async () => {
       await walsAssociateSearchPage.weAreLegalShieldFooterLocTermsOfServiceLink.click();
     });
     await test.step('Assert url ', async () => {
-      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlSomos + '/terms-service');
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlDamesOfJustice + '/terms-service');
     });
   });
 
-  test('When I click on the Privacy Policy Link in the Footer ', async () => {
+  test('When I click on the Privacy Policy Link in the Footer', async () => {
     await test.step('Click on Privacy Policy Link', async () => {
       await walsAssociateSearchPage.weAreLegalShieldFooterLocPrivacyPolicyLink.click();
     });
     await test.step('Assert url ', async () => {
-      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlSomos + '/privacy-policy');
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlDamesOfJustice + '/privacy-policy');
     });
   });
 
-  test('When I click on the Code of Ethics Link in the Footer ', async () => {
+  test('When I click on the Code of Ethics Link in the Footer', async () => {
     await test.step('Click on Code of Ethics Link', async () => {
       await walsAssociateSearchPage.weAreLegalShieldFooterLocCodeOfEthicsLink.click();
     });
     await test.step('Assert url ', async () => {
-      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlSomos + '/code-ethics');
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlDamesOfJustice + '/code-ethics');
     });
   });
 
-  test('When I click on the LegalShield SOC 3 Link in the Footer ', async ({ page, browserName, headless }) => {
+  test('When I click on the LegalShield SOC 3 Link in the Footer', async ({ page, browserName, headless }) => {
     if ((browserName === 'chromium' && headless === true) || browserName === 'firefox') {
       test.skip; // cannot navigate to pdf for headless chrome test configs or any firefox automation
       console.log('Skipped test for Firefox or Chromium/Headless configuration, as it downloads the pdf instead of navigating to it');
@@ -121,7 +119,7 @@ test.describe('Test Somos legalshield', () => {
         await walsAssociateSearchPage.WeAreLegalShieldHeaderLocExecutiveTeamLink.click();
       });
       await test.step('Click on Read Full Bio Link for Name', async () => {
-        await weAreLegalShieldExecutiveTeamPage.clickOnReadFullBioLink('Steve Williamson');
+        await weAreLegalShieldExecutiveTeamPage.clickOnReadFullBioLink('Jeff Bell');
       });
       await test.step('Close Bio Modal and assert Not Displayed', async () => {
         await weAreLegalShieldExecutiveTeamPage.closeBioModalAndAssertNotVisible();

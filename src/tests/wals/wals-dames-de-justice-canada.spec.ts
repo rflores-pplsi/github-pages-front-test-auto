@@ -104,16 +104,26 @@ test.describe('Test Dames de justice', () => {
       await weAreLegalShieldOpportunitySuccessPage.assertNoResultsFoundMessageIsNotDisplayed();
     });
   });
-
-  test('When I click on Read Full Bio on the Executive Team page the modal pops up and Name is Displayed', async () => {
-    await test.step('Navigate to Executive Team Page', async () => {
-      await walsAssociateSearchPage.WeAreLegalShieldHeaderLocExecutiveTeamLink.click();
+  test.only('Search Profiles of Success by Name and displays at least one', async () => {
+    await test.step('Navigate to Profiles of Success Page', async () => {
+      await walsAssociateSearchPage.WeAreLegalShieldHeaderLocProfilesOfSuccessLink.click();
     });
-    await test.step('Click on Read Full Bio Link for Name', async () => {
-      await weAreLegalShieldExecutiveTeamPage.clickOnReadFullBioLink('Jeff Bell');
+    await test.step('Search by Name', async () => {
+      await weAreLegalShieldOpportunitySuccessPage.searchForProfile('Jessen');
     });
-    await test.step('Close Bio Modal and assert Not Displayed', async () => {
-      await weAreLegalShieldExecutiveTeamPage.closeBioModalAndAssertNotVisible();
+    await test.step('Verify search by Occupation returns results and displays tile', async () => {
+      await weAreLegalShieldOpportunitySuccessPage.assertNoResultsFoundMessageIsNotDisplayed();
+    });
+    test('When I click on Read Full Bio on the Executive Team page the modal pops up and Name is Displayed', async () => {
+      await test.step('Navigate to Executive Team Page', async () => {
+        await walsAssociateSearchPage.WeAreLegalShieldHeaderLocExecutiveTeamLink.click();
+      });
+      await test.step('Click on Read Full Bio Link for Name', async () => {
+        await weAreLegalShieldExecutiveTeamPage.clickOnReadFullBioLink('Jeff Bell');
+      });
+      await test.step('Close Bio Modal and assert Not Displayed', async () => {
+        await weAreLegalShieldExecutiveTeamPage.closeBioModalAndAssertNotVisible();
+      });
     });
   });
 });

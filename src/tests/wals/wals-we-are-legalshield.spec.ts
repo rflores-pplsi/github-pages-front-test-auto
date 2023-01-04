@@ -117,4 +117,15 @@ test.describe('Test We are LegalShield', () => {
       await weAreLegalShieldExecutiveTeamPage.closeBioModalAndAssertNotVisible();
     });
   });
+  test('Search Profiles of Success by Name and displays at least one', async () => {
+    await test.step('Navigate to Profiles of Success Page', async () => {
+      await walsAssociateSearchPage.WeAreLegalShieldHeaderLocProfilesOfSuccessLink.click();
+    });
+    await test.step('Search by Name', async () => {
+      await weAreLegalShieldOpportunitySuccessPage.searchForProfile('Jessen');
+    });
+    await test.step('Verify search by Occupation returns results and displays tile', async () => {
+      await weAreLegalShieldOpportunitySuccessPage.assertNoResultsFoundMessageIsNotDisplayed();
+    });
+  });
 });
