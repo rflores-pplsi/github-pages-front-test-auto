@@ -79,7 +79,7 @@ test.describe('Test We are LegalShield', () => {
     });
   });
 
-  test('When I click on the LegalShield SOC 3 Link in the Footer ', async ({ page, browserName, headless }) => {
+  test('When I click on the LegalShield SOC 3 Link in the Footer @maintenance ', async ({ page, browserName, headless }) => {
     if ((browserName === 'chromium' && headless === true) || browserName === 'firefox') {
       test.skip; // cannot navigate to pdf for headless chrome test configs or any firefox automation
       console.log('Skipped test for Firefox or Chromium/Headless configuration, as it downloads the pdf instead of navigating to it');

@@ -97,6 +97,7 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
     phone: string,
     type: string
   ): Promise<void> => {
+    await this.page.waitForLoadState();
     for (const stte of RegionsUtils.usStates.filter((ste) => ste.name == state)) {
       street = stte.validAddress.street;
       city = stte.validAddress.city;
@@ -117,7 +118,7 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
       await this.associateWebsiteLocTxtPhoneNumber.type(phone);
       await this.page.keyboard.press('Tab');
       await this.associateWebsiteLocSlctPhoneType.click();
-      await this.page.click('mat-option#mat-option-' + type);
+      await this.page.click(`mat-option#mat-option-${type}`);
     }
   };
   /**
@@ -195,6 +196,27 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
     }
   };
   /**
+   * @param {string} depFirst
+   * @param {string} depLast
+   * @param {string} depDob
+   * @param {string} dependent
+   * @param {string} dependentEmail
+   * @memberof WalsAssociateWebsitePage
+   */
+  filloutFamilyCoverageInfo = async (depFirst: string, depLast: string, depDob: string, dependent: string, dependentEmail: string): Promise<void> => {
+    await this.associateWebsiteLocTxtDependentFirstName.type(depFirst);
+    await this.associateWebsiteLocTxtDependentLastName.type(depLast);
+    await this.associateWebsiteLocTxtDependentBDay.type(depDob);
+    await this.associateWebsiteLocSlctFamilyMemberType.click();
+    await this.page.waitForSelector('//span[contains(text()," ' + dependent + ' ")]');
+    await this.page.locator('//span[contains(text()," ' + dependent + ' ")]').click();
+    if (!(await this.associateWebsiteLocTxtDependentEmail.isHidden())) {
+      await this.associateWebsiteLocTxtDependentEmail.fill(dependentEmail);
+    } else {
+      console.log("Dependent's email is not displayed");
+    }
+  };
+  /**
    * @param {string} CorporationName
    * @param {string} CorporationTaxId
    * @memberof WalsAssociateWebsitePage
@@ -209,6 +231,13 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
   becomeAssociate = async (): Promise<void> => {
     await this.page.waitForLoadState();
     await this.associateWebsiteLocBtnBecomeAssociate.click();
+  };
+  /**
+   * @memberof WalsAssociateWebsitePage
+   */
+  businessBuilder = async (): Promise<void> => {
+    await this.page.waitForLoadState();
+    await this.associateWebsiteLocBtnBusinessBuilder.click();
   };
   /**
    * @param {string} dob

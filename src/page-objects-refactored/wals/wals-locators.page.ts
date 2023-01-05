@@ -16,6 +16,8 @@ export class WalsLocatorPage {
   readonly associateResultLocViewWebsite: Locator;
   readonly associateWebsiteLocUlEnglishWalsUSPage: Locator;
   readonly associateWebsiteLocBtnBecomeAssociate: Locator;
+  readonly associateWebsiteLocBtnBusinessBuilder: Locator;
+  readonly associateWebsiteLocBtnBusinessBuilderGetAPlan: Locator;
   readonly associateWebsiteLocLblHomeBusinessSupplement: Locator;
   readonly associateWebsiteLocBtnNext: Locator;
   readonly associateWebsiteLocBtnNextWithForm: Locator;
@@ -28,6 +30,7 @@ export class WalsLocatorPage {
   readonly associateWebsiteLocBtnCommercialDrCheckout: Locator;
   readonly associateWebsiteLocChkBIndividual: Locator;
   readonly associateWebsiteLocChkBNo: Locator;
+  readonly associateWebsiteLocChkBAddHomeBusinessSupplement: Locator;
   readonly associateWebsiteLocBtnContinue: Locator;
   readonly associateWebsiteLocBtnContinuePersonalInfoForm;
   readonly associateWebsiteLocBtnCheckout: Locator;
@@ -108,8 +111,12 @@ export class WalsLocatorPage {
     this.associateWebsiteLocBtnBecomeAssociate = this.page.locator(
       'div#plans-menu-filters ul.menu-dropdown.dropdown:not(.plans-menu-filters-mobile) > .become-associate-plans a'
     );
+    this.associateWebsiteLocBtnBusinessBuilder = this.page.locator(
+      'div#plans-menu-filters ul.menu-dropdown.dropdown:not(.plans-menu-filters-mobile) > .builder-plans a'
+    );
     this.associateWebsiteLocLblHomeBusinessSupplement = this.page.locator('label:has-text("Add Home Business Supplement")');
     this.associateWebsiteLocLblTotalPrice = this.page.locator('a#minicart_btn_checkout span');
+    this.associateWebsiteLocBtnBusinessBuilderGetAPlan = this.page.locator('a.plan-builder');
     this.associateWebsiteLocBtnNext = this.page.locator('#builder_modal_checkout_btn_continue');
     this.associateWebsiteLocBtnNextWithForm = this.page.locator('#builder_modal_checkout_btn_withform');
     this.associateWebsiteLocBtnContinueWithForm = this.page.locator('#builder_modal_checkout_btn');
@@ -127,6 +134,7 @@ export class WalsLocatorPage {
     this.associateWebsiteCreateUserLocLblUsername = this.page.locator('//*[@class="mat-radio-button mat-accent ng-star-inserted"][1]/label/div[2]');
     this.associateWebsiteLocChkBIndividual = this.page.locator('#individual-bdl');
     this.associateWebsiteLocChkBNo = this.page.locator('#no');
+    this.associateWebsiteLocChkBAddHomeBusinessSupplement = this.page.locator('label#label-hbs-2022 input');
     this.associateWebsiteLocBtnContinue = this.page.locator('#associate-startup_modal_checkout_btn');
     this.associateWebsiteLocBtnContinuePersonalInfoForm = this.page.locator('button.shared-button.small');
     this.associateWebsiteLocBtnCheckout = this.page.locator('a#minicart_btn_checkout');
@@ -143,13 +151,13 @@ export class WalsLocatorPage {
     this.associateWebsiteLocSlctRegion = this.page.locator('select[name="state_select"]');
     this.associateWebsiteLocBtnUpdateState = this.page.locator('#edit-submit--3');
     this.associateWebsiteLocTxtPhoneNumber = this.page.locator('#phone-number');
-    this.associateWebsiteLocSlctPhoneType = this.page.locator('div.mat-select-arrow');
+    this.associateWebsiteLocSlctPhoneType = this.page.locator('div.mat-select-arrow >> nth=0');
     this.associateWebsiteLocTxtDateOfBirth = this.page.locator('#date-birth');
     this.associateWebsiteLocTxtDependentFirstName = this.page.locator('#first-name-dependant-form');
     this.associateWebsiteLocTxtDependentLastName = this.page.locator('#last-name-dependant-form');
     this.associateWebsiteLocTxtDependentBDay = this.page.locator('#date-birth-dependant-form');
     this.associateWebsiteLocTxtDependentEmail = this.page.locator('#dependant-email-start-form');
-    this.associateWebsiteLocSlctFamilyMemberType = this.page.locator('//span[contains(text(),"Family Member Type")]');
+    this.associateWebsiteLocSlctFamilyMemberType = this.page.locator('div.mat-select-arrow >> nth=1');
     this.associateWebsiteLocTxtSSN = this.page.locator('#s-security');
     this.associateWebsiteLocBtnContactInfoContinue = this.page.locator('button.shared-button.small');
     this.associateWebsiteLocRdoBtnUsername = this.page.locator('.mat-radio-container');
@@ -229,6 +237,7 @@ export class WalsLocatorPage {
    */
   associateWebsiteLocBtnGetAPlan = async (classParameter: string, getAPlanNum: number): Promise<Locator> => {
     return this.page.locator(`a.subscriber-${classParameter} >> nth=${getAPlanNum}`);
+    await this.page.waitForLoadState();
   };
 
   /**

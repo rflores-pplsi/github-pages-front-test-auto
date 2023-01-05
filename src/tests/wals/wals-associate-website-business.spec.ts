@@ -70,7 +70,7 @@ test.describe('Test We are LegalShield', () => {
     test.slow();
   });
   for (const stte of RegionsUtils.usSpanishStates.filter((ste) => ste.abbrv == 'AR')) {
-    test.only(`${stte.name} User is able to purchase Associate Startup for Business at $49 instead of $99`, async () => {
+    test(`${stte.name} User is able to purchase Associate Startup for Business at $49 instead of $99`, async () => {
       test.slow;
       await test.step('Navigate to legalshield marketing site', async () => {
         await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlBenefits);
