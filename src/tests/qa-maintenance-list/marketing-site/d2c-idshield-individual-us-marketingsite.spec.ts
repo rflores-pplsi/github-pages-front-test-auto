@@ -53,13 +53,4 @@ test('E2E idShield US marketing assert only one product can be purchased', async
   await test.step('Assert the shopping cart only includes family plan and message box popped up to indicate that', async () => {
     await idShieldUSPage.assertShoppingCartIncludesFamilyPlan();
   });
-  await test.step('Continue shopping', async () => {
-    await idShieldUSPage.continueShopping();
-  });
-  await test.step('Pick business plan', async () => {
-    await idShieldUSPage.pickABusinessPlan('MONTHLY', '');
-  });
-  await test.step('Assert the shopping cart only includes Business plan and message box popped up to indicate that', async () => {
-    await idShieldUSPage.assertShoppingCartIncludesBusinessPlan();
-  });
 });

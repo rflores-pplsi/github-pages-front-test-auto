@@ -3,6 +3,7 @@ import { waitNitroPackToLoadElementAsVisible } from '../../utils/pageUtils';
 import { getLocalStorageAvailableProducts } from '../../utils/browser-storage.utils';
 import { LocalStorageSelectedItem } from '../../types/types';
 import { BasePage } from '../base.page';
+import { expect } from '@playwright/test';
 
 // ========================== Selectors ==================================
 const urlD2CIDShieldUSPage = UrlsUtils.marketingSitesUrls.idShieldUSUrl;
@@ -63,16 +64,14 @@ export class IDShieldUSPage extends BasePage {
     }
   };
   assertShoppingCartIncludesFamilyPlan = async (): Promise<void> => {
-    await this.assertElementContainsText(TEXT_CART_PLAN, 'IDShield Family');
-    await this.assertElementContainsText(
-      TEXT_CART_MESSAGE,
+    await expect(await this.page.locator(TEXT_CART_PLAN).innerText()).toContain('IDShield Family');
+    await expect(await this.page.locator(TEXT_CART_MESSAGE).innerText()).toContain(
       "Only one plan may be purchased by an individual at one time. We've removed the initial plan from your cart and replaced it with the new plan selected."
     );
   };
   assertShoppingCartIncludesBusinessPlan = async (): Promise<void> => {
-    await this.assertElementContainsText(TEXT_CART_PLAN, 'IDShield for Business Essentials');
-    await this.assertElementContainsText(
-      TEXT_CART_MESSAGE,
+    await expect(await this.page.locator(TEXT_CART_PLAN).innerText()).toContain('IDShield for Business Essentials');
+    await expect(await this.page.locator(TEXT_CART_MESSAGE).innerText()).toContain(
       "Only one plan may be purchased by an individual at one time. We've removed the initial plan from your cart and replaced it with the new plan selected."
     );
   };
