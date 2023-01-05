@@ -19,12 +19,14 @@ export class D2CLegalShieldCaPage extends OktaPage {
     await this.page.click('text=Direct To Consumer Network Calendar >> img >> nth=' + nth, { force: true });
   };
   selectYourRegion = async (region: string): Promise<void> => {
-    await this.page.waitForSelector(SELECT_CHOOSE_YOUR_REGION);
-    await this.selectFromDropDownMenu(SELECT_CHOOSE_YOUR_REGION, region);
-    if (!(await this.page.locator(BTN_UPDATE_REGION).isVisible())) {
-      console.log('Button does not exist');
-    } else {
-      await this.clickOnElement(BTN_UPDATE_REGION);
+    if (await this.page.locator(SELECT_CHOOSE_YOUR_REGION).isVisible()) {
+      await this.page.waitForSelector(SELECT_CHOOSE_YOUR_REGION);
+      await this.selectFromDropDownMenu(SELECT_CHOOSE_YOUR_REGION, region);
+      if (!(await this.page.locator(BTN_UPDATE_REGION).isVisible())) {
+        console.log('Button does not exist');
+      } else {
+        await this.clickOnElement(BTN_UPDATE_REGION);
+      }
     }
   };
   addPlanAndSomeSupplements = async (lineOfBusiness: string, planSupp: Array<string>): Promise<void> => {
