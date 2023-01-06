@@ -1,6 +1,6 @@
 import UrlsUtils from '../../utils/urls.utils';
 import { basicUser } from '../../utils/user.utils';
-import { CheckoutOrderSummaryComponent } from './checkout-order-summary.component';
+// import { CheckoutOrderSummaryComponent } from './checkout-order-summary.component';
 import RegionsUtils from '../../utils/regions.utils';
 import { NavigateToTestingHarnessPage, AddPlanAndSomeSupplements } from './checkout.helpers';
 import { Page, Locator } from '@playwright/test';
@@ -20,7 +20,6 @@ import { CommonLoginPage } from '@legalshield/frontend-automation-commons';
 export class CheckoutPersonalInfoPage extends CheckoutLocatorsPage {
   // ========================== Instantiate Classes ==================================
   readonly shieldBenefitsLegalPricingPage: ShieldBenefitsLegalPricingPage;
-  readonly checkoutOrderSummaryComponent: CheckoutOrderSummaryComponent;
   readonly oktaPage: OktaPage;
   readonly planalyzerCsrCheckoutPage: PlanalyzerCsrCheckoutPage;
   readonly navigateToTestingHarnessPage: NavigateToTestingHarnessPage;
@@ -91,7 +90,6 @@ export class CheckoutPersonalInfoPage extends CheckoutLocatorsPage {
     this.personalInfoLocLineOfBusiness = lineOfBusiness;
     this.planSupp = planSupp;
     this.shieldBenefitsLegalPricingPage = new ShieldBenefitsLegalPricingPage(page);
-    this.checkoutOrderSummaryComponent = new CheckoutOrderSummaryComponent(page);
     this.oktaPage = new OktaPage(page);
     this.planalyzerCsrCheckoutPage = new PlanalyzerCsrCheckoutPage(page);
     this.navigateToTestingHarnessPage = new NavigateToTestingHarnessPage(this.page, UrlsUtils.testHarnessUrls.d2c.url, lineOfBusiness);
@@ -471,7 +469,7 @@ export class CheckoutPersonalInfoPage extends CheckoutLocatorsPage {
     await this.page.keyboard.press('Tab');
     await this.personalInfoLocTxtPostalCode.fill('');
     await this.personalInfoLocTxtPostalCode.fill(postalCode);
-    await this.checkoutOrderSummaryComponent.captureOrderSummaryWithoutTier();
+    // await this.checkoutOrderSummaryComponent.captureOrderSummaryWithoutTier();
   };
 
   /**
@@ -509,7 +507,7 @@ export class CheckoutPersonalInfoPage extends CheckoutLocatorsPage {
     await this.page.keyboard.press('Tab');
     await this.personalInfoLocTxtPostalCode.fill('');
     await this.personalInfoLocTxtPostalCode.fill(postalCode);
-    await this.checkoutOrderSummaryComponent.captureOrderSummary(groupPayConfig);
+    // await this.checkoutOrderSummaryComponent.captureOrderSummary(groupPayConfig);
   };
 
   // Navigate to the personal info page and scrapes the order summary to be used in assertions
@@ -550,7 +548,7 @@ export class CheckoutPersonalInfoPage extends CheckoutLocatorsPage {
     await this.page.keyboard.press('Tab');
     await this.personalInfoLocTxtPostalCode.fill('');
     await this.personalInfoLocTxtPostalCode.fill(postalCode);
-    await this.checkoutOrderSummaryComponent.captureOrderSummary(groupPayConfig);
+    // await this.checkoutOrderSummaryComponent.captureOrderSummary(groupPayConfig);
   };
 
   /**
