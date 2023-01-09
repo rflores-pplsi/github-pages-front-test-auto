@@ -7,6 +7,9 @@ import { expect, FrameLocator, Locator, Page } from '@playwright/test';
 export class WalsLocatorPage {
   // ========================== Locators ==================================
   protected page: Page;
+  readonly aboutPageExecutiveTeamLocHeader: Locator;
+  readonly aboutPageLocLogo: Locator;
+  readonly aboutPageLocLblWhyLegalShield: Locator;
   readonly associateWebsiteCartSummaryLocOneTimeFees: Locator;
   readonly associateWebsiteCartSummaryLocTotalDueToday: Locator;
   readonly associateWebsiteCreateUserLocLblUsername: Locator;
@@ -71,6 +74,7 @@ export class WalsLocatorPage {
   readonly associateWebsiteLocTxtCVV: Locator;
   readonly associateWebsiteLocBtnPurchase: Locator;
   readonly associateWebsiteLocLblWelcome: Locator;
+  readonly associateWebsiteLocLblSmartSimpleCoverage: Locator;
   readonly associateWebsiteLocRdoBankDraft: Locator;
   readonly associateWebsiteLocTxtNameOfAccountHolder: Locator;
   readonly associateWebsiteLocTxtRoutingNumber: Locator;
@@ -111,6 +115,11 @@ export class WalsLocatorPage {
    */
   constructor(page: Page) {
     this.page = page;
+    this.aboutPageExecutiveTeamLocHeader = this.page.locator('//h4/span[contains(text(),"Kathy Pinson")]');
+    this.aboutPageLocLogo = this.page.locator('img.image-style-large >> nth=0');
+    this.aboutPageLocLblWhyLegalShield = this.page.locator(
+      'div.field.field--name--field-heading.field--type--string.field--label--hidden.field--item >> nth=0'
+    );
     this.associateWebsiteLocFrmPayment = this.page.frameLocator('iframe.ng-star-inserted');
     this.associateWebsiteLocfrmPaymentsParent = this.page.frameLocator('iframe.ng-star-inserted');
     this.associateWebsiteLocfrmPayments = this.associateWebsiteLocfrmPaymentsParent.frameLocator('iframe.us-payment-form');
@@ -181,6 +190,9 @@ export class WalsLocatorPage {
     this.associateWebsiteLocBtnPurchase = this.associateWebsiteLocFrmPayment.locator('#savecc');
     this.associateWebsiteLocLblWelcome = this.page.locator(
       '//div[@class="confirmation-col col-sm-12 col-tb-12 col-dk-6 confirmation-wrapper wals-content ng-star-inserted"]/h1'
+    );
+    this.associateWebsiteLocLblSmartSimpleCoverage = this.page.locator(
+      'div.field.field--name--field-heading.field--type--string.field--label--hidden.field--item >> nth=0'
     );
     this.associateWebsiteLocRdoBankDraft = this.associateWebsiteLocfrmPayments.locator('form#cc_form div#app_bdform div div input#bd_payment_method');
     this.associateWebsiteLocTxtNameOfAccountHolder = this.associateWebsiteLocfrmPayments.locator('#accountholder_name');

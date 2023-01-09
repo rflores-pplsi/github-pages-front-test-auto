@@ -1,6 +1,6 @@
 import RegionsUtils from '../../utils/regions.utils';
 import * as dotenv from 'dotenv';
-import { expect } from '@playwright/test';
+import { expect, Locator } from '@playwright/test';
 import { WalsLocatorPage } from './wals-locators.page';
 dotenv.config();
 
@@ -226,6 +226,59 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
     await this.associateWebsiteLocTxtCorporationTaxId.type(CorporationTaxId);
   };
   /**
+   * @param {string} tab
+   * @param {string} subTab
+   * @memberof WalsAssociateWebsitePage
+   */
+  menuItems = async (tab: string, subTab: string): Promise<void> => {
+    const menuTab = tab.toLowerCase();
+    switch (menuTab) {
+      case 'memberships':
+        await this.page.waitForLoadState();
+        this.page.locator(`span.dropdown-toggle.tb-megamenu-no-link >> nth=0`).click();
+        break;
+      case 'become an associate':
+        await this.page.waitForLoadState();
+        this.page.locator(`span.dropdown-toggle.tb-megamenu-no-link >> nth=1`).click();
+        break;
+      case 'resources':
+        await this.page.waitForLoadState();
+        this.page.locator(`span.dropdown-toggle.tb-megamenu-no-link >> nth=2`).click();
+        break;
+      case 'about us':
+        await this.page.waitForLoadState();
+        await this.page.locator(`//span[contains(text(),"${tab}")]`).click();
+        await this.page.waitForLoadState();
+        await this.page.locator(`//a[contains(text(),"${subTab}")] >> nth=0`).click();
+        break;
+      default:
+        console.log('Enter the correct tab');
+    }
+
+    // if ((menuTab = 'memberships')) {
+    //   console.log(menuTab);
+    //   await this.page.waitForLoadState();
+    //   this.page.locator(`span.dropdown-toggle.tb-megamenu-no-link >> nth=0`).click();
+    // }
+    // if ((menuTab = 'become an associate')) {
+    //   console.log(menuTab);
+    //   await this.page.waitForLoadState();
+    //   this.page.locator(`span.dropdown-toggle.tb-megamenu-no-link >> nth=1`).click();
+    // }
+    // if ((menuTab = 'resources')) {
+    //   console.log(menuTab);
+    //   await this.page.waitForLoadState();
+    //   this.page.locator(`span.dropdown-toggle.tb-megamenu-no-link >> nth=2`).click();
+    // }
+    // if ((menuTab = 'about us')) {
+    //   console.log(menuTab);
+    //   await this.page.waitForLoadState();
+    //   await this.page.locator(`//span[contains(text(),"${tab}")]`).click();
+    //   await this.page.waitForLoadState();
+    //   await this.page.locator(`//a[contains(text(),"${tab}")] >> nth=0`).click();
+    // }
+  };
+  /**
    * @memberof WalsAssociateWebsitePage
    */
   becomeAssociate = async (): Promise<void> => {
@@ -368,6 +421,22 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
 
   // ========================== Click Methods ==============================
 
+  /**
+   * @memberof WalsAssociateCTAPage
+   */
+  clickOnLogo = async (): Promise<void> => {
+    await this.associateWebsiteLocLogo.click();
+  };
+
+  /**
+   * @param {string} buttonName
+   * @param {number} index
+   * @memberof WalsAssociateCTAPage
+   */
+  clickOnCTAButton = async (buttonName: string, index: number): Promise<void> => {
+    await this.page.waitForLoadState();
+    await (await this.associateWebsiteLocCTAButton(buttonName, index)).click();
+  };
   // ========================== Assertion Methods ==========================
 
   assertCartSummary = async (fees: string, total: string): Promise<void> => {
@@ -384,21 +453,14 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
     await this.associateWebsiteLocLblWelcome.waitFor();
     await expect(this.associateWebsiteLocLblWelcome).toContainText(txt);
   };
-
   /**
-   * @memberof WalsAssociateCTAPage
+   * @param {Locator} ele
+   * @param {string} txt
+   * @memberof WalsAssociateWebsitePage
    */
-  clickOnLogo = async (): Promise<void> => {
-    await this.associateWebsiteLocLogo.click();
-  };
-
-  /**
-   * @param {string} buttonName
-   * @param {number} index
-   * @memberof WalsAssociateCTAPage
-   */
-  clickOnCTAButton = async (buttonName: string, index: number): Promise<void> => {
-    await this.page.waitForLoadState();
-    await (await this.associateWebsiteLocCTAButton(buttonName, index)).click();
+  assertContainTextLabel = async (ele: Locator, txt: string): Promise<void> => {
+    // Verify that the user made the purchase
+    await ele.waitFor();
+    await expect(ele).toContainText(txt);
   };
 }
