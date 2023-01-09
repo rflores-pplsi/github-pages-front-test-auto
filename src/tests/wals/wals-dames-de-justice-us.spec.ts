@@ -2,7 +2,6 @@ import { test } from '@playwright/test';
 import { WeAreLegalShieldPage } from '../../page-objects-refactored/wals/wals-we-are-legalshield.page';
 import { WeAreLegalShieldOpportunitySuccessPage } from '../../page-objects-refactored/wals/wals-we-are-legalshield-opportunity-success.page';
 import { WeAreLegalShieldExecutiveTeamPage } from '../../page-objects-refactored/wals/wals-we-are-legalshield-executive-team.page';
-
 import UrlsUtils from '../../utils/urls.utils';
 
 // define the instance of Page declaration
@@ -16,7 +15,7 @@ test.beforeEach(async ({ page }) => {
   walsAssociateSearchPage = new WeAreLegalShieldPage(page);
   weAreLegalShieldOpportunitySuccessPage = new WeAreLegalShieldOpportunitySuccessPage(page);
   weAreLegalShieldExecutiveTeamPage = new WeAreLegalShieldExecutiveTeamPage(page);
-  await walsAssociateSearchPage.navigateToUrl(UrlsUtils.wals.urls.urlDamesOfJustice);
+  await walsAssociateSearchPage.navigateToUrl(UrlsUtils.wals.urls.urlDamesDeJustice);
 });
 test.describe('Test Dames de justice', () => {
   test("When I type in Jessen in the search box and click search, I'll be directed to https://www.damesdejustice.ca/opportunity/search?search_api_fulltext=Jessen", async () => {
@@ -24,7 +23,7 @@ test.describe('Test Dames de justice', () => {
       await walsAssociateSearchPage.searchForAssociate('Jessen');
     });
     await test.step('Assert url https://www.damesdejustice.ca/opportunity/search?search_api_fulltext=Jessen   ', async () => {
-      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlDamesOfJustice + '/results?queryParam=Jessen');
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlDamesDeJustice + '/results?queryParam=Jessen');
     });
   });
   test('When I type in a name in the search box and click search, I am given a result and can view the associates website.', async () => {
@@ -56,7 +55,7 @@ test.describe('Test Dames de justice', () => {
       await walsAssociateSearchPage.weAreLegalShieldFooterLocTermsOfServiceLink.click();
     });
     await test.step('Assert url ', async () => {
-      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlDamesOfJustice + '/terms-service');
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlDamesDeJustice + '/terms-service');
     });
   });
 
@@ -65,7 +64,7 @@ test.describe('Test Dames de justice', () => {
       await walsAssociateSearchPage.weAreLegalShieldFooterLocPrivacyPolicyLink.click();
     });
     await test.step('Assert url ', async () => {
-      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlDamesOfJustice + '/privacy-policy');
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlDamesDeJustice + '/privacy-policy');
     });
   });
 
@@ -74,7 +73,7 @@ test.describe('Test Dames de justice', () => {
       await walsAssociateSearchPage.weAreLegalShieldFooterLocCodeOfEthicsLink.click();
     });
     await test.step('Assert url ', async () => {
-      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlDamesOfJustice + '/code-ethics');
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlDamesDeJustice + '/code-ethics');
     });
   });
 
@@ -95,7 +94,7 @@ test.describe('Test Dames de justice', () => {
 
   test('Search Profiles of Success by Occupation and displays at least one', async () => {
     await test.step('Navigate to Profiles of Success Page', async () => {
-      await walsAssociateSearchPage.WeAreLegalShieldHeaderLocProfilesOfSuccessLink.click();
+      await walsAssociateSearchPage.weAreLegalShieldHeaderLocProfilesOfSuccessLink.click();
     });
     await test.step('Search by Occupation', async () => {
       await weAreLegalShieldOpportunitySuccessPage.searchForProfile('Business Owner');
@@ -106,7 +105,7 @@ test.describe('Test Dames de justice', () => {
   });
   test('Search Profiles of Success by Name and displays at least one', async () => {
     await test.step('Navigate to Profiles of Success Page', async () => {
-      await walsAssociateSearchPage.WeAreLegalShieldHeaderLocProfilesOfSuccessLink.click();
+      await walsAssociateSearchPage.weAreLegalShieldHeaderLocProfilesOfSuccessLink.click();
     });
     await test.step('Search by Name', async () => {
       await weAreLegalShieldOpportunitySuccessPage.searchForProfile('Jessen');
@@ -114,16 +113,16 @@ test.describe('Test Dames de justice', () => {
     await test.step('Verify search by Occupation returns results and displays tile', async () => {
       await weAreLegalShieldOpportunitySuccessPage.assertNoResultsFoundMessageIsNotDisplayed();
     });
-    test('When I click on Read Full Bio on the Executive Team page the modal pops up and Name is Displayed', async () => {
-      await test.step('Navigate to Executive Team Page', async () => {
-        await walsAssociateSearchPage.WeAreLegalShieldHeaderLocExecutiveTeamLink.click();
-      });
-      await test.step('Click on Read Full Bio Link for Name', async () => {
-        await weAreLegalShieldExecutiveTeamPage.clickOnReadFullBioLink('Jeff Bell');
-      });
-      await test.step('Close Bio Modal and assert Not Displayed', async () => {
-        await weAreLegalShieldExecutiveTeamPage.closeBioModalAndAssertNotVisible();
-      });
+  });
+  test('When I click on Read Full Bio on the Executive Team page the modal pops up and Name is Displayed', async () => {
+    await test.step('Navigate to Executive Team Page', async () => {
+      await walsAssociateSearchPage.weAreLegalShieldHeaderLocExecutiveTeamLink.click();
+    });
+    await test.step('Click on Read Full Bio Link for Name', async () => {
+      await weAreLegalShieldExecutiveTeamPage.clickOnReadFullBioLink('Steve Williamson');
+    });
+    await test.step('Close Bio Modal and assert Not Displayed', async () => {
+      await weAreLegalShieldExecutiveTeamPage.closeBioModalAndAssertNotVisible();
     });
   });
 });
