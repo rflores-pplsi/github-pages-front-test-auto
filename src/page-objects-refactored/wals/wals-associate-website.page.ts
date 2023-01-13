@@ -13,6 +13,25 @@ let postalCode: string;
 export class WalsAssociateWebsitePage extends WalsLocatorPage {
   // ========================== Process Methods ============================
   /**
+   * @param {string} firstName
+   * @param {string} lastName
+   * @param {string} phone
+   * @param {string} bestTime
+   * @param {string} email
+   * @param {string} msg
+   * @memberof WalsAssociateWebsitePage
+   */
+  filloutMessageMeForm = async (firstName: string, lastName: string, phone: string, bestTime: string, email: string, msg: string): Promise<void> => {
+    await this.associateWebsiteLocTxtMessageFormFirstName.fill(firstName);
+    await this.associateWebsiteLocTxtMessageFormLastName.fill(lastName);
+    await this.associateWebsiteLocTxtMessageFormPhone.type(phone);
+    await this.associateWebsiteLocSlctMessageFormBestTime.click();
+    await this.associateWebsiteLocSlctMessageFormBestTime.selectOption(bestTime);
+    await this.associateWebsiteLocTxtMessageFormEmail.fill(email);
+    await this.associateWebsiteLocTxtMessageFormMessage.fill(msg);
+    await this.associateWebsiteLocBtnMessageMeSubmit.click();
+  };
+  /**
    * @param {string} state
    * @param {string} email
    * @param {string} firstName
@@ -231,30 +250,10 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
    * @memberof WalsAssociateWebsitePage
    */
   menuItems = async (tab: string, subTab: string): Promise<void> => {
-    const menuTab = tab.toLowerCase();
-    switch (menuTab) {
-      case 'memberships':
-        await this.page.waitForLoadState();
-        this.page.locator(`span.dropdown-toggle.tb-megamenu-no-link >> nth=0`).click();
-        break;
-      case 'become an associate':
-        await this.page.waitForLoadState();
-        this.page.locator(`span.dropdown-toggle.tb-megamenu-no-link >> nth=1`).click();
-        break;
-      case 'resources':
-        await this.page.waitForLoadState();
-        this.page.locator(`span.dropdown-toggle.tb-megamenu-no-link >> nth=2`).click();
-        break;
-      case 'about us':
-        await this.page.waitForLoadState();
-        await this.page.locator(`//span[contains(text(),"${tab}")]`).click();
-        await this.page.waitForLoadState();
-        await this.page.locator(`//a[contains(text(),"${subTab}")] >> nth=0`).click();
-        break;
-      default:
-        console.log('Enter the correct tab');
-    }
-
+    await this.page.waitForLoadState();
+    await this.page.locator(`//span[contains(text(),"${tab}")]`).click();
+    await this.page.waitForLoadState();
+    await this.page.locator(`//*[contains(text(),"${subTab}")] >> nth=0`).click();
     // if ((menuTab = 'memberships')) {
     //   console.log(menuTab);
     //   await this.page.waitForLoadState();

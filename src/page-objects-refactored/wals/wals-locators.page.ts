@@ -9,6 +9,8 @@ export class WalsLocatorPage {
   protected page: Page;
   readonly aboutPageExecutiveTeamLocHeader: Locator;
   readonly aboutPageLocLogo: Locator;
+  readonly aboutPageLocFrLogo: Locator;
+  readonly aboutPageLocSpLogo: Locator;
   readonly aboutPageLocLblWhyLegalShield: Locator;
   readonly associateWebsiteCartSummaryLocOneTimeFees: Locator;
   readonly associateWebsiteCartSummaryLocTotalDueToday: Locator;
@@ -46,8 +48,17 @@ export class WalsLocatorPage {
   readonly associateWebsiteLocLblTotalPrice: Locator;
   readonly associateWebsiteLocTxtZipCode: Locator;
   readonly associateWebsiteLocLnkChange: Locator;
+  readonly associateWebsiteLocLnkMessageMe: Locator;
   readonly associateWebsiteLocSlctRegion: Locator;
   readonly associateWebsiteLocBtnUpdateState: Locator;
+  readonly associateWebsiteLocTxtMessageFormFirstName: Locator;
+  readonly associateWebsiteLocTxtMessageFormLastName: Locator;
+  readonly associateWebsiteLocTxtMessageFormPhone: Locator;
+  readonly associateWebsiteLocSlctMessageFormBestTime: Locator;
+  readonly associateWebsiteLocTxtMessageFormEmail: Locator;
+  readonly associateWebsiteLocTxtMessageFormMessage: Locator;
+  readonly associateWebsiteLocBtnMessageMeSubmit: Locator;
+  readonly associateWebsiteLocMsgConfirmationMessage: Locator;
   readonly associateWebsiteLocFrmPayment: FrameLocator;
   readonly associateWebsiteLocfrmPaymentsParent: FrameLocator;
   readonly associateWebsiteLocfrmPayments: FrameLocator;
@@ -80,6 +91,16 @@ export class WalsLocatorPage {
   readonly associateWebsiteLocTxtRoutingNumber: Locator;
   readonly associateWebsiteLocTxtAccountNumber: Locator;
   readonly associateWebsiteLocRdoCheckingAccount: Locator;
+  // Become An Associate locators
+  readonly becomeAnAssociateLocBtnCloseVideo: Locator;
+  readonly becomeAnAssociateLocBtnErrorMessageClose: Locator;
+  readonly becomeAnAssociateLocHdrMakingMoneyWhileHelpingOthers: Locator;
+  readonly becomeAnAssociateLocLnkaVideoModal: Locator;
+  readonly becomeAnAssociateLocFrmVideo: FrameLocator;
+  // Opportunity page locators
+  readonly opportunityPageLocJoinTheTeam: Locator;
+  // Success page locators
+  readonly successPageLocLblProfilesOfSuccess: Locator;
   // wearelegalshield locators
   readonly weAreLegalShieldLocInputAssociateSearch: Locator;
   readonly weAreLegalShieldLocBtnAssociateSearch: Locator;
@@ -115,8 +136,10 @@ export class WalsLocatorPage {
    */
   constructor(page: Page) {
     this.page = page;
-    this.aboutPageExecutiveTeamLocHeader = this.page.locator('//h4/span[contains(text(),"Kathy Pinson")]');
-    this.aboutPageLocLogo = this.page.locator('img.image-style-large >> nth=0');
+    this.aboutPageExecutiveTeamLocHeader = this.page.locator('//h4/*[contains(text(),"Kathy Pinson")] >> nth=0');
+    this.aboutPageLocLogo = this.page.locator('//img[contains(@alt, "lsidslogo")]');
+    this.aboutPageLocFrLogo = this.page.locator('//img[contains(@alt, "logo")]');
+    this.aboutPageLocSpLogo = this.page.locator('//img[contains(@alt, "pplsi")]');
     this.aboutPageLocLblWhyLegalShield = this.page.locator(
       'div.field.field--name--field-heading.field--type--string.field--label--hidden.field--item >> nth=0'
     );
@@ -166,8 +189,17 @@ export class WalsLocatorPage {
     this.associateWebsiteLocTxtCity = this.page.locator('#city');
     this.associateWebsiteLocTxtZipCode = this.page.locator('input[name="zipcode"]');
     this.associateWebsiteLocLnkChange = this.page.locator('a.open-modal-lgs-geolocate.button-region-state.la');
+    this.associateWebsiteLocLnkMessageMe = this.page.locator('a.icon-custom.icon-email.anchor-scroll.toggle-mobile-menu >> nth=0');
     this.associateWebsiteLocSlctRegion = this.page.locator('select[name="state_select"]');
     this.associateWebsiteLocBtnUpdateState = this.page.locator('#edit-submit--3');
+    this.associateWebsiteLocTxtMessageFormFirstName = this.page.locator('input#edit-name--2');
+    this.associateWebsiteLocTxtMessageFormLastName = this.page.locator('input#edit-last-name');
+    this.associateWebsiteLocTxtMessageFormPhone = this.page.locator('input#edit-phone--2');
+    this.associateWebsiteLocSlctMessageFormBestTime = this.page.locator('select#edit-best-time-to-contact');
+    this.associateWebsiteLocTxtMessageFormEmail = this.page.locator('input#edit-email--2');
+    this.associateWebsiteLocTxtMessageFormMessage = this.page.locator('textarea#edit-message--2');
+    this.associateWebsiteLocBtnMessageMeSubmit = this.page.locator('input#edit-actions-submit');
+    this.associateWebsiteLocMsgConfirmationMessage = this.page.locator('span#msg-container-form-footer');
     this.associateWebsiteLocTxtPhoneNumber = this.page.locator('#phone-number');
     this.associateWebsiteLocSlctPhoneType = this.page.locator('div.mat-select-arrow >> nth=0');
     this.associateWebsiteLocTxtDateOfBirth = this.page.locator('#date-birth');
@@ -199,6 +231,15 @@ export class WalsLocatorPage {
     this.associateWebsiteLocTxtRoutingNumber = this.associateWebsiteLocfrmPayments.locator('#routing_number');
     this.associateWebsiteLocTxtAccountNumber = this.associateWebsiteLocfrmPayments.locator('#account_number');
     this.associateWebsiteLocRdoCheckingAccount = this.associateWebsiteLocfrmPayments.locator('//input[ @value="Checking"]');
+    this.becomeAnAssociateLocFrmVideo = this.page.frameLocator('//iframe[@class="mfp-iframe"]');
+    this.becomeAnAssociateLocBtnCloseVideo = this.page.locator('button.mfp-close');
+    this.becomeAnAssociateLocBtnErrorMessageClose = this.becomeAnAssociateLocFrmVideo.locator('button.vp-nav-closeButton.js-close');
+    this.becomeAnAssociateLocHdrMakingMoneyWhileHelpingOthers = this.page.locator('h1.blog--title');
+    this.becomeAnAssociateLocLnkaVideoModal = this.page.locator('a.video-modal >> nth=0');
+    this.opportunityPageLocJoinTheTeam = this.page.locator('a.join-team-modal-cta.subscriber-ASSOCSTP >> nth=0');
+    this.successPageLocLblProfilesOfSuccess = this.page.locator(
+      'div.field.field--name--field-heading.field--type--string.field--label--hidden.field--item >> nth=0'
+    );
     this.weAreLegalShieldLocInputAssociateSearch = this.page.locator('#edit-search');
     this.weAreLegalShieldLocBtnAssociateSearch = this.page.locator('div.search-form.form--inline.clearfix input#edit-submit');
     // this.weAreLegalShieldLocLabelSalesAssociate = this.page.locator('//div[contains(text(), "Find a Sales Associate")]');
@@ -337,5 +378,12 @@ export class WalsLocatorPage {
    */
   associateWebsiteLocSmallBizOpt = async (idName?: string): Promise<Locator> => {
     return this.page.locator(`#plan-container-${idName}`);
+  };
+  /**
+   * @param {string} num
+   * @memberof WalsLocatorPage
+   */
+  becomeAnAssociateLocLnkVideo = async (num: string): Promise<Locator> => {
+    return this.page.locator(`a.video-modal >> nth=${num}`);
   };
 }
