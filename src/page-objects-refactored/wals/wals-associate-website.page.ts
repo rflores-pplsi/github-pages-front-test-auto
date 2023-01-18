@@ -250,8 +250,14 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
    * @memberof WalsAssociateWebsitePage
    */
   menuItems = async (tab: string, subTab: string): Promise<void> => {
-    await this.page.waitForLoadState();
-    await this.page.locator(`//span[contains(text(),"${tab}")]`).click();
+    let Tab = tab.toLowerCase();
+    if ((Tab = 'resources')) {
+      console.log(`The menu tab clicked on is: "${Tab}"`);
+      await this.page.locator(`//li[@data-label="Resources"]`).click();
+    } else {
+      await this.page.waitForLoadState();
+      await this.page.locator(`//span[contains(text(),"${tab}")]`).click();
+    }
     await this.page.waitForLoadState();
     await this.page.locator(`//*[contains(text(),"${subTab}")] >> nth=0`).click();
     // if ((menuTab = 'memberships')) {

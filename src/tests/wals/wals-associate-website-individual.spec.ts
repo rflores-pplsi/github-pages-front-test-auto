@@ -33,7 +33,7 @@ test.describe('Somos legalshield', () => {
     await test.step('Fill out personal and security info', async () => {
       await walsAssociateWebsitePage.filloutUsContactInformationForm(
         DataUtils.data.testingHarness.us.city.VA,
-        'enepa@gmail.com',
+        'amtestautomation@gmail.com',
         'TesterF',
         'TesterL',
         '5714001234',
@@ -89,7 +89,7 @@ test.describe('Test We are LegalShield', () => {
     await test.step('Fill out personal and security info', async () => {
       await walsAssociateWebsitePage.filloutUsContactInformationForm(
         DataUtils.data.testingHarness.us.city.VA,
-        'enepa@gmail.com',
+        'amtestautomation@gmail.com',
         'TesterF',
         'TesterL',
         '5714001234',
@@ -145,7 +145,7 @@ test.describe('Test nous sommes legalshield.ca', () => {
     await test.step('Fill out personal and security info', async () => {
       await walsAssociateWebsitePage.filloutCaContactInformationForm(
         DataUtils.data.testingHarness.ca.bd.province.FQC,
-        'enepa@gmail.com',
+        'amtestautomation@gmail.com',
         'TesterF',
         'TesterL',
         '5714001234',
@@ -202,7 +202,7 @@ test.describe('Test We Are legalshield.ca', () => {
     await test.step('Fill out personal and security info', async () => {
       await walsAssociateWebsitePage.filloutCaContactInformationForm(
         DataUtils.data.testingHarness.ca.bd.province.BC,
-        'enepa@gmail.com',
+        'amtestautomation@gmail.com',
         'TesterF',
         'TesterL',
         '5714001234',
@@ -259,7 +259,7 @@ test.describe('Test Ladies of justice US', () => {
     await test.step('Fill out personal and security info', async () => {
       await walsAssociateWebsitePage.filloutUsContactInformationForm(
         DataUtils.data.testingHarness.us.city.VA,
-        'enepa@gmail.com',
+        'amtestautomation@gmail.com',
         'TesterF',
         'TesterL',
         '5714001234',
@@ -315,7 +315,7 @@ test.describe('Test Dames de justice ca', () => {
     await test.step('Fill out personal and security info', async () => {
       await walsAssociateWebsitePage.filloutCaContactInformationForm(
         DataUtils.data.testingHarness.ca.bd.province.LBC,
-        'enepa@gmail.com',
+        'amtestautomation@gmail.com',
         'TesterF',
         'TesterL',
         '5714001234',
@@ -372,7 +372,7 @@ test.describe('Test Ladies of justice ca', () => {
     await test.step('Fill out personal and security info', async () => {
       await walsAssociateWebsitePage.filloutCaContactInformationForm(
         DataUtils.data.testingHarness.ca.bd.province.BC,
-        'enepa@gmail.com',
+        'amtestautomation@gmail.com',
         'TesterF',
         'TesterL',
         '5714001234',

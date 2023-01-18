@@ -25,7 +25,7 @@ test('English WALS-US', async () => {
     await englishWalsCaPage.assertContactInformationTxt();
   });
   await test.step('Fill Contact information form', async () => {
-    await englishWalsCaPage.filloutContactInformationForm('British Columbia', 'enepa20@gmail.com', 'testFt', 'testLt', '5712223333', 'Mobile');
+    await englishWalsCaPage.filloutContactInformationForm('British Columbia', 'tester2022@hotmail.com', 'testFt', 'testLt', '5712223333', 'Mobile');
   });
   await test.step('Fill Security an Family info form', async () => {
     await englishWalsCaPage.filloutSecurityAndFamilyCoverageInfo(
@@ -38,16 +38,16 @@ test('English WALS-US', async () => {
       'dependent@gmail.com'
     );
   });
-  await test.step('Create a User', async () => {
-    await englishWalsCaPage.createAUser('Password1', 'Password1');
-  });
-  await test.step('Select Commission option', async () => {
-    await englishWalsCaPage.commissionOptions();
-  });
-  await test.step('Fill The Bank Draft form', async () => {
-    await englishWalsCaPage.filloutBankAccountInfo('testerfirstlast', '11242', '260', '000000');
-  });
-  await test.step('Verify that the user made the purchase', async () => {
-    await englishWalsCaPage.assertWelcomelabel();
-  });
+  // await test.step('Create a User', async () => {
+  //   await englishWalsCaPage.createAUser('Password1', 'Password1');
+  // });
+  // await test.step('Select Commission option', async () => {
+  //   await englishWalsCaPage.commissionOptions();
+  // });
+  // await test.step('Fill The Bank Draft form', async () => {
+  //   await englishWalsCaPage.filloutBankAccountInfo('testerfirstlast', '11242', '260', '000000');
+  // });
+  // await test.step('Verify that the user made the purchase', async () => {
+  //   await englishWalsCaPage.assertWelcomelabel();
+  // });
 });

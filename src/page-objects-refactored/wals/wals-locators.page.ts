@@ -99,6 +99,13 @@ export class WalsLocatorPage {
   readonly becomeAnAssociateLocFrmVideo: FrameLocator;
   // Opportunity page locators
   readonly opportunityPageLocJoinTheTeam: Locator;
+  // Resources page locators
+  readonly lastWillAndTestamentLocHeaderHelpAvoidFamilyConflict: Locator;
+  readonly livingWillLocHeaderGetPeaceOfMind: Locator;
+  readonly powerOfAttorneyLocHeader: Locator;
+  readonly trustLocHeaderTakeCareOfYourChildren: Locator;
+  readonly magazineLocWhyBecomeAnEntrepreneur: Locator;
+  readonly blogLocHeaderBlog: Locator;
   // Success page locators
   readonly successPageLocLblProfilesOfSuccess: Locator;
   // wearelegalshield locators
@@ -139,7 +146,7 @@ export class WalsLocatorPage {
     this.aboutPageExecutiveTeamLocHeader = this.page.locator('//h4/*[contains(text(),"Kathy Pinson")] >> nth=0');
     this.aboutPageLocLogo = this.page.locator('//img[contains(@alt, "lsidslogo")]');
     this.aboutPageLocFrLogo = this.page.locator('//img[contains(@alt, "logo")]');
-    this.aboutPageLocSpLogo = this.page.locator('//img[contains(@alt, "pplsi")]');
+    this.aboutPageLocSpLogo = this.page.locator('//img[contains(@alt, "lsidslogonuevo")]');
     this.aboutPageLocLblWhyLegalShield = this.page.locator(
       'div.field.field--name--field-heading.field--type--string.field--label--hidden.field--item >> nth=0'
     );
@@ -237,6 +244,18 @@ export class WalsLocatorPage {
     this.becomeAnAssociateLocHdrMakingMoneyWhileHelpingOthers = this.page.locator('h1.blog--title');
     this.becomeAnAssociateLocLnkaVideoModal = this.page.locator('a.video-modal >> nth=0');
     this.opportunityPageLocJoinTheTeam = this.page.locator('a.join-team-modal-cta.subscriber-ASSOCSTP >> nth=0');
+    this.lastWillAndTestamentLocHeaderHelpAvoidFamilyConflict = this.page.locator(
+      'div.field.field--name--field-heading.field--type--string.field--label--hidden.field--item >> nth=0'
+    );
+    this.livingWillLocHeaderGetPeaceOfMind = this.page.locator(
+      'div.field.field--name--field-heading.field--type--string.field--label--hidden.field--item >> nth=0'
+    );
+    this.powerOfAttorneyLocHeader = this.page.locator('div.field--item >> nth=25');
+    this.trustLocHeaderTakeCareOfYourChildren = this.page.locator(
+      'div.field.field--name--field-heading.field--type--string.field--label--hidden.field--item >> nth=0'
+    );
+    this.magazineLocWhyBecomeAnEntrepreneur = this.page.locator('div.carousel_title >> nth=1');
+    this.blogLocHeaderBlog = this.page.locator('div.field.field--name--field-heading.field--type--string.field--label--hidden.field--item');
     this.successPageLocLblProfilesOfSuccess = this.page.locator(
       'div.field.field--name--field-heading.field--type--string.field--label--hidden.field--item >> nth=0'
     );

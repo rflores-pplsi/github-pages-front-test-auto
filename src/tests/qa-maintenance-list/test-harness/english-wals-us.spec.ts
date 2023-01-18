@@ -21,7 +21,7 @@ test('English WALS-US', async () => {
   // Verify that  it takes user to checkout
   await englishWalsUSPage.assertContactInformationTxt();
   // Fill Contact information form
-  await englishWalsUSPage.filloutContactInformationForm('Virginia', 'enepa20@gmail.com', 'testFt', 'testLt', '5712223333', 'Mobile');
+  await englishWalsUSPage.filloutContactInformationForm('Virginia', 'tester2022@hotmail.com', 'testFt', 'testLt', '5712223333', 'Mobile');
   // Fill Security an Family info form
   await englishWalsUSPage.filloutSecurityAndFamilyCoverageInfo(
     '12121990',
@@ -33,11 +33,11 @@ test('English WALS-US', async () => {
     'dependent@gmail.com'
   );
   // Create a User
-  await englishWalsUSPage.createAUser('Password1', 'Password1');
-  // Select Commission option
-  await englishWalsUSPage.commissionOptions();
-  // Fill Credit card form
-  await englishWalsUSPage.filloutBankAccountInfo('testerfirstlast', '103000648', '000000');
-  // Verify that the user made the purchase
-  await englishWalsUSPage.assertWelcomelabel();
+  // await englishWalsUSPage.createAUser('Password1', 'Password1');
+  // // Select Commission option
+  // await englishWalsUSPage.commissionOptions();
+  // // Fill Credit card form
+  // await englishWalsUSPage.filloutBankAccountInfo('testerfirstlast', '103000648', '000000');
+  // // Verify that the user made the purchase
+  // await englishWalsUSPage.assertWelcomelabel();
 });

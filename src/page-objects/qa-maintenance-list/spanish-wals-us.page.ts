@@ -23,7 +23,7 @@ const TXT_LAST_NAME = 'input[name="last-name"]';
 const TXT_ADDRESS = '#address';
 const TXT_CITY = '#city';
 const TXT_ZIP_CODE = '#zipcode';
-const LNK_CHANGE = '//a[contains(text(),"Cambiar")]';
+const LNK_CHANGE = '//a[contains(text(),"Change")] >> nth=1';
 const SELECT_REGION = 'select[name="state_select"]';
 const BTN_UPDATE_STATE = '#edit-submit--3';
 const TXT_PHONE_NUMBER = '#phone-number';
@@ -52,6 +52,7 @@ const TXT_NAME_OF_ACCOUNT_HOLDER = '#accountholder_name';
 const TXT_ROUTING_NUMBER = '#routing_number';
 const TXT_ACCOUNT_NUMBER = '#account_number';
 const RDO_CHECKING_ACCOUNT = '//input[ @value="Checking"]';
+const BTN_BD_PURCHASE = 'button#savebd';
 let street: string;
 let city: string;
 let postalCode: string;
@@ -225,8 +226,9 @@ export class SpanishWalsUSPage extends OktaPage {
     const CheckingAccount = frmPayment.locator(RDO_CHECKING_ACCOUNT);
     await CheckingAccount.click();
     // Click purchase button
-    await this.page.keyboard.press('Enter');
-    await this.page.keyboard.press('Enter');
+    // await this.page.keyboard.press('Tab');
+    // await this.page.keyboard.press('Enter');
+    await frmPayment.locator(BTN_BD_PURCHASE).click();
   };
   // ========================== Navigate Methods ===========================
   navigateToSpanishWalsUSPage = async (): Promise<void> => {

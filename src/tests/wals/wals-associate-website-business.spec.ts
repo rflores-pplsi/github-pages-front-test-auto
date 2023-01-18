@@ -33,7 +33,14 @@ test.describe('Somos legalshield', () => {
         await walsAssociateWebsitePage.walsAssociateWebsitePickAPlan(2);
       });
       await test.step('Fill out personal and security info', async () => {
-        await walsAssociateWebsitePage.filloutSpanishUsContactInformationForm(stte.name, 'enepa@gmail.com', 'TesterF', 'TesterL', '5714001234', '0');
+        await walsAssociateWebsitePage.filloutSpanishUsContactInformationForm(
+          stte.name,
+          'amtestautomation@gmail.com',
+          'TesterF',
+          'TesterL',
+          '5714001234',
+          '0'
+        );
         await walsAssociateWebsitePage.filloutSecurityInfo('01011999', '222445555');
         try {
           await walsAssociateWebsitePage.associateWebsiteLocBtnContinuePersonalInfoForm.click();
@@ -87,7 +94,14 @@ test.describe('Test We are LegalShield', () => {
         await walsAssociateWebsitePage.walsAssociateWebsitePickAPlan(2);
       });
       await test.step('Fill out personal and security info', async () => {
-        await walsAssociateWebsitePage.filloutUsContactInformationForm(stte.name, 'enepa@gmail.com', 'TesterF', 'TesterL', '5714001234', '0');
+        await walsAssociateWebsitePage.filloutUsContactInformationForm(
+          stte.name,
+          'amtestautomation@gmail.com',
+          'TesterF',
+          'TesterL',
+          '5714001234',
+          '0'
+        );
         await walsAssociateWebsitePage.filloutSecurityInfo('01011999', '222445555');
         try {
           await walsAssociateWebsitePage.associateWebsiteLocBtnContinuePersonalInfoForm.click();
@@ -143,7 +157,14 @@ test.describe('Test nous sommes legalshield.ca', () => {
         await walsAssociateWebsitePage.associateWebsiteLocBtnCheckout.click();
       });
       await test.step('Fill out personal and security info', async () => {
-        await walsAssociateWebsitePage.filloutFrenchCaContactInformationForm(stte.name, 'enepa@gmail.com', 'TesterF', 'TesterL', '5714001234', '0');
+        await walsAssociateWebsitePage.filloutFrenchCaContactInformationForm(
+          stte.name,
+          'amtestautomation@gmail.com',
+          'TesterF',
+          'TesterL',
+          '5714001234',
+          '0'
+        );
         await walsAssociateWebsitePage.filloutSecurityInfo('01011999', '222445555');
         try {
           await walsAssociateWebsitePage.associateWebsiteLocBtnContinuePersonalInfoForm.click();
@@ -200,7 +221,14 @@ test.describe('Test We Are legalshield.ca', () => {
         await walsAssociateWebsitePage.associateWebsiteLocBtnCheckout.click();
       });
       await test.step('Fill out personal and security info', async () => {
-        await walsAssociateWebsitePage.filloutCaContactInformationForm(stte.name, 'enepa@gmail.com', 'TesterF', 'TesterL', '5714001234', '0');
+        await walsAssociateWebsitePage.filloutCaContactInformationForm(
+          stte.name,
+          'amtestautomation@gmail.com',
+          'TesterF',
+          'TesterL',
+          '5714001234',
+          '0'
+        );
         await walsAssociateWebsitePage.filloutSecurityInfo('01011999', '222445555');
         try {
           await walsAssociateWebsitePage.associateWebsiteLocBtnContinuePersonalInfoForm.click();
@@ -257,7 +285,14 @@ test.describe('Test Ladies of justice US', () => {
         await walsAssociateWebsitePage.associateWebsiteLocBtnCheckout.click();
       });
       await test.step('Fill out personal and security info', async () => {
-        await walsAssociateWebsitePage.filloutUsContactInformationForm(stte.name, 'enepa@gmail.com', 'TesterF', 'TesterL', '5714001234', '0');
+        await walsAssociateWebsitePage.filloutUsContactInformationForm(
+          stte.name,
+          'amtestautomation@gmail.com',
+          'TesterF',
+          'TesterL',
+          '5714001234',
+          '0'
+        );
         await walsAssociateWebsitePage.filloutSecurityInfo('01011999', '222445555');
         try {
           await walsAssociateWebsitePage.associateWebsiteLocBtnContinuePersonalInfoForm.click();
@@ -313,7 +348,14 @@ test.describe('Test Dames de justice ca', () => {
         await walsAssociateWebsitePage.associateWebsiteLocBtnCheckout.click();
       });
       await test.step('Fill out personal and security info', async () => {
-        await walsAssociateWebsitePage.filloutFrenchCaContactInformationForm(stte.name, 'enepa@gmail.com', 'TesterF', 'TesterL', '5714001234', '0');
+        await walsAssociateWebsitePage.filloutFrenchCaContactInformationForm(
+          stte.name,
+          'amtestautomation@gmail.com',
+          'TesterF',
+          'TesterL',
+          '5714001234',
+          '0'
+        );
         await walsAssociateWebsitePage.filloutSecurityInfo('01011999', '222445555');
         try {
           await walsAssociateWebsitePage.associateWebsiteLocBtnContinuePersonalInfoForm.click();
@@ -370,7 +412,14 @@ test.describe('Test Ladies of justice ca', () => {
         await walsAssociateWebsitePage.associateWebsiteLocBtnCheckout.click();
       });
       await test.step('Fill out personal and security info', async () => {
-        await walsAssociateWebsitePage.filloutCaContactInformationForm(stte.name, 'enepa@gmail.com', 'TesterF', 'TesterL', '5714001234', '0');
+        await walsAssociateWebsitePage.filloutCaContactInformationForm(
+          stte.name,
+          'amtestautomation@gmail.com',
+          'TesterF',
+          'TesterL',
+          '5714001234',
+          '0'
+        );
         await walsAssociateWebsitePage.filloutSecurityInfo('01011999', '222445555');
         try {
           await walsAssociateWebsitePage.associateWebsiteLocBtnContinuePersonalInfoForm.click();

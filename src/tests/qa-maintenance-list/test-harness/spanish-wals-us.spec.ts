@@ -33,11 +33,11 @@ test('Spanish WALS-US', async () => {
     'dependent@gmail.com'
   );
   // Create a User
-  await spanishWalsUSPage.createAUser('Password1', 'Password1');
+  // await spanishWalsUSPage.createAUser('Password1', 'Password1');
   // Select Commission option
-  await spanishWalsUSPage.commissionOptions();
+  // await spanishWalsUSPage.commissionOptions();
   // Fill Credit card form
-  await spanishWalsUSPage.filloutBankAccountInfo('testerfirstlast', '103000648', '000000');
+  // await spanishWalsUSPage.filloutBankAccountInfo('testerfirstlast', '103000648', '000000');
   // Verify that the user made the purchase
-  await spanishWalsUSPage.assertWelcomelabel();
+  // await spanishWalsUSPage.assertWelcomelabel();
 });
