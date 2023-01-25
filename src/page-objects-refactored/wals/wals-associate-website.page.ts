@@ -9,6 +9,7 @@ dotenv.config();
 let street: string;
 let city: string;
 let postalCode: string;
+let PlanList: Array<string>;
 
 export class WalsAssociateWebsitePage extends WalsLocatorPage {
   // ========================== Process Methods ============================
@@ -250,38 +251,22 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
    * @memberof WalsAssociateWebsitePage
    */
   menuItems = async (tab: string, subTab: string): Promise<void> => {
-    let Tab = tab.toLowerCase();
-    if ((Tab = 'resources')) {
+    const Tab = tab.toLowerCase();
+    if (Tab == 'resources' || Tab == 'ressources' || Tab == 'recursos') {
       console.log(`The menu tab clicked on is: "${Tab}"`);
-      await this.page.locator(`//li[@data-label="Resources"]`).click();
+      await this.page.locator(`ul.tb-megamenu-nav.nav.level-0.items-5 li[data-label="Resources"] `).click();
     } else {
       await this.page.waitForLoadState();
       await this.page.locator(`//span[contains(text(),"${tab}")]`).click();
     }
     await this.page.waitForLoadState();
-    await this.page.locator(`//*[contains(text(),"${subTab}")] >> nth=0`).click();
-    // if ((menuTab = 'memberships')) {
-    //   console.log(menuTab);
-    //   await this.page.waitForLoadState();
-    //   this.page.locator(`span.dropdown-toggle.tb-megamenu-no-link >> nth=0`).click();
-    // }
-    // if ((menuTab = 'become an associate')) {
-    //   console.log(menuTab);
-    //   await this.page.waitForLoadState();
-    //   this.page.locator(`span.dropdown-toggle.tb-megamenu-no-link >> nth=1`).click();
-    // }
-    // if ((menuTab = 'resources')) {
-    //   console.log(menuTab);
-    //   await this.page.waitForLoadState();
-    //   this.page.locator(`span.dropdown-toggle.tb-megamenu-no-link >> nth=2`).click();
-    // }
-    // if ((menuTab = 'about us')) {
-    //   console.log(menuTab);
-    //   await this.page.waitForLoadState();
-    //   await this.page.locator(`//span[contains(text(),"${tab}")]`).click();
-    //   await this.page.waitForLoadState();
-    //   await this.page.locator(`//a[contains(text(),"${tab}")] >> nth=0`).click();
-    // }
+    if (subTab == 'Plans') {
+      await this.page.locator(`//*[contains(text(),"${subTab}")] >> nth=2`).click();
+    } else if (subTab == 'Petite Entreprise') {
+      await this.page.locator(`//*[contains(text(),"${subTab}")] >> nth=1`).click();
+    } else {
+      await this.page.locator(`//*[contains(text(),"${subTab}")] >> nth=0`).click();
+    }
   };
   /**
    * @memberof WalsAssociateWebsitePage
@@ -290,6 +275,19 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
     await this.page.waitForLoadState();
     await this.associateWebsiteLocBtnBecomeAssociate.click();
   };
+  /**
+   * @memberof WalsAssociateWebsitePage
+   */
+  listPans = async (): Promise<void> => {
+    PlanList = [];
+    const planList = await this.page.$$('div.plan-head-info h3');
+    console.log(planList.length);
+    for (const plan of planList) {
+      const planText = await plan.innerHTML();
+      PlanList.push(planText.trim());
+    }
+  };
+
   /**
    * @memberof WalsAssociateWebsitePage
    */
@@ -467,5 +465,25 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
     // Verify that the user made the purchase
     await ele.waitFor();
     await expect(ele).toContainText(txt);
+  };
+  /**
+   * @param {string} plan
+   * @memberof WalsAssociateWebsitePage
+   */
+  assertPlan = async (plan: string): Promise<void> => {
+    await this.listPans();
+    if (PlanList.indexOf(plan) === -1) {
+      console.log(plan + ' is not provided in this region');
+    } else {
+      console.log(plan + ' is provided in this region');
+    }
+  };
+  assertPlanIsProvided = async (plan: string): Promise<void> => {
+    await this.listPans();
+    expect(PlanList.indexOf(plan)).toBeGreaterThan(-1);
+  };
+  assertPlanIsNotProvided = async (plan: string): Promise<void> => {
+    await this.listPans();
+    expect(PlanList.indexOf(plan)).toEqual(-1);
   };
 }

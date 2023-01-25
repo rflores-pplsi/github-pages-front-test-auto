@@ -106,6 +106,8 @@ export class WalsLocatorPage {
   readonly trustLocHeaderTakeCareOfYourChildren: Locator;
   readonly magazineLocWhyBecomeAnEntrepreneur: Locator;
   readonly blogLocHeaderBlog: Locator;
+  // Membership
+  readonly membershipsLocLblHeading: Locator;
   // Success page locators
   readonly successPageLocLblProfilesOfSuccess: Locator;
   // wearelegalshield locators
@@ -256,6 +258,7 @@ export class WalsLocatorPage {
     );
     this.magazineLocWhyBecomeAnEntrepreneur = this.page.locator('div.carousel_title >> nth=1');
     this.blogLocHeaderBlog = this.page.locator('div.field.field--name--field-heading.field--type--string.field--label--hidden.field--item');
+    this.membershipsLocLblHeading = this.page.locator('h1.field.field--name--field-heading >> nth=0');
     this.successPageLocLblProfilesOfSuccess = this.page.locator(
       'div.field.field--name--field-heading.field--type--string.field--label--hidden.field--item >> nth=0'
     );
