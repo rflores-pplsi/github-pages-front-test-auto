@@ -181,16 +181,16 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
     }
   };
   /**
-   * @param {string} state
+   * @param {string} region
    * @memberof WalsAssociateWebsitePage
    */
-  changeStateinformation = async (state: string): Promise<void> => {
+  changeRegion = async (region: string): Promise<void> => {
     await this.page.waitForTimeout(5000);
     await this.associateWebsiteLocLnkChange.waitFor();
     await this.associateWebsiteLocLnkChange.click({ force: true });
     await this.associateWebsiteLocSlctRegion.waitFor();
-    await this.associateWebsiteLocSlctRegion.selectOption({ label: state });
-    await this.associateWebsiteLocBtnUpdateState.click();
+    await this.associateWebsiteLocSlctRegion.selectOption({ label: region });
+    await this.associateWebsiteLocBtnUpdateRegion.click();
   };
   /**
    * @param {number} yesNoIndex
@@ -215,6 +215,52 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
       console.log('No SSN text box');
     }
   };
+
+  /**
+   * @memberof WalsAssociateWebsitePage
+   */
+  captureProductArray = async (): Promise<Array<string>> => {
+    const planNames: string[] = [];
+    await this.page.waitForSelector('//div[contains(@class,"plan-head-info")]/h3');
+    const numberOfPlans = (await this.page.$$('//div[contains(@class,"plan-head-info")]/h3')).length;
+    for (let i = 0; i < numberOfPlans; i++) {
+      const planText = await this.page.locator('//div[contains(@class,"plan-head-info")]/h3').nth(i).innerText();
+      planNames.push(planText);
+    }
+    return planNames;
+  };
+  /**
+   *
+   *
+   * @param {string[]} displayedProductNames
+   * @param {string[]} expectedProductNames
+   * @memberof WalsAssociateWebsitePage
+   */
+  assertTwoArraysOfStringsHaveSameValues = async (displayedProductNames: string[], expectedProductNames: string[]): Promise<void> => {
+    let arraysAreEqual = false;
+
+    const sortedArray1 = displayedProductNames.concat().sort();
+    const sortedArray2 = expectedProductNames.concat().sort();
+
+    if (displayedProductNames.length !== expectedProductNames.length) {
+      arraysAreEqual = false;
+      console.log('Number of Plans DOES NOT Equal Expected Number' + '\n' + 'Displayed Products:', displayedProductNames);
+      console.log('Expected Products:', expectedProductNames);
+    } else {
+      for (let i = 0; i < sortedArray1.length; i++) {
+        if (sortedArray1[i] !== sortedArray2[i]) {
+          arraysAreEqual = false;
+          console.log('Displayed Products not what is expected.' + '\n' + 'Displayed Products:', displayedProductNames);
+          console.log('Expected Products:', expectedProductNames);
+          break;
+        } else {
+          arraysAreEqual = true;
+        }
+      }
+    }
+    expect(arraysAreEqual).toBe(true);
+  };
+
   /**
    * @param {string} depFirst
    * @param {string} depLast
@@ -418,7 +464,7 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
    * @param {string} url
    * @memberof WalsAssociateWebsitePage
    */
-  navigateToEnglishWalsUSPage = async (url: string): Promise<void> => {
+  navigateToUrl = async (url: string): Promise<void> => {
     await this.page.goto(url);
   };
 

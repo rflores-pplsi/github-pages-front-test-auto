@@ -1032,6 +1032,7 @@ export default class RegionsUtils {
   static readonly caProvinces = [
     {
       abbrv: 'AB',
+      expectedWalsProducts: ['Business Builder', 'Legal Plan', 'IDShield Plan', 'Small Business Plan', 'Associate Startup', 'Legal & Identity'],
       name: 'Alberta',
       priority: true,
       validAddress: {
@@ -1042,6 +1043,7 @@ export default class RegionsUtils {
     },
     {
       abbrv: 'BC',
+      expectedWalsProducts: ['Business Builder', 'Legal Plan', 'IDShield Plan', 'Small Business Plan', 'Associate Startup', 'Legal & Identity'],
       name: 'British Columbia',
       priority: true,
       validAddress: {
@@ -1051,17 +1053,8 @@ export default class RegionsUtils {
       },
     },
     {
-      abbrv: 'LBC',
-      name: 'la Colombie-Britannique',
-      priority: true,
-      validAddress: {
-        city: 'Whistler',
-        postalCode: 'V8E 1H9',
-        street: '4050 Whistler Way',
-      },
-    },
-    {
       abbrv: 'MB',
+      expectedWalsProducts: ['Business Builder', 'Legal Plan', 'IDShield Plan', 'Small Business Plan', 'Associate Startup', 'Legal & Identity'],
       name: 'Manitoba',
       priority: true,
       validAddress: {
@@ -1072,6 +1065,7 @@ export default class RegionsUtils {
     },
     {
       abbrv: 'NB',
+      expectedWalsProducts: ['IDShield Plan', 'Associate Startup'],
       name: 'New Brunswick',
       priority: true,
       validAddress: {
@@ -1082,6 +1076,7 @@ export default class RegionsUtils {
     },
     {
       abbrv: 'NL',
+      expectedWalsProducts: ['IDShield Plan', 'Associate Startup'],
       name: 'Newfoundland and Labrador',
       priority: true,
       validAddress: {
@@ -1092,6 +1087,7 @@ export default class RegionsUtils {
     },
     {
       abbrv: 'NT',
+      expectedWalsProducts: ['IDShield Plan', 'Associate Startup'],
       name: 'Northwest Territories',
       priority: true,
       validAddress: {
@@ -1102,6 +1098,7 @@ export default class RegionsUtils {
     },
     {
       abbrv: 'NS',
+      expectedWalsProducts: ['IDShield Plan', 'Associate Startup'],
       name: 'Nova Scotia',
       priority: true,
       validAddress: {
@@ -1112,6 +1109,7 @@ export default class RegionsUtils {
     },
     {
       abbrv: 'NU',
+      expectedWalsProducts: ['IDShield Plan', 'Associate Startup'],
       name: 'Nunavut',
       priority: true,
       validAddress: {
@@ -1122,6 +1120,7 @@ export default class RegionsUtils {
     },
     {
       abbrv: 'ON',
+      expectedWalsProducts: ['Business Builder', 'Legal Plan', 'IDShield Plan', 'Small Business Plan', 'Associate Startup', 'Legal & Identity'],
       name: 'Ontario',
       priority: true,
       validAddress: {
@@ -1132,6 +1131,7 @@ export default class RegionsUtils {
     },
     {
       abbrv: 'PE',
+      expectedWalsProducts: ['IDShield Plan', 'Associate Startup'],
       name: 'Prince Edward Island',
       priority: true,
       validAddress: {
@@ -1142,6 +1142,7 @@ export default class RegionsUtils {
     },
     {
       abbrv: 'QC',
+      expectedWalsProducts: ['IDShield Plan', 'Associate Startup'],
       name: 'Quebec',
       priority: true,
       validAddress: {
@@ -1151,17 +1152,8 @@ export default class RegionsUtils {
       },
     },
     {
-      abbrv: 'FQC',
-      name: 'Québec',
-      priority: true,
-      validAddress: {
-        city: 'Québec',
-        postalCode: 'G1R 4P5',
-        street: '1 Rue des Carrieres',
-      },
-    },
-    {
       abbrv: 'SK',
+      expectedWalsProducts: ['Business Builder', 'Legal Plan', 'IDShield Plan', 'Small Business Plan', 'Associate Startup', 'Legal & Identity'],
       name: 'Saskatchewan',
       priority: true,
       validAddress: {
@@ -1172,6 +1164,7 @@ export default class RegionsUtils {
     },
     {
       abbrv: 'YT',
+      expectedWalsProducts: ['IDShield Plan', 'Associate Startup'],
       name: 'Yukon',
       priority: true,
       validAddress: {

@@ -16,10 +16,10 @@ test.describe('Somos legalshield', () => {
     test(`${stte.name} User s able to click on  Nosotros  menu item`, async () => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
-        await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlSpUS);
+        await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlSpUS);
       });
       await test.step('Choose a region', async () => {
-        await walsAssociateWebsitePage.changeStateinformation(stte.name);
+        await walsAssociateWebsitePage.changeRegion(stte.name);
       });
       await test.step('Nosotros menu item', async () => {
         await walsAssociateWebsitePage.menuItems('Nosotros', 'Nosotros');
@@ -40,10 +40,10 @@ test.describe('Somos legalshield', () => {
     test(`${stte.name} User s able to click on Executive Team menu item`, async () => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
-        await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlSpUS);
+        await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlSpUS);
       });
       await test.step('Choose a region', async () => {
-        await walsAssociateWebsitePage.changeStateinformation(stte.name);
+        await walsAssociateWebsitePage.changeRegion(stte.name);
       });
       await test.step('Executive Team sub-menu item', async () => {
         await walsAssociateWebsitePage.menuItems('Nosotros', 'Equipo ejecutivo');
@@ -70,10 +70,10 @@ test.describe('Test We are LegalShield', () => {
     test(`${stte.name} User s able to click on About Us menu item`, async () => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
-        await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlEnUS);
+        await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlEnUS);
       });
       await test.step('Choose a region', async () => {
-        await walsAssociateWebsitePage.changeStateinformation(stte.name);
+        await walsAssociateWebsitePage.changeRegion(stte.name);
       });
       await test.step('About Us menu item', async () => {
         await walsAssociateWebsitePage.menuItems('About Us', 'About Us');
@@ -92,10 +92,10 @@ test.describe('Test We are LegalShield', () => {
     test(`${stte.name} User s able to click on Executive Team menu item`, async () => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
-        await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlEnUS);
+        await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlEnUS);
       });
       await test.step('Choose a region', async () => {
-        await walsAssociateWebsitePage.changeStateinformation(stte.name);
+        await walsAssociateWebsitePage.changeRegion(stte.name);
       });
       await test.step('Executive Team sub-menu item', async () => {
         await walsAssociateWebsitePage.menuItems('About Us', 'Executive Team');
@@ -120,10 +120,10 @@ test.describe('Test nous sommes legalshield.ca', () => {
     test(`${stte.name} User s able to click on  À propos de nous  menu item`, async () => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
-        await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlAppTestUserFrCa);
+        await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlAppTestUserFrCa);
       });
       await test.step('Choose a region', async () => {
-        await walsAssociateWebsitePage.changeStateinformation(stte.name);
+        await walsAssociateWebsitePage.changeRegion(stte.name);
       });
       await test.step('À propos de nous menu item', async () => {
         await walsAssociateWebsitePage.menuItems('À propos de nous', 'À propos de nous');
@@ -145,10 +145,10 @@ test.describe('Test nous sommes legalshield.ca', () => {
     test(`${stte.name} User s able to click on  Équipe de direction   menu item`, async () => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
-        await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlAppTestUserFrCa);
+        await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlAppTestUserFrCa);
       });
       await test.step('Choose a region', async () => {
-        await walsAssociateWebsitePage.changeStateinformation(stte.name);
+        await walsAssociateWebsitePage.changeRegion(stte.name);
       });
       await test.step('À propos de nous menu item', async () => {
         await walsAssociateWebsitePage.menuItems('À propos de nous', 'Équipe de direction ');

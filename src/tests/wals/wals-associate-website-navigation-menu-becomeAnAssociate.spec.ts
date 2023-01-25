@@ -16,10 +16,10 @@ test.describe('Somos legalshield', () => {
     test(`${stte.name} User s able to click on  Hágase asociado  menu item`, async () => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
-        await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlSpUS);
+        await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlSpUS);
       });
       await test.step('Choose a region', async () => {
-        await walsAssociateWebsitePage.changeStateinformation(stte.name);
+        await walsAssociateWebsitePage.changeRegion(stte.name);
       });
       await test.step('Únase al equipo menu item', async () => {
         await walsAssociateWebsitePage.menuItems('Hágase asociado', 'Únase al equipo');
@@ -42,10 +42,10 @@ test.describe('Somos legalshield', () => {
     test(`${stte.name} User s able to click on Perfiles del éxito menu item`, async () => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
-        await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlSpUS);
+        await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlSpUS);
       });
       await test.step('Choose a region', async () => {
-        await walsAssociateWebsitePage.changeStateinformation(stte.name);
+        await walsAssociateWebsitePage.changeRegion(stte.name);
       });
       await test.step('Perfiles del éxito Team sub-menu item', async () => {
         await walsAssociateWebsitePage.menuItems('Hágase asociado', 'Perfiles del éxito');
@@ -67,10 +67,10 @@ test.describe('Somos legalshield', () => {
     test(`${stte.name} User s able to click on ¡Su tiempo es ahora! video`, async () => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
-        await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlSpUS);
+        await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlSpUS);
       });
       await test.step('Choose a region', async () => {
-        await walsAssociateWebsitePage.changeStateinformation(stte.name);
+        await walsAssociateWebsitePage.changeRegion(stte.name);
       });
       await test.step('¡Su tiempo es ahora! Video', async () => {
         await walsAssociateWebsitePage.menuItems('Hágase asociado', '¡Su tiempo es ahora!');
@@ -95,10 +95,10 @@ test.describe('Somos legalshield', () => {
     test(`${stte.name} Gane dinero y ayude a otros video`, async () => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
-        await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlSpUS);
+        await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlSpUS);
       });
       await test.step('Choose a region', async () => {
-        await walsAssociateWebsitePage.changeStateinformation(stte.name);
+        await walsAssociateWebsitePage.changeRegion(stte.name);
       });
       await test.step('Gane dinero y ayude a otros ', async () => {
         await walsAssociateWebsitePage.menuItems('Hágase asociado', 'Gane dinero y ayude a otros');
@@ -123,10 +123,10 @@ test.describe('Somos legalshield', () => {
     test(`${stte.name} Trabaja desde cualquier lugar video`, async () => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
-        await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlSpUS);
+        await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlSpUS);
       });
       await test.step('Choose a region', async () => {
-        await walsAssociateWebsitePage.changeStateinformation(stte.name);
+        await walsAssociateWebsitePage.changeRegion(stte.name);
       });
       await test.step('Trabaja desde cualquier lugar ', async () => {
         await walsAssociateWebsitePage.menuItems('Hágase asociado', 'Trabaja desde cualquier lugar');
@@ -158,10 +158,10 @@ test.describe('Test We are LegalShield', () => {
     test(`${stte.name} User s able to click on Become an Associate menu item`, async () => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
-        await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlEnUS);
+        await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlEnUS);
       });
       await test.step('Choose a region', async () => {
-        await walsAssociateWebsitePage.changeStateinformation(stte.name);
+        await walsAssociateWebsitePage.changeRegion(stte.name);
       });
       await test.step('Join the Team menu item', async () => {
         await walsAssociateWebsitePage.menuItems('Become an Associate', 'Join the Team');
@@ -182,10 +182,10 @@ test.describe('Test We are LegalShield', () => {
     test(`${stte.name} User s able to click on Profiles of Success menu item`, async () => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
-        await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlBenefits);
+        await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlBenefits);
       });
       await test.step('Choose a region', async () => {
-        await walsAssociateWebsitePage.changeStateinformation(stte.name);
+        await walsAssociateWebsitePage.changeRegion(stte.name);
       });
       await test.step('Profiles of Success menu item', async () => {
         await walsAssociateWebsitePage.menuItems('Become an Associate', 'Profiles of Success');
@@ -205,10 +205,10 @@ test.describe('Test We are LegalShield', () => {
     test(`${stte.name} User s able to click on Your Time Is Now! video`, async () => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
-        await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlBenefits);
+        await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlBenefits);
       });
       await test.step('Choose a region', async () => {
-        await walsAssociateWebsitePage.changeStateinformation(stte.name);
+        await walsAssociateWebsitePage.changeRegion(stte.name);
       });
       await test.step('Your Time Is Now! video', async () => {
         await walsAssociateWebsitePage.menuItems('Become an Associate', 'Your Time Is Now!');
@@ -233,10 +233,10 @@ test.describe('Test We are LegalShield', () => {
     test(`${stte.name} User is able to click on Make Money and Help Others menu item`, async () => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
-        await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlBenefits);
+        await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlBenefits);
       });
       await test.step('Choose a region', async () => {
-        await walsAssociateWebsitePage.changeStateinformation(stte.name);
+        await walsAssociateWebsitePage.changeRegion(stte.name);
       });
       await test.step('Make Money and Help Others sub-menu item', async () => {
         await walsAssociateWebsitePage.menuItems('Become an Associate', 'Make Money and Help Others');
@@ -259,10 +259,10 @@ test.describe('Test We are LegalShield', () => {
     test(`${stte.name} Work From Anywhere video`, async () => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
-        await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlBenefits);
+        await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlBenefits);
       });
       await test.step('Choose a region', async () => {
-        await walsAssociateWebsitePage.changeStateinformation(stte.name);
+        await walsAssociateWebsitePage.changeRegion(stte.name);
       });
       await test.step('Work From Anywhere ', async () => {
         await walsAssociateWebsitePage.menuItems('Become an Associate', 'Work From Anywhere');
@@ -292,10 +292,10 @@ test.describe('Test nous sommes legalshield.ca', () => {
     test(`${stte.name} User s able to click on  Devenez Associé  menu item`, async () => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
-        await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlAppTestUserFrCa);
+        await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlAppTestUserFrCa);
       });
       await test.step('Choose a region', async () => {
-        await walsAssociateWebsitePage.changeStateinformation(stte.name);
+        await walsAssociateWebsitePage.changeRegion(stte.name);
       });
       await test.step('Devenez Associé menu item', async () => {
         await walsAssociateWebsitePage.menuItems('Devenez Associé', "Joignez-vous à l'équipe");
@@ -315,10 +315,10 @@ test.describe('Test nous sommes legalshield.ca', () => {
     test(`${stte.name} User s able to click on  Profils de réussite   menu item`, async () => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
-        await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlAppTestUserFrCa);
+        await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlAppTestUserFrCa);
       });
       await test.step('Choose a region', async () => {
-        await walsAssociateWebsitePage.changeStateinformation(stte.name);
+        await walsAssociateWebsitePage.changeRegion(stte.name);
       });
       await test.step('À propos de nous menu item', async () => {
         await walsAssociateWebsitePage.menuItems('Devenez Associé', 'Profils de réussite');
@@ -340,10 +340,10 @@ test.describe('Test nous sommes legalshield.ca', () => {
     test(`${stte.name} User s able to click on  Votre temps est venu ! video`, async () => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
-        await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlAppTestUserFrCa);
+        await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlAppTestUserFrCa);
       });
       await test.step('Choose a region', async () => {
-        await walsAssociateWebsitePage.changeStateinformation(stte.name);
+        await walsAssociateWebsitePage.changeRegion(stte.name);
       });
       await test.step('Click Votre temps est venu !', async () => {
         await walsAssociateWebsitePage.menuItems('Devenez Associé', 'Votre temps');
@@ -370,10 +370,10 @@ test.describe('Test nous sommes legalshield.ca', () => {
     test(`${stte.name} User s able to click on Gagnez de l'argent depuis chez vous avec LegalShield sub-menu item`, async () => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
-        await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlAppTestUserFrCa);
+        await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlAppTestUserFrCa);
       });
       await test.step('Choose a region', async () => {
-        await walsAssociateWebsitePage.changeStateinformation(stte.name);
+        await walsAssociateWebsitePage.changeRegion(stte.name);
       });
       await test.step(`Click on Gagnez de l'argent depuis chez vous avec LegalShield`, async () => {
         await walsAssociateWebsitePage.menuItems('Devenez Associé', "Gagnez de l'argent depuis chez vous avec LegalShield");

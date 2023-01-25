@@ -50,7 +50,7 @@ export class WalsLocatorPage {
   readonly associateWebsiteLocLnkChange: Locator;
   readonly associateWebsiteLocLnkMessageMe: Locator;
   readonly associateWebsiteLocSlctRegion: Locator;
-  readonly associateWebsiteLocBtnUpdateState: Locator;
+  readonly associateWebsiteLocBtnUpdateRegion: Locator;
   readonly associateWebsiteLocTxtMessageFormFirstName: Locator;
   readonly associateWebsiteLocTxtMessageFormLastName: Locator;
   readonly associateWebsiteLocTxtMessageFormPhone: Locator;
@@ -200,7 +200,7 @@ export class WalsLocatorPage {
     this.associateWebsiteLocLnkChange = this.page.locator('a.open-modal-lgs-geolocate.button-region-state.la');
     this.associateWebsiteLocLnkMessageMe = this.page.locator('a.icon-custom.icon-email.anchor-scroll.toggle-mobile-menu >> nth=0');
     this.associateWebsiteLocSlctRegion = this.page.locator('select[name="state_select"]');
-    this.associateWebsiteLocBtnUpdateState = this.page.locator('#edit-submit--3');
+    this.associateWebsiteLocBtnUpdateRegion = this.page.locator('#edit-submit--3');
     this.associateWebsiteLocTxtMessageFormFirstName = this.page.locator('input#edit-name--2');
     this.associateWebsiteLocTxtMessageFormLastName = this.page.locator('input#edit-last-name');
     this.associateWebsiteLocTxtMessageFormPhone = this.page.locator('input#edit-phone--2');

@@ -16,10 +16,10 @@ test.describe('Somos legalshield', () => {
     test(`${stte.name} User s able to click on  Nosotros  menu item`, async () => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
-        await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlSpUS);
+        await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlSpUS);
       });
       await test.step('Choose a region', async () => {
-        await walsAssociateWebsitePage.changeStateinformation(stte.name);
+        await walsAssociateWebsitePage.changeRegion(stte.name);
       });
       await test.step('Click on Message me link, then fillout the form', async () => {
         await walsAssociateWebsitePage.associateWebsiteLocLnkMessageMe.click();
@@ -52,10 +52,10 @@ test.describe('Test We are LegalShield', () => {
     test(`${stte.name} User s able to click on Become an Associate menu item`, async () => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
-        await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlEnUS);
+        await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlEnUS);
       });
       await test.step('Choose a region', async () => {
-        await walsAssociateWebsitePage.changeStateinformation(stte.name);
+        await walsAssociateWebsitePage.changeRegion(stte.name);
       });
       await test.step('Click on Message me link, then fillout the form', async () => {
         await walsAssociateWebsitePage.associateWebsiteLocLnkMessageMe.click();
@@ -86,10 +86,10 @@ test.describe('Test nous sommes legalshield.ca', () => {
     test(`${stte.name} User s able to click on  Devenez Associé  menu item`, async () => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
-        await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlAppTestUserFrCa);
+        await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlAppTestUserFrCa);
       });
       await test.step('Choose a region', async () => {
-        await walsAssociateWebsitePage.changeStateinformation(stte.name);
+        await walsAssociateWebsitePage.changeRegion(stte.name);
       });
       await test.step('Click on Message me link, then fillout the form', async () => {
         await walsAssociateWebsitePage.associateWebsiteLocLnkMessageMe.click();

@@ -15,10 +15,10 @@ test.describe('Somos legalshield', () => {
   test('User is able to purchase Associate Startup for Individual at $49 instead of $99', async () => {
     test.slow;
     await test.step('Navigate to legalshield marketing site', async () => {
-      await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlAppTestUserSpUS);
+      await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlAppTestUserSpUS);
     });
     await test.step('Choose a region', async () => {
-      await walsAssociateWebsitePage.changeStateinformation(DataUtils.data.testingHarness.us.city.VA);
+      await walsAssociateWebsitePage.changeRegion(DataUtils.data.testingHarness.us.city.VA);
     });
     await test.step('Become an associate', async () => {
       await walsAssociateWebsitePage.becomeAssociate();
@@ -71,10 +71,10 @@ test.describe('Test We are LegalShield', () => {
   test('User is able to purchase Associate Startup for Individual at $49 instead of $99', async () => {
     test.slow;
     await test.step('Navigate to legalshield marketing site', async () => {
-      await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlBenefits);
+      await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlBenefits);
     });
     await test.step('Choose a region', async () => {
-      await walsAssociateWebsitePage.changeStateinformation(DataUtils.data.testingHarness.us.city.VA);
+      await walsAssociateWebsitePage.changeRegion(DataUtils.data.testingHarness.us.city.VA);
     });
     await test.step('Become an associate', async () => {
       await walsAssociateWebsitePage.becomeAssociate();
@@ -127,10 +127,10 @@ test.describe('Test nous sommes legalshield.ca', () => {
   test('User is able to purchase Associate Startup for Individual at $49 instead of $99', async () => {
     test.slow;
     await test.step('Navigate to legalshield CA marketing site', async () => {
-      await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlAppTestUserFrCa);
+      await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlAppTestUserFrCa);
     });
     await test.step('Choose a region', async () => {
-      await walsAssociateWebsitePage.changeStateinformation(DataUtils.data.testingHarness.ca.bd.province.FQC);
+      await walsAssociateWebsitePage.changeRegion(DataUtils.data.testingHarness.ca.bd.province.FQC);
     });
     await test.step('Become an associate', async () => {
       await walsAssociateWebsitePage.becomeAssociate();
@@ -184,10 +184,10 @@ test.describe('Test We Are legalshield.ca', () => {
   test('User is able to purchase Associate Startup for Individual at $49 instead of $99', async () => {
     test.slow;
     await test.step('Navigate to legalshield CA marketing site', async () => {
-      await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlAppTestUserEnCa);
+      await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlAppTestUserEnCa);
     });
     await test.step('Choose a region', async () => {
-      await walsAssociateWebsitePage.changeStateinformation(DataUtils.data.testingHarness.ca.bd.province.BC);
+      await walsAssociateWebsitePage.changeRegion(DataUtils.data.testingHarness.ca.bd.province.BC);
     });
     await test.step('Become an associate', async () => {
       await walsAssociateWebsitePage.becomeAssociate();
@@ -241,10 +241,10 @@ test.describe('Test Ladies of justice US', () => {
   test('User is able to purchase Associate Startup for Individual at $49 instead of $99', async () => {
     test.slow;
     await test.step('Navigate to legalshield marketing site', async () => {
-      await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlAppTestUserLadiesUs);
+      await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlAppTestUserLadiesUs);
     });
     await test.step('Choose a region', async () => {
-      await walsAssociateWebsitePage.changeStateinformation(DataUtils.data.testingHarness.us.city.VA);
+      await walsAssociateWebsitePage.changeRegion(DataUtils.data.testingHarness.us.city.VA);
     });
     await test.step('Become an associate', async () => {
       await walsAssociateWebsitePage.becomeAssociate();
@@ -297,10 +297,10 @@ test.describe('Test Dames de justice ca', () => {
   test('User is able to purchase Associate Startup for Individual at $49 instead of $99', async () => {
     test.slow;
     await test.step('Navigate to legalshield CA marketing site', async () => {
-      await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlAppTestUserDamesDeJusticeCa);
+      await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlAppTestUserDamesDeJusticeCa);
     });
     await test.step('Choose a region', async () => {
-      await walsAssociateWebsitePage.changeStateinformation(DataUtils.data.testingHarness.ca.bd.province.LBC);
+      await walsAssociateWebsitePage.changeRegion(DataUtils.data.testingHarness.ca.bd.province.LBC);
     });
     await test.step('Become an associate', async () => {
       await walsAssociateWebsitePage.becomeAssociate();
@@ -354,10 +354,10 @@ test.describe('Test Ladies of justice ca', () => {
   test('User is able to purchase Associate Startup for Individual at $49 instead of $99', async () => {
     test.slow;
     await test.step('Navigate to legalshield CA marketing site', async () => {
-      await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlAppTestUserLadiesCa);
+      await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlAppTestUserLadiesCa);
     });
     await test.step('Choose a region', async () => {
-      await walsAssociateWebsitePage.changeStateinformation(DataUtils.data.testingHarness.ca.bd.province.BC);
+      await walsAssociateWebsitePage.changeRegion(DataUtils.data.testingHarness.ca.bd.province.BC);
     });
     await test.step('Become an associate', async () => {
       await walsAssociateWebsitePage.becomeAssociate();

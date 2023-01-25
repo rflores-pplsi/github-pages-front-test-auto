@@ -21,10 +21,10 @@ test.describe('Test CTA buttons', () => {
   test('User can click on all members CTA button and be redirected to the right page and checkout correctly', async () => {
     test.slow;
     await test.step('Navigate to legalshield marketing site', async () => {
-      await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlBenefits);
+      await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlBenefits);
     });
     await test.step('Choose a region', async () => {
-      await walsAssociateWebsitePage.changeStateinformation(DataUtils.data.testingHarness.us.city.VA);
+      await walsAssociateWebsitePage.changeRegion(DataUtils.data.testingHarness.us.city.VA);
     });
     await test.step('Click on logo', async () => {
       await walsAssociateWebsitePage.clickOnLogo();
@@ -48,10 +48,10 @@ test.describe('Test CTA buttons', () => {
   });
   test('User can click on business builder CTA button and be redirected to the right page and checkout correctly', async () => {
     await test.step('Navigate to legalshield marketing site', async () => {
-      await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlBenefits);
+      await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlBenefits);
     });
     await test.step('Choose a region', async () => {
-      await walsAssociateWebsitePage.changeStateinformation(DataUtils.data.testingHarness.us.city.VA);
+      await walsAssociateWebsitePage.changeRegion(DataUtils.data.testingHarness.us.city.VA);
     });
     await test.step('Click on logo', async () => {
       await walsAssociateWebsitePage.clickOnLogo();
@@ -76,10 +76,10 @@ test.describe('Test CTA buttons', () => {
   });
   test('User can click on LegalShield CTA button and be redirected to the right page and checkout correctly', async () => {
     await test.step('Navigate to legalshield marketing site', async () => {
-      await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlBenefits);
+      await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlBenefits);
     });
     await test.step('Choose a region', async () => {
-      await walsAssociateWebsitePage.changeStateinformation(DataUtils.data.testingHarness.us.city.VA);
+      await walsAssociateWebsitePage.changeRegion(DataUtils.data.testingHarness.us.city.VA);
     });
     await test.step('Click on logo', async () => {
       await walsAssociateWebsitePage.clickOnLogo();
@@ -101,10 +101,10 @@ test.describe('Test CTA buttons', () => {
   });
   test('User can click on IDShield CTA button and be redirected to the right page and checkout correctly', async () => {
     await test.step('Navigate to legalshield marketing site', async () => {
-      await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlBenefits);
+      await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlBenefits);
     });
     await test.step('Choose a region', async () => {
-      await walsAssociateWebsitePage.changeStateinformation(DataUtils.data.testingHarness.us.city.VA);
+      await walsAssociateWebsitePage.changeRegion(DataUtils.data.testingHarness.us.city.VA);
     });
     await test.step('Click on logo', async () => {
       await walsAssociateWebsitePage.clickOnLogo();
@@ -125,10 +125,10 @@ test.describe('Test CTA buttons', () => {
   });
   test('User can click on Small Business CTA button and be redirected to the right page and checkout correctly', async () => {
     await test.step('Navigate to legalshield marketing site', async () => {
-      await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlBenefits);
+      await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlBenefits);
     });
     await test.step('Choose a region', async () => {
-      await walsAssociateWebsitePage.changeStateinformation(DataUtils.data.testingHarness.us.city.VA);
+      await walsAssociateWebsitePage.changeRegion(DataUtils.data.testingHarness.us.city.VA);
     });
     await test.step('Click on logo', async () => {
       await walsAssociateWebsitePage.clickOnLogo();
@@ -151,10 +151,10 @@ test.describe('Test CTA buttons', () => {
   });
   test('User can click on Commercial Drivers CTA button and be redirected to the right page and checkout correctly', async () => {
     await test.step('Navigate to legalshield marketing site', async () => {
-      await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlBenefits);
+      await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlBenefits);
     });
     await test.step('Choose a region', async () => {
-      await walsAssociateWebsitePage.changeStateinformation(DataUtils.data.testingHarness.us.city.VA);
+      await walsAssociateWebsitePage.changeRegion(DataUtils.data.testingHarness.us.city.VA);
     });
     await test.step('Click on logo', async () => {
       await walsAssociateWebsitePage.clickOnLogo();

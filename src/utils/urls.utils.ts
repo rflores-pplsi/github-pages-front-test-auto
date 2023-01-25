@@ -132,7 +132,7 @@ export default class UrlsUtils {
     urls: {
       ddev: `http://lspro.${envWalsUrlString}wearelegalshield.com`,
       urlAppTestUserDamesDeJusticeCa: `https://apptestuser.${envWalsUrlString}damesdejustice.ca`,
-      urlAppTestUserEnCa: `https://lspro.${envWalsUrlString}wearelegalshield.ca`,
+      urlAppTestUserEnCa: `https://apptestuser.${envWalsUrlString}wearelegalshield.ca`,
       urlAppTestUserFrCa: `https://apptestuser.${envWalsUrlString}noussommeslegalshield.ca`,
       urlAppTestUserLadiesCa: `https://apptestuser.${envWalsUrlString}ladiesofjustice.ca`,
       urlAppTestUserLadiesUs: `https://apptestuser.${envWalsUrlString}ladiesofjustice.com`,
