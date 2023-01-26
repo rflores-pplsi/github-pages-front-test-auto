@@ -10,6 +10,7 @@ let street: string;
 let city: string;
 let postalCode: string;
 let PlanList: Array<string>;
+let ctaList: Array<string>;
 
 export class WalsAssociateWebsitePage extends WalsLocatorPage {
   // ========================== Process Methods ============================
@@ -333,7 +334,18 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
       PlanList.push(planText.trim());
     }
   };
-
+  /**
+   * @memberof WalsAssociateWebsitePage
+   */
+  listCta = async (): Promise<void> => {
+    ctaList = [];
+    const ctList = await this.page.$$('//ul[@class="plans-menu-filters menu-dropdown dropdown"]/li/a');
+    console.log(ctList.length);
+    for (const plan of ctList) {
+      const planText = await plan.innerHTML();
+      ctaList.push(planText.trim());
+    }
+  };
   /**
    * @memberof WalsAssociateWebsitePage
    */
@@ -522,6 +534,18 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
       console.log(plan + ' is not provided in this region');
     } else {
       console.log(plan + ' is provided in this region');
+    }
+  };
+  /**
+   * @param {string} cta
+   * @memberof WalsAssociateWebsitePage
+   */
+  assertCta = async (cta: string): Promise<void> => {
+    await this.listCta();
+    if (ctaList.indexOf(cta) === -1) {
+      console.log(cta + ' button is not visible in this region');
+    } else {
+      console.log(cta + ' button is visible in this region');
     }
   };
   assertPlanIsProvided = async (plan: string): Promise<void> => {
