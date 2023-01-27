@@ -1177,6 +1177,14 @@ export default class RegionsUtils {
   static readonly caFrenchProvinces = [
     {
       abbrv: 'AB',
+      expectedWalsProducts: [
+        "Bâtisseur d'Entreprise",
+        'Legal Plan',
+        'Plan IDShield',
+        'Plan pour les petites entreprises',
+        'Démarrage pour Associés',
+        'Juridique & Identité',
+      ],
       name: 'Alberta',
       priority: true,
       validAddress: {
@@ -1187,6 +1195,14 @@ export default class RegionsUtils {
     },
     {
       abbrv: 'BC',
+      expectedWalsProducts: [
+        "Bâtisseur d'Entreprise",
+        'Legal Plan',
+        'Plan IDShield',
+        'Plan pour les petites entreprises',
+        'Démarrage pour Associés',
+        'Juridique & Identité',
+      ],
       name: 'la Colombie-Britannique',
       priority: true,
       validAddress: {
@@ -1197,6 +1213,14 @@ export default class RegionsUtils {
     },
     {
       abbrv: 'MB',
+      expectedWalsProducts: [
+        "Bâtisseur d'Entreprise",
+        'Legal Plan',
+        'Plan IDShield',
+        'Plan pour les petites entreprises',
+        'Démarrage pour Associés',
+        'Juridique & Identité',
+      ],
       name: 'Manitoba',
       priority: true,
       validAddress: {
@@ -1207,6 +1231,7 @@ export default class RegionsUtils {
     },
     {
       abbrv: 'NB',
+      expectedWalsProducts: ['Plan IDShield', 'Démarrage pour Associés'],
       name: 'Nouveau-Brunswick',
       priority: true,
       validAddress: {
@@ -1217,6 +1242,7 @@ export default class RegionsUtils {
     },
     {
       abbrv: 'NL',
+      expectedWalsProducts: ['Plan IDShield', 'Démarrage pour Associés'],
       name: 'Terre-Neuve-et-Labrador',
       priority: true,
       validAddress: {
@@ -1227,6 +1253,7 @@ export default class RegionsUtils {
     },
     {
       abbrv: 'NT',
+      expectedWalsProducts: ['Plan IDShield', 'Démarrage pour Associés'],
       name: 'Territoires du nord-ouest',
       priority: true,
       validAddress: {
@@ -1237,6 +1264,7 @@ export default class RegionsUtils {
     },
     {
       abbrv: 'NS',
+      expectedWalsProducts: ['Plan IDShield', 'Démarrage pour Associés'],
       name: 'Nouvelle-Écosse',
       priority: true,
       validAddress: {
@@ -1247,6 +1275,7 @@ export default class RegionsUtils {
     },
     {
       abbrv: 'NU',
+      expectedWalsProducts: ['Plan IDShield', 'Démarrage pour Associés'],
       name: 'Nunavut',
       priority: true,
       validAddress: {
@@ -1257,6 +1286,14 @@ export default class RegionsUtils {
     },
     {
       abbrv: 'ON',
+      expectedWalsProducts: [
+        "Bâtisseur d'Entreprise",
+        'Legal Plan',
+        'Plan IDShield',
+        'Plan pour les petites entreprises',
+        'Démarrage pour Associés',
+        'Juridique & Identité',
+      ],
       name: 'Ontario',
       priority: true,
       validAddress: {
@@ -1267,6 +1304,7 @@ export default class RegionsUtils {
     },
     {
       abbrv: 'PE',
+      expectedWalsProducts: ['Plan IDShield', 'Démarrage pour Associés'],
       name: 'Île-du-Prince-Édouard',
       priority: true,
       validAddress: {
@@ -1277,6 +1315,7 @@ export default class RegionsUtils {
     },
     {
       abbrv: 'QC',
+      expectedWalsProducts: ['Plan IDShield', 'Démarrage pour Associés'],
       name: 'Québec',
       priority: true,
       validAddress: {
@@ -1287,6 +1326,14 @@ export default class RegionsUtils {
     },
     {
       abbrv: 'SK',
+      expectedWalsProducts: [
+        "Bâtisseur d'Entreprise",
+        'Legal Plan',
+        'Plan IDShield',
+        'Plan pour les petites entreprises',
+        'Démarrage pour Associés',
+        'Juridique & Identité',
+      ],
       name: 'Saskatchewan',
       priority: true,
       validAddress: {
@@ -1297,6 +1344,7 @@ export default class RegionsUtils {
     },
     {
       abbrv: 'YT',
+      expectedWalsProducts: ['Plan IDShield', 'Démarrage pour Associés'],
       name: 'Yukon',
       priority: true,
       validAddress: {
