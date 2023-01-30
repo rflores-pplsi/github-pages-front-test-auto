@@ -11,9 +11,7 @@ let city: string;
 let postalCode: string;
 let PlanList: Array<string>;
 let ctaList: Array<string>;
-
 export class WalsAssociateWebsitePage extends WalsLocatorPage {
-  // ========================== Process Methods ============================
   /**
    * @param {string} firstName
    * @param {string} lastName
@@ -492,12 +490,13 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
   /**
    * @param {string} buttonName
    * @param {number} index
-   * @memberof WalsAssociateCTAPage
+   * @memberof WalsAssociateWebsitePage
    */
   clickOnCTAButton = async (buttonName: string, index: number): Promise<void> => {
     await this.page.waitForLoadState();
     await (await this.associateWebsiteLocCTAButton(buttonName, index)).click();
   };
+
   // ========================== Assertion Methods ==========================
 
   assertCartSummary = async (fees: string, total: string): Promise<void> => {

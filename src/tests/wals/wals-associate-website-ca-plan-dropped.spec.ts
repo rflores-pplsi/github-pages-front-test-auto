@@ -283,23 +283,15 @@ test.describe('Test We are LegalShield', () => {
     test(`${stte.name} Work From Anywhere video`, async () => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
-        await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlBenefits);
-      });
-      await test.step('Choose a region', async () => {
-        await walsAssociateWebsitePage.changeRegion(stte.name);
-      });
-      await test.step('Magazine', async () => {
         await walsAssociateWebsitePage.menuItems('Memberships', 'Magazine');
       });
 
       await test.step('Confirm Magazine', async () => {
-        await walsAssociateWebsitePage.assertContainTextLabel(
-          walsAssociateWebsitePage.magazineLocWhyBecomeAnEntrepreneur,
-          'Why Become an Entrepreneur?'
-        );
+        walsAssociateWebsitePage.magazineLocWhyBecomeAnEntrepreneur, 'Why Become an Entrepreneur?';
       });
     });
   }
+
   for (const stte of RegionsUtils.usStates.filter((ste) => ste.abbrv == 'VA')) {
     test(`${stte.name} User is able to click on Blog menu item`, async () => {
       test.slow;

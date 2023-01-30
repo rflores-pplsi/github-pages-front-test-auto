@@ -262,8 +262,8 @@ export class WalsLocatorPage {
     this.successPageLocLblProfilesOfSuccess = this.page.locator(
       'div.field.field--name--field-heading.field--type--string.field--label--hidden.field--item >> nth=0'
     );
-    this.weAreLegalShieldLocInputAssociateSearch = this.page.locator('#edit-search');
-    this.weAreLegalShieldLocBtnAssociateSearch = this.page.locator('div.search-form.form--inline.clearfix input#edit-submit');
+    this.weAreLegalShieldLocInputAssociateSearch = this.page.locator('//input[starts-with(@id,"edit-search")]');
+    this.weAreLegalShieldLocBtnAssociateSearch = this.page.locator('//input[starts-with(@id,"edit-submit")] >> nth=0');
     // this.weAreLegalShieldLocLabelSalesAssociate = this.page.locator('//div[contains(text(), "Find a Sales Associate")]');
     //this.weAreLegalShieldLocLabelSalesAssociate = this.WeAreLegalShieldLocLabelSalesAssociate('Hello');
     this.weAreLegalShieldLocMsgAssociateNotFound = this.page.locator('//div[contains(text(), "Sorry, we did not find any results for")]');

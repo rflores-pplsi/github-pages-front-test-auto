@@ -16,11 +16,11 @@ test.describe('Test nous sommes legalshield.ca Plans', () => {
     test.only(`${stte.name} User is able to confirm that state does't provide Legal Plans`, async () => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
-        await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlAppTestUserFrCa);
+        await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlAppTestUserFrCa);
       });
       await test.step('Choose a region', async () => {
         await walsAssociateWebsitePage.listPans();
-        await walsAssociateWebsitePage.changeStateinformation(stte.name);
+        await walsAssociateWebsitePage.changeRegion(stte.name);
         await walsAssociateWebsitePage.listPans();
         await walsAssociateWebsitePage.listCta();
         console.log(walsAssociateWebsitePage.assertPlan('Legal Plan'));
@@ -48,11 +48,11 @@ test.describe('Test nous sommes legalshield.ca Plans', () => {
     test(`${stte.name} User is able to confirm that state provides Legal Plans`, async () => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
-        await walsAssociateWebsitePage.navigateToEnglishWalsUSPage(UrlsUtils.wals.urls.urlAppTestUserFrCa);
+        await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlAppTestUserFrCa);
       });
       await test.step('Choose a region', async () => {
         await walsAssociateWebsitePage.listPans();
-        await walsAssociateWebsitePage.changeStateinformation(stte.name);
+        await walsAssociateWebsitePage.changeRegion(stte.name);
         await walsAssociateWebsitePage.listPans();
         console.log(walsAssociateWebsitePage.assertPlan('Legal Plan'));
         console.log(walsAssociateWebsitePage.assertPlan("Bâtisseur d'Entreprise"));

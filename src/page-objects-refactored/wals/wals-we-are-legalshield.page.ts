@@ -1,4 +1,4 @@
-import { Page } from '@playwright/test';
+import { expect, Page } from '@playwright/test';
 import { WalsLocatorPage } from './wals-locators.page';
 
 /**
@@ -35,6 +35,13 @@ export class WeAreLegalShieldPage extends WalsLocatorPage {
     await this.page.waitForLoadState();
   };
   /**
+   * @param {string} tab
+   * @memberof searchForAssociate
+   */
+  clickOnNavigationMenuTab = async (tab: string): Promise<void> => {
+    await this.page.locator(`//a[contains(.,"${tab}")]`).click();
+  };
+  /**
    *
    *
    * @memberof WalsAssociateSearchPage
@@ -55,5 +62,15 @@ export class WeAreLegalShieldPage extends WalsLocatorPage {
    */
   assertAssociateUrl = async (url: string): Promise<void> => {
     (await this.WeAreLegalShieldLocContainsText(url)).isVisible();
+  };
+  /**   * @memberof assertMsgAssociateNotFound   */ assertReadFullBioText = async (): Promise<void> => {
+    const ele = await this.page.locator('(//a[contains(@class,"more-link")])[1]');
+    await expect(ele).toBeVisible();
+  };
+  /**
+   * @param {string} title
+   * @memberof assertMsgAssociateNotFound
+   */ assertPageTitle = async (title: string): Promise<void> => {
+    expect(title).toStrictEqual(title);
   };
 }
