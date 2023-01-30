@@ -11,7 +11,7 @@ test.describe('Verify the confirmation page of a purchase for IDS Individual on 
   // Setup environment before each test
   test.beforeEach(async ({ context, page }) => {
     test.slow();
-    checkoutConfirmationPage = new CheckoutConfirmationPage(context, page, 'IDShieldUS', ['DSCF2']);
+    checkoutConfirmationPage = new CheckoutConfirmationPage(context, page, 'IDShieldUS', ['IDSI']); // can change to LS, different plan(s)
     await checkoutConfirmationPage.checkoutPaymentsPage.navigateToPaymentsPage(
       page,
       'Virginia',

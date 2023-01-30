@@ -85,7 +85,7 @@ export class CheckoutPersonalInfoPage extends CheckoutLocatorsPage {
   constructor(context: BrowserContext, page: Page, lineOfBusiness: string, planSupp: Array<string>) {
     super(context, page);
     this.page = page;
-    this.commonLoginPage = new CommonLoginPage(page);
+    this.commonLoginPage = new CommonLoginPage(page); // instantiate CommonLoginPage
     this.legalshieldTestHarnessMenuPage = new LegalshieldTestHarnessMenuPage(context, page);
     this.personalInfoLocLineOfBusiness = lineOfBusiness;
     this.planSupp = planSupp;
@@ -423,8 +423,8 @@ export class CheckoutPersonalInfoPage extends CheckoutLocatorsPage {
     await this.navigateToTestingHarnessPage.navigate(url, lineOfBusiness, lofb);
     await this.legalshieldTestHarnessMenuPage.selectRegionFromDropdown(state);
     await this.addPlanAndSomeSupplements.pickAPlan(planSupp, lineOfBusiness);
-    this.page.waitForLoadState();
-    await this.commonLoginPage.login(basicUser.email as string, basicUser.password as string);
+    await this.page.waitForLoadState();
+    await this.commonLoginPage.login(basicUser.email as string, basicUser.password as string); // not adding creds
   };
   // Navigate to the personal info page and scrapes the order summary to be used in assertions
 
