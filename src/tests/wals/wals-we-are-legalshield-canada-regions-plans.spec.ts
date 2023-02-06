@@ -13,7 +13,7 @@ test.describe('Test nous sommes legalshield.ca Plans', () => {
     test.slow();
   });
   for (const stte of RegionsUtils.caFrenchProvinces.filter((ste) => ['NB', 'NL', 'NT', 'NS', 'NU', 'PE', 'QC', 'YT'].includes(ste.abbrv))) {
-    test.only(`${stte.name} User is able to confirm that state does't provide Legal Plans`, async () => {
+    test(`${stte.name} User is able to confirm that state does't provide Legal Plans`, async () => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
         await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlAppTestUserFrCa);

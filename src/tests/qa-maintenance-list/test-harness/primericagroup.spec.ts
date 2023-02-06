@@ -1,11 +1,13 @@
 import { test } from '@playwright/test';
-import { PrimericaGroupPage } from '../../../page-objects/qa-maintenance-list/primericagroup.page';
+import { GroupsPage } from '../../../page-objects-refactored/qa-maintenance-list/groups.page';
+import { basicUser } from '../../../utils/user.utils';
+import * as dotenv from 'dotenv';
+dotenv.config();
 // create instance of Page
-let primericaGroupPage: PrimericaGroupPage;
-
+let primericaGroupPage: GroupsPage;
 // Setup environment before each test
 test.beforeEach(async ({ page }) => {
-  primericaGroupPage = new PrimericaGroupPage(page);
+  primericaGroupPage = new GroupsPage(page);
   // test.slow triples the default wait times
   test.slow();
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
@@ -13,25 +15,23 @@ test.beforeEach(async ({ page }) => {
 test('Primerica Group', async () => {
   test.slow;
   // Navigate to Primerica group url
-  await primericaGroupPage.navigateToPrimericaGroupPage();
+  await primericaGroupPage.navigateToGroupsPage('primerica');
   // Select a language
-  await primericaGroupPage.selectlanguageAndRegion(21);
+  await primericaGroupPage.selectLanguageAndRegion(0);
+  // Click on Enroll Now
+  await primericaGroupPage.primericaGroupBtnEnrollNow.click();
   // Enter Agent ID
   await primericaGroupPage.fillAgentID('12345');
   // Click on Submit button
-  await primericaGroupPage.clickSubmitBtn();
-  // Verify that user can see Representative: JANICE S BRAY
-  // await primericaGroupPage.assertRepresentativeLbl('Representative: JANICE S BRAY');
-  // Click on Get Started Button
-  await primericaGroupPage.clickGetStartedBtn();
-  // Verify the Plan name
-  await primericaGroupPage.selectStateOrProvince('Ontario');
+  await primericaGroupPage.primericaGroupBtnFindRep.click();
+  // Select State
+  await primericaGroupPage.selectPrimericaStateOrProvince('46');
   // Click select your plan link
   await primericaGroupPage.clickSelectYourPlanLnk();
-  // Click on Add to Cart Button
-  await primericaGroupPage.clickAddToCartBtn();
+  // Click on Sign In
+  await primericaGroupPage.login(basicUser.email as string, basicUser.password as string);
   // Click on Contact info Button
-  await primericaGroupPage.clickContactInfoBtn();
+  await primericaGroupPage.changeAddress('englishus', 'Virginia');
   // Verify that  it takes user to checkout
-  await primericaGroupPage.assertCheckoutURL();
+  await primericaGroupPage.assertCheckoutTitle();
 });

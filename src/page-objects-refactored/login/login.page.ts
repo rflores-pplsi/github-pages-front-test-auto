@@ -31,15 +31,14 @@ export class LoginPage extends LoginLocatorsPage {
     console.log(title);
     if (title != 'Welcome back! Sign in to your account.') {
       await this.loginLocLnkSignIn.click();
-    } else {
-      await this.loginLocTxtEmailOrUsername.fill(emailOrUsername);
-      await this.loginLocTxtPassword.fill(password);
-      await this.loginLocBtnSignIn.click();
-      await this.page.waitForLoadState('networkidle', { timeout: 250000 });
-      if (await this.loginLocBtnOk.isVisible()) await this.loginLocBtnOk.click();
-      await this.page.waitForLoadState('networkidle', { timeout: 250000 });
-      throw new Error('Email or Password parameters are undefined');
     }
+    await this.loginLocTxtEmailOrUsername.fill(emailOrUsername);
+    await this.loginLocTxtPassword.fill(password);
+    await this.loginLocBtnSignIn.click();
+    await this.page.waitForLoadState('networkidle', { timeout: 250000 });
+    if (!(await this.loginLocBtnOk.isHidden())) await this.loginLocBtnOk.click();
+    await this.page.waitForLoadState('networkidle', { timeout: 250000 });
+    // throw new Error('Email or Password parameters are undefined');
   };
 
   /**

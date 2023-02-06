@@ -1,34 +1,42 @@
 import { test } from '@playwright/test';
-import { EnglishWalsCAPage } from '../../../page-objects/qa-maintenance-list/english-wals-ca.page';
+import { WalsPage } from '../../../page-objects-refactored/qa-maintenance-list/wals.page';
 // create instance of Page
-let englishWalsCaPage: EnglishWalsCAPage;
+let walsPage: WalsPage;
 
 // Setup environment before each test
 test.beforeEach(async ({ page }) => {
-  englishWalsCaPage = new EnglishWalsCAPage(page);
+  walsPage = new WalsPage(page);
   // test.slow triples the default wait times
   test.slow();
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
-test('English WALS-US', async () => {
+test('English WALS-CA', async () => {
   test.slow;
   await test.step('Navigate to English-WALS-Ca page', async () => {
-    await englishWalsCaPage.navigateToEnglishWalsCaPage();
+    await walsPage.navigateToWalsPage('englishca');
   });
   await test.step('Update the Province', async () => {
-    await englishWalsCaPage.changeStateinformation('British Columbia');
+    await walsPage.changeRegion('British Columbia');
   });
   await test.step('Get Started then pick a plan', async () => {
-    await englishWalsCaPage.getStartedThenPickAPlan();
+    await walsPage.getStartedThenPickAPlan();
   });
   await test.step('Verify that  it takes user to checkout', async () => {
-    await englishWalsCaPage.assertContactInformationTxt();
+    await walsPage.assertContactInformationTxt('englishca');
   });
   await test.step('Fill Contact information form', async () => {
-    await englishWalsCaPage.filloutContactInformationForm('British Columbia', 'tester2022@hotmail.com', 'testFt', 'testLt', '5712223333', 'Mobile');
+    await walsPage.filloutContactInformationForm(
+      'englishca',
+      'British Columbia',
+      'tester2022@hotmail.com',
+      'testFt',
+      'testLt',
+      '5712223333',
+      'Mobile'
+    );
   });
   await test.step('Fill Security an Family info form', async () => {
-    await englishWalsCaPage.filloutSecurityAndFamilyCoverageInfo(
+    await walsPage.filloutSecurityAndFamilyCoverageInfo(
       '12121990',
       '111223333',
       'testerDependentFirst',
@@ -38,16 +46,18 @@ test('English WALS-US', async () => {
       'dependent@gmail.com'
     );
   });
-  // await test.step('Create a User', async () => {
-  //   await englishWalsCaPage.createAUser('Password1', 'Password1');
-  // });
-  // await test.step('Select Commission option', async () => {
-  //   await englishWalsCaPage.commissionOptions();
-  // });
-  // await test.step('Fill The Bank Draft form', async () => {
-  //   await englishWalsCaPage.filloutBankAccountInfo('testerfirstlast', '11242', '260', '000000');
-  // });
-  // await test.step('Verify that the user made the purchase', async () => {
-  //   await englishWalsCaPage.assertWelcomelabel();
-  // });
+  await walsPage.personalInfoLocBtnContactInfoContinue.waitFor();
+  await walsPage.personalInfoLocBtnContactInfoContinue.click();
+  await test.step('Create a User', async () => {
+    await walsPage.createAUser('Password1', 'Password1');
+  });
+  await test.step('Select Commission option', async () => {
+    await walsPage.commissionOptions();
+  });
+  await test.step('Fill The Bank Draft form', async () => {
+    await walsPage.filloutCaBankAccountInfo('testerfirstlast', '11242', '260', '000000');
+  });
+  await test.step('Verify that the user made the purchase', async () => {
+    await walsPage.assertWelcomelabel('english');
+  });
 });

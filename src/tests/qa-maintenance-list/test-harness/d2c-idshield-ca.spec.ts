@@ -1,68 +1,65 @@
 import { test } from '@playwright/test';
-import { CheckoutPaymentsBankDraftPage } from '../../../page-objects/checkout/checkout-payments-bank-draft.page';
-import { CheckoutPersonalInfoPage } from '../../../page-objects/checkout/checkout-personal-info.page';
-import { D2CLegalShieldCaPage } from '../../../page-objects/qa-maintenance-list/d2c-legalshield-ca.page';
-import { D2CLegalShieldUSPage } from '../../../page-objects/qa-maintenance-list/d2c-legalshield-us.page';
+import { CommonCheckoutPage } from '../../../../node_modules/@legalshield/frontend-automation-commons';
+import { TestHarnessD2cPage } from '../../../page-objects-refactored/qa-maintenance-list/test-harness.page';
 import DataUtils from '../../../utils/Tests.Data';
-// let interceptedRequest: any;
+import { basicUser } from '../../../utils/user.utils';
 // create instance of Page
-let d2CLegalShieldUSPage: D2CLegalShieldUSPage;
-let d2CLegalShieldCaPage: D2CLegalShieldCaPage;
-let checkoutPersonalInfoPage: CheckoutPersonalInfoPage;
-let checkoutPaymentsBankDraftPage: CheckoutPaymentsBankDraftPage;
-
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+let testHarnessD2cPage: TestHarnessD2cPage;
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+let commonCheckoutPage: CommonCheckoutPage;
 // Setup environment before each test
 test.beforeEach(async ({ page }) => {
-  d2CLegalShieldUSPage = new D2CLegalShieldUSPage(page);
-  d2CLegalShieldCaPage = new D2CLegalShieldCaPage(page);
-  checkoutPersonalInfoPage = new CheckoutPersonalInfoPage(page);
-  checkoutPaymentsBankDraftPage = new CheckoutPaymentsBankDraftPage(page);
   // test.slow triples the default wait times
+  testHarnessD2cPage = new TestHarnessD2cPage(page);
+  commonCheckoutPage = new CommonCheckoutPage(page);
   test.slow();
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
-test('D2E IDShield CA using Testing Harness', async ({ page }) => {
+test('D2E IDShield CA using Testing Harness', async () => {
   test.slow;
   await test.step('Navigate to Testing Harness', async () => {
-    await d2CLegalShieldCaPage.navigateToTestingHarnessPage('d2cIDShieldCA');
+    await testHarnessD2cPage.navigateToTestingHarnessPage('d2cIDShieldCA');
   });
   await test.step('Select "Direct to Consumer" box', async () => {
-    await d2CLegalShieldCaPage.selectDirecttoConsumerD2C('0');
+    await testHarnessD2cPage.selectDirecttoConsumerD2C('0');
   });
   await test.step('Test from IDShield Canada', async () => {
-    await d2CLegalShieldUSPage.clickOnALineOfBusiness(DataUtils.data.testingHarness.lineOfBusiness.IDShieldCanada, 'IDShieldCA');
+    await testHarnessD2cPage.clickOnALineOfBusiness(DataUtils.data.testingHarness.lineOfBusiness.IDShieldCanada, 'IDShieldCA');
   });
   await test.step('Select a Region', async () => {
-    page.on('response', (response) => {
-      const URL = ' https://orders.api.dev-legalshield.com/v1/orders';
-      if (response.url() === URL) {
-        // interceptedRequest = response;
-        console.log('<<', response.url());
-      }
-    });
-    await d2CLegalShieldCaPage.selectYourRegion(DataUtils.data.testingHarness.ca.bd.province.BC);
+    await testHarnessD2cPage.selectYourRegion(DataUtils.data.testingHarness.ca.city.ON);
   });
   await test.step('Add Plan and some Supplements', async () => {
-    await d2CLegalShieldCaPage.addPlanAndSomeSupplements('d2cIDShieldCA', [DataUtils.data.testingHarness.plans.ca.IDShieldIndividual]);
+    await testHarnessD2cPage.addPlanAndSomeSupplements('d2cIDShieldCA', [DataUtils.data.testingHarness.plans.ca.IDShieldIndividual]);
+  });
+  await test.step('Sign in as an existing user', async () => {
+    await testHarnessD2cPage.login(basicUser.email as string, basicUser.password as string);
   });
   await test.step('Login Page > Sign-in as an existing account.', async () => {
-    await d2CLegalShieldCaPage.loginLegalShieldCA('d2cIDShieldCA');
+    // await testHarnessD2cPage.selectCheckout('LegalShieldCA');
   });
   await test.step('change address', async () => {
-    await checkoutPersonalInfoPage.changeAddressCanada(DataUtils.data.testingHarness.ca.bd.province.BC);
+    await commonCheckoutPage.changeAddress(
+      DataUtils.data.testingHarness.ca.city.Street,
+      DataUtils.data.testingHarness.ca.city.City,
+      DataUtils.data.testingHarness.ca.city.ZipCode
+    );
+    await testHarnessD2cPage.personalInfoLocBtnSaveAndContinue.click();
   });
+
   await test.step('Select "Checkout" button to proceed with Checkout Process', async () => {
     // await d2CLegalShieldCaPage.selectCheckout('d2cIDShieldCA');
   });
   await test.step('Proceed to Payment Page > Complete Payment with BD transaction ', async () => {
-    await checkoutPaymentsBankDraftPage.clickSaveAndContinue();
-    await checkoutPaymentsBankDraftPage.clickBankDraftBtn();
-    await checkoutPaymentsBankDraftPage.fillCaBankDraftFormAndSubmit();
-    page.on('response', (response) => {
-      console.log('<<', response);
-    });
+    await commonCheckoutPage.completeBankDraftFormCanada(
+      DataUtils.data.testingHarness.ca.bd.Account,
+      DataUtils.data.testingHarness.ca.bd.Transit,
+      DataUtils.data.testingHarness.ca.bd.Institution,
+      DataUtils.data.testingHarness.ca.bd.name
+    );
   });
   await test.step('Continue to Confirmation Page.', async () => {
-    await d2CLegalShieldUSPage.assertWelcomelabel('d2cIDShieldUS');
+    await testHarnessD2cPage.assertWelcomelabel();
   });
 });

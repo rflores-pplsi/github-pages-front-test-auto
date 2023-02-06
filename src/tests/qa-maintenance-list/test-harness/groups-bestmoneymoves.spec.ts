@@ -1,12 +1,19 @@
-import { test } from '@playwright/test';
-import { BestMoneyMoversGroupPage } from '../../../page-objects/qa-maintenance-list/bestmoneymoversgroup.page';
+import { BrowserContext, test } from '@playwright/test';
+import { GroupsPage } from '../../../page-objects-refactored/qa-maintenance-list/groups.page';
+// import { basicUser } from '../../../utils/user.utils';
+import * as dotenv from 'dotenv';
+import { basicUser } from '../../../utils/user.utils';
+import { LoginPage } from '../../../page-objects-refactored/login/login.page';
+dotenv.config();
 // import RegionsUtils from '../../utils/regions.utils';
 // create instance of Page
-let bestMoneyMoversGroupPage: BestMoneyMoversGroupPage;
-
+let groupsPage: GroupsPage;
+let loginPage: LoginPage;
+let context: BrowserContext;
 // Setup environment before each test
 test.beforeEach(async ({ page }) => {
-  bestMoneyMoversGroupPage = new BestMoneyMoversGroupPage(page);
+  groupsPage = new GroupsPage(page);
+  loginPage = new LoginPage(context, page);
   // test.slow triples the default wait times
   test.slow();
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
@@ -14,52 +21,52 @@ test.beforeEach(async ({ page }) => {
 test('Best Money Movers Group', async () => {
   test.slow;
   // Go to https://www.shieldbenefits.com/bestmoneymoves/overview
-  await bestMoneyMoversGroupPage.navigateToBestMoneyMoversGroupPage();
+  await groupsPage.navigateToGroupsPage('bestmoneymovers');
   // Click on legal plan tab
-  await bestMoneyMoversGroupPage.clickOnLegalPlanTab();
+  await groupsPage.bestMoneyMoversLocLnkLegalPlan.click();
   // Click text=Enroll Now
-  await bestMoneyMoversGroupPage.clickBtnEnrollNow();
+  await groupsPage.bestMoneyMoversLocBtnEnrollNow.click();
   // Confirm button takes user to Pricing Page
-  await bestMoneyMoversGroupPage.assertTestingHarnesGroupsPricingPage();
+  await groupsPage.assertTestingHarnesGroupsUrlPage('enrollment');
   // Select a state
-  await bestMoneyMoversGroupPage.selectStateBestMoneyMoversGroupPage('Virginia');
+  await groupsPage.selectBestMoneyMoversStateOrProvince('46');
   // Verify that Available Plans label isDisplayed
-  await bestMoneyMoversGroupPage.assertAvailablePlanTxt();
+  await groupsPage.assertAvailablePlanTxt();
   // Click button:has-text("Select")
-  await bestMoneyMoversGroupPage.selectFrequencyBestMoneyMoversGroupPage('Monthly');
+  await groupsPage.selectFrequencyBestMoneyMoversGroupPage('Monthly');
   // Select a plan
-  await bestMoneyMoversGroupPage.clickBtnESelectPlan('23.95');
+  await groupsPage.clickBtnESelectPlan('23.95');
   // Login
-  await bestMoneyMoversGroupPage.loginBestMoneyMoversGroupPage();
+  await loginPage.login(basicUser.email as string, basicUser.password as string);
   // Verify that user is redirected to personal info page
-  bestMoneyMoversGroupPage.assertTellUsAboutYourselfTxt;
+  groupsPage.assertTellUsAboutYourselfTxt;
   // Update address
-  await bestMoneyMoversGroupPage.updateAddressTestingHarnesGroupsPage('Virginia');
+  await groupsPage.changeAddress('englishus', 'Virginia');
 });
 // for (const state of RegionsUtils.usStates) {
 //   for (const plan of ['12.95', '22.95', '23.95', '43.90', '36.90']) {
 //     test(`The sate of ${state.name} and the plan: ${plan} Testing Harnes groups`, async ({ page }) => {
 //       test.slow;
 //       // Go to https://www.shieldbenefits.com/bestmoneymoves/overview
-//       await bestMoneyMoversGroupPage.navigateToBestMoneyMoversGroupPage();
+//       await groupsPage.navigateToBestMoneyMoversGroupPage();
 //       // Click text=Enroll Now
-//       await bestMoneyMoversGroupPage.clickBtnEnrollNow();
+//       await groupsPage.clickBtnEnrollNow();
 //       // Confirm button takes user to Pricing Page
-//       await bestMoneyMoversGroupPage.assertTestingHarnesGroupsPricingPage();
+//       await groupsPage.assertTestingHarnesGroupsPricingPage();
 //       // Select a state
-//       await bestMoneyMoversGroupPage.selectStateBestMoneyMoversGroupPage(state.name);
+//       await groupsPage.selectStateBestMoneyMoversGroupPage(state.name);
 //       // Verify that Available Plans label isDisplayed
-//       await bestMoneyMoversGroupPage.assertAvailablePlanTxt();
+//       await groupsPage.assertAvailablePlanTxt();
 //       // Click button:has-text("Select")
-//       await bestMoneyMoversGroupPage.selectFrequencyBestMoneyMoversGroupPage('Monthly');
+//       await groupsPage.selectFrequencyBestMoneyMoversGroupPage('Monthly');
 //       // Select a plan
-//       await bestMoneyMoversGroupPage.clickBtnESelectPlan(plan);
+//       await groupsPage.clickBtnESelectPlan(plan);
 //       // Login
-//       await bestMoneyMoversGroupPage.loginBestMoneyMoversGroupPage();
+//       await groupsPage.loginBestMoneyMoversGroupPage();
 //       // Verify that user is redirected to personal info page
-//       bestMoneyMoversGroupPage.assertTellUsAboutYourselfTxt;
+//       groupsPage.assertTellUsAboutYourselfTxt;
 //       // Update address
-//       await bestMoneyMoversGroupPage.updateAddressTestingHarnesGroupsPage(state.name);
+//       await groupsPage.updateAddressTestingHarnesGroupsPage(state.name);
 //     });
 //   }
 // }

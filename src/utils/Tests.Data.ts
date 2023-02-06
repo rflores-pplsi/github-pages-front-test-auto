@@ -21,6 +21,12 @@ export default class DataUtils {
           name: 'Tester',
           postalCode: '20147',
         },
+        city: {
+          City: 'Niagara Falls',
+          ON: 'Ontario',
+          Street: '6361 Fallsview Blvd',
+          ZipCode: 'L2G 3V9',
+        },
       },
       lineOfBusiness: {
         IDShield: '3',
@@ -89,7 +95,10 @@ export default class DataUtils {
           postalCode: '20147',
         },
         city: {
+          City: 'Doswell',
+          Street: '16250 International St',
           VA: 'Virginia',
+          ZipCode: '23047',
         },
       },
     },
