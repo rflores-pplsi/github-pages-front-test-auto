@@ -43,30 +43,3 @@ test('Best Money Movers Group', async () => {
   // Update address
   await groupsPage.changeAddress('englishus', 'Virginia');
 });
-// for (const state of RegionsUtils.usStates) {
-//   for (const plan of ['12.95', '22.95', '23.95', '43.90', '36.90']) {
-//     test(`The sate of ${state.name} and the plan: ${plan} Testing Harnes groups`, async ({ page }) => {
-//       test.slow;
-//       // Go to https://www.shieldbenefits.com/bestmoneymoves/overview
-//       await groupsPage.navigateToBestMoneyMoversGroupPage();
-//       // Click text=Enroll Now
-//       await groupsPage.clickBtnEnrollNow();
-//       // Confirm button takes user to Pricing Page
-//       await groupsPage.assertTestingHarnesGroupsPricingPage();
-//       // Select a state
-//       await groupsPage.selectStateBestMoneyMoversGroupPage(state.name);
-//       // Verify that Available Plans label isDisplayed
-//       await groupsPage.assertAvailablePlanTxt();
-//       // Click button:has-text("Select")
-//       await groupsPage.selectFrequencyBestMoneyMoversGroupPage('Monthly');
-//       // Select a plan
-//       await groupsPage.clickBtnESelectPlan(plan);
-//       // Login
-//       await groupsPage.loginBestMoneyMoversGroupPage();
-//       // Verify that user is redirected to personal info page
-//       groupsPage.assertTellUsAboutYourselfTxt;
-//       // Update address
-//       await groupsPage.updateAddressTestingHarnesGroupsPage(state.name);
-//     });
-//   }
-// }
