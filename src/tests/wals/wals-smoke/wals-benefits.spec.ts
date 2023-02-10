@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { WalsBenefitsPage } from '../../page-objects-refactored/wals/wals-benefits.page';
+import { WalsBenefitsPage } from '../../../page-objects-refactored/wals/wals-benefits.page';
 
 // define the instance of Page declaration
 let walsBenefitsPage: WalsBenefitsPage;

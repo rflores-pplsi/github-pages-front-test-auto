@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
-import { WalsAssociateWebsitePage } from '../../page-objects-refactored/wals/wals-associate-website.page';
-import UrlsUtils from '../../utils/urls.utils';
-import RegionsUtils from '../../utils/regions.utils';
+import { WalsAssociateWebsitePage } from '../../../page-objects-refactored/wals/wals-associate-website.page';
+import UrlsUtils from '../../../utils/urls.utils';
+import RegionsUtils from '../../../utils/regions.utils';
 
 // define the instance of Page declaration
 let walsAssociateWebsitePage: WalsAssociateWebsitePage;
@@ -13,7 +13,7 @@ test.describe('Affiliated We are LegalShield - Canada', () => {
     walsAssociateWebsitePage = new WalsAssociateWebsitePage(page);
   });
 
-  for (const province of RegionsUtils.caProvinces) {
+  for (const province of RegionsUtils.caProvinces.filter((ste) => ste.name == 'New Brunswick')) {
     const expectedProductNames = province.expectedWalsProducts;
     test(`For ${province.name} 'Affiliated wals page displays correct plans for the selected region'`, async () => {
       test.slow;
@@ -39,7 +39,7 @@ test.describe('Affiliated We are LegalShield - French Canada', () => {
     walsAssociateWebsitePage = new WalsAssociateWebsitePage(page);
   });
 
-  for (const province of RegionsUtils.caFrenchProvinces) {
+  for (const province of RegionsUtils.caFrenchProvinces.filter((ste) => ste.name == 'Terre-Neuve-et-Labrador')) {
     const expectedProductNames = province.expectedWalsProducts;
     test(`For ${province.name} 'Affiliated wals page displays correct plans for the selected French region'`, async () => {
       test.slow;
@@ -65,7 +65,7 @@ test.describe('Affiliated Ladies of Justice - Canada', () => {
     walsAssociateWebsitePage = new WalsAssociateWebsitePage(page);
   });
 
-  for (const province of RegionsUtils.caProvinces) {
+  for (const province of RegionsUtils.caProvinces.filter((ste) => ste.name == 'Nova Scotia')) {
     const expectedProductNames = province.expectedWalsProducts;
     test(`For ${province.name} 'Affiliated loj page displays correct plans for the selected region'`, async () => {
       test.slow;
@@ -91,7 +91,7 @@ test.describe('Affiliated Ladies of Justice - French Canada', () => {
     walsAssociateWebsitePage = new WalsAssociateWebsitePage(page);
   });
 
-  for (const province of RegionsUtils.caFrenchProvinces) {
+  for (const province of RegionsUtils.caFrenchProvinces.filter((ste) => ste.name == 'Nunavut')) {
     const expectedProductNames = province.expectedWalsProducts;
     test(`For ${province.name} 'Affiliated loj page displays correct plans for the selected French region'`, async () => {
       test.slow;

@@ -27,7 +27,7 @@ export class LoginLocatorsPage {
     this.page = page;
     this.loginLocTxtEmailOrUsername = page.locator('[placeholder="Email address/Username"]');
     this.loginLocTxtPassword = page.locator('[name="password"]');
-    this.loginLocBtnSignIn = page.locator('//button[contains(@class,"lsux-button--primary")]/span[contains(.,"Sign in")]');
+    this.loginLocBtnSignIn = page.locator('button:has-text("Sign in")');
     this.loginLocLnkSignUp = page.locator('a:has-text("Sign up")');
     this.loginLocLnkSignIn = page.locator('//div[@class="content"]//a[contains(.,"Sign in")]');
     this.loginLocLnkForgotPassword = page.locator('a:has-text("Forgot Password?")');

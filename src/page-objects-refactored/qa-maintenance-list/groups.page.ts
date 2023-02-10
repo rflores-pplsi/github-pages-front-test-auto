@@ -11,24 +11,19 @@ let postalCode: string;
 export class GroupsPage extends QaMaintenanceListLocatorsPage {
   // ========================== Process Methods ============================
   fillAgentID = async (id: string): Promise<void> => {
-    console.log(' - PrimericaGroupPage.fillAgentID');
-    // Type Agent ID
-    await this.primericaGroupTxtAgentID.fill(id);
+    await this.groupEnterAgentIdInput.fill(id);
   };
-  selectLanguageAndRegion = async (language: number): Promise<void> => {
-    // Locate a language and Region select
-    await this.primericaGroupRdBtnLanguage.waitFor();
-    await this.primericaGroupRdBtnLanguage.click();
-    // Pick a language
-    await this.page.locator(`ul.submenu.showing li >> nth=${language}`).click();
-    console.log('language is selected');
+
+  selectLanguageAndRegion = async (language: string): Promise<void> => {
+    await this.groupSelectLanguageAndRegionDropdown.click();
+    const dropdownOption = this.page.locator(
+      `//div[contains(@class,"md-active")]//md-option[contains(@id,"select_option") and contains(.,"${language}")]`
+    );
+    await dropdownOption.click();
   };
   selectPrimericaStateOrProvince = async (state: string): Promise<void> => {
-    // Locate state or province selector
-    await this.primericaGroupBtnSelectState.waitFor();
     await this.primericaGroupBtnSelectState.click();
-    // Pick a state or province
-    await this.page.locator(`//div[@class="lsux-link-content lsux-link-content--menu py-3 px-4 gms-state"] >> nth= ${state}`).click();
+    await this.page.locator(`//div[@id="btn-append-to-dropdownState"]//a[contains(.,"${state}")]`).click();
   };
   selectBestMoneyMoversStateOrProvince = async (state: string): Promise<void> => {
     // Locate state or province selector
@@ -37,6 +32,13 @@ export class GroupsPage extends QaMaintenanceListLocatorsPage {
     // Pick a state or province
     await this.page.locator(`//div[@class="lsux-link-content lsux-link-content--menu py-3 px-4 gms-state"] >> nth= ${state}`).click();
   };
+
+  selectStateOrProvince = async (stateOrProvince: string): Promise<void> => {
+    console.log(' - shieldBenefitsLegalPricingPage.selectState');
+    await this.shieldBenefitsSelectRegionButton.click();
+    await this.clickOnElement(`//div[contains(@class,"lsux-link-content--menu") and contains (.,"${stateOrProvince}")]`);
+  };
+
   async changeAddress(language: string, state: string): Promise<void> {
     await this.page.waitForLoadState();
     const Lan = language.toLowerCase();
@@ -180,7 +182,7 @@ export class GroupsPage extends QaMaintenanceListLocatorsPage {
   };
   assertTestingHarnesGroupsUrlPage = async (tab: string): Promise<void> => {
     // Verify that pricing Page is displayed
-    expect(await this.page.url()).toEqual(`https://www.shieldbenefits.com/bestmoneymoves/${tab}`);
+    expect(this.page.url()).toEqual(`${UrlsUtils.shieldBenefits.home.url}/bestmoneymoves/${tab}`);
   };
   assertAvailablePlanTxt = async (): Promise<void> => {
     console.log(' - BestMoneyMoversGroupPage.assertTestingHarnesGroupsPricingPage');
@@ -192,6 +194,7 @@ export class GroupsPage extends QaMaintenanceListLocatorsPage {
     console.log(' - BestMoneyMoversGroupPage.assertTellUsAboutYourselfTxt');
     console.log('logged in and redirected to personal info page');
     // Verify that Available Plans label is displayed
+    await this.bestMoneyMoversLocLblTellUsAboutYourself.waitFor();
     await expect(this.bestMoneyMoversLocLblTellUsAboutYourself).toBeVisible();
     console.log('On Personal Info page');
   };

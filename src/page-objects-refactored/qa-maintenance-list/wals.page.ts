@@ -33,16 +33,12 @@ export class WalsPage extends QaMaintenanceListLocatorsPage {
     await this.page.keyboard.press('Enter');
   };
 
-  changeRegion = async (state: string): Promise<void> => {
-    // Click on change state
-    this.page.waitForLoadState;
-    await this.personalInfoLocLnkChange.isEnabled();
-    await this.personalInfoLocLnkChange.click({ force: true });
-    // Select a state
-    await this.personalInfoLocSlctRegion.waitFor();
-    await this.personalInfoLocSlctRegion.selectOption(state);
-    // Click the Update State button
-    await this.personalInfoLocBtnUpdateState.click();
+  changeRegion = async (region: string): Promise<void> => {
+    await this.associateWebsiteHeaderLocMemberLoginLink.waitFor();
+    await this.associateWebsiteLocLnkChange.click();
+    await this.associateWebsiteLocSlctRegion.selectOption({ label: region });
+    await this.associateWebsiteLocBtnUpdateRegion.click();
+    await this.page.waitForLoadState('networkidle');
   };
 
   getStartedThenPickAPlan = async (): Promise<void> => {

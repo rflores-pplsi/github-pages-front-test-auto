@@ -4,6 +4,7 @@ import { LoginPage } from '../login/login.page';
 import { expect } from '@playwright/test';
 import * as dotenv from 'dotenv';
 import { QaMaintenanceListLocatorsPage } from './qa-maintenance-list-locators.page';
+
 dotenv.config();
 
 // ========================== Selectors ==================================
@@ -116,4 +117,47 @@ Ontario
 Saskatchewan`
     );
   };
+
+  /**
+   *
+   *
+   * @param {Array<{
+   *       name: string;
+   *       shortCode: string;
+   *     }>} products
+   * @memberof TestHarnessD2cPage
+   */
+  addProductsByNameAndShortCode = async (
+    products: Array<{
+      name: string;
+      shortCode: string;
+    }>
+  ): Promise<void> => {
+    for (const pd of products) {
+      await this.page
+        .locator(`//div[contains(@class,"plan-layout")]//h1[text()="${pd.name}"]/following-sibling::a[contains(.,"${pd.shortCode}")]`)
+        .click();
+      if (pd.name.includes('Small Business')) {
+        await this.completeQualifyingQuestionnaire('no', 'no');
+      }
+      await this.page.waitForLoadState('domcontentloaded');
+    }
+  };
+
+  /**
+   *
+   *
+   * @param {string} publiclyTradedOption
+   * @param {string} nonProfitOption
+   * @memberof TestHarnessD2cPage
+   */
+  completeQualifyingQuestionnaire = async (publiclyTradedOption: string, nonProfitOption: string): Promise<void> => {
+    const publiclyTradedRadio = this.page.locator(`#traded-company-${publiclyTradedOption}`);
+    const nonProfitRadio = this.page.locator(`#non-profit-${nonProfitOption}`);
+    await publiclyTradedRadio.click();
+    await nonProfitRadio.click();
+    await this.testHarnessBusinessModalLocAddToCartButton.click();
+  };
+  // ========================== Navigate Methods ===========================
+  // ========================== Click Methods ==============================
 }
