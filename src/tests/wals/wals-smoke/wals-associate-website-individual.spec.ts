@@ -1,8 +1,8 @@
 import { test } from '@playwright/test';
-import DataUtils from '../../utils/Tests.Data';
+import DataUtils from '../../../utils/Tests.Data';
 import * as dotenv from 'dotenv';
-import { WalsAssociateWebsitePage } from '../../page-objects-refactored/wals/wals-associate-website.page';
-import UrlsUtils from '../../utils/urls.utils';
+import { WalsAssociateWebsitePage } from '../../../page-objects-refactored/wals/wals-associate-website.page';
+import UrlsUtils from '../../../utils/urls.utils';
 dotenv.config();
 
 let walsAssociateWebsitePage: WalsAssociateWebsitePage;

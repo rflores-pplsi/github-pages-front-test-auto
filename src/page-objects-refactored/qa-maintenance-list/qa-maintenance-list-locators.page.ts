@@ -93,7 +93,14 @@ export class QaMaintenanceListLocatorsPage extends LoginPage {
   readonly testHarnessD2cLocLblWelcome: Locator;
   readonly testHarnessD2cLocLscaRegionDropdown: Locator;
   readonly testHarnessD2cLocSlctYourCity: Locator;
-
+  readonly testHarnessBusinessModalLocAddToCartButton: Locator;
+  readonly associateWebsiteHeaderLocMemberLoginLink: Locator;
+  readonly associateWebsiteLocLnkChange: Locator;
+  readonly associateWebsiteLocSlctRegion: Locator;
+  readonly associateWebsiteLocBtnUpdateRegion: Locator;
+  readonly shieldBenefitsSelectRegionButton: Locator;
+  readonly groupSelectLanguageAndRegionDropdown: Locator;
+  readonly groupEnterAgentIdInput: Locator;
   /**
    * @param {Page} page
    * @class CheckoutLocatorsPage
@@ -171,9 +178,9 @@ export class QaMaintenanceListLocatorsPage extends LoginPage {
     this.primericaGroupTxtAgentID = this.page.locator('input[name="Rep ID"]');
     this.primericaGroupBtnSubmit = this.page.locator('//button[contains(text(),"Submit")]');
     this.primericaGroupLblRepresentative = this.page.locator('//div/p[contains(text(),"Representative: JANICE S BRAY")]');
-    this.primericaGroupBtnEnrollNow = this.page.locator('a.enroll-btn');
+    this.primericaGroupBtnEnrollNow = this.page.locator('//div[contains(@class,"modal-content")]//button[@type="button"]');
     this.primericaGroupBtnFindRep = this.page.locator('span.lsux-text--large >> nth=0');
-    this.primericaGroupBtnSelectState = this.page.locator('span.lsux-text--large >> nth=1');
+    this.primericaGroupBtnSelectState = this.page.locator('//div[@id="btn-append-to-dropdownState"]//input');
     this.primericaGroupBtnGetStart = this.page.locator('//div[@class="navContainer__top"]/a[contains(text(),"Get Started")]');
     this.primericaGroupBthStateOrProvince = this.page.locator('span.glyphicon.startNow__section__icon.glyphicon-menu-down');
     this.primericaGroupLnkSelectYourPlan = this.page.locator('span.lsux-text--large.pr-3 >> nth= 2');
@@ -185,5 +192,13 @@ export class QaMaintenanceListLocatorsPage extends LoginPage {
     this.testHarnessD2cLocLblWelcome = this.page.locator('//h1[contains(text(),"Welcome to the Family!")]');
     this.testHarnessD2cLocLscaRegionDropdown = this.page.locator('.lsc_region_selector.region_select');
     this.testHarnessD2cLocSlctYourCity = this.page.locator('select.lsc_region_selector');
+    this.testHarnessBusinessModalLocAddToCartButton = this.page.locator('#add-to-cart-btn');
+    this.associateWebsiteHeaderLocMemberLoginLink = this.page.locator('//div[@id="utility"]//li[@id="member-login"]//a');
+    this.associateWebsiteLocLnkChange = this.page.locator('a.open-modal-lgs-geolocate.button-region-state.la');
+    this.associateWebsiteLocSlctRegion = this.page.locator('select[name="state_select"]');
+    this.associateWebsiteLocBtnUpdateRegion = this.page.locator('#edit-submit--3');
+    this.shieldBenefitsSelectRegionButton = this.page.locator('//div[contains(@class,"mr-custom")]//button');
+    this.groupSelectLanguageAndRegionDropdown = this.page.locator('#select_18');
+    this.groupEnterAgentIdInput = this.page.locator('//input[@placeholder="Enter Agent ID"]');
   }
 }

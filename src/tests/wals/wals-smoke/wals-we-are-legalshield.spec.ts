@@ -1,9 +1,9 @@
 import { test } from '@playwright/test';
-import { WeAreLegalShieldPage } from '../../page-objects-refactored/wals/wals-we-are-legalshield.page';
-import { WeAreLegalShieldHeaderComponent } from '../../page-objects-refactored/wals/wals-we-are-legalshield-header.component';
-import { WeAreLegalShieldOpportunitySuccessPage } from '../../page-objects-refactored/wals/wals-we-are-legalshield-opportunity-success.page';
-import { WeAreLegalShieldExecutiveTeamPage } from '../../page-objects-refactored/wals/wals-we-are-legalshield-executive-team.page';
-import UrlsUtils from '../../utils/urls.utils';
+import { WeAreLegalShieldPage } from '../../../page-objects-refactored/wals/wals-we-are-legalshield.page';
+import { WeAreLegalShieldHeaderComponent } from '../../../page-objects-refactored/wals/wals-we-are-legalshield-header.component';
+import { WeAreLegalShieldOpportunitySuccessPage } from '../../../page-objects-refactored/wals/wals-we-are-legalshield-opportunity-success.page';
+import { WeAreLegalShieldExecutiveTeamPage } from '../../../page-objects-refactored/wals/wals-we-are-legalshield-executive-team.page';
+import UrlsUtils from '../../../utils/urls.utils';
 
 // define the instance of Page declaration
 let walsAssociateSearchPage: WeAreLegalShieldPage;
@@ -17,16 +17,16 @@ test.beforeEach(async ({ page }) => {
   weAreLegalShieldHeaderComponent = new WeAreLegalShieldHeaderComponent(page);
   weAreLegalShieldOpportunitySuccessPage = new WeAreLegalShieldOpportunitySuccessPage(page);
   weAreLegalShieldExecutiveTeamPage = new WeAreLegalShieldExecutiveTeamPage(page);
-  await walsAssociateSearchPage.navigateToUrl(UrlsUtils.wals.urls.urlEnCanada);
+  await walsAssociateSearchPage.navigateToUrl(UrlsUtils.wals.urls.urlAssociate);
 });
 
-test.describe('Test We Are LegalShield CA', () => {
-  test("When I type in Jessen in the search box and click search, I'll be directed to https://www.wearelegalshield.ca/opportunity/search?search_api_fulltext=Jessen", async () => {
+test.describe('Test We are LegalShield', () => {
+  test("When I type in Jessen in the search box and click search, I'll be directed to https://www.wearelegalshield.com/opportunity/search?search_api_fulltext=Jessen", async () => {
     await test.step('Search for associate', async () => {
       await walsAssociateSearchPage.searchForAssociate('Jessen');
     });
     await test.step('Assert url https://www.wearelegalshield.com/opportunity/search?search_api_fulltext=Jessen   ', async () => {
-      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlEnCanada + '/results?queryParam=Jessen');
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlAssociate + '/results?queryParam=Jessen');
     });
   });
   test('When I type in a name in the search box and click search, I am given a result and can view the associates website.', async () => {
@@ -53,12 +53,13 @@ test.describe('Test We Are LegalShield CA', () => {
       await walsAssociateSearchPage.assertMsgAssociate('Sorry, we did not find any results for 11111');
     });
   });
+
   test('When I click on the Terms of Service Link in the Footer ', async () => {
     await test.step('Click on Terms of Service Link', async () => {
       await walsAssociateSearchPage.weAreLegalShieldFooterLocTermsOfServiceLink.click();
     });
     await test.step('Assert url ', async () => {
-      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlEnCanada + '/terms-service');
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlAssociate + '/terms-service');
     });
   });
 
@@ -67,7 +68,7 @@ test.describe('Test We Are LegalShield CA', () => {
       await walsAssociateSearchPage.weAreLegalShieldFooterLocPrivacyPolicyLink.click();
     });
     await test.step('Assert url ', async () => {
-      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlEnCanada + '/privacy-policy');
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlAssociate + '/privacy-policy');
     });
   });
 
@@ -76,11 +77,11 @@ test.describe('Test We Are LegalShield CA', () => {
       await walsAssociateSearchPage.weAreLegalShieldFooterLocCodeOfEthicsLink.click();
     });
     await test.step('Assert url ', async () => {
-      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlEnCanada + '/code-ethics');
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrl(UrlsUtils.wals.urls.urlAssociate + '/code-ethics');
     });
   });
 
-  test('When I click on the LegalShield SOC 3 Link in the Footer ', async ({ page, browserName, headless }) => {
+  test('When I click on the LegalShield SOC 3 Link in the Footer @maintenance ', async ({ page, browserName, headless }) => {
     if ((browserName === 'chromium' && headless === true) || browserName === 'firefox') {
       test.skip; // cannot navigate to pdf for headless chrome test configs or any firefox automation
       console.log('Skipped test for Firefox or Chromium/Headless configuration, as it downloads the pdf instead of navigating to it');
@@ -107,18 +108,6 @@ test.describe('Test We Are LegalShield CA', () => {
     });
   });
 
-  test('Search Profiles of Success by Name and displays at least one', async () => {
-    await test.step('Navigate to Profiles of Success Page', async () => {
-      await walsAssociateSearchPage.weAreLegalShieldHeaderLocProfilesOfSuccessLink.click();
-    });
-    await test.step('Search by Name', async () => {
-      await weAreLegalShieldOpportunitySuccessPage.searchForProfile('Jessen');
-    });
-    await test.step('Verify search by Occupation returns results and displays tile', async () => {
-      await weAreLegalShieldOpportunitySuccessPage.assertNoResultsFoundMessageIsNotDisplayed();
-    });
-  });
-
   test('When I click on Read Full Bio on the Executive Team page the modal pops up and Name is Displayed', async () => {
     await test.step('Navigate to Executive Team Page', async () => {
       await walsAssociateSearchPage.weAreLegalShieldHeaderLocExecutiveTeamLink.click();
@@ -131,17 +120,8 @@ test.describe('Test We Are LegalShield CA', () => {
     });
   });
 
-  test('When I select English (US) from the Header Language Dropdown I am redirected to wearelegalshield.com', async () => {
-    await test.step('Select English (US) from the Header Language Dropdown', async () => {
-      await weAreLegalShieldHeaderComponent.selectLanguageFromHeader('English (US)');
-    });
-    await test.step('Assert wearelegalshield.com', async () => {
-      await walsAssociateSearchPage.WeAreLegalShieldAssertUrlContains(UrlsUtils.wals.urls.urlAssociate);
-    });
-  });
-
-  test('When I select Español (ES) from the Header Language Dropdown I am redirected to somoslegalshield', async () => {
-    await test.step('Select Español (ES) from the Header Language Dropdown', async () => {
+  test('When I select Espanol (ES) from the Header Language Dropdown I am redirected to somoslegalshield', async () => {
+    await test.step('Select Espanol (ES) from the Header Language Dropdown', async () => {
       await weAreLegalShieldHeaderComponent.selectLanguageFromHeader('Español (ES)');
     });
     await test.step('Assert somoslegalshield url', async () => {
@@ -149,11 +129,20 @@ test.describe('Test We Are LegalShield CA', () => {
     });
   });
 
-  test('When I select Français Canadien (fr-CA) from the Header Language Dropdown I am redirected to noussommeslegalshield.ca', async () => {
-    await test.step('Select Français Canadien (fr-CA)from the Header Language Dropdown', async () => {
+  test('When I select English Canadian (en-CA) from the Header Language Dropdown I am redirected to wearelegalshield.ca', async () => {
+    await test.step('Select English Canadian (en-CA) from the Header Language Dropdown', async () => {
+      await weAreLegalShieldHeaderComponent.selectLanguageFromHeader('English Canadian (en-CA)');
+    });
+    await test.step('Assert wearelegalshield.ca url', async () => {
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrlContains(UrlsUtils.wals.urls.urlEnCanada);
+    });
+  });
+
+  test('When I select Espanol (ES) from the Header Language Dropdown I am redirected to noussommeslegalshield.ca', async () => {
+    await test.step('Select Espanol (ES)from the Header Language Dropdown', async () => {
       await weAreLegalShieldHeaderComponent.selectLanguageFromHeader('Français Canadien (fr-CA)');
     });
-    await test.step('Assert Français Canadien (fr-CA) url', async () => {
+    await test.step('Assert noussommeslegalshield.ca url', async () => {
       await walsAssociateSearchPage.WeAreLegalShieldAssertUrlContains(UrlsUtils.wals.urls.urlNous);
     });
   });
@@ -166,12 +155,13 @@ test.describe('Test We Are LegalShield CA', () => {
       await walsAssociateSearchPage.WeAreLegalShieldAssertUrlContains(UrlsUtils.legalshieldUrls.account.url);
     });
   });
+
   test('When I click on the Executive Team Link am redirected to the the executive team page', async () => {
     await test.step('Click on the Executive Team Link', async () => {
       await weAreLegalShieldHeaderComponent.weAreLegalShieldHeaderLocExecutiveTeamLink.click();
     });
     await test.step('Assert executive team url', async () => {
-      await walsAssociateSearchPage.WeAreLegalShieldAssertUrlContains(UrlsUtils.wals.urls.urlEnCanada + '/executive-team');
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrlContains(UrlsUtils.wals.urls.urlAssociate + '/executive-team');
     });
   });
 
@@ -180,7 +170,7 @@ test.describe('Test We Are LegalShield CA', () => {
       await weAreLegalShieldHeaderComponent.weAreLegalShieldHeaderLocAboutUsLink.click();
     });
     await test.step('Assert about us url', async () => {
-      await walsAssociateSearchPage.WeAreLegalShieldAssertUrlContains(UrlsUtils.wals.urls.urlEnCanada + '/about');
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrlContains(UrlsUtils.wals.urls.urlAssociate + '/about');
     });
   });
 
@@ -189,19 +179,31 @@ test.describe('Test We Are LegalShield CA', () => {
       await weAreLegalShieldHeaderComponent.weAreLegalShieldHeaderLocProfilesOfSuccessLink.click();
     });
     await test.step('Assert opportunity success url', async () => {
-      await walsAssociateSearchPage.WeAreLegalShieldAssertUrlContains(UrlsUtils.wals.urls.urlEnCanada + '/opportunity/success');
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrlContains(UrlsUtils.wals.urls.urlAssociate + '/opportunity/success');
     });
   });
 
-  test('When I click on the LegalShield/IDShield logo I am returned to wearelegalshield.ca', async () => {
-    await test.step('Navigate away from wearelegalshield.ca', async () => {
+  test('When I click on the LegalShield/IDShield logo I am returned to wearelegalshield.com', async () => {
+    await test.step('Navigate away from wearelegalshield.com', async () => {
       await weAreLegalShieldHeaderComponent.weAreLegalShieldHeaderLocExecutiveTeamLink.click();
     });
     await test.step('Click on the LegalShield/IDShield logo', async () => {
-      await weAreLegalShieldHeaderComponent.weAreLegalShieldCanadaHeaderLocLegalshieldIdShieldLogo.click();
+      await weAreLegalShieldHeaderComponent.weAreLegalShieldHeaderLocLegalshieldIdShieldLogo.click();
     });
-    await test.step('Assert wearelegalshield.ca url', async () => {
-      await walsAssociateSearchPage.WeAreLegalShieldAssertUrlContains(UrlsUtils.wals.urls.urlEnCanada);
+    await test.step('Assert wearelegalshield.com url', async () => {
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrlContains(UrlsUtils.wals.urls.urlAssociate);
+    });
+  });
+
+  test('Search Profiles of Success by Name and displays at least one', async () => {
+    await test.step('Navigate to Profiles of Success Page', async () => {
+      await walsAssociateSearchPage.weAreLegalShieldHeaderLocProfilesOfSuccessLink.click();
+    });
+    await test.step('Search by Name', async () => {
+      await weAreLegalShieldOpportunitySuccessPage.searchForProfile('Jessen');
+    });
+    await test.step('Verify search by Occupation returns results and displays tile', async () => {
+      await weAreLegalShieldOpportunitySuccessPage.assertNoResultsFoundMessageIsNotDisplayed();
     });
   });
 });

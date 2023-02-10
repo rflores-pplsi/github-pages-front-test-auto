@@ -7,6 +7,7 @@ import { basicUser } from '../../../utils/user.utils';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 let testHarnessD2cPage: TestHarnessD2cPage;
 let commonCheckoutPage: CommonCheckoutPage;
+
 // Setup environment before each test
 test.beforeEach(async ({ page }) => {
   // test.slow triples the default wait times
@@ -15,7 +16,7 @@ test.beforeEach(async ({ page }) => {
   test.slow();
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
-test('D2E LegalShield US using Testing Harness', async () => {
+test('D2E LegalShield US using Testing Harness', async ({ page }) => {
   test.slow;
   await test.step('Navigate to Testing Harness', async () => {
     await testHarnessD2cPage.navigateToTestingHarnessPage('d2cLegalShieldUS');
@@ -30,10 +31,9 @@ test('D2E LegalShield US using Testing Harness', async () => {
     await testHarnessD2cPage.selectYourCity(DataUtils.data.testingHarness.us.city.VA);
   });
   await test.step('Add Plan and some Supplements', async () => {
-    await testHarnessD2cPage.addPlanAndSomeSupplements('d2cLegalShieldUS', [
-      DataUtils.data.testingHarness.plans.us.LegalPlan,
-      DataUtils.data.testingHarness.plans.us.CommercialDriversLegalPlan,
-      DataUtils.data.testingHarness.plans.us.LaunchLLCFormation,
+    await testHarnessD2cPage.addProductsByNameAndShortCode([
+      { name: 'Legal Plan', shortCode: 'LPUS21' },
+      { name: 'Commercial Drivers Legal Plan', shortCode: 'CDLP' },
     ]);
   });
   await test.step('Select "Checkout" button to proceed with Checkout Process', async () => {

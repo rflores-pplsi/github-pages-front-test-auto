@@ -17,7 +17,7 @@ test.beforeEach(async ({ page }) => {
 
 const regionsUnderTest = ['New York', 'Colorado', 'Florida'];
 for (const regionUnderTest of regionsUnderTest) {
-  test.only(`${regionUnderTest} - Consumer end to end using frontend-automation-commons functionality`, async ({ page }) => {
+  test(`${regionUnderTest} - Consumer end to end using frontend-automation-commons functionality`, async ({ page }) => {
     console.log(`${regionUnderTest} - Consumer end to end using frontend-automation-commons functionality`);
     const regionInfo = RegionsUtils.usStates.filter((region) => region.name == regionUnderTest)[0];
     const homeAddress = regionInfo.validAddress.street;

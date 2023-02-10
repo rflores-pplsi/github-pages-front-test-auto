@@ -4,6 +4,7 @@ import { GroupsPage } from '../../../page-objects-refactored/qa-maintenance-list
 import * as dotenv from 'dotenv';
 import { basicUser } from '../../../utils/user.utils';
 import { LoginPage } from '../../../page-objects-refactored/login/login.page';
+import UrlsUtils from '../../../utils/urls.utils';
 dotenv.config();
 // import RegionsUtils from '../../utils/regions.utils';
 // create instance of Page
@@ -18,10 +19,13 @@ test.beforeEach(async ({ page }) => {
   test.slow();
   // await checkoutConfirmationPage.navigateToCheckoutConfirmationPage('Alaska');
 });
-test('Best Money Movers Group', async () => {
+test('Best Money Movers Group', async ({ page }) => {
   test.slow;
-  // Go to https://www.shieldbenefits.com/bestmoneymoves/overview
-  await groupsPage.navigateToGroupsPage('bestmoneymovers');
+  // await groupsPage.goTo('https://www.shieldbenefits.com/bestmoneymoves/overview');
+  await groupsPage.goTo(UrlsUtils.shieldBenefits.home.url + '/bestmoneymoves/overview');
+
+  //www.shieldbenefits.com/bestmoneymoves/overview
+  // https: await groupsPage.goTo(`${UrlsUtils.shieldBenefits.home.url}/bestmoneymovers/overview`);
   // Click on legal plan tab
   await groupsPage.bestMoneyMoversLocLnkLegalPlan.click();
   // Click text=Enroll Now
@@ -29,17 +33,19 @@ test('Best Money Movers Group', async () => {
   // Confirm button takes user to Pricing Page
   await groupsPage.assertTestingHarnesGroupsUrlPage('enrollment');
   // Select a state
-  await groupsPage.selectBestMoneyMoversStateOrProvince('46');
+  // await groupsPage.selectBestMoneyMoversStateOrProvince('46');
+  await groupsPage.selectStateOrProvince('Colorado');
   // Verify that Available Plans label isDisplayed
   await groupsPage.assertAvailablePlanTxt();
   // Click button:has-text("Select")
-  await groupsPage.selectFrequencyBestMoneyMoversGroupPage('Monthly');
+  // await groupsPage.selectFrequencyBestMoneyMoversGroupPage('Monthly');
   // Select a plan
   await groupsPage.clickBtnESelectPlan('23.95');
   // Login
+  // await page.pause();
   await loginPage.login(basicUser.email as string, basicUser.password as string);
   // Verify that user is redirected to personal info page
-  groupsPage.assertTellUsAboutYourselfTxt;
+  await groupsPage.assertTellUsAboutYourselfTxt();
   // Update address
   await groupsPage.changeAddress('englishus', 'Virginia');
 });
