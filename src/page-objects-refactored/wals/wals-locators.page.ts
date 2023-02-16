@@ -10,7 +10,9 @@ export class WalsLocatorPage {
   readonly aboutPageExecutiveTeamLocHeader: Locator;
   readonly aboutPageLocLogo: Locator;
   readonly aboutPageLocFrLogo: Locator;
+  readonly aboutPageLocFrLogo2: Locator;
   readonly aboutPageLocSpLogo: Locator;
+  readonly aboutPageLocSpLogo2: Locator;
   readonly aboutPageLocLblWhyLegalShield: Locator;
   readonly associateWebsiteCartSummaryLocOneTimeFees: Locator;
   readonly associateWebsiteCartSummaryLocTotalDueToday: Locator;
@@ -148,7 +150,9 @@ export class WalsLocatorPage {
     this.aboutPageExecutiveTeamLocHeader = this.page.locator('//h4/*[contains(text(),"Kathy Pinson")] >> nth=0');
     this.aboutPageLocLogo = this.page.locator('//img[contains(@alt, "lsidslogo")]');
     this.aboutPageLocFrLogo = this.page.locator('//img[contains(@alt, "logo")]');
-    this.aboutPageLocSpLogo = this.page.locator('//img[contains(@alt, "lsidslogonuevo")]');
+    this.aboutPageLocFrLogo2 = this.page.locator('//img[contains(@alt, "lsidslogonouveau")]');
+    this.aboutPageLocSpLogo = this.page.locator('//img[contains(@alt, "nuevo logotipo de pplsi")]');
+    this.aboutPageLocSpLogo2 = this.page.locator('//img[contains(@alt, "lsidslogonuevo")]');
     this.aboutPageLocLblWhyLegalShield = this.page.locator(
       'div.field.field--name--field-heading.field--type--string.field--label--hidden.field--item >> nth=0'
     );

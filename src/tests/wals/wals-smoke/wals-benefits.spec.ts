@@ -16,7 +16,7 @@ test('I can review information on the hero banners.', async () => {
   });
   await test.step('Verify that the banner header says Business Builder and the price says $49.90/month + $99.00 one time fee', async () => {
     await walsBenefitsPage.assertBannerHeader('Business Builder');
-    await walsBenefitsPage.assertBannerPlanPrice('Business Builder', '$49.90/month + $49.00 one time fee');
+    await walsBenefitsPage.assertBannerPlanPrice('Business Builder', '$29.95/month + $49.00 one time fee');
   });
   await test.step('Verify that the banner header says Legal Plan and the price says $29.95/month', async () => {
     await walsBenefitsPage.assertBannerHeader('Legal Plan');

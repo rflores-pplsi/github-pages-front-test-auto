@@ -32,8 +32,8 @@ test.describe('Somos legalshield', () => {
         );
       });
       await test.step('Verify that user navigates back to home page by clicking on the logo', async () => {
-        await walsAssociateWebsitePage.aboutPageLocSpLogo.waitFor();
-        await walsAssociateWebsitePage.aboutPageLocSpLogo.click();
+        await walsAssociateWebsitePage.aboutPageLocSpLogo2.waitFor();
+        await walsAssociateWebsitePage.aboutPageLocSpLogo2.click();
         await walsAssociateWebsitePage.associateWebsiteLocLblSmartSimpleCoverage.waitFor();
         await expect(walsAssociateWebsitePage.associateWebsiteLocLblSmartSimpleCoverage).toHaveText(
           'La cobertura simple e inteligente comienza aquí'
@@ -230,7 +230,7 @@ test.describe('Test We are LegalShield', () => {
     });
   }
   for (const stte of RegionsUtils.usStates.filter((ste) => ste.abbrv == 'VA')) {
-    test(`${stte.name} User s able to click on Power of Attorney sub-menu`, async () => {
+    test(`${stte.name} User is able to click on Power of Attorney sub-menu`, async ({ page }) => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
         await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlBenefits);
@@ -239,7 +239,7 @@ test.describe('Test We are LegalShield', () => {
         await walsAssociateWebsitePage.changeRegion(stte.name);
       });
       await test.step('Power of Attorney', async () => {
-        await walsAssociateWebsitePage.menuItems('Memberships', 'Power of Attorney');
+        await walsAssociateWebsitePage.menuItems('Resources', 'Power of Attorney');
       });
 
       await test.step('Confirm Power of Attorney', async () => {
@@ -263,7 +263,7 @@ test.describe('Test We are LegalShield', () => {
         await walsAssociateWebsitePage.changeRegion(stte.name);
       });
       await test.step('Trusts', async () => {
-        await walsAssociateWebsitePage.menuItems('Memberships', 'Trusts');
+        await walsAssociateWebsitePage.menuItems('Resources', 'Trusts');
       });
 
       await test.step('Confirm Trusts', async () => {
@@ -283,7 +283,7 @@ test.describe('Test We are LegalShield', () => {
     test(`${stte.name} Work From Anywhere video`, async () => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
-        await walsAssociateWebsitePage.menuItems('Memberships', 'Magazine');
+        await walsAssociateWebsitePage.menuItems('Resources', 'Magazine');
       });
 
       await test.step('Confirm Magazine', async () => {
@@ -302,7 +302,7 @@ test.describe('Test We are LegalShield', () => {
         await walsAssociateWebsitePage.changeRegion(stte.name);
       });
       await test.step('Click on Blog', async () => {
-        await walsAssociateWebsitePage.menuItems('Memberships', 'Blog');
+        await walsAssociateWebsitePage.menuItems('Resources', 'Blog');
       });
 
       await test.step('Confirm Blog', async () => {
@@ -322,7 +322,7 @@ test.describe('Test nous sommes legalshield.ca', () => {
     test.slow();
   });
   for (const stte of RegionsUtils.caFrenchProvinces.filter((ste) => ['ON', 'AB', 'SK', 'MB', 'BC'].includes(ste.abbrv))) {
-    test(`${stte.name} User s able to click on  Magazine sub-menu item`, async () => {
+    test(`${stte.name} User is able to click on Magazine sub-menu item`, async () => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
         await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlAppTestUserFrCa);
@@ -341,7 +341,7 @@ test.describe('Test nous sommes legalshield.ca', () => {
         );
       });
     });
-    test(`${stte.name} User s able to click on Blogue sub-menu item`, async () => {
+    test(`${stte.name} User is able to click on Blogue sub-menu item`, async () => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
         await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlAppTestUserFrCa);
@@ -353,13 +353,13 @@ test.describe('Test nous sommes legalshield.ca', () => {
       await test.step('List plans', async () => {
         console.log(walsAssociateWebsitePage.assertPlanIsNotProvided('Legal Plan'));
       });
-      // await test.step('Click on Blogue sub-menu item', async () => {
-      //   await walsAssociateWebsitePage.menuItems('Ressources', 'Blogue');
-      // });
+      await test.step('Click on Blogue sub-menu item', async () => {
+        await walsAssociateWebsitePage.menuItems('Ressources', 'Blogue');
+      });
 
-      // await test.step('Confirm Blogue page', async () => {
-      //   await walsAssociateWebsitePage.assertContainTextLabel(walsAssociateWebsitePage.blogLocHeaderBlog, 'Blog ');
-      // });
+      await test.step('Confirm Blogue page', async () => {
+        await walsAssociateWebsitePage.assertContainTextLabel(walsAssociateWebsitePage.blogLocHeaderBlog, 'Blog ');
+      });
       await test.step('Verify that user navigates back to home page by clicking on the logo', async () => {
         await walsAssociateWebsitePage.aboutPageLocLogo.click();
         await walsAssociateWebsitePage.associateWebsiteLocLblSmartSimpleCoverage.waitFor();

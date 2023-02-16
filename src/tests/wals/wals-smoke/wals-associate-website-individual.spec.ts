@@ -124,7 +124,7 @@ test.describe('Test nous sommes legalshield.ca', () => {
     walsAssociateWebsitePage = new WalsAssociateWebsitePage(page);
     test.slow();
   });
-  test('User is able to purchase Associate Startup for Individual at $49 instead of $99', async () => {
+  test('User is able to purchase Associate Startup for Individual at $49 instead of $99', async ({ page }) => {
     test.slow;
     await test.step('Navigate to legalshield CA marketing site', async () => {
       await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlAppTestUserFrCa);
@@ -143,7 +143,7 @@ test.describe('Test nous sommes legalshield.ca', () => {
       await walsAssociateWebsitePage.associateWebsiteLocBtnCheckout.click();
     });
     await test.step('Fill out personal and security info', async () => {
-      await walsAssociateWebsitePage.filloutCaContactInformationForm(
+      await walsAssociateWebsitePage.filloutFrenchCaContactInformationForm(
         DataUtils.data.testingHarness.ca.bd.province.FQC,
         'amtestautomation@gmail.com',
         'TesterF',
@@ -294,7 +294,7 @@ test.describe('Test Dames de justice ca', () => {
     walsAssociateWebsitePage = new WalsAssociateWebsitePage(page);
     test.slow();
   });
-  test('User is able to purchase Associate Startup for Individual at $49 instead of $99', async () => {
+  test('User is able to purchase Associate Startup for Individual at $49 instead of $99', async ({ page }) => {
     test.slow;
     await test.step('Navigate to legalshield CA marketing site', async () => {
       await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlAppTestUserDamesDeJusticeCa);
@@ -313,7 +313,7 @@ test.describe('Test Dames de justice ca', () => {
       await walsAssociateWebsitePage.associateWebsiteLocBtnCheckout.click();
     });
     await test.step('Fill out personal and security info', async () => {
-      await walsAssociateWebsitePage.filloutCaContactInformationForm(
+      await walsAssociateWebsitePage.filloutFrenchCaContactInformationForm(
         DataUtils.data.testingHarness.ca.bd.province.LBC,
         'amtestautomation@gmail.com',
         'TesterF',

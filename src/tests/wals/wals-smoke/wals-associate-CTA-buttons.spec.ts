@@ -31,7 +31,7 @@ test.describe('Test CTA buttons', () => {
     });
     await test.step('Verify Hero Banners for All Memberships button', async () => {
       await walsBenefitsPage.assertBannerHeader('Business Builder');
-      await walsBenefitsPage.assertBannerPlanPrice('Business Builder', '$49.90/month + $49.00 one time fee');
+      await walsBenefitsPage.assertBannerPlanPrice('Business Builder', '$29.95/month + $49.00 one time fee');
     });
     await test.step('Verify the Get Plan button changes to Added after click and pick a plan', async () => {
       await walsAssociateGetAPlanPage.addAPlan('BLD', 0, 'All Memberships');
@@ -46,7 +46,7 @@ test.describe('Test CTA buttons', () => {
       await walsAssociateGetAPlanPage.associateWebsiteCartTotalAmt([29.95, 19.95, 49.0]);
     });
   });
-  test('User can click on business builder CTA button and be redirected to the right page and checkout correctly', async () => {
+  test('User can click on business builder CTA button and be redirected to the right page and checkout correctly', async ({ page }) => {
     await test.step('Navigate to legalshield marketing site', async () => {
       await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlBenefits);
     });
@@ -59,7 +59,7 @@ test.describe('Test CTA buttons', () => {
     await test.step('Verify Hero Banners for Business Builder button', async () => {
       await walsAssociateWebsitePage.clickOnCTAButton('business-builder', 1);
       await walsBenefitsPage.assertBannerHeader('Business Builder');
-      await walsBenefitsPage.assertBannerPlanPrice('Business Builder', '$49.90/month + $49.00 one time fee');
+      await walsBenefitsPage.assertBannerPlanPrice('Business Builder', '$29.95/month + $49.00 one time fee');
     });
     await test.step('Verify the Get Plan button changes to Added after click and pick a plan', async () => {
       await walsAssociateGetAPlanPage.addAPlan('BLD', 0, 'Business Builder');

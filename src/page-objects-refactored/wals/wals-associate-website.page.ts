@@ -327,7 +327,7 @@ export class WalsAssociateWebsitePage extends WalsLocatorPage {
     PlanList = [];
     const planList = await this.page.$$('div.plan-head-info h3');
     console.log(planList.length);
-    for (const plan of planList) {
+    for await (const plan of planList) {
       const planText = await plan.innerHTML();
       PlanList.push(planText.trim());
     }

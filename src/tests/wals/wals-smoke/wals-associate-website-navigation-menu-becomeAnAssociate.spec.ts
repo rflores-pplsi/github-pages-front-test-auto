@@ -13,7 +13,7 @@ test.describe('Somos legalshield', () => {
     test.slow();
   });
   for (const stte of RegionsUtils.usSpanishStates.filter((ste) => ste.abbrv == 'VA')) {
-    test(`${stte.name} User s able to click on  Hágase asociado  menu item`, async () => {
+    test(`${stte.name} User is able to click on  Hágase asociado  menu item`, async ({ page }) => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
         await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlSpUS);
@@ -29,6 +29,7 @@ test.describe('Somos legalshield', () => {
         await walsAssociateWebsitePage.assertContainTextLabel(walsAssociateWebsitePage.opportunityPageLocJoinTheTeam, 'ÚNASE A MI EQUIPO');
       });
       await test.step('Verify that user navigates back to home page by clicking on the logo', async () => {
+        await page.pause();
         await walsAssociateWebsitePage.aboutPageLocSpLogo.waitFor();
         await walsAssociateWebsitePage.aboutPageLocSpLogo.click();
         await walsAssociateWebsitePage.associateWebsiteLocLblSmartSimpleCoverage.waitFor();

@@ -118,7 +118,7 @@ for (const stte of RegionsUtils.caFrenchProvinces.filter((ste) => ste.name == 'A
   });
 }
 for (const stte of RegionsUtils.caProvinces.filter((ste) => ste.name == 'Manitoba')) {
-  test(`${stte.name} User is able to click on  Profiles of Success an Search by State`, async () => {
+  test(`${stte.name} User is able to click on  Profiles of Success an Search by State`, async ({ page }) => {
     test.slow;
     await test.step('Navigate to URL', async () => {
       await walsAssociateSearchPage.navigateToUrl(UrlsUtils.wals.urls.urlEnCanada);

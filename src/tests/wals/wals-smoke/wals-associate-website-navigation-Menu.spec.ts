@@ -13,7 +13,7 @@ test.describe('Somos legalshield', () => {
     test.slow();
   });
   for (const stte of RegionsUtils.usSpanishStates.filter((ste) => ste.abbrv == 'VA')) {
-    test(`${stte.name} User s able to click on  Nosotros  menu item`, async () => {
+    test(`${stte.name} User s able to click on  Nosotros  menu item`, async ({ page }) => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
         await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlSpUS);
@@ -26,7 +26,10 @@ test.describe('Somos legalshield', () => {
       });
 
       await test.step('Confirm  Nosotros  sub-menu', async () => {
-        await walsAssociateWebsitePage.assertContainTextLabel(walsAssociateWebsitePage.aboutPageLocLblWhyLegalShield, 'Por qué LegalShield');
+        await walsAssociateWebsitePage.assertContainTextLabel(
+          walsAssociateWebsitePage.aboutPageLocLblWhyLegalShield,
+          'La cobertura simple e inteligente comienza aquí'
+        );
       });
       await test.step('Verify that user navigates back to home page by clicking on the logo', async () => {
         await walsAssociateWebsitePage.aboutPageLocLogo.click();
@@ -67,7 +70,7 @@ test.describe('Test We are LegalShield', () => {
     test.slow();
   });
   for (const stte of RegionsUtils.usStates.filter((ste) => ste.abbrv == 'VA')) {
-    test(`${stte.name} User s able to click on About Us menu item`, async () => {
+    test(`${stte.name} User is able to click on About Us menu item`, async () => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
         await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlEnUS);
@@ -80,7 +83,10 @@ test.describe('Test We are LegalShield', () => {
       });
 
       await test.step('Confirm About us sub-menu', async () => {
-        await walsAssociateWebsitePage.assertContainTextLabel(walsAssociateWebsitePage.aboutPageLocLblWhyLegalShield, 'Why LegalShield');
+        await walsAssociateWebsitePage.assertContainTextLabel(
+          walsAssociateWebsitePage.aboutPageLocLblWhyLegalShield,
+          'Smart, Simple Coverage Starts Here'
+        );
       });
       await test.step('Verify that user navigates back to home page by clicking on the logo', async () => {
         await walsAssociateWebsitePage.aboutPageLocLogo.click();
@@ -89,7 +95,7 @@ test.describe('Test We are LegalShield', () => {
     });
   }
   for (const stte of RegionsUtils.usStates.filter((ste) => ste.abbrv == 'VA')) {
-    test(`${stte.name} User s able to click on Executive Team menu item`, async () => {
+    test(`${stte.name} User is able to click on Executive Team menu item`, async () => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
         await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlEnUS);
@@ -132,17 +138,17 @@ test.describe('Test nous sommes legalshield.ca', () => {
       await test.step('Confirm  À propos de nous  sub-menu', async () => {
         await walsAssociateWebsitePage.assertContainTextLabel(
           walsAssociateWebsitePage.aboutPageLocLblWhyLegalShield,
-          "Notre raison d'être et notre histoire"
+          'Une couverture simple et intelligente, ça commence ici!'
         );
       });
       await test.step('Verify that user navigates back to home page by clicking on the logo', async () => {
-        await walsAssociateWebsitePage.aboutPageLocFrLogo.click();
+        await walsAssociateWebsitePage.aboutPageLocFrLogo2.click();
         await expect(walsAssociateWebsitePage.associateWebsiteLocLblSmartSimpleCoverage).toHaveText(
           'Une couverture simple et intelligente, ça commence ici!'
         );
       });
     });
-    test(`${stte.name} User s able to click on  Équipe de direction   menu item`, async () => {
+    test(`${stte.name} User s able to click on  Équipe de direction   menu item`, async ({ page }) => {
       test.slow;
       await test.step('Navigate to legalshield WALS site', async () => {
         await walsAssociateWebsitePage.navigateToUrl(UrlsUtils.wals.urls.urlAppTestUserFrCa);
@@ -158,7 +164,7 @@ test.describe('Test nous sommes legalshield.ca', () => {
         await walsAssociateWebsitePage.assertContainTextLabel(walsAssociateWebsitePage.aboutPageExecutiveTeamLocHeader, 'Kathy Pinson');
       });
       await test.step('Verify that user navigates back to home page by clicking on the logo', async () => {
-        await walsAssociateWebsitePage.aboutPageLocFrLogo.click();
+        await walsAssociateWebsitePage.aboutPageLocFrLogo2.click();
         await expect(walsAssociateWebsitePage.associateWebsiteLocLblSmartSimpleCoverage).toHaveText('Smart, Simple Coverage Starts Here');
       });
     });

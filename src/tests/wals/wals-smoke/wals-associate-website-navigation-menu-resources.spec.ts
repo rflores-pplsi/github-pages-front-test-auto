@@ -32,8 +32,8 @@ test.describe('Somos legalshield', () => {
         );
       });
       await test.step('Verify that user navigates back to home page by clicking on the logo', async () => {
-        await walsAssociateWebsitePage.aboutPageLocSpLogo.waitFor();
-        await walsAssociateWebsitePage.aboutPageLocSpLogo.click();
+        await walsAssociateWebsitePage.aboutPageLocSpLogo2.waitFor();
+        await walsAssociateWebsitePage.aboutPageLocSpLogo2.click();
         await walsAssociateWebsitePage.associateWebsiteLocLblSmartSimpleCoverage.waitFor();
         await expect(walsAssociateWebsitePage.associateWebsiteLocLblSmartSimpleCoverage).toHaveText(
           'La cobertura simple e inteligente comienza aquí'
