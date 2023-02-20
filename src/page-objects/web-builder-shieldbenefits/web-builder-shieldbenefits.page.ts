@@ -34,12 +34,11 @@ const TXT_ASSOCIATE_FULL_NAME = '[placeholder="Full Name (optional) "]';
 const TXT_ASSOCIATE_PHONE_NUMBER = '[placeholder="Phone Number (optional)"]';
 const TXT_ASSOCIATE_EXT_NUMBER = '[placeholder="Ext Number (optional)"]';
 const TXT_ASSOCIATE_EMAIL = '[placeholder="Email (optional)"]';
+
 /**
- *
- *
  * @export
- * @class WebBuilderShieldBenefits
- * @extends {OktaPage}
+ * @class  WebBuilderShieldBenefits
+ * @extends { WebBuilderShieldBenefits}
  */
 export class WebBuilderShieldBenefits extends OktaPage {
   /**

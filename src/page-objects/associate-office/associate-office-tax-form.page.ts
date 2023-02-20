@@ -45,7 +45,7 @@ export class TaxFormPage extends LoginPage {
     console.log(' - TaxFormPage.navigateToTaxFormsPage');
     // Navigate to Tax Form Page
     await this.goTo(UrlsUtils.channelsUrls.taxForm.url);
-    await this.login(associateReportsCommissions.username, associateReportsCommissions.password);
+    await this.login(associateReportsCommissions.username as string, associateReportsCommissions.password as string);
     await this.page.waitForSelector(LBL_TAX_FORM_REQUEST);
   };
   // ========================== Click Methods ==============================

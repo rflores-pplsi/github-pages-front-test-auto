@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
 import { CommonCheckoutPage } from '../../../../node_modules/@legalshield/frontend-automation-commons';
-import { TestHarnessD2cPage } from '../../../page-objects-refactored/qa-maintenance-list/test-harness.page';
+import { TestHarnessD2cPage } from '../../../page-objects/qa-maintenance-list/test-harness.page';
 import DataUtils from '../../../utils/Tests.Data';
 import { basicUser } from '../../../utils/user.utils';
 // create instance of Page

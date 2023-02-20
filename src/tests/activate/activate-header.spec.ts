@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { ActivateHeaderPage } from '../../page-objects/activate/activate-header.page';
+import { ActivateHeaderPage } from '../../page-objects (Archived)/activate/activate-header.page';
 import { basicUser } from '../../utils/user.utils';
 
 // Declare Page Variable for This Page

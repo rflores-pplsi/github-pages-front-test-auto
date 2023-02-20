@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { AccountProfileEmailPage } from '../../page-objects/account/account-profile-email.page';
+import { AccountProfileEmailPage } from '../../page-objects (Archived)/account/account-profile-email.page';
 
 // create instance of Page
 let accountProfileEmailPage: AccountProfileEmailPage;

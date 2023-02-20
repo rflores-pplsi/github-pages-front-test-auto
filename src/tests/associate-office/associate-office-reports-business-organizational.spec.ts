@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { ReportsBusinessOrganizationalPage } from '../../page-objects/associate-office/associate-office-reports-business-organizational.page';
+import { ReportsBusinessOrganizationalPage } from '../../page-objects (Archived)/associate-office/associate-office-reports-business-organizational.page';
 
 // create instance of Page
 let reportsBusinessOrganizationalPage: ReportsBusinessOrganizationalPage;

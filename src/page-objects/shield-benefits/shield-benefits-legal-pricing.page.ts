@@ -1,4 +1,4 @@
-import { ShieldBenefitsLegalOverviewPage } from '../shield-benefits/shield-benefits-legal-overview.page';
+import { ShieldBenefitsLegalOverviewPage } from './shield-benefits-legal-overview.page';
 
 // ========================== Selectors ==================================
 const BTN_STATE_SELECT = '//div[contains(@class,"mr-custom")]//button';

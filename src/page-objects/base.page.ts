@@ -215,7 +215,7 @@ export class BasePage {
    * @param {string} string2
    * @memberof BasePage
    */
-  assertStringMatch = async (string1: string | null, string2: string): Promise<void> => {
+  assertStringMatch = async (string1: string, string2: string): Promise<void> => {
     expect(string1).toEqual(string2);
   };
 

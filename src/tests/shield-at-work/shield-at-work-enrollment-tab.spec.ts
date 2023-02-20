@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
 
-import { ShieldAtWorkEnrollmentTab } from '../../page-objects/shield-at-work/shield-at-work-enrollment-tab.page';
+import { ShieldAtWorkEnrollmentTab } from '../../page-objects (Archived)/shield-at-work/shield-at-work-enrollment-tab.page';
 
 let shieldAtWorkEnrollmentTab: ShieldAtWorkEnrollmentTab;
 

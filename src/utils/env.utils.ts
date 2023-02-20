@@ -177,5 +177,22 @@ class EnvironmentUtil {
     }
     return envUrlString;
   }
+
+  getPplsiEnvString(): string | null {
+    let envUrlString = null;
+    const env = this.getEnv();
+    switch (env) {
+      case 'dev':
+        envUrlString = 'url TBD';
+        break;
+      case 'uat':
+        envUrlString = 'stg.wpengine';
+        break;
+      case 'prod':
+        envUrlString = '';
+        break;
+    }
+    return envUrlString;
+  }
 }
 export default new EnvironmentUtil();

@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { CheckoutConfirmationPage } from '../../page-objects/checkout/checkout-confirmation.page';
+import { CheckoutConfirmationPage } from '../../page-objects (Archived)/checkout/checkout-confirmation.page';
 import { basicUser } from '../../utils/user.utils';
 import { selfPayData } from './data/shield-benefits/e2e-shield-benefits-self-pay';
 import { payrollDeductData } from './data/shield-benefits/e2e-shield-benefits-us-payroll-deduct';

@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { TaxFormPage } from '../../page-objects/associate-office/associate-office-tax-form.page';
+import { TaxFormPage } from '../../page-objects (Archived)/associate-office/associate-office-tax-form.page';
 
 // create instance of Page
 let taxFormPage: TaxFormPage;

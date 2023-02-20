@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
-import { LoginPage } from '../../../page-objects-refactored/login/login.page';
-import { LegalShieldCAPage } from '../../../page-objects-refactored/qa-maintenance-list/d2c-legalshield-ca-marketingsite.page';
-import { D2CLegalShieldCaPage } from '../../../page-objects-refactored/qa-maintenance-list/d2c-legalshield-ca.page';
+import { LoginPage } from '../../../page-objects/login/login.page';
+import { LegalShieldCAPage } from '../../../page-objects/qa-maintenance-list/d2c-legalshield-ca-marketingsite.page';
+import { D2CLegalShieldCaPage } from '../../../page-objects/qa-maintenance-list/d2c-legalshield-ca.page';
 import DataUtils from '../../../utils/Tests.Data';
 import * as dotenv from 'dotenv';
 dotenv.config();

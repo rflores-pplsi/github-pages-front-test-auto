@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { CheckoutConfirmationPage } from '../../page-objects/checkout/checkout-confirmation.page';
+import { CheckoutConfirmationPage } from '../../page-objects (Archived)/checkout/checkout-confirmation.page';
 import { basicUser } from '../../utils/user.utils';
 import { legalshieldIdShieldMonthlyData } from './data/legalshield-idshield/e2e-legalshield-idshield-monthly';
 import { legalshieldIdShieldAnnualData } from './data/legalshield-idshield/e2e-legalshield-idshield-annual';

@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { GroupsPage } from '../../../page-objects-refactored/qa-maintenance-list/groups.page';
+import { GroupsPage } from '../../../page-objects/qa-maintenance-list/groups.page';
 import * as dotenv from 'dotenv';
 dotenv.config();
 // create instance of Page

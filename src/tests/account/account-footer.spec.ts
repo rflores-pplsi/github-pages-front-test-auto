@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
 import { basicUser } from '../../utils/user.utils';
-import { AccountFooterPage } from '../../page-objects/account/account-footer.page';
+import { AccountFooterPage } from '../../page-objects (Archived)/account/account-footer.page';
 import UrlsUtils from '../../utils/urls.utils';
 
 let accountFooterPage: AccountFooterPage;

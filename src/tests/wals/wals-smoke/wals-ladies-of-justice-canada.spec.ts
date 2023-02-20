@@ -1,8 +1,8 @@
 import { test } from '@playwright/test';
-import { WeAreLegalShieldPage } from '../../../page-objects-refactored/wals/wals-we-are-legalshield.page';
-import { WeAreLegalShieldHeaderComponent } from '../../../page-objects-refactored/wals/wals-we-are-legalshield-header.component';
-import { WeAreLegalShieldOpportunitySuccessPage } from '../../../page-objects-refactored/wals/wals-we-are-legalshield-opportunity-success.page';
-import { WeAreLegalShieldExecutiveTeamPage } from '../../../page-objects-refactored/wals/wals-we-are-legalshield-executive-team.page';
+import { WeAreLegalShieldPage } from '../../../page-objects/wals/wals-we-are-legalshield.page';
+import { WeAreLegalShieldHeaderComponent } from '../../../page-objects/wals/wals-we-are-legalshield-header.component';
+import { WeAreLegalShieldOpportunitySuccessPage } from '../../../page-objects/wals/wals-we-are-legalshield-opportunity-success.page';
+import { WeAreLegalShieldExecutiveTeamPage } from '../../../page-objects/wals/wals-we-are-legalshield-executive-team.page';
 import UrlsUtils from '../../../utils/urls.utils';
 
 // define the instance of Page declaration

@@ -69,7 +69,7 @@ export class BusinessCard extends LoginPage {
     console.log(' - BusinessCardPage.navigateToBusinessCardPage');
     // Navigate to Marketing Website Preferences/ Business Card Page
     await this.goTo(UrlsUtils.channelsUrls.businessCard.url);
-    await this.login(associateReportsCommissions.username, associateReportsCommissions.password);
+    await this.login(associateReportsCommissions.username as string, associateReportsCommissions.password as string);
     await this.page.waitForSelector(LBL_TITLE_MARKETING_WEBSITE_PREFERENCES);
   };
   // ========================== Click Methods ==============================

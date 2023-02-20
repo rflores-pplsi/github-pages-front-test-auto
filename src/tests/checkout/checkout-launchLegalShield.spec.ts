@@ -1,8 +1,8 @@
 import { test } from '@playwright/test';
-import { CheckoutLaunchLegalShieldPage } from '../../page-objects-refactored/checkout/checkout-launchLegalShield.page';
-import { CheckoutPaymentsBankDraftPage } from '../../page-objects-refactored/checkout/checkout-payments-bank-draft.page';
-import { CheckoutPersonalInfoPage } from '../../page-objects-refactored/checkout/checkout-personal-info.page';
-import { LoginPage } from '../../page-objects-refactored/login/login.page';
+import { CheckoutLaunchLegalShieldPage } from '../../page-objects/checkout/checkout-launchLegalShield.page';
+import { CheckoutPaymentsBankDraftPage } from '../../page-objects/checkout/checkout-payments-bank-draft.page';
+import { CheckoutPersonalInfoPage } from '../../page-objects/checkout/checkout-personal-info.page';
+import { LoginPage } from '../../page-objects/login/login.page';
 import { basicUser } from '../../utils/user.utils';
 
 // create instance of Page

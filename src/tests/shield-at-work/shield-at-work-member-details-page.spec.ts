@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
 
-import { ShieldAtWorkMemberDetailsPage } from '../../page-objects/shield-at-work/shield-at-work-member-details-page.page';
+import { ShieldAtWorkMemberDetailsPage } from '../../page-objects (Archived)/shield-at-work/shield-at-work-member-details-page.page';
 
 let shieldAtWorkMemberDetailsPage: ShieldAtWorkMemberDetailsPage;
 

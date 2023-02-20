@@ -12,11 +12,11 @@ const BTN_EDIT = '.group-item-controls > div:nth-child(3) > a > div > img';
 const BTN_COPY_LINK = '.lsux-button:nth-child(3) > .lsux-text--description';
 const TAB_IDENTITY_THEFT = '//*[@id="root"]/div/nav/div/div/ul/li[1]/a';
 const TXT_GROUP_INFO = '[class="group-item-info"]';
-const TXT_NEW_GROUP_URL_ID = '.lsux-grid div:nth-child(4) > div > div > form > div:nth-child(1) input';
+const TXB_NEW_GROUP_URL_ID = '.lsux-grid div:nth-child(4) > div > div > form > div:nth-child(1) input';
 const BTN_SIGN_IN = '[id="signedout"]';
 const LNK_APP_STORE = '.lsux-grid.container  a:nth-child(1) > img';
 const BTN_BACK_TO_TOP = 'main > div > div > button > span';
-const BTN_LANGUAGE_DROPDOWN = 'p.dropBtn';
+const BTN_LANGUAGE_DROP_DOWN = 'p.dropBtn';
 const OPC_ESPANOL_US = '.lsux-col.col.four.leftWrapper > div > ul > li.langSwitcher > div > div > ul > li:nth-child(2)';
 const LNK_MEMBER_PERKS = 'section.memberperksWrapper  div:nth-child(1) > div > p > a';
 
@@ -62,7 +62,7 @@ export class ShieldBenefitsIdentityTheftPage extends OktaPage {
     // Click on Edit button
     await this.clickBtnEditGroup();
     // Verify after pasting url in another browser tab group is displayed
-    const valNewGroupURL = await this.page.getAttribute(TXT_NEW_GROUP_URL_ID, value);
+    const valNewGroupURL = await this.page.getAttribute(TXB_NEW_GROUP_URL_ID, value);
     await this.page.waitForTimeout(1000);
     await this.page.goto(URL_GROUP + valNewGroupURL);
   };
@@ -112,7 +112,7 @@ export class ShieldBenefitsIdentityTheftPage extends OktaPage {
   clickLanguageDropDown = async (): Promise<void> => {
     console.log(' - ShieldBenefitsIdentityTheftPage.clickLanguageDropdown');
     // Click on Language Dropdown
-    await this.clickOnElement(BTN_LANGUAGE_DROPDOWN);
+    await this.clickOnElement(BTN_LANGUAGE_DROP_DOWN);
   };
 
   clickLnkMemberPerks = async (): Promise<void> => {

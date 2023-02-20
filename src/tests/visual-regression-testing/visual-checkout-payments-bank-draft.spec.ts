@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { CheckoutPaymentsBankDraftPage } from '../../page-objects/checkout/checkout-payments-bank-draft.page';
+import { CheckoutPaymentsBankDraftPage } from '../../page-objects (Archived)/checkout/checkout-payments-bank-draft.page';
 let checkoutPaymentsBankDraftPage: CheckoutPaymentsBankDraftPage;
 
 test.beforeEach(async ({ page }) => {

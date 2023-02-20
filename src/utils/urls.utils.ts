@@ -6,6 +6,7 @@ const envUrlString = EnvironmentUtil.getEnvUrlString();
 const envLaunchUrlString = EnvironmentUtil.getLaunchUrlString();
 const envTestHarnessString = EnvironmentUtil.getTestHarnessUrlString();
 const envWalsUrlString = EnvironmentUtil.getWalsEnvUrlString();
+const envPplsiUrlString = EnvironmentUtil.getPplsiEnvString();
 
 /**
  *
@@ -102,10 +103,10 @@ export default class UrlsUtils {
 
   static readonly pplsiUrls = {
     home: {
-      url: `https://www.pplsi.com`,
+      url: `https://pplsi${envPplsiUrlString}.com`,
     },
     termsOfService: {
-      url: `https://www.pplsi.com/terms-service?`,
+      url: `https://www.pplsi${envPplsiUrlString}.com/terms-service?`,
     },
   };
 

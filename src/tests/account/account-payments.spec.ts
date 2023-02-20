@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { PaymentsPage } from '../../page-objects/account/account-payments.page';
+import { PaymentsPage } from '../../page-objects (Archived)/account/account-payments.page';
 import { basicUser } from '../../utils/user.utils';
 
 // Page Definition

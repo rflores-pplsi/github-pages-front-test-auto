@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
 import { basicUser } from '../../utils/user.utils';
-import { AccountNavigationPage } from '../../page-objects/account/account-navigation.page';
+import { AccountNavigationPage } from '../../page-objects (Archived)/account/account-navigation.page';
 
 // Page Definition
 let accountNavigationPage: AccountNavigationPage;

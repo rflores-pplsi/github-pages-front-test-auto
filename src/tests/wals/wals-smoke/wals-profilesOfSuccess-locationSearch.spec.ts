@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { WeAreLegalShieldPage } from '../../../page-objects-refactored/wals/wals-we-are-legalshield.page';
+import { WeAreLegalShieldPage } from '../../../page-objects/wals/wals-we-are-legalshield.page';
 import UrlsUtils from '../../../utils/urls.utils';
 import RegionsUtils from '../../../utils/regions.utils';
 // define the instance of Page declarationlet

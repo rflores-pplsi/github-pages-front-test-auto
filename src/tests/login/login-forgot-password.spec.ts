@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { LoginForgotPasswordPage } from '../../page-objects/login/login-forgot-password.page';
+import { LoginForgotPasswordPage } from '../../page-objects (Archived)/login/login-forgot-password.page';
 
 // Declare Page Variable for This Page
 let loginForgotPasswordPage: LoginForgotPasswordPage;

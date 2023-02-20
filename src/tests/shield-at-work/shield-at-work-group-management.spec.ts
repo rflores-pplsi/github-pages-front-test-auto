@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { ShieldAtWorkGroupManagement } from '../../page-objects/shield-at-work/shield-at-work-group-management.page';
+import { ShieldAtWorkGroupManagement } from '../../page-objects (Archived)/shield-at-work/shield-at-work-group-management.page';
 
 let shieldAtWorkGroupManagement: ShieldAtWorkGroupManagement;
 

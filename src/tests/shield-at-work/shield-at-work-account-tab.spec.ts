@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
 
-import { ShieldAtWorkAccountTab } from '../../page-objects/shield-at-work/shield-at-work-account-tab.page';
+import { ShieldAtWorkAccountTab } from '../../page-objects (Archived)/shield-at-work/shield-at-work-account-tab.page';
 
 let shieldAtWorkAccountTab: ShieldAtWorkAccountTab;
 

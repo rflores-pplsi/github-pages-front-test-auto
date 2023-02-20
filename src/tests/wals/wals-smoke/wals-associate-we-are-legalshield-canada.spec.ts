@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { WalsAssociateWebsitePage } from '../../../page-objects-refactored/wals/wals-associate-website.page';
+import { WalsAssociateWebsitePage } from '../../../page-objects/wals/wals-associate-website.page';
 import UrlsUtils from '../../../utils/urls.utils';
 import RegionsUtils from '../../../utils/regions.utils';
 

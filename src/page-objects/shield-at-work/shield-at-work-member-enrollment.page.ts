@@ -40,6 +40,7 @@ const BTN_CONTINUE_ASSOCIATE_INFO = '#root  div.mb-4._2nNbq5j54sbQ6MAihmSQg3 > d
 const BTN_ASSOCIATE_SELECTION = 'select[type="submit"]';
 const BTN_SUBMIT = '//span[normalize-space()="Submit"]';
 const TXT_GROUP_MANAGEMENT = '.lsux-heading.lsux-heading--t26';
+
 /**
  *
  *

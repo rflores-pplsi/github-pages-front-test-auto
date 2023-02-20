@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 import { test } from '@playwright/test';
-import { LoginPage } from '../../../page-objects-refactored/login/login.page';
-import { LegalShieldUSPage } from '../../../page-objects-refactored/qa-maintenance-list/d2c-legalshield-us-marketingsite.page';
+import { LoginPage } from '../../../page-objects/login/login.page';
+import { LegalShieldUSPage } from '../../../page-objects/qa-maintenance-list/d2c-legalshield-us-marketingsite.page';
 import * as dotenv from 'dotenv';
 dotenv.config();
 // create instance of Page

@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { ActivatePage } from '../../page-objects/activate/activate-enter-code.page';
+import { ActivatePage } from '../../page-objects (Archived)/activate/activate-enter-code.page';
 import UrlsUtils from '../../utils/urls.utils';
 import { basicUser } from '../../utils/user.utils';
 

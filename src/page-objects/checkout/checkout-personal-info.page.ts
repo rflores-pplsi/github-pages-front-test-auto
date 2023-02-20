@@ -1,61 +1,138 @@
 import UrlsUtils from '../../utils/urls.utils';
 import { basicUser } from '../../utils/user.utils';
-import { CheckoutOrderSummaryComponent } from './checkout-order-summary.component';
+// import { CheckoutOrderSummaryComponent } from './checkout-order-summary.component';
 import RegionsUtils from '../../utils/regions.utils';
-
-// ========================== Selectors ==================================
-// const btnSaveAndContinue: string = '';
-const BTN_SAVE_AND_CONTINUE = 'button:has-text("Save & Continue")';
-
-// ========================== Personal Info Selectors ====================
-const STP_PERSONAL_INFO_CURRENT = '//div[contains(@class,"step-circle--current") and contains(.,"2")]';
-const HDR_PERSONAL_INFO_HEADER = 'text = Tell us about yourself';
-const MSG_FIRST_NAME_VALIDATION = 'text = Must provide first name';
-const MSG_LAST_NAME_VALIDATION = 'text = Must provide last name';
-const MSG_PHONE_NUMBER_VALIDATION = 'text = Must provide phone number';
-const MSG_PHONE_TYPE_VALIDATION = 'text = Must select phone type';
-const MSG_HOME_ADDRESS_VALIDATION = 'text = Must provide home address';
-const MSG_CITY_VALIDATION = 'text = Must include name of city';
-const MSG_POSTAL_CODE_VALIDATION = 'text = Must provide valid postal code';
-const TXT_FIRST_NAME = '[name="firstName"]';
-const TXT_LAST_NAME = '[name="lastName"]';
-const TXT_PHONE_NUMBER = '[name="phoneNumber"]';
-const TXT_PHONE_TYPE = '[name="phoneType"]';
-const TXT_HOME_ADDRESS = '[name="homeAddress"]';
-const TXT_CITY = '[name="city"]';
-const TXT_POSTAL_CODE = '[name="postalCode"]';
-const TXT_REGION = '//span[contains(@class, "contact-region")]';
-const LNK_CHANGE_STATE = 'a:has-text("Change")';
-const IMG_STATE_CHANEG_INFORMATION_ICON = '[alt="info"';
-const TXT_STAGE_CHANGE_TOOLTIP = '//div[contains(@class,"info-tooltip-text")]';
-// ========================== Support Card Selectors ======================
-const CON_SUPPORT_INFO = '//div[contains(@class, "support-card-container")]';
-const BTN_CALL_SUPPORT = 'button:has-text("Call (833)-951-2754")';
-
-// ========================== Security Info Selectors ======================
-const MSG_BIRHT_MONTH_DAY_YEAR_VALIDATION = 'text = Must provide date of birth';
-const MSG_SOCIAL_SECURITY_VALIDATION = 'text = Must provide SSN or SIN';
-
-const TXT_BIRTH_MONTH = '[name="dobMonth"]';
-const TXT_BIRTH_DAY = '[name="dobDay"]';
-const TXT_BIRTH_YEAR = '[name="dobYear"]';
-const TXT_SOCIAL_SECURITY_NUMBER = '[placeholder="Last 4 SSN or SIN"]';
-
-// ========================== Business Info Selectors ======================
-const TXT_BUSINESS_NAME = '[name="businessName"]';
-const TXT_INCORPORATION_MONTH = '[name="doiMonth"]';
-const TXT_INCORPORATION_DAY = '[name="doiDay"]';
-const TXT_INCORPORATION_YEAR = '[name="doiYear"]';
-const TXT_TAX_ID = '[name="taxId"]';
+import { NavigateToTestingHarnessPage, AddPlanAndSomeSupplements } from './checkout.helpers';
+import { Page, Locator } from '@playwright/test';
+import { ShieldBenefitsLegalPricingPage } from '../shield-benefits/shield-benefits-legal-pricing.page';
+import { OktaPage } from '../okta/okta.page';
+import { PlanalyzerCsrCheckoutPage } from '../../page-objects (Archived)/planalyzer/planalyzer-csr-checkout.page';
+import { BrowserContext, expect } from '@playwright/test';
+import DataUtils from '../../utils/Tests.Data';
+import { CheckoutLocatorsPage } from './checkout-locators.page';
+import { LegalshieldTestHarnessMenuPage } from '../test-harness/legalshield-test-harness-menu.page';
+import { CommonLoginPage } from '@legalshield/frontend-automation-commons';
 
 /**
- *
- *
  * @export
  * @class CheckoutPersonalInfoPage
- * @extends {CheckoutOrderSummaryComponent}
  */
-export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
+export class CheckoutPersonalInfoPage extends CheckoutLocatorsPage {
+  // ========================== Instantiate Classes ==================================
+  readonly shieldBenefitsLegalPricingPage: ShieldBenefitsLegalPricingPage;
+  readonly oktaPage: OktaPage;
+  readonly planalyzerCsrCheckoutPage: PlanalyzerCsrCheckoutPage;
+  readonly navigateToTestingHarnessPage: NavigateToTestingHarnessPage;
+  readonly addPlanAndSomeSupplements: AddPlanAndSomeSupplements;
+  readonly legalshieldTestHarnessMenuPage: LegalshieldTestHarnessMenuPage;
+  readonly commonLoginPage: CommonLoginPage;
+
+  // ========================== Selectors ==================================
+
+  protected page: Page;
+
+  // const btnSaveAndContinue: string = '';
+  readonly btnSaveAndContinue: Locator;
+
+  // ========================== Personal Info Selectors ====================
+  readonly personalInfoLocStpCurrent: Locator;
+  readonly personalInfoLocHdrHeader: Locator;
+  readonly personalInfoLocMsgFirstNameValidation: Locator;
+  readonly personalInfoLocMsgLastNameValidation: Locator;
+  readonly personalInfoLocMsgPhoneNumberValidation: Locator;
+  readonly personalInfoLocMsgPhoneTypeValidation: Locator;
+  readonly personalInfoLocMsgHomeAddressValidation: Locator;
+  readonly personalInfoLocMsgCityValidation: Locator;
+  readonly personalInfoLocMsgPostalCodeValidation: Locator;
+  readonly personalInfoLocTxtFirstName: Locator;
+  readonly personalInfoLocTxtLastName: Locator;
+  readonly personalInfoLocTxtPhoneNumber: Locator;
+  readonly personalInfoLocTxtPhoneType: Locator;
+  readonly personalInfoLocTxtHomeAddress: Locator;
+  readonly personalInfoLocTxtCity: Locator;
+  readonly personalInfoLocTxtPostalCode: Locator;
+  readonly personalInfoLocTxtRegion: Locator;
+  readonly personalInfoLocLnkChangeState: Locator;
+  readonly personalInfoLocImgStateChangeInformationIcon: Locator;
+  readonly personalInfoLocTxtStageChangeToolTip: Locator;
+  // ========================== Support Card Selectors ======================
+  readonly personalInfoLocConSupportInfo: Locator;
+  readonly personalInfoLocBtnCallSupport: Locator;
+
+  // ========================== Security Info Selectors ======================
+  readonly personalInfoLocMgBirthMonthDayYearValidation: Locator;
+  readonly personalInfoLocMsgSocialSecurityValidation: Locator;
+  readonly personalInfoLocTxtBirthMonth: Locator;
+  readonly personalInfoLocTxtBirthDay: Locator;
+  readonly personalInfoLocTxtBirthYear: Locator;
+  readonly personalInfoLocTxtSocialSecurityNumber: Locator;
+
+  // ========================== Business Info Selectors ======================
+  readonly personalInfoLocTxtBusinessName: Locator;
+  readonly personalInfoLocTxtIncorporationMonth: Locator;
+  readonly personalInfoLocTxtIncorporationDay: Locator;
+  readonly personalInfoLocTxtIncorporationYear: Locator;
+  readonly personalInfoLocTxtTaxId: Locator;
+  readonly personalInfoLocLineOfBusiness: string;
+  readonly planSupp: Array<string>;
+  /**
+   * @param {BrowserContext} context
+   * @param {Page} page
+   * @param {string} lineOfBusiness
+   * @param {Array<string>} planSupp
+   * @memberof CheckoutPersonalInfoPage
+   */
+  constructor(context: BrowserContext, page: Page, lineOfBusiness: string, planSupp: Array<string>) {
+    super(context, page);
+    this.page = page;
+    this.commonLoginPage = new CommonLoginPage(page); // instantiate CommonLoginPage
+    this.legalshieldTestHarnessMenuPage = new LegalshieldTestHarnessMenuPage(context, page);
+    this.personalInfoLocLineOfBusiness = lineOfBusiness;
+    this.planSupp = planSupp;
+    this.shieldBenefitsLegalPricingPage = new ShieldBenefitsLegalPricingPage(page);
+    this.oktaPage = new OktaPage(page);
+    this.planalyzerCsrCheckoutPage = new PlanalyzerCsrCheckoutPage(page);
+    this.navigateToTestingHarnessPage = new NavigateToTestingHarnessPage(this.page, UrlsUtils.testHarnessUrls.d2c.url, lineOfBusiness);
+    this.addPlanAndSomeSupplements = new AddPlanAndSomeSupplements(this.personalInfoLocLineOfBusiness, this.planSupp, this.page);
+    this.btnSaveAndContinue = this.page.locator('button:has-text("Save & Continue")');
+    this.personalInfoLocStpCurrent = this.page.locator('//div[contains(@class,"step-circle--current") and contains(.,"2")]');
+    this.personalInfoLocHdrHeader = this.page.locator('text = Tell us about yourself');
+    this.personalInfoLocMsgFirstNameValidation = this.page.locator('text = Must provide first name');
+    this.personalInfoLocMsgLastNameValidation = this.page.locator('text = Must provide last name');
+    this.personalInfoLocMsgPhoneNumberValidation = this.page.locator('text = Must provide phone number');
+    this.personalInfoLocMsgPhoneTypeValidation = this.page.locator('text = Must select phone type');
+    this.personalInfoLocMsgHomeAddressValidation = this.page.locator('text = Must provide home address');
+    this.personalInfoLocMsgCityValidation = this.page.locator('text = Must include name of city');
+    this.personalInfoLocMsgPostalCodeValidation = this.page.locator('text = Must provide valid postal code');
+    this.personalInfoLocTxtFirstName = this.page.locator('[name="firstName"]');
+    this.personalInfoLocTxtLastName = this.page.locator('[name="lastName"]');
+    this.personalInfoLocTxtPhoneNumber = this.page.locator('[name="phoneNumber"]');
+    this.personalInfoLocTxtPhoneType = this.page.locator('[name="phoneType"]');
+    this.personalInfoLocTxtHomeAddress = this.page.locator('[name="homeAddress"]');
+    this.personalInfoLocTxtCity = this.page.locator('[name="city"]');
+    this.personalInfoLocTxtPostalCode = this.page.locator('[name="postalCode"]');
+    this.personalInfoLocTxtRegion = this.page.locator('//span[contains(@class, "contact-region")]');
+    this.personalInfoLocLnkChangeState = this.page.locator('a:has-text("Change")');
+    this.personalInfoLocImgStateChangeInformationIcon = this.page.locator('[alt="info"');
+    this.personalInfoLocTxtStageChangeToolTip = this.page.locator('//div[contains(@class,"info-tooltip-text")]');
+    // ========================== Support Card Selectors ======================
+    this.personalInfoLocConSupportInfo = this.page.locator('//div[contains(@class, "support-card-container")]');
+    this.personalInfoLocBtnCallSupport = this.page.locator('button:has-text("Call (833)-951-2754")');
+    // ========================== Security Info Selectors ======================
+    this.personalInfoLocMgBirthMonthDayYearValidation = this.page.locator('text = Must provide date of birth');
+    this.personalInfoLocMsgSocialSecurityValidation = this.page.locator('text = Must provide SSN or SIN');
+    this.personalInfoLocTxtBirthMonth = this.page.locator('[name="dobMonth"]');
+    this.personalInfoLocTxtBirthDay = this.page.locator('[name="dobDay"]');
+    this.personalInfoLocTxtBirthYear = this.page.locator('[name="dobYear"]');
+    this.personalInfoLocTxtSocialSecurityNumber = this.page.locator('[placeholder="Last 4 SSN or SIN"]');
+    // ========================== Business Info Selectors ======================
+    this.personalInfoLocTxtBusinessName = this.page.locator('[name="businessName"]');
+    this.personalInfoLocTxtIncorporationMonth = this.page.locator('[name="doiMonth"]');
+    this.personalInfoLocTxtIncorporationDay = this.page.locator('[name="doiDay"]');
+    this.personalInfoLocTxtIncorporationYear = this.page.locator('[name="doiYear"]');
+    this.personalInfoLocTxtTaxId = this.page.locator('[name="taxId"]');
+  }
+
   // ========================== Process Methods ============================
 
   // /**
@@ -78,7 +155,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @memberof CheckoutPersonalInfoPage
    */
   selectPlanWithoutPaymentFrequencyFromShieldBenefitsPricingPage = async (state: string, planName: string, tierName: string): Promise<void> => {
-    await this.selectPlanAndEnrollNoPaymentFrequency(state, planName, tierName);
+    await this.shieldBenefitsLegalPricingPage.selectPlanAndEnrollNoPaymentFrequency(state, planName, tierName);
   };
 
   /**
@@ -94,7 +171,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     planName1: string,
     planName2: string
   ): Promise<void> => {
-    await this.selectCombinationPlanAndEnroll(state, paymentFrequency, planName1, planName2);
+    await this.shieldBenefitsLegalPricingPage.selectCombinationPlanAndEnroll(state, paymentFrequency, planName1, planName2);
   };
 
   /**
@@ -117,17 +194,20 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     city: string,
     postalCode: string
   ): Promise<void> => {
-    await this.enterFirstName(firstName);
-    await this.enterLastName(lastName);
-    await this.enterPhoneNumber(phone);
-    await this.enterPhoneType(type);
-    await this.enterHomeAddress(homeAddress);
-    await this.enterCity(city);
-    await this.enterPostalCode(postalCode);
+    await this.personalInfoLocTxtFirstName.fill(firstName);
+    await this.personalInfoLocTxtLastName.fill(lastName);
+    await this.personalInfoLocTxtPhoneNumber.fill(phone);
+    await this.personalInfoLocTxtPhoneType.fill(type);
+    await this.personalInfoLocTxtHomeAddress.fill(homeAddress);
+    await this.personalInfoLocTxtCity.fill(city);
+    await this.page.keyboard.press('Tab');
+    await this.page.keyboard.press('Tab');
+    await this.personalInfoLocTxtPostalCode.fill('');
+    await this.personalInfoLocTxtPostalCode.fill(postalCode);
   };
 
   completeBusinessInfoForm = async (): Promise<void> => {
-    if (await this.page.isVisible(TXT_BUSINESS_NAME)) {
+    if (await this.personalInfoLocTxtBusinessName.isVisible()) {
       await this.enterBusinessName('test business');
       await this.enterIncorporationMonth('01');
       await this.enterIncorporationDay('01');
@@ -137,30 +217,18 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   };
 
   /**
-   * @param {string} homeAddress
-   * @param {string} city
-   * @param {string} postalCode
-   * @memberof CheckoutPersonalInfoPage
-   */
-  // Update only the address in the personal information form, useful when iterating through different regions as the address needs to match
-  changeAddress = async (homeAddress: string, city: string, postalCode: string): Promise<void> => {
-    await this.enterHomeAddress(homeAddress);
-    await this.enterCity(city);
-    await this.enterPostalCode(postalCode);
-    await this.clickOnElement(BTN_SAVE_AND_CONTINUE);
-  };
-
-  /**
    * @param {string} provinceName
    * @memberof CheckoutPersonalInfoPage
    */
   changeAddressCanada = async (provinceName: string): Promise<void> => {
     // logic to go to regions util, and populate the 3 variables needed for this method for the appropriate region
     const provinceObject = RegionsUtils.caProvinces.filter((pn) => pn.name == provinceName);
-    await this.enterHomeAddress(provinceObject[0].validAddress.street);
-    await this.enterCity(provinceObject[0].validAddress.city);
-    await this.enterPostalCode(provinceObject[0].validAddress.postalCode);
-    // await this.clickOnElement(btnSaveAndContinue);
+    await this.personalInfoLocTxtHomeAddress.fill(provinceObject[0].validAddress.street);
+    await this.personalInfoLocTxtCity.fill(provinceObject[0].validAddress.city);
+    await this.page.keyboard.press('Tab');
+    await this.page.keyboard.press('Tab');
+    await this.personalInfoLocTxtPostalCode.fill('');
+    await this.personalInfoLocTxtPostalCode.fill(provinceObject[0].validAddress.postalCode);
   };
 
   /**
@@ -170,10 +238,12 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   changeAddressUs = async (regionName: string): Promise<void> => {
     // logic to go to regions util, and populate the 3 variables needed for this method for the appropriate region
     const regionObject = RegionsUtils.usStates.filter((pn) => pn.name == regionName);
-    await this.enterHomeAddress(regionObject[0].validAddress.street);
-    await this.enterCity(regionObject[0].validAddress.city);
-    await this.enterPostalCode(regionObject[0].validAddress.postalCode);
-    await this.clickOnElement(BTN_SAVE_AND_CONTINUE);
+    await this.personalInfoLocTxtHomeAddress.fill(regionObject[0].validAddress.street);
+    await this.personalInfoLocTxtCity.fill(regionObject[0].validAddress.city);
+    await this.page.keyboard.press('Tab');
+    await this.page.keyboard.press('Tab');
+    await this.personalInfoLocTxtPostalCode.fill('');
+    await this.personalInfoLocTxtPostalCode.fill(regionObject[0].validAddress.postalCode);
   };
 
   /**
@@ -199,77 +269,11 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   };
 
   /**
-   * @param {string} firstName
-   * @memberof CheckoutPersonalInfoPage
-   */
-  enterFirstName = async (firstName: string): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.enterFirstName');
-    await this.fillTextBox(TXT_FIRST_NAME, firstName);
-  };
-
-  /**
-   * @param {string} lastName
-   * @memberof CheckoutPersonalInfoPage
-   */
-  enterLastName = async (lastName: string): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.enterLastName');
-    await this.fillTextBox(TXT_LAST_NAME, lastName);
-  };
-
-  /**
-   * @param {string} phoneNumber
-   * @memberof CheckoutPersonalInfoPage
-   */
-  enterPhoneNumber = async (phoneNumber: string): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.enterPhoneNumber');
-    await this.fillTextBox(TXT_PHONE_NUMBER, phoneNumber);
-  };
-
-  /**
-   * @param {string} phoneType
-   * @memberof CheckoutPersonalInfoPage
-   */
-  enterPhoneType = async (phoneType: string): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.enterPhoneType');
-    await this.fillTextBox(TXT_PHONE_TYPE, phoneType);
-  };
-
-  /**
-   * @param {string} homeAddress
-   * @memberof CheckoutPersonalInfoPage
-   */
-  enterHomeAddress = async (homeAddress: string): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.enterHomeAddress');
-    await this.fillTextBox(TXT_HOME_ADDRESS, homeAddress);
-  };
-
-  /**
-   * @param {string} city
-   * @memberof CheckoutPersonalInfoPage
-   */
-  enterCity = async (city: string): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.enterCity');
-    await this.fillTextBox(TXT_CITY, city);
-  };
-
-  /**
-   * @param {string} postalCode
-   * @memberof CheckoutPersonalInfoPage
-   */
-  enterPostalCode = async (postalCode: string): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.enterPostalCode');
-    await this.page.keyboard.press('Tab');
-    await this.page.keyboard.press('Tab');
-    await this.page.locator(TXT_POSTAL_CODE).fill('');
-    await this.fillTextBox(TXT_POSTAL_CODE, postalCode);
-  };
-
-  /**
    * @memberof CheckoutPersonalInfoPage
    */
   hoverInformationIcon = async (): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.enterPostalCode');
-    await this.hoverElement(IMG_STATE_CHANEG_INFORMATION_ICON);
+    await this.personalInfoLocImgStateChangeInformationIcon.hover();
   };
 
   /**
@@ -278,7 +282,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   enterMonth = async (month: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.enterMonth');
-    await this.fillTextBox(TXT_BIRTH_MONTH, month);
+    await this.personalInfoLocTxtBirthMonth.fill(month);
   };
 
   /**
@@ -287,7 +291,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   enterDay = async (day: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.enterDay');
-    await this.fillTextBox(TXT_BIRTH_DAY, day);
+    await this.personalInfoLocTxtBirthDay.fill(day);
   };
 
   /**
@@ -296,7 +300,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   enterYear = async (year: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.enterYear');
-    await this.fillTextBox(TXT_BIRTH_YEAR, year);
+    await this.personalInfoLocTxtBirthYear.fill(year);
   };
 
   /**
@@ -305,7 +309,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   enterSocialSecurityNumber = async (socialSecurityNumber: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.enterSocialSecurityNumber');
-    await this.fillTextBox(TXT_SOCIAL_SECURITY_NUMBER, socialSecurityNumber);
+    await this.personalInfoLocTxtSocialSecurityNumber.fill(socialSecurityNumber);
   };
 
   /**
@@ -314,7 +318,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   enterBusinessName = async (businessName: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.enterBusinessName');
-    await this.fillTextBox(TXT_BUSINESS_NAME, businessName);
+    await this.personalInfoLocTxtBusinessName.fill(businessName);
   };
 
   /**
@@ -323,7 +327,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   enterIncorporationMonth = async (Month: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.enterIncorporationMonth');
-    await this.fillTextBox(TXT_INCORPORATION_MONTH, Month);
+    await this.personalInfoLocTxtIncorporationMonth.fill(Month);
   };
 
   /**
@@ -332,7 +336,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   enterIncorporationDay = async (day: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.enterIncorporationDay');
-    await this.fillTextBox(TXT_INCORPORATION_DAY, day);
+    await this.personalInfoLocTxtIncorporationDay.fill(day);
   };
 
   /**
@@ -341,7 +345,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   enterIncorporationYear = async (Year: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.enterIncorporationYear');
-    await this.fillTextBox(TXT_INCORPORATION_YEAR, Year);
+    await this.personalInfoLocTxtIncorporationYear.fill(Year);
   };
 
   /**
@@ -350,7 +354,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   enterTaxId = async (taxId: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.enterTaxId');
-    await this.fillTextBox(TXT_TAX_ID, taxId);
+    await this.personalInfoLocTxtTaxId.fill(taxId);
   };
 
   /**
@@ -358,14 +362,14 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   clearAllFieldsOnPersonalInfoPageAndSave = async (): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.clearAllFieldsOnPersonalInfoPageAndSave');
-    await this.clearTextBox(TXT_FIRST_NAME);
-    await this.clearTextBox(TXT_LAST_NAME);
-    await this.clearTextBox(TXT_PHONE_NUMBER);
-    await this.selectFromDropDownMenu(TXT_PHONE_TYPE, 'Select Type');
-    await this.clearTextBox(TXT_HOME_ADDRESS);
-    await this.clearTextBox(TXT_CITY);
-    await this.clearTextBox(TXT_POSTAL_CODE);
-    await this.clickSaveAndContinueButton();
+    await this.personalInfoLocTxtFirstName.fill('');
+    await this.personalInfoLocTxtLastName.fill('');
+    await this.personalInfoLocTxtPhoneNumber.fill('');
+    await this.personalInfoLocTxtPhoneType.selectOption({ label: 'Select Type' });
+    await this.personalInfoLocTxtHomeAddress.fill('');
+    await this.personalInfoLocTxtCity.fill('');
+    await this.personalInfoLocTxtPostalCode.fill('');
+    await this.btnSaveAndContinue.click();
   };
 
   /**
@@ -373,12 +377,12 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    */
   clearAllFieldsInSecurityInfoSectionPersonalInfoPage = async (): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.clearAllFieldsInSecurityInfoSectionPersonalInfoPage');
-    await this.clearTextBox(TXT_BIRTH_MONTH);
-    await this.clearTextBox(TXT_BIRTH_DAY);
-    await this.clearTextBox(TXT_BIRTH_YEAR);
+    await this.personalInfoLocTxtBirthMonth.fill('');
+    await this.personalInfoLocTxtBirthDay.fill('');
+    await this.personalInfoLocTxtBirthYear.fill('');
     // await this.clearTextBox(txtBirthMonth, txtBirthDay, txtBirthYear);
-    await this.clearTextBox(TXT_SOCIAL_SECURITY_NUMBER);
-    await this.clickSaveAndContinueButton();
+    await this.personalInfoLocTxtSocialSecurityNumber.fill('');
+    await this.btnSaveAndContinue.click();
   };
 
   // locatorpPlans = async (): Promise<string> => {
@@ -399,7 +403,29 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   // };
 
   // ========================== Navigate Methods ===========================n
-
+  /**
+   * @param {Page} page
+   * @param {string} state
+   * @param {string} url
+   * @param {string} lineOfBusiness
+   * @param {string} lofb
+   * @param {Array<string>} planSupp
+   * @memberof CheckoutPaymentsPage
+   */
+  navigateToPersonalInfoPage = async (
+    page: Page,
+    state: string,
+    url: string,
+    lineOfBusiness: string,
+    lofb: string,
+    planSupp: Array<string>
+  ): Promise<void> => {
+    await this.navigateToTestingHarnessPage.navigate(url, lineOfBusiness, lofb);
+    await this.legalshieldTestHarnessMenuPage.selectRegionFromDropdown(state);
+    await this.addPlanAndSomeSupplements.pickAPlan(planSupp, lineOfBusiness);
+    await this.page.waitForLoadState();
+    await this.commonLoginPage.login(basicUser.email as string, basicUser.password as string); // not adding creds
+  };
   // Navigate to the personal info page and scrapes the order summary to be used in assertions
 
   /**
@@ -434,11 +460,16 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     if (groupPayConfig == 'Fringe') {
       await this.selectPlanWithoutPaymentFrequencyFromShieldBenefitsPricingPage(stateName, planName, tierName);
     } else {
-      await this.selectPlanFromShieldBenefitsPricingPage(stateName, payTerm, planName, tierName);
+      await this.shieldBenefitsLegalPricingPage.selectPlanFromShieldBenefitsPricingPage(stateName, payTerm, planName, tierName);
     }
-    await this.login(emailOrUsername, password);
-    await this.changeAddress(street, city, postalCode);
-    await this.captureOrderSummaryWithoutTier();
+    await this.commonLoginPage.login(emailOrUsername as string, password as string);
+    await this.personalInfoLocTxtHomeAddress.fill(street);
+    await this.personalInfoLocTxtCity.fill(city);
+    await this.page.keyboard.press('Tab');
+    await this.page.keyboard.press('Tab');
+    await this.personalInfoLocTxtPostalCode.fill('');
+    await this.personalInfoLocTxtPostalCode.fill(postalCode);
+    // await this.checkoutOrderSummaryComponent.captureOrderSummaryWithoutTier();
   };
 
   /**
@@ -469,9 +500,14 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     console.log(' - checkoutPersonalInfoPage.navigatePersonalInfoPageFromLogin');
     await this.navigateToShieldBenefitsPricingPage(groupNumber);
     await this.selectPlanWithoutPaymentFrequencyFromShieldBenefitsPricingPage(stateName, planName, tierName);
-    await this.login(emailOrUsername, password);
-    await this.changeAddress(street, city, postalCode);
-    await this.captureOrderSummary(groupPayConfig);
+    await this.commonLoginPage.login(emailOrUsername as string, password as string);
+    await this.personalInfoLocTxtHomeAddress.fill(street);
+    await this.personalInfoLocTxtCity.fill(city);
+    await this.page.keyboard.press('Tab');
+    await this.page.keyboard.press('Tab');
+    await this.personalInfoLocTxtPostalCode.fill('');
+    await this.personalInfoLocTxtPostalCode.fill(postalCode);
+    // await this.checkoutOrderSummaryComponent.captureOrderSummary(groupPayConfig);
   };
 
   // Navigate to the personal info page and scrapes the order summary to be used in assertions
@@ -505,9 +541,14 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     console.log(' - checkoutPersonalInfoPage.navigatePersonalInfoPageFromLogin');
     await this.navigateToShieldBenefitsPricingPage(groupNumber);
     await this.selectCombinationPlanFromShieldBenefitsPricingPage(stateName, payTerm, planName, plan2Name);
-    await this.login(emailOrUsername, password);
-    await this.changeAddress(street, city, postalCode);
-    await this.captureOrderSummary(groupPayConfig);
+    await this.commonLoginPage.login(emailOrUsername as string, password as string);
+    await this.personalInfoLocTxtHomeAddress.fill(street);
+    await this.personalInfoLocTxtCity.fill(city);
+    await this.page.keyboard.press('Tab');
+    await this.page.keyboard.press('Tab');
+    await this.personalInfoLocTxtPostalCode.fill('');
+    await this.personalInfoLocTxtPostalCode.fill(postalCode);
+    // await this.checkoutOrderSummaryComponent.captureOrderSummary(groupPayConfig);
   };
 
   /**
@@ -558,10 +599,18 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     couponCode = '',
     plans: Array<string>
   ): Promise<void> => {
-    await this.navigateToPlanalyzerCsrCheckoutOktaLogin();
-    await this.loginThroughOkta();
-    await this.createOrderRedirectToCheckoutFromPlanalyzer(channel, subChannel, region, marketLocale, prepaidMonths, couponCode, plans);
-    await this.login(basicUser.email, basicUser.password);
+    await this.oktaPage.navigateToPlanalyzerCsrCheckoutOktaLogin();
+    await this.oktaPage.loginThroughOkta();
+    await this.planalyzerCsrCheckoutPage.createOrderRedirectToCheckoutFromPlanalyzer(
+      channel,
+      subChannel,
+      region,
+      marketLocale,
+      prepaidMonths,
+      couponCode,
+      plans
+    );
+    await this.commonLoginPage.login(basicUser.email as string, basicUser.password as string);
   };
   /**
    *
@@ -569,10 +618,12 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @memberof CheckoutPersonalInfoPage
    */
   navigateToPersonalInfoPageForIdsCaFromPlanalyzer = async (): Promise<void> => {
-    await this.navigateToPlanalyzerCsrCheckoutOktaLogin();
-    await this.loginThroughOkta();
-    await this.createOrderRedirectToCheckoutFromPlanalyzer('D2C', 'IDShield', 'Ontario', 'en-CA', '', 'F30', ['IDShield Individual']);
-    await this.login(basicUser.email, basicUser.password);
+    await this.oktaPage.navigateToPlanalyzerCsrCheckoutOktaLogin();
+    await this.oktaPage.loginThroughOkta();
+    await this.planalyzerCsrCheckoutPage.createOrderRedirectToCheckoutFromPlanalyzer('D2C', 'IDShield', 'Ontario', 'en-CA', '', 'F30', [
+      'IDShield Individual',
+    ]);
+    await this.commonLoginPage.login(basicUser.email as string, basicUser.password as string);
   };
   // /**
   //  * @param {string} groupNumber
@@ -583,19 +634,32 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   //   // Login with a basic user
   //   await this.page.goto(UrlsUtils.shieldBenefits.home.url + '/' + groupNumber + '/pricing');
   // };
+  /**
+   * @param {string} state
+   * @memberof CheckoutPersonalInfoPage
+   */
   navigateToPaymentsPageForF30IdsCa = async (state: string): Promise<void> => {
-    console.log(' - accountPaymentPage.goToPaymentsPageForF30IdsCa');
-    await this.navigateToPlanalyzerCsrCheckoutOktaLogin();
-    await this.loginThroughOkta();
-    await this.createOrderRedirectToCheckoutFromPlanalyzer('D2C', 'IDShield', 'Ontario', 'en-CA', '', 'F30', ['IDShield Individual']);
-    // await this.navigatePersonalInfoPageFromLogin(basicUser.email, basicUser.password);
+    await this.navigateToTestingHarnessPage.navigate(
+      UrlsUtils.testHarnessUrls.d2c.url,
+      this.personalInfoLocLineOfBusiness,
+      DataUtils.data.testingHarness.lineOfBusiness.IDShield
+    );
+    await this.addPlanAndSomeSupplements.pickAPlan(this.planSupp, this.personalInfoLocLineOfBusiness);
+    await this.commonLoginPage.login(basicUser.email as string, basicUser.password as string);
     const regionObj = RegionsUtils.caProvinces;
     const stateObj = state;
     for (const obj of regionObj) {
-      if (obj.name == stateObj) await this.changeAddress(obj.validAddress.street, obj.validAddress.city, obj.validAddress.postalCode);
+      if (obj.name == stateObj) {
+        await this.personalInfoLocTxtHomeAddress.fill(obj.validAddress.street);
+        await this.personalInfoLocTxtCity.fill(obj.validAddress.city);
+        await this.page.keyboard.press('Tab');
+        await this.page.keyboard.press('Tab');
+        await this.personalInfoLocTxtPostalCode.fill('');
+        await this.personalInfoLocTxtPostalCode.fill(obj.validAddress.postalCode);
+      }
     }
 
-    await this.clickSaveAndContinueButton();
+    await this.btnSaveAndContinue.click();
     // await this.page.waitForTimeout(3500);
   };
   // ========================== Click Methods ==============================
@@ -605,16 +669,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   clickChangeStateLink = async (): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.clickChangeStateLink');
     // Click on Change State link
-    await this.clickOnElement(LNK_CHANGE_STATE);
-  };
-
-  /**
-   * @memberof CheckoutPersonalInfoPage
-   */
-  clickSaveAndContinueButton = async (): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.clickSaveAndContinueButton');
-    // Click the Save and Continue button
-    await this.clickOnElement(BTN_SAVE_AND_CONTINUE);
+    await this.personalInfoLocLnkChangeState.click();
   };
 
   // ========================== Assertion Methods ==========================
@@ -626,18 +681,18 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   assertState = async (region: string): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.assertState');
     // Confirm region is correct
-    await this.assertElementHasText(TXT_REGION, region);
+    await expect(this.personalInfoLocTxtRegion).toHaveText(region);
   };
 
   /**
-   *
+   * Confirm the tool tip displays after hovering over the help icon
    *
    * @memberof CheckoutPersonalInfoPage
    */
   assertToolTipIsVisible = async (): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.assertToolTipIsVisible');
     // Confirm region is correct
-    await this.assertElementIsVisible(TXT_STAGE_CHANGE_TOOLTIP);
+    await expect(this.personalInfoLocTxtStageChangeToolTip).toBeVisible({ timeout: 100000 });
   };
 
   /**
@@ -646,7 +701,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   // Confirm that the stepper displays the step 2 - personal info as the current step
   assertPersonalInfoStepIsCurrent = async (): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.assertPersonalInfoStepIsCurrent');
-    await this.assertElementIsVisible(STP_PERSONAL_INFO_CURRENT);
+    await expect(this.personalInfoLocStpCurrent).toBeVisible({ timeout: 100000 });
   };
 
   /**
@@ -655,7 +710,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   // Confirm that the help information card is displayed
   assertSupportCardIsDisplayed = async (): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.assertSupportCardIsDisplayed');
-    await this.assertElementIsVisible(CON_SUPPORT_INFO);
+    await expect(this.personalInfoLocConSupportInfo).toBeVisible({ timeout: 100000 });
   };
 
   /**
@@ -664,7 +719,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   // Confirm that the Call Support button is displayed
   assertCallSupportButtonIsDisplayed = async (): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.assertCallSupportButtonIsDisplayed');
-    await this.assertElementIsVisible(BTN_CALL_SUPPORT);
+    await expect(this.personalInfoLocBtnCallSupport).toBeVisible({ timeout: 100000 });
   };
 
   /**
@@ -673,7 +728,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   // Confirm that the Header displays: Tell us about you
   assertPersonalInfoHeaderIsDisplayed = async (): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.assertPersonalInfoHeaderIsDisplayed');
-    await this.assertElementIsVisible(HDR_PERSONAL_INFO_HEADER);
+    await expect(this.personalInfoLocHdrHeader).toBeVisible({ timeout: 100000 });
   };
 
   /**
@@ -682,13 +737,13 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
   // Confirm that the Header displays: Tell us about you
   assertPersonalInfoPageErrorsAreDisplayed = async (): Promise<void> => {
     console.log(' - checkoutPersonalInfoPage.assertPersonalInfoPageErrorIsDisplayed');
-    await this.assertElementIsVisible(MSG_FIRST_NAME_VALIDATION);
-    await this.assertElementIsVisible(MSG_LAST_NAME_VALIDATION);
-    await this.assertElementIsVisible(MSG_PHONE_NUMBER_VALIDATION);
-    await this.assertElementIsVisible(MSG_PHONE_TYPE_VALIDATION);
-    await this.assertElementIsVisible(MSG_HOME_ADDRESS_VALIDATION);
-    await this.assertElementIsVisible(MSG_CITY_VALIDATION);
-    await this.assertElementIsVisible(MSG_POSTAL_CODE_VALIDATION);
+    await expect(this.personalInfoLocMsgFirstNameValidation).toBeVisible({ timeout: 100000 });
+    await expect(this.personalInfoLocMsgLastNameValidation).toBeVisible({ timeout: 100000 });
+    await expect(this.personalInfoLocMsgPhoneNumberValidation).toBeVisible({ timeout: 100000 });
+    await expect(this.personalInfoLocMsgPhoneTypeValidation).toBeVisible({ timeout: 100000 });
+    await expect(this.personalInfoLocMsgHomeAddressValidation).toBeVisible({ timeout: 100000 });
+    await expect(this.personalInfoLocMsgCityValidation).toBeVisible({ timeout: 100000 });
+    await expect(this.personalInfoLocMsgPostalCodeValidation).toBeVisible({ timeout: 100000 });
   };
 
   /**
@@ -700,7 +755,7 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
     // await this.assertElementIsVisible(msgBirthMonthValidation);
     // await this.assertElementIsVisible(msgBirthDayValidation);
     // await this.assertElementIsVisible(msgBirthYearValidation);
-    await this.assertElementIsVisible(MSG_BIRHT_MONTH_DAY_YEAR_VALIDATION);
-    await this.assertElementIsVisible(MSG_SOCIAL_SECURITY_VALIDATION);
+    await expect(this.personalInfoLocMgBirthMonthDayYearValidation).toBeVisible({ timeout: 100000 });
+    await expect(this.personalInfoLocMsgSocialSecurityValidation).toBeVisible({ timeout: 100000 });
   };
 }

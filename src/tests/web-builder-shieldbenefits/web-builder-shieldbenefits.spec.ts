@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
 
-import { WebBuilderShieldBenefits } from '../../page-objects/web-builder-shieldbenefits/web-builder-shieldbenefits.page';
+import { WebBuilderShieldBenefits } from '../../page-objects (Archived)/web-builder-shieldbenefits/web-builder-shieldbenefits.page';
 
 let webBuilderShieldBenefits: WebBuilderShieldBenefits;
 

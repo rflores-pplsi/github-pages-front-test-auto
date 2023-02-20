@@ -1,9 +1,9 @@
 import { test } from '@playwright/test';
 import DataUtils from '../../../utils/Tests.Data';
 import * as dotenv from 'dotenv';
-import { WalsAssociateWebsitePage } from '../../../page-objects-refactored/wals/wals-associate-website.page';
-import { WalsAssociateGetAPlanPage } from '../../../page-objects-refactored/wals/wals-associate-get-a-plan.component';
-import { WalsBenefitsPage } from '../../../page-objects-refactored/wals/wals-benefits.page';
+import { WalsAssociateWebsitePage } from '../../../page-objects/wals/wals-associate-website.page';
+import { WalsAssociateGetAPlanPage } from '../../../page-objects/wals/wals-associate-get-a-plan.component';
+import { WalsBenefitsPage } from '../../../page-objects/wals/wals-benefits.page';
 import UrlsUtils from '../../../utils/urls.utils';
 dotenv.config();
 

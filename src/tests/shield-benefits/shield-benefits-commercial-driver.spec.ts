@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { ShieldBenefitsCommercialDriverPage } from '../../page-objects/shield-benefits/shield-benefits-commercial-driver.page';
+import { ShieldBenefitsCommercialDriverPage } from '../../page-objects (Archived)/shield-benefits/shield-benefits-commercial-driver.page';
 
 let shieldBenefitsCommercialDriverPage: ShieldBenefitsCommercialDriverPage;
 

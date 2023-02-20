@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { LSEngagePage } from '../../page-objects/associate-office/associate-office-LSEngage.page';
+import { LSEngagePage } from '../../page-objects (Archived)/associate-office/associate-office-LSEngage.page';
 
 // prod and uat only, not available in dev
 // create instance of Page

@@ -5,7 +5,7 @@ import { LoginPage } from '../login/login.page';
 // ========================== Selectors ==========================
 
 const url = urlsUtils.legalshieldUrls.classicShieldAtWork.url;
-const TXT_USER_NAME = '[id="login"]';
+const TXT_USERNAME = '[id="login"]';
 const TXT_PASSWORD = '[id="Password"]';
 const BTN_SIGN_IN = '#submitButton > button';
 const BTN_SIGN_UP = 'body > div > div.content > div > div > div > a';
@@ -19,7 +19,7 @@ export class ClassicShieldAtWork extends LoginPage {
   // ========================== Process Methods ==========================
   loginWithCredentials = async (): Promise<void> => {
     console.log(' - accountShieldAtWorkPage.loginWithCredentials');
-    await this.page.fill(TXT_USER_NAME, 'admin@test.com');
+    await this.page.fill(TXT_USERNAME, 'admin@test.com');
     await this.page.fill(TXT_PASSWORD, 'Testpass1');
     await this.page.click(BTN_SIGN_IN);
     await this.page.waitForTimeout(1000);

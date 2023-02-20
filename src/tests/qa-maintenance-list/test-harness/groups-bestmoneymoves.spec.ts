@@ -1,9 +1,9 @@
 import { BrowserContext, test } from '@playwright/test';
-import { GroupsPage } from '../../../page-objects-refactored/qa-maintenance-list/groups.page';
+import { GroupsPage } from '../../../page-objects/qa-maintenance-list/groups.page';
 // import { basicUser } from '../../../utils/user.utils';
 import * as dotenv from 'dotenv';
 import { basicUser } from '../../../utils/user.utils';
-import { LoginPage } from '../../../page-objects-refactored/login/login.page';
+import { LoginPage } from '../../../page-objects/login/login.page';
 import UrlsUtils from '../../../utils/urls.utils';
 dotenv.config();
 // import RegionsUtils from '../../utils/regions.utils';

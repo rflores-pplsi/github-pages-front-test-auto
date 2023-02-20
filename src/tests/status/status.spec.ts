@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { StatusPage } from '../../page-objects/status/status.page';
+import { StatusPage } from '../../page-objects (Archived)/status/status.page';
 import UrlsUtils from '../../utils/urls.utils';
 import { basicUser } from '../../utils/user.utils';
 

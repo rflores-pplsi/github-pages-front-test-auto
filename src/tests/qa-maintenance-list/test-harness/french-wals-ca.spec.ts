@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { WalsPage } from '../../../page-objects-refactored/qa-maintenance-list/wals.page';
+import { WalsPage } from '../../../page-objects/qa-maintenance-list/wals.page';
 // create instance of Page
 let walsPage: WalsPage;
 

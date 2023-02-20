@@ -130,7 +130,7 @@ export class ReportsCommissionsPage extends LoginPage {
     console.log(' - ReportsCommissionsPage.navigateToReportsCommissionsPage');
     // Navigate to Report Commission Page
     await this.goTo(UrlsUtils.channelsUrls.reportsCommissions.url);
-    await this.login(revenueReports.username, revenueReports.password);
+    await this.login(revenueReports.username as string, revenueReports.password as string);
     await this.page.click("h2:has-text('Harold Pinson')");
     await this.page.waitForSelector(TAB_REVENUE_REPORT);
   };
@@ -139,7 +139,7 @@ export class ReportsCommissionsPage extends LoginPage {
     console.log(' - ReportsCommissionsPage.navigateToReportsCommissionsPage');
     // Navigate to Report Commission Page
     await this.goTo(UrlsUtils.channelsUrls.reportsCommissions.url);
-    await this.login(associateReportsCommissions.username, associateReportsCommissions.password);
+    await this.login(associateReportsCommissions.username as string, associateReportsCommissions.password as string);
     await this.page.waitForSelector(LBL_ASSOCIATE_NUMBER);
   };
 
@@ -147,7 +147,7 @@ export class ReportsCommissionsPage extends LoginPage {
     console.log(' - ReportsCommissionsPage.navigateToReportsCommissionsPage');
     // Navigate to Report Commission Page
     await this.goTo(UrlsUtils.channelsUrls.reportsCommissions.url);
-    await this.login(associateReportsCommissions2.username, associateReportsCommissions2.password);
+    await this.login(associateReportsCommissions2.username as string, associateReportsCommissions2.password as string);
     await this.page.waitForSelector(LBL_ASSOCIATE_NUMBER);
   };
 
@@ -155,7 +155,7 @@ export class ReportsCommissionsPage extends LoginPage {
     console.log(' - ReportsCommissionsPage.navigateToReportsCommissionsPage');
     // Navigate to Report Commission Page
     await this.goTo(UrlsUtils.channelsUrls.reportsCommissions.url);
-    await this.login(associateReportsCommissions3.username, associateReportsCommissions3.password);
+    await this.login(associateReportsCommissions3.username as string, associateReportsCommissions3.password as string);
     await this.page.waitForSelector(LBL_ASSOCIATE_NUMBER);
   };
 

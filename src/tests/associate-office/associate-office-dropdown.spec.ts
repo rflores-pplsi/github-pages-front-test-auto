@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { ProfilePickerPage } from '../../page-objects/associate-office/associate-office-profile-picker.page';
+import { ProfilePickerPage } from '../../page-objects (Archived)/associate-office/associate-office-profile-picker.page';
 
 // create instance of Page
 let profilePickerPage: ProfilePickerPage;

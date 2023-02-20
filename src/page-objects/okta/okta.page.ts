@@ -1,6 +1,6 @@
 import UrlsUtils from '../../utils/urls.utils';
 import { oktaUser } from '../../utils/user.utils';
-import { LegalshieldTestHarnessMenuPage } from '../../page-objects/test-harness/legalshield-test-harness-menu.page';
+import { LegalshieldTestHarnessMenuPage } from '../../page-objects (Archived)/test-harness/legalshield-test-harness-menu.page';
 
 // require('dotenv').config;
 

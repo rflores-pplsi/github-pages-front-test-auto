@@ -1,7 +1,7 @@
 import { test } from '@playwright/test';
 import DataUtils from '../../utils/Tests.Data';
 import * as dotenv from 'dotenv';
-import { WalsAssociateWebsitePage } from '../../page-objects-refactored/wals/wals-associate-website.page';
+import { WalsAssociateWebsitePage } from '../../page-objects/wals/wals-associate-website.page';
 import UrlsUtils from '../../utils/urls.utils';
 import RegionsUtils from '../../utils/regions.utils';
 dotenv.config();

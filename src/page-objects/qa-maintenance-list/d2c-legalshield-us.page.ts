@@ -1,18 +1,17 @@
 import { OktaPage } from '../okta/okta.page';
-
 import * as dotenv from 'dotenv';
 dotenv.config();
 
 // ========================== Selectors ==================================
-const SELECT_YOUR_CITY = 'select.lsc_region_selector';
+const SLCT_YOUR_CITY = 'select.lsc_region_selector';
 const LBL_WELCOME = '//h1[contains(text(),"Welcome to the Family!")]';
 
 export class D2CLegalShieldUSPage extends OktaPage {
   // ========================== Process Methods ============================
 
   selectYourCity = async (region: string): Promise<void> => {
-    await this.page.waitForSelector(SELECT_YOUR_CITY);
-    await this.selectFromDropDownMenu(SELECT_YOUR_CITY, region);
+    await this.page.waitForSelector(SLCT_YOUR_CITY);
+    await this.selectFromDropDownMenu(SLCT_YOUR_CITY, region);
   };
 
   // ========================== Navigate Methods ===========================

@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
 // import RegionsUtils from '../../utils/regions.utils';
-import { CheckoutConfirmationPage } from '../../page-objects-refactored/checkout/checkout-confirmation.page';
+import { CheckoutConfirmationPage } from '../../page-objects/checkout/checkout-confirmation.page';
 import DataUtils from '../../utils/Tests.Data';
 import UrlsUtils from '../../utils/urls.utils';
 

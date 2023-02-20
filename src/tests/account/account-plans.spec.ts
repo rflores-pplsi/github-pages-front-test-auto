@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { AccountPlansPage } from '../../page-objects/account/account-plans.page';
+import { AccountPlansPage } from '../../page-objects (Archived)/account/account-plans.page';
 import { withPlans } from '../../utils/user.utils';
 
 // Define Pages

@@ -1,27 +1,46 @@
-import { expect, Response } from '@playwright/test';
-import { CheckoutPaymentsBankDraftPage } from './checkout-payments-bank-draft.page';
+import { BrowserContext, expect, Page, Response } from '@playwright/test';
 import { ProductDetails } from '../../tests/e2e/data/type-definitions';
-
-// ========================== Selectors ==================================
-const TXT_WELCOME_TO_LEGALSHIELD_FAMILY = 'h1.lsux-heading.confirmation-title.lsux-heading--t28';
-const BTN_COMPLETE_ENROLLMENT = 'button:has-text("COMPLETE ENROLLMENT")';
-const CHK_AGREEMENT = '//div[contains(@class,"lsux-cb-container__cb   margin-right")]';
-const LBL_MEMBER_NUMBER = '//h3[contains(@class,"member-number") and contains(.,"Member number")]';
-const CON_MEMBERSHIP_WRAPPER = '//div[contains(@class,"membership-wrapper")]';
-const TXT_DISCLAIMER = '//div[contains(@class,"group-auth")]//span[string-length(text()) > 0]';
-const TXT_TERMS_OF_SERVICE_LANGUAGE = '//span[contains(@class,"tos-disclaimer")]';
-const LNK_TERMS_OF_SERVICE = '//a[contains(@class,"tos-link")]';
+import { OktaPage } from '../okta/okta.page';
+import { PlanalyzerCsrCheckoutPage } from '../planalyzer/planalyzer-csr-checkout.page';
+import { CheckoutLocatorsPage } from './checkout-locators.page';
+import { CheckoutPaymentsPage } from './checkout-payments.page';
+import { CheckoutPaymentsBankDraftPage } from './checkout-payments-bank-draft.page';
+import { CheckoutPaymentsCreditCardPage } from './checkout-payments-credit-card.page';
 
 /**
  * @export
+ * @extends CheckoutLocatorsPage
  * @class CheckoutConfirmationPage
- * @extends {CheckoutPaymentsBankDraftPage}
  */
-export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
+export class CheckoutConfirmationPage extends CheckoutLocatorsPage {
+  // ========================== Instantiate Classes ==================================
+  readonly oktaPage: OktaPage;
+  readonly planalyzerCsrCheckoutPage: PlanalyzerCsrCheckoutPage;
+  readonly checkoutPaymentsPage: CheckoutPaymentsPage;
+  readonly checkoutPaymentsBankDraftPage: CheckoutPaymentsBankDraftPage;
+  readonly checkoutPaymentsCreditCardPage: CheckoutPaymentsCreditCardPage;
   static pPlan: string;
   static pPlanPrice: string;
   static txtTotalLabel: string;
   static txtTotalPriceLabel: string;
+
+  /**
+   * @param {BrowserContext} context
+   * @param {Page} page
+   * @param {string} lineOfBusiness
+   * @param {Array<string>} planSupp
+   * @class CheckoutConfirmationPage
+   */
+  constructor(context: BrowserContext, page: Page, lineOfBusiness: string, planSupp: Array<string>) {
+    super(context, page);
+    this.page = page;
+    this.oktaPage = new OktaPage(page);
+    this.planalyzerCsrCheckoutPage = new PlanalyzerCsrCheckoutPage(page);
+    this.checkoutPaymentsPage = new CheckoutPaymentsPage(context, page, lineOfBusiness, planSupp);
+    this.checkoutPaymentsCreditCardPage = new CheckoutPaymentsCreditCardPage(context, page, lineOfBusiness, planSupp);
+    this.checkoutPaymentsBankDraftPage = new CheckoutPaymentsBankDraftPage(context, page, lineOfBusiness, planSupp);
+  }
+
   // ========================== Process Methods ============================
 
   /**
@@ -32,6 +51,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   logFriendlyIDs = async (response: Response, productDetails: Array<ProductDetails>): Promise<void> => {
     const responseBody = await response.json();
     let i = 0;
+    // eslint-disable-next-line no-unused-vars
     for (const pd of productDetails) {
       if (!pd.productName.includes('-')) {
         // do not look for shortcodes for supplements
@@ -42,72 +62,257 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
     }
   };
   // ========================== Navigate Methods ===========================
-  navigateToCheckoutConfirmationPageUsingPlanalyzer = async (state: string, paymentMethod: string): Promise<void> => {
-    await this.navigateToPaymentsPage(state);
-    CheckoutConfirmationPage.pPlan = await this.fillOrderSummaryPlanValue();
-    console.log(CheckoutConfirmationPage.pPlan);
-    CheckoutConfirmationPage.pPlanPrice = await this.fillOrderSummaryPlanPriceValue();
-    console.log(CheckoutConfirmationPage.pPlanPrice);
-    CheckoutConfirmationPage.txtTotalLabel = await this.fillOrderSummaryTxtTotalLabelValue();
-    console.log(CheckoutConfirmationPage.txtTotalLabel);
-    CheckoutConfirmationPage.txtTotalPriceLabel = await this.fillOrderSummaryTxtTotalPriceLabelValue();
-    console.log(CheckoutConfirmationPage.txtTotalPriceLabel);
-    if (paymentMethod.toUpperCase() == 'BD') {
-      console.log(' - checkoutPaymentPage.navigateToCheckoutConfirmationPage');
-      await this.clickBankDraftBtn();
-      await this.fillUsBankDraftFormAndSubmit();
-    } else if (paymentMethod.toUpperCase() == 'CC') {
-      // await this.clickBankDraftBtn();
-      // await this.clickCreditCardBtn();
-      await this.fillCreditCardForm();
-    }
-  };
+  // navigateToCheckoutConfirmationPageUsingPlanalyzer = async (state: string, paymentMethod: string): Promise<void> => {
+  //   await this.oktaPage.navigateToPlanalyzerCsrCheckoutOktaLogin();
+  //   await this.oktaPage.loginThroughOkta();
+  //   await this.planalyzerCsrCheckoutPage.createOrderRedirectToCheckoutFromPlanalyzer('D2C', 'LegalShield', state, 'en-US', '', '', ['Legal Plan']);
+  //   const regionObj = RegionsUtils.usStates;
+  //   const stateObj = state;
+  //   for (const obj of regionObj) {
+  //     if (obj.name == stateObj) {
+  //       await this.txtHomeAddress.fill(obj.validAddress.street);
+  //       await this.txtCity.fill(obj.validAddress.city);
+  //       await this.page.keyboard.press('Tab');
+  //       await this.page.keyboard.press('Tab');
+  //       await this.txtPostalCode.fill('');
+  //       await this.txtPostalCode.fill(obj.validAddress.postalCode);
+  //     }
+  //   }
+  //   await this.btnSaveAndContinue.click();
+
+  //   CheckoutConfirmationPage.pPlan = await this.page.locator(CheckoutConfirmationPage.pPlan).innerText();
+  //   CheckoutConfirmationPage.pPlanPrice = await this.pPlanPrice.innerText();
+  //   CheckoutConfirmationPage.txtTotalLabel = await this.txtTotalLabel.innerText();
+  //   CheckoutConfirmationPage.txtTotalPriceLabel = await this.txtTotalPriceLabel.innerText();
+  //   if (paymentMethod.toUpperCase() == 'BD') {
+  //     await this.page.waitForLoadState();
+  //     this.page.frameLocator("//iframe[@title='payment iframe']");
+  //     if (this.frame != null) {
+  //       // Click on Add Payment button
+  //       await this.btnBankDraft.click();
+  //     } else throw new Error('No such frame');
+
+  //     // Fill  Account Number
+  //     const txtAccountNumbertst1 = await this.txtAccountNumber;
+  //     await txtAccountNumbertst1.type('000000000');
+
+  //     await this.page.keyboard.press('Tab');
+
+  //     // await this.fillRoutingNumberTxt();
+  //     if (this.frmPayment != null) {
+  //       // Fill  Routing Number
+  //       const txtRoutingNumberTxt = await this.txtRoutingNumber;
+  //       await txtRoutingNumberTxt.type('000000000');
+  //     } else throw new Error('No such frame');
+
+  //     await this.page.keyboard.press('Tab');
+
+  //     if (this.frmPayment != null) {
+  //       // Fill  Account Holder Name
+  //       const txtAccountHolderNameTxt = await this.txtAccountHolderName;
+  //       await txtAccountHolderNameTxt.type('Automation Tester');
+  //     } else throw new Error('No such frame');
+
+  //     await this.page.keyboard.press('Tab');
+
+  //     if (this.frmPayment != null) {
+  //       // Click on Purchase button
+  //       await this.btnPurchase.click();
+  //     } else throw new Error('No such frame');
+
+  //     await this.conMembershipWrapper.waitFor({ timeout: 90000 });
+  //   } else if (paymentMethod.toUpperCase() == 'CC') {
+  //     // Fillout the Credit Card form
+  //     // Fill  Account Number
+  //     const txtCreditCardNumber = await this.txtCardNumber;
+  //     await txtCreditCardNumber.type('4444333322221111');
+
+  //     await this.page.keyboard.press('Tab');
+
+  //     if (this.frmPayment != null) {
+  //       // Fill  Expiration Date
+  //       const txtExpDateTxt = this.txtExpirationDate;
+  //       await txtExpDateTxt.type('01/23');
+  //     } else throw new Error('No such frame');
+
+  //     await this.page.keyboard.press('Tab');
+
+  //     if (this.frmPayment != null) {
+  //       // Fill  Security Code
+  //       const txtExpDateTxt = this.txtSecurityCode;
+  //       await txtExpDateTxt.type('111');
+  //     } else throw new Error('No such frame');
+
+  //     await this.page.keyboard.press('Tab');
+  //     await this.page.keyboard.press('Tab');
+
+  //     if (this.frmPayment != null) {
+  //       // Fill  Credit Card Holder Name
+  //       const txtCreditCardHolderNameTxt = this.txtCardholderName;
+  //       await txtCreditCardHolderNameTxt.type('Automation Tester');
+  //     } else throw new Error('No such frame');
+
+  //     await this.page.keyboard.press('Tab');
+  //     if (this.frmPayment != null) {
+  //       // Fill  Postal Code
+  //       const txtCreditCardHolderNameTxt = this.txtBillingPostalCode;
+  //       await txtCreditCardHolderNameTxt.type('20147');
+  //     } else throw new Error('No such frame');
+  //     await this.page.keyboard.press('Tab');
+  //     if (this.frmCCPayment != null) {
+  //       // Click on Purchase button
+  //       await this.btnCreditCardPurchase.click({ force: true });
+  //     } else throw new Error('No such frame');
+  //   }
+  // };
 
   navigateFromPaymentBankDraftPageToConfirmationPage = async (): Promise<void> => {
-    console.log(' - checkoutConfirmationPage.navigateFromPaymentBankDraftPageToConfirmationPage');
-    await this.clickBankDraftBtn();
-    await this.fillUsBankDraftFormAndSubmit();
-    await this.page.waitForSelector(CON_MEMBERSHIP_WRAPPER, { timeout: 90000 });
+    await this.page.waitForLoadState();
+
+    if (this.paymentsLocFrmPayment != null) {
+      // Click on Add Payment button
+      await this.paymentsLocBtnBankDraft.click();
+    } else throw new Error('No such frame');
+
+    // // Fill  Account Number
+    // const txtAccountNumbertst1 = await this.txtAccountNumber;
+    // await txtAccountNumbertst1.type('000000000');
+
+    // await this.page.keyboard.press('Tab');
+
+    // if (this.frmPayment != null) {
+    //   // Fill  Routing Number
+    //   const txtRoutingNumberTxt = await this.txtRoutingNumber;
+    //   await txtRoutingNumberTxt.type('000000000');
+    // } else throw new Error('No such frame');
+
+    // await this.page.keyboard.press('Tab');
+
+    // if (this.frmPayment != null) {
+    //   // Fill  Account Holder Name
+    //   const txtAccountHolderNameTxt = await this.txtAccountHolderName;
+    //   await txtAccountHolderNameTxt.type('Education Employee');
+    // } else throw new Error('No such frame');
+
+    // await this.page.keyboard.press('Tab');
+    // if (this.frmPayment != null) {
+    //   // Click on Purchase button
+    //   await this.btnPurchase.click();
+    // } else throw new Error('No such frame');
+    // await this.conMembershipWrapper.waitFor({ timeout: 90000 });
   };
 
-  navigateFromPaymentAgreementPageToConfirmationPage = async (): Promise<void> => {
-    console.log(' - checkoutConfirmationPage.navigateFromPaymentAgreementPageToConfirmationPage');
-    await this.clickAgreementCheckbox();
-    await this.clickCompleteEnrollmentButton();
-    await this.page.waitForSelector(CON_MEMBERSHIP_WRAPPER, { timeout: 90000 });
-  };
+  // navigateFromPaymentAgreementPageToConfirmationPage = async (): Promise<void> => {
+  //   await this.clickAgreementCheckbox();
+  //   await this.clickCompleteEnrollmentButton();
+  //   await this.conMembershipWrapper.waitFor({ timeout: 90000 });
+  // };
 
-  navigateFromPaymentBankDraftPageToConfirmationPageCanada = async (): Promise<void> => {
-    console.log(' - checkoutConfirmationPage.navigateFromPaymentBankDraftPageToConfirmationPageCanada');
-    await this.clickBankDraftBtn();
-    await this.fillCaBankDraftFormAndSubmit();
-    await this.page.waitForSelector(CON_MEMBERSHIP_WRAPPER, { timeout: 90000 });
-  };
+  // navigateFromPaymentBankDraftPageToConfirmationPageCanada = async (): Promise<void> => {
+  //   await this.page.waitForLoadState();
+  //   if (this.frame != null) {
+  //     // Click on Add Payment button
+  //     await this.btnBankDraft.click();
+  //   } else throw new Error('No such frame');
 
-  navigateFromPaymentCreditCardPageToConfirmationPageCanada = async (): Promise<void> => {
-    console.log(' - checkoutConfirmationPage.navigateFromPaymentCreditCardPageToConfirmationPageCanada');
-    await this.fillCreditCardFormForCanada();
-    await this.page.waitForSelector(CON_MEMBERSHIP_WRAPPER, { timeout: 90000 });
-  };
+  //   await this.page.waitForLoadState();
+  //   // Fill  Account Number
+  //   const txtAccountNumbertst2 = await this.txtAccountNumber;
+  //   await txtAccountNumbertst2.type(DataUtils.data.testingHarness.ca.bd.Account);
+
+  //   await this.page.keyboard.press('Tab');
+  //   if (this.frmPayment != null) {
+  //     // Fill  Transit Number
+  //     const txtTransitNumberTxt = await this.txtTransitNumber;
+  //     await txtTransitNumberTxt.type(DataUtils.data.testingHarness.ca.bd.Transit);
+  //   } else throw new Error('No such frame');
+
+  //   await this.page.keyboard.press('Tab');
+
+  //   if (this.frmPayment != null) {
+  //     // Fill  Institution Number
+  //     const txtInstitutionNumberTxt = await this.txtInstitutionNumber;
+  //     await txtInstitutionNumberTxt.type(DataUtils.data.testingHarness.ca.bd.Institution);
+  //   } else throw new Error('No such frame');
+
+  //   await this.page.keyboard.press('Tab');
+
+  //   if (this.frmPayment != null) {
+  //     // Fill  Account Holder Name
+  //     const txtAccountHolderNameTxt = await this.txtAccountHolderName;
+  //     await txtAccountHolderNameTxt.type('Automation Tester');
+  //   } else throw new Error('No such frame');
+
+  //   await this.page.keyboard.press('Tab');
+  //   if (this.frmPayment != null) {
+  //     // Click on Purchase button
+  //     await this.btnPurchase.click();
+  //   } else throw new Error('No such frame');
+  //   await this.conMembershipWrapper.waitFor({ timeout: 50000 });
+  // };
+
+  // navigateFromPaymentCreditCardPageToConfirmationPageCanada = async (): Promise<void> => {
+  //   // Fill  Account Number
+  //   const txtCreditCardNumber = await this.txtCardNumber;
+  //   await txtCreditCardNumber.type('4444333322221111');
+
+  //   await this.page.keyboard.press('Tab');
+
+  //   if (this.frmPayment != null) {
+  //     // Fill  Expiration Date
+  //     const txtExpDateTxt = this.txtExpirationDate;
+  //     await txtExpDateTxt.type('01/23');
+  //   } else throw new Error('No such frame');
+
+  //   await this.page.keyboard.press('Tab');
+  //   if (this.frmPayment != null) {
+  //     // Fill  Security Code
+  //     const txtExpDateTxt = this.txtSecurityCode;
+  //     await txtExpDateTxt.type('111');
+  //   } else throw new Error('No such frame');
+
+  //   await this.page.keyboard.press('Tab');
+  //   await this.page.keyboard.press('Tab');
+  //   if (this.frmPayment != null) {
+  //     // Fill  Credit Card Holder Name
+  //     const txtCreditCardHolderNameTxt = this.txtCardholderName;
+  //     await txtCreditCardHolderNameTxt.type('Automation Tester');
+  //   } else throw new Error('No such frame');
+
+  //   await this.page.keyboard.press('Tab');
+  //   if (this.frmPayment != null) {
+  //     // Fill  Postal Code
+  //     const txtCreditCardHolderNameTxt = this.txtBillingPostalCode;
+  //     await txtCreditCardHolderNameTxt.type('L2G3V9');
+  //   } else throw new Error('No such frame');
+
+  //   await this.page.keyboard.press('Tab');
+  //   if (this.frmCCPayment != null) {
+  //     // Click on Purchase button
+  //     await this.btnCreditCardPurchase.click({ force: true });
+  //   } else throw new Error('No such frame');
+
+  //   await this.conMembershipWrapper.waitFor({ timeout: 90000 });
+  // };
 
   // ========================== Click Methods ==============================
   /**
    * @memberof CheckoutConfirmationPage
    */
-  clickCompleteEnrollmentButton = async (): Promise<void> => {
-    console.log(' - checkoutConfirmationPage.clickCompleteEnrollmentButton');
-    // Click on Complete Enrollment Button
-    await this.clickOnElement(BTN_COMPLETE_ENROLLMENT);
-  };
+  // clickCompleteEnrollmentButton = async (): Promise<void> => {
+  //   console.log(' - checkoutConfirmationPage.clickCompleteEnrollmentButton');
+  //   // Click on Complete Enrollment Button
+  //   await this.btnCompleteEnrollment.click();
+  // };
 
   /**
    * @memberof CheckoutConfirmationPage
    */
-  clickAgreementCheckbox = async (): Promise<void> => {
-    console.log(' - checkoutConfirmationPage.clickAgreementCheckbox');
-    // Click on Complete Enrollment Button
-    await this.checkCheckbox(CHK_AGREEMENT);
-  };
+  // clickAgreementCheckbox = async (): Promise<void> => {
+  //   console.log(' - checkoutConfirmationPage.clickAgreementCheckbox');
+  //   // Click on Complete Enrollment Button
+  //   await this.chkAgreement.setChecked(true, { force: true });
+  // };
 
   // ========================== Assertion Methods ==========================
 
@@ -120,15 +325,17 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
     for (const pd of productDetails) {
       // Name
       if (pd.productName.includes('-')) {
-        await this.assertElementIsVisible(
+        const locator = this.page.locator(
           `//div[contains(@class,"plan-details-card") and contains(.,"${pd.productName.split(' - ')[1]}") and contains (.,"${
             pd.cost
           }") and contains(.,"Monthly")]`
         );
+        await expect(locator).toBeVisible();
       } else {
-        await this.assertElementIsVisible(
+        const locator = this.page.locator(
           `//div[contains(@class,"plan-details-card") and contains(.,"${pd.productName}") and contains (.,"${pd.cost}") and contains(.,"Monthly")]`
         );
+        await expect(locator).toBeVisible();
       }
     }
   };
@@ -146,7 +353,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
       if (!pd.productName.includes('-')) {
         // do not look for shortcodes for supplements
         const shortName = responseBody.offers[i].products[0].planDetails.short_name;
-        await this.assertStringMatch(shortName, pd.shortCode);
+        expect(shortName).toEqual(pd.shortCode);
       }
       i++;
     }
@@ -155,12 +362,10 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   /**
    * @memberof CheckoutConfirmationPage
    */
-  assertWelcomeToLegalShieldFamilyPage = async (): Promise<void> => {
-    console.log(' - checkoutConfirmationPage.assertWelcomeToLegalshiledFamilyPage');
-    const welcome = await this.page.waitForSelector(TXT_WELCOME_TO_LEGALSHIELD_FAMILY);
-    console.log(welcome.innerText());
-    await this.assertElementContainsText(TXT_WELCOME_TO_LEGALSHIELD_FAMILY, 'Welcome!');
-  };
+  // assertWelcomeToLegalShieldFamilyPage = async (): Promise<void> => {
+  //   await this.txtWelcomeToLegalshiledFamily.waitFor();
+  //   await expect(this.txtWelcomeToLegalshiledFamily).toBe('Welcome!');
+  // };
 
   /**
    * @memberof CheckoutConfirmationPage
@@ -168,7 +373,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   assertOrderSummaryPlanPriceConfirmationPage = async (): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertOrderSummaryPlanPriceConfirmationPage');
     const planPrice = this.page.locator('div.lsux-card--inset.p-6 h3.lsux-heading.plan-price.lsux-heading--t20');
-    await expect(planPrice).toHaveText(CheckoutConfirmationPage.pPlanPrice);
+    expect(planPrice).toBe(CheckoutConfirmationPage.pPlanPrice);
   };
 
   /**
@@ -178,7 +383,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   assertOrderSummaryPlanLabelConfirmationPage = async (planName: string): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertOrderSummaryPlanLabelConfirmationPage');
     const lblplan = this.page.locator(`text=${planName}`);
-    await expect(lblplan).toHaveText(CheckoutConfirmationPage.pPlan);
+    expect(lblplan).toBe(CheckoutConfirmationPage.pPlan);
   };
 
   /**
@@ -187,7 +392,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   assertOrderSummaryLegalShieldMembershipConfirmationPage = async (): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertOrderSummaryMonthlyConfirmationPage');
     const lblplan = this.page.locator('text = LegalShield Membership');
-    await expect(lblplan).toHaveText('LegalShield Membership');
+    expect(lblplan).toBe('LegalShield Membership');
   };
 
   /**
@@ -195,17 +400,16 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
    */
   assertOrderSummaryMonthlyConfirmationPage = async (): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertOrderSummaryMonthlyConfirmationPage');
-    const lblplan = this.page.locator('text = Monthly Subscription');
-    await expect(lblplan).toHaveText('Monthly Subscription');
+    const lblplan = this.page.locator('ext = Monthly Subscription');
+    expect(lblplan).toBe('Monthly Subscription');
   };
 
   /**
    * @memberof CheckoutConfirmationPage
    */
-  assertNoMemberNumbersAreDisplayed = async (): Promise<void> => {
-    console.log(' - checkoutConfirmationPage.assertNoMemberNumbersAreDisplayed');
-    await this.assertElementNotOnPage(LBL_MEMBER_NUMBER);
-  };
+  // assertNoMemberNumbersAreDisplayed = async (): Promise<void> => {
+  //   expect(this.lblMemberNumber).toHaveLength(0);
+  // };
 
   /**
    * @memberof CheckoutConfirmationPage
@@ -213,7 +417,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   assertIdShieldMembershipIsDisplayed = async (): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertIdShieldMembershipIsDisplayed');
     const ELE = '//h2[contains(@class,"membership-title") and contains (.,"IDShield Membership")]';
-    await this.assertElementIsVisible(ELE);
+    await this.page.locator(ELE).isVisible();
   };
 
   /**
@@ -223,7 +427,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   assertLegalShieldMembershipIsDisplayed = async (planType: string): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertLegalShieldMembershipIsDisplayed');
     const ele = `//h2[contains(@class,"membership-title") and contains (.,"${planType} Membership")]`;
-    await this.assertElementIsVisible(ele);
+    await expect(this.page.locator(ele)).toBeVisible({ timeout: 100000 });
   };
 
   /**
@@ -233,34 +437,32 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   assertMembershipTileIsDisplayed = async (planType: string): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertMembershipTileIsDisplayed');
     const ele = `//h2[contains(@class,"membership-title") and contains (.,"${planType} Membership")]`;
-    await this.assertElementIsVisible(ele);
+    await expect(this.page.locator(ele)).toBeVisible({ timeout: 100000 });
   };
 
   /**
    * @param {string} planName
    * @memberof CheckoutConfirmationPage
    */
-  assertPlanNameDisplayedInConfirmationPageOrderSummary = async (planName: string): Promise<void> => {
-    console.log(' - checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary');
-    if (planName.includes('-')) {
-      const splitString = planName.split(' - ');
-      planName = splitString[0];
-    }
-    const ele = `//div[contains(@class,"plan-details-card") and contains(.,"${planName}")]`;
-    await this.page.waitForSelector(CON_MEMBERSHIP_WRAPPER, { timeout: 50000 });
-    await this.assertElementIsVisible(ele);
-  };
+  // assertPlanNameDisplayedInConfirmationPageOrderSummary = async (planName: string): Promise<void> => {
+  //   console.log(' - checkoutConfirmationPage.assertPlanNameDisplayedInConfirmationPageOrderSummary');
+  //   if (planName.includes('-')) {
+  //     const splitString = planName.split(' - ');
+  //     planName = splitString[0];
+  //   }
+  //   const ele = `//div[contains(@class,"plan-details-card") and contains(.,"${planName}")]`;
+  //   await this.conMembershipWrapper.isVisible({ timeout: 50000 });
+  //   await this.page.locator(ele).isVisible({ timeout: 100000 });
+  // };
 
   /**
    * @param {Array<ProductDetails>} productDetails
    * @memberof CheckoutConfirmationPage
    */
   assertAllPlanTilesOnConfirmationPage = async (productDetails: Array<ProductDetails>): Promise<void> => {
-    console.log(' - checkoutConfirmationPage.assertAllPlanTilesOnConfirmationPage');
     for (const pd of productDetails) {
-      await this.isElementVisible(
-        `//div[contains(@class,"plan-details-card") and contains(.,"${pd.productName}") and contains(.,"${pd.shortCode}")]`
-      );
+      const ele = `//div[contains(@class,"plan-details-card") and contains(.,"${pd.productName}") and contains(.,"${pd.shortCode}")]`;
+      await expect(this.page.locator(ele)).toBeVisible();
     }
   };
 
@@ -275,7 +477,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
       planName = splitString[0];
     }
     const ele = `//div[contains(@class,"plan-details-card") and contains(.,"${planName}")]//h3[contains(@class,"plan-price")]`;
-    await this.assertElementIsHidden(ele);
+    await this.page.locator(ele).isHidden();
   };
 
   /**
@@ -284,7 +486,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   assertNoPlanCostsAreDisplayedInConfirmationPageOrderSummary = async (): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertNoPlanCostsAreDisplayedInConfirmationPageOrderSummary');
     const ele = `//div[contains(@class,"plan-details-card")]//h3[contains(@class,"plan-price")]`;
-    await this.assertElementNotOnPage(ele);
+    expect(await this.page.$$(ele)).toHaveLength(0);
   };
 
   /**
@@ -292,23 +494,27 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
    * @memberof CheckoutConfirmationPage
    */
   assertPlanCostNotEmpty = async (planName: string): Promise<void> => {
-    console.log(' - checkoutConfirmationPage.assertPlanCostNotEmpty');
     const ele = `//div[contains(@class,"plan-details-card") and contains(.,"${planName}")]//h3[contains(@class,"plan-price")]`;
-    await this.assertInnerTextIsTruthy(ele);
+    const innerText = await this.page.innerText(ele);
+    expect(innerText).toBeTruthy();
   };
 
   /**
    * @param {string} planName
+   * @param {string} price
    * @memberof CheckoutConfirmationPage
    */
-  assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName = async (planName: string): Promise<void> => {
-    console.log(' - checkoutConfirmationPage.assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName ');
-    if (planName.includes('-')) {
-      const splitString = planName.split(' - ');
-      planName = splitString[0];
-    }
-    const ele = `//div[contains(@class,"plan-details-card") and contains(.,"${planName}")]//h3[contains(@class,"plan-price")]`;
-    await this.assertElementIsVisible(ele);
+  assertPlanCostIsDisplayedInConfirmationOrderSummaryForPlanName = async (planName: string, price: string): Promise<void> => {
+    // if (planName.includes('-')) {
+    //   const splitString = planName.split(' - ');
+    //   planName = splitString[0];
+    // }
+    const eleName = `//div[contains(@class,"plan-details-card") and contains(.,"${planName}")]//h3[contains(@class,"lsux-card--title")]`;
+    await this.page.waitForSelector(eleName);
+    await expect(this.page.locator(eleName)).toHaveText(planName);
+    const elePrice = `//div[contains(@class,"plan-details-card") and contains(.,"${planName}")]//h3[contains(@class,"plan-price")]`;
+    await expect(this.page.locator(elePrice)).toHaveText(price);
+    //div[contains(@class,"plan-details-card") and contains(.,"IDShield Individual")]//h3[contains(@class,"lsux-card--title")]
   };
 
   /**
@@ -316,9 +522,8 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
    * @memberof CheckoutConfirmationPage
    */
   assertPlanCostIsHidden = async (planName: string): Promise<void> => {
-    console.log(' - checkoutConfirmationPage.assertPlanCostIsHidden');
     const ele = `//div[contains(@class,"plan-details-card") and contains(.,"${planName}")]//h3[contains(@class,"plan-price")]`;
-    await this.assertElementIsHidden(ele);
+    await this.page.locator(ele).isHidden();
   };
 
   /**
@@ -326,34 +531,30 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
    * @param {string} totalCost
    * @memberof CheckoutConfirmationPage
    */
-  assertDisclaimerLanguage = async (groupPayConfig: string, totalCost: string): Promise<void> => {
-    console.log(' - checkoutConfirmationPage.assertDisclaimerLanguage');
-    await this.page.waitForSelector(TXT_DISCLAIMER, { timeout: 100000 });
-    switch (groupPayConfig) {
-      case 'Payroll Deduct':
-        await this.assertElementContainsText(
-          TXT_DISCLAIMER,
-          `to deduct ${totalCost} per pay period from my earnings for my membership and to remit such amount directly to PPLSI. I agree that the company is not responsible or liable for my decision to purchase a membership from PPLSI nor the services provided through my membership and the company’s sole responsibility is to withhold and pay my membership fee to PPLSI.`
-        );
-        break;
-      case 'Fringe':
-        await this.assertElementContainsText(TXT_DISCLAIMER, '');
-        break;
-      case 'Partial Fringe':
-        await this.assertElementContainsText(
-          TXT_DISCLAIMER,
-          `to deduct ${totalCost} per pay period from my earnings for my membership and to remit such amount directly to PPLSI. I agree that the company is not responsible or liable for my decision to purchase a membership from PPLSI nor the services provided through my membership and the company’s sole responsibility is to withhold and pay my membership fee to PPLSI.`
-        );
-        break;
-    }
-  };
+  // assertDisclaimerLanguage = async (groupPayConfig: string, totalCost: string): Promise<void> => {
+  //   await this.txaDisclaimer.isVisible({ timeout: 100000 });
+  //   switch (groupPayConfig) {
+  //     case 'Payroll Deduct':
+  //       await expect(this.txaDisclaimer).toBe(
+  //         `to deduct ${totalCost} per pay period from my earnings for my membership and to remit such amount directly to PPLSI. I agree that the company is not responsible or liable for my decision to purchase a membership from PPLSI nor the services provided through my membership and the company’s sole responsibility is to withhold and pay my membership fee to PPLSI.`
+  //       );
+  //       break;
+  //     case 'Fringe':
+  //       await expect(this.txaDisclaimer).toBe('');
+  //       break;
+  //     case 'Partial Fringe':
+  //       await expect(this.txaDisclaimer).toBe(
+  //         `to deduct ${totalCost} per pay period from my earnings for my membership and to remit such amount directly to PPLSI. I agree that the company is not responsible or liable for my decision to purchase a membership from PPLSI nor the services provided through my membership and the company’s sole responsibility is to withhold and pay my membership fee to PPLSI.`
+  //       );
+  //       break;
+  //   }
+  // };
 
   /**
    * @memberof CheckoutConfirmationPage
    */
-  assertTermsOfServiceLanguageAndLink = async (): Promise<void> => {
-    console.log(' - checkoutConfirmationPage.assertTermsOfServiceLanguageAndLink');
-    await this.assertElementIsVisible(TXT_TERMS_OF_SERVICE_LANGUAGE);
-    await this.assertElementIsVisible(LNK_TERMS_OF_SERVICE);
-  };
+  // assertTermsOfServiceLanguageAndLink = async (): Promise<void> => {
+  //   await this.txaTermsOfServiceLanguage.isVisible({ timeout: 100000 });
+  //   await this.lnkTermsOfService.isVisible({ timeout: 100000 });
+  // };
 }

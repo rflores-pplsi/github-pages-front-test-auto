@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { AccountResourcesPage } from '../../page-objects/account/account-resources.page';
+import { AccountResourcesPage } from '../../page-objects (Archived)/account/account-resources.page';
 import { basicUser } from '../../utils/user.utils';
 
 // Define Pages

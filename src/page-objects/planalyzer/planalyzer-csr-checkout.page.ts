@@ -5,7 +5,7 @@ const DDL_ENVIRONMENT = 'text=EnvironmentUATSTGPROD >> select';
 const DDL_CHANNEL = 'text=ChannelChoose ChannelD2CNetworkSolutions >> select';
 const DDL_SUB_CHANNEL = 'text=SubchannelChoose SubchannelLegalShieldIDShield >> select';
 const DDL_REGION = 'text=RegionChoose RegionAlabamaAlaskaArizonaArkansasCaliforniaColoradoConnecticutDela >> select';
-const DDL_MARKETING_LOCAL = 'text=MarketLocaleChoose MarketLocaleen-CAen-USes-USfr-CA >> select';
+const DDL_MARKET_LOCAL = 'text=MarketLocaleChoose MarketLocaleen-CAen-USes-USfr-CA >> select';
 const TXT_PREPAID_MONTH = '[placeholder="Pre-paid months"]';
 const TXT_COUPON_CODE = '[placeholder="Coupon code"]';
 const BTN_SHOW_RESULTS = 'button:has-text("Show Results")';
@@ -96,7 +96,7 @@ export class PlanalyzerCsrCheckoutPage extends OktaPage {
    */
   selectMarketLocale = async (marketLocale: string): Promise<void> => {
     console.log(' - planalyzerCsrCheckoutPage.selectMarketLocale');
-    await this.selectFromDropDownMenu(DDL_MARKETING_LOCAL, marketLocale);
+    await this.selectFromDropDownMenu(DDL_MARKET_LOCAL, marketLocale);
   };
 
   /**

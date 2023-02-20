@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { GroupEnrollmentSearchPage } from '../../page-objects/group-enrollment/group-enrollment-search.page';
+import { GroupEnrollmentSearchPage } from '../../page-objects (Archived)/group-enrollment/group-enrollment-search.page';
 
 let groupEnrollmentSearchPage: GroupEnrollmentSearchPage;
 

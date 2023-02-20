@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { CheckoutPaymentsBankDraftPage } from '../../page-objects-refactored/checkout/checkout-payments-bank-draft.page';
+import { CheckoutPaymentsBankDraftPage } from '../../page-objects/checkout/checkout-payments-bank-draft.page';
 import DataUtils from '../../utils/Tests.Data';
 import UrlsUtils from '../../utils/urls.utils';
 let checkoutPaymentsBankDraftPage: CheckoutPaymentsBankDraftPage;

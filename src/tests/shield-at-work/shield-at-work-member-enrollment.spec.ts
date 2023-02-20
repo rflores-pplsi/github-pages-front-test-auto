@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { ShieldAtWorkMemberEnrollment } from '../../page-objects/shield-at-work/shield-at-work-member-enrollment.page';
+import { ShieldAtWorkMemberEnrollment } from '../../page-objects (Archived)/shield-at-work/shield-at-work-member-enrollment.page';
 
 let shieldAtWorkMemberEnrollment: ShieldAtWorkMemberEnrollment;
 

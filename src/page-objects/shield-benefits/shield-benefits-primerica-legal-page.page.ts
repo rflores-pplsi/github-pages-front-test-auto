@@ -1,4 +1,4 @@
-import { OktaPage } from '../../page-objects/okta/okta.page';
+import { OktaPage } from '../../page-objects (Archived)/okta/okta.page';
 
 // ========================== Selectors ==================================
 
@@ -25,6 +25,7 @@ const BTN_ENROLL_NOW = '#root div.agent-info button > span';
 const BTN_TERMS_OF_SERVICES = '#root div.lsux-col.col.eight.rightWrapper > div > ul > li:nth-child(2) > a';
 const BTN_PRIVACY_POLICY = '#root div.lsux-col.col.eight.rightWrapper > div > ul > li:nth-child(3) > a';
 const BTN_CODE_OF_ETHICS = '#root div.lsux-col.col.eight.rightWrapper > div > ul > li:nth-child(4) > a';
+
 /**
  * @export
  * @class ShieldBenefitsPrimericaLegalPage

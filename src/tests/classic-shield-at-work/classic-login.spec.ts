@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { ClassicShieldAtWork } from '../../page-objects/classic-shield-at-work/classic-login.page';
+import { ClassicShieldAtWork } from '../../page-objects (Archived)/classic-shield-at-work/classic-login.page';
 
 let classicShieldAtWork: ClassicShieldAtWork;
 

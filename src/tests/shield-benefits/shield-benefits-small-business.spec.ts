@@ -1,5 +1,5 @@
 import { test } from '@playwright/test';
-import { ShieldBenefitsSmallBusinessPage } from '../../page-objects/shield-benefits/shield-benefits-small-business.page';
+import { ShieldBenefitsSmallBusinessPage } from '../../page-objects (Archived)/shield-benefits/shield-benefits-small-business.page';
 
 let shieldBenefitsSmallBusinessPage: ShieldBenefitsSmallBusinessPage;
 

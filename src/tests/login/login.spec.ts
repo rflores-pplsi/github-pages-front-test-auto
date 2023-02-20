@@ -1,6 +1,6 @@
 import { test } from '@playwright/test';
 import { CommonLoginPage } from '../../../node_modules/@legalshield/frontend-automation-commons';
-import { LoginPage } from '../../page-objects-refactored/login/login.page';
+import { LoginPage } from '../../page-objects/login/login.page';
 import { basicUser } from '../../utils/user.utils';
 
 // Declare Page Variable for This Page

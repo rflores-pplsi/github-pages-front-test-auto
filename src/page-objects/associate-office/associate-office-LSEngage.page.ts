@@ -13,7 +13,6 @@ const LBL_LOGO_PPLSI_PROSPECT = '.logo-default';
 const LNK_SETTINGS = 'a:has-text("SETTINGS")';
 const LNK_LOG_OUT = 'button:has-text("Log out")';
 const BTN_YES = 'button:has-text("YES")';
-
 /**
  * @export
  * @class LSEngagePage
@@ -27,7 +26,7 @@ export class LSEngagePage extends LoginPage {
     console.log(' - LSEngagePage.navigateToLSEngagePage');
     // Navigate to LS Engage Page
     await this.goTo(UrlsUtils.channelsUrls.login.url);
-    await this.login(associateReportsCommissions.username, associateReportsCommissions.password);
+    await this.login(associateReportsCommissions.username as string, associateReportsCommissions.password as string);
     await this.page.waitForSelector(LNK_MY_ENGAGE);
   };
 
@@ -35,7 +34,7 @@ export class LSEngagePage extends LoginPage {
     console.log(' - LSEngagePage.navigateToLSEngagePage');
     // Navigate to LS Engage Page
     await this.goTo(UrlsUtils.channelsUrls.login.url);
-    await this.login(profilePicker.username, profilePicker.password);
+    await this.login(profilePicker.username as string, profilePicker.password as string);
     await this.page.waitForSelector(LBL_MY_ACCOUNTS);
   };
 
@@ -43,7 +42,7 @@ export class LSEngagePage extends LoginPage {
     console.log(' - LSEngagePage.navigateToPPLSIProspectPage');
     // Navigate to PPLSI Prospect Page
     await this.goTo(UrlsUtils.channelsUrls.pplsiProspect.url);
-    await this.login(associateReportsCommissions.username, associateReportsCommissions.password);
+    await this.login(associateReportsCommissions.username as string, associateReportsCommissions.password as string);
     await this.page.waitForSelector(LBL_LOGO_PPLSI_PROSPECT);
   };
 
@@ -51,7 +50,7 @@ export class LSEngagePage extends LoginPage {
     console.log(' - LSEngagePage.navigateToPPLSIProspectPage');
     // Navigate to PPLSI Prospect Page
     await this.goTo(UrlsUtils.channelsUrls.pplsiProspect.url);
-    await this.login(profilePicker.username, profilePicker.password);
+    await this.login(profilePicker.username as string, profilePicker.password as string);
     await this.page.waitForSelector(LBL_MY_ACCOUNTS);
   };
 
