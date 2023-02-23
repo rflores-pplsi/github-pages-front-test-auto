@@ -7,10 +7,8 @@ let pplsiFooterComponent: PplsiFooterComponent;
 let pplsiBusinessSolutionsOrientationPage: PplsiBusinessSolutionsOrientationPage;
 
 test.beforeEach(async ({ page }) => {
-  await test.step(`Navigate to PPLSI Page`, async () => {
-    pplsiFooterComponent = new PplsiFooterComponent(page);
-    pplsiBusinessSolutionsOrientationPage = new PplsiBusinessSolutionsOrientationPage(page);
-  });
+  pplsiFooterComponent = new PplsiFooterComponent(page);
+  pplsiBusinessSolutionsOrientationPage = new PplsiBusinessSolutionsOrientationPage(page);
 });
 
 test('User can navigate to Business Solutions Orientation page by clicking the Business Opportunity link in the PPLSI footer', async ({ page }) => {
