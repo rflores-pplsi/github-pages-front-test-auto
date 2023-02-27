@@ -2,13 +2,16 @@ import { expect, test } from '@playwright/test';
 import UrlsUtils from '../../utils/urls.utils';
 import { PplsiBusinessSolutionsOrientationProgressBarComponent } from '../../page-objects/pplsi/business-solutions-orientation/pplsi-business-solutions-orientation-progress-bar.component';
 import { PplsiBusinessSolutionsOrientationResourcesComponent } from '../../page-objects/pplsi/business-solutions-orientation/pplsi-business-solutions-orientation-resources.component';
+import { PplsiBusinessSolutionsOrientationVideoComponent } from '../../page-objects/pplsi/business-solutions-orientation/pplsi-business-solutions-orientation-video.component';
 
 let pplsiBusinessSolutionsOrientationProgressBarComponent: PplsiBusinessSolutionsOrientationProgressBarComponent;
 let pplsiBusinessSolutionsOrientationResourcesComponent: PplsiBusinessSolutionsOrientationResourcesComponent;
+let pplsiBusinessSolutionsOrientationVideoComponent: PplsiBusinessSolutionsOrientationVideoComponent;
 
 test.beforeEach(async ({ page, context }) => {
   pplsiBusinessSolutionsOrientationProgressBarComponent = new PplsiBusinessSolutionsOrientationProgressBarComponent(page);
   pplsiBusinessSolutionsOrientationResourcesComponent = new PplsiBusinessSolutionsOrientationResourcesComponent(context, page);
+  pplsiBusinessSolutionsOrientationVideoComponent = new PplsiBusinessSolutionsOrientationVideoComponent(page);
   await test.step(`Navigate to PPLSI.com Business Solutions Orientation Compensation Page`, async () => {
     await page.goto(`${UrlsUtils.pplsiUrls.home.url}/business-solutions-orientation/compensation/`);
   });
@@ -42,5 +45,14 @@ test('User can open the Compensation Plan pdf from the resources list', async ({
       'Compensation Plan',
       'Advanced_Commission_by_Rank_-_Elite_Tier_thru_ED.pdf'
     );
+  });
+});
+
+test('User can play the introduction video on the Business Solutions Orientation Compensation Page ', async () => {
+  await test.step('Click on Introduction Video play button', async () => {
+    await pplsiBusinessSolutionsOrientationVideoComponent.locVideoPlayerPlayButton.click();
+  });
+  await test.step('Assert the Business Solutions Orientation Overview Page', async () => {
+    await pplsiBusinessSolutionsOrientationVideoComponent.assertVideoPlayerHasPlayed();
   });
 });

@@ -2,13 +2,16 @@ import { expect, test } from '@playwright/test';
 import UrlsUtils from '../../utils/urls.utils';
 import { PplsiBusinessSolutionsOrientationProgressBarComponent } from '../../page-objects/pplsi/business-solutions-orientation/pplsi-business-solutions-orientation-progress-bar.component';
 import { PplsiBusinessSolutionsOrientationResourcesComponent } from '../../page-objects/pplsi/business-solutions-orientation/pplsi-business-solutions-orientation-resources.component';
+import { PplsiBusinessSolutionsOrientationVideoComponent } from '../../page-objects/pplsi/business-solutions-orientation/pplsi-business-solutions-orientation-video.component';
 
 let pplsiBusinessSolutionsOrientationProgressBarComponent: PplsiBusinessSolutionsOrientationProgressBarComponent;
 let pplsiBusinessSolutionsOrientationResourcesComponent: PplsiBusinessSolutionsOrientationResourcesComponent;
+let pplsiBusinessSolutionsOrientationVideoComponent: PplsiBusinessSolutionsOrientationVideoComponent;
 
 test.beforeEach(async ({ page, context }) => {
   pplsiBusinessSolutionsOrientationProgressBarComponent = new PplsiBusinessSolutionsOrientationProgressBarComponent(page);
   pplsiBusinessSolutionsOrientationResourcesComponent = new PplsiBusinessSolutionsOrientationResourcesComponent(context, page);
+  pplsiBusinessSolutionsOrientationVideoComponent = new PplsiBusinessSolutionsOrientationVideoComponent(page);
   await test.step(`Navigate to PPLSI.com Business Solutions Orientation Overview page`, async () => {
     await pplsiBusinessSolutionsOrientationResourcesComponent.page.goto(`${UrlsUtils.pplsiUrls.home.url}/business-solutions-orientation/overview/`);
   });
@@ -68,5 +71,14 @@ test('User can open the Enrollment Flyer pdf from the resources list', async ({ 
       'Enrollment Flyer',
       'G_FLIER_LS_IDS_1B_GroupEnrollment_USA_092321_FORM.pdf'
     );
+  });
+});
+
+test('User can play the introduction video on the Business Solutions Orientation Overview Page ', async () => {
+  await test.step('Click on Introduction Video play button', async () => {
+    await pplsiBusinessSolutionsOrientationVideoComponent.locVideoPlayerPlayButton.click();
+  });
+  await test.step('Assert the Business Solutions Orientation Overview Page', async () => {
+    await pplsiBusinessSolutionsOrientationVideoComponent.assertVideoPlayerHasPlayed();
   });
 });
