@@ -74,11 +74,68 @@ test('User can open the Enrollment Flyer pdf from the resources list', async ({ 
   });
 });
 
-test('User can play the introduction video on the Business Solutions Orientation Overview Page ', async () => {
-  await test.step('Click on Introduction Video play button', async () => {
+test('User can play the Product Overview video on the Business Solutions Orientation Overview Page ', async () => {
+  await test.step('Click on Product Overview Video play button', async () => {
     await pplsiBusinessSolutionsOrientationVideoComponent.locVideoPlayerPlayButton.click();
   });
-  await test.step('Assert the Business Solutions Orientation Overview Page', async () => {
+  await test.step('Assert the Video has played', async () => {
+    await pplsiBusinessSolutionsOrientationVideoComponent.locVideoPlayerTimeCode1Second.waitFor();
     await pplsiBusinessSolutionsOrientationVideoComponent.assertVideoPlayerHasPlayed();
+  });
+});
+
+test('User can pause the Product Overview video on the Business Solutions Orientation Overview Page ', async () => {
+  await test.step('Click on Product Overview Video play button', async () => {
+    await pplsiBusinessSolutionsOrientationVideoComponent.locVideoPlayerPlayButton.click();
+  });
+  await test.step('Click on Product Overview Video pause button', async () => {
+    await pplsiBusinessSolutionsOrientationVideoComponent.locVideoPlayerPauseButton.click();
+  });
+  await test.step('Assert the play button is displayed again', async () => {
+    expect(pplsiBusinessSolutionsOrientationVideoComponent.locVideoPlayerPlayButton).toBeVisible;
+  });
+});
+
+test('User can skip ahead and back in the Product Overview video on the Business Solutions Orientation Overview Page', async ({ page }) => {
+  await test.step('Click on middle of the Product Overview Video slider button', async () => {
+    await pplsiBusinessSolutionsOrientationVideoComponent.locVideoPlayerSlider.click();
+  });
+  await test.step('Assert that the video now shows some has played', async () => {
+    await pplsiBusinessSolutionsOrientationVideoComponent.assertVideoPlayerHasPlayed();
+  });
+  await test.step('Click on the Slider at a previous timestamp', async () => {
+    await pplsiBusinessSolutionsOrientationVideoComponent.locVideoPlayerSlider.click({ force: true, position: { x: 0, y: 0 } });
+  });
+  await test.step('Assert that the timestamp has reset to 00:00', async () => {
+    await pplsiBusinessSolutionsOrientationVideoComponent.assertTimestamp('00:00');
+  });
+});
+
+test('User can turn Closed Captioning on/off for the introduction video on the Business Solutions Orientation Overview Page', async ({ page }) => {
+  await test.step('Choose the English Closed Captioning option', async () => {
+    await pplsiBusinessSolutionsOrientationVideoComponent.selectClosedCaptionOption('English');
+  });
+  await test.step('Close Closed Captioning menu', async () => {
+    await pplsiBusinessSolutionsOrientationVideoComponent.locVideoPlayerClosedCaptionCloseButton.click();
+  });
+  await test.step('Play Video and Assert Closed Captions display', async () => {
+    await pplsiBusinessSolutionsOrientationVideoComponent.locVideoPlayerPlayButton.click();
+    await pplsiBusinessSolutionsOrientationVideoComponent.locVideoPlayerClosedCaptions.waitFor();
+    expect(pplsiBusinessSolutionsOrientationVideoComponent.locVideoPlayerClosedCaptions).toBeVisible();
+  });
+  await test.step('Turn Closed Captioning off', async () => {
+    await pplsiBusinessSolutionsOrientationVideoComponent.selectClosedCaptionOption('Off');
+  });
+  await test.step('Assert Closed Captions setting', async () => {
+    await pplsiBusinessSolutionsOrientationVideoComponent.assertClosedCaptionSetting('Off');
+  });
+});
+
+test('User can change the Quality Setting for the introduction video on the Business Solutions Orientation Overview Page', async ({ page }) => {
+  await test.step('Set the Quality to 1080p', async () => {
+    await pplsiBusinessSolutionsOrientationVideoComponent.selectQualitySetting('1080p');
+  });
+  await test.step('Assert Quality is set to 1080p', async () => {
+    await pplsiBusinessSolutionsOrientationVideoComponent.assertQualitySetting('1080p');
   });
 });
