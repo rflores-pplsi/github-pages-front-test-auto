@@ -22,7 +22,7 @@ export class AccountResourcesPage extends LoginPage {
   navigateToAccountResourcesPage = async (): Promise<void> => {
     console.log(' - accountResourcesPage.navigateToAccountResourcesPage');
     // Navigate to Activate Page
-    await this.goTo(UrlsUtils.legalshieldUrls.account.url + '/resources');
+    await this.goTo(UrlsUtils.legalshieldUrls.accounts.url + '/resources');
   };
   // ========================== Click Methods ==============================
 

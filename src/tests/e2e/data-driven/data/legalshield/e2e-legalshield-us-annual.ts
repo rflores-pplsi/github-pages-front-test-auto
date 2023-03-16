@@ -1,4 +1,4 @@
-export const legalshieldIdShieldAnnualData = [
+export const legalshieldUsAnnualData = [
   {
     disabled: false,
     market: 'US',

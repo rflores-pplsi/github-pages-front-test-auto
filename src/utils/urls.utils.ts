@@ -15,8 +15,21 @@ const envPplsiUrlString = EnvironmentUtil.getPplsiEnvString();
  * @class UrlsUtils
  */
 export default class UrlsUtils {
+  // static readonly marketingSitesUrls = {
+  //   url: `https://${envUrlString}legalshield.com`,
+  // };
+  // static readonly legalshieldCanadaUrl = {
+  //   url: `https://${envUrlString}legalshield.ca`,
+  // };
+  // static readonly idshieldUrl = {
+  //   url: `https://${envUrlString}idshield.com`,
+  // };
+  // static readonly idshieldCanadaUrl = {
+  //   url: `https://${envUrlString}idshield.ca`,
+  // };
+
   static readonly legalshieldUrls = {
-    account: {
+    accounts: {
       url: `https://accounts.${envUrlString}legalshield.com`,
     },
     activate: {
@@ -79,11 +92,6 @@ export default class UrlsUtils {
   };
 
   static readonly legalshieldInternalUrls = {
-    // TODO - find this url if it is even a thing?
-    // status: {
-    //   `url`: `https://status.${envUrlString}legalshieldinternal.com`,
-    // },
-
     memberSearch: {
       url: `https://member-search.${envUrlString}legalshieldinternal.com`,
     },
@@ -130,6 +138,21 @@ export default class UrlsUtils {
   };
 
   static readonly wals = {
+    damesdejustice: {
+      urlCanadaNoSubdomain: `${envWalsUrlString}damesdejustice.ca`,
+      urlUnitedStatesNoSubdomain: `${envWalsUrlString}damesdejustice.com`,
+    },
+    ladiesofjustice: {
+      urlCanadaNoSubdomain: `${envWalsUrlString}ladiesofjustice.ca`,
+      urlUnitedStatesNoSubdomain: `${envWalsUrlString}ladiesofjustice.com`,
+    },
+    noussommeslegalshield: {
+      urlCanadaNoSubdomain: `${envWalsUrlString}noussommeslegalshield.ca`,
+    },
+    somoslegalshield: {
+      urlUnitedStatesNoSubdomain: `${envWalsUrlString}wearelegalshield.com`,
+    },
+
     urls: {
       ddev: `http://lspro.${envWalsUrlString}wearelegalshield.com`,
       urlAppTestUserDamesDeJusticeCa: `https://apptestuser.${envWalsUrlString}damesdejustice.ca`,
@@ -151,13 +174,10 @@ export default class UrlsUtils {
       urlSomos: `https://${envWalsUrlString}somoslegalshield.com`,
       urlSpUS: `https://lspro.${envWalsUrlString}somoslegalshield.com`,
     },
-
-    // uatUrl: {
-    //   url: `https://lspro.stage.wearelegalshield.com/launch`,
-    // },
-    // prodUrl: {
-    //   url: `https://lspro.wearelegalshield.com/launch`,
-    // },
+    weAreLegalshield: {
+      urlCanadaNoSubdomain: `${envWalsUrlString}wearelegalshield.ca`,
+      urlUnitedStatesNoSubdomain: `${envWalsUrlString}wearelegalshield.com`,
+    },
   };
 
   static readonly channelsUrls = {
@@ -190,6 +210,7 @@ export default class UrlsUtils {
     },
   };
   static readonly groupsUrls = {
+    affiliateGroupPage: `http://groups.legalshield.com/?group=`,
     url1UniversalTrucking: `http://www.legalshield.com/info/1universaltrucking`,
     urlBestMoneyMovers: `https://www.shieldbenefits.com/bestmoneymoves/overview`,
     urlPrimericaGroup: `http://groups.legalshield.com/?group=primerica`,

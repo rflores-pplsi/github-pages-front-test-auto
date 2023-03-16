@@ -14,7 +14,7 @@ export class GroupsPage extends QaMaintenanceListLocatorsPage {
     await this.groupEnterAgentIdInput.fill(id);
   };
 
-  selectLanguageAndRegion = async (language: string): Promise<void> => {
+  selectLanguageAndMarket = async (language: string): Promise<void> => {
     await this.groupSelectLanguageAndRegionDropdown.click();
     const dropdownOption = this.page.locator(
       `//div[contains(@class,"md-active")]//md-option[contains(@id,"select_option") and contains(.,"${language}")]`

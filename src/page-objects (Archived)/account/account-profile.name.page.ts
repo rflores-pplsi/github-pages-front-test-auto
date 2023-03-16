@@ -53,7 +53,7 @@ export class AccountProfileNamePage extends AccountProfilePage {
   assertProfileFirstNamePageUrl = async (): Promise<void> => {
     console.log(' - accountProfilePage.assertProfileFirstNamePageUrl');
     // Confirm the Profile First Name Page URL is reached
-    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.account.url + '/profile/name');
+    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.accounts.url + '/profile/name');
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };

@@ -1,5 +1,5 @@
 import { BrowserContext, expect, Page, Response } from '@playwright/test';
-import { ProductDetails } from '../../tests/e2e/data/type-definitions';
+import { ProductDetails } from '../../tests/e2e/data-driven/data/type-definitions';
 import { OktaPage } from '../okta/okta.page';
 import { PlanalyzerCsrCheckoutPage } from '../planalyzer/planalyzer-csr-checkout.page';
 import { CheckoutLocatorsPage } from './checkout-locators.page';

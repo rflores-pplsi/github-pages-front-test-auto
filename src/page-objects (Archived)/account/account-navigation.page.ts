@@ -69,7 +69,7 @@ export class AccountNavigationPage extends LoginPage {
   navigateToAccountPlansPage = async (): Promise<void> => {
     console.log(' - accountNavigationPage.navigateToAccountPlansPage');
     // Login with a basic user
-    await this.loginPage.goTo(UrlsUtils.legalshieldUrls.account.url + '/plans');
+    await this.loginPage.goTo(UrlsUtils.legalshieldUrls.accounts.url + '/plans');
     await this.page.waitForLoadState('networkidle');
   };
 
@@ -78,7 +78,7 @@ export class AccountNavigationPage extends LoginPage {
   assertAccountProfileUrl = async (): Promise<void> => {
     console.log(' - accountNavigationPage.assertAccountProfileUrl');
     // Confirm the Account Profile Page URL
-    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.account.url + '/profile');
+    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.accounts.url + '/profile');
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };
@@ -86,7 +86,7 @@ export class AccountNavigationPage extends LoginPage {
   assertAccountPaymentsUrl = async (): Promise<void> => {
     console.log(' - accountNavigationPage.assertAccountPaymentsUrl');
     // Confirm the Account Payments Page URL
-    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.account.url + '/payments');
+    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.accounts.url + '/payments');
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };
@@ -94,7 +94,7 @@ export class AccountNavigationPage extends LoginPage {
   assertAccountSecurityUrl = async (): Promise<void> => {
     console.log(' - accountNavigationPage.assertAccountSecurityUrl');
     // Confirm the Account Security Page URL
-    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.account.url + '/security');
+    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.accounts.url + '/security');
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };
@@ -102,7 +102,7 @@ export class AccountNavigationPage extends LoginPage {
   assertAccountResourcesUrl = async (): Promise<void> => {
     console.log(' - accountNavigationPage.assertAccountResourcesUrl');
     // Confirm the Account Resources Page URL
-    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.account.url + '/resources');
+    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.accounts.url + '/resources');
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };
@@ -110,7 +110,7 @@ export class AccountNavigationPage extends LoginPage {
   assertAccountPreferencesUrl = async (): Promise<void> => {
     console.log(' - accountNavigationPage.assertAccountPreferencesUrl');
     // Confirm the Account Preferences Page URL
-    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.account.url + '/preferences');
+    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.accounts.url + '/preferences');
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };
@@ -118,7 +118,7 @@ export class AccountNavigationPage extends LoginPage {
   assertAccountMultifactorUrl = async (): Promise<void> => {
     console.log(' - accountNavigationPage.assertAccountMultifactorUrl');
     // Confirm the Account Multifactor Page URL
-    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.account.url + '/mfa');
+    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.accounts.url + '/mfa');
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };
@@ -126,7 +126,7 @@ export class AccountNavigationPage extends LoginPage {
   assertAccountPlansUrl = async (): Promise<void> => {
     console.log(' - accountNavigationPage.assertAccountPlansUrl');
     // Confirm the Account Plans Page URL
-    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.account.url + '/plans');
+    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.accounts.url + '/plans');
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };

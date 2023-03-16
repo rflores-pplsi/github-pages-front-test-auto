@@ -14,7 +14,7 @@ test.beforeEach(async ({ page }) => {
 test('Primerica Group', async ({ page }) => {
   test.slow;
   await primericaGroupPage.navigateToGroupsPage('primerica');
-  await primericaGroupPage.selectLanguageAndRegion('English (US)');
+  await primericaGroupPage.selectLanguageAndMarket('English (US)');
   await primericaGroupPage.fillAgentID('12345');
   await primericaGroupPage.primericaGroupBtnEnrollNow.click();
   await primericaGroupPage.selectPrimericaStateOrProvince('New York');

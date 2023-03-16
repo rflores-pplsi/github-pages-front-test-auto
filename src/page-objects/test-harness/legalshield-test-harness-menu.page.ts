@@ -1,4 +1,4 @@
-import { ProductDetails } from '../../tests/e2e/data/type-definitions';
+import { ProductDetails } from '../../tests/e2e/data-driven/data/type-definitions';
 import { LegalshieldTestHarnessCartComponent } from './legalshield-test-harness-cart.component'; // import the LoginPage for extension
 
 // ========================== Selectors ==================================

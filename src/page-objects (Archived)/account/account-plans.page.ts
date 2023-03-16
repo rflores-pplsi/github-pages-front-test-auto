@@ -72,9 +72,9 @@ export class AccountPlansPage extends LoginPage {
 
   loginToNavigateToAccountsPlanPage = async (emailOrUsername: string | undefined, password: string | undefined): Promise<void> => {
     console.log(' - accountPlansPage.loginToNavigateToAccountsPlanPage');
-    await this.goTo(UrlsUtils.legalshieldUrls.account.url + '/plans');
+    await this.goTo(UrlsUtils.legalshieldUrls.accounts.url + '/plans');
     await this.login(emailOrUsername, password);
-    await this.page.waitForURL(UrlsUtils.legalshieldUrls.account.url + '/plans?login_redirect=1');
+    await this.page.waitForURL(UrlsUtils.legalshieldUrls.accounts.url + '/plans?login_redirect=1');
   };
 
   // ========================== Click Methods ==========================

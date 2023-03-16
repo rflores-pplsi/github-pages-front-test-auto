@@ -66,7 +66,7 @@ export class LoginPage extends LoginLocatorsPage {
    * @memberof LoginPage
    */
   navigateToAccountPlansPage = async (): Promise<void> => {
-    await this.page.goto(UrlsUtils.legalshieldUrls.account.url + '/plans');
+    await this.page.goto(UrlsUtils.legalshieldUrls.accounts.url + '/plans');
     await this.page.waitForLoadState('networkidle');
   };
   /**
@@ -104,14 +104,14 @@ export class LoginPage extends LoginLocatorsPage {
    * @memberof LoginPage
    */
   assertAccountsPlanPageUrl = async (): Promise<void> => {
-    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.account.url + '/plans');
+    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.accounts.url + '/plans');
     await this.page.waitForLoadState('domcontentloaded');
   };
   /**
    * @memberof LoginPage
    */
   assertAccountsPlanPageLoginRedirectUrl = async (): Promise<void> => {
-    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.account.url + '/plans?login_redirect=1');
+    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.accounts.url + '/plans?login_redirect=1');
     await this.page.waitForLoadState('domcontentloaded');
   };
   /**

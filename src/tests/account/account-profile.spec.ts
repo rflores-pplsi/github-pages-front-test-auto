@@ -18,7 +18,7 @@ test('Verify the Edit button for Name should be disabled', async () => {
 });
 
 // Navigate to the Profile Date of Birth page
-test('Navigate to the Profile Date of Birth page by clicking the Date of Birth Edit button @smoke @visual', async ({ page }) => {
+test('Navigate to the Profile Date of Birth page by clicking the Date of Birth Edit button @visual', async ({ page }) => {
   test.skip();
   // TODO: improve reliability by ensuring a protected account is used OR do not use snapshot
   console.log('Test Case: Navigate to the Profile Date of Birth page by clicking the Date of Birth Edit button');
@@ -34,7 +34,7 @@ test('Navigate to the Profile Date of Birth page by clicking the Date of Birth E
 });
 
 // Navigate to the Profile Phone Number page
-test('Navigate to the Profile Phone Number page by clicking the Phone Number Edit button @smoke @ visual', async ({ page }) => {
+test('Navigate to the Profile Phone Number page by clicking the Phone Number Edit button @ visual', async ({ page }) => {
   console.log('Test Case: Navigate to the Profile Phone Number page by clicking the Phone Number Edit button');
   test.skip();
   // TODO: improve reliability by ensuring a protected account is used OR do not use snapshot
@@ -57,7 +57,7 @@ test('Verify the Edit button for Address should be disabled', async () => {
 });
 
 // Navigate to the Profile Email page
-test('Navigate to the Profile Email Address page by clicking the Email Address Edit button @smoke @visual', async ({ page }) => {
+test('Navigate to the Profile Email Address page by clicking the Email Address Edit button @visual', async ({ page }) => {
   console.log('Test Case: Navigate to the Profile Email Address page by clicking the Email Address Edit button');
   test.skip();
   // TODO: improve reliability by ensuring a protected account is used OR do not use snapshot

@@ -3,7 +3,7 @@ import UrlsUtils from '../../utils/urls.utils';
 import { LoginPage } from '../login/login.page';
 import { AccountNavigationPage } from './account-navigation.page';
 
-const url = UrlsUtils.legalshieldUrls.account.url + '/profile';
+const url = UrlsUtils.legalshieldUrls.accounts.url + '/profile';
 
 // ========================== Selectors ==========================
 const BTN_EDIT_NAME = '//h5[text()="Name"]/../../button';

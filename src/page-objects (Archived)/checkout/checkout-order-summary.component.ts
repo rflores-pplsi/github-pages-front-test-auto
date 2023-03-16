@@ -5,7 +5,7 @@ import { OrderSummaryWithoutCosts } from './checkout.helpers';
 import { OrderSummaryRowWithoutCost } from './checkout.helpers';
 import { OrderSummaryWithoutTiers } from './checkout.helpers';
 import { OrderSummaryRowWithoutTier } from './checkout.helpers';
-import { ProductDetails } from '../../tests/e2e/data/type-definitions';
+import { ProductDetails } from '../../tests/e2e/data-driven/data/type-definitions';
 
 // Instantiations
 const orderSummary = new OrderSummary();

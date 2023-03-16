@@ -83,7 +83,7 @@ export class LoginPage extends BasePage {
   navigateToAccountPlansPage = async (): Promise<void> => {
     console.log(' - loginPage.navigateToAccountPlansPage');
     // Navigate to Account Plans Page
-    await this.goTo(UrlsUtils.legalshieldUrls.account.url + '/plans');
+    await this.goTo(UrlsUtils.legalshieldUrls.accounts.url + '/plans');
     // Wait for page to finish loading
     await this.page.waitForLoadState('networkidle');
   };
@@ -125,7 +125,7 @@ export class LoginPage extends BasePage {
   assertAccountsPlanPageUrl = async (): Promise<void> => {
     console.log(' - loginPage.assertAccountsPlanPageUrl');
     // Confirm the Accounts Plan Page URL is reached
-    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.account.url + '/plans');
+    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.accounts.url + '/plans');
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };
@@ -133,7 +133,7 @@ export class LoginPage extends BasePage {
   assertAccountsPlanPageLoginRedirectUrl = async (): Promise<void> => {
     console.log(' - loginPage.assertAccountsPlanPageLoginRedirectUrl');
     // Confirm the Accounts Plan Page URL with login redirect is reached
-    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.account.url + '/plans?login_redirect=1');
+    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.accounts.url + '/plans?login_redirect=1');
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };

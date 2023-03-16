@@ -152,7 +152,7 @@ test.describe('Test We are LegalShield', () => {
       await weAreLegalShieldHeaderComponent.weAreLegalShieldHeaderMemberLoginLink.click();
     });
     await test.step('Assert accounts url', async () => {
-      await walsAssociateSearchPage.WeAreLegalShieldAssertUrlContains(UrlsUtils.legalshieldUrls.account.url);
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrlContains(UrlsUtils.legalshieldUrls.accounts.url);
     });
   });
 

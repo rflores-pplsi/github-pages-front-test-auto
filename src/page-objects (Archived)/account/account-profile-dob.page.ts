@@ -49,7 +49,7 @@ export class AccountProfileDoBPage extends AccountProfilePage {
     await this.page.waitForSelector(TXT_BOX_EDIT_DATE_OF_BIRTH);
     const updatedDoB = await this.page.locator(TXT_BOX_EDIT_DATE_OF_BIRTH).getAttribute('value');
     expect(updatedDoB).toBe('1990-10-30');
-    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.account.url + '/profile/birth');
+    await expect(this.page).toHaveURL(UrlsUtils.legalshieldUrls.accounts.url + '/profile/birth');
     // Wait for document to load before subsequent steps
     await this.page.waitForLoadState('domcontentloaded');
   };

@@ -16,7 +16,7 @@ export class PaymentsPage extends LoginPage {
   navigateToAccountPaymentsPage = async (): Promise<void> => {
     console.log(' - accountResourcesPage.navigateToAccountPaymentsPage');
     // Navigate to Activate Page
-    await this.goTo(UrlsUtils.legalshieldUrls.account.url + '/payments');
+    await this.goTo(UrlsUtils.legalshieldUrls.accounts.url + '/payments');
   };
   // ========================== Click Methods ==============================
 

@@ -165,7 +165,7 @@ test.describe('Test Ladies of Justice US', () => {
       await weAreLegalShieldHeaderComponent.weAreLegalShieldHeaderMemberLoginLink.click();
     });
     await test.step('Assert accounts url', async () => {
-      await walsAssociateSearchPage.WeAreLegalShieldAssertUrlContains(UrlsUtils.legalshieldUrls.account.url);
+      await walsAssociateSearchPage.WeAreLegalShieldAssertUrlContains(UrlsUtils.legalshieldUrls.accounts.url);
     });
   });
   test('When I click on the Executive Team Link am redirected to the the executive team page', async () => {

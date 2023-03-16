@@ -1,11 +1,11 @@
 import { test } from '@playwright/test';
-import { CheckoutConfirmationPage } from '../../page-objects (Archived)/checkout/checkout-confirmation.page';
-import { basicUser } from '../../utils/user.utils';
-import { legalshieldIdShieldMonthlyData } from './data/legalshield-idshield/e2e-legalshield-idshield-monthly';
-import { legalshieldIdShieldAnnualData } from './data/legalshield-idshield/e2e-legalshield-idshield-annual';
+import { CheckoutConfirmationPage } from '../../../page-objects (Archived)/checkout/checkout-confirmation.page';
+import { basicUser } from '../../../utils/user.utils';
+import { legalshieldUsMonthlyData } from './data/legalshield/e2e-legalshield-us-monthly';
+import { legalshieldUsAnnualData } from './data/legalshield/e2e-legalshield-us-annual';
 import { legalshieldCanadaMonthlyData } from './data/legalshield/e2e-legalshield-canada-monthly';
-import UrlsUtils from '../../utils/urls.utils';
-import { addPurchaseRequestListener, interceptedResponse } from '../../utils/api.utils';
+import UrlsUtils from '../../../utils/urls.utils';
+import { addPurchaseRequestListener, interceptedResponse } from '../../../utils/api.utils';
 
 // create instance of Page
 let checkoutConfirmationPage: CheckoutConfirmationPage;
@@ -18,7 +18,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 // LegalShield - US - Monthly
-for (const tc of legalshieldIdShieldMonthlyData.filter((tc) => tc.disabled == false)) {
+for (const tc of legalshieldUsMonthlyData.filter((tc) => tc.disabled == false)) {
   for (const region of tc.regions) {
     test(`${tc.testCaseName} - ${region}`, async ({ page }) => {
       console.log(`Test Case: ${tc.testCaseName} - ${region}`);
@@ -108,7 +108,7 @@ for (const tc of legalshieldIdShieldMonthlyData.filter((tc) => tc.disabled == fa
 }
 
 // LegalShield - US - Annual
-for (const tc of legalshieldIdShieldAnnualData.filter((tc) => tc.disabled == false)) {
+for (const tc of legalshieldUsAnnualData.filter((tc) => tc.disabled == false)) {
   for (const region of tc.regions) {
     test(`${tc.testCaseName} - ${region} @annual @e2e`, async ({ page }) => {
       console.log(`Test Case: ${tc.testCaseName} - ${region}`);

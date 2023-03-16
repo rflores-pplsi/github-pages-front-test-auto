@@ -1,6 +1,6 @@
 import { expect, Response } from '@playwright/test';
 import { CheckoutPaymentsBankDraftPage } from './checkout-payments-bank-draft.page';
-import { ProductDetails } from '../../tests/e2e/data/type-definitions';
+import { ProductDetails } from '../../tests/e2e/data-driven/data/type-definitions';
 
 // ========================== Selectors ==================================
 const TXT_WELCOME_TO_LEGALSHIELD_FAMILY = 'h1.lsux-heading.confirmation-title.lsux-heading--t28';
