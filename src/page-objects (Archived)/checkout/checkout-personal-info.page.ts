@@ -372,7 +372,6 @@ export class CheckoutPersonalInfoPage extends CheckoutOrderSummaryComponent {
    * @memberof CheckoutPersonalInfoPageSecurityInfo
    */
   clearAllFieldsInSecurityInfoSectionPersonalInfoPage = async (): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.clearAllFieldsInSecurityInfoSectionPersonalInfoPage');
     await this.clearTextBox(TXT_BIRTH_MONTH);
     await this.clearTextBox(TXT_BIRTH_DAY);
     await this.clearTextBox(TXT_BIRTH_YEAR);

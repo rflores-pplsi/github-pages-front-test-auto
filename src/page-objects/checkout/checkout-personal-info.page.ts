@@ -376,12 +376,34 @@ export class CheckoutPersonalInfoPage extends CheckoutLocatorsPage {
    * @memberof CheckoutPersonalInfoPageSecurityInfo
    */
   clearAllFieldsInSecurityInfoSectionPersonalInfoPage = async (): Promise<void> => {
-    console.log(' - checkoutPersonalInfoPage.clearAllFieldsInSecurityInfoSectionPersonalInfoPage');
     await this.personalInfoLocTxtBirthMonth.fill('');
     await this.personalInfoLocTxtBirthDay.fill('');
     await this.personalInfoLocTxtBirthYear.fill('');
-    // await this.clearTextBox(txtBirthMonth, txtBirthDay, txtBirthYear);
     await this.personalInfoLocTxtSocialSecurityNumber.fill('');
+    await this.btnSaveAndContinue.click();
+  };
+
+  clearAllFieldsInBusinessInfoSectionPersonalInfoPage = async (): Promise<void> => {
+    await this.personalInfoLocTxtBusinessName.fill('');
+    await this.personalInfoLocTxtIncorporationMonth.fill('');
+    await this.personalInfoLocTxtIncorporationDay.fill('');
+    await this.personalInfoLocTxtIncorporationYear.fill('');
+    await this.personalInfoLocTxtTaxId.fill('');
+    await this.btnSaveAndContinue.click();
+  };
+
+  populateAllFieldsOnPersonalInfoPageAndSave = async (): Promise<void> => {
+    await this.personalInfoLocTxtFirstName.fill('Automation');
+    await this.personalInfoLocTxtLastName.fill('Tester');
+    await this.personalInfoLocTxtPhoneNumber.fill('5555555555');
+    await this.personalInfoLocTxtPhoneType.selectOption({ label: 'Mobile' });
+    await this.personalInfoLocTxtHomeAddress.fill('200 16th Street');
+    await this.personalInfoLocTxtCity.fill('Denver');
+    await this.personalInfoLocTxtPostalCode.fill('80202');
+    await this.personalInfoLocTxtBirthMonth.fill('10');
+    await this.personalInfoLocTxtBirthDay.fill('10');
+    await this.personalInfoLocTxtBirthYear.fill('2001');
+    await this.personalInfoLocTxtSocialSecurityNumber.fill('3333');
     await this.btnSaveAndContinue.click();
   };
 
