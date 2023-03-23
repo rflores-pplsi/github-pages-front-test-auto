@@ -34,7 +34,6 @@ test.beforeEach(async ({ page }) => {
 
 test('Verify Personal Information Section Header Displays', async ({ page }) => {
   console.log('Test Case: Verify Personal Information Section Header Displays');
-  await page.pause();
   await expect(checkoutPersonalInfoPage.locHeader).toContainText('Tell us about yourself');
 });
 
