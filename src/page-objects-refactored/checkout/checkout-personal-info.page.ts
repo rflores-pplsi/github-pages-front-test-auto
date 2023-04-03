@@ -1,13 +1,16 @@
 import { expect, Locator, Page } from '@playwright/test';
+import { CheckoutStepperComponent } from '../../page-objects-refactored/checkout/checkout-stepper.component';
 
 export class CheckoutPersonalInfoPage {
   readonly page: Page;
+  readonly checkoutStepperComponent: CheckoutStepperComponent;
   readonly locHeader: Locator;
   readonly locFirstNameInput: Locator;
   readonly locLastNameInput: Locator;
   readonly locPhoneNumberInput: Locator;
   readonly locPhoneTypeInput: Locator;
   readonly locHomeAddressInput: Locator;
+  readonly locHomeAddressInput2: Locator;
   readonly locCityInput: Locator;
   readonly locPostalCodeInput: Locator;
   readonly locBirthMonthInput: Locator;
@@ -28,12 +31,14 @@ export class CheckoutPersonalInfoPage {
 
   constructor(page: Page) {
     this.page = page;
+    this.checkoutStepperComponent = new CheckoutStepperComponent(page);
     this.locHeader = this.page.locator('//h1');
     this.locFirstNameInput = this.page.locator('//input[@name="firstName"]');
     this.locLastNameInput = this.page.locator('//input[@name="lastName"]');
     this.locPhoneNumberInput = this.page.locator('//input[@name="phoneNumber"]');
     this.locPhoneTypeInput = this.page.locator('#phoneType');
     this.locHomeAddressInput = this.page.locator('//input[@name="homeAddress"]');
+    this.locHomeAddressInput2 = this.page.locator('//input[@name="address_secondary"]');
     this.locCityInput = this.page.locator('//input[@name="city"]');
     this.locPostalCodeInput = this.page.locator('//input[@name="postalCode"]');
     this.locBirthMonthInput = this.page.locator('[name="dobMonth"]');
@@ -129,14 +134,30 @@ export class CheckoutPersonalInfoPage {
    * @memberof CheckoutPersonalInfoPage
    */
   assertPersonalInfoPageErrorsAreDisplayed = async (): Promise<void> => {
-    await expect(this.locFirstNameWarningMessage).toBeVisible({ timeout: 100000 });
-    await expect(this.locLastNameWarningMessage).toBeVisible({ timeout: 100000 });
-    await expect(this.locPhoneNumberWarningMessage).toBeVisible({ timeout: 100000 });
-    await expect(this.locPhoneTypeWarningMessage).toBeVisible({ timeout: 100000 });
-    await expect(this.locHomeAddressWarningMessage).toBeVisible({ timeout: 100000 });
-    await expect(this.locCityWarningMessage).toBeVisible({ timeout: 100000 });
-    await expect(this.locPostalCodeWarningMessage).toBeVisible({ timeout: 100000 });
-    await expect(this.locDateOfBirthWarningMessage).toBeVisible({ timeout: 100000 });
-    await expect(this.locSocialSecurityWarningMessage).toBeVisible({ timeout: 100000 });
+    await expect(this.locFirstNameWarningMessage).toBeVisible();
+    await expect(this.locLastNameWarningMessage).toBeVisible();
+    await expect(this.locPhoneNumberWarningMessage).toBeVisible();
+    await expect(this.locPhoneTypeWarningMessage).toBeVisible();
+    await expect(this.locHomeAddressWarningMessage).toBeVisible();
+    await expect(this.locCityWarningMessage).toBeVisible();
+    await expect(this.locPostalCodeWarningMessage).toBeVisible();
+    await expect(this.locDateOfBirthWarningMessage).toBeVisible();
+    await expect(this.locSocialSecurityWarningMessage).toBeVisible();
+  };
+  /**
+   *
+   *
+   * @memberof CheckoutPersonalInfoPage
+   */
+  assertPersonalInfoPageErrorsAreNotDisplayed = async (): Promise<void> => {
+    await expect(this.locFirstNameWarningMessage).not.toBeVisible();
+    await expect(this.locLastNameWarningMessage).not.toBeVisible();
+    await expect(this.locPhoneNumberWarningMessage).not.toBeVisible();
+    await expect(this.locPhoneTypeWarningMessage).not.toBeVisible();
+    await expect(this.locHomeAddressWarningMessage).not.toBeVisible();
+    await expect(this.locCityWarningMessage).not.toBeVisible();
+    await expect(this.locPostalCodeWarningMessage).not.toBeVisible();
+    await expect(this.locDateOfBirthWarningMessage).not.toBeVisible();
+    await expect(this.locSocialSecurityWarningMessage).not.toBeVisible();
   };
 }
