@@ -38,7 +38,7 @@ export class WalsAffiliatedPage {
    */
   clickOnGetAPlanButton = async (planName: string): Promise<void> => {
     const getAPlanButtonLocator = this.page.locator(
-      `//h3[normalize-space()="${planName}"]/ancestor::div[contains(@class,"plan-card")]//a[contains(@class,"subscriber")]`
+      `//div[contains(@class,"plan-card") and descendant::h3[normalize-space()="${planName}"]]//a[contains(@href,"plan-type")]`
     );
     getAPlanButtonLocator.click();
   };

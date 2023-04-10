@@ -7,7 +7,7 @@ export const associateUser = {
   username: process.env[`ASSOCIATE_USERNAME_${env.toUpperCase()}`],
 };
 export const basicUser = {
-  email: process.env[`LOGIN_EMAIL_${env.toUpperCase()}`],
+  email: process.env[`LOGIN_EMAIL_${env.toUpperCase()}`] as string,
   password: process.env[`LOGIN_PASSWORD_${env.toUpperCase()}`] as string,
   username: process.env[`LOGIN_USERNAME_${env.toUpperCase()}`] as string,
 };

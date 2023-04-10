@@ -1,41 +1,41 @@
-import RegionsUtils from '../../utils/regions.utils';
-import { basicUser } from '../../utils/user.utils';
+import RegionsUtils from '../../../utils/regions.utils';
+import { basicUser } from '../../../utils/user.utils';
 import { test, expect } from '@playwright/test';
-import { IdshieldIndividualPlanPage } from '../../page-objects-refactored/marketing-sites/idshield/idshield-individual-plan.page';
+import { IdshieldPage } from '../../../page-objects-refactored/marketing-sites/idshield/idshield.page';
 import { CommonLoginPage, CommonCheckoutPage } from '@legalshield/frontend-automation-commons';
+import UrlsUtils from '../../../utils/urls.utils';
 
-let idshieldIndividualPlanPage: IdshieldIndividualPlanPage;
+let idshieldPage: IdshieldPage;
 let loginPage: CommonLoginPage;
 let checkoutPage: CommonCheckoutPage;
 
 test.beforeEach(async ({ page }) => {
   test.setTimeout(120000);
   loginPage = new CommonLoginPage(page);
-  idshieldIndividualPlanPage = new IdshieldIndividualPlanPage(page);
+  idshieldPage = new IdshieldPage(page);
   checkoutPage = new CommonCheckoutPage(page);
 });
 
-const regionsUnderTest = ['Alberta'];
+const regionsUnderTest = ['Manitoba'];
 for (const regionUnderTest of regionsUnderTest) {
-  test(`${regionUnderTest} - Can purchase a plan and supplement in English from legalshield`, async ({ page }) => {
-    console.log(`${regionUnderTest} - Can purchase a plan and supplement in English from legalshield`);
+  test(`${regionUnderTest} - Can purchase any idshield plan for market=en-CA @smoke`, async ({ page }) => {
+    console.log(`${regionUnderTest} - Can purchase any idshield plan for market=en-CA`);
     const regionInfo = RegionsUtils.caProvinces.filter((region) => region.name == regionUnderTest)[0];
     const homeAddress = regionInfo.validAddress.street;
     const city = regionInfo.validAddress.city;
     const postalCode = regionInfo.validAddress.postalCode;
     const regionAbbreviation = regionInfo.abbrv;
 
-    await test.step(`Navigate to idshield pricing and coverage page`, async () => {
-      await idshieldIndividualPlanPage.navigateToIdshieldIndividualPlanPage('United States', 'English');
+    await test.step(`Navigate to idshield canada page`, async () => {
+      await page.goto(UrlsUtils.marketingSitesUrls.idShieldCAUrl);
     });
     await test.step(`Change Region`, async () => {
-      await idshieldIndividualPlanPage.marketingSiteFooterComponent.selectRegion(regionUnderTest, regionAbbreviation);
+      await idshieldPage.selectRegion(regionUnderTest, regionAbbreviation);
+      await idshieldPage.locUpdateRegionButton.click();
+      await page.waitForSelector(`//div[(@id="page-container") and contains(.,"${regionsUnderTest}")]`);
     });
     await test.step(`Click on the Sign Up button`, async () => {
-      await idshieldIndividualPlanPage.clickSignUpButton('1 credit bureau monitoring');
-    });
-    await test.step(`Click on the Shopping Cart Checkout button`, async () => {
-      await idshieldIndividualPlanPage.marketingSiteCartComponent.locCheckoutButton.click();
+      await idshieldPage.clickGetStartedButton('Individual Plan');
     });
     await test.step(`Log in to reach checkout service`, async () => {
       await loginPage.login(basicUser.email, basicUser.password);
@@ -51,10 +51,13 @@ for (const regionUnderTest of regionsUnderTest) {
       expect(await checkoutPage.locOrderSummaryComponentTotalAmount.innerText()).toContain('$14.95');
     });
     await test.step(`Fill out Bank Draft form and Submit`, async () => {
-      await checkoutPage.completeBankDraftFormUnitedStates('1000123546', '103000648', 'Test');
+      await checkoutPage.completeBankDraftFormCanada('0000000', '11242', '260', 'Tester');
     });
-    await test.step(`Assert Confirmation Page URL`, async () => {
-      await expect(checkoutPage.locConfirmationPageWelcomeHeader).toBeVisible({ timeout: 100000 });
+    await test.step(`Click on the Let's go button`, async () => {
+      await checkoutPage.locConfirmationPageLetsGoButton.click();
+    });
+    await test.step(`Assert Accounts Page URL`, async () => {
+      await expect(page).toHaveURL(new RegExp('accounts'));
     });
   });
 }

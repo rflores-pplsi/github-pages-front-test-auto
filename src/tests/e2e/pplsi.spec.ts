@@ -1,13 +1,15 @@
 import { test, expect } from '@playwright/test';
 import UrlsUtils from '../../utils/urls.utils';
+import { PplsiPage } from '../../page-objects-refactored/pplsi/pplsi.page';
 import { PplsiBusinessSolutionsOrientationPage } from '../../page-objects-refactored/pplsi/business-solutions-orientation/pplsi-business-solutions-orientation.page';
 
+let pplsiPage: PplsiPage;
 let pplsiBusinessSolutionsOrientationPage: PplsiBusinessSolutionsOrientationPage;
 
 test.beforeEach(async ({ context, page }) => {
   pplsiBusinessSolutionsOrientationPage = new PplsiBusinessSolutionsOrientationPage(context, page);
+  pplsiPage = new PplsiPage(context, page);
 });
-
 test(`Can proceed through the entire Business Solutions Orientation Flow @smoke`, async ({ page }) => {
   console.log(`Test Case: Can proceed through the entire Business Solutions Orientation Flow`);
   await test.step(`Navigate to PPLSI.com Business Solutions Orientation Overview page`, async () => {
@@ -33,5 +35,21 @@ test(`Can proceed through the entire Business Solutions Orientation Flow @smoke`
   });
   await test.step(`Validate Order Summary on Payment Info Page`, async () => {
     expect(page).toHaveTitle('Business Solutions Orientation - PPLSI');
+  });
+});
+
+test(`User can click the Business Opportunity link in PPLSI footer and reach the Business Solutions Orientation Page @smoke`, async ({ page }) => {
+  console.log(`Test Case: User can click the Business Opportunity link in PPLSI footer and reach the Business Solutions Orientation Page`);
+  await test.step(`Navigate to PPLSI.com Business Solutions Orientation Overview page`, async () => {
+    await page.goto(`${UrlsUtils.pplsiUrls.home.url}`);
+  });
+  await test.step(`Navigate to PPLSI.com Business Solutions Orientation Overview page`, async () => {
+    await pplsiPage.pplsiFooterComponent.locBusinessOpportunityLink.click();
+  });
+  await test.step(`Navigate to PPLSI.com Business Solutions Orientation Overview page`, async () => {
+    await pplsiPage.pplsiFooterComponent.locBusinessOpportunityLink.click();
+  });
+  await test.step(`Assert the Business Solutions Orientation page URL`, async () => {
+    expect(page).toHaveURL(new RegExp('/business-solutions-orientation/'));
   });
 });

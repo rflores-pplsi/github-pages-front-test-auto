@@ -10,8 +10,8 @@ test.beforeEach(async ({ page }) => {
   groupsAffiliatedAgentPage = new GroupsAffiliatedAgentPage(page);
   test.slow();
 });
-test('Can navigate to checkout service from the Primerica affiliated groups page @smoke', async ({ page }) => {
-  console.log('Can navigate to checkout service from the Primerica affiliated groups page');
+test('Can reach checkout service from the Primerica affiliated groups page (market=en-US) @smoke', async ({ page }) => {
+  console.log('Can reach checkout service from the Primerica affiliated groups page (market=en-US)');
   await test.step(`Navigate to primerica affiliated groups page`, async () => {
     await groupsAffiliatedPage.navigateToGroupsAffiliatedPage('primerica');
   });
@@ -27,7 +27,7 @@ test('Can navigate to checkout service from the Primerica affiliated groups page
   await test.step(`Navigate to idshield pricing and coverage page`, async () => {
     await groupsAffiliatedAgentPage.selectStateOrProvince('New York');
   });
-  await test.step(`Navigate to idshield pricing and coverage page`, async () => {
+  await test.step(`Assert navigation to classic checkout`, async () => {
     await expect(page).toHaveURL(new RegExp('checkout.legalshield'));
   });
 });

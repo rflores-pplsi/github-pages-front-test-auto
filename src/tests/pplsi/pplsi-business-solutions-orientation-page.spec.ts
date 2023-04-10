@@ -15,6 +15,7 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('User can navigate to Business Solutions Orientation page by clicking the Business Opportunity link in the PPLSI footer', async ({ page }) => {
+  console.log(`Test Case: User can navigate to Business Solutions Orientation page by clicking the Business Opportunity link in the PPLSI footer`);
   await test.step(`Navigate to PPLSI.com`, async () => {
     await page.goto(UrlsUtils.pplsiUrls.home.url);
   });

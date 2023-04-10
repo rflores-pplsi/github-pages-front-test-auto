@@ -1,6 +1,6 @@
-import RegionsUtils from '../../utils/regions.utils';
-import UrlsUtils from '../../utils/urls.utils';
-import { basicUser } from '../../utils/user.utils';
+import RegionsUtils from '../../../utils/regions.utils';
+import UrlsUtils from '../../../utils/urls.utils';
+import { basicUser } from '../../../utils/user.utils';
 import { test, expect } from '@playwright/test';
 import { CommonLoginPage, CommonTestHarnessPage, CommonCheckoutPage } from '@legalshield/frontend-automation-commons';
 

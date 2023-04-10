@@ -1,7 +1,7 @@
-import RegionsUtils from '../../utils/regions.utils';
-import { basicUser } from '../../utils/user.utils';
+import RegionsUtils from '../../../utils/regions.utils';
+import { basicUser } from '../../../utils/user.utils';
 import { test, expect } from '@playwright/test';
-import { IdshieldIndividualPlanPage } from '../../page-objects-refactored/marketing-sites/idshield/idshield-individual-plan.page';
+import { IdshieldIndividualPlanPage } from '../../../page-objects-refactored/marketing-sites/idshield/idshield-individual-plan.page';
 import { CommonLoginPage, CommonCheckoutPage } from '@legalshield/frontend-automation-commons';
 
 let idshieldIndividualPlanPage: IdshieldIndividualPlanPage;
@@ -17,8 +17,8 @@ test.beforeEach(async ({ page }) => {
 
 const regionsUnderTest = ['Texas'];
 for (const regionUnderTest of regionsUnderTest) {
-  test(`${regionUnderTest} - Can purchase a 1 credit bureau monitoring plan from idshield.com @smoke`, async ({ page }) => {
-    console.log(`${regionUnderTest} - Can purchase a 1 credit bureau monitoring plan from idshield.com`);
+  test(`${regionUnderTest} - Can purchase any idshield plan for market=en-US @smoke`, async ({ page }) => {
+    console.log(`${regionUnderTest} - Can purchase any idshield plan for market=en-US`);
     const regionInfo = RegionsUtils.usStates.filter((region) => region.name == regionUnderTest)[0];
     const homeAddress = regionInfo.validAddress.street;
     const city = regionInfo.validAddress.city;
@@ -53,8 +53,11 @@ for (const regionUnderTest of regionsUnderTest) {
     await test.step(`Fill out Bank Draft form and Submit`, async () => {
       await checkoutPage.completeBankDraftFormUnitedStates('1000123546', '103000648', 'Test');
     });
-    await test.step(`Assert Confirmation Page URL`, async () => {
-      await expect(checkoutPage.locConfirmationPageWelcomeHeader).toBeVisible({ timeout: 100000 });
+    await test.step(`Click on the Let's go button`, async () => {
+      await checkoutPage.locConfirmationPageLetsGoButton.click();
+    });
+    await test.step(`Assert Accounts Page URL`, async () => {
+      await expect(page).toHaveURL(new RegExp('accounts'));
     });
   });
 }

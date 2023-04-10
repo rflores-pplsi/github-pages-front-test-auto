@@ -23,11 +23,9 @@ export class WalsGeolocateMenuComponent {
    */
   changeRegion = async (region: string): Promise<void> => {
     await this.locMemberLoginLink.waitFor();
-    // await this.locChangeRegionLink.waitFor();
     await this.locChangeRegionLink.click();
-    // await this.locSelectRegionDropdown.waitFor();
     await this.locSelectRegionDropdown.selectOption({ label: region });
     await this.locUpdateRegionButton.click();
-    await this.page.waitForLoadState('networkidle');
+    await this.page.waitForLoadState('networkidle', { timeout: 50000 });
   };
 }

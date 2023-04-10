@@ -1,43 +1,44 @@
-import RegionsUtils from '../../utils/regions.utils';
-import { basicUser } from '../../utils/user.utils';
 import { test, expect } from '@playwright/test';
-import { LegalshieldCoverageAndPricingPage } from '../../page-objects-refactored/marketing-sites/legalshield/legalshield-coverage-and-pricing.page';
+import RegionsUtils from '../../../utils/regions.utils';
+import { basicUser } from '../../../utils/user.utils';
+import { WalsAffiliatedPage } from '../../../page-objects-refactored/wals/wals-affiliated.page';
 import { CommonLoginPage, CommonCheckoutPage } from '@legalshield/frontend-automation-commons';
 
-let legalshieldCoverageAndPricingPage: LegalshieldCoverageAndPricingPage;
+let walsAffiliatedPage: WalsAffiliatedPage;
 let loginPage: CommonLoginPage;
 let checkoutPage: CommonCheckoutPage;
 
 test.beforeEach(async ({ page }) => {
-  test.setTimeout(120000);
   loginPage = new CommonLoginPage(page);
-  legalshieldCoverageAndPricingPage = new LegalshieldCoverageAndPricingPage(page);
   checkoutPage = new CommonCheckoutPage(page);
+  walsAffiliatedPage = new WalsAffiliatedPage(page);
 });
 
-const regionsUnderTest = ['California'];
+const regionsUnderTest = ['New York'];
 for (const regionUnderTest of regionsUnderTest) {
-  test(`${regionUnderTest} - Can purchase a plan and supplement in Spanish from legalshield United States`, async () => {
-    console.log(`${regionUnderTest} - Can purchase a plan and supplement in Spanish from legalshield United States`);
+  test('Can purchase any plan from wearelegalshield (affiliated) for market=en-US @smoke', async ({ page }) => {
+    console.log(`${regionUnderTest} - Can purchase any plan from wearelegalshield (affiliated) for market=en-US`);
     const regionInfo = RegionsUtils.usStates.filter((region) => region.name == regionUnderTest)[0];
     const homeAddress = regionInfo.validAddress.street;
     const city = regionInfo.validAddress.city;
     const postalCode = regionInfo.validAddress.postalCode;
-    const regionAbbreviation = regionInfo.abbrv;
 
-    await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
-      await legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('United States', 'Spanish');
+    await test.step('Navigate to weareleglshield.com', async () => {
+      await walsAffiliatedPage.navigateToAffiliatedWalsPage('lspro', 'wearelegalshield', 'com');
     });
-    await test.step(`Change Region`, async () => {
-      await legalshieldCoverageAndPricingPage.marketingSiteFooterComponent.selectRegion(regionUnderTest, regionAbbreviation);
+    await test.step('Select a region', async () => {
+      await walsAffiliatedPage.walsGeolocateMenuComponent.changeRegion(regionUnderTest);
     });
-    await test.step(`Click on the Start Monthly Plan button`, async () => {
-      await legalshieldCoverageAndPricingPage.clickStartPlanButton('Monthly');
+    await test.step('Click on GET A PLAN button', async () => {
+      await walsAffiliatedPage.clickOnGetAPlanButton('Legal Plan');
     });
-    await test.step(`Click on the Shopping Cart Checkout button`, async () => {
-      await legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
+    await test.step('Click Continue button in shopping cart', async () => {
+      await walsAffiliatedPage.walsCartComponent.locContinueButton.click();
     });
-    //TODO: update Common repo locators to be language agnostic
+    await test.step('Click Checkout button in shopping cart', async () => {
+      await walsAffiliatedPage.walsCartComponent.locCheckoutButton.click();
+    });
+    //TODO:Uncomment as soon as WALS is hitting checkout v3
     // await test.step(`Log in to reach checkout service`, async () => {
     //   await loginPage.login(basicUser.email, basicUser.password);
     // });

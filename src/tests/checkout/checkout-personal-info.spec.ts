@@ -27,8 +27,6 @@ test.beforeEach(async ({ page }) => {
     await legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
   });
   await test.step(`Log in to reach checkout service`, async () => {
-    // Need to wait for redirect to login service before looking for 'Sign in' link in the next step (the enrollment page has two elements with same tag)
-    await page.waitForURL(new RegExp('login'));
     await loginPage.login(basicUser.email, basicUser.password);
   });
 });
