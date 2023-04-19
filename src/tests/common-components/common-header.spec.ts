@@ -1,16 +1,20 @@
 import { test, expect } from '@playwright/test';
 import UrlsUtils from '../../utils/urls.utils';
 import { CommonHeaderComponent } from '../../page-objects-refactored/common-components/common-header.component';
+import { CommonLoginPage } from '@legalshield/frontend-automation-commons';
+import { basicUser } from '../../utils/user.utils';
 
 let commonHeaderComponent: CommonHeaderComponent;
+let loginPage: CommonLoginPage;
 
 test.beforeEach(async ({ page }) => {
   test.slow();
   commonHeaderComponent = new CommonHeaderComponent(page);
+  loginPage = new CommonLoginPage(page);
 });
 
-test('Verify Help Drop Down options', async ({ page }) => {
-  console.log('Test Case: Verify Help Drop Down options');
+test('User can reveal the Help options by clicking the Help button', async ({ page }) => {
+  console.log('Test Case: User can reveal the Help options by clicking the Help button');
   await test.step(`Navigate to login service`, async () => {
     await page.goto(UrlsUtils.legalshieldUrls.login.url);
   });
@@ -24,8 +28,8 @@ test('Verify Help Drop Down options', async ({ page }) => {
   });
 });
 
-test('Verify Language Drop Down options', async ({ page }) => {
-  console.log('Test Case: Verify Language Drop Down options');
+test('User can reveal the Language options by clicking the Globe icon', async ({ page }) => {
+  console.log('Test Case: User can reveal the Language options by clicking the Globe icon');
   await test.step(`Navigate to login service`, async () => {
     await page.goto(UrlsUtils.legalshieldUrls.login.url);
   });
@@ -40,8 +44,8 @@ test('Verify Language Drop Down options', async ({ page }) => {
   });
 });
 
-test('Selecting United States - English option from Market-Language adds /?market=en-US query string to the URL', async ({ page }) => {
-  console.log('Test Case: Selecting United States - English option from Market-Language adds /?market=en-US query string to the URL');
+test('User can select en-US from the Language options menu', async ({ page }) => {
+  console.log('Test Case: User can select en-US from the Language options menu');
   await test.step(`Navigate to login service`, async () => {
     await page.goto(UrlsUtils.legalshieldUrls.login.url);
   });
@@ -56,8 +60,8 @@ test('Selecting United States - English option from Market-Language adds /?marke
   });
 });
 
-test('Selecting Estados Unidos - Español option from Market-Language adds /?market=es-US query string to the URL', async ({ page }) => {
-  console.log('Test Case: Selecting Estados Unidos - Español option from Market-Language adds /?market=es-US query string to the URL');
+test('User can select es-US from the Language options menu', async ({ page }) => {
+  console.log('Test Case: User can select es-US from the Language options menu');
   await test.step(`Navigate to login service`, async () => {
     await page.goto(UrlsUtils.legalshieldUrls.login.url);
   });
@@ -69,8 +73,8 @@ test('Selecting Estados Unidos - Español option from Market-Language adds /?mar
   });
 });
 
-test('Selecting Canada - English - Español option from Market-Language adds /?market=en-CA query string to the URL', async ({ page }) => {
-  console.log('Test Case: Selecting Canada - English - Español option from Market-Language adds /?market=en-CA query string to the URL');
+test('User can select en-CA from the Language options menu', async ({ page }) => {
+  console.log('Test Case: User can select en-CA from the Language options menu');
   await test.step(`Navigate to login service`, async () => {
     await page.goto(UrlsUtils.legalshieldUrls.login.url);
   });
@@ -82,8 +86,8 @@ test('Selecting Canada - English - Español option from Market-Language adds /?m
   });
 });
 
-test('Selecting Canada - Français option from Market-Language adds /?market=fr-CA query string to the URL', async ({ page }) => {
-  console.log('Test Case: Selecting Canada - Français option from Market-Language adds /?market=fr-CA query string to the URL');
+test('User can select fr-CA from the Language options menu', async ({ page }) => {
+  console.log('Test Case: User can select fr-CA from the Language options menu');
   await test.step(`Navigate to login service`, async () => {
     await page.goto(UrlsUtils.legalshieldUrls.login.url);
   });
@@ -92,5 +96,134 @@ test('Selecting Canada - Français option from Market-Language adds /?market=fr-
   });
   await test.step(`Verify the URL contains the /?market=fr-CA`, async () => {
     await expect(page).toHaveURL(new RegExp('/?market=fr-CA'));
+  });
+});
+
+test('Common Header displays the following in the Login service', async ({ page }) => {
+  console.log('Test Case: Common Header displays the following in the Login service');
+  await test.step(`Navigate to login service`, async () => {
+    await page.goto(UrlsUtils.legalshieldUrls.login.url);
+  });
+  await test.step(`Verify elements and style of Header`, async () => {
+    // Header container is different depending on service?
+    await expect(commonHeaderComponent.locLoginHeader).toHaveCSS('background-color', 'rgb(63, 63, 63)');
+    await expect(commonHeaderComponent.locLargeLogo).toBeVisible();
+    await expect(commonHeaderComponent.locPageLabel).toContainText('Sign In');
+    await expect(commonHeaderComponent.locPageLabel).toHaveCSS('color', 'rgb(255, 255, 255)');
+    await expect(commonHeaderComponent.locHelpButton).toBeVisible();
+    await expect(commonHeaderComponent.locHelpButton).toBeVisible();
+    await expect(commonHeaderComponent.locGlobeButton).toBeVisible();
+  });
+});
+
+test('Common Header displays the following in the Accounts service', async ({ page }) => {
+  console.log('Test Case: Common Header displays the following in the Accounts service');
+  await test.step(`Navigate to login service`, async () => {
+    await page.goto(UrlsUtils.legalshieldUrls.login.url);
+  });
+  await test.step(`Log in to reach Accounts service`, async () => {
+    await loginPage.login(basicUser.email, basicUser.password);
+  });
+  await test.step(`Verify elements and style of Header`, async () => {
+    // Header container is different depending on service?
+    await expect(commonHeaderComponent.locAccountsHeader).toHaveCSS('background-color', 'rgb(63, 63, 63)');
+    await expect(commonHeaderComponent.locLargeLogo).toBeVisible();
+    await expect(commonHeaderComponent.locPageLabel).toContainText('Account');
+    await expect(commonHeaderComponent.locPageLabel).toHaveCSS('color', 'rgb(255, 255, 255)');
+    await expect(commonHeaderComponent.locHelpButton).toBeVisible();
+    await expect(commonHeaderComponent.locHelpButton).toBeVisible();
+    await expect(commonHeaderComponent.locAccountMenuDropDown).toBeVisible();
+  });
+});
+
+test('Common Header displays the following in the Cart-Builder service', async ({ page }) => {
+  console.log('Test Case: Common Header displays the following in the Cart-Builder service');
+  test.skip(); // remove skip and update test case once cart-builder is finished
+  await test.step(`Navigate to login service`, async () => {
+    await page.goto(UrlsUtils.legalshieldUrls.login.url);
+  });
+  await test.step(`Log in to reach Accounts service`, async () => {
+    await loginPage.login(basicUser.email, basicUser.password);
+  });
+  await test.step(`Verify elements and style of Header`, async () => {
+    // Header container is different depending on service?
+    await expect(commonHeaderComponent.locAccountsHeader).toHaveCSS('background-color', 'rgb(63, 63, 63)');
+    await expect(commonHeaderComponent.locLargeLogo).toBeVisible();
+    await expect(commonHeaderComponent.locPageLabel).toContainText('Cart-Builder');
+    await expect(commonHeaderComponent.locPageLabel).toHaveCSS('color', 'rgb(255, 255, 255)');
+    await expect(commonHeaderComponent.locHelpButton).toBeVisible();
+    await expect(commonHeaderComponent.locHelpButton).toBeVisible();
+    await expect(commonHeaderComponent.locAccountMenuDropDown).toBeVisible();
+  });
+});
+
+test('User can reveal the Account menu by clicking on the My Account dropdown', async ({ page }) => {
+  console.log('Test Case: User can reveal the Account menu by clicking on the My Account dropdown');
+  await test.step(`Navigate to login service`, async () => {
+    await page.goto(UrlsUtils.legalshieldUrls.login.url);
+  });
+  await test.step(`Log in to reach Accounts service`, async () => {
+    await loginPage.login(basicUser.email, basicUser.password);
+  });
+  await test.step(`Click on the Avatar Dropdown`, async () => {
+    await commonHeaderComponent.locAccountMenuDropDown.click();
+  });
+  await test.step(`Verify Account Menu contents`, async () => {
+    await expect(commonHeaderComponent.locAccountMenuName).toBeVisible();
+    await expect(commonHeaderComponent.locAccountMenuEmail).toBeVisible();
+    await expect(commonHeaderComponent.locAccountMenuMyProductsLink).toBeVisible();
+    await expect(commonHeaderComponent.locAccountMenuMyAccountLink).toBeVisible();
+    await expect(commonHeaderComponent.locAccountMenuSignOutLink).toBeVisible();
+  });
+});
+
+test('User can navigate to the Accounts Home page by clicking the Account menu My products link', async ({ page }) => {
+  console.log('Test Case: User can navigate to the Accounts Home page by clicking the Account menu My products link');
+  await test.step(`Navigate to login service`, async () => {
+    await page.goto(UrlsUtils.legalshieldUrls.login.url);
+  });
+  await test.step(`Log in to reach Accounts service`, async () => {
+    await loginPage.login(basicUser.email, basicUser.password);
+  });
+  await test.step(`Navigate away from Accounts Home page`, async () => {
+    await commonHeaderComponent.navigateToAccountsProfilePageThroughMyAccountsLink();
+  });
+  await test.step(`Navigate back to the Accounts Home page by clicking the Account menu My products link`, async () => {
+    await commonHeaderComponent.navigateToAccountsHomePageThroughMyProductsLink();
+  });
+  await test.step(`Verify URL contains /home`, async () => {
+    await expect(page).toHaveURL(new RegExp('/home'));
+  });
+});
+
+test('User can navigate to the Accounts Profile page by clicking the Account menu My Account link', async ({ page }) => {
+  console.log('Test Case: User can navigate to the Accounts Profile page by clicking the Account menu My Account link');
+  await test.step(`Navigate to login service`, async () => {
+    await page.goto(UrlsUtils.legalshieldUrls.login.url);
+  });
+  await test.step(`Log in to reach Accounts service`, async () => {
+    await loginPage.login(basicUser.email, basicUser.password);
+  });
+  await test.step(`Navigate to the Accounts Profile page by clicking the Account menu My Account link`, async () => {
+    await commonHeaderComponent.navigateToAccountsProfilePageThroughMyAccountsLink();
+  });
+  await test.step(`Verify URL contains /home`, async () => {
+    await expect(page).toHaveURL(new RegExp('/profile'));
+  });
+});
+
+test('User can sign out of their account by clicking the Account menu Sign Out link', async ({ page }) => {
+  console.log('Test Case: User can sign out of their account by clicking the Account menu Sign Out link');
+  await test.step(`Navigate to login service`, async () => {
+    await page.goto(UrlsUtils.legalshieldUrls.login.url);
+  });
+  await test.step(`Log in to reach Accounts service`, async () => {
+    await loginPage.login(basicUser.email, basicUser.password);
+  });
+  await test.step(`Sign out of account by clicking the Account menu Sign Out link`, async () => {
+    await commonHeaderComponent.signOut();
+  });
+  await test.step(`Verify URL contains /home`, async () => {
+    await expect(page).toHaveURL(new RegExp('/logged-out'));
   });
 });

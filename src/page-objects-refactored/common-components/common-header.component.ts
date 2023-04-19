@@ -2,7 +2,8 @@ import { Page, Locator } from '@playwright/test';
 
 export class CommonHeaderComponent {
   protected page: Page;
-  readonly locHeaderContainer: Locator;
+  readonly locAccountsHeader: Locator;
+  readonly locLoginHeader: Locator;
   readonly locSmallLogo: Locator;
   readonly locLargeLogo: Locator;
   readonly locPageLabel: Locator;
@@ -17,10 +18,17 @@ export class CommonHeaderComponent {
   readonly locEstadosUnidosOption: Locator;
   readonly locCanadaEnglishOption: Locator;
   readonly locCanadaFrancaisOption: Locator;
+  readonly locAccountMenuDropDown: Locator;
+  readonly locAccountMenuName: Locator;
+  readonly locAccountMenuEmail: Locator;
+  readonly locAccountMenuMyProductsLink: Locator;
+  readonly locAccountMenuMyAccountLink: Locator;
+  readonly locAccountMenuSignOutLink: Locator;
 
   constructor(page: Page) {
     this.page = page;
-    this.locHeaderContainer = this.page.locator('//header');
+    this.locAccountsHeader = this.page.locator('//header/div[contains(@class,"lsdsFixedHeader")]');
+    this.locLoginHeader = this.page.locator('//header');
     this.locSmallLogo = this.page.locator('#lsdsSmallLogoId');
     this.locLargeLogo = this.page.locator('#lsdsLargeLogoId');
     this.locPageLabel = this.page.locator('#lsux-page-title');
@@ -41,6 +49,12 @@ export class CommonHeaderComponent {
     this.locEstadosUnidosOption = this.page.locator('//span[@id="lsdsLanguageDropdownId"]//a[contains(.,"Estados Unidos - Español")]');
     this.locCanadaEnglishOption = this.page.locator('//span[@id="lsdsLanguageDropdownId"]//a[contains(.,"Canada - English")]');
     this.locCanadaFrancaisOption = this.page.locator('//span[@id="lsdsLanguageDropdownId"]//a[contains(.,"Canada - Français")]');
+    this.locAccountMenuDropDown = this.page.locator('#lsdsUserButtonId');
+    this.locAccountMenuName = this.page.locator('#lsdsSubNameId');
+    this.locAccountMenuEmail = this.page.locator('#lsdsUALId');
+    this.locAccountMenuMyProductsLink = this.page.locator('//a[contains(.,"My Products")]');
+    this.locAccountMenuMyAccountLink = this.page.locator('//a[contains(.,"My Account")]');
+    this.locAccountMenuSignOutLink = this.page.locator('//a[contains(.,"Sign out")]');
   }
 
   /**
@@ -53,5 +67,38 @@ export class CommonHeaderComponent {
     await this.locGlobeButton.click();
     const optionLocator = this.page.locator(`//span[@id="lsdsLanguageDropdownId"]//a[contains(.,"${option}")]`);
     await optionLocator.click();
+  };
+
+  /**
+   *
+   *
+   * @memberof CommonHeaderComponent
+   */
+  navigateToAccountsHomePageThroughMyProductsLink = async (): Promise<void> => {
+    await this.locAccountMenuDropDown.click();
+    await this.locAccountMenuMyProductsLink.click();
+    await this.page.waitForURL(new RegExp('/home'));
+  };
+
+  /**
+   *
+   *
+   * @memberof CommonHeaderComponent
+   */
+  navigateToAccountsProfilePageThroughMyAccountsLink = async (): Promise<void> => {
+    await this.locAccountMenuDropDown.click();
+    await this.locAccountMenuMyAccountLink.click();
+    await this.page.waitForURL(new RegExp('/profile'));
+  };
+
+  /**
+   *
+   *
+   * @memberof CommonHeaderComponent
+   */
+  signOut = async (): Promise<void> => {
+    await this.locAccountMenuDropDown.click();
+    await this.locAccountMenuSignOutLink.click();
+    await this.page.waitForURL(new RegExp('/logged-out'));
   };
 }
