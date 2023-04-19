@@ -85,7 +85,7 @@ export class CheckoutPersonalInfoPage {
    * @param {string} socialSecurity
    * @memberof CheckoutPersonalInfoPage
    */
-  populateAllFieldsOnPersonalInfoPageAndSave = async (
+  populateAllFieldsOnPersonalInfoPage = async (
     firstName: string,
     lastName: string,
     phoneNumber: string,

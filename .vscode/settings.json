@@ -14,6 +14,7 @@
   "terminal.integrated.scrollback": 10000,
   "cSpell.words": [
     "abbrv",
+    "accountholder",
     "Associés",
     "ASSOCSTP",
     "businesscard",
@@ -49,6 +50,8 @@
     "reportsbusinessorganizational",
     "reportscommissions",
     "saucectl",
+    "savebd",
+    "savecc",
     "SCDLP",
     "shortcodes",
     "signin",
