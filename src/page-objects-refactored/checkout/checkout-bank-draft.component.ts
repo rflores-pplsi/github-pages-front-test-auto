@@ -1,6 +1,6 @@
 import { expect, FrameLocator, Locator, Page } from '@playwright/test';
 
-export class CheckoutPaymentsBankDraftComponent {
+export class CheckoutBankDraftComponent {
   readonly page: Page;
   readonly locPaymentIframe: FrameLocator;
   readonly locAccountNumberInput: Locator;
@@ -30,7 +30,7 @@ export class CheckoutPaymentsBankDraftComponent {
   /**
    *
    *
-   * @memberof CheckoutPersonalInfoPage
+   * @memberof CheckoutBankDraftComponent
    */
   assertUSBankDraftErrorsAreDisplayed = async (): Promise<void> => {
     await expect(this.locAccountNumberWarningMessage).toBeVisible();

@@ -52,16 +52,8 @@ test.beforeEach(async ({ page }) => {
 
 test('Verify that we can reach the confirmation page with valid information in the bank draft form', async ({ page }) => {
   console.log('Test Case: Verify that we can reach the confirmation page with valid information in the bank draft form');
-  await test.step('Click Bank Draft toggle', async () => {
-    await commonCheckoutPage.locPaymentCreditCardBankDraftToggle.click();
-  });
   await test.step('Fill out Bank Draft Form', async () => {
-    await commonCheckoutPage.locPaymentAccountNumberInput.fill('0000000');
-    await commonCheckoutPage.locPaymentRoutingNumberInput.fill('000000000');
-    await commonCheckoutPage.locPaymentAccountHolderNameInput.fill('Tester');
-  });
-  await test.step('Submit Bank Draft Form', async () => {
-    await commonCheckoutPage.locPaymentBankDraftPurchaseButton.click();
+    await commonCheckoutPage.completeBankDraftFormUnitedStates('0000000', '000000000', 'Tester');
   });
   await test.step('Redirected to the Confirmation Page', async () => {
     await expect(commonCheckoutPage.locConfirmationPageWelcomeHeader).toBeVisible();
@@ -70,93 +62,120 @@ test('Verify that we can reach the confirmation page with valid information in t
 
 test('Verify the required message displays when the Account Number input is empty', async ({ page }) => {
   console.log('Test Case: Verify the required message displays when the Account Number input is empty');
-  await test.step('Click Bank Draft toggle', async () => {
-    await commonCheckoutPage.locPaymentCreditCardBankDraftToggle.click();
-  });
   await test.step('Empty only Account Number Field and all other fields are populated', async () => {
-    await commonCheckoutPage.locPaymentAccountNumberInput.clear();
-    await commonCheckoutPage.locPaymentRoutingNumberInput.fill('000000000');
-    await commonCheckoutPage.locPaymentAccountHolderNameInput.fill('Tester');
-  });
-  await test.step('Submit Bank Draft Form', async () => {
-    await commonCheckoutPage.locPaymentBankDraftPurchaseButton.click();
+    await commonCheckoutPage.completeBankDraftFormUnitedStates('', '000000000', 'Tester');
   });
   await test.step('Warning message that Account Number is Required displays', async () => {
-    await expect(checkoutPaymentsPage.checkoutPaymentsBankDraftComponent.locAccountNumberWarningMessage).toBeVisible();
+    await expect(checkoutPaymentsPage.checkoutBankDraftComponent.locAccountNumberWarningMessage).toBeVisible();
   });
 });
 
 test('Verify the required message displays when the Routing Number input is empty', async ({ page }) => {
   console.log('Test Case: Verify the required message displays when the Routing Number input is empty');
-  await test.step('Click Bank Draft toggle', async () => {
-    await commonCheckoutPage.locPaymentCreditCardBankDraftToggle.click();
-  });
   await test.step('Empty only Routing Number and all other fields are populated', async () => {
-    await commonCheckoutPage.locPaymentAccountNumberInput.fill('0000000');
-    await commonCheckoutPage.locPaymentRoutingNumberInput.clear();
-    await commonCheckoutPage.locPaymentAccountHolderNameInput.fill('Tester');
-  });
-  await test.step('Submit Bank Draft Form', async () => {
-    await commonCheckoutPage.locPaymentBankDraftPurchaseButton.click();
+    await commonCheckoutPage.completeBankDraftFormUnitedStates('0000000', '', 'Tester');
   });
   await test.step('Warning message that Routing Number is Required displays', async () => {
-    await expect(checkoutPaymentsPage.checkoutPaymentsBankDraftComponent.locRoutingNumberWarningMessage).toBeVisible();
+    await expect(checkoutPaymentsPage.checkoutBankDraftComponent.locRoutingNumberWarningMessage).toBeVisible();
   });
 });
 
 test('Verify the required message displays when the Account Holder Name input is empty', async ({ page }) => {
   console.log('Test Case: Verify the required message displays when the Account Holder Name input is empty');
-  await test.step('Click Bank Draft toggle', async () => {
-    await commonCheckoutPage.locPaymentCreditCardBankDraftToggle.click();
-  });
   await test.step('Empty only Account Holder Name Field and all other fields are populated', async () => {
-    await commonCheckoutPage.locPaymentAccountNumberInput.fill('0000000');
-    await commonCheckoutPage.locPaymentRoutingNumberInput.fill('000000000');
-    await commonCheckoutPage.locPaymentAccountHolderNameInput.clear();
-  });
-  await test.step('Submit Bank Draft Form', async () => {
-    await commonCheckoutPage.locPaymentBankDraftPurchaseButton.click();
+    await commonCheckoutPage.completeBankDraftFormUnitedStates('0000000', '000000000', '');
   });
   await test.step('Warning message that Account Holder Name is Required displays', async () => {
-    await expect(checkoutPaymentsPage.checkoutPaymentsBankDraftComponent.locAccountHolderNameWarningMessage).toBeVisible();
+    await expect(checkoutPaymentsPage.checkoutBankDraftComponent.locAccountHolderNameWarningMessage).toBeVisible();
   });
 });
 
 test('Verify the required message displays when all fields are Empty on US Bank Draft Page', async ({ page }) => {
   console.log('Test Case: Verify the required message displays when all fields are Empty on US Bank Draft Page');
-  await test.step('Click Bank Draft toggle', async () => {
-    await commonCheckoutPage.locPaymentCreditCardBankDraftToggle.click();
-  });
   await test.step('Empty all Fields on Bank Draft Form ', async () => {
-    await commonCheckoutPage.locPaymentAccountNumberInput.clear();
-    await commonCheckoutPage.locPaymentRoutingNumberInput.clear();
-    await commonCheckoutPage.locPaymentAccountHolderNameInput.clear();
-  });
-  await test.step('Submit Bank Draft Form', async () => {
-    await commonCheckoutPage.locPaymentBankDraftPurchaseButton.click();
+    await commonCheckoutPage.completeBankDraftFormUnitedStates('', '', '');
   });
   await test.step('Required Warning messages displays', async () => {
-    await checkoutPaymentsPage.checkoutPaymentsBankDraftComponent.assertUSBankDraftErrorsAreDisplayed();
+    await checkoutPaymentsPage.checkoutBankDraftComponent.assertUSBankDraftErrorsAreDisplayed();
   });
 });
 
-test('Verify that we can reach the confirmation page with valid information in the Credit Card form', async ({ page }) => {
-  console.log('Test Case: Verify that we can reach the confirmation page with valid information in the Credit Card form');
-  await test.step('Click Credit Card toggle to get to Bank Draft', async () => {
-    await commonCheckoutPage.locPaymentCreditCardBankDraftToggle.click();
-  });
-  await test.step('Click Credit Card toggle to get to Credit Card Page', async () => {
-    await commonCheckoutPage.locPaymentCreditCardBankDraftToggle.click();
-  });
-  await test.step('Fill out Credit Card Form', async () => {
-    await commonCheckoutPage.locPaymentAccountNumberInput.fill('0000000');
-    await commonCheckoutPage.locPaymentRoutingNumberInput.fill('000000000');
-    await commonCheckoutPage.locPaymentAccountHolderNameInput.fill('Tester');
-  });
-  await test.step('Submit Bank Draft Form', async () => {
-    await commonCheckoutPage.locPaymentBankDraftPurchaseButton.click();
+test('Verify that we can reach the confirmation page with valid information on the Credit Card Page', async ({ page }) => {
+  console.log('Test Case: Verify that we can reach the confirmation page with valid information on the Credit Card Page');
+  await test.step(' Fill out Credit Card Form', async () => {
+    await commonCheckoutPage.completeCreditCardForm('4444333322221111', '1225', '123', 'Test User', '80202');
   });
   await test.step('Redirected to the Confirmation Page', async () => {
     await expect(commonCheckoutPage.locConfirmationPageWelcomeHeader).toBeVisible();
+  });
+});
+
+test('Verify the required message displays when the Card Number input is empty  on the US Credit Card Page', async ({ page }) => {
+  console.log('Test Case: Verify the required message displays when the Card Number input is empty on the US Credit Card Page');
+  await test.step('On the Credit Card Form - Empty only Card Number Field and all other fields are populated', async () => {
+    await commonCheckoutPage.completeCreditCardForm('', '1225', '123', 'Test User', '80202');
+  });
+  await test.step('Warning message that Card Number is Required displays', async () => {
+    await expect(checkoutPaymentsPage.checkoutCreditCardComponent.locCardNumberWarningMessage).toBeVisible();
+  });
+});
+
+test('Verify the required message displays when the Expiration Date input is empty on the US Credit Card Page', async ({ page }) => {
+  console.log('Test Case: Verify the required message displays when the Expiration Date input is empty on the US Credit Card Page');
+  await test.step('On the Credit Card Form - Empty only Expiration Date Field and all other fields are populated', async () => {
+    await commonCheckoutPage.completeCreditCardForm('4444333322221111', '', '123', 'Test User', '80202');
+  });
+  await test.step('Warning message that Expiration Date is Required displays', async () => {
+    await expect(checkoutPaymentsPage.checkoutCreditCardComponent.locExpirationDateWarningMessage).toBeVisible();
+  });
+});
+
+test('Verify the required message displays when the Security Code input is empty on the US Credit Card Page', async ({ page }) => {
+  console.log('Test Case: Verify the required message displays when the Security Code input is empty on the US Credit Card Page');
+  await test.step('On the Credit Card Form - Empty only Security Code Field and all other fields are populated', async () => {
+    await commonCheckoutPage.completeCreditCardForm('4444333322221111', '1225', '', 'Test User', '80202');
+  });
+  await test.step('Warning message that Security Code is Required displays', async () => {
+    await expect(checkoutPaymentsPage.checkoutCreditCardComponent.locSecurityCodeWarningMessage).toBeVisible();
+  });
+});
+
+test('Verify the required message displays when the Name on Card input is empty on the US Credit Card Page', async ({ page }) => {
+  console.log('Test Case: Verify the required message displays when the Security Code input is empty on the US Credit Card Page');
+  await test.step('On the Credit Card Form - Empty only Name on Card Field and all other fields are populated', async () => {
+    await commonCheckoutPage.completeCreditCardForm('4444333322221111', '1225', '123', '', '80202');
+  });
+  await test.step('Warning message that Name on Card is Required displays', async () => {
+    await expect(checkoutPaymentsPage.checkoutCreditCardComponent.locNameOnCardWarningMessage).toBeVisible();
+  });
+});
+
+test('Verify the required message displays when the Name on Card input is invalid Length on the US Credit Card Page', async ({ page }) => {
+  console.log('Test Case: Verify the required message displays when the Name on Card input is invalid Length on the US Credit Card Page');
+  await test.step('On the Credit Card Form - Have invalid Length on Name on Card Field and all other fields are populated', async () => {
+    await commonCheckoutPage.completeCreditCardForm('4444333322221111', '1225', '123', 'W', '80202');
+  });
+  await test.step('Warning message that Name on Card is Required displays', async () => {
+    await expect(checkoutPaymentsPage.checkoutCreditCardComponent.locNameOnCardWarningMessage).toBeVisible();
+  });
+});
+
+test('Verify the required message displays when the Billing Postal Code input is empty on the US Credit Card Page', async ({ page }) => {
+  console.log('Test Case: Verify the required message displays when the Billing Postal Code input is empty on the US Credit Card Page');
+  await test.step('On the Credit Card Form - Empty only Billing Postal Code and all other fields are populated', async () => {
+    await commonCheckoutPage.completeCreditCardForm('4444333322221111', '1225', '123 ', 'Test User', '');
+  });
+  await test.step('Warning message that Billing Postal Code is Required displays', async () => {
+    await expect(checkoutPaymentsPage.checkoutCreditCardComponent.locBillingPostalCodeWarningMessage).toBeVisible();
+  });
+});
+
+test('Verify the required message displays when all fields are Empty on the US Credit Card Page', async ({ page }) => {
+  console.log('Test Case: Verify the required message displays when all fields are empty on the Credit Card Page');
+  await test.step('Empty all Fields all fields on the Credit Card Form', async () => {
+    await commonCheckoutPage.completeCreditCardForm('', '', '', '', '');
+  });
+  await test.step('Required Warning messages displays', async () => {
+    await checkoutPaymentsPage.checkoutCreditCardComponent.assertUSCreditCardErrorsAreDisplayed();
   });
 });
