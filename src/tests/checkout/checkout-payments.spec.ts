@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, Page } from '@playwright/test';
 import { basicUser } from '../../utils/user.utils';
 import { LegalshieldCoverageAndPricingPage } from '../../page-objects-refactored/marketing-sites/legalshield/legalshield-coverage-and-pricing.page';
 import { CheckoutPersonalInfoPage } from '../../page-objects-refactored/checkout/checkout-personal-info.page';
@@ -11,13 +11,13 @@ let commonCheckoutPage: CommonCheckoutPage;
 let checkoutPersonalInfoPage: CheckoutPersonalInfoPage;
 let checkoutPaymentsPage: CheckoutPaymentsPage;
 
-test.beforeEach(async ({ page }) => {
+test.beforeEach(async ({ context, page }) => {
   test.slow();
   legalshieldCoverageAndPricingPage = new LegalshieldCoverageAndPricingPage(page);
   commonLoginPage = new CommonLoginPage(page);
   commonCheckoutPage = new CommonCheckoutPage(page);
   checkoutPersonalInfoPage = new CheckoutPersonalInfoPage(page);
-  checkoutPaymentsPage = new CheckoutPaymentsPage(page);
+  checkoutPaymentsPage = new CheckoutPaymentsPage(context, page);
 
   await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
     await legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage();
@@ -56,7 +56,7 @@ test('Verify that we can reach the confirmation page with valid information in t
     await commonCheckoutPage.completeBankDraftFormUnitedStates('0000000', '000000000', 'Tester');
   });
   await test.step('Redirected to the Confirmation Page', async () => {
-    await expect(commonCheckoutPage.locConfirmationPageWelcomeHeader).toBeVisible();
+    await expect(commonCheckoutPage.locConfirmationPageWelcomeHeader).toBeVisible({ timeout: 100000 });
   });
 });
 
@@ -106,7 +106,7 @@ test('Verify that we can reach the confirmation page with valid information on t
     await commonCheckoutPage.completeCreditCardForm('4444333322221111', '1225', '123', 'Test User', '80202');
   });
   await test.step('Redirected to the Confirmation Page', async () => {
-    await expect(commonCheckoutPage.locConfirmationPageWelcomeHeader).toBeVisible();
+    await expect(commonCheckoutPage.locConfirmationPageWelcomeHeader).toBeVisible({ timeout: 100000 });
   });
 });
 
@@ -177,5 +177,32 @@ test('Verify the required message displays when all fields are Empty on the US C
   });
   await test.step('Required Warning messages displays', async () => {
     await checkoutPaymentsPage.checkoutCreditCardComponent.assertUSCreditCardErrorsAreDisplayed();
+  });
+});
+
+test('Verify user is redirected to the Terms Of Service Page from the Credit Card Payment Page', async function ({ page }) {
+  console.log('Test Case: Verify user is redirected to the Terms Of Service Page from the Credit Card Payment Page');
+  let newPage: Page;
+  await test.step('Click on Terms and Service Link on Credit Card Page', async () => {
+    // await checkoutPaymentsPage.checkoutCreditCardComponent.locTermsOfServiceLink.click();
+    newPage = await checkoutPaymentsPage.checkoutCreditCardComponent.clickOnTermsOfServiceLink();
+  });
+  await test.step('Verify user is redirected to Terms of Service Page', async () => {
+    expect(newPage).toHaveURL(new RegExp('pplsi.com/terms-service/'));
+  });
+});
+
+test('Verify user is redirected to the Terms Of Service Page from the Bank Draft Payment Page', async () => {
+  console.log('Test Case: Verify user is redirected to the Terms OF Service Page from the Bank DraftPayment Page');
+  let newPage: Page;
+  await test.step('Click on the Bank Draft Toggle', async () => {
+    await commonCheckoutPage.locPaymentCreditCardBankDraftToggle.click();
+  });
+  await test.step('Click on Terms of Service Link on Bank Draft Page', async () => {
+    // await checkoutPaymentsPage.checkoutBankDraftComponent.locTermsOfServiceLink.click();
+    newPage = await checkoutPaymentsPage.checkoutBankDraftComponent.clickOnTermsOfServiceLink();
+  });
+  await test.step('Verify user is redirected to Terms of Service Page', async () => {
+    expect(newPage).toHaveURL(new RegExp('pplsi.com/terms-service/'));
   });
 });

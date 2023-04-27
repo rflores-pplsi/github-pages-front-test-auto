@@ -1,36 +1,44 @@
-import { FrameLocator, Locator, Page, expect } from '@playwright/test';
+import { FrameLocator, Locator, Page, expect, BrowserContext } from '@playwright/test';
 
 export class CheckoutCreditCardComponent {
-  readonly page: Page;
+  protected page: Page;
+  readonly context: BrowserContext;
   readonly locPaymentIframe: FrameLocator;
-  readonly locCardNumberInput: Locator;
-  readonly locExpirationDateInput: Locator;
-  readonly locSecurityCodeInput: Locator;
-  readonly locNameOnCardInput: Locator;
-  readonly locBillingPostalCodeInput: Locator;
   readonly locCardNumberWarningMessage: Locator;
   readonly locExpirationDateWarningMessage: Locator;
   readonly locSecurityCodeWarningMessage: Locator;
   readonly locNameOnCardWarningMessage: Locator;
   readonly locBillingPostalCodeWarningMessage: Locator;
-  readonly locPurchaseButton: Locator;
   readonly locTermsOfServiceLink: Locator;
 
-  constructor(page: Page) {
+  //TODO: Delete the stuff used in commons
+
+  // readonly locCardNumberInput: Locator;
+  // readonly locExpirationDateInput: Locator;
+  // readonly locSecurityCodeInput: Locator;
+  // readonly locNameOnCardInput: Locator;
+  // readonly locBillingPostalCodeInput: Locator;
+  // readonly locPurchaseButton: Locator;
+
+  constructor(page: Page, context: BrowserContext) {
     this.page = page;
+    this.context = context;
     this.locPaymentIframe = this.page.frameLocator("//iframe[@title='payment iframe']");
-    this.locCardNumberInput = this.locPaymentIframe.locator('//*[@id="card_number"]');
-    this.locExpirationDateInput = this.locPaymentIframe.locator('//*[@id="expiration_date"]');
-    this.locSecurityCodeInput = this.locPaymentIframe.locator('//*[@id="security_code"]');
-    this.locNameOnCardInput = this.locPaymentIframe.locator('//*[@id="cardholder_name"]');
-    this.locBillingPostalCodeInput = this.locPaymentIframe.locator('//*[@id="postal_code"]');
     this.locCardNumberWarningMessage = this.locPaymentIframe.locator('//*[@id="card_number_err"]');
     this.locExpirationDateWarningMessage = this.locPaymentIframe.locator('//*[@id="expiration_date_err"]');
     this.locSecurityCodeWarningMessage = this.locPaymentIframe.locator('//*[@id="security_code_err"]');
     this.locNameOnCardWarningMessage = this.locPaymentIframe.locator('//*[@id="cardholder_name_err"]');
     this.locBillingPostalCodeWarningMessage = this.locPaymentIframe.locator('//*[@id="postal_code_err"]');
-    this.locPurchaseButton = this.page.locator('button//[@id="savecc"]');
-    this.locTermsOfServiceLink = this.page.locator('//form[@id="cc_form"]//a[text()="Terms of Service"]');
+    this.locTermsOfServiceLink = this.locPaymentIframe.locator('//form[@id="cc_form"]//a[text()="Terms of Service"]');
+
+    //TODO: Delete the stuff used in commons
+
+    // this.locCardNumberInput = this.locPaymentIframe.locator('//*[@id="card_number"]');
+    // this.locExpirationDateInput = this.locPaymentIframe.locator('//*[@id="expiration_date"]');
+    // this.locSecurityCodeInput = this.locPaymentIframe.locator('//*[@id="security_code"]');
+    // this.locNameOnCardInput = this.locPaymentIframe.locator('//*[@id="cardholder_name"]');
+    // this.locBillingPostalCodeInput = this.locPaymentIframe.locator('//*[@id="postal_code"]');
+    // this.locPurchaseButton = this.locPaymentIframe.locator('button//[@id="savecc"]');
   }
 
   /**
@@ -44,5 +52,14 @@ export class CheckoutCreditCardComponent {
     await expect(this.locSecurityCodeWarningMessage).toBeVisible();
     await expect(this.locNameOnCardWarningMessage).toBeVisible();
     await expect(this.locBillingPostalCodeWarningMessage).toBeVisible();
+  };
+  /**
+   *
+   *
+   * @memberof CheckoutCreditCardComponent
+   */
+  clickOnTermsOfServiceLink = async (): Promise<Page> => {
+    const [newPage] = await Promise.all([this.context.waitForEvent('page'), await this.locTermsOfServiceLink.click()]);
+    return newPage;
   };
 }

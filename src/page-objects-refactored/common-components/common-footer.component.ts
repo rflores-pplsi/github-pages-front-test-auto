@@ -24,22 +24,16 @@ export class CommonFooterComponent {
    */
   clickTermsOfServiceLink = async (): Promise<Page> => {
     const [newPage] = await Promise.all([this.context.waitForEvent('page'), await this.locTermsOfServiceLink.click()]);
-    await newPage.waitForLoadState();
-    await this.locTermsOfServiceLink.click();
     return newPage;
   };
 
   clickPrivacyPolicyLink = async (): Promise<Page> => {
     const [newPage] = await Promise.all([this.context.waitForEvent('page'), await this.locPrivacyPolicyLink.click()]);
-    await newPage.waitForLoadState();
-    await this.locPrivacyPolicyLink.click();
     return newPage;
   };
 
   clickLegalLink = async (): Promise<Page> => {
     const [newPage] = await Promise.all([this.context.waitForEvent('page'), await this.locLegalLink.click()]);
-    await newPage.waitForLoadState();
-    await this.locLegalLink.click();
     return newPage;
   };
 }
