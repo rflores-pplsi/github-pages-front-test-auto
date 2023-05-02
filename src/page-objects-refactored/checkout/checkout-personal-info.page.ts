@@ -1,9 +1,11 @@
 import { expect, Locator, Page } from '@playwright/test';
 import { CheckoutStepperComponent } from '../../page-objects-refactored/checkout/checkout-stepper.component';
+import { CheckoutHaveQuestionsComponent } from '../../page-objects-refactored/checkout/checkout-have-questions.component';
 
 export class CheckoutPersonalInfoPage {
   readonly page: Page;
   readonly checkoutStepperComponent: CheckoutStepperComponent;
+  readonly checkoutHaveQuestionsComponent: CheckoutHaveQuestionsComponent;
   readonly locHeader: Locator;
   readonly locFirstNameInput: Locator;
   readonly locLastNameInput: Locator;
@@ -32,6 +34,7 @@ export class CheckoutPersonalInfoPage {
   constructor(page: Page) {
     this.page = page;
     this.checkoutStepperComponent = new CheckoutStepperComponent(page);
+    this.checkoutHaveQuestionsComponent = new CheckoutHaveQuestionsComponent(page);
     this.locHeader = this.page.locator('//h1');
     this.locFirstNameInput = this.page.locator('//input[@name="firstName"]');
     this.locLastNameInput = this.page.locator('//input[@name="lastName"]');

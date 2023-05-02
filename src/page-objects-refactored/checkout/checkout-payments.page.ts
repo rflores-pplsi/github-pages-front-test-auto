@@ -2,6 +2,7 @@ import { Page, BrowserContext } from '@playwright/test';
 import { CheckoutCreditCardComponent } from '../../page-objects-refactored/checkout/checkout-credit-card.component';
 import { CheckoutBankDraftComponent } from '../../page-objects-refactored/checkout/checkout-bank-draft.component';
 import { CheckoutStepperComponent } from '../../page-objects-refactored/checkout/checkout-stepper.component';
+import { CheckoutHaveQuestionsComponent } from '../../page-objects-refactored/checkout/checkout-have-questions.component';
 
 export class CheckoutPaymentsPage {
   readonly page: Page;
@@ -9,6 +10,7 @@ export class CheckoutPaymentsPage {
   readonly checkoutCreditCardComponent: CheckoutCreditCardComponent;
   readonly checkoutBankDraftComponent: CheckoutBankDraftComponent;
   readonly checkoutStepperComponent: CheckoutStepperComponent;
+  readonly checkoutHaveQuestionsComponent: CheckoutHaveQuestionsComponent;
 
   constructor(context: BrowserContext, page: Page) {
     this.page = page;
@@ -16,5 +18,6 @@ export class CheckoutPaymentsPage {
     this.checkoutCreditCardComponent = new CheckoutCreditCardComponent(page, context);
     this.checkoutBankDraftComponent = new CheckoutBankDraftComponent(page, context);
     this.checkoutStepperComponent = new CheckoutStepperComponent(page);
+    this.checkoutHaveQuestionsComponent = new CheckoutHaveQuestionsComponent(page);
   }
 }

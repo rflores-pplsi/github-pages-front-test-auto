@@ -206,3 +206,17 @@ test('Verify user is redirected to the Terms Of Service Page from the Bank Draft
     expect(newPage).toHaveURL(new RegExp('pplsi.com/terms-service/'));
   });
 });
+
+test('Verify the Have Questions Label is visible', async () => {
+  console.log('Test Case: Verify the Have Questions Label is visible');
+  await test.step('Verify the Have Questions Label is visible ', async () => {
+    expect(checkoutPaymentsPage.checkoutHaveQuestionsComponent.locHaveQuestionsLabel).toBeVisible();
+  });
+});
+
+test('Verify the Phone Number button is visible', async () => {
+  console.log('Test Case: Verify the Phone Number button is visible');
+  await test.step('Verify the Phone Number button is visible ', async () => {
+    expect(checkoutPaymentsPage.checkoutHaveQuestionsComponent.locPhoneNumberButton).toBeVisible();
+  });
+});

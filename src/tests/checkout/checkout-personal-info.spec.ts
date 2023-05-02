@@ -287,3 +287,17 @@ test('Verify user can redirect to Personal info Page By Clicking on Stepper 2 fr
     await expect(checkoutPersonalInfoPage.locHeader).toContainText('Tell us about yourself');
   });
 });
+
+test('Verify the Have Questions Label is visible', async () => {
+  console.log('Test Case: Verify the Have Questions Label is visible');
+  await test.step('Verify the Have Questions Label is visible ', async () => {
+    expect(checkoutPersonalInfoPage.checkoutHaveQuestionsComponent.locHaveQuestionsLabel).toBeVisible();
+  });
+});
+
+test('Verify the Phone Number button is visible', async () => {
+  console.log('Test Case: Verify the Phone Number button is visible');
+  await test.step('Verify the Phone Number button is visible ', async () => {
+    expect(checkoutPersonalInfoPage.checkoutHaveQuestionsComponent.locPhoneNumberButton).toBeVisible();
+  });
+});
