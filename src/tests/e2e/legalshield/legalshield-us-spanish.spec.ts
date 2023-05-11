@@ -2,23 +2,23 @@ import RegionsUtils from '../../../utils/regions.utils';
 import { basicUser } from '../../../utils/user.utils';
 import { test, expect } from '@playwright/test';
 import { LegalshieldCoverageAndPricingPage } from '../../../page-objects-refactored/marketing-sites/legalshield/legalshield-coverage-and-pricing.page';
-import { CommonLoginPage, CommonCheckoutPage } from '@legalshield/frontend-automation-commons';
+import { CommonLoginService, CommonCheckoutService } from '@legalshield/frontend-automation-commons';
 
 let legalshieldCoverageAndPricingPage: LegalshieldCoverageAndPricingPage;
-let loginPage: CommonLoginPage;
-let checkoutPage: CommonCheckoutPage;
+let commonLoginService: CommonLoginService;
+let commonCheckoutService: CommonCheckoutService;
 
 test.beforeEach(async ({ page }) => {
   test.setTimeout(120000);
-  loginPage = new CommonLoginPage(page);
+  commonLoginService = new CommonLoginService(page);
   legalshieldCoverageAndPricingPage = new LegalshieldCoverageAndPricingPage(page);
-  checkoutPage = new CommonCheckoutPage(page);
+  commonCheckoutService = new CommonCheckoutService(page);
 });
 
 const regionsUnderTest = ['California'];
 for (const regionUnderTest of regionsUnderTest) {
-  test(`${regionUnderTest} - Can purchase any idshield plan for market=es-US @smoke`, async () => {
-    console.log(`${regionUnderTest} - Can purchase any idshield plan for market=es-US`);
+  test(`${regionUnderTest} - Can purchase any legalshield plan for market=es-US @smoke`, async ({ page }) => {
+    console.log(`${regionUnderTest} - Can purchase any legalshield plan for market=es-US`);
     const regionInfo = RegionsUtils.usStates.filter((region) => region.name == regionUnderTest)[0];
     const homeAddress = regionInfo.validAddress.street;
     const city = regionInfo.validAddress.city;
@@ -26,7 +26,7 @@ for (const regionUnderTest of regionsUnderTest) {
     const regionAbbreviation = regionInfo.abbrv;
 
     await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
-      await legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('United States', 'Spanish');
+      await legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'es');
     });
     await test.step(`Change Region`, async () => {
       await legalshieldCoverageAndPricingPage.marketingSiteFooterComponent.selectRegion(regionUnderTest, regionAbbreviation);
@@ -38,24 +38,33 @@ for (const regionUnderTest of regionsUnderTest) {
       await legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
     });
     //TODO: update Common repo locators to be language agnostic
-    // await test.step(`Log in to reach checkout service`, async () => {
-    //   await loginPage.login(basicUser.email, basicUser.password);
-    // });
-    // await test.step(`Validate Order Summary on Personal Info Page`, async () => {
-    //   expect(await checkoutPage.locOrderSummaryComponentTotalAmount.innerText()).toContain('$29.95');
-    // });
-    // await test.step(`Change Address to match region and continue to Payment Page`, async () => {
-    //   await checkoutPage.changeAddress(homeAddress, city, postalCode);
-    //   await checkoutPage.locPersonalInfoSaveAndContinueButton.click();
-    // });
-    // await test.step(`Validate Order Summary on Payment Info Page`, async () => {
-    //   expect(await checkoutPage.locOrderSummaryComponentTotalAmount.innerText()).toContain('$29.95');
-    // });
-    // await test.step(`Fill out Bank Draft form and Submit`, async () => {
-    //   await checkoutPage.completeBankDraftFormUnitedStates('1000123546', '103000648', 'Test');
-    // });
-    // await test.step(`Assert Confirmation Page URL`, async () => {
-    //   await expect(checkoutPage.locConfirmationPageWelcomeHeader).toBeVisible({ timeout: 100000 });
-    // });
+    await test.step(`Log in to reach checkout service`, async () => {
+      await commonLoginService.loginPage.login(basicUser.email, basicUser.password);
+    });
+    await test.step(`Validate Order Summary on Personal Info Page`, async () => {
+      expect(await commonCheckoutService.personalInfoPage.orderSummaryComponent.locTotalAmount.innerText()).toContain('$29.95');
+    });
+    await test.step(`Change Address to match region and continue to Payment Page`, async () => {
+      await commonCheckoutService.personalInfoPage.fillRequiredAddressFields(homeAddress, city, postalCode);
+      await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
+    });
+    await test.step(`Validate Order Summary on Payment Info Page`, async () => {
+      expect(await commonCheckoutService.paymentsPage.orderSummaryComponent.locTotalAmount.innerText()).toContain('$29.95');
+    });
+    await test.step(`Click on the Bank Draft Toggle`, async () => {
+      await commonCheckoutService.paymentsPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
+    });
+    await test.step(`Fill out Bank Draft form`, async () => {
+      await commonCheckoutService.paymentsPage.bankDraftComponent.completeBankDraftFormUnitedStates('1000123546', '103000648', 'Test');
+    });
+    await test.step(`Click on the Purchase button`, async () => {
+      await commonCheckoutService.paymentsPage.bankDraftComponent.locPurchaseButton.click();
+    });
+    await test.step(`Click on the Let's go button`, async () => {
+      await commonCheckoutService.confirmationPage.letsGoButton.click();
+    });
+    await test.step(`Assert Accounts Page URL`, async () => {
+      await expect(page).toHaveURL(new RegExp('accounts'));
+    });
   });
 }

@@ -2,16 +2,16 @@ import { test, expect } from '@playwright/test';
 import RegionsUtils from '../../../utils/regions.utils';
 import { basicUser } from '../../../utils/user.utils';
 import { WalsAffiliatedPage } from '../../../page-objects-refactored/wals/wals-affiliated.page';
-import { CommonLoginPage, CommonCheckoutPage } from '@legalshield/frontend-automation-commons';
+import { CommonLoginService, CommonCheckoutService } from '@legalshield/frontend-automation-commons';
 
 let walsAffiliatedPage: WalsAffiliatedPage;
-let loginPage: CommonLoginPage;
-let checkoutPage: CommonCheckoutPage;
+let loginPage: CommonLoginService;
+let checkoutPage: CommonCheckoutService;
 
 test.beforeEach(async ({ page }) => {
   test.slow();
-  loginPage = new CommonLoginPage(page);
-  checkoutPage = new CommonCheckoutPage(page);
+  loginPage = new CommonLoginService(page);
+  checkoutPage = new CommonCheckoutService(page);
   walsAffiliatedPage = new WalsAffiliatedPage(page);
 });
 

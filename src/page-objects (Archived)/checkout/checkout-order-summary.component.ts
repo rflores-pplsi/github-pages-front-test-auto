@@ -5,8 +5,7 @@ import { OrderSummaryWithoutCosts } from './checkout.helpers';
 import { OrderSummaryRowWithoutCost } from './checkout.helpers';
 import { OrderSummaryWithoutTiers } from './checkout.helpers';
 import { OrderSummaryRowWithoutTier } from './checkout.helpers';
-import { ProductDetails } from '../../tests/e2e/data-driven/data/type-definitions';
-
+import { ProductDetails } from '../../types/types';
 // Instantiations
 const orderSummary = new OrderSummary();
 const orderSummaryWithoutTiers = new OrderSummaryWithoutTiers();
@@ -276,14 +275,14 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
    * @param {Array<ProductDetails>} productDetails
    * @memberof CheckoutOrderSummaryComponent
    */
-  assertAllProductNamesAndCosts = async (productDetails: Array<ProductDetails>): Promise<void> => {
-    console.log(' - checkoutOrderSummaryComponent.assertAllProductNamesAndCosts');
+  assertAllnamesAndCosts = async (productDetails: Array<ProductDetails>): Promise<void> => {
+    console.log(' - checkoutOrderSummaryComponent.assertAllnamesAndCosts');
     for (const pd of productDetails) {
       let found = false;
-      let expectedProductName: string = pd.productName;
+      let expectedProductName: string = pd.name;
       // remove plan prefix if it is a supplement
-      if (pd.productName.includes('-')) {
-        expectedProductName = await this.extractSupplementName(pd.productName);
+      if (pd.name.includes('-')) {
+        expectedProductName = await this.extractSupplementName(pd.name);
       }
       for (const row of orderSummary.orderSummaryRows) {
         const planName = row.planName;
@@ -309,12 +308,12 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
   };
 
   /**
-   * @param {string} productName
+   * @param {string} name
    * @memberof CheckoutOrderSummaryComponent
    */
-  extractSupplementName = async (productName: string): Promise<string> => {
+  extractSupplementName = async (name: string): Promise<string> => {
     console.log(' - checkoutOrderSummaryComponent.extractSupplementName');
-    const supplementName = productName.split('- ', 3);
+    const supplementName = name.split('- ', 3);
     return supplementName[1];
   };
   /**
@@ -363,13 +362,13 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
   assertBillingFrequenciesForAllProducts = async (productDetails: Array<ProductDetails>): Promise<void> => {
     console.log(' - checkoutOrderSummaryComponent.assertBillingFrequency');
     for (const pd of productDetails) {
-      if (pd.productName.includes('-')) {
+      if (pd.name.includes('-')) {
         // parse out supplement name from the testharness product name
-        const supplementName = pd.productName.split(' - ');
+        const supplementName = pd.name.split(' - ');
         const eleBillingFrequency = `//div[contains(@class,"lsux-row half children2 content-row mb-4 mt-4") and contains(.,"${supplementName[1]}")]/following-sibling::div[1]`;
         await this.assertElementContainsText(eleBillingFrequency, pd.term);
       } else {
-        const eleBillingFrequency = `//div[contains(@class,"lsux-row half children2 content-row mb-4 mt-4") and contains(.,"${pd.productName}")]/following-sibling::div[1]`;
+        const eleBillingFrequency = `//div[contains(@class,"lsux-row half children2 content-row mb-4 mt-4") and contains(.,"${pd.name}")]/following-sibling::div[1]`;
         await this.assertElementContainsText(eleBillingFrequency, pd.term);
       }
     }

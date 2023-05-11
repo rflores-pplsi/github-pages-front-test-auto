@@ -2,21 +2,19 @@ import { test, expect } from '@playwright/test';
 import { basicUser } from '../../utils/user.utils';
 import { LegalshieldCoverageAndPricingPage } from '../../page-objects-refactored/marketing-sites/legalshield/legalshield-coverage-and-pricing.page';
 import { CheckoutPersonalInfoPage } from '../../page-objects-refactored/checkout/checkout-personal-info.page';
-import { CommonLoginPage, CommonCheckoutPersonalInfoPage, CommonCheckoutStepperComponent } from '@legalshield/frontend-automation-commons';
+import { CommonCheckoutService, CommonLoginService } from '@legalshield/frontend-automation-commons';
 
 let legalshieldCoverageAndPricingPage: LegalshieldCoverageAndPricingPage;
-let commonLoginPage: CommonLoginPage;
+let commonCheckoutService: CommonCheckoutService;
+let commonLoginService: CommonLoginService;
 let checkoutPersonalInfoPage: CheckoutPersonalInfoPage;
-let commonCheckoutPersonalInfoPage: CommonCheckoutPersonalInfoPage;
-let commonCheckoutStepperComponent: CommonCheckoutStepperComponent;
 
 test.beforeEach(async ({ page }) => {
   test.slow();
   legalshieldCoverageAndPricingPage = new LegalshieldCoverageAndPricingPage(page);
-  commonLoginPage = new CommonLoginPage(page);
+  commonLoginService = new CommonLoginService(page);
+  commonCheckoutService = new CommonCheckoutService(page);
   checkoutPersonalInfoPage = new CheckoutPersonalInfoPage(page);
-  commonCheckoutPersonalInfoPage = new CommonCheckoutPersonalInfoPage(page);
-  commonCheckoutStepperComponent = new CommonCheckoutStepperComponent(page);
 
   await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
     await legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage();
@@ -31,7 +29,7 @@ test.beforeEach(async ({ page }) => {
     await legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
   });
   await test.step(`Log in to reach checkout service`, async () => {
-    await commonLoginPage.login(basicUser.email, basicUser.password);
+    await commonLoginService.loginPage.login(basicUser.email, basicUser.password);
   });
 });
 
@@ -45,7 +43,7 @@ test('Verify Personal Information Section Header Displays', async () => {
 test('Verify no warning messages display when all non-business required fields are entered', async () => {
   console.log('Test Case: Verify no warning messages display when all non-business required fields are entered');
   await test.step('Populate all non-business fields on Personal Information Page', async () => {
-    await commonCheckoutPersonalInfoPage.fillAllNonBusinessFormFields(
+    await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
       'Automation',
       'Tester',
       '5555555555',
@@ -60,7 +58,7 @@ test('Verify no warning messages display when all non-business required fields a
     );
   });
   await test.step('After fields are populated place cursor on Address Line 2', async () => {
-    await commonCheckoutPersonalInfoPage.locHomeAddressInput2.click();
+    await commonCheckoutService.personalInfoPage.locHomeAddressInput2.click();
   });
   await test.step('No Warnings are displayed when all fields are entered', async () => {
     await checkoutPersonalInfoPage.assertPersonalInfoPageErrorsAreNotDisplayed();
@@ -70,10 +68,10 @@ test('Verify no warning messages display when all non-business required fields a
 test('Verify the required message displays when the First Name input is empty', async () => {
   console.log('Test Case: Verify the required message displays when the First Name input is empty');
   await test.step('Empty only First Name Field', async () => {
-    await commonCheckoutPersonalInfoPage.locFirstNameInput.clear();
+    await commonCheckoutService.personalInfoPage.locFirstNameInput.clear();
   });
   await test.step('Click on Save and Continue Button', async () => {
-    await commonCheckoutPersonalInfoPage.locSaveAndContinueButton.click();
+    await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
   });
   await test.step('Require Warning message that First Name is Required displays', async () => {
     await expect(checkoutPersonalInfoPage.locFirstNameWarningMessage).toBeVisible();
@@ -83,10 +81,10 @@ test('Verify the required message displays when the First Name input is empty', 
 test('Verify the required message displays when the Last Name input is empty', async () => {
   console.log('Test Case: Verify the required message displays when the Last Name input is empty');
   await test.step('Empty only Last Name Field', async () => {
-    await commonCheckoutPersonalInfoPage.locLastNameInput.clear();
+    await commonCheckoutService.personalInfoPage.locLastNameInput.clear();
   });
   await test.step('Click on the Save & Continue Button', async () => {
-    await commonCheckoutPersonalInfoPage.locSaveAndContinueButton.click();
+    await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
   });
   await test.step('Require Warning message that Last Name is Required displays', async () => {
     await expect(checkoutPersonalInfoPage.locLastNameWarningMessage).toBeVisible();
@@ -96,10 +94,10 @@ test('Verify the required message displays when the Last Name input is empty', a
 test('Verify the required message displays when the Phone Number input is empty', async () => {
   console.log('Test Case: Verify the required message displays when the Phone Number input is empty');
   await test.step('Empty only Phone Number Field', async () => {
-    await commonCheckoutPersonalInfoPage.locPhoneNumberInput.clear();
+    await commonCheckoutService.personalInfoPage.locPhoneNumberInput.clear();
   });
   await test.step('Click on the Save & Continue Button', async () => {
-    await commonCheckoutPersonalInfoPage.locSaveAndContinueButton.click();
+    await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
   });
   await test.step('Require Warning message that Phone Number is Required displays', async () => {
     await expect(checkoutPersonalInfoPage.locPhoneNumberWarningMessage).toBeVisible();
@@ -109,10 +107,10 @@ test('Verify the required message displays when the Phone Number input is empty'
 test('Verify the required message displays when the Phone Type input is empty', async () => {
   console.log('Test Case: Verify the required message displays when the Phone Type input is empty');
   await test.step('Empty only Phone Type Field', async () => {
-    await commonCheckoutPersonalInfoPage.selectPhoneType('Select Type');
+    await commonCheckoutService.personalInfoPage.selectPhoneType('Select Type');
   });
   await test.step('Click on the Save & Continue Button', async () => {
-    await commonCheckoutPersonalInfoPage.locSaveAndContinueButton.click();
+    await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
   });
   await test.step('Require Warning message that Phone Type is Required displays', async () => {
     await expect(checkoutPersonalInfoPage.locPhoneTypeWarningMessage).toBeVisible();
@@ -122,10 +120,10 @@ test('Verify the required message displays when the Phone Type input is empty', 
 test('Verify the required message displays when the Address input is empty', async () => {
   console.log('Test Case: Verify the required message displays when the Address input is empty');
   await test.step('Empty only Home Address Field', async () => {
-    await commonCheckoutPersonalInfoPage.locHomeAddressInput.clear();
+    await commonCheckoutService.personalInfoPage.locHomeAddressInput.clear();
   });
   await test.step('Click on the Save & Continue Button', async () => {
-    await commonCheckoutPersonalInfoPage.locSaveAndContinueButton.click();
+    await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
   });
   await test.step('Require Warning message that Home Address is Required displays', async () => {
     await expect(checkoutPersonalInfoPage.locHomeAddressWarningMessage).toBeVisible();
@@ -135,10 +133,10 @@ test('Verify the required message displays when the Address input is empty', asy
 test('Verify the required message displays when the City input is empty', async () => {
   console.log('Test Case: Verify the required message displays when the City input is empty');
   await test.step('Empty only City Field', async () => {
-    await commonCheckoutPersonalInfoPage.locCityInput.clear();
+    await commonCheckoutService.personalInfoPage.locCityInput.clear();
   });
   await test.step('Click on the Save & Continue Button', async () => {
-    await commonCheckoutPersonalInfoPage.locSaveAndContinueButton.click();
+    await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
   });
   await test.step('Require Warning message that City is Required displays', async () => {
     await expect(checkoutPersonalInfoPage.locCityWarningMessage).toBeVisible();
@@ -148,10 +146,10 @@ test('Verify the required message displays when the City input is empty', async 
 test('Verify the required message displays when the PostalCode input is empty', async () => {
   console.log('Test Case: Verify the required message displays when the Postal Code input is empty');
   await test.step('Empty only Postal Code Field', async () => {
-    await commonCheckoutPersonalInfoPage.locPostalCodeInput.clear();
+    await commonCheckoutService.personalInfoPage.locPostalCodeInput.clear();
   });
   await test.step('Click on the Save & Continue Button', async () => {
-    await commonCheckoutPersonalInfoPage.locSaveAndContinueButton.click();
+    await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
   });
   await test.step('Require Warning message that Postal Code is Requires displays', async () => {
     await expect(checkoutPersonalInfoPage.locPostalCodeWarningMessage).toBeVisible();
@@ -161,10 +159,10 @@ test('Verify the required message displays when the PostalCode input is empty', 
 test('Verify the required message displays when the Date of Birth Month input is empty', async () => {
   console.log('Test Case: Verify the required message displays when the DOB Month input is empty');
   await test.step('Empty only DOB Month Field', async () => {
-    await commonCheckoutPersonalInfoPage.locBirthMonthInput.clear();
+    await commonCheckoutService.personalInfoPage.locBirthMonthInput.clear();
   });
   await test.step('Click on the Save & Continue Button', async () => {
-    await commonCheckoutPersonalInfoPage.locSaveAndContinueButton.click();
+    await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
   });
   await test.step('Require Warning message that valid DOB is Required displays', async () => {
     await expect(checkoutPersonalInfoPage.locDateOfBirthInvalidWarningMessage).toBeVisible();
@@ -174,10 +172,10 @@ test('Verify the required message displays when the Date of Birth Month input is
 test('Verify the required message displays when the Date of Birth Date input is empty', async () => {
   console.log('Test Case: Verify the required message displays when the DOB Date input is empty');
   await test.step('Empty only DOB Date Field', async () => {
-    await commonCheckoutPersonalInfoPage.locBirthDateInput.clear();
+    await commonCheckoutService.personalInfoPage.locBirthDateInput.clear();
   });
   await test.step('Click on the Save & Continue Button', async () => {
-    await commonCheckoutPersonalInfoPage.locSaveAndContinueButton.click();
+    await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
   });
   await test.step('Require Warning message that valid DOB is Required displays', async () => {
     await expect(checkoutPersonalInfoPage.locDateOfBirthInvalidWarningMessage).toBeVisible();
@@ -187,10 +185,10 @@ test('Verify the required message displays when the Date of Birth Date input is 
 test('Verify the required message displays when the Date of Birth Year input is empty', async () => {
   console.log('Test Case: Verify the required message displays when the DOB Year input is empty');
   await test.step('Empty only DOB Year Field', async () => {
-    await commonCheckoutPersonalInfoPage.locBirthYearInput.clear();
+    await commonCheckoutService.personalInfoPage.locBirthYearInput.clear();
   });
   await test.step('Click on the Save & Continue Button', async () => {
-    await commonCheckoutPersonalInfoPage.locSaveAndContinueButton.click();
+    await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
   });
   await test.step('Require Warning message that valid DOB is Required displays', async () => {
     await expect(checkoutPersonalInfoPage.locDateOfBirthInvalidWarningMessage).toBeVisible();
@@ -200,16 +198,16 @@ test('Verify the required message displays when the Date of Birth Year input is 
 test('Verify the required message displays when DOB Month Date and Year are all empty', async () => {
   console.log('Test Case: Verify the required message displays when the DOB fields are all empty');
   await test.step('Empty DOB Month Field', async () => {
-    await commonCheckoutPersonalInfoPage.locBirthMonthInput.clear();
+    await commonCheckoutService.personalInfoPage.locBirthMonthInput.clear();
   });
   await test.step('Empty DOB Date Field', async () => {
-    await commonCheckoutPersonalInfoPage.locBirthDateInput.clear();
+    await commonCheckoutService.personalInfoPage.locBirthDateInput.clear();
   });
   await test.step('Empty DOB Year Field', async () => {
-    await commonCheckoutPersonalInfoPage.locBirthYearInput.clear();
+    await commonCheckoutService.personalInfoPage.locBirthYearInput.clear();
   });
   await test.step('Click on the Save & Continue Button', async () => {
-    await commonCheckoutPersonalInfoPage.locSaveAndContinueButton.click();
+    await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
   });
   await test.step('Require Warning message that valid DOB is Required displays', async () => {
     await expect(checkoutPersonalInfoPage.locDateOfBirthWarningMessage).toBeVisible();
@@ -219,10 +217,10 @@ test('Verify the required message displays when DOB Month Date and Year are all 
 test('Verify the required message displays when the SSN input is empty', async () => {
   console.log('Test Case: Verify the required message displays when the SSN input is empty');
   await test.step('Empty only SSN Field', async () => {
-    await commonCheckoutPersonalInfoPage.locSocialSecurityInput.clear();
+    await commonCheckoutService.personalInfoPage.locSocialSecurityInput.clear();
   });
   await test.step('Click on the Save & Continue Button', async () => {
-    await commonCheckoutPersonalInfoPage.locSaveAndContinueButton.click();
+    await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
   });
   await test.step('Require Warning message that SSN is Required displays', async () => {
     await expect(checkoutPersonalInfoPage.locSocialSecurityWarningMessage).toBeVisible();
@@ -235,7 +233,7 @@ test('Verify the required message displays when all fields are Empty on Personal
     await checkoutPersonalInfoPage.clearAllFieldsOnPersonalInfoPageAndSave();
   });
   await test.step('Click on the Save & Continue Button', async () => {
-    await commonCheckoutPersonalInfoPage.locSaveAndContinueButton.click();
+    await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
   });
   await test.step('Require Warning message under each field displays', async () => {
     await checkoutPersonalInfoPage.assertPersonalInfoPageErrorsAreDisplayed();
@@ -245,14 +243,14 @@ test('Verify the required message displays when all fields are Empty on Personal
 test('Verify Stepper 2 is present on Personal Information Page', async () => {
   console.log('Test Case: Verify Stepper 2 is present on Personal Information Page');
   await test.step('Assert that Step Circle 2 on Personal Info Page is solid black', async () => {
-    await expect(commonCheckoutStepperComponent.locStepCircle2Current).toBeVisible();
+    await expect(commonCheckoutService.personalInfoPage.stepperComponent.locStepCircle2Current).toBeVisible();
   });
 });
 
 test('Verify Stepper 3 is present on Payment Page', async () => {
   console.log('Test Case: Verify Stepper 3 is present on Payment Page');
   await test.step('Populate all fields on the Personal Information Page', async () => {
-    await commonCheckoutPersonalInfoPage.fillAllNonBusinessFormFields(
+    await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
       'Automation',
       'Tester',
       '5555555555',
@@ -267,17 +265,17 @@ test('Verify Stepper 3 is present on Payment Page', async () => {
     );
   });
   await test.step('Click on the Save & Continue Button to go to Payment Page', async () => {
-    await commonCheckoutPersonalInfoPage.locSaveAndContinueButton.click();
+    await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
   });
   await test.step('Assert that Step Circle 3 on Payment Page is solid black', async () => {
-    await expect(commonCheckoutStepperComponent.locStepCircle3Current).toBeVisible();
+    await expect(commonCheckoutService.personalInfoPage.stepperComponent.locStepCircle3Current).toBeVisible();
   });
 });
 
 test('Verify user can redirect to Personal info Page By Clicking on Stepper 2 from Payment Page', async () => {
   console.log('Test Case: Verify user can redirect to Personal info Page By Clicking on Stepper 2 from Payment Page');
   await test.step('Populate all fields on the Personal Information Page', async () => {
-    await commonCheckoutPersonalInfoPage.fillAllNonBusinessFormFields(
+    await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
       'Automation',
       'Tester',
       '5555555555',
@@ -292,10 +290,10 @@ test('Verify user can redirect to Personal info Page By Clicking on Stepper 2 fr
     );
   });
   await test.step('Click on the Save & Continue Button to go to Payment Page', async () => {
-    await commonCheckoutPersonalInfoPage.locSaveAndContinueButton.click();
+    await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
   });
   await test.step('Click on Step Circle 2 when on Payment Page', async () => {
-    await commonCheckoutStepperComponent.locStepCirclePersonalInfoLink.click();
+    await commonCheckoutService.personalInfoPage.stepperComponent.locStepCirclePersonalInfoLink.click();
   });
   await test.step('Assert that user is redirected to Personal Information Page and it contains header Tell us about yourself', async () => {
     await expect(checkoutPersonalInfoPage.locHeader).toContainText('Tell us about yourself');

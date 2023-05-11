@@ -1,29 +1,19 @@
 import { test, expect, Page } from '@playwright/test';
 import { basicUser } from '../../utils/user.utils';
 import { LegalshieldCoverageAndPricingPage } from '../../page-objects-refactored/marketing-sites/legalshield/legalshield-coverage-and-pricing.page';
-import {
-  CommonLoginPage,
-  CommonCheckoutPersonalInfoPage,
-  CommonCheckoutPaymentsPage,
-  CommonCheckoutConfirmationPage,
-} from '@legalshield/frontend-automation-commons';
+import { CommonLoginService, CommonCheckoutService } from '@legalshield/frontend-automation-commons';
 import { CheckoutPaymentsPage } from '../../page-objects-refactored/checkout/checkout-payments.page';
 
 let legalshieldCoverageAndPricingPage: LegalshieldCoverageAndPricingPage;
-let commonLoginPage: CommonLoginPage;
-let commonCheckoutPersonalInfoPage: CommonCheckoutPersonalInfoPage;
-let commonCheckoutPaymentsPage: CommonCheckoutPaymentsPage;
-let commonCheckoutConfirmationPage: CommonCheckoutConfirmationPage;
+let commonLoginService: CommonLoginService;
+let commonCheckoutService: CommonCheckoutService;
 let checkoutPaymentsPage: CheckoutPaymentsPage;
 
 test.beforeEach(async ({ context, page }) => {
   test.slow();
   legalshieldCoverageAndPricingPage = new LegalshieldCoverageAndPricingPage(page);
-  commonLoginPage = new CommonLoginPage(page);
-  commonCheckoutPersonalInfoPage = new CommonCheckoutPersonalInfoPage(page);
-  commonCheckoutPaymentsPage = new CommonCheckoutPaymentsPage(page);
-  commonCheckoutConfirmationPage = new CommonCheckoutConfirmationPage(page);
-
+  commonLoginService = new CommonLoginService(page);
+  commonCheckoutService = new CommonCheckoutService(page);
   checkoutPaymentsPage = new CheckoutPaymentsPage(context, page);
 
   await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
@@ -39,10 +29,10 @@ test.beforeEach(async ({ context, page }) => {
     await legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
   });
   await test.step(`Log in to reach checkout service`, async () => {
-    await commonLoginPage.login(basicUser.email, basicUser.password);
+    await commonLoginService.loginPage.login(basicUser.email, basicUser.password);
   });
   await test.step('Populate all fields on Personal Information Page', async () => {
-    await commonCheckoutPersonalInfoPage.fillAllNonBusinessFormFields(
+    await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
       'Automation',
       'Tester',
       '5555555555',
@@ -57,36 +47,36 @@ test.beforeEach(async ({ context, page }) => {
     );
   });
   await test.step('Click on the Save & Continue Button to go to Payment Page', async () => {
-    await commonCheckoutPersonalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
+    await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
   });
 });
 
 test('Verify that we can reach the confirmation page with valid information in the bank draft form', async ({ page }) => {
   console.log('Test Case: Verify that we can reach the confirmation page with valid information in the bank draft form');
-  await test.step('Click the Payment Form toggle', async () => {
-    await commonCheckoutPaymentsPage.checkoutBankDraftComponent.locCreditCardBankDraftToggle.click();
+  await test.step('Click Bank Draft toggle', async () => {
+    await commonCheckoutService.paymentsPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
   });
   await test.step('Fill out Bank Draft Form', async () => {
-    await commonCheckoutPaymentsPage.checkoutBankDraftComponent.completeBankDraftFormUnitedStates('0000000', '000000000', 'Tester');
+    await commonCheckoutService.paymentsPage.bankDraftComponent.completeBankDraftFormUnitedStates('0000000', '000000000', 'Tester');
   });
-  await test.step('Click the Purchase button', async () => {
-    await commonCheckoutPaymentsPage.checkoutBankDraftComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
+  await test.step('Click Purchase Button', async () => {
+    await commonCheckoutService.paymentsPage.bankDraftComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
   });
   await test.step('Redirected to the Confirmation Page', async () => {
-    await expect(commonCheckoutConfirmationPage.letsGoButton).toBeVisible({ timeout: 100000 });
+    await expect(commonCheckoutService.confirmationPage.letsGoButton).toBeVisible({ timeout: 100000 });
   });
 });
 
 test('Verify the required message displays when the Account Number input is empty', async ({ page }) => {
   console.log('Test Case: Verify the required message displays when the Account Number input is empty');
-  await test.step('Click the Payment Form toggle', async () => {
-    await commonCheckoutPaymentsPage.checkoutBankDraftComponent.locCreditCardBankDraftToggle.click();
+  await test.step('Click Bank Draft toggle', async () => {
+    await commonCheckoutService.paymentsPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
   });
   await test.step('Empty only Account Number Field and all other fields are populated', async () => {
-    await commonCheckoutPaymentsPage.checkoutBankDraftComponent.completeBankDraftFormUnitedStates('', '000000000', 'Tester');
+    await commonCheckoutService.paymentsPage.bankDraftComponent.completeBankDraftFormUnitedStates('', '000000000', 'Tester');
   });
-  await test.step('Click the Purchase button', async () => {
-    await commonCheckoutPaymentsPage.checkoutBankDraftComponent.locPurchaseButton.click();
+  await test.step('Click Purchase button', async () => {
+    await commonCheckoutService.paymentsPage.bankDraftComponent.locPurchaseButton.click();
   });
   await test.step('Warning message that Account Number is Required displays', async () => {
     await expect(checkoutPaymentsPage.checkoutBankDraftComponent.locAccountNumberWarningMessage).toBeVisible();
@@ -95,14 +85,14 @@ test('Verify the required message displays when the Account Number input is empt
 
 test('Verify the required message displays when the Routing Number input is empty', async ({ page }) => {
   console.log('Test Case: Verify the required message displays when the Routing Number input is empty');
-  await test.step('Click the Payment Form toggle', async () => {
-    await commonCheckoutPaymentsPage.checkoutBankDraftComponent.locCreditCardBankDraftToggle.click();
+  await test.step('Click Bank Draft toggle', async () => {
+    await commonCheckoutService.paymentsPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
   });
   await test.step('Empty only Routing Number and all other fields are populated', async () => {
-    await commonCheckoutPaymentsPage.checkoutBankDraftComponent.completeBankDraftFormUnitedStates('0000000', '', 'Tester');
+    await commonCheckoutService.paymentsPage.bankDraftComponent.completeBankDraftFormUnitedStates('0000000', '', 'Tester');
   });
-  await test.step('Click the Purchase button', async () => {
-    await commonCheckoutPaymentsPage.checkoutBankDraftComponent.locPurchaseButton.click();
+  await test.step('Click Purchase button', async () => {
+    await commonCheckoutService.paymentsPage.bankDraftComponent.locPurchaseButton.click();
   });
   await test.step('Warning message that Routing Number is Required displays', async () => {
     await expect(checkoutPaymentsPage.checkoutBankDraftComponent.locRoutingNumberWarningMessage).toBeVisible();
@@ -111,14 +101,14 @@ test('Verify the required message displays when the Routing Number input is empt
 
 test('Verify the required message displays when the Account Holder Name input is empty', async ({ page }) => {
   console.log('Test Case: Verify the required message displays when the Account Holder Name input is empty');
-  await test.step('Click the Payment Form toggle', async () => {
-    await commonCheckoutPaymentsPage.checkoutBankDraftComponent.locCreditCardBankDraftToggle.click();
+  await test.step('Click Bank Draft toggle', async () => {
+    await commonCheckoutService.paymentsPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
   });
   await test.step('Empty only Account Holder Name Field and all other fields are populated', async () => {
-    await commonCheckoutPaymentsPage.checkoutBankDraftComponent.completeBankDraftFormUnitedStates('0000000', '000000000', '');
+    await commonCheckoutService.paymentsPage.bankDraftComponent.completeBankDraftFormUnitedStates('0000000', '000000000', '');
   });
-  await test.step('Click the Purchase button', async () => {
-    await commonCheckoutPaymentsPage.checkoutBankDraftComponent.locPurchaseButton.click();
+  await test.step('Click Purchase button', async () => {
+    await commonCheckoutService.paymentsPage.bankDraftComponent.locPurchaseButton.click();
   });
   await test.step('Warning message that Account Holder Name is Required displays', async () => {
     await expect(checkoutPaymentsPage.checkoutBankDraftComponent.locAccountHolderNameWarningMessage).toBeVisible();
@@ -127,14 +117,14 @@ test('Verify the required message displays when the Account Holder Name input is
 
 test('Verify the required message displays when all fields are Empty on US Bank Draft Page', async ({ page }) => {
   console.log('Test Case: Verify the required message displays when all fields are Empty on US Bank Draft Page');
-  await test.step('Click the Payment Form toggle', async () => {
-    await commonCheckoutPaymentsPage.checkoutBankDraftComponent.locCreditCardBankDraftToggle.click();
+  await test.step('Click Bank Draft toggle', async () => {
+    await commonCheckoutService.paymentsPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
   });
   await test.step('Empty all Fields on Bank Draft Form ', async () => {
-    await commonCheckoutPaymentsPage.checkoutBankDraftComponent.completeBankDraftFormUnitedStates('', '', '');
+    await commonCheckoutService.paymentsPage.bankDraftComponent.completeBankDraftFormUnitedStates('', '', '');
   });
-  await test.step('Click the Purchase button', async () => {
-    await commonCheckoutPaymentsPage.checkoutBankDraftComponent.locPurchaseButton.click();
+  await test.step('Click Purchase button', async () => {
+    await commonCheckoutService.paymentsPage.bankDraftComponent.locPurchaseButton.click();
   });
   await test.step('Required Warning messages displays', async () => {
     await checkoutPaymentsPage.checkoutBankDraftComponent.assertUSBankDraftErrorsAreDisplayed();
@@ -143,25 +133,24 @@ test('Verify the required message displays when all fields are Empty on US Bank 
 
 test('Verify that we can reach the confirmation page with valid information on the Credit Card Page', async ({ page }) => {
   console.log('Test Case: Verify that we can reach the confirmation page with valid information on the Credit Card Page');
-  await test.step('Fill out Credit Card Form', async () => {
-    await commonCheckoutPaymentsPage.checkoutCreditCardComponent.completeCreditCardForm('4444333322221111', '12/25', '123', 'Test User', '80202');
+  await test.step(' Fill out Credit Card Form', async () => {
+    await commonCheckoutService.paymentsPage.creditCardComponent.completeCreditCardForm('4444333322221111', '1225', '123', 'Test User', '80202');
   });
-  await test.step('Click the Purchase button', async () => {
-    await commonCheckoutPaymentsPage.checkoutCreditCardComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
+  await test.step('Click Purchase button', async () => {
+    await commonCheckoutService.paymentsPage.creditCardComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
   });
-
   await test.step('Redirected to the Confirmation Page', async () => {
-    await expect(commonCheckoutConfirmationPage.letsGoButton).toBeVisible({ timeout: 100000 });
+    await expect(commonCheckoutService.confirmationPage.letsGoButton).toBeVisible({ timeout: 100000 });
   });
 });
 
 test('Verify the required message displays when the Card Number input is empty on the US Credit Card Page', async ({ page }) => {
   console.log('Test Case: Verify the required message displays when the Card Number input is empty on the US Credit Card Page');
   await test.step('On the Credit Card Form - Empty only Card Number Field and all other fields are populated', async () => {
-    await commonCheckoutPaymentsPage.checkoutCreditCardComponent.completeCreditCardForm('', '1225', '123', 'Test User', '80202');
+    await commonCheckoutService.paymentsPage.creditCardComponent.completeCreditCardForm('', '1225', '123', 'Test User', '80202');
   });
-  await test.step('Click the Purchase button', async () => {
-    await commonCheckoutPaymentsPage.checkoutCreditCardComponent.locPurchaseButton.click();
+  await test.step('Click Purchase button', async () => {
+    await commonCheckoutService.paymentsPage.creditCardComponent.locPurchaseButton.click();
   });
   await test.step('Warning message that Card Number is Required displays', async () => {
     await expect(checkoutPaymentsPage.checkoutCreditCardComponent.locCardNumberWarningMessage).toBeVisible();
@@ -171,10 +160,10 @@ test('Verify the required message displays when the Card Number input is empty o
 test('Verify the required message displays when the Expiration Date input is empty on the US Credit Card Page', async ({ page }) => {
   console.log('Test Case: Verify the required message displays when the Expiration Date input is empty on the US Credit Card Page');
   await test.step('On the Credit Card Form - Empty only Expiration Date Field and all other fields are populated', async () => {
-    await commonCheckoutPaymentsPage.checkoutCreditCardComponent.completeCreditCardForm('4444333322221111', '', '123', 'Test User', '80202');
+    await commonCheckoutService.paymentsPage.creditCardComponent.completeCreditCardForm('4444333322221111', '', '123', 'Test User', '80202');
   });
-  await test.step('Click the Purchase button', async () => {
-    await commonCheckoutPaymentsPage.checkoutCreditCardComponent.locPurchaseButton.click();
+  await test.step('Click Purchase button', async () => {
+    await commonCheckoutService.paymentsPage.creditCardComponent.locPurchaseButton.click();
   });
   await test.step('Warning message that Expiration Date is Required displays', async () => {
     await expect(checkoutPaymentsPage.checkoutCreditCardComponent.locExpirationDateWarningMessage).toBeVisible();
@@ -184,10 +173,10 @@ test('Verify the required message displays when the Expiration Date input is emp
 test('Verify the required message displays when the Security Code input is empty on the US Credit Card Page', async ({ page }) => {
   console.log('Test Case: Verify the required message displays when the Security Code input is empty on the US Credit Card Page');
   await test.step('On the Credit Card Form - Empty only Security Code Field and all other fields are populated', async () => {
-    await commonCheckoutPaymentsPage.checkoutCreditCardComponent.completeCreditCardForm('4444333322221111', '1225', '', 'Test User', '80202');
+    await commonCheckoutService.paymentsPage.creditCardComponent.completeCreditCardForm('4444333322221111', '1225', '', 'Test User', '80202');
   });
-  await test.step('Click the Purchase button', async () => {
-    await commonCheckoutPaymentsPage.checkoutCreditCardComponent.locPurchaseButton.click();
+  await test.step('Click Purchase button', async () => {
+    await commonCheckoutService.paymentsPage.creditCardComponent.locPurchaseButton.click();
   });
   await test.step('Warning message that Security Code is Required displays', async () => {
     await expect(checkoutPaymentsPage.checkoutCreditCardComponent.locSecurityCodeWarningMessage).toBeVisible();
@@ -195,12 +184,12 @@ test('Verify the required message displays when the Security Code input is empty
 });
 
 test('Verify the required message displays when the Name on Card input is empty on the US Credit Card Page', async ({ page }) => {
-  console.log('Test Case: Verify the required message displays when the Security Code input is empty on the US Credit Card Page');
+  console.log('Test Case: Verify the required message displays when the Name on Card input is empty on the US Credit Card Page');
   await test.step('On the Credit Card Form - Empty only Name on Card Field and all other fields are populated', async () => {
-    await commonCheckoutPaymentsPage.checkoutCreditCardComponent.completeCreditCardForm('4444333322221111', '1225', '123', '', '80202');
+    await commonCheckoutService.paymentsPage.creditCardComponent.completeCreditCardForm('4444333322221111', '1225', '123', '', '80202');
   });
-  await test.step('Click the Purchase button', async () => {
-    await commonCheckoutPaymentsPage.checkoutCreditCardComponent.locPurchaseButton.click();
+  await test.step('Click Purchase button', async () => {
+    await commonCheckoutService.paymentsPage.creditCardComponent.locPurchaseButton.click();
   });
   await test.step('Warning message that Name on Card is Required displays', async () => {
     await expect(checkoutPaymentsPage.checkoutCreditCardComponent.locNameOnCardWarningMessage).toBeVisible();
@@ -210,10 +199,10 @@ test('Verify the required message displays when the Name on Card input is empty 
 test('Verify the required message displays when the Name on Card input is invalid Length on the US Credit Card Page', async ({ page }) => {
   console.log('Test Case: Verify the required message displays when the Name on Card input is invalid Length on the US Credit Card Page');
   await test.step('On the Credit Card Form - Have invalid Length on Name on Card Field and all other fields are populated', async () => {
-    await commonCheckoutPaymentsPage.checkoutCreditCardComponent.completeCreditCardForm('4444333322221111', '1225', '123', 'W', '80202');
+    await commonCheckoutService.paymentsPage.creditCardComponent.completeCreditCardForm('4444333322221111', '1225', '123', 'W', '80202');
   });
-  await test.step('Click the Purchase button', async () => {
-    await commonCheckoutPaymentsPage.checkoutCreditCardComponent.locPurchaseButton.click();
+  await test.step('Click Purchase button', async () => {
+    await commonCheckoutService.paymentsPage.creditCardComponent.locPurchaseButton.click();
   });
   await test.step('Warning message that Name on Card is Required displays', async () => {
     await expect(checkoutPaymentsPage.checkoutCreditCardComponent.locNameOnCardWarningMessage).toBeVisible();
@@ -223,10 +212,10 @@ test('Verify the required message displays when the Name on Card input is invali
 test('Verify the required message displays when the Billing Postal Code input is empty on the US Credit Card Page', async ({ page }) => {
   console.log('Test Case: Verify the required message displays when the Billing Postal Code input is empty on the US Credit Card Page');
   await test.step('On the Credit Card Form - Empty only Billing Postal Code and all other fields are populated', async () => {
-    await commonCheckoutPaymentsPage.checkoutCreditCardComponent.completeCreditCardForm('4444333322221111', '1225', '123 ', 'Test User', '');
+    await commonCheckoutService.paymentsPage.creditCardComponent.completeCreditCardForm('4444333322221111', '1225', '123 ', 'Test User', '');
   });
-  await test.step('Click the Purchase button', async () => {
-    await commonCheckoutPaymentsPage.checkoutCreditCardComponent.locPurchaseButton.click();
+  await test.step('Click Purchase button', async () => {
+    await commonCheckoutService.paymentsPage.creditCardComponent.locPurchaseButton.click();
   });
   await test.step('Warning message that Billing Postal Code is Required displays', async () => {
     await expect(checkoutPaymentsPage.checkoutCreditCardComponent.locBillingPostalCodeWarningMessage).toBeVisible();
@@ -236,10 +225,10 @@ test('Verify the required message displays when the Billing Postal Code input is
 test('Verify the required message displays when all fields are Empty on the US Credit Card Page', async ({ page }) => {
   console.log('Test Case: Verify the required message displays when all fields are empty on the Credit Card Page');
   await test.step('Empty all Fields all fields on the Credit Card Form', async () => {
-    await commonCheckoutPaymentsPage.checkoutCreditCardComponent.completeCreditCardForm('', '', '', '', '');
+    await commonCheckoutService.paymentsPage.creditCardComponent.completeCreditCardForm('', '', '', '', '');
   });
-  await test.step('Click the Purchase button', async () => {
-    await commonCheckoutPaymentsPage.checkoutCreditCardComponent.locPurchaseButton.click();
+  await test.step('Click Purchase button', async () => {
+    await commonCheckoutService.paymentsPage.creditCardComponent.locPurchaseButton.click();
   });
   await test.step('Required Warning messages displays', async () => {
     await checkoutPaymentsPage.checkoutCreditCardComponent.assertUSCreditCardErrorsAreDisplayed();
@@ -258,10 +247,10 @@ test('Verify user is redirected to the Terms Of Service Page from the Credit Car
 });
 
 test('Verify user is redirected to the Terms Of Service Page from the Bank Draft Payment Page', async () => {
-  console.log('Test Case: Verify user is redirected to the Terms OF Service Page from the Bank DraftPayment Page');
+  console.log('Test Case: Verify user is redirected to the Terms Of Service Page from the Bank Draft Payment Page');
   let newPage: Page;
   await test.step('Click on the Bank Draft Toggle', async () => {
-    await commonCheckoutPaymentsPage.checkoutCreditCardComponent.locCreditCardBankDraftToggle.click();
+    await commonCheckoutService.paymentsPage.creditCardComponent.locCreditCardBankDraftToggle.click();
   });
   await test.step('Click on Terms of Service Link on Bank Draft Page', async () => {
     newPage = await checkoutPaymentsPage.checkoutBankDraftComponent.clickOnTermsOfServiceLink();

@@ -2,17 +2,17 @@
 // import UrlsUtils from '../../../utils/urls.utils';
 // import { basicUser } from '../../../utils/user.utils';
 // import { test, expect } from '@playwright/test';
-// import { CommonLoginPage, CommonTestHarnessPage, CommonCheckoutPage } from '@legalshield/frontend-automation-commons';
+// import { CommonLoginService, CommonTestHarnessPage, CommonCheckoutService } from '@legalshield/frontend-automation-commons';
 
-// let loginPage: CommonLoginPage;
+// let loginPage: CommonLoginService;
 // let testHarnessPage: CommonTestHarnessPage;
-// let checkoutPage: CommonCheckoutPage;
+// let checkoutPage: CommonCheckoutService;
 
 // test.beforeEach(async ({ page }) => {
 //   test.setTimeout(120000);
-//   loginPage = new CommonLoginPage(page);
+//   loginPage = new CommonLoginService(page);
 //   testHarnessPage = new CommonTestHarnessPage(page);
-//   checkoutPage = new CommonCheckoutPage(page);
+//   checkoutPage = new CommonCheckoutService(page);
 // });
 
 // const regionsUnderTest = ['New York', 'Colorado', 'Florida'];

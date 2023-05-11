@@ -4,7 +4,7 @@ import { MarketingSitesCartComponent } from '../marketing-sites-cart-component';
 import { MarketingSiteFooterComponent } from '../marketing-sites-footer-component';
 
 export class LegalshieldCoverageAndPricingPage {
-  protected page: Page;
+  readonly page: Page;
   baseUrl: string;
   subdirectory: string;
   readonly marketingSiteCartComponent: MarketingSitesCartComponent;
@@ -17,7 +17,7 @@ export class LegalshieldCoverageAndPricingPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.baseUrl = UrlsUtils.marketingSitesUrls.idShieldUSUrl;
+    this.baseUrl = UrlsUtils.marketingSitesUrls.legalShieldUSUrl;
     this.subdirectory = '';
     this.marketingSiteCartComponent = new MarketingSitesCartComponent(page);
     this.marketingSiteFooterComponent = new MarketingSiteFooterComponent(page);
@@ -63,20 +63,20 @@ export class LegalshieldCoverageAndPricingPage {
    * @param {string} [language='English']
    * @memberof LegalshieldCoverageAndPricingPage
    */
-  navigateToLegalshieldPricingAndCoveragePage = async (market = 'United States', language = 'English'): Promise<void> => {
+  navigateToLegalshieldPricingAndCoveragePage = async (market = 'US', language = 'en'): Promise<void> => {
     switch (market) {
-      case 'United States':
+      case 'US':
         this.baseUrl = UrlsUtils.marketingSitesUrls.legalShieldUSUrl;
         break;
-      case 'Canada':
+      case 'CA':
         this.baseUrl = UrlsUtils.marketingSitesUrls.legalShieldCAUrl;
         break;
     }
     switch (language) {
-      case 'English':
+      case 'en':
         this.subdirectory = '/personal-plan/coverage-and-pricing/';
         break;
-      case 'Spanish':
+      case 'es':
         this.subdirectory = '/es/plan-personal/cobertura-y-precios/';
         break;
     }

@@ -1,16 +1,16 @@
 import { test } from '@playwright/test';
-import { CommonLoginPage } from '../../../node_modules/@legalshield/frontend-automation-commons';
+import { CommonLoginService } from '@legalshield/frontend-automation-commons';
 import { LoginPage } from '../../page-objects/login/login.page';
 import { basicUser } from '../../utils/user.utils';
 
 // Declare Page Variable for This Page
 let loginPage: LoginPage;
-let commonLoginPage: CommonLoginPage;
+let commonLoginService: CommonLoginService;
 // Setup environment before each test
 test.beforeEach(async ({ context, page }) => {
   // Create instance of This Page Object
   loginPage = new LoginPage(context, page);
-  commonLoginPage = new CommonLoginPage(page);
+  commonLoginService = new CommonLoginService(page);
   await loginPage.navigateToLoginPage();
 });
 
@@ -19,7 +19,7 @@ test('Login with basic email', async () => {
   console.log('Test Case: Login with basic email');
   // Log in with a basic user account
   // await loginPage.testEnv();
-  await commonLoginPage.login(basicUser.email as string, basicUser.password as string);
+  await commonLoginService.loginPage.login(basicUser.email as string, basicUser.password as string);
   // Confirm that login is successful by asserting the login url
   await loginPage.assertAccountsPlanPageUrl();
 });
@@ -28,7 +28,7 @@ test('Login with basic email', async () => {
 test('Login by submitting form with Enter key', async () => {
   console.log('Test Case: Login by submitting form with Enter key');
   // Log in with a basic user account submitting with Enter key
-  await commonLoginPage.login(basicUser.email as string, basicUser.password as string);
+  await commonLoginService.loginPage.login(basicUser.email as string, basicUser.password as string);
   // Confirm that login is successful by asserting the login url
   await loginPage.assertAccountsPlanPageUrl();
 });
@@ -38,7 +38,7 @@ test('Login by submitting form with Enter key', async () => {
 test('Login with username', async () => {
   console.log('Test Case: Login with username');
   // Log in with a basic user account with a username
-  await commonLoginPage.login(basicUser.email as string, basicUser.password as string);
+  await commonLoginService.loginPage.login(basicUser.email as string, basicUser.password as string);
   // Confirm that login is successful by asserting the login url
   await loginPage.assertAccountsPlanPageUrl();
 });
@@ -48,7 +48,7 @@ test('Login from Accounts app and confirm redirect', async () => {
   // Attempt to reach Accounts Plan Page
   await loginPage.navigateToAccountPlansPage();
   // Login with basic account after being redirected to Login application
-  await commonLoginPage.login(basicUser.email as string, basicUser.password as string);
+  await commonLoginService.loginPage.login(basicUser.email as string, basicUser.password as string);
   // Confirm that login is successful by asserting the Accounts Plans url with redirect query params
   await loginPage.assertAccountsPlanPageLoginRedirectUrl();
 });

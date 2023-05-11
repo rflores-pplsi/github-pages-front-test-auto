@@ -1,4 +1,4 @@
-import { ProductDetails } from '../../tests/e2e/data-driven/data/type-definitions';
+import { ProductDetails } from '../../types/types';
 import { LegalshieldTestHarnessCartComponent } from './legalshield-test-harness-cart.component'; // import the LoginPage for extension
 
 // ========================== Selectors ==================================
@@ -55,10 +55,8 @@ export class LegalshieldTestHarnessMenuPage extends LegalshieldTestHarnessCartCo
   addProductsByNameAndShortCode = async (productDetails: Array<ProductDetails>): Promise<void> => {
     console.log(' - legalshieldTestHarnessMenuPage.addProducts');
     for (const pd of productDetails) {
-      await this.clickOnElement(
-        `//div[contains(@class,"plan-layout")]//h1[text()="${pd.productName}"]/following-sibling::a[contains(.,"${pd.shortCode}")]`
-      );
-      if (pd.productName.includes('Small Business')) {
+      await this.clickOnElement(`//div[contains(@class,"plan-layout")]//h1[text()="${pd.name}"]/following-sibling::a[contains(.,"${pd.shortCode}")]`);
+      if (pd.name.includes('Small Business')) {
         // Complete the questionnaire with nos
         await this.completeQualifyingQuestionnaireWithNos();
       }

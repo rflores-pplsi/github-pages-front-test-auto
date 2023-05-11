@@ -2,18 +2,18 @@ import RegionsUtils from '../../../utils/regions.utils';
 import { basicUser } from '../../../utils/user.utils';
 import { test, expect } from '@playwright/test';
 import { IdshieldPage } from '../../../page-objects-refactored/marketing-sites/idshield/idshield.page';
-import { CommonLoginPage, CommonCheckoutPage } from '@legalshield/frontend-automation-commons';
+import { CommonLoginService, CommonCheckoutService } from '@legalshield/frontend-automation-commons';
 import UrlsUtils from '../../../utils/urls.utils';
 
 let idshieldPage: IdshieldPage;
-let loginPage: CommonLoginPage;
-let checkoutPage: CommonCheckoutPage;
+let commonLoginService: CommonLoginService;
+let commonCheckoutService: CommonCheckoutService;
 
 test.beforeEach(async ({ page }) => {
   test.setTimeout(120000);
-  loginPage = new CommonLoginPage(page);
+  commonLoginService = new CommonLoginService(page);
   idshieldPage = new IdshieldPage(page);
-  checkoutPage = new CommonCheckoutPage(page);
+  commonCheckoutService = new CommonCheckoutService(page);
 });
 
 const regionsUnderTest = ['Manitoba'];
@@ -38,23 +38,29 @@ for (const regionUnderTest of regionsUnderTest) {
       await idshieldPage.clickGetStartedButton('Individual Plan');
     });
     await test.step(`Log in to reach checkout service`, async () => {
-      await loginPage.login(basicUser.email, basicUser.password);
+      await commonLoginService.loginPage.login(basicUser.email, basicUser.password);
     });
     await test.step(`Validate Order Summary on Personal Info Page`, async () => {
-      expect(await checkoutPage.locOrderSummaryComponentTotalAmount.innerText()).toContain('$14.95');
+      expect(await commonCheckoutService.personalInfoPage.orderSummaryComponent.locTotalAmount.innerText()).toContain('$14.95');
     });
     await test.step(`Change Address to match region and continue to Payment Page`, async () => {
-      await checkoutPage.changeAddress(homeAddress, city, postalCode);
-      await checkoutPage.locPersonalInfoSaveAndContinueButton.click();
+      await commonCheckoutService.personalInfoPage.fillRequiredAddressFields(homeAddress, city, postalCode);
+      await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
     });
     await test.step(`Validate Order Summary on Payment Info Page`, async () => {
-      expect(await checkoutPage.locOrderSummaryComponentTotalAmount.innerText()).toContain('$14.95');
+      expect(await commonCheckoutService.personalInfoPage.orderSummaryComponent.locTotalAmount.innerText()).toContain('$14.95');
+    });
+    await test.step(`Click on the Bank Draft Toggle`, async () => {
+      await commonCheckoutService.paymentsPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
     });
     await test.step(`Fill out Bank Draft form and Submit`, async () => {
-      await checkoutPage.completeBankDraftFormCanada('0000000', '11242', '260', 'Tester');
+      await commonCheckoutService.paymentsPage.bankDraftComponent.completeBankDraftFormCanada('0000000', '11242', '260', 'Tester');
+    });
+    await test.step(`Click on the Purchase button`, async () => {
+      await commonCheckoutService.paymentsPage.bankDraftComponent.locPurchaseButton.click();
     });
     await test.step(`Click on the Let's go button`, async () => {
-      await checkoutPage.locConfirmationPageLetsGoButton.click();
+      await commonCheckoutService.confirmationPage.letsGoButton.click();
     });
     await test.step(`Assert Accounts Page URL`, async () => {
       await expect(page).toHaveURL(new RegExp('accounts'));

@@ -1,7 +1,7 @@
 import { OrderSummaryRow } from './checkout.helpers';
 import { OrderSummaryRowWithoutCost } from './checkout.helpers';
 import { OrderSummaryRowWithoutTier } from './checkout.helpers';
-import { ProductDetails } from '../../tests/e2e/data-driven/data/type-definitions';
+import { ProductDetails } from '../../types/types';
 import { CheckoutLocatorsPage } from './checkout-locators.page';
 import { expect } from '@playwright/test';
 
@@ -226,10 +226,10 @@ export class CheckoutOrderSummaryComponent extends CheckoutLocatorsPage {
     console.log(' - checkoutOrderSummaryComponent.assertAllProductNamesAndCosts');
     for (const pd of productDetails) {
       let found = false;
-      let expectedProductName: string = pd.productName;
+      let expectedProductName: string = pd.name;
       // remove plan prefix if it is a supplement
-      if (pd.productName.includes('-')) {
-        expectedProductName = await this.extractSupplementName(pd.productName);
+      if (pd.name.includes('-')) {
+        expectedProductName = await this.extractSupplementName(pd.name);
       }
       for (const row of this.orderSummary.orderSummaryRows) {
         const planName = row.planName;
@@ -309,14 +309,14 @@ export class CheckoutOrderSummaryComponent extends CheckoutLocatorsPage {
   assertBillingFrequenciesForAllProducts = async (productDetails: Array<ProductDetails>): Promise<void> => {
     console.log(' - checkoutOrderSummaryComponent.assertBillingFrequency');
     for (const pd of productDetails) {
-      if (pd.productName.includes('-')) {
+      if (pd.name.includes('-')) {
         // parse out supplement name from the testharness product name
-        const supplementName = pd.productName.split(' - ');
+        const supplementName = pd.name.split(' - ');
         const eleBillingFrequency = `//div[contains(@class,"lsux-row half children2 content-row mb-4 mt-4") and contains(.,"${supplementName[1]}")]/following-sibling::div[1]`;
         const locator = this.page.locator(eleBillingFrequency);
         await expect(locator).toContainText(pd.term);
       } else {
-        const eleBillingFrequency = `//div[contains(@class,"lsux-row half children2 content-row mb-4 mt-4") and contains(.,"${pd.productName}")]/following-sibling::div[1]`;
+        const eleBillingFrequency = `//div[contains(@class,"lsux-row half children2 content-row mb-4 mt-4") and contains(.,"${pd.name}")]/following-sibling::div[1]`;
         const locator = this.page.locator(eleBillingFrequency);
         await expect(locator).toContainText(pd.term);
       }

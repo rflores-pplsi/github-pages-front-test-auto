@@ -1,6 +1,3 @@
-// import { Locator } from '@playwright/test';
-// import { Moment } from 'moment';
-
 export type LocalStorageSelectedItem = {
   description: string;
   enrollmentFee: string;
@@ -12,4 +9,12 @@ export type LocalStorageSelectedItem = {
   productPrice: string;
   shortcode: string;
   unlicensed_on_current_region: string;
+};
+
+export type ProductDetails = {
+  cost: string;
+  name: string;
+  shortCode: string;
+  term: string;
+  type: string;
 };

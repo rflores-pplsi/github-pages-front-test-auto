@@ -1,6 +1,6 @@
 import { expect, Response } from '@playwright/test';
 import { CheckoutPaymentsBankDraftPage } from './checkout-payments-bank-draft.page';
-import { ProductDetails } from '../../tests/e2e/data-driven/data/type-definitions';
+import { ProductDetails } from '../../types/types';
 
 // ========================== Selectors ==================================
 const TXT_WELCOME_TO_LEGALSHIELD_FAMILY = 'h1.lsux-heading.confirmation-title.lsux-heading--t28';
@@ -33,7 +33,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
     const responseBody = await response.json();
     let i = 0;
     for (const pd of productDetails) {
-      if (!pd.productName.includes('-')) {
+      if (!pd.name.includes('-')) {
         // do not look for shortcodes for supplements
         const friendlyID = responseBody.offers[i].friendlyId;
         console.log(` * Friendly ID: ${friendlyID}`);
@@ -119,15 +119,15 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
     console.log(' - checkoutConfirmationPage.assertNameCostAndBillingFrequencyForAllProducts');
     for (const pd of productDetails) {
       // Name
-      if (pd.productName.includes('-')) {
+      if (pd.name.includes('-')) {
         await this.assertElementIsVisible(
-          `//div[contains(@class,"plan-details-card") and contains(.,"${pd.productName.split(' - ')[1]}") and contains (.,"${
+          `//div[contains(@class,"plan-details-card") and contains(.,"${pd.name.split(' - ')[1]}") and contains (.,"${
             pd.cost
           }") and contains(.,"Monthly")]`
         );
       } else {
         await this.assertElementIsVisible(
-          `//div[contains(@class,"plan-details-card") and contains(.,"${pd.productName}") and contains (.,"${pd.cost}") and contains(.,"Monthly")]`
+          `//div[contains(@class,"plan-details-card") and contains(.,"${pd.name}") and contains (.,"${pd.cost}") and contains(.,"Monthly")]`
         );
       }
     }
@@ -143,7 +143,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
     const responseBody = await response.json();
     let i = 0;
     for (const pd of productDetails) {
-      if (!pd.productName.includes('-')) {
+      if (!pd.name.includes('-')) {
         // do not look for shortcodes for supplements
         const shortName = responseBody.offers[i].products[0].planDetails.short_name;
         await this.assertStringMatch(shortName, pd.shortCode);
@@ -258,9 +258,7 @@ export class CheckoutConfirmationPage extends CheckoutPaymentsBankDraftPage {
   assertAllPlanTilesOnConfirmationPage = async (productDetails: Array<ProductDetails>): Promise<void> => {
     console.log(' - checkoutConfirmationPage.assertAllPlanTilesOnConfirmationPage');
     for (const pd of productDetails) {
-      await this.isElementVisible(
-        `//div[contains(@class,"plan-details-card") and contains(.,"${pd.productName}") and contains(.,"${pd.shortCode}")]`
-      );
+      await this.isElementVisible(`//div[contains(@class,"plan-details-card") and contains(.,"${pd.name}") and contains(.,"${pd.shortCode}")]`);
     }
   };
 

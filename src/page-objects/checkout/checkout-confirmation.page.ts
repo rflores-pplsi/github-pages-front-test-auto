@@ -1,5 +1,5 @@
 import { BrowserContext, expect, Page, Response } from '@playwright/test';
-import { ProductDetails } from '../../tests/e2e/data-driven/data/type-definitions';
+import { ProductDetails } from '../../types/types';
 import { OktaPage } from '../okta/okta.page';
 import { PlanalyzerCsrCheckoutPage } from '../planalyzer/planalyzer-csr-checkout.page';
 import { CheckoutLocatorsPage } from './checkout-locators.page';
@@ -53,7 +53,7 @@ export class CheckoutConfirmationPage extends CheckoutLocatorsPage {
     let i = 0;
     // eslint-disable-next-line no-unused-vars
     for (const pd of productDetails) {
-      if (!pd.productName.includes('-')) {
+      if (!pd.name.includes('-')) {
         // do not look for shortcodes for supplements
         const friendlyID = responseBody.offers[i].friendlyId;
         console.log(` * Friendly ID: ${friendlyID}`);
@@ -324,16 +324,16 @@ export class CheckoutConfirmationPage extends CheckoutLocatorsPage {
     console.log(' - checkoutConfirmationPage.assertNameCostAndBillingFrequencyForAllProducts');
     for (const pd of productDetails) {
       // Name
-      if (pd.productName.includes('-')) {
+      if (pd.name.includes('-')) {
         const locator = this.page.locator(
-          `//div[contains(@class,"plan-details-card") and contains(.,"${pd.productName.split(' - ')[1]}") and contains (.,"${
+          `//div[contains(@class,"plan-details-card") and contains(.,"${pd.name.split(' - ')[1]}") and contains (.,"${
             pd.cost
           }") and contains(.,"Monthly")]`
         );
         await expect(locator).toBeVisible();
       } else {
         const locator = this.page.locator(
-          `//div[contains(@class,"plan-details-card") and contains(.,"${pd.productName}") and contains (.,"${pd.cost}") and contains(.,"Monthly")]`
+          `//div[contains(@class,"plan-details-card") and contains(.,"${pd.name}") and contains (.,"${pd.cost}") and contains(.,"Monthly")]`
         );
         await expect(locator).toBeVisible();
       }
@@ -350,7 +350,7 @@ export class CheckoutConfirmationPage extends CheckoutLocatorsPage {
     const responseBody = await response.json();
     let i = 0;
     for (const pd of productDetails) {
-      if (!pd.productName.includes('-')) {
+      if (!pd.name.includes('-')) {
         // do not look for shortcodes for supplements
         const shortName = responseBody.offers[i].products[0].planDetails.short_name;
         expect(shortName).toEqual(pd.shortCode);
@@ -461,7 +461,7 @@ export class CheckoutConfirmationPage extends CheckoutLocatorsPage {
    */
   assertAllPlanTilesOnConfirmationPage = async (productDetails: Array<ProductDetails>): Promise<void> => {
     for (const pd of productDetails) {
-      const ele = `//div[contains(@class,"plan-details-card") and contains(.,"${pd.productName}") and contains(.,"${pd.shortCode}")]`;
+      const ele = `//div[contains(@class,"plan-details-card") and contains(.,"${pd.name}") and contains(.,"${pd.shortCode}")]`;
       await expect(this.page.locator(ele)).toBeVisible();
     }
   };

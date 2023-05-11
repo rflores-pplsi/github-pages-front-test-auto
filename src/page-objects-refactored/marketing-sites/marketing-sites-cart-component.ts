@@ -4,12 +4,12 @@ export class MarketingSitesCartComponent {
   protected page: Page;
   readonly locCartContainerDiv: Locator;
   readonly locCheckoutButton: Locator;
-  readonly locCanadaCheckoutButton: Locator;
+  readonly locContinueShoppingLink: Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.locCartContainerDiv = this.page.locator('//div[@id="cart-container"]');
-    this.locCheckoutButton = this.page.locator('//button[contains(.,"Checkout")]');
-    this.locCanadaCheckoutButton = this.page.locator('#checkout-btn');
+    this.locCheckoutButton = this.page.locator('#checkout-btn');
+    this.locContinueShoppingLink = this.page.locator('//div[@id="continue-shopping-link"]//a');
   }
 }

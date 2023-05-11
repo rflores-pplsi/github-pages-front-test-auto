@@ -2,17 +2,17 @@ import RegionsUtils from '../../../utils/regions.utils';
 import { basicUser } from '../../../utils/user.utils';
 import { test, expect } from '@playwright/test';
 import { LegalshieldCoverageAndPricingPage } from '../../../page-objects-refactored/marketing-sites/legalshield/legalshield-coverage-and-pricing.page';
-import { CommonLoginPage, CommonCheckoutPage } from '@legalshield/frontend-automation-commons';
+import { CommonLoginService, CommonCheckoutService } from '@legalshield/frontend-automation-commons';
 
 let legalshieldCoverageAndPricingPage: LegalshieldCoverageAndPricingPage;
-let loginPage: CommonLoginPage;
-let checkoutPage: CommonCheckoutPage;
+let commonLoginService: CommonLoginService;
+let commonCheckoutService: CommonCheckoutService;
 
 test.beforeEach(async ({ page }) => {
   test.setTimeout(120000);
-  loginPage = new CommonLoginPage(page);
+  commonLoginService = new CommonLoginService(page);
   legalshieldCoverageAndPricingPage = new LegalshieldCoverageAndPricingPage(page);
-  checkoutPage = new CommonCheckoutPage(page);
+  commonCheckoutService = new CommonCheckoutService(page);
 });
 
 const regionsUnderTest = ['Alberta'];
@@ -26,7 +26,7 @@ for (const regionUnderTest of regionsUnderTest) {
     const regionAbbreviation = regionInfo.abbrv;
 
     await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
-      await legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('Canada', 'English');
+      await legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('CA', 'en');
     });
     await test.step(`Change Canadian Region`, async () => {
       await legalshieldCoverageAndPricingPage.changeCanadianRegion(regionUnderTest, regionAbbreviation);
@@ -35,29 +35,32 @@ for (const regionUnderTest of regionsUnderTest) {
       await legalshieldCoverageAndPricingPage.locCanadaGetStartedButton.click();
     });
     await test.step(`Click on the Shopping Cart Checkout button`, async () => {
-      await legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCanadaCheckoutButton.click();
+      await legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
     });
     await test.step(`Log in to reach checkout service`, async () => {
-      await loginPage.login(basicUser.email, basicUser.password);
+      await commonLoginService.loginPage.login(basicUser.email, basicUser.password);
     });
     await test.step(`Validate Order Summary on Personal Info Page`, async () => {
-      expect(await checkoutPage.locOrderSummaryComponentTotalAmount.innerText()).toContain('$32.95');
+      expect(await commonCheckoutService.personalInfoPage.orderSummaryComponent.locTotalAmount.innerText()).toContain('$32.95');
     });
     await test.step(`Change Address to match region and continue to Payment Page`, async () => {
-      await checkoutPage.changeAddress(homeAddress, city, postalCode);
-      await checkoutPage.locPersonalInfoSaveAndContinueButton.click();
+      await commonCheckoutService.personalInfoPage.fillRequiredAddressFields(homeAddress, city, postalCode);
+      await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
     });
     await test.step(`Validate Order Summary on Payment Info Page`, async () => {
-      expect(await checkoutPage.locOrderSummaryComponentTotalAmount.innerText()).toContain('$32.95');
+      expect(await commonCheckoutService.paymentsPage.orderSummaryComponent.locTotalAmount.innerText()).toContain('$32.95');
+    });
+    await test.step(`Click on the Bank Draft Toggle`, async () => {
+      await commonCheckoutService.paymentsPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
     });
     await test.step(`Fill out Bank Draft form and Submit`, async () => {
-      await checkoutPage.completeBankDraftFormCanada('0000000', '11242', '260', 'Tester');
+      await commonCheckoutService.paymentsPage.bankDraftComponent.completeBankDraftFormCanada('0000000', '11242', '260', 'Tester');
     });
-    await test.step(`Assert Confirmation Page URL`, async () => {
-      await expect(checkoutPage.locConfirmationPageWelcomeHeader).toBeVisible({ timeout: 100000 });
+    await test.step(`Click on the Purchase button`, async () => {
+      await commonCheckoutService.paymentsPage.bankDraftComponent.locPurchaseButton.click();
     });
     await test.step(`Click on the Let's go button`, async () => {
-      await checkoutPage.locConfirmationPageLetsGoButton.click();
+      await commonCheckoutService.confirmationPage.letsGoButton.click();
     });
     await test.step(`Assert Accounts Page URL`, async () => {
       await expect(page).toHaveURL(new RegExp('accounts'));

@@ -1,5 +1,5 @@
 import { BrowserContext, FrameLocator, Locator, Page } from '@playwright/test';
-import { CommonCheckoutPage, CommonLoginPage } from '@legalshield/frontend-automation-commons';
+import { CommonCheckoutService, CommonLoginService } from '@legalshield/frontend-automation-commons';
 import { LoginPage } from '../login/login.page';
 let context: BrowserContext;
 /**
@@ -22,8 +22,8 @@ export class QaMaintenanceListLocatorsPage extends LoginPage {
   readonly bestMoneyMoversLocLblTellUsAboutYourself: Locator;
   readonly bestMoneyMoversLocLnkLegalPlan: Locator;
   readonly confirmationPageLblWelcome: Locator;
-  readonly commonLoginPage: CommonLoginPage;
-  readonly commonCheckoutPage: CommonCheckoutPage;
+  readonly commonLoginService: CommonLoginService;
+  readonly commonCheckoutService: CommonCheckoutService;
   readonly createUserRdoButtonUsername: Locator;
   readonly createUserTxtPassword: Locator;
   readonly createUserTxtConfirmPassword: Locator;
@@ -117,8 +117,8 @@ export class QaMaintenanceListLocatorsPage extends LoginPage {
     this.bestMoneyMoversLocSlctFrequencyDropdown = this.page.locator('//span[contains(text(),"Monthly")]');
     this.bestMoneyMoversLocLblTellUsAboutYourself = this.page.locator('//h1[contains(text(),"Tell us about yourself")]');
     this.bestMoneyMoversLocLnkLegalPlan = this.page.locator('text="Legal Plan"');
-    this.commonLoginPage = new CommonLoginPage(page);
-    this.commonCheckoutPage = new CommonCheckoutPage(page);
+    this.commonLoginService = new CommonLoginService(page);
+    this.commonCheckoutService = new CommonCheckoutService(page);
     this.BTN_GET_A_PLAN = this.page.locator('//a[starts-with(@class,"plan-builder")] >> nth=0');
     this.BTN_BECOME_ASSOCIATE = this.page.locator('//span[contains(text(),"Become an Associate")]');
     this.LBL_HOME_BUSINESS_SUPPLEMENT = this.page.locator('//label[starts-with(@id,"label-hbs")]');

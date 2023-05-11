@@ -1,6 +1,6 @@
 import { BrowserContext, FrameLocator, Locator, Page } from '@playwright/test';
 // import { CheckoutOrderSummaryComponent } from './checkout-order-summary.component';
-import { CommonCheckoutPage, CommonLoginPage } from '@legalshield/frontend-automation-commons';
+import { CommonCheckoutService, CommonLoginService } from '@legalshield/frontend-automation-commons';
 import { LoginLocatorsPage } from '../login/login-locators.page';
 import { OrderSummary, OrderSummaryWithoutCosts, OrderSummaryWithoutTiers } from './checkout.helpers';
 // import { CheckoutPaymentsPage } from './checkout-payments.page';
@@ -17,8 +17,8 @@ export class CheckoutLocatorsPage {
   readonly context: BrowserContext;
   protected page: Page;
   // readonly checkoutPersonalInfoPage: CheckoutPersonalInfoPage;
-  readonly commonLoginPage: CommonLoginPage;
-  readonly commonCheckoutPage: CommonCheckoutPage;
+  readonly commonLoginService: CommonLoginService;
+  readonly commonCheckoutService: CommonCheckoutService;
   readonly loginLocatorsPage: LoginLocatorsPage;
   readonly orderSummary: OrderSummary;
   readonly orderSummaryWithoutTiers: OrderSummaryWithoutTiers;
@@ -95,8 +95,8 @@ export class CheckoutLocatorsPage {
     this.paymentsLocFrmPayment = this.page.frameLocator("//iframe[@title='payment iframe']");
     // this.checkoutOrderSummaryComponent = new CheckoutOrderSummaryComponent(page);
     // this.checkoutPersonalInfoPage = new CheckoutPersonalInfoPage(page, lineOfBusiness, planSupp);
-    this.commonLoginPage = new CommonLoginPage(page);
-    this.commonCheckoutPage = new CommonCheckoutPage(page);
+    this.commonLoginService = new CommonLoginService(page);
+    this.commonCheckoutService = new CommonCheckoutService(page);
     this.loginLocatorsPage = new LoginLocatorsPage(context, page);
     // this.checkoutPaymentsPage = new CheckoutPaymentsPage(page, lineOfBusiness, planSupp);
     this.confirmationLocTxtWelcomeToLegalshiledFamily = this.page.locator('h1.lsux-heading.confirmation-title.lsux-heading--t28');

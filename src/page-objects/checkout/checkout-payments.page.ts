@@ -3,6 +3,7 @@ import RegionsUtils from '../../utils/regions.utils';
 import { basicUser } from '../../utils/user.utils';
 import { CheckoutLocatorsPage } from './checkout-locators.page';
 import { CheckoutPersonalInfoPage } from './checkout-personal-info.page';
+import { CommonLoginService } from '@legalshield/frontend-automation-commons';
 
 // ========================== Create instance of Page ==================================
 
@@ -12,6 +13,7 @@ import { CheckoutPersonalInfoPage } from './checkout-personal-info.page';
  */
 export class CheckoutPaymentsPage extends CheckoutLocatorsPage {
   readonly checkoutPersonalInfoPage: CheckoutPersonalInfoPage;
+  readonly commonLoginService: CommonLoginService;
   /**
    * @param {BrowserContext} context
    * @param {Page} page
@@ -22,6 +24,7 @@ export class CheckoutPaymentsPage extends CheckoutLocatorsPage {
   constructor(context: BrowserContext, page: Page, lineOfBusiness: string, planSupp: Array<string>) {
     super(context, page);
     this.checkoutPersonalInfoPage = new CheckoutPersonalInfoPage(context, page, lineOfBusiness, planSupp);
+    this.commonLoginService = new CommonLoginService(page);
     this.page = page;
   }
   // ========================== Process Methods ============================
@@ -61,7 +64,7 @@ export class CheckoutPaymentsPage extends CheckoutLocatorsPage {
   navigateToMarketingSitePaymentsPage = async (page: Page, state: string, url: string): Promise<void> => {
     await this.page.goto(url);
     this.page.waitForLoadState();
-    await this.commonLoginPage.login(basicUser.email as string, basicUser.password as string);
+    await this.commonLoginService.loginPage.login(basicUser.email as string, basicUser.password as string);
     this.page.waitForLoadState();
     this.page.waitForLoadState();
     const regionObj = RegionsUtils.usStates;

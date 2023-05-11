@@ -11,7 +11,7 @@ import { BrowserContext, expect } from '@playwright/test';
 import DataUtils from '../../utils/Tests.Data';
 import { CheckoutLocatorsPage } from './checkout-locators.page';
 import { LegalshieldTestHarnessMenuPage } from '../test-harness/legalshield-test-harness-menu.page';
-import { CommonLoginPage } from '@legalshield/frontend-automation-commons';
+import { CommonLoginService } from '@legalshield/frontend-automation-commons';
 
 /**
  * @export
@@ -25,7 +25,7 @@ export class CheckoutPersonalInfoPage extends CheckoutLocatorsPage {
   readonly navigateToTestingHarnessPage: NavigateToTestingHarnessPage;
   readonly addPlanAndSomeSupplements: AddPlanAndSomeSupplements;
   readonly legalshieldTestHarnessMenuPage: LegalshieldTestHarnessMenuPage;
-  readonly commonLoginPage: CommonLoginPage;
+  readonly commonLoginService: CommonLoginService;
 
   // ========================== Selectors ==================================
 
@@ -85,7 +85,7 @@ export class CheckoutPersonalInfoPage extends CheckoutLocatorsPage {
   constructor(context: BrowserContext, page: Page, lineOfBusiness: string, planSupp: Array<string>) {
     super(context, page);
     this.page = page;
-    this.commonLoginPage = new CommonLoginPage(page); // instantiate CommonLoginPage
+    this.commonLoginService = new CommonLoginService(page); // instantiate CommonLoginService
     this.legalshieldTestHarnessMenuPage = new LegalshieldTestHarnessMenuPage(context, page);
     this.personalInfoLocLineOfBusiness = lineOfBusiness;
     this.planSupp = planSupp;
@@ -446,7 +446,7 @@ export class CheckoutPersonalInfoPage extends CheckoutLocatorsPage {
     await this.legalshieldTestHarnessMenuPage.selectRegionFromDropdown(state);
     await this.addPlanAndSomeSupplements.pickAPlan(planSupp, lineOfBusiness);
     await this.page.waitForLoadState();
-    await this.commonLoginPage.login(basicUser.email as string, basicUser.password as string); // not adding creds
+    await this.commonLoginService.loginPage.login(basicUser.email as string, basicUser.password as string); // not adding creds
   };
   // Navigate to the personal info page and scrapes the order summary to be used in assertions
 
@@ -484,7 +484,7 @@ export class CheckoutPersonalInfoPage extends CheckoutLocatorsPage {
     } else {
       await this.shieldBenefitsLegalPricingPage.selectPlanFromShieldBenefitsPricingPage(stateName, payTerm, planName, tierName);
     }
-    await this.commonLoginPage.login(emailOrUsername as string, password as string);
+    await this.commonLoginService.loginPage.login(emailOrUsername as string, password as string);
     await this.personalInfoLocTxtHomeAddress.fill(street);
     await this.personalInfoLocTxtCity.fill(city);
     await this.page.keyboard.press('Tab');
@@ -522,7 +522,7 @@ export class CheckoutPersonalInfoPage extends CheckoutLocatorsPage {
     console.log(' - checkoutPersonalInfoPage.navigatePersonalInfoPageFromLogin');
     await this.navigateToShieldBenefitsPricingPage(groupNumber);
     await this.selectPlanWithoutPaymentFrequencyFromShieldBenefitsPricingPage(stateName, planName, tierName);
-    await this.commonLoginPage.login(emailOrUsername as string, password as string);
+    await this.commonLoginService.loginPage.login(emailOrUsername as string, password as string);
     await this.personalInfoLocTxtHomeAddress.fill(street);
     await this.personalInfoLocTxtCity.fill(city);
     await this.page.keyboard.press('Tab');
@@ -563,7 +563,7 @@ export class CheckoutPersonalInfoPage extends CheckoutLocatorsPage {
     console.log(' - checkoutPersonalInfoPage.navigatePersonalInfoPageFromLogin');
     await this.navigateToShieldBenefitsPricingPage(groupNumber);
     await this.selectCombinationPlanFromShieldBenefitsPricingPage(stateName, payTerm, planName, plan2Name);
-    await this.commonLoginPage.login(emailOrUsername as string, password as string);
+    await this.commonLoginService.loginPage.login(emailOrUsername as string, password as string);
     await this.personalInfoLocTxtHomeAddress.fill(street);
     await this.personalInfoLocTxtCity.fill(city);
     await this.page.keyboard.press('Tab');
@@ -632,7 +632,7 @@ export class CheckoutPersonalInfoPage extends CheckoutLocatorsPage {
       couponCode,
       plans
     );
-    await this.commonLoginPage.login(basicUser.email as string, basicUser.password as string);
+    await this.commonLoginService.loginPage.login(basicUser.email as string, basicUser.password as string);
   };
   /**
    *
@@ -645,7 +645,7 @@ export class CheckoutPersonalInfoPage extends CheckoutLocatorsPage {
     await this.planalyzerCsrCheckoutPage.createOrderRedirectToCheckoutFromPlanalyzer('D2C', 'IDShield', 'Ontario', 'en-CA', '', 'F30', [
       'IDShield Individual',
     ]);
-    await this.commonLoginPage.login(basicUser.email as string, basicUser.password as string);
+    await this.commonLoginService.loginPage.login(basicUser.email as string, basicUser.password as string);
   };
   // /**
   //  * @param {string} groupNumber
@@ -667,7 +667,7 @@ export class CheckoutPersonalInfoPage extends CheckoutLocatorsPage {
       DataUtils.data.testingHarness.lineOfBusiness.IDShield
     );
     await this.addPlanAndSomeSupplements.pickAPlan(this.planSupp, this.personalInfoLocLineOfBusiness);
-    await this.commonLoginPage.login(basicUser.email as string, basicUser.password as string);
+    await this.commonLoginService.loginPage.login(basicUser.email as string, basicUser.password as string);
     const regionObj = RegionsUtils.caProvinces;
     const stateObj = state;
     for (const obj of regionObj) {

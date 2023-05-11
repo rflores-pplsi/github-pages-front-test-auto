@@ -3,20 +3,20 @@ import { test, expect } from '@playwright/test';
 import { basicUser } from '../../utils/user.utils';
 import { ShieldBenefitsLegalOverviewPage } from '../../page-objects-refactored/shield-benefits-legal-overview.page';
 import { ShieldBenefitsLegalEnrollmentPage } from '../../page-objects-refactored/shield-benefits-legal-enrollment.page';
-import { CommonLoginPage, CommonCheckoutPage } from '@legalshield/frontend-automation-commons';
+import { CommonLoginService, CommonCheckoutService } from '@legalshield/frontend-automation-commons';
 import * as dotenv from 'dotenv';
 dotenv.config();
 
 let shieldBenefitsLegalOverviewPage: ShieldBenefitsLegalOverviewPage;
 let shieldBenefitsLegalEnrollmentPage: ShieldBenefitsLegalEnrollmentPage;
-let loginPage: CommonLoginPage;
-let checkoutPage: CommonCheckoutPage;
+let commonLoginService: CommonLoginService;
+let commonCheckoutService: CommonCheckoutService;
 
 test.beforeEach(async ({ page }) => {
   shieldBenefitsLegalOverviewPage = new ShieldBenefitsLegalOverviewPage(page);
   shieldBenefitsLegalEnrollmentPage = new ShieldBenefitsLegalEnrollmentPage(page);
-  loginPage = new CommonLoginPage(page);
-  checkoutPage = new CommonCheckoutPage(page);
+  commonLoginService = new CommonLoginService(page);
+  commonCheckoutService = new CommonCheckoutService(page);
   test.slow();
 });
 
@@ -60,13 +60,13 @@ for (const regionUnderTest of regionsUnderTest) {
       console.log('Do not finish transaction in PRODUCTION environment. We do not want to create additional memberships');
     } else {
       await test.step(`Fill out Bank Draft form and Submit`, async () => {
-        await checkoutPage.completeBankDraftFormUnitedStates('1000123546', '103000648', 'Test');
+        await commonCheckoutService.paymentsPage.bankDraftComponent.completeBankDraftFormUnitedStates('1000123546', '103000648', 'Test');
       });
       await test.step(`Assert Confirmation Page URL`, async () => {
         await expect(page).toHaveURL(new RegExp('checkout'));
       });
       await test.step(`Click on the Let's go button`, async () => {
-        await checkoutPage.locConfirmationPageLetsGoButton.click();
+        await commonCheckoutService.confirmationPage.letsGoButton.click();
       });
       await test.step(`Assert Accounts Page URL`, async () => {
         await expect(page).toHaveURL(new RegExp('accounts'));

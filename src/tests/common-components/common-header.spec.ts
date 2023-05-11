@@ -1,16 +1,16 @@
 import { test, expect } from '@playwright/test';
 import UrlsUtils from '../../utils/urls.utils';
 import { CommonHeaderComponent } from '../../page-objects-refactored/common-components/common-header.component';
-import { CommonLoginPage } from '@legalshield/frontend-automation-commons';
+import { CommonLoginService } from '@legalshield/frontend-automation-commons';
 import { basicUser } from '../../utils/user.utils';
 
 let commonHeaderComponent: CommonHeaderComponent;
-let loginPage: CommonLoginPage;
+let commonLoginService: CommonLoginService;
 
 test.beforeEach(async ({ page }) => {
   test.slow();
   commonHeaderComponent = new CommonHeaderComponent(page);
-  loginPage = new CommonLoginPage(page);
+  commonLoginService = new CommonLoginService(page);
 });
 
 test('User can reveal the Help options by clicking the Help button', async ({ page }) => {
@@ -122,7 +122,7 @@ test('Common Header displays the following in the Accounts service', async ({ pa
     await page.goto(UrlsUtils.legalshieldUrls.login.url);
   });
   await test.step(`Log in to reach Accounts service`, async () => {
-    await loginPage.login(basicUser.email, basicUser.password);
+    await commonLoginService.loginPage.login(basicUser.email, basicUser.password);
   });
   await test.step(`Verify elements and style of Header`, async () => {
     // Header container is different depending on service?
@@ -143,7 +143,7 @@ test('Common Header displays the following in the Cart-Builder service', async (
     await page.goto(UrlsUtils.legalshieldUrls.login.url);
   });
   await test.step(`Log in to reach Accounts service`, async () => {
-    await loginPage.login(basicUser.email, basicUser.password);
+    await commonLoginService.loginPage.login(basicUser.email, basicUser.password);
   });
   await test.step(`Verify elements and style of Header`, async () => {
     // Header container is different depending on service?
@@ -163,7 +163,7 @@ test('User can reveal the Account menu by clicking on the My Account dropdown', 
     await page.goto(UrlsUtils.legalshieldUrls.login.url);
   });
   await test.step(`Log in to reach Accounts service`, async () => {
-    await loginPage.login(basicUser.email, basicUser.password);
+    await commonLoginService.loginPage.login(basicUser.email, basicUser.password);
   });
   await test.step(`Click on the Avatar Dropdown`, async () => {
     await commonHeaderComponent.locAccountMenuDropDown.click();
@@ -183,7 +183,7 @@ test('User can navigate to the Accounts Home page by clicking the Account menu M
     await page.goto(UrlsUtils.legalshieldUrls.login.url);
   });
   await test.step(`Log in to reach Accounts service`, async () => {
-    await loginPage.login(basicUser.email, basicUser.password);
+    await commonLoginService.loginPage.login(basicUser.email, basicUser.password);
   });
   await test.step(`Navigate away from Accounts Home page`, async () => {
     await commonHeaderComponent.navigateToAccountsProfilePageThroughMyAccountsLink();
@@ -202,7 +202,7 @@ test('User can navigate to the Accounts Profile page by clicking the Account men
     await page.goto(UrlsUtils.legalshieldUrls.login.url);
   });
   await test.step(`Log in to reach Accounts service`, async () => {
-    await loginPage.login(basicUser.email, basicUser.password);
+    await commonLoginService.loginPage.login(basicUser.email, basicUser.password);
   });
   await test.step(`Navigate to the Accounts Profile page by clicking the Account menu My Account link`, async () => {
     await commonHeaderComponent.navigateToAccountsProfilePageThroughMyAccountsLink();
@@ -218,7 +218,7 @@ test('User can sign out of their account by clicking the Account menu Sign Out l
     await page.goto(UrlsUtils.legalshieldUrls.login.url);
   });
   await test.step(`Log in to reach Accounts service`, async () => {
-    await loginPage.login(basicUser.email, basicUser.password);
+    await commonLoginService.loginPage.login(basicUser.email, basicUser.password);
   });
   await test.step(`Sign out of account by clicking the Account menu Sign Out link`, async () => {
     await commonHeaderComponent.signOut();
