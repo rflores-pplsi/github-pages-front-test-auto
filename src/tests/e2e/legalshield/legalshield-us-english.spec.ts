@@ -26,7 +26,7 @@ for (const regionUnderTest of regionsUnderTest) {
     const regionAbbreviation = regionInfo.abbrv;
 
     await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
-      await legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'es');
+      await legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
     });
     await test.step(`Change Region`, async () => {
       await legalshieldCoverageAndPricingPage.marketingSiteFooterComponent.selectRegion(regionUnderTest, regionAbbreviation);
@@ -50,11 +50,14 @@ for (const regionUnderTest of regionsUnderTest) {
     await test.step(`Validate Order Summary on Payment Info Page`, async () => {
       expect(await commonCheckoutService.paymentsPage.orderSummaryComponent.locTotalAmount.innerText()).toContain('$29.95');
     });
-    await test.step(`Fill out Bank Draft form and Submit`, async () => {
+    await test.step(`Click on the Bank Draft Toggle`, async () => {
+      await commonCheckoutService.paymentsPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
+    });
+    await test.step(`Fill out Bank Draft form`, async () => {
       await commonCheckoutService.paymentsPage.bankDraftComponent.completeBankDraftFormUnitedStates('1000123546', '103000648', 'Test');
     });
-    await test.step(`Assert Confirmation Page URL`, async () => {
-      await expect(page).toHaveURL(new RegExp('checkout'));
+    await test.step(`Click on the Purchase button`, async () => {
+      await commonCheckoutService.paymentsPage.bankDraftComponent.locPurchaseButton.click();
     });
     await test.step(`Click on the Let's go button`, async () => {
       await commonCheckoutService.confirmationPage.letsGoButton.click();

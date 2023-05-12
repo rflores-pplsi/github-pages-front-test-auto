@@ -53,7 +53,7 @@ for (const regionUnderTest of regionsUnderTest) {
     await test.step(`Click on the Bank Draft Toggle`, async () => {
       await commonCheckoutService.paymentsPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
     });
-    await test.step(`Fill out Bank Draft form and Submit`, async () => {
+    await test.step(`Fill out Bank Draft form`, async () => {
       await commonCheckoutService.paymentsPage.bankDraftComponent.completeBankDraftFormCanada('0000000', '11242', '260', 'Tester');
     });
     await test.step(`Click on the Purchase button`, async () => {
