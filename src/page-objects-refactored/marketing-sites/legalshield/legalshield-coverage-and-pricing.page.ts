@@ -59,11 +59,20 @@ export class LegalshieldCoverageAndPricingPage {
   /**
    *
    *
-   * @param {string} [market='United States']
-   * @param {string} [language='English']
    * @memberof LegalshieldCoverageAndPricingPage
    */
-  navigateToLegalshieldPricingAndCoveragePage = async (market = 'US', language = 'en'): Promise<void> => {
+  clickCanadaGetStartedButton = async (): Promise<void> => {
+    await this.locCanadaGetStartedButton.click({ force: true });
+  };
+
+  /**
+   *
+   *
+   * @param {string} market
+   * @param {string} language
+   * @memberof LegalshieldCoverageAndPricingPage
+   */
+  navigateToLegalshieldPricingAndCoveragePage = async (market: string, language: string): Promise<void> => {
     switch (market) {
       case 'US':
         this.baseUrl = UrlsUtils.marketingSitesUrls.legalShieldUSUrl;

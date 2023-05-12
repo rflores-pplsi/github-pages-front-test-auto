@@ -11,15 +11,6 @@ export class CheckoutCreditCardComponent {
   readonly locBillingPostalCodeWarningMessage: Locator;
   readonly locTermsOfServiceLink: Locator;
 
-  //TODO: Delete the stuff used in commons
-
-  // readonly locCardNumberInput: Locator;
-  // readonly locExpirationDateInput: Locator;
-  // readonly locSecurityCodeInput: Locator;
-  // readonly locNameOnCardInput: Locator;
-  // readonly locBillingPostalCodeInput: Locator;
-  // readonly locPurchaseButton: Locator;
-
   constructor(page: Page, context: BrowserContext) {
     this.page = page;
     this.context = context;
@@ -30,15 +21,6 @@ export class CheckoutCreditCardComponent {
     this.locNameOnCardWarningMessage = this.locPaymentIframe.locator('//*[@id="cardholder_name_err"]');
     this.locBillingPostalCodeWarningMessage = this.locPaymentIframe.locator('//*[@id="postal_code_err"]');
     this.locTermsOfServiceLink = this.locPaymentIframe.locator('//form[@id="cc_form"]//a[text()="Terms of Service"]');
-
-    //TODO: Delete the stuff used in commons
-
-    // this.locCardNumberInput = this.locPaymentIframe.locator('//*[@id="card_number"]');
-    // this.locExpirationDateInput = this.locPaymentIframe.locator('//*[@id="expiration_date"]');
-    // this.locSecurityCodeInput = this.locPaymentIframe.locator('//*[@id="security_code"]');
-    // this.locNameOnCardInput = this.locPaymentIframe.locator('//*[@id="cardholder_name"]');
-    // this.locBillingPostalCodeInput = this.locPaymentIframe.locator('//*[@id="postal_code"]');
-    // this.locPurchaseButton = this.locPaymentIframe.locator('button//[@id="savecc"]');
   }
 
   /**
