@@ -20,8 +20,8 @@ test.beforeEach(async ({ page }) => {
 // LegalShield - US - existing user
 for (const testCase of consumerFlowLegalshieldData.filter((testCase) => testCase.disabled == false)) {
   for (const regionUnderTest of testCase.regions) {
-    test(`${testCase.testCaseName} - Existing User, ${regionUnderTest}`, async ({ page }) => {
-      console.log(`Test Case: ${testCase.testCaseName} - ${regionUnderTest} @ConsumerFlowEndToEnd`);
+    test(`${testCase.testCaseName} - Existing User, ${regionUnderTest} @ConsumerFlowEndToEnd`, async ({ page }) => {
+      console.log(`Test Case: ${testCase.testCaseName} - ${regionUnderTest}`);
       const regionInfo = RegionsUtils.usStates.filter((region) => region.name == regionUnderTest)[0];
 
       await test.step(`Navigate to legalshield.com for ${testCase.market}-${testCase.language}`, async () => {
