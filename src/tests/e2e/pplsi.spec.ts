@@ -10,8 +10,8 @@ test.beforeEach(async ({ context, page }) => {
   pplsiBusinessSolutionsOrientationPage = new PplsiBusinessSolutionsOrientationPage(context, page);
   pplsiPage = new PplsiPage(context, page);
 });
-test(`Can proceed through the entire Business Solutions Orientation Flow @smoke`, async ({ page }) => {
-  console.log(`Test Case: Can proceed through the entire Business Solutions Orientation Flow`);
+test(`Business Solutions Orientation Flow @smoke`, async ({ page }) => {
+  console.log(`Test Case: Business Solutions Orientation Flow`);
   await test.step(`Navigate to PPLSI.com Business Solutions Orientation Overview page`, async () => {
     await pplsiBusinessSolutionsOrientationPage.page.goto(`${UrlsUtils.pplsiUrls.home.url}/business-solutions-orientation/`);
   });
@@ -33,13 +33,13 @@ test(`Can proceed through the entire Business Solutions Orientation Flow @smoke`
   await test.step(`Click the Complete button in the bottom navigation menu on the business solutions orientation our culture page`, async () => {
     await pplsiBusinessSolutionsOrientationPage.pplsiBusinessSolutionsOrientationBottomNavigationBarComponent.locCompleteButton.click();
   });
-  await test.step(`Validate Order Summary on Payment Info Page`, async () => {
+  await test.step(`Validate Title of Business Solutions Orientation Page`, async () => {
     expect(page).toHaveTitle('Business Solutions Orientation - PPLSI');
   });
 });
 
-test(`User can click the Business Opportunity link in PPLSI footer and reach the Business Solutions Orientation Page @smoke`, async ({ page }) => {
-  console.log(`Test Case: User can click the Business Opportunity link in PPLSI footer and reach the Business Solutions Orientation Page`);
+test(`PPLSI footer Business Opportunity link to Business Solutions Orientation Page @smoke`, async ({ page }) => {
+  console.log(`Test Case: PPLSI footer Business Opportunity link to Business Solutions Orientation Page`);
   await test.step(`Navigate to PPLSI.com Business Solutions Orientation Overview page`, async () => {
     await page.goto(`${UrlsUtils.pplsiUrls.home.url}`);
   });

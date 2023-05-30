@@ -1,20 +1,20 @@
 export const partialFringeData = [
   {
     disabled: false,
-    groupNumber: 'nnidstest27',
+    groupNumber: 'crcdistribution',
     groupPayConfig: 'partial fringe',
     orderSummaryPlanName: 'IDShield Individual - Individual 1B',
     payFrequency: 'Monthly',
     planCost: '$12.95',
     planName: 'IDShield Individual',
     planType: 'IDShield',
-    regions: ['New York', 'California', 'Georgia', 'Florida', 'Texas', 'Massachusetts'],
+    regions: ['New York'],
     testCaseName: 'Partial Fringe (IDShield Individual)',
     tierName: '1 Bureau Credit Monitoring',
     totalCost: '$12.95',
   },
   {
-    disabled: false,
+    disabled: true,
     groupNumber: 'nnidstest27',
     groupPayConfig: 'partial fringe',
     orderSummaryPlanName: 'IDShield Family - Family 1B',
@@ -28,7 +28,7 @@ export const partialFringeData = [
     totalCost: '$22.95',
   },
   {
-    disabled: false,
+    disabled: true,
     groupNumber: 'nnlegaltest31',
     groupPayConfig: 'partial fringe',
     orderSummaryPlanName: 'Legal Plan Family',

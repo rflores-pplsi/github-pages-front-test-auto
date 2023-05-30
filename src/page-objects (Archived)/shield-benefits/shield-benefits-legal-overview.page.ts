@@ -3,7 +3,7 @@ import { PlanalyzerCsrCheckoutPage } from '../planalyzer/planalyzer-csr-checkout
 
 // ========================== Selectors ==================================
 
-const LNK_PRICING_TAB = 'a:has-text("Pricing")';
+const LNK_PRICING_TAB = 'a:has-text("Enroll Now")';
 
 /**
  * @export

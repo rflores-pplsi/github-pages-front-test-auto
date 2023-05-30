@@ -8,22 +8,22 @@ let walsAffiliatedPage: WalsAffiliatedPage;
 let loginPage: CommonLoginService;
 let checkoutPage: CommonCheckoutService;
 
-test.beforeEach(async ({ page }) => {
+test.beforeEach(async ({ context, page }) => {
   test.slow();
   walsAffiliatedPage = new WalsAffiliatedPage(page);
   loginPage = new CommonLoginService(page);
-  checkoutPage = new CommonCheckoutService(page);
+  checkoutPage = new CommonCheckoutService(context, page);
 });
 
 const regionsUnderTest = ['Ontario'];
 for (const regionUnderTest of regionsUnderTest) {
-  test('Can purchase any plan from noussommeslegalshield (affiliated) for market=fr-CA @smoke', async ({ page }) => {
-    console.log(`${regionUnderTest} - Can purchase any plan from noussommeslegalshield (affiliated) for market=fr-CA`);
+  test('Noussommeslegalshield (Legal Plan, fr-CA, ${regionUnderTest}) -> Checkout -> Accounts @smoke', async ({ page }) => {
+    console.log(`Test Case: Noussommeslegalshield (Legal Plan, fr-CA, ${regionUnderTest}) -> Checkout -> Accounts`);
     const regionInfo = RegionsUtils.caFrenchProvinces.filter((region) => region.name == regionUnderTest)[0];
     const homeAddress = regionInfo.validAddress.street;
     const city = regionInfo.validAddress.city;
     const postalCode = regionInfo.validAddress.postalCode;
-    await test.step('Navigate to somoslegalshield.com', async () => {
+    await test.step('Navigate to noussommeslegalshield.com', async () => {
       await walsAffiliatedPage.navigateToAffiliatedWalsPage('lspro', 'noussommeslegalshield', 'ca');
     });
     await test.step('Select a region', async () => {

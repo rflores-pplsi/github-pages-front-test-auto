@@ -9,15 +9,15 @@ let legalshieldCoverageAndPricingPage: LegalshieldCoverageAndPricingPage;
 let checkoutPersonalInfoPage: CheckoutPersonalInfoPage;
 let commonCheckoutService: CommonCheckoutService;
 let commonLoginService: CommonLoginService;
-test.beforeEach(async ({ page }) => {
+test.beforeEach(async ({ context, page }) => {
   test.slow();
   legalshieldCoverageAndPricingPage = new LegalshieldCoverageAndPricingPage(page);
   commonLoginService = new CommonLoginService(page);
-  commonCheckoutService = new CommonCheckoutService(page);
-  checkoutPersonalInfoPage = new CheckoutPersonalInfoPage(page);
+  commonCheckoutService = new CommonCheckoutService(context, page);
+  checkoutPersonalInfoPage = new CheckoutPersonalInfoPage(context, page);
 });
 test.describe('United States - Colorado, Legal Plan - Monthly', () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async () => {
     await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
       await legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
     });

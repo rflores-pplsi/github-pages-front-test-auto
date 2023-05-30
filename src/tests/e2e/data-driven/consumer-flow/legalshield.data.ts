@@ -1,4 +1,4 @@
-export const consumerFlowData = [
+export const legalshieldData = [
   {
     disabled: false,
     language: 'en',
@@ -7,7 +7,7 @@ export const consumerFlowData = [
     regions: ['New York'],
     term: 'Monthly',
     termTotal: '$29.95',
-    testCaseName: 'Legal Plan - Existing User',
+    testCaseName: 'Legal Plan, Existing User',
     userType: 'Existing',
   },
   {
@@ -18,7 +18,7 @@ export const consumerFlowData = [
     regions: ['Florida'],
     term: 'Monthly',
     termTotal: '$29.95',
-    testCaseName: 'Legal Plan - New User',
+    testCaseName: 'Legal Plan, New User',
     userType: 'New',
   },
   {
@@ -60,7 +60,7 @@ export const consumerFlowData = [
     regions: ['California'],
     term: 'Monthly',
     termTotal: '$89.75',
-    testCaseName: 'Legal Plan + All Supplements',
+    testCaseName: 'Legal Plan, All Supplements',
     userType: 'Existing',
   },
 ];

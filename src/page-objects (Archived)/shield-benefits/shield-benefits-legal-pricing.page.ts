@@ -5,6 +5,7 @@ const BTN_STATE_SELECT = '//div[contains(@class,"mr-custom")]//button';
 const BTN_STATE_OR_PROVINCE_SELECT = '//div[contains(@class,"mr-custom")]//button';
 const BTN_PAYMENT_FREQUENCY_SELECT = '//p[contains (.,"Payment frequency")]/following-sibling::div//button';
 const CON_AVAILABLE_PLANS = '//div[contains (@class,"filters mt-5 mb-5") and contains(.,"Available")]';
+const BTN_BEGIN_ENROLLMENT = '//button[@data-testid="enrollment-button"]';
 
 /**
  *
@@ -97,6 +98,16 @@ export class ShieldBenefitsLegalPricingPage extends ShieldBenefitsLegalOverviewP
 
   // ========================== Navigate Methods ===========================
   // ========================== Click Methods ==============================
+
+  /**
+   *
+   *
+   * @memberof ShieldBenefitsLegalPricingPage
+   */
+  clickBeginEnrollmentButton = async (): Promise<void> => {
+    console.log(' - shieldBenefitsLegalPricingPage.clickBeginEnrollmentButton');
+    await this.clickOnElement(BTN_BEGIN_ENROLLMENT);
+  };
 
   /**
    * @memberof ShieldBenefitsLegalPricingPage

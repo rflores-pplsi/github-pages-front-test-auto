@@ -14,7 +14,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     test.slow();
     legalshieldCoverageAndPricingPage = new LegalshieldCoverageAndPricingPage(page);
     commonLoginService = new CommonLoginService(page);
-    commonCheckoutService = new CommonCheckoutService(page);
+    commonCheckoutService = new CommonCheckoutService(context, page);
     checkoutPaymentsPage = new CheckoutPaymentsPage(context, page);
 
     await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
@@ -64,7 +64,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await commonCheckoutService.paymentsPage.bankDraftComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
     });
     await test.step('Redirected to the Confirmation Page', async () => {
-      await expect(commonCheckoutService.confirmationPage.letsGoButton).toBeVisible({ timeout: 100000 });
+      await expect(commonCheckoutService.confirmationPage.locMembershipWrapper).toBeVisible({ timeout: 100000 });
     });
   });
 
@@ -141,7 +141,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await commonCheckoutService.paymentsPage.creditCardComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
     });
     await test.step('Redirected to the Confirmation Page', async () => {
-      await expect(commonCheckoutService.confirmationPage.letsGoButton).toBeVisible({ timeout: 100000 });
+      await expect(commonCheckoutService.confirmationPage.locMembershipWrapper).toBeVisible({ timeout: 100000 });
     });
   });
 
@@ -281,7 +281,7 @@ test.describe('Canada - Alberta, Legal Plan', () => {
     test.slow();
     legalshieldCoverageAndPricingPage = new LegalshieldCoverageAndPricingPage(page);
     commonLoginService = new CommonLoginService(page);
-    commonCheckoutService = new CommonCheckoutService(page);
+    commonCheckoutService = new CommonCheckoutService(context, page);
     checkoutPaymentsPage = new CheckoutPaymentsPage(context, page);
 
     await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
@@ -331,7 +331,7 @@ test.describe('Canada - Alberta, Legal Plan', () => {
       await commonCheckoutService.paymentsPage.bankDraftComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
     });
     await test.step('Redirected to the Confirmation Page', async () => {
-      await expect(commonCheckoutService.confirmationPage.letsGoButton).toBeVisible({ timeout: 100000 });
+      await expect(commonCheckoutService.confirmationPage.locMembershipWrapper).toBeVisible({ timeout: 100000 });
     });
   });
 
@@ -424,7 +424,7 @@ test.describe('Canada - Alberta, Legal Plan', () => {
       await commonCheckoutService.paymentsPage.creditCardComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
     });
     await test.step('Redirected to the Confirmation Page', async () => {
-      await expect(commonCheckoutService.confirmationPage.letsGoButton).toBeVisible({ timeout: 100000 });
+      await expect(commonCheckoutService.confirmationPage.locMembershipWrapper).toBeVisible({ timeout: 100000 });
     });
   });
 });

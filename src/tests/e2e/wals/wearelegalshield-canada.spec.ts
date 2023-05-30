@@ -8,17 +8,17 @@ let walsAffiliatedPage: WalsAffiliatedPage;
 let loginPage: CommonLoginService;
 let checkoutPage: CommonCheckoutService;
 
-test.beforeEach(async ({ page }) => {
+test.beforeEach(async ({ context, page }) => {
   test.slow();
   loginPage = new CommonLoginService(page);
-  checkoutPage = new CommonCheckoutService(page);
+  checkoutPage = new CommonCheckoutService(context, page);
   walsAffiliatedPage = new WalsAffiliatedPage(page);
 });
 
 const regionsUnderTest = ['Ontario'];
 for (const regionUnderTest of regionsUnderTest) {
-  test('Can purchase any plan from wearelegalshield (affiliated) for market=en-CA @smoke', async ({ page }) => {
-    console.log(`${regionUnderTest} - Can purchase any plan from wearelegalshield (affiliated) for market=en-CA`);
+  test(`Test Case: Wearelegalshield (Legal Plan, en-CA, ${regionUnderTest}) -> Checkout -> Accounts @smoke`, async ({ page }) => {
+    console.log(`Test Case: Wearelegalshield (Legal Plan, en-CA, ${regionUnderTest}) -> Checkout -> Accounts`);
     const regionInfo = RegionsUtils.caProvinces.filter((region) => region.name == regionUnderTest)[0];
     const homeAddress = regionInfo.validAddress.street;
     const city = regionInfo.validAddress.city;

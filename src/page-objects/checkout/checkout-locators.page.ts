@@ -96,7 +96,7 @@ export class CheckoutLocatorsPage {
     // this.checkoutOrderSummaryComponent = new CheckoutOrderSummaryComponent(page);
     // this.checkoutPersonalInfoPage = new CheckoutPersonalInfoPage(page, lineOfBusiness, planSupp);
     this.commonLoginService = new CommonLoginService(page);
-    this.commonCheckoutService = new CommonCheckoutService(page);
+    this.commonCheckoutService = new CommonCheckoutService(context, page);
     this.loginLocatorsPage = new LoginLocatorsPage(context, page);
     // this.checkoutPaymentsPage = new CheckoutPaymentsPage(page, lineOfBusiness, planSupp);
     this.confirmationLocTxtWelcomeToLegalshiledFamily = this.page.locator('h1.lsux-heading.confirmation-title.lsux-heading--t28');

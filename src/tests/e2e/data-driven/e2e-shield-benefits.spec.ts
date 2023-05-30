@@ -1,19 +1,22 @@
 import { test } from '@playwright/test';
-
 import { CheckoutConfirmationPage } from '../../../page-objects (Archived)/checkout/checkout-confirmation.page';
 import { basicUser } from '../../../utils/user.utils';
 import { selfPayData } from './data/shield-benefits/e2e-shield-benefits-self-pay';
 import { payrollDeductData } from './data/shield-benefits/e2e-shield-benefits-us-payroll-deduct';
 import { fringeData } from './data/shield-benefits/e2e-shield-benefits-us-fringe';
 import { partialFringeData } from './data/shield-benefits/e2e-shield-benefits-us-partial-fringe';
+import { CommonLoginService } from '@legalshield/frontend-automation-commons';
+import UrlsUtils from '../../../utils/urls.utils';
 
 // create instance of Page
 let checkoutConfirmationPage: CheckoutConfirmationPage;
+let commonLoginService: CommonLoginService;
 
 // Setup environment before each test
 test.beforeEach(async ({ page }) => {
   console.log('Before Each:');
   checkoutConfirmationPage = new CheckoutConfirmationPage(page);
+  commonLoginService = new CommonLoginService(page);
   // test.slow triples the default wait times
   test.slow();
 });
@@ -31,15 +34,16 @@ for (const tc of selfPayData.filter((tc) => tc.disabled == false)) {
       await test.step(`Select State: ${region}`, async () => {
         await checkoutConfirmationPage.selectStateOrProvince(region);
       });
-      await test.step(`Select Payment Frequency: ${tc.payFrequency}`, async () => {
-        await checkoutConfirmationPage.selectPaymentFrequency(tc.payFrequency);
-      });
+      // await test.step(`Select Payment Frequency: ${tc.payFrequency}`, async () => {
+      //   await checkoutConfirmationPage.selectPaymentFrequency(tc.payFrequency);
+      // });
       await test.step(`Click Enroll Now for Plan: ${tc.planSupplementName} with Tier: ${tc.tierName}`, async () => {
-        await checkoutConfirmationPage.clickPricingPageSinglePlanEnrollNowButton(tc.planSupplementName);
+        // await checkoutConfirmationPage.clickPricingPageSinglePlanEnrollNowButton(tc.planSupplementName);
+        await checkoutConfirmationPage.clickBeginEnrollmentButton();
       });
 
       await test.step(`Login with Credentials - Email:  ${basicUser.email}, Password: ${basicUser.password}`, async () => {
-        await checkoutConfirmationPage.login(basicUser.email, basicUser.password);
+        await commonLoginService.loginPage.login(basicUser.email, basicUser.password);
       });
       await test.step(`Capture the Order Summary used for assertions`, async () => {
         await checkoutConfirmationPage.captureOrderSummaryWithoutTier();
@@ -216,20 +220,26 @@ for (const tc of partialFringeData.filter((tc) => tc.disabled == false)) {
     test(`${tc.testCaseName} - ${state} @partialFringe @shieldBenefits`, async () => {
       console.log(`Test Case: ${tc.testCaseName} - ${state}`);
       // Crete Cart from Pricing Page and Continue to Personal Info Page
-      await test.step(`Navigate to Shield Benefits Pricing Page for Group: ${tc.groupNumber}`, async () => {
-        await checkoutConfirmationPage.navigateToShieldBenefitsPricingPage(tc.groupNumber);
+      await test.step(`Navigate to Shield Benefits Enrollment Page for Group: ${tc.groupNumber}`, async () => {
+        await checkoutConfirmationPage.page.goto(`${UrlsUtils.shieldBenefits.home.url}/${tc.groupNumber}/enrollment`);
       });
       await test.step(`Select State: ${state}`, async () => {
         await checkoutConfirmationPage.selectStateOrProvince(state);
       });
-      await test.step(`Select Payment Frequency: ${tc.payFrequency}`, async () => {
-        await checkoutConfirmationPage.selectPaymentFrequency(tc.payFrequency);
+      // await test.step(`Select Payment Frequency: ${tc.payFrequency}`, async () => {
+      //   await checkoutConfirmationPage.selectPaymentFrequency(tc.payFrequency);
+      // });
+      await test.step(`Select Plans: ${tc.planName}`, async () => {
+        //TODO: add new select plan method
+        // await checkoutConfirmationPage.clickPlanCheckbox();
       });
       await test.step(`Click Enroll Now for Plan: ${tc.planName} with Tier: ${tc.tierName}`, async () => {
-        await checkoutConfirmationPage.clickEnrollNowButtonFromShieldBenefitsPricingPage(tc.planName, tc.tierName);
+        // await checkoutConfirmationPage.clickEnrollNowButtonFromShieldBenefitsPricingPage(tc.planName, tc.tierName);
+        await checkoutConfirmationPage.page.pause();
+        await checkoutConfirmationPage.clickBeginEnrollmentButton();
       });
       await test.step(`Login with Credentials - Email:  ${basicUser.email}, Password: ${basicUser.password}`, async () => {
-        await checkoutConfirmationPage.login(basicUser.email, basicUser.password);
+        await commonLoginService.loginPage.login(basicUser.email, basicUser.password);
       });
       await test.step(`Capture the Order Summary used for assertions`, async () => {
         await checkoutConfirmationPage.captureOrderSummaryWithoutTier();

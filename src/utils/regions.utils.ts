@@ -63,7 +63,7 @@ export default class RegionsUtils {
       validAddress: {
         city: 'Highlands Ranch',
         postalCode: '80126',
-        street: ' 1050 Plaza Dr',
+        street: '1050 Plaza Dr',
       },
     },
     {

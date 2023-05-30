@@ -118,7 +118,7 @@ export class QaMaintenanceListLocatorsPage extends LoginPage {
     this.bestMoneyMoversLocLblTellUsAboutYourself = this.page.locator('//h1[contains(text(),"Tell us about yourself")]');
     this.bestMoneyMoversLocLnkLegalPlan = this.page.locator('text="Legal Plan"');
     this.commonLoginService = new CommonLoginService(page);
-    this.commonCheckoutService = new CommonCheckoutService(page);
+    this.commonCheckoutService = new CommonCheckoutService(context, page);
     this.BTN_GET_A_PLAN = this.page.locator('//a[starts-with(@class,"plan-builder")] >> nth=0');
     this.BTN_BECOME_ASSOCIATE = this.page.locator('//span[contains(text(),"Become an Associate")]');
     this.LBL_HOME_BUSINESS_SUPPLEMENT = this.page.locator('//label[starts-with(@id,"label-hbs")]');

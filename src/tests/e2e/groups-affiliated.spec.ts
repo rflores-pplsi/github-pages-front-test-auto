@@ -10,9 +10,9 @@ test.beforeEach(async ({ page }) => {
   groupsAffiliatedAgentPage = new GroupsAffiliatedAgentPage(page);
   test.slow();
 });
-test('Can reach checkout service from the Primerica affiliated groups page (market=en-US) @smoke', async ({ page }) => {
-  console.log('Can reach checkout service from the Primerica affiliated groups page (market=en-US)');
-  await test.step(`Navigate to primerica affiliated groups page`, async () => {
+test('Groups Affiliated (Agent: 12345, Primerica, en-US, New York) -> Classic Checkout Service @smoke', async ({ page }) => {
+  console.log('Test Case: Groups Affiliated (Agent: 12345, Primerica, en-US, New York) -> Classic Checkout Service');
+  await test.step(`Navigate to primerica Affiliated groups page`, async () => {
     await groupsAffiliatedPage.navigateToGroupsAffiliatedPage('primerica');
   });
   await test.step(`Select language and market`, async () => {

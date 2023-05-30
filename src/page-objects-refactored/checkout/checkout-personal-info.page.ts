@@ -1,9 +1,10 @@
-import { expect, Locator, Page } from '@playwright/test';
+import { BrowserContext, expect, Locator, Page } from '@playwright/test';
 import { CheckoutStepperComponent } from '../../page-objects-refactored/checkout/checkout-stepper.component';
 import { CheckoutHaveQuestionsComponent } from '../../page-objects-refactored/checkout/checkout-have-questions.component';
 import { CommonCheckoutService } from '@legalshield/frontend-automation-commons';
 
 export class CheckoutPersonalInfoPage {
+  readonly context: BrowserContext;
   readonly page: Page;
   readonly checkoutStepperComponent: CheckoutStepperComponent;
   readonly checkoutHaveQuestionsComponent: CheckoutHaveQuestionsComponent;
@@ -26,11 +27,12 @@ export class CheckoutPersonalInfoPage {
   readonly locDateOfInCorpWarningMessage: Locator;
   readonly locBusinessTaxIdWarningMessage: Locator;
 
-  constructor(page: Page) {
+  constructor(context: BrowserContext, page: Page) {
+    this.context = context;
     this.page = page;
     this.checkoutStepperComponent = new CheckoutStepperComponent(page);
     this.checkoutHaveQuestionsComponent = new CheckoutHaveQuestionsComponent(page);
-    this.commonCheckoutService = new CommonCheckoutService(page);
+    this.commonCheckoutService = new CommonCheckoutService(context, page);
     this.locHeader = this.page.locator('//h1');
     this.locFirstNameWarningMessage = this.page.locator('text = Must provide first name');
     this.locLastNameWarningMessage = this.page.locator('text = Must provide Last name');

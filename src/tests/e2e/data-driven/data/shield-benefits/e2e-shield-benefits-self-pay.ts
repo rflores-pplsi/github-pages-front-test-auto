@@ -1,7 +1,7 @@
 export const selfPayData = [
   {
     disabled: false,
-    groupNameOrNumber: 'nnlegaltest7',
+    groupNameOrNumber: 'froedterthospital',
     groupPayConfig: 'self-pay',
     market: 'US',
     orderSummaryPlanName: 'IDShield Individual - Individual 1B',
@@ -9,13 +9,13 @@ export const selfPayData = [
     planCost: '$12.95',
     planSupplementName: 'IDShield Individual',
     planType: 'IDShield',
-    regions: ['New York', 'California', 'Georgia', 'Florida', 'Texas', 'Massachusetts'],
+    regions: ['New York'],
     testCaseName: 'Self-Pay ID/Legal (IDShield Individual)',
     tierName: '1 Bureau Credit Monitoring',
     totalCost: '$12.95',
   },
   {
-    disabled: false,
+    disabled: true,
     groupNameOrNumber: 'nnlegaltest7',
     groupPayConfig: 'self-pay',
     market: 'US',
@@ -30,7 +30,7 @@ export const selfPayData = [
     totalCost: '$23.95',
   },
   {
-    disabled: false,
+    disabled: true,
     groupNameOrNumber: 'nnlegaltest7',
     groupPayConfig: 'self-pay',
     market: 'US',
@@ -45,7 +45,7 @@ export const selfPayData = [
     totalCost: '$22.95',
   },
   {
-    disabled: false,
+    disabled: true,
     groupNameOrNumber: 'nnidstest3',
     groupPayConfig: 'self-pay',
     market: 'US',
@@ -60,7 +60,7 @@ export const selfPayData = [
     totalCost: '$12.95',
   },
   {
-    disabled: false,
+    disabled: true,
     groupNameOrNumber: 'nnidstest3',
     groupPayConfig: 'self-pay',
     market: 'US',
@@ -75,7 +75,7 @@ export const selfPayData = [
     totalCost: '$22.95',
   },
   {
-    disabled: false,
+    disabled: true,
     groupNameOrNumber: 'test48',
     groupPayConfig: 'self-pay',
     market: 'US',
@@ -90,7 +90,7 @@ export const selfPayData = [
     totalCost: '$79.95',
   },
   {
-    disabled: false,
+    disabled: true,
     groupNameOrNumber: 'test48',
     groupPayConfig: 'self-pay',
     market: 'US',
@@ -105,7 +105,7 @@ export const selfPayData = [
     totalCost: '$29.95',
   },
   {
-    disabled: false,
+    disabled: true,
     groupNameOrNumber: 'test48',
     groupPayConfig: 'self-pay',
     market: 'US',
@@ -120,7 +120,7 @@ export const selfPayData = [
     totalCost: '$99.00',
   },
   {
-    disabled: false,
+    disabled: true,
     groupNameOrNumber: 'test48',
     groupPayConfig: 'self-pay',
     market: 'US',
@@ -135,7 +135,7 @@ export const selfPayData = [
     totalCost: '$49.00',
   },
   {
-    disabled: false,
+    disabled: true,
     groupNameOrNumber: 'test48',
     groupPayConfig: 'self-pay',
     market: 'US',
@@ -150,7 +150,7 @@ export const selfPayData = [
     totalCost: '$169.00',
   },
   {
-    disabled: false,
+    disabled: true,
     groupNameOrNumber: 'test48',
     groupPayConfig: 'self-pay',
     market: 'US',
@@ -165,7 +165,7 @@ export const selfPayData = [
     totalCost: '$149.95',
   },
   {
-    disabled: false,
+    disabled: true,
     groupNameOrNumber: 'victoryfancysausage',
     groupPayConfig: 'self-pay',
     market: 'CA',
@@ -192,7 +192,7 @@ export const selfPayData = [
     totalCost: '$23.95',
   },
   {
-    disabled: false,
+    disabled: true,
     groupNameOrNumber: 'victoryfancysausage',
     groupPayConfig: 'self-pay',
     market: 'CA',
@@ -219,7 +219,7 @@ export const selfPayData = [
     totalCost: '$49.85',
   },
   {
-    disabled: false,
+    disabled: true,
     groupNameOrNumber: 'victoryfancysausage',
     groupPayConfig: 'self-pay',
     market: 'CA',
@@ -246,7 +246,7 @@ export const selfPayData = [
     totalCost: '$36.90',
   },
   {
-    disabled: false,
+    disabled: true,
     groupNameOrNumber: 'victoryfancysausage',
     groupPayConfig: 'self-pay',
     market: 'CA',
@@ -273,7 +273,7 @@ export const selfPayData = [
     totalCost: '$36.90',
   },
   {
-    disabled: false,
+    disabled: true,
     groupNameOrNumber: 'victoryfancysausage',
     groupPayConfig: 'self-pay',
     market: 'CA',

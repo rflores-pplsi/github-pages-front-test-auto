@@ -26,6 +26,7 @@
     "Démarrage",
     "domcontentloaded",
     "endregion",
+    "froedterthospital",
     "GSBS",
     "idsca",
     "IDSF",
@@ -47,12 +48,14 @@
     "Planalyzer",
     "pplsi",
     "primerica",
+    "qatesting",
     "reportsbusinessorganizational",
     "reportscommissions",
     "saucectl",
     "savebd",
     "savecc",
     "SCDLP",
+    "shieldbenefits",
     "shortcodes",
     "signin",
     "sommes",
@@ -63,6 +66,7 @@
     "wdio",
     "webdriverio",
     "wpengine",
+    "yopmail",
     "zipcodes"
   ]
 }
