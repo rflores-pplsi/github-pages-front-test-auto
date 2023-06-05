@@ -3,20 +3,25 @@ import { basicUser } from '../../utils/user.utils';
 import { LegalshieldCoverageAndPricingPage } from '../../page-objects-refactored/marketing-sites/legalshield/legalshield-coverage-and-pricing.page';
 import { CommonLoginService, CommonCheckoutService } from '@legalshield/frontend-automation-commons';
 import { CheckoutPaymentsPage } from '../../page-objects-refactored/checkout/checkout-payments.page';
+import { CheckoutPersonalInfoPage } from '../../page-objects-refactored/checkout/checkout-personal-info.page';
 
 let legalshieldCoverageAndPricingPage: LegalshieldCoverageAndPricingPage;
 let commonLoginService: CommonLoginService;
 let commonCheckoutService: CommonCheckoutService;
 let checkoutPaymentsPage: CheckoutPaymentsPage;
+let checkoutPersonalInfoPage: CheckoutPersonalInfoPage;
+
+test.beforeEach(async ({ context, page }) => {
+  test.setTimeout(150000);
+  legalshieldCoverageAndPricingPage = new LegalshieldCoverageAndPricingPage(page);
+  commonLoginService = new CommonLoginService(page);
+  commonCheckoutService = new CommonCheckoutService(context, page);
+  checkoutPaymentsPage = new CheckoutPaymentsPage(context, page);
+  checkoutPersonalInfoPage = new CheckoutPersonalInfoPage(context, page);
+});
 
 test.describe('United States - Colorado, Legal Plan - Monthly', () => {
   test.beforeEach(async ({ context, page }) => {
-    test.slow();
-    legalshieldCoverageAndPricingPage = new LegalshieldCoverageAndPricingPage(page);
-    commonLoginService = new CommonLoginService(page);
-    commonCheckoutService = new CommonCheckoutService(context, page);
-    checkoutPaymentsPage = new CheckoutPaymentsPage(context, page);
-
     await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
       await legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
     });
@@ -48,7 +53,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       );
     });
     await test.step('Click on the Save & Continue Button to go to Payment Page', async () => {
-      await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
+      await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
     });
   });
 
@@ -274,16 +279,38 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       expect(checkoutPaymentsPage.checkoutHaveQuestionsComponent.locPhoneNumberButton).toBeVisible();
     });
   });
+
+  test('Verify user can redirect to Personal Info Page By Clicking on Stepper 2 from Payment Page', async ({ page }) => {
+    console.log('Test Case: Verify user can redirect to Personal Info Page By Clicking on Stepper 2 from Payment Page');
+    await test.step('Populate all fields on the Personal Information Page', async () => {
+      await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
+        'Automation',
+        'Tester',
+        '5555555555',
+        'Mobile',
+        '200 16th Street',
+        'Denver',
+        '80202',
+        '10',
+        '10',
+        '2001',
+        '3333'
+      );
+    });
+    await test.step('Click on the Save & Continue Button to go to Payment Page', async () => {
+      await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
+    });
+    await test.step('Click on Step Circle 2 when on Payment Page', async () => {
+      await commonCheckoutService.paymentsPage.stepperComponent.locStepCirclePersonalInfoLink.click();
+    });
+    await test.step('Assert that user is redirected to Personal Information Page and it contains header Tell us about yourself', async () => {
+      await expect(checkoutPersonalInfoPage.locHeader).toContainText('Tell us about yourself');
+    });
+  });
 });
 
 test.describe('Canada - Alberta, Legal Plan', () => {
   test.beforeEach(async ({ context, page }) => {
-    test.slow();
-    legalshieldCoverageAndPricingPage = new LegalshieldCoverageAndPricingPage(page);
-    commonLoginService = new CommonLoginService(page);
-    commonCheckoutService = new CommonCheckoutService(context, page);
-    checkoutPaymentsPage = new CheckoutPaymentsPage(context, page);
-
     await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
       await legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('CA', 'en');
     });
@@ -315,7 +342,7 @@ test.describe('Canada - Alberta, Legal Plan', () => {
       );
     });
     await test.step('Click on the Save & Continue Button to go to Payment Page', async () => {
-      await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
+      await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
     });
   });
 

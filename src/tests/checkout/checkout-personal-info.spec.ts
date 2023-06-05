@@ -249,8 +249,8 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  test('Verify user can redirect to Personal Info Page By Clicking on Stepper 2 from Payment Page', async () => {
-    console.log('Test Case: Verify user can redirect to Personal Info Page By Clicking on Stepper 2 from Payment Page');
+  test('Verify user can submit valid information on all Non-Business Forms and reach the Payment Page', async () => {
+    console.log('Test Case: Verify user can submit valid information on all Non-Business Forms and reach the Payment Page');
     await test.step('Populate all fields on the Personal Information Page', async () => {
       await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
         'Automation',
@@ -267,13 +267,10 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       );
     });
     await test.step('Click on the Save & Continue Button to go to Payment Page', async () => {
-      await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
-    });
-    await test.step('Click on Step Circle 2 when on Payment Page', async () => {
-      await commonCheckoutService.paymentsPage.stepperComponent.locStepCirclePersonalInfoLink.click();
+      await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
     });
     await test.step('Assert that user is redirected to Personal Information Page and it contains header Tell us about yourself', async () => {
-      await expect(checkoutPersonalInfoPage.locHeader).toContainText('Tell us about yourself');
+      expect(commonCheckoutService.paymentsPage.stepperComponent.locStepCircle3Current).toBeVisible();
     });
   });
 
@@ -294,7 +291,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
 
 test.describe('United States - Colorado, Business Plan', () => {
   test.beforeEach(async ({ page }) => {
-    await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
+    await test.step(`Navigate to legalshield business plan summary page`, async () => {
       await page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/plan-summary/`);
     });
     await test.step(`Change Region`, async () => {
@@ -438,6 +435,64 @@ test.describe('United States - Colorado, Business Plan', () => {
     });
     await test.step('Require Warning message under all fields are displayed', async () => {
       await checkoutPersonalInfoPage.assertAllFormErrorsAreDisplayed();
+    });
+  });
+});
+
+test.describe('United States - Colorado, Business - Plan', () => {
+  test.beforeEach(async ({ context, page }) => {
+    test.slow();
+    legalshieldCoverageAndPricingPage = new LegalshieldCoverageAndPricingPage(page);
+    commonLoginService = new CommonLoginService(page);
+    commonCheckoutService = new CommonCheckoutService(context, page);
+
+    await test.step(`Navigate to legalshield business plan summary page`, async () => {
+      await page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/plan-summary/`);
+    });
+    await test.step(`Change Region`, async () => {
+      await legalshieldCoverageAndPricingPage.marketingSiteFooterComponent.selectRegion('Colorado', 'CO');
+    });
+    await test.step(`Click on the SMB ESS Plan button`, async () => {
+      await legalshieldCoverageAndPricingPage.locEssGetStartedButton.click();
+    });
+    await test.step('Select No for Small Business Questions', async () => {
+      await legalshieldCoverageAndPricingPage.smallBusinessQualifyingComponent.completeQualifyingQuestionnaireWithNos();
+    });
+    await test.step(`Click on the Shopping Cart Checkout button`, async () => {
+      await legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
+    });
+    await test.step(`Log in to reach checkout service`, async () => {
+      await commonLoginService.loginPage.login(basicUser.email, basicUser.password);
+    });
+    await test.step('Populate all fields on Personal Information Page', async () => {
+      await commonCheckoutService.personalInfoPage.fillAllFields(
+        'Automation',
+        'Tester',
+        '5555555555',
+        'Mobile',
+        '200 16th Street',
+        'Denver',
+        '80202',
+        '10',
+        '10',
+        '2001',
+        '3333',
+        'Testers Inc',
+        '10',
+        '10',
+        '2021',
+        '945433337'
+      );
+    });
+  });
+
+  test('Verify user can submit valid information on all Forms and reach the Payment Page', async () => {
+    console.log('Test Case: Verify user can submit valid information on all Forms and reach the Payment Page');
+    await test.step('Click on the Save & Continue Button to go to Payment Page', async () => {
+      await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
+    });
+    await test.step('Assert that user is redirected to Personal Information Page and it contains header Tell us about yourself', async () => {
+      expect(commonCheckoutService.paymentsPage.stepperComponent.locStepCircle3Current).toBeVisible();
     });
   });
 });
