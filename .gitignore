@@ -18,8 +18,6 @@ src/.env
 screenshot.png
 artifacts
 Screenshots
-package.json
-package-lock.json
 dist
 .vscode/launch.json
 .scannerwork/
