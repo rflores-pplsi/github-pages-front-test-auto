@@ -43,9 +43,23 @@ for (const regionUnderTest of regionsUnderTest) {
     await test.step(`Validate Order Summary on Personal Info Page`, async () => {
       expect(await commonCheckoutService.personalInfoPage.orderSummaryComponent.locTotalContainer.innerText()).toContain('$29.95');
     });
-    await test.step(`Change Address to match region and continue to Payment Page`, async () => {
-      await commonCheckoutService.personalInfoPage.fillRequiredAddressFields(homeAddress, city, postalCode);
-      await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
+    await test.step(`Update Personal Info to match region`, async () => {
+      await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
+        'Automation',
+        'Tester',
+        '5555555555',
+        'Móvil',
+        homeAddress,
+        city,
+        postalCode,
+        '10',
+        '10',
+        '2001',
+        '3333'
+      );
+    });
+    await test.step(`Click Save and Continue and wait for Payment page to load`, async () => {
+      await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
     });
     await test.step(`Validate Order Summary on Payment Info Page`, async () => {
       expect(await commonCheckoutService.paymentsPage.orderSummaryComponent.locTotalContainer.innerText()).toContain('$29.95');
