@@ -40,6 +40,12 @@ export class LegalshieldService {
         case 'Small Business Legal Essentials':
           await this.addSmallBusinessLegalEssentials();
           break;
+        case 'Small Business Legal Plus':
+          await this.addSmallBusinessLegalPlus();
+          break;
+        case 'Small Business Legal Pro':
+          await this.addSmallBusinessLegalPro();
+          break;
         case 'Home Business Supplement':
           await this.addHomeBusinessSupplement();
           break;
@@ -75,14 +81,31 @@ export class LegalshieldService {
     const startPlanLocator = this.page.locator(`//a[@id="lsc-add-to-cart-button" and contains(.,"${term.toLowerCase()}")]`);
     await startPlanLocator.click();
   };
-  /**
-   *
-   *
-   * @memberof LegalshieldService
-   */
+
   addSmallBusinessLegalEssentials = async (): Promise<void> => {
-    await this.page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/plan-summary/`);
-    await this.firstGetStartedButton.click();
+    await this.page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/plan-summary/#chart`);
+    const getStartedButtonLocator = this.page.locator(
+      '//div[contains(@class,"lsc-dynamic-single-plan  et_pb_css_mix_blend_mode_passthrough") and contains(.,"Small Business Essentials")]//a[@role="button"]'
+    );
+    await getStartedButtonLocator.click();
+    await this.smallBusinessQualifyingComponent.completeQualifyingQuestionnaireWithNos();
+  };
+
+  addSmallBusinessLegalPlus = async (): Promise<void> => {
+    await this.page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/plan-summary/#chart`);
+    const getStartedButtonLocator = this.page.locator(
+      '//div[contains(@class,"lsc-dynamic-single-plan  et_pb_css_mix_blend_mode_passthrough") and contains(.,"Small Business Plus")]//a[@role="button"]'
+    );
+    await getStartedButtonLocator.click();
+    await this.smallBusinessQualifyingComponent.completeQualifyingQuestionnaireWithNos();
+  };
+
+  addSmallBusinessLegalPro = async (): Promise<void> => {
+    await this.page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/plan-summary/#chart`);
+    const getStartedButtonLocator = this.page.locator(
+      '//div[contains(@class,"lsc-dynamic-single-plan  et_pb_css_mix_blend_mode_passthrough") and contains(.,"Small Business Pro")]//a[@role="button"]'
+    );
+    await getStartedButtonLocator.click();
     await this.smallBusinessQualifyingComponent.completeQualifyingQuestionnaireWithNos();
   };
 

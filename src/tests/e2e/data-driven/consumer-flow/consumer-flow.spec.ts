@@ -38,13 +38,13 @@ for (const testCase of legalshieldData.filter((testCase) => testCase.disabled ==
         await legalshieldService.addProductsFromProductDetails(testCase.productDetails);
       });
       await test.step(`Login or Sign Up`, async () => {
-        if ((testCase.userType = 'New')) {
+        if (testCase.userType == 'New') {
           await commonLoginService.signUpPage.signUp();
         } else {
           await commonLoginService.loginPage.login(basicUser.email, basicUser.password);
         }
       });
-      await test.step(`Change Address to a valid one for Region: ${regionInfo.name}`, async () => {
+      await test.step(`Fill all required fields on personal info ${regionInfo.name}`, async () => {
         await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
           'Test',
           'Tester',
@@ -58,7 +58,11 @@ for (const testCase of legalshieldData.filter((testCase) => testCase.disabled ==
           '1990',
           '3333333333'
         );
+        if (await commonCheckoutService.personalInfoPage.locBusinessNameInput.isVisible()) {
+          await commonCheckoutService.personalInfoPage.fillBusinessInformationFields('Testers Inc', '10', '10', '2021', '945433337');
+        }
       });
+
       await test.step(`Verify Order Total in Order Summary`, async () => {
         expect(await commonCheckoutService.personalInfoPage.orderSummaryComponent.locTotalContainer.innerText()).toContain(testCase.termTotal);
       });
@@ -107,7 +111,7 @@ for (const testCase of selfPayData.filter((testCase) => testCase.disabled == fal
         await shieldBenefitsService.shieldBenefitsLegalEnrollmentPage.locBeginEnrollmentButton.click();
       });
       await test.step(`Login or Sign Up`, async () => {
-        if ((testCase.userType = 'New')) {
+        if (testCase.userType == 'New') {
           await commonLoginService.signUpPage.signUp();
         } else {
           await commonLoginService.loginPage.login(basicUser.email, basicUser.password);
