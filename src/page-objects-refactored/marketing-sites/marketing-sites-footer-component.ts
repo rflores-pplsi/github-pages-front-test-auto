@@ -19,6 +19,7 @@ export class MarketingSiteFooterComponent {
   selectRegion = async (region: string, regionAbbreviation: string): Promise<void> => {
     //TODO: refactor to only need region parameter AND to be usable for other languages/domains
     await this.locRegionSelect.selectOption(regionAbbreviation);
+    await this.page.waitForLoadState();
     await this.page.waitForSelector(`//div[(@id="page-container") and contains(.,"${region}")]`);
   };
 }

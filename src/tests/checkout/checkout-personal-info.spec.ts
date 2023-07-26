@@ -16,6 +16,7 @@ test.beforeEach(async ({ context, page }) => {
   commonCheckoutService = new CommonCheckoutService(context, page);
   checkoutPersonalInfoPage = new CheckoutPersonalInfoPage(context, page);
 });
+
 test.describe('United States - Colorado, Legal Plan - Monthly', () => {
   test.beforeEach(async () => {
     await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
@@ -216,6 +217,50 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
+  test('Verify the arrows increment/decrement the value of the Month Field and has 2 digits using the Keyboard', async ({ page }) => {
+    console.log('Test Case: Verify the Up Arrow increments the value of the DOB Month Field and has 2 digits using the Keyboard');
+    await test.step('Empty only DOB Month Field', async () => {
+      await commonCheckoutService.personalInfoPage.locBirthMonthInput.clear();
+    });
+    await test.step('Click Up Arrow twice', async () => {
+      await commonCheckoutService.personalInfoPage.locBirthMonthInput.focus();
+      await page.keyboard.press('ArrowUp');
+      await page.keyboard.press('ArrowUp');
+    });
+    await test.step('Verify the increments to 02', async () => {
+      await expect(commonCheckoutService.personalInfoPage.locBirthMonthInput).toHaveValue('02');
+    });
+    await test.step('Click Down Arrow', async () => {
+      await commonCheckoutService.personalInfoPage.locBirthMonthInput.focus();
+      await page.keyboard.press('ArrowDown');
+    });
+    await test.step('Verify the decrement to 01', async () => {
+      await expect(commonCheckoutService.personalInfoPage.locBirthMonthInput).toHaveValue('01');
+    });
+  });
+
+  test('Verify the arrows increment/decrement the value of the Date Field and has 2 digits using the Keyboard', async ({ page }) => {
+    console.log('Test Case: Verify the Up Arrow increments the value of the DOB Date Field and has 2 digits using the Keyboard');
+    await test.step('Empty only DOB Date Field', async () => {
+      await commonCheckoutService.personalInfoPage.locBirthDateInput.clear();
+    });
+    await test.step('Click Up Arrow twice', async () => {
+      await commonCheckoutService.personalInfoPage.locBirthDateInput.focus();
+      await page.keyboard.press('ArrowUp');
+      await page.keyboard.press('ArrowUp');
+    });
+    await test.step('Verify the increments to 02', async () => {
+      await expect(commonCheckoutService.personalInfoPage.locBirthDateInput).toHaveValue('02');
+    });
+    await test.step('Click Down Arrow', async () => {
+      await commonCheckoutService.personalInfoPage.locBirthDateInput.focus();
+      await page.keyboard.press('ArrowDown');
+    });
+    await test.step('Verify the decrement to 01', async () => {
+      await expect(commonCheckoutService.personalInfoPage.locBirthDateInput).toHaveValue('01');
+    });
+  });
+
   test('Verify the required message displays when the SSN input is empty', async () => {
     console.log('Test Case: Verify the required message displays when the SSN input is empty');
     await test.step('Empty only SSN Field', async () => {
@@ -409,6 +454,50 @@ test.describe('United States - Colorado, Business Plan', () => {
     });
     await test.step('Require Warning message that valid Date of Incorporation is Required displays', async () => {
       await expect(checkoutPersonalInfoPage.locDateOfInCorpWarningMessage).toBeVisible();
+    });
+  });
+
+  test('Verify the arrows increment/decrement the value of the Month Field and has 2 digits using the Keyboard', async ({ page }) => {
+    console.log('Test Case: Verify the Up Arrow increments the value of the DOI Month Field and has 2 digits using the Keyboard');
+    await test.step('Empty only DOI Month Field', async () => {
+      await commonCheckoutService.personalInfoPage.locIncorporationMonthInput.clear();
+    });
+    await test.step('Click Up Arrow twice', async () => {
+      await commonCheckoutService.personalInfoPage.locIncorporationMonthInput.focus();
+      await page.keyboard.press('ArrowUp');
+      await page.keyboard.press('ArrowUp');
+    });
+    await test.step('Verify the increments to 02', async () => {
+      await expect(commonCheckoutService.personalInfoPage.locIncorporationMonthInput).toHaveValue('02');
+    });
+    await test.step('Click Down Arrow', async () => {
+      await commonCheckoutService.personalInfoPage.locIncorporationMonthInput.focus();
+      await page.keyboard.press('ArrowDown');
+    });
+    await test.step('Verify the decrement to 01', async () => {
+      await expect(commonCheckoutService.personalInfoPage.locIncorporationMonthInput).toHaveValue('01');
+    });
+  });
+
+  test('Verify the arrows increment/decrement the value of the Date Field and has 2 digits using the Keyboard', async ({ page }) => {
+    console.log('Test Case: Verify the Up Arrow increments the value of the DOI Date Field and has 2 digits using the Keyboard');
+    await test.step('Empty only DOI Date Field', async () => {
+      await commonCheckoutService.personalInfoPage.locIncorporationDayInput.clear();
+    });
+    await test.step('Click Up Arrow twice', async () => {
+      await commonCheckoutService.personalInfoPage.locIncorporationDayInput.focus();
+      await page.keyboard.press('ArrowUp');
+      await page.keyboard.press('ArrowUp');
+    });
+    await test.step('Verify the increments to 02', async () => {
+      await expect(commonCheckoutService.personalInfoPage.locIncorporationDayInput).toHaveValue('02');
+    });
+    await test.step('Click Down Arrow', async () => {
+      await commonCheckoutService.personalInfoPage.locIncorporationDayInput.focus();
+      await page.keyboard.press('ArrowDown');
+    });
+    await test.step('Verify the decrement to 01', async () => {
+      await expect(commonCheckoutService.personalInfoPage.locIncorporationDayInput).toHaveValue('01');
     });
   });
 
