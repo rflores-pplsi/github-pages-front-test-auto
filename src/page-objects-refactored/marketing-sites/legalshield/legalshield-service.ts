@@ -5,11 +5,13 @@ import UrlsUtils from '../../../utils/urls.utils';
 import { SmallBusinessQualifyingComponent } from './legalshield-small-business-qualifying.component';
 import { MarketingSitesCartComponent } from '../marketing-sites-cart-component';
 import { MarketingSiteFooterComponent } from '../marketing-sites-footer-component';
+import { MarketingSiteHeaderComponent } from '../marketing-sites-header-component';
 
 export class LegalshieldService {
   protected page: Page;
   readonly smallBusinessQualifyingComponent: SmallBusinessQualifyingComponent;
   readonly marketingSitesCartComponent: MarketingSitesCartComponent;
+  readonly marketingSiteHeaderComponent: MarketingSiteHeaderComponent;
   readonly marketingSiteFooterComponent: MarketingSiteFooterComponent;
   readonly firstGetStartedButton: Locator;
 
@@ -18,6 +20,7 @@ export class LegalshieldService {
     this.smallBusinessQualifyingComponent = new SmallBusinessQualifyingComponent(page);
     this.marketingSitesCartComponent = new MarketingSitesCartComponent(page);
     this.marketingSiteFooterComponent = new MarketingSiteFooterComponent(page);
+    this.marketingSiteHeaderComponent = new MarketingSiteHeaderComponent(page);
     this.firstGetStartedButton = this.page.locator(`//div[@id="main-content"]//a[@id="lsc-add-to-cart-button"]`).nth(0);
   }
 
@@ -38,13 +41,9 @@ export class LegalshieldService {
           await this.addCommercialDriversLegalPlan();
           break;
         case 'Small Business Legal Essentials':
-          await this.addSmallBusinessLegalEssentials();
-          break;
         case 'Small Business Legal Plus':
-          await this.addSmallBusinessLegalPlus();
-          break;
         case 'Small Business Legal Pro':
-          await this.addSmallBusinessLegalPro();
+          await this.addSmallBusinessPlan(product.name);
           break;
         case 'Home Business Supplement':
           await this.addHomeBusinessSupplement();
@@ -61,10 +60,11 @@ export class LegalshieldService {
         default:
           break;
       }
+
+      await this.marketingSitesCartComponent.locContinueShoppingLink.click();
       if (counter == 1) {
+        await this.marketingSiteHeaderComponent.locShoppingCartIcon.click();
         await this.marketingSitesCartComponent.locCheckoutButton.click();
-      } else {
-        await this.marketingSitesCartComponent.locContinueShoppingLink.click();
       }
       counter--;
     }
@@ -82,28 +82,11 @@ export class LegalshieldService {
     await startPlanLocator.click();
   };
 
-  addSmallBusinessLegalEssentials = async (): Promise<void> => {
+  addSmallBusinessPlan = async (productName: string): Promise<void> => {
     await this.page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/plan-summary/#chart`);
+    productName = productName.replace(' Legal', '');
     const getStartedButtonLocator = this.page.locator(
-      '//div[contains(@class,"lsc-dynamic-single-plan  et_pb_css_mix_blend_mode_passthrough") and contains(.,"Small Business Essentials")]//a[@role="button"]'
-    );
-    await getStartedButtonLocator.click();
-    await this.smallBusinessQualifyingComponent.completeQualifyingQuestionnaireWithNos();
-  };
-
-  addSmallBusinessLegalPlus = async (): Promise<void> => {
-    await this.page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/plan-summary/#chart`);
-    const getStartedButtonLocator = this.page.locator(
-      '//div[contains(@class,"lsc-dynamic-single-plan  et_pb_css_mix_blend_mode_passthrough") and contains(.,"Small Business Plus")]//a[@role="button"]'
-    );
-    await getStartedButtonLocator.click();
-    await this.smallBusinessQualifyingComponent.completeQualifyingQuestionnaireWithNos();
-  };
-
-  addSmallBusinessLegalPro = async (): Promise<void> => {
-    await this.page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/plan-summary/#chart`);
-    const getStartedButtonLocator = this.page.locator(
-      '//div[contains(@class,"lsc-dynamic-single-plan  et_pb_css_mix_blend_mode_passthrough") and contains(.,"Small Business Pro")]//a[@role="button"]'
+      `//div[contains(@class,"lsc-dynamic-single-plan  et_pb_css_mix_blend_mode_passthrough") and contains(.,"${productName}")]//a[@role="button"]`
     );
     await getStartedButtonLocator.click();
     await this.smallBusinessQualifyingComponent.completeQualifyingQuestionnaireWithNos();

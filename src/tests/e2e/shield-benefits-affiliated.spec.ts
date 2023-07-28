@@ -27,7 +27,7 @@ for (const regionUnderTest of regionsUnderTest) {
     await test.step(`Navigate to Shield Benefits Enrollment Page for a Group`, async () => {
       await shieldBenefitsService.shieldBenefitsLegalOverviewPage.navigateToShieldBenefitsGroupOverviewPage('nnlegaltest7');
     });
-    await test.step(`Navigate to Shield Benefits Enrollment Page for a Group`, async () => {
+    await test.step(`Click Enroll Now Button`, async () => {
       await shieldBenefitsService.shieldBenefitsLegalOverviewPage.locEnrollNowButton.click();
     });
     await test.step(`Select State`, async () => {

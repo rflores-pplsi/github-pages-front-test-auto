@@ -7,7 +7,7 @@ export class ShieldBenefitsLegalOverviewPage {
 
   constructor(page: Page) {
     this.page = page;
-    this.locEnrollNowButton = this.page.locator('//a[contains(.,"Enroll Now")]');
+    this.locEnrollNowButton = this.page.locator('//button[contains(.,"Enroll now")]');
   }
 
   /**
