@@ -332,6 +332,26 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       expect(checkoutPersonalInfoPage.checkoutHaveQuestionsComponent.locPhoneNumberButton).toBeVisible();
     });
   });
+
+  test('Verify user is redirected back to Marketing Page when Change Link is clicked', async ({ page }) => {
+    console.log('Test Case: Verify user is redirected back to Marketing Page when Change Link is clicked');
+    await test.step('Click on the Change Link to be redirected to Marketing Page', async () => {
+      await checkoutPersonalInfoPage.locChangeLink.click();
+    });
+    await test.step('Verify user is redirected to Marketing Page', async () => {
+      await expect(page).toHaveURL(new RegExp('legalshield.com'));
+    });
+  });
+
+  test('Verify user is redirected back to Marketing Page when Edit Link is clicked', async ({ page }) => {
+    console.log('Test Case: Verify user is redirected back to Marketing Page when Edit Link is clicked');
+    await test.step('Click on the Edit Link to be redirected to Marketing Page', async () => {
+      await checkoutPersonalInfoPage.locEditLink.click();
+    });
+    await test.step('Verify user is redirected to Marketing Page', async () => {
+      await expect(page).toHaveURL(new RegExp('legalshield.com'));
+    });
+  });
 });
 
 test.describe('United States - Colorado, Business Plan', () => {

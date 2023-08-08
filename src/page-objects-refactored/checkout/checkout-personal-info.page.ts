@@ -26,6 +26,8 @@ export class CheckoutPersonalInfoPage {
   readonly locDateOfIncorporationYearWarningMessage: Locator;
   readonly locDateOfInCorpWarningMessage: Locator;
   readonly locBusinessTaxIdWarningMessage: Locator;
+  readonly locChangeLink: Locator;
+  readonly locEditLink: Locator;
 
   constructor(context: BrowserContext, page: Page) {
     this.context = context;
@@ -50,6 +52,8 @@ export class CheckoutPersonalInfoPage {
     this.locDateOfIncorporationYearWarningMessage = this.page.locator('text = Must provide date of incorporation');
     this.locDateOfInCorpWarningMessage = this.page.locator('text = Must provide date of incorporation');
     this.locBusinessTaxIdWarningMessage = this.page.locator('text= Must provide tax ID');
+    this.locChangeLink = this.page.locator('//a[contains(.,"Change")]');
+    this.locEditLink = this.page.locator('button:has-text("Edit")');
   }
 
   /**
