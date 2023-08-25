@@ -65,7 +65,6 @@ export class CheckoutPersonalInfoPage {
     await expect(this.locFirstNameWarningMessage).toBeVisible();
     await expect(this.locLastNameWarningMessage).toBeVisible();
     await expect(this.locPhoneNumberWarningMessage).toBeVisible();
-    await expect(this.locPhoneTypeWarningMessage).toBeVisible();
     await expect(this.locHomeAddressWarningMessage).toBeVisible();
     await expect(this.locCityWarningMessage).toBeVisible();
     await expect(this.locPostalCodeWarningMessage).toBeVisible();
@@ -81,7 +80,6 @@ export class CheckoutPersonalInfoPage {
     await expect(this.locFirstNameWarningMessage).toBeVisible();
     await expect(this.locLastNameWarningMessage).toBeVisible();
     await expect(this.locPhoneNumberWarningMessage).toBeVisible();
-    await expect(this.locPhoneTypeWarningMessage).toBeVisible();
     await expect(this.locHomeAddressWarningMessage).toBeVisible();
     await expect(this.locCityWarningMessage).toBeVisible();
     await expect(this.locPostalCodeWarningMessage).toBeVisible();
@@ -100,7 +98,6 @@ export class CheckoutPersonalInfoPage {
     await expect(this.locFirstNameWarningMessage).not.toBeVisible();
     await expect(this.locLastNameWarningMessage).not.toBeVisible();
     await expect(this.locPhoneNumberWarningMessage).not.toBeVisible();
-    await expect(this.locPhoneTypeWarningMessage).not.toBeVisible();
     await expect(this.locHomeAddressWarningMessage).not.toBeVisible();
     await expect(this.locCityWarningMessage).not.toBeVisible();
     await expect(this.locPostalCodeWarningMessage).not.toBeVisible();

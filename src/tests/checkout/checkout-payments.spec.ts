@@ -12,7 +12,7 @@ let checkoutPaymentsPage: CheckoutPaymentsPage;
 let checkoutPersonalInfoPage: CheckoutPersonalInfoPage;
 
 test.beforeEach(async ({ context, page }) => {
-  test.setTimeout(150000);
+  test.setTimeout(120000);
   legalshieldCoverageAndPricingPage = new LegalshieldCoverageAndPricingPage(page);
   commonLoginService = new CommonLoginService(page);
   commonCheckoutService = new CommonCheckoutService(context, page);
@@ -32,6 +32,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await legalshieldCoverageAndPricingPage.clickStartPlanButton('Monthly');
     });
     await test.step(`Click on the Shopping Cart Checkout button`, async () => {
+      await page.waitForTimeout(500);
       await legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
     });
     await test.step(`Log in to reach checkout service`, async () => {
@@ -60,13 +61,13 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
   test('Verify that we can reach the confirmation page with valid information on the US Bank Draft form', async ({ page }) => {
     console.log('Test Case: Verify that we can reach the confirmation page with valid information on the US Bank Draft form');
     await test.step('Click Bank Draft toggle', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
+      await commonCheckoutService.paymentPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
     });
     await test.step('Fill out Bank Draft Form', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.completeBankDraftFormUnitedStates('0000000', '000000000', 'Tester');
+      await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates('0000000', '000000000', 'Tester');
     });
     await test.step('Click Purchase Button', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
+      await commonCheckoutService.paymentPage.bankDraftComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
     });
     await test.step('Redirected to the Confirmation Page', async () => {
       await expect(commonCheckoutService.confirmationPage.locMembershipWrapper).toBeVisible({ timeout: 100000 });
@@ -76,13 +77,13 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
   test('Verify the required message displays when the Account Number input is empty on the US Bank Draft Page', async ({ page }) => {
     console.log('Test Case: Verify the required message displays when the Account Number input is empty on the US Bank Draft Page');
     await test.step('Click Bank Draft toggle', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
+      await commonCheckoutService.paymentPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
     });
     await test.step('Empty only Account Number Field and all other fields are populated', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.completeBankDraftFormUnitedStates('', '000000000', 'Tester');
+      await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates('', '000000000', 'Tester');
     });
     await test.step('Click Purchase button', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.locPurchaseButton.click();
+      await commonCheckoutService.paymentPage.bankDraftComponent.locPurchaseButton.click();
     });
     await test.step('Warning message that Account Number is Required displays', async () => {
       await expect(checkoutPaymentsPage.checkoutBankDraftComponent.locAccountNumberWarningMessage).toBeVisible();
@@ -92,13 +93,13 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
   test('Verify the required message displays when the Routing Number input is empty on the US Bank Draft Page', async ({ page }) => {
     console.log('Test Case: Verify the required message displays when the Routing Number input is empty on the US Bank Draft Page');
     await test.step('Click Bank Draft toggle', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
+      await commonCheckoutService.paymentPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
     });
     await test.step('Empty only Routing Number and all other fields are populated', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.completeBankDraftFormUnitedStates('0000000', '', 'Tester');
+      await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates('0000000', '', 'Tester');
     });
     await test.step('Click Purchase button', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.locPurchaseButton.click();
+      await commonCheckoutService.paymentPage.bankDraftComponent.locPurchaseButton.click();
     });
     await test.step('Warning message that Routing Number is Required displays', async () => {
       await expect(checkoutPaymentsPage.checkoutBankDraftComponent.locRoutingNumberWarningMessage).toBeVisible();
@@ -108,13 +109,13 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
   test('Verify the required message displays when the Account Holder Name input is empty on the US Bank Draft Page', async ({ page }) => {
     console.log('Test Case: Verify the required message displays when the Account Holder Name input is empty on the US Bank Draft Page');
     await test.step('Click Bank Draft toggle', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
+      await commonCheckoutService.paymentPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
     });
     await test.step('Empty only Account Holder Name Field and all other fields are populated', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.completeBankDraftFormUnitedStates('0000000', '000000000', '');
+      await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates('0000000', '000000000', '');
     });
     await test.step('Click Purchase button', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.locPurchaseButton.click();
+      await commonCheckoutService.paymentPage.bankDraftComponent.locPurchaseButton.click();
     });
     await test.step('Warning message that Account Holder Name is Required displays', async () => {
       await expect(checkoutPaymentsPage.checkoutBankDraftComponent.locAccountHolderNameWarningMessage).toBeVisible();
@@ -124,13 +125,13 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
   test('Verify the required message displays when all fields are Empty on US Bank Draft Page', async ({ page }) => {
     console.log('Test Case: Verify the required message displays when all fields are Empty on US Bank Draft Page');
     await test.step('Click Bank Draft toggle', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
+      await commonCheckoutService.paymentPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
     });
     await test.step('Empty all Fields on Bank Draft Form ', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.completeBankDraftFormUnitedStates('', '', '');
+      await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates('', '', '');
     });
     await test.step('Click Purchase button', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.locPurchaseButton.click();
+      await commonCheckoutService.paymentPage.bankDraftComponent.locPurchaseButton.click();
     });
     await test.step('Required Warning messages displays', async () => {
       await checkoutPaymentsPage.checkoutBankDraftComponent.assertUSBankDraftErrorsAreDisplayed();
@@ -140,10 +141,10 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
   test('Verify that we can reach the confirmation page with valid information on the US Credit Card Page', async ({ page }) => {
     console.log('Test Case: Verify that we can reach the confirmation page with valid information on the US Credit Card Page');
     await test.step(' Fill out Credit Card Form', async () => {
-      await commonCheckoutService.paymentsPage.creditCardComponent.completeCreditCardForm('4444333322221111', '1225', '123', 'Test User', '80202');
+      await commonCheckoutService.paymentPage.creditCardComponent.completeCreditCardForm('4444333322221111', '1225', '123', 'Test User', '80202');
     });
     await test.step('Click Purchase button', async () => {
-      await commonCheckoutService.paymentsPage.creditCardComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
+      await commonCheckoutService.paymentPage.creditCardComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
     });
     await test.step('Redirected to the Confirmation Page', async () => {
       await expect(commonCheckoutService.confirmationPage.locMembershipWrapper).toBeVisible({ timeout: 100000 });
@@ -153,10 +154,10 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
   test('Verify the required message displays when the Card Number input is empty on the US Credit Card Page', async ({ page }) => {
     console.log('Test Case: Verify the required message displays when the Card Number input is empty on the US Credit Card Page');
     await test.step('On the Credit Card Form - Empty only Card Number Field and all other fields are populated', async () => {
-      await commonCheckoutService.paymentsPage.creditCardComponent.completeCreditCardForm('', '1225', '123', 'Test User', '80202');
+      await commonCheckoutService.paymentPage.creditCardComponent.completeCreditCardForm('', '1225', '123', 'Test User', '80202');
     });
     await test.step('Click Purchase button', async () => {
-      await commonCheckoutService.paymentsPage.creditCardComponent.locPurchaseButton.click();
+      await commonCheckoutService.paymentPage.creditCardComponent.locPurchaseButton.click();
     });
     await test.step('Warning message that Card Number is Required displays', async () => {
       await expect(checkoutPaymentsPage.checkoutCreditCardComponent.locCardNumberWarningMessage).toBeVisible();
@@ -166,10 +167,10 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
   test('Verify the required message displays when the Expiration Date input is empty on the US Credit Card Page', async ({ page }) => {
     console.log('Test Case: Verify the required message displays when the Expiration Date input is empty on the US Credit Card Page');
     await test.step('On the Credit Card Form - Empty only Expiration Date Field and all other fields are populated', async () => {
-      await commonCheckoutService.paymentsPage.creditCardComponent.completeCreditCardForm('4444333322221111', '', '123', 'Test User', '80202');
+      await commonCheckoutService.paymentPage.creditCardComponent.completeCreditCardForm('4444333322221111', '', '123', 'Test User', '80202');
     });
     await test.step('Click Purchase button', async () => {
-      await commonCheckoutService.paymentsPage.creditCardComponent.locPurchaseButton.click();
+      await commonCheckoutService.paymentPage.creditCardComponent.locPurchaseButton.click();
     });
     await test.step('Warning message that Expiration Date is Required displays', async () => {
       await expect(checkoutPaymentsPage.checkoutCreditCardComponent.locExpirationDateWarningMessage).toBeVisible();
@@ -179,10 +180,10 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
   test('Verify the required message displays when the Security Code input is empty on the US Credit Card Page', async ({ page }) => {
     console.log('Test Case: Verify the required message displays when the Security Code input is empty on the US Credit Card Page');
     await test.step('On the Credit Card Form - Empty only Security Code Field and all other fields are populated', async () => {
-      await commonCheckoutService.paymentsPage.creditCardComponent.completeCreditCardForm('4444333322221111', '1225', '', 'Test User', '80202');
+      await commonCheckoutService.paymentPage.creditCardComponent.completeCreditCardForm('4444333322221111', '1225', '', 'Test User', '80202');
     });
     await test.step('Click Purchase button', async () => {
-      await commonCheckoutService.paymentsPage.creditCardComponent.locPurchaseButton.click();
+      await commonCheckoutService.paymentPage.creditCardComponent.locPurchaseButton.click();
     });
     await test.step('Warning message that Security Code is Required displays', async () => {
       await expect(checkoutPaymentsPage.checkoutCreditCardComponent.locSecurityCodeWarningMessage).toBeVisible();
@@ -192,10 +193,10 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
   test('Verify the required message displays when the Name on Card input is empty on the US Credit Card Page', async ({ page }) => {
     console.log('Test Case: Verify the required message displays when the Name on Card input is empty on the US Credit Card Page');
     await test.step('On the Credit Card Form - Empty only Name on Card Field and all other fields are populated', async () => {
-      await commonCheckoutService.paymentsPage.creditCardComponent.completeCreditCardForm('4444333322221111', '1225', '123', '', '80202');
+      await commonCheckoutService.paymentPage.creditCardComponent.completeCreditCardForm('4444333322221111', '1225', '123', '', '80202');
     });
     await test.step('Click Purchase button', async () => {
-      await commonCheckoutService.paymentsPage.creditCardComponent.locPurchaseButton.click();
+      await commonCheckoutService.paymentPage.creditCardComponent.locPurchaseButton.click();
     });
     await test.step('Warning message that Name on Card is Required displays', async () => {
       await expect(checkoutPaymentsPage.checkoutCreditCardComponent.locNameOnCardWarningMessage).toBeVisible();
@@ -205,10 +206,10 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
   test('Verify the required message displays when the Name on Card input is invalid Length on the US Credit Card Page', async ({ page }) => {
     console.log('Test Case: Verify the required message displays when the Name on Card input is invalid Length on the US Credit Card Page');
     await test.step('On the Credit Card Form - Have invalid Length on Name on Card Field and all other fields are populated', async () => {
-      await commonCheckoutService.paymentsPage.creditCardComponent.completeCreditCardForm('4444333322221111', '1225', '123', 'W', '80202');
+      await commonCheckoutService.paymentPage.creditCardComponent.completeCreditCardForm('4444333322221111', '1225', '123', 'W', '80202');
     });
     await test.step('Click Purchase button', async () => {
-      await commonCheckoutService.paymentsPage.creditCardComponent.locPurchaseButton.click();
+      await commonCheckoutService.paymentPage.creditCardComponent.locPurchaseButton.click();
     });
     await test.step('Warning message that Name on Card is Required displays', async () => {
       await expect(checkoutPaymentsPage.checkoutCreditCardComponent.locNameOnCardWarningMessage).toBeVisible();
@@ -218,10 +219,10 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
   test('Verify the required message displays when the Billing Postal Code input is empty on the US Credit Card Page', async ({ page }) => {
     console.log('Test Case: Verify the required message displays when the Billing Postal Code input is empty on the US Credit Card Page');
     await test.step('On the Credit Card Form - Empty only Billing Postal Code and all other fields are populated', async () => {
-      await commonCheckoutService.paymentsPage.creditCardComponent.completeCreditCardForm('4444333322221111', '1225', '123 ', 'Test User', '');
+      await commonCheckoutService.paymentPage.creditCardComponent.completeCreditCardForm('4444333322221111', '1225', '123 ', 'Test User', '');
     });
     await test.step('Click Purchase button', async () => {
-      await commonCheckoutService.paymentsPage.creditCardComponent.locPurchaseButton.click();
+      await commonCheckoutService.paymentPage.creditCardComponent.locPurchaseButton.click();
     });
     await test.step('Warning message that Billing Postal Code is Required displays', async () => {
       await expect(checkoutPaymentsPage.checkoutCreditCardComponent.locBillingPostalCodeWarningMessage).toBeVisible();
@@ -231,10 +232,10 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
   test('Verify the required message displays when all fields are Empty on the US Credit Card Page', async ({ page }) => {
     console.log('Test Case: Verify the required message displays when all fields are empty on the US Credit Card Page');
     await test.step('Empty all Fields all fields on the Credit Card Form', async () => {
-      await commonCheckoutService.paymentsPage.creditCardComponent.completeCreditCardForm('', '', '', '', '');
+      await commonCheckoutService.paymentPage.creditCardComponent.completeCreditCardForm('', '', '', '', '');
     });
     await test.step('Click Purchase button', async () => {
-      await commonCheckoutService.paymentsPage.creditCardComponent.locPurchaseButton.click();
+      await commonCheckoutService.paymentPage.creditCardComponent.locPurchaseButton.click();
     });
     await test.step('Required Warning messages displays', async () => {
       await checkoutPaymentsPage.checkoutCreditCardComponent.assertUSCreditCardErrorsAreDisplayed();
@@ -256,7 +257,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     console.log('Test Case: Verify user is redirected to the Terms OF Service Page from the US Bank Draft Payment Page');
     let newPage: Page;
     await test.step('Click on the Bank Draft Toggle', async () => {
-      await commonCheckoutService.paymentsPage.creditCardComponent.locCreditCardBankDraftToggle.click();
+      await commonCheckoutService.paymentPage.creditCardComponent.locCreditCardBankDraftToggle.click();
     });
     await test.step('Click on Terms of Service Link on Bank Draft Page', async () => {
       newPage = await checkoutPaymentsPage.checkoutBankDraftComponent.clickOnTermsOfServiceLink();
@@ -282,26 +283,8 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
 
   test('Verify user can redirect to Personal Info Page By Clicking on Stepper 2 from Payment Page', async ({ page }) => {
     console.log('Test Case: Verify user can redirect to Personal Info Page By Clicking on Stepper 2 from Payment Page');
-    await test.step('Populate all fields on the Personal Information Page', async () => {
-      await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
-        'Automation',
-        'Tester',
-        '5555555555',
-        'Mobile',
-        '200 16th Street',
-        'Denver',
-        '80202',
-        '10',
-        '10',
-        '2001',
-        '3333'
-      );
-    });
-    await test.step('Click on the Save & Continue Button to go to Payment Page', async () => {
-      await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
-    });
     await test.step('Click on Step Circle 2 when on Payment Page', async () => {
-      await commonCheckoutService.paymentsPage.stepperComponent.locStepCirclePersonalInfoLink.click();
+      await commonCheckoutService.paymentPage.stepperComponent.locStepCirclePersonalInfoLink.click();
     });
     await test.step('Assert that user is redirected to Personal Information Page and it contains header Tell us about yourself', async () => {
       await expect(checkoutPersonalInfoPage.locHeader).toContainText('Tell us about yourself');
@@ -310,7 +293,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
 });
 
 test.describe('Canada - Alberta, Legal Plan', () => {
-  test.beforeEach(async ({ context, page }) => {
+  test.beforeEach(async ({ page }) => {
     await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
       await legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('CA', 'en');
     });
@@ -349,13 +332,13 @@ test.describe('Canada - Alberta, Legal Plan', () => {
   test('Verify that we can reach the confirmation page with valid information in the Canada Bank Draft form', async ({ page }) => {
     console.log('Test Case: Verify that we can reach the confirmation page with valid information in the Canada Bank Draft form');
     await test.step('Click Bank Draft toggle', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
+      await commonCheckoutService.paymentPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
     });
     await test.step('Fill out Bank Draft Form', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.completeBankDraftFormCanada('0000000', '00000', '000', 'Tester');
+      await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormCanada('0000000', '00000', '000', 'Tester');
     });
     await test.step('Click Purchase Button', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
+      await commonCheckoutService.paymentPage.bankDraftComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
     });
     await test.step('Redirected to the Confirmation Page', async () => {
       await expect(commonCheckoutService.confirmationPage.locMembershipWrapper).toBeVisible({ timeout: 100000 });
@@ -365,13 +348,13 @@ test.describe('Canada - Alberta, Legal Plan', () => {
   test('Verify the required message displays when the Account Number input is empty on the CA Bank Draft Page', async ({ page }) => {
     console.log('Test Case: Verify the required message displays when the Account Number input is empty on the CA Bank Draft Page');
     await test.step('Click Bank Draft toggle', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
+      await commonCheckoutService.paymentPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
     });
     await test.step('Empty only Account Number Field and all other fields are populated', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.completeBankDraftFormCanada('', '00000', '000', 'Tester');
+      await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormCanada('', '00000', '000', 'Tester');
     });
     await test.step('Click Purchase button', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.locPurchaseButton.click();
+      await commonCheckoutService.paymentPage.bankDraftComponent.locPurchaseButton.click();
     });
     await test.step('Warning message that Account Number is Required displays', async () => {
       await expect(checkoutPaymentsPage.checkoutBankDraftComponent.locAccountNumberWarningMessage).toBeVisible();
@@ -381,13 +364,13 @@ test.describe('Canada - Alberta, Legal Plan', () => {
   test('Verify the required message displays when the Transit Number input is empty on the CA Bank Draft Page', async ({ page }) => {
     console.log('Test Case: Verify the required message displays when the Transit Number input is empty on the CA Bank Draft Page');
     await test.step('Click Bank Draft toggle', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
+      await commonCheckoutService.paymentPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
     });
     await test.step('Empty only Transit Number and all other fields are populated', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.completeBankDraftFormCanada('0000000', '', '000', 'Tester');
+      await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormCanada('0000000', '', '000', 'Tester');
     });
     await test.step('Click Purchase button', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.locPurchaseButton.click();
+      await commonCheckoutService.paymentPage.bankDraftComponent.locPurchaseButton.click();
     });
     await test.step('Warning message that Routing Number is Required displays', async () => {
       await expect(checkoutPaymentsPage.checkoutBankDraftComponent.locCaTransitNumberWarningMessage).toBeVisible();
@@ -397,13 +380,13 @@ test.describe('Canada - Alberta, Legal Plan', () => {
   test('Verify the required message displays when the Institution Number input is empty on the CA Bank Draft Page', async ({ page }) => {
     console.log('Test Case: Verify the required message displays when the Institution Number input is empty on the CA Bank Draft Page');
     await test.step('Click Bank Draft toggle', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
+      await commonCheckoutService.paymentPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
     });
     await test.step('Empty only Institution Number and all other fields are populated', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.completeBankDraftFormCanada('0000000', '00000', '', 'Tester');
+      await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormCanada('0000000', '00000', '', 'Tester');
     });
     await test.step('Click Purchase button', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.locPurchaseButton.click();
+      await commonCheckoutService.paymentPage.bankDraftComponent.locPurchaseButton.click();
     });
     await test.step('Warning message that Institution Number is Required displays', async () => {
       await expect(checkoutPaymentsPage.checkoutBankDraftComponent.locCaInstitutionNumberWarningMessage).toBeVisible();
@@ -413,13 +396,13 @@ test.describe('Canada - Alberta, Legal Plan', () => {
   test('Verify the required message displays when the Account Holder Name input is empty on the CA Bank Draft Page', async ({ page }) => {
     console.log('Test Case: Verify the required message displays when the Account Holder Name input is empty on the CA Bank Draft Page');
     await test.step('Click Bank Draft toggle', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
+      await commonCheckoutService.paymentPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
     });
     await test.step('Empty only Account Holder Name and all other fields are populated', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.completeBankDraftFormCanada('0000000', '00000', '000', '');
+      await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormCanada('0000000', '00000', '000', '');
     });
     await test.step('Click Purchase button', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.locPurchaseButton.click();
+      await commonCheckoutService.paymentPage.bankDraftComponent.locPurchaseButton.click();
     });
     await test.step('Warning message that Account Holder Name is Required displays', async () => {
       await expect(checkoutPaymentsPage.checkoutBankDraftComponent.locAccountHolderNameWarningMessage).toBeVisible();
@@ -429,13 +412,13 @@ test.describe('Canada - Alberta, Legal Plan', () => {
   test('Verify the required message displays when all fields are Empty on the Canada Bank Draft Page', async ({ page }) => {
     console.log('Test Case: Verify the required message displays when all fields are empty on the Canada Bank Draft Page');
     await test.step('Click Bank Draft toggle', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
+      await commonCheckoutService.paymentPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
     });
     await test.step('Empty all fields and all other fields are populated', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.completeBankDraftFormCanada('', '', '', '');
+      await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormCanada('', '', '', '');
     });
     await test.step('Click Purchase button', async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.locPurchaseButton.click();
+      await commonCheckoutService.paymentPage.bankDraftComponent.locPurchaseButton.click();
     });
     await test.step('Required Warning messages displays', async () => {
       await checkoutPaymentsPage.checkoutBankDraftComponent.assertCABankDraftErrorsAreDisplayed();
@@ -445,10 +428,10 @@ test.describe('Canada - Alberta, Legal Plan', () => {
   test('Verify that we can reach the confirmation page with valid information on the Canada Credit Card Page', async ({ page }) => {
     console.log('Test Case: Verify that we can reach the confirmation page with valid information on the Canada Credit Card Page');
     await test.step(' Fill out Credit Card Form', async () => {
-      await commonCheckoutService.paymentsPage.creditCardComponent.completeCreditCardForm('4444333322221111', '1225', '123', 'Test User', 'T2H2B5');
+      await commonCheckoutService.paymentPage.creditCardComponent.completeCreditCardForm('4444333322221111', '1225', '123', 'Test User', 'T2H2B5');
     });
     await test.step('Click Purchase button', async () => {
-      await commonCheckoutService.paymentsPage.creditCardComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
+      await commonCheckoutService.paymentPage.creditCardComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
     });
     await test.step('Redirected to the Confirmation Page', async () => {
       await expect(commonCheckoutService.confirmationPage.locMembershipWrapper).toBeVisible({ timeout: 100000 });

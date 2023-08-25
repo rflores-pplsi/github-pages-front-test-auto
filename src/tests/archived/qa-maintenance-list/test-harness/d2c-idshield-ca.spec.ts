@@ -52,7 +52,7 @@ test('D2E IDShield CA using Testing Harness', async () => {
     // await d2CLegalShieldCaPage.selectCheckout('d2cIDShieldCA');
   });
   await test.step('Proceed to Payment Page > Complete Payment with BD transaction ', async () => {
-    await commonCheckoutService.paymentsPage.bankDraftComponent.completeBankDraftFormCanada(
+    await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormCanada(
       DataUtils.data.testingHarness.ca.bd.Account,
       DataUtils.data.testingHarness.ca.bd.Transit,
       DataUtils.data.testingHarness.ca.bd.Institution,

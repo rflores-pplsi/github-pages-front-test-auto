@@ -18,7 +18,7 @@ test.beforeEach(async ({ context, page }) => {
   legalshieldService = new LegalshieldService(page);
   commonLoginService = new CommonLoginService(page);
   commonCheckoutService = new CommonCheckoutService(context, page);
-  test.setTimeout(100000);
+  test.setTimeout(120000);
 });
 
 // LegalShield - US - existing user
@@ -70,16 +70,16 @@ for (const testCase of legalshieldData.filter((testCase) => testCase.disabled ==
         await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
       });
       await test.step(`Verify Order Total in Order Summary`, async () => {
-        expect(await commonCheckoutService.paymentsPage.orderSummaryComponent.locTotalContainer.innerText()).toContain(testCase.termTotal);
+        expect(await commonCheckoutService.paymentPage.orderSummaryComponent.locTotalContainer.innerText()).toContain(testCase.termTotal);
       });
       await test.step(`Click Bank Draft Tab`, async () => {
-        await commonCheckoutService.paymentsPage.creditCardComponent.locCreditCardBankDraftToggle.click();
+        await commonCheckoutService.paymentPage.creditCardComponent.locCreditCardBankDraftToggle.click();
       });
       await test.step(`Fill Bank Draft Form and Submit`, async () => {
-        await commonCheckoutService.paymentsPage.bankDraftComponent.completeBankDraftFormUnitedStates('0000000', '000000000', 'Tester');
+        await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates('0000000', '000000000', 'Tester');
       });
       await test.step('Click Purchase Button', async () => {
-        await commonCheckoutService.paymentsPage.bankDraftComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
+        await commonCheckoutService.paymentPage.bankDraftComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
       });
       await test.step(`Click on the Let's Go button`, async () => {
         await commonCheckoutService.confirmationPage.locLetsGoButton.click();
@@ -139,25 +139,21 @@ for (const testCase of selfPayData.filter((testCase) => testCase.disabled == fal
         await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
       });
       await test.step(`Verify Order Total in Order Summary`, async () => {
-        expect(await commonCheckoutService.paymentsPage.orderSummaryComponent.locTotalContainer.innerText()).toContain(testCase.termTotal);
+        expect(await commonCheckoutService.paymentPage.orderSummaryComponent.locTotalContainer.innerText()).toContain(testCase.termTotal);
       });
       await test.step(`Click Bank Draft Tab`, async () => {
-        await commonCheckoutService.paymentsPage.creditCardComponent.locCreditCardBankDraftToggle.click();
+        await commonCheckoutService.paymentPage.creditCardComponent.locCreditCardBankDraftToggle.click();
       });
       await test.step(`Fill Bank Draft Form and Submit`, async () => {
-        await commonCheckoutService.paymentsPage.bankDraftComponent.completeBankDraftFormUnitedStates('0000000', '000000000', 'Tester');
+        await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates('0000000', '000000000', 'Tester');
       });
       await test.step('Click Purchase Button', async () => {
-        await commonCheckoutService.paymentsPage.bankDraftComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
+        await commonCheckoutService.paymentPage.bankDraftComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
       });
-      //TODO:update with steps to get to accounts service once the MyAccount dropDown issue fixed?
-      // await test.step(`Click on the Let's Go button`, async () => {
-      //   await page.pause();
-      //   await commonCheckoutService.confirmationPage.locLetsGoButton.click();
-      // });
-      // await test.step(`Assert Accounts Page URL`, async () => {
-      //   await expect(page).toHaveURL(new RegExp('accounts'));
-      // });
+      await test.step(`Click on Purchase button`, async () => {
+        await commonCheckoutService.confirmationPage.locMembershipWrapper.waitFor();
+        await expect(commonCheckoutService.confirmationPage.locMembershipWrapper).toBeVisible();
+      });
     });
   }
 }

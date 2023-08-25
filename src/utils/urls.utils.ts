@@ -28,6 +28,15 @@ export default class UrlsUtils {
   //   url: `https://${envUrlString}idshield.ca`,
   // };
 
+  //TODO: rewrite this file based on this format, with urls associated with services
+  static readonly cartService = {
+    baseUrl: `https://cart.${envUrlString}legalshield.com`,
+  };
+
+  static readonly shieldAssociateService = {
+    baseNoSubdomain: `${envUrlString}shieldassociate.com`,
+  };
+
   static readonly legalshieldUrls = {
     accounts: {
       url: `https://accounts.${envUrlString}legalshield.com`,

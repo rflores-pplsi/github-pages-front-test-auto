@@ -62,19 +62,19 @@ for (const regionUnderTest of regionsUnderTest) {
       await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
     });
     await test.step(`Validate Order Summary on Payment Info Page`, async () => {
-      expect(await commonCheckoutService.paymentsPage.orderSummaryComponent.locTotalContainer.innerText()).toContain('$14.95');
+      expect(await commonCheckoutService.paymentPage.orderSummaryComponent.locTotalContainer.innerText()).toContain('$14.95');
     });
     await test.step(`Click on the Bank Draft Toggle`, async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
+      await commonCheckoutService.paymentPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
     });
     await test.step(`Fill out Bank Draft form and Submit`, async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.completeBankDraftFormCanada('0000000', '11242', '260', 'Tester');
+      await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormCanada('0000000', '11242', '260', 'Tester');
     });
     await test.step(`Click on the Purchase button`, async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.locPurchaseButton.click();
+      await commonCheckoutService.paymentPage.bankDraftComponent.locPurchaseButton.click();
     });
-    await test.step(`Click on the My account option in the header dropdown`, async () => {
-      await commonCheckoutService.paymentsPage.globalHeaderComponent.navigateToAccountsProfilePageThroughMyAccountsLink();
+    await test.step(`Click Let's Go Link`, async () => {
+      await commonCheckoutService.paymentPage.confirmationPage.locLetsGoButton.click();
     });
     await test.step(`Assert Accounts Page URL`, async () => {
       await expect(page).toHaveURL(new RegExp('accounts'));

@@ -53,7 +53,7 @@ test('D2E LegalShield CA using Testing Harness', async () => {
   });
   await test.step('Proceed to Payment Page > Complete Payment with BD transaction ', async () => {
     // await checkoutPaymentsBankDraftPage.clickSaveAndContinue();
-    await commonCheckoutService.paymentsPage.bankDraftComponent.completeBankDraftFormCanada(
+    await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormCanada(
       DataUtils.data.testingHarness.ca.bd.Account,
       DataUtils.data.testingHarness.ca.bd.Transit,
       DataUtils.data.testingHarness.ca.bd.Institution,

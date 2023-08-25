@@ -27,7 +27,7 @@ for (const regionUnderTest of regionsUnderTest) {
     await test.step(`Navigate to Shield Benefits Enrollment Page for a Group`, async () => {
       await shieldBenefitsService.shieldBenefitsLegalOverviewPage.navigateToShieldBenefitsGroupOverviewPage('nnlegaltest7');
     });
-    await test.step(`Click Enroll Now Button`, async () => {
+    await test.step(`Click Enroll Now button`, async () => {
       await shieldBenefitsService.shieldBenefitsLegalOverviewPage.locEnrollNowButton.click();
     });
     await test.step(`Select State`, async () => {
@@ -64,28 +64,33 @@ for (const regionUnderTest of regionsUnderTest) {
       await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
     });
     await test.step(`Validate Order Summary on Payment Info Page`, async () => {
-      expect(await commonCheckoutService.paymentsPage.orderSummaryComponent.locTotalContainer.innerText()).toContain('$23.95');
+      expect(await commonCheckoutService.paymentPage.orderSummaryComponent.locTotalContainer.innerText()).toContain('$23.95');
     });
 
     if (process.env.USE_PROD == 'true') {
       console.log('* Do not finish transaction in PRODUCTION environment. We do not want to create additional memberships');
     } else {
       await test.step(`Click on Bank Draft Toggle`, async () => {
-        await commonCheckoutService.paymentsPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
+        await commonCheckoutService.paymentPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
       });
       await test.step(`Fill out Bank Draft form`, async () => {
-        await commonCheckoutService.paymentsPage.bankDraftComponent.completeBankDraftFormUnitedStates('1000123546', '103000648', 'Test');
+        await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates('1000123546', '103000648', 'Test');
       });
       await test.step(`Click on Purchase button`, async () => {
-        await commonCheckoutService.paymentsPage.bankDraftComponent.locPurchaseButton.click();
+        await commonCheckoutService.paymentPage.bankDraftComponent.locPurchaseButton.click();
       });
-      await test.step(`Click on the My account option in the header dropdown`, async () => {
-        await commonCheckoutService.paymentsPage.globalHeaderComponent.locAccountMenuDropDown.click();
-        await commonCheckoutService.paymentsPage.globalHeaderComponent.locAccountMenuMyAccountLink.click();
+      await test.step(`Click on Purchase button`, async () => {
+        await commonCheckoutService.confirmationPage.locMembershipWrapper.waitFor();
+        await expect(commonCheckoutService.confirmationPage.locMembershipWrapper).toBeVisible();
       });
-      await test.step(`Assert Accounts Page URL`, async () => {
-        await expect(page).toHaveURL(new RegExp('accounts'));
-      });
+      //TODO: uncomment if myaccounts dropdown re-implemented on page
+      // await test.step(`Click on the My account option in the header dropdown`, async () => {
+      //   await commonCheckoutService.paymentPage.globalHeaderComponent.locAccountMenuDropDown.click();
+      //   await commonCheckoutService.paymentPage.globalHeaderComponent.locAccountMenuMyAccountLink.click();
+      // });
+      // await test.step(`Assert Accounts Page URL`, async () => {
+      //   await expect(page).toHaveURL(new RegExp('accounts'));
+      // });
     }
   });
 }

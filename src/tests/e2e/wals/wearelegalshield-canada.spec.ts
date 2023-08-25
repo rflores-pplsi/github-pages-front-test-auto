@@ -54,7 +54,7 @@ for (const regionUnderTest of regionsUnderTest) {
     //   expect(await checkoutPage.locOrderSummaryComponentTotalAmount.innerText()).toContain('$29.95');
     // });
     // await test.step(`Fill out Bank Draft form and Submit`, async () => {
-    //   await checkoutPage.completeBankDraftFormUnitedStates('1000123546', '103000648', 'Test');
+    //   await checkoutPage.completeBankDraftFormUnitedStates('1000123546', '103000648', 'Test', 'Test Bank');
     // });
     // await test.step(`Assert Confirmation Page URL`, async () => {
     //   await expect(checkoutPage.locConfirmationPageWelcomeHeader).toBeVisible({ timeout: 100000 });

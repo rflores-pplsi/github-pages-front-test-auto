@@ -43,38 +43,40 @@ for (const regionUnderTest of regionsUnderTest) {
     await test.step(`Validate Order Summary on Personal Info Page`, async () => {
       expect(await commonCheckoutService.personalInfoPage.orderSummaryComponent.locTotalContainer.innerText()).toContain('$14.95');
     });
-    await test.step(`Change Address to match region and continue to Payment Page`, async () => {
+    test.step(`Fill all required fields on personal info ${regionInfo.name}`, async () => {
       await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
-        'Automation',
+        'Test',
         'Tester',
         '5555555555',
         'Mobile',
-        homeAddress,
-        city,
-        postalCode,
+        regionInfo.validAddress.street,
+        regionInfo.validAddress.city,
+        regionInfo.validAddress.postalCode,
         '10',
         '10',
-        '2001',
+        '1990',
         '3333'
       );
     });
     await test.step(`Click Save and Continue Button`, async () => {
+      //TODO: remove this wait after figuring out what exactly is interrupting button click
+      await page.waitForTimeout(3000);
       await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
     });
     await test.step(`Validate Order Summary on Payment Info Page`, async () => {
-      expect(await commonCheckoutService.paymentsPage.orderSummaryComponent.locTotalContainer.innerText()).toContain('$14.95');
+      expect(await commonCheckoutService.paymentPage.orderSummaryComponent.locTotalContainer.innerText()).toContain('$14.95');
     });
     await test.step(`Click on the Bank Draft Toggle`, async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
+      await commonCheckoutService.paymentPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
     });
     await test.step(`Fill out Bank Draft form and Submit`, async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.completeBankDraftFormUnitedStates('1000123546', '103000648', 'Test');
+      await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates('1000123546', '103000648', 'Test');
     });
     await test.step(`Click on the Purchase button`, async () => {
-      await commonCheckoutService.paymentsPage.bankDraftComponent.locPurchaseButton.click();
+      await commonCheckoutService.paymentPage.bankDraftComponent.locPurchaseButton.click();
     });
-    await test.step(`Click on the My account option in the header dropdown`, async () => {
-      await commonCheckoutService.paymentsPage.globalHeaderComponent.navigateToAccountsProfilePageThroughMyAccountsLink();
+    await test.step(`Click Let's Go Link`, async () => {
+      await commonCheckoutService.paymentPage.confirmationPage.locLetsGoButton.click();
     });
     await test.step(`Assert Accounts Page URL`, async () => {
       await expect(page).toHaveURL(new RegExp('accounts'));

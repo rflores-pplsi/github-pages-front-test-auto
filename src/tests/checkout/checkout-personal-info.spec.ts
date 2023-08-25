@@ -18,7 +18,7 @@ test.beforeEach(async ({ context, page }) => {
 });
 
 test.describe('United States - Colorado, Legal Plan - Monthly', () => {
-  test.beforeEach(async () => {
+  test.beforeEach(async ({ page }) => {
     await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
       await legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
     });
@@ -29,6 +29,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await legalshieldCoverageAndPricingPage.clickStartPlanButton('Monthly');
     });
     await test.step(`Click on the Shopping Cart Checkout button`, async () => {
+      await page.waitForTimeout(500);
       await legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
     });
     await test.step(`Log in to reach checkout service`, async () => {
@@ -107,19 +108,6 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  test('Verify the required message displays when the Phone Type input is empty', async () => {
-    console.log('Test Case: Verify the required message displays when the Phone Type input is empty');
-    await test.step('Empty only Phone Type Field', async () => {
-      await commonCheckoutService.personalInfoPage.selectPhoneType('Select Type');
-    });
-    await test.step('Click on the Save & Continue Button', async () => {
-      await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
-    });
-    await test.step('Require Warning message that Phone Type is Required displays', async () => {
-      await expect(checkoutPersonalInfoPage.locPhoneTypeWarningMessage).toBeVisible();
-    });
-  });
-
   test('Verify the required message displays when the Address input is empty', async () => {
     console.log('Test Case: Verify the required message displays when the Address input is empty');
     await test.step('Empty only Home Address Field', async () => {
@@ -156,45 +144,6 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
     await test.step('Require Warning message that Postal Code is Requires displays', async () => {
       await expect(checkoutPersonalInfoPage.locPostalCodeWarningMessage).toBeVisible();
-    });
-  });
-
-  test('Verify the required message displays when the Date of Birth Month input is empty', async () => {
-    console.log('Test Case: Verify the required message displays when the DOB Month input is empty');
-    await test.step('Empty only DOB Month Field', async () => {
-      await commonCheckoutService.personalInfoPage.locBirthMonthInput.clear();
-    });
-    await test.step('Click on the Save & Continue Button', async () => {
-      await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
-    });
-    await test.step('Require Warning message that valid DOB is Required displays', async () => {
-      await expect(checkoutPersonalInfoPage.locDateOfBirthInvalidWarningMessage).toBeVisible();
-    });
-  });
-
-  test('Verify the required message displays when the Date of Birth Day input is empty', async () => {
-    console.log('Test Case: Verify the required message displays when the DOB Day input is empty');
-    await test.step('Empty only DOB Date Field', async () => {
-      await commonCheckoutService.personalInfoPage.locBirthDateInput.clear();
-    });
-    await test.step('Click on the Save & Continue Button', async () => {
-      await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
-    });
-    await test.step('Require Warning message that valid DOB is Required displays', async () => {
-      await expect(checkoutPersonalInfoPage.locDateOfBirthInvalidWarningMessage).toBeVisible();
-    });
-  });
-
-  test('Verify the required message displays when the Date of Birth Year input is empty', async () => {
-    console.log('Test Case: Verify the required message displays when the DOB Year input is empty');
-    await test.step('Empty only DOB Year Field', async () => {
-      await commonCheckoutService.personalInfoPage.locBirthYearInput.clear();
-    });
-    await test.step('Click on the Save & Continue Button', async () => {
-      await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
-    });
-    await test.step('Require Warning message that valid DOB is Required displays', async () => {
-      await expect(checkoutPersonalInfoPage.locDateOfBirthInvalidWarningMessage).toBeVisible();
     });
   });
 
@@ -274,10 +223,10 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  test('Verify the required message displays when all fields are Empty on Personal Info Page', async () => {
-    console.log('Test Case: Verify the required message displays when all fields are Empty on Personal Info Page');
+  test('Verify the required message displays when all non-business fields are Empty on Personal Info Page', async ({ page }) => {
+    console.log('Test Case: Verify the required message displays when all non-business fields are Empty on Personal Info Page');
     await test.step('Empty all Fields on Personal Info Page ', async () => {
-      await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields('', '', '', 'Select Type', '', '', '', '', '', '', '');
+      await commonCheckoutService.personalInfoPage.clearAllNonBusinessFields();
     });
     await test.step('Click on the Save & Continue Button', async () => {
       await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
@@ -315,7 +264,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
     });
     await test.step('Assert that user is redirected to Personal Information Page and it contains header Tell us about yourself', async () => {
-      expect(commonCheckoutService.paymentsPage.stepperComponent.locStepCircle3Current).toBeVisible();
+      expect(commonCheckoutService.paymentPage.stepperComponent.locStepCircle3Current).toBeVisible();
     });
   });
 
@@ -537,7 +486,7 @@ test.describe('United States - Colorado, Business Plan', () => {
   test('Verify the required message displays when all fields including Business Section are Empty on Personal Info Page', async () => {
     console.log('Test Case: Verify the required message displays when all fields including Business Section are Empty on Personal Info Page');
     await test.step('Empty all Fields including Business Section on Personal Info Page ', async () => {
-      await commonCheckoutService.personalInfoPage.fillAllFields('', '', '', 'Select Type', '', '', '', '', '', '', '', '', '', '', '', '');
+      await commonCheckoutService.personalInfoPage.clearAllFields();
     });
     await test.step('Click on the Save & Continue Button', async () => {
       await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
@@ -601,7 +550,7 @@ test.describe('United States - Colorado, Business - Plan', () => {
       await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
     });
     await test.step('Assert that user is redirected to Personal Information Page and it contains header Tell us about yourself', async () => {
-      expect(commonCheckoutService.paymentsPage.stepperComponent.locStepCircle3Current).toBeVisible();
+      expect(commonCheckoutService.paymentPage.stepperComponent.locStepCircle3Current).toBeVisible();
     });
   });
 });

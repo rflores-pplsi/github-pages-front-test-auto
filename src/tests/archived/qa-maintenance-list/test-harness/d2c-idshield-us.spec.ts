@@ -48,7 +48,7 @@ test('D2E IDShield US using Testing Harness', async () => {
     await testHarnessD2cPage.personalInfoLocBtnSaveAndContinue.click();
   });
   await test.step('Proceed to Payment Page > Complete Payment with BD transaction ', async () => {
-    await commonCheckoutService.paymentsPage.bankDraftComponent.completeBankDraftFormUnitedStates(
+    await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates(
       DataUtils.data.testingHarness.us.bd.Account,
       DataUtils.data.testingHarness.us.bd.Routing,
       DataUtils.data.testingHarness.us.bd.name

@@ -52,7 +52,7 @@ test('D2E LegalShield US using Testing Harness', async ({ page }) => {
   });
   await test.step('Proceed to Payment Page > Complete Payment with BD transaction ', async () => {
     // await checkoutPaymentsBankDraftPage.clickSaveAndContinue();
-    await commonCheckoutService.paymentsPage.bankDraftComponent.completeBankDraftFormUnitedStates(
+    await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates(
       DataUtils.data.testingHarness.us.bd.Account,
       DataUtils.data.testingHarness.us.bd.Routing,
       DataUtils.data.testingHarness.us.bd.name
