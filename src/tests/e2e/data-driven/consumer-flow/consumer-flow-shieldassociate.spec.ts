@@ -26,7 +26,7 @@ for (const testCase of shieldAssociateData.filter((testCase) => testCase.disable
       console.log(`Test Case: ${testCase.testCaseName}, ${regionUnderTest} -> Checkout -> Accounts`);
       const regionInfo = RegionsUtils.usStates.filter((region) => region.name == regionUnderTest)[0];
       await test.step(`Navigate to shieldbenefits.com/BuyNow`, async () => {
-        await page.goto(`https://apptestuser.${UrlsUtils.shieldAssociateService.baseNoSubdomain}/BuyNow`);
+        await page.goto(`https://apptestuser.${UrlsUtils.shieldAssociateService.baseUrlNoSubdomain}/BuyNow`);
       });
       await test.step(`Select Market`, async () => {
         await shieldAssociateService.buyNowPage.globalFooterComponent.changeMarket(testCase.market);

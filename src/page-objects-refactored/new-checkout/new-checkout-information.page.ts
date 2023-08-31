@@ -45,7 +45,6 @@ export class NewCheckoutInformationPage {
       await this.locLastNameInput.fill(lastName);
       await this.locAddressInput.fill(region.validAddress.street);
       await this.locCityInput.fill(region.validAddress.city);
-      await this.page.pause();
       await this.page.keyboard.press('Tab');
       await this.selectZipCode(region.validAddress.postalCode);
       await this.locPhoneNumberInput.type(phone);

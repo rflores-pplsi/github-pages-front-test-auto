@@ -73,7 +73,7 @@ for (const regionUnderTest of regionsUnderTest) {
     await test.step(`Click on the Purchase button`, async () => {
       await commonCheckoutService.paymentPage.bankDraftComponent.locPurchaseButton.click();
     });
-    await page.pause();
+
     await test.step(`Click Let's Go Link`, async () => {
       await commonCheckoutService.paymentPage.confirmationPage.locLetsGoButton.click();
     });

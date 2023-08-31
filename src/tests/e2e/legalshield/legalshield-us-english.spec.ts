@@ -43,7 +43,7 @@ for (const regionUnderTest of regionsUnderTest) {
     await test.step(`Validate Order Summary on Personal Info Page`, async () => {
       expect(await commonCheckoutService.personalInfoPage.orderSummaryComponent.locTotalContainer.innerText()).toContain('$29.95');
     });
-    await page.pause();
+
     await test.step(`Update Personal Info to match region`, async () => {
       await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
         'Automation',
