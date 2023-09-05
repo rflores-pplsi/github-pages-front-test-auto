@@ -8,7 +8,10 @@ import { Locator, Page } from '@playwright/test';
  */
 export class PplsiBusinessSolutionsOrientationBottomNavigationBarComponent {
   readonly page: Page;
-  readonly locSampleLocator: Locator;
+  readonly locGetStartedButton: Locator;
+  readonly locNextButton: Locator;
+  readonly locBackButton: Locator;
+  readonly locCompleteButton: Locator;
 
   /**
    * Creates an instance of PplsiBusinessSolutionsOrientationBottomNavigationBarComponent.
@@ -17,6 +20,9 @@ export class PplsiBusinessSolutionsOrientationBottomNavigationBarComponent {
    */
   constructor(page: Page) {
     this.page = page;
-    this.locSampleLocator = this.page.locator('');
+    this.locGetStartedButton = this.page.locator('//a[@class="btn btn-primary"]');
+    this.locNextButton = this.page.locator('//div[@class = "next-page-button"]//span[text() ="Next"]');
+    this.locBackButton = this.page.locator('//div[@class = "previous-page-button"]//span[text() ="Back"]');
+    this.locCompleteButton = this.page.locator('//div[@class = "next-page-button"]//a[text() ="Complete"]');
   }
 }

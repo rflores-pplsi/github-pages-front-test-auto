@@ -1,0 +1,46 @@
+import { expect, Page } from '@playwright/test';
+import UrlsUtils from '../../../utils/urls.utils';
+import { WalsLocatorPage } from './wals-locators.page';
+
+/**
+ * @export
+ * @extends WalsLocatorPage
+ * @class WalsBenefitsPage
+ */
+export class WalsBenefitsPage extends WalsLocatorPage {
+  /**
+   * @param {Page} page
+   * @memberof WalsBenefitsPage
+   */
+  constructor(page: Page) {
+    super(page);
+    this.page = page;
+  }
+
+  /**
+   * @memberof navigateToWALSBenefitsUrl
+   */
+  navigateToWALSBenefitsUrl = async (): Promise<void> => {
+    await this.page.goto(UrlsUtils.wals.urls.urlBenefits);
+  };
+
+  /**
+   * @param {string} txt
+   * @memberof assertBannerHeader
+   */
+  assertBannerHeader = async (txt: string): Promise<void> => {
+    await expect(this.page.locator('role=heading[name="' + txt + '"]')).toBeVisible();
+  };
+
+  /**
+   *
+   *
+   * @param {string} plan
+   * @param {string} price
+   * @memberof WalsBenefitsPage
+   */
+  assertBannerPlanPrice = async (plan: string, price: string): Promise<void> => {
+    const planCardLocator = this.page.locator(`//h3[normalize-space() = "${plan}"]/../div[@class="pricing"]`);
+    await expect(planCardLocator).toContainText(price);
+  };
+}

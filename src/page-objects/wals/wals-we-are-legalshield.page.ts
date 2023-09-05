@@ -1,5 +1,5 @@
 import { expect, Page } from '@playwright/test';
-import { WalsLocatorPage } from './wals-locators.page';
+import { WalsLocatorPage } from '../../archived/page-objects-oldest/wals/wals-locators.page';
 
 /**
  * @export
