@@ -2,11 +2,9 @@ import { test, expect } from '@playwright/test';
 import { basicUser } from '../../../utils/user.utils';
 import UrlsUtils from '../../../utils/urls.utils';
 import { LegalshieldCoverageAndPricingPage } from '../../../page-objects/marketing-sites/legalshield/legalshield-coverage-and-pricing.page';
-import { CheckoutPersonalInfoPage } from '../../../page-objects/checkout/checkout-personal-info.page';
 import { CommonLoginService, CommonCheckoutService } from '@legalshield/frontend-automation-commons';
 
 let legalshieldCoverageAndPricingPage: LegalshieldCoverageAndPricingPage;
-let checkoutPersonalInfoPage: CheckoutPersonalInfoPage;
 let commonCheckoutService: CommonCheckoutService;
 let commonLoginService: CommonLoginService;
 test.beforeEach(async ({ context, page }) => {
@@ -14,7 +12,6 @@ test.beforeEach(async ({ context, page }) => {
   legalshieldCoverageAndPricingPage = new LegalshieldCoverageAndPricingPage(page);
   commonLoginService = new CommonLoginService(page);
   commonCheckoutService = new CommonCheckoutService(context, page);
-  checkoutPersonalInfoPage = new CheckoutPersonalInfoPage(context, page);
 });
 
 test.describe('United States - Colorado, Legal Plan - Monthly', () => {
@@ -40,7 +37,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
   test('Verify Personal Information Section Header Displays', async () => {
     console.log('Test Case: Verify Personal Information Section Header Displays');
     await test.step('Verify Header is displayed on Personal Information Section', async () => {
-      await expect(checkoutPersonalInfoPage.locHeader).toContainText('Tell us about yourself');
+      await expect(commonCheckoutService.personalInfoPage.locHeader).toContainText('Tell us about yourself');
     });
   });
 
@@ -65,7 +62,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await commonCheckoutService.personalInfoPage.locHomeAddressInput2.click();
     });
     await test.step('No Warnings are displayed when all fields are entered', async () => {
-      await checkoutPersonalInfoPage.assertNoNonBusinessFormErrorsAreDisplayed();
+      await commonCheckoutService.personalInfoPage.assertNoNonBusinessFormErrorsAreDisplayed();
     });
   });
 
@@ -78,7 +75,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
     });
     await test.step('Require Warning message that First Name is Required displays', async () => {
-      await expect(checkoutPersonalInfoPage.locFirstNameWarningMessage).toBeVisible();
+      await expect(commonCheckoutService.personalInfoPage.locFirstNameWarningMessage).toBeVisible();
     });
   });
 
@@ -91,7 +88,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
     });
     await test.step('Require Warning message that Last Name is Required displays', async () => {
-      await expect(checkoutPersonalInfoPage.locLastNameWarningMessage).toBeVisible();
+      await expect(commonCheckoutService.personalInfoPage.locLastNameWarningMessage).toBeVisible();
     });
   });
 
@@ -104,7 +101,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
     });
     await test.step('Require Warning message that Phone Number is Required displays', async () => {
-      await expect(checkoutPersonalInfoPage.locPhoneNumberWarningMessage).toBeVisible();
+      await expect(commonCheckoutService.personalInfoPage.locPhoneNumberWarningMessage).toBeVisible();
     });
   });
 
@@ -117,7 +114,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
     });
     await test.step('Require Warning message that Home Address is Required displays', async () => {
-      await expect(checkoutPersonalInfoPage.locHomeAddressWarningMessage).toBeVisible();
+      await expect(commonCheckoutService.personalInfoPage.locHomeAddressWarningMessage).toBeVisible();
     });
   });
 
@@ -130,7 +127,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
     });
     await test.step('Require Warning message that City is Required displays', async () => {
-      await expect(checkoutPersonalInfoPage.locCityWarningMessage).toBeVisible();
+      await expect(commonCheckoutService.personalInfoPage.locCityWarningMessage).toBeVisible();
     });
   });
 
@@ -143,7 +140,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
     });
     await test.step('Require Warning message that Postal Code is Requires displays', async () => {
-      await expect(checkoutPersonalInfoPage.locPostalCodeWarningMessage).toBeVisible();
+      await expect(commonCheckoutService.personalInfoPage.locPostalCodeWarningMessage).toBeVisible();
     });
   });
 
@@ -162,7 +159,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
     });
     await test.step('Require Warning message that valid DOB is Required displays', async () => {
-      await expect(checkoutPersonalInfoPage.locDateOfBirthWarningMessage).toBeVisible();
+      await expect(commonCheckoutService.personalInfoPage.locDateOfBirthWarningMessage).toBeVisible();
     });
   });
 
@@ -219,7 +216,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
     });
     await test.step('Require Warning message that SSN is Required displays', async () => {
-      await expect(checkoutPersonalInfoPage.locSocialSecurityWarningMessage).toBeVisible();
+      await expect(commonCheckoutService.personalInfoPage.locSocialSecurityWarningMessage).toBeVisible();
     });
   });
 
@@ -232,7 +229,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
     });
     await test.step('Require Warning message under each field displays', async () => {
-      await checkoutPersonalInfoPage.assertAllNonBusinessFormErrorsAreDisplayed();
+      await commonCheckoutService.personalInfoPage.assertAllNonBusinessFormErrorsAreDisplayed();
     });
   });
 
@@ -271,21 +268,21 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
   test('Verify the Have Questions Label is visible', async () => {
     console.log('Test Case: Verify the Have Questions Label is visible');
     await test.step('Verify the Have Questions Label is visible ', async () => {
-      expect(checkoutPersonalInfoPage.checkoutHaveQuestionsComponent.locHaveQuestionsLabel).toBeVisible();
+      expect(commonCheckoutService.haveQuestionsComponent.locHaveQuestionsLabel).toBeVisible();
     });
   });
 
   test('Verify the Phone Number button is visible', async () => {
     console.log('Test Case: Verify the Phone Number button is visible');
     await test.step('Verify the Phone Number button is visible ', async () => {
-      expect(checkoutPersonalInfoPage.checkoutHaveQuestionsComponent.locPhoneNumberButton).toBeVisible();
+      expect(commonCheckoutService.haveQuestionsComponent.locPhoneNumberButton).toBeVisible();
     });
   });
 
   test('Verify user is redirected back to Marketing Page when Change Link is clicked', async ({ page }) => {
     console.log('Test Case: Verify user is redirected back to Marketing Page when Change Link is clicked');
     await test.step('Click on the Change Link to be redirected to Marketing Page', async () => {
-      await checkoutPersonalInfoPage.locChangeLink.click();
+      await commonCheckoutService.personalInfoPage.locChangeLink.click();
     });
     await test.step('Verify user is redirected to Marketing Page', async () => {
       await expect(page).toHaveURL(new RegExp('legalshield.com'));
@@ -295,7 +292,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
   test('Verify user is redirected back to Marketing Page when Edit Link is clicked', async ({ page }) => {
     console.log('Test Case: Verify user is redirected back to Marketing Page when Edit Link is clicked');
     await test.step('Click on the Edit Link to be redirected to Marketing Page', async () => {
-      await checkoutPersonalInfoPage.locEditLink.click();
+      await commonCheckoutService.personalInfoPage.locEditLink.click();
     });
     await test.step('Verify user is redirected to Marketing Page', async () => {
       await expect(page).toHaveURL(new RegExp('legalshield.com'));
@@ -351,7 +348,7 @@ test.describe('United States - Colorado, Business Plan', () => {
       await commonCheckoutService.personalInfoPage.locHomeAddressInput2.click();
     });
     await test.step('No Warnings are displayed when all fields are entered', async () => {
-      await checkoutPersonalInfoPage.assertNoFormErrorsAreDisplayed();
+      await commonCheckoutService.personalInfoPage.assertNoFormErrorsAreDisplayed();
     });
   });
 
@@ -364,7 +361,7 @@ test.describe('United States - Colorado, Business Plan', () => {
       await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
     });
     await test.step('Require Warning message that Business Name is Required displays', async () => {
-      await expect(checkoutPersonalInfoPage.locBusinessNameWarningMessage).toBeVisible();
+      await expect(commonCheckoutService.personalInfoPage.locBusinessNameWarningMessage).toBeVisible();
     });
   });
 
@@ -377,7 +374,7 @@ test.describe('United States - Colorado, Business Plan', () => {
       await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
     });
     await test.step('Require Warning message that valid Date of Incorporation is Required displays', async () => {
-      await expect(checkoutPersonalInfoPage.locDateOfIncorporationMonthWarningMessage).toBeVisible();
+      await expect(commonCheckoutService.personalInfoPage.locDateOfIncorporationMonthWarningMessage).toBeVisible();
     });
   });
 
@@ -390,7 +387,7 @@ test.describe('United States - Colorado, Business Plan', () => {
       await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
     });
     await test.step('Require Warning message that valid Date of Incorporation is Required displays', async () => {
-      await expect(checkoutPersonalInfoPage.locDateOfIncorporationDateWarningMessage).toBeVisible();
+      await expect(commonCheckoutService.personalInfoPage.locDateOfIncorporationDateWarningMessage).toBeVisible();
     });
   });
 
@@ -403,7 +400,7 @@ test.describe('United States - Colorado, Business Plan', () => {
       await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
     });
     await test.step('Require Warning message that valid Date of Incorporation is Required displays', async () => {
-      await expect(checkoutPersonalInfoPage.locDateOfIncorporationYearWarningMessage).toBeVisible();
+      await expect(commonCheckoutService.personalInfoPage.locDateOfIncorporationYearWarningMessage).toBeVisible();
     });
   });
 
@@ -422,7 +419,7 @@ test.describe('United States - Colorado, Business Plan', () => {
       await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
     });
     await test.step('Require Warning message that valid Date of Incorporation is Required displays', async () => {
-      await expect(checkoutPersonalInfoPage.locDateOfInCorpWarningMessage).toBeVisible();
+      await expect(commonCheckoutService.personalInfoPage.locDateOfInCorpWarningMessage).toBeVisible();
     });
   });
 
@@ -479,7 +476,7 @@ test.describe('United States - Colorado, Business Plan', () => {
       await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
     });
     await test.step('Require Warning message that SSN is Required displays', async () => {
-      await expect(checkoutPersonalInfoPage.locBusinessTaxIdWarningMessage).toBeVisible();
+      await expect(commonCheckoutService.personalInfoPage.locBusinessTaxIdWarningMessage).toBeVisible();
     });
   });
 
@@ -492,7 +489,7 @@ test.describe('United States - Colorado, Business Plan', () => {
       await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
     });
     await test.step('Require Warning message under all fields are displayed', async () => {
-      await checkoutPersonalInfoPage.assertAllFormErrorsAreDisplayed();
+      await commonCheckoutService.personalInfoPage.assertAllFormErrorsAreDisplayed();
     });
   });
 });

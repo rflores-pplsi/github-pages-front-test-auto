@@ -2,22 +2,16 @@ import { test, expect, Page } from '@playwright/test';
 import { basicUser } from '../../../utils/user.utils';
 import { LegalshieldCoverageAndPricingPage } from '../../../page-objects/marketing-sites/legalshield/legalshield-coverage-and-pricing.page';
 import { CommonLoginService, CommonCheckoutService } from '@legalshield/frontend-automation-commons';
-import { CheckoutPaymentsPage } from '../../../page-objects/checkout/checkout-payments.page';
-import { CheckoutPersonalInfoPage } from '../../../page-objects/checkout/checkout-personal-info.page';
 
 let legalshieldCoverageAndPricingPage: LegalshieldCoverageAndPricingPage;
 let commonLoginService: CommonLoginService;
 let commonCheckoutService: CommonCheckoutService;
-let checkoutPaymentsPage: CheckoutPaymentsPage;
-let checkoutPersonalInfoPage: CheckoutPersonalInfoPage;
 
 test.beforeEach(async ({ context, page }) => {
   test.setTimeout(120000);
   legalshieldCoverageAndPricingPage = new LegalshieldCoverageAndPricingPage(page);
   commonLoginService = new CommonLoginService(page);
   commonCheckoutService = new CommonCheckoutService(context, page);
-  checkoutPaymentsPage = new CheckoutPaymentsPage(context, page);
-  checkoutPersonalInfoPage = new CheckoutPersonalInfoPage(context, page);
 });
 
 test.describe('United States - Colorado, Legal Plan - Monthly', () => {
@@ -86,7 +80,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await commonCheckoutService.paymentPage.bankDraftComponent.locPurchaseButton.click();
     });
     await test.step('Warning message that Account Number is Required displays', async () => {
-      await expect(checkoutPaymentsPage.checkoutBankDraftComponent.locAccountNumberWarningMessage).toBeVisible();
+      await expect(commonCheckoutService.paymentPage.bankDraftComponent.locAccountNumberWarningMessage).toBeVisible();
     });
   });
 
@@ -102,7 +96,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await commonCheckoutService.paymentPage.bankDraftComponent.locPurchaseButton.click();
     });
     await test.step('Warning message that Routing Number is Required displays', async () => {
-      await expect(checkoutPaymentsPage.checkoutBankDraftComponent.locRoutingNumberWarningMessage).toBeVisible();
+      await expect(commonCheckoutService.paymentPage.bankDraftComponent.locRoutingNumberWarningMessage).toBeVisible();
     });
   });
 
@@ -118,7 +112,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await commonCheckoutService.paymentPage.bankDraftComponent.locPurchaseButton.click();
     });
     await test.step('Warning message that Account Holder Name is Required displays', async () => {
-      await expect(checkoutPaymentsPage.checkoutBankDraftComponent.locAccountHolderNameWarningMessage).toBeVisible();
+      await expect(commonCheckoutService.paymentPage.bankDraftComponent.locAccountHolderNameWarningMessage).toBeVisible();
     });
   });
 
@@ -134,7 +128,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await commonCheckoutService.paymentPage.bankDraftComponent.locPurchaseButton.click();
     });
     await test.step('Required Warning messages displays', async () => {
-      await checkoutPaymentsPage.checkoutBankDraftComponent.assertUSBankDraftErrorsAreDisplayed();
+      await commonCheckoutService.paymentPage.bankDraftComponent.assertUSBankDraftErrorsAreDisplayed();
     });
   });
 
@@ -160,7 +154,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await commonCheckoutService.paymentPage.creditCardComponent.locPurchaseButton.click();
     });
     await test.step('Warning message that Card Number is Required displays', async () => {
-      await expect(checkoutPaymentsPage.checkoutCreditCardComponent.locCardNumberWarningMessage).toBeVisible();
+      await expect(commonCheckoutService.paymentPage.creditCardComponent.locCardNumberWarningMessage).toBeVisible();
     });
   });
 
@@ -173,7 +167,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await commonCheckoutService.paymentPage.creditCardComponent.locPurchaseButton.click();
     });
     await test.step('Warning message that Expiration Date is Required displays', async () => {
-      await expect(checkoutPaymentsPage.checkoutCreditCardComponent.locExpirationDateWarningMessage).toBeVisible();
+      await expect(commonCheckoutService.paymentPage.creditCardComponent.locExpirationDateWarningMessage).toBeVisible();
     });
   });
 
@@ -186,7 +180,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await commonCheckoutService.paymentPage.creditCardComponent.locPurchaseButton.click();
     });
     await test.step('Warning message that Security Code is Required displays', async () => {
-      await expect(checkoutPaymentsPage.checkoutCreditCardComponent.locSecurityCodeWarningMessage).toBeVisible();
+      await expect(commonCheckoutService.paymentPage.creditCardComponent.locSecurityCodeWarningMessage).toBeVisible();
     });
   });
 
@@ -199,7 +193,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await commonCheckoutService.paymentPage.creditCardComponent.locPurchaseButton.click();
     });
     await test.step('Warning message that Name on Card is Required displays', async () => {
-      await expect(checkoutPaymentsPage.checkoutCreditCardComponent.locNameOnCardWarningMessage).toBeVisible();
+      await expect(commonCheckoutService.paymentPage.creditCardComponent.locNameOnCardWarningMessage).toBeVisible();
     });
   });
 
@@ -212,7 +206,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await commonCheckoutService.paymentPage.creditCardComponent.locPurchaseButton.click();
     });
     await test.step('Warning message that Name on Card is Required displays', async () => {
-      await expect(checkoutPaymentsPage.checkoutCreditCardComponent.locNameOnCardWarningMessage).toBeVisible();
+      await expect(commonCheckoutService.paymentPage.creditCardComponent.locNameOnCardWarningMessage).toBeVisible();
     });
   });
 
@@ -225,7 +219,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await commonCheckoutService.paymentPage.creditCardComponent.locPurchaseButton.click();
     });
     await test.step('Warning message that Billing Postal Code is Required displays', async () => {
-      await expect(checkoutPaymentsPage.checkoutCreditCardComponent.locBillingPostalCodeWarningMessage).toBeVisible();
+      await expect(commonCheckoutService.paymentPage.creditCardComponent.locBillingPostalCodeWarningMessage).toBeVisible();
     });
   });
 
@@ -238,7 +232,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await commonCheckoutService.paymentPage.creditCardComponent.locPurchaseButton.click();
     });
     await test.step('Required Warning messages displays', async () => {
-      await checkoutPaymentsPage.checkoutCreditCardComponent.assertUSCreditCardErrorsAreDisplayed();
+      await commonCheckoutService.paymentPage.creditCardComponent.assertUSCreditCardErrorsAreDisplayed();
     });
   });
 
@@ -246,7 +240,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     console.log('Test Case: Verify user is redirected to the Terms Of Service Page from the US Credit Card Payment Page');
     let newPage: Page;
     await test.step('Click on Terms and Service Link on Credit Card Page', async () => {
-      newPage = await checkoutPaymentsPage.checkoutCreditCardComponent.clickOnTermsOfServiceLink();
+      newPage = await commonCheckoutService.paymentPage.creditCardComponent.clickOnTermsOfServiceLink();
     });
     await test.step('Verify user is redirected to Terms of Service Page', async () => {
       expect(newPage).toHaveURL(new RegExp('pplsi.com/terms-service/'));
@@ -260,7 +254,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await commonCheckoutService.paymentPage.creditCardComponent.locCreditCardBankDraftToggle.click();
     });
     await test.step('Click on Terms of Service Link on Bank Draft Page', async () => {
-      newPage = await checkoutPaymentsPage.checkoutBankDraftComponent.clickOnTermsOfServiceLink();
+      newPage = await commonCheckoutService.paymentPage.bankDraftComponent.clickOnTermsOfServiceLink();
     });
     await test.step('Verify user is redirected to Terms of Service Page', async () => {
       expect(newPage).toHaveURL(new RegExp('pplsi.com/terms-service/'));
@@ -270,14 +264,14 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
   test('Verify the Have Questions Label is visible', async () => {
     console.log('Test Case: Verify the Have Questions Label is visible');
     await test.step('Verify the Have Questions Label is visible ', async () => {
-      expect(checkoutPaymentsPage.checkoutHaveQuestionsComponent.locHaveQuestionsLabel).toBeVisible();
+      expect(commonCheckoutService.haveQuestionsComponent.locHaveQuestionsLabel).toBeVisible();
     });
   });
 
   test('Verify the Phone Number button is visible', async () => {
     console.log('Test Case: Verify the Phone Number button is visible');
     await test.step('Verify the Phone Number button is visible ', async () => {
-      expect(checkoutPaymentsPage.checkoutHaveQuestionsComponent.locPhoneNumberButton).toBeVisible();
+      expect(commonCheckoutService.haveQuestionsComponent.locPhoneNumberButton).toBeVisible();
     });
   });
 
@@ -287,7 +281,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await commonCheckoutService.paymentPage.stepperComponent.locStepCirclePersonalInfoLink.click();
     });
     await test.step('Assert that user is redirected to Personal Information Page and it contains header Tell us about yourself', async () => {
-      await expect(checkoutPersonalInfoPage.locHeader).toContainText('Tell us about yourself');
+      await expect(commonCheckoutService.personalInfoPage.locHeader).toContainText('Tell us about yourself');
     });
   });
 });
@@ -357,7 +351,7 @@ test.describe('Canada - Alberta, Legal Plan', () => {
       await commonCheckoutService.paymentPage.bankDraftComponent.locPurchaseButton.click();
     });
     await test.step('Warning message that Account Number is Required displays', async () => {
-      await expect(checkoutPaymentsPage.checkoutBankDraftComponent.locAccountNumberWarningMessage).toBeVisible();
+      await expect(commonCheckoutService.paymentPage.bankDraftComponent.locAccountNumberWarningMessage).toBeVisible();
     });
   });
 
@@ -373,7 +367,7 @@ test.describe('Canada - Alberta, Legal Plan', () => {
       await commonCheckoutService.paymentPage.bankDraftComponent.locPurchaseButton.click();
     });
     await test.step('Warning message that Routing Number is Required displays', async () => {
-      await expect(checkoutPaymentsPage.checkoutBankDraftComponent.locCaTransitNumberWarningMessage).toBeVisible();
+      await expect(commonCheckoutService.paymentPage.bankDraftComponent.locCaTransitNumberWarningMessage).toBeVisible();
     });
   });
 
@@ -389,7 +383,7 @@ test.describe('Canada - Alberta, Legal Plan', () => {
       await commonCheckoutService.paymentPage.bankDraftComponent.locPurchaseButton.click();
     });
     await test.step('Warning message that Institution Number is Required displays', async () => {
-      await expect(checkoutPaymentsPage.checkoutBankDraftComponent.locCaInstitutionNumberWarningMessage).toBeVisible();
+      await expect(commonCheckoutService.paymentPage.bankDraftComponent.locCaInstitutionNumberWarningMessage).toBeVisible();
     });
   });
 
@@ -405,7 +399,7 @@ test.describe('Canada - Alberta, Legal Plan', () => {
       await commonCheckoutService.paymentPage.bankDraftComponent.locPurchaseButton.click();
     });
     await test.step('Warning message that Account Holder Name is Required displays', async () => {
-      await expect(checkoutPaymentsPage.checkoutBankDraftComponent.locAccountHolderNameWarningMessage).toBeVisible();
+      await expect(commonCheckoutService.paymentPage.bankDraftComponent.locAccountHolderNameWarningMessage).toBeVisible();
     });
   });
 
@@ -421,7 +415,7 @@ test.describe('Canada - Alberta, Legal Plan', () => {
       await commonCheckoutService.paymentPage.bankDraftComponent.locPurchaseButton.click();
     });
     await test.step('Required Warning messages displays', async () => {
-      await checkoutPaymentsPage.checkoutBankDraftComponent.assertCABankDraftErrorsAreDisplayed();
+      await commonCheckoutService.paymentPage.bankDraftComponent.assertCABankDraftErrorsAreDisplayed();
     });
   });
 
