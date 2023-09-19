@@ -15,18 +15,18 @@ const config: PlaywrightTestConfig = {
         video: 'on',
       },
     },
-    // {
-    //   //   name: 'firefox',
-    //   //   use: { ...devices['Desktop Firefox'], screenshot: 'on', video: 'on', trace: 'on' },
-    //   // },
-    //   {
-    //     name: 'webkit',
-    //     use: { ...devices['Desktop Safari'], screenshot: 'on', video: 'on', trace: 'on' },
-    //   },
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'], screenshot: 'on', trace: 'on', video: 'on' },
+    },
+    {
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'], screenshot: 'on', trace: 'on', video: 'on' },
+    },
   ],
   reporter: [['dot'], ['html', { open: 'always' }]],
   retries: 0,
   // setting workers to '1' disables parallel running, workers can also be set at runtime in the command line
-  workers: 1,
+  workers: 5,
 };
 export default config;
