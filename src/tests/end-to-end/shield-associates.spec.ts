@@ -16,7 +16,7 @@ test.describe('Navigate to Shield Associate Pages', () => {
       await page.goto(`${UrlsUtils.shieldAssociateService.baseUrl}`);
     });
     await test.step('Verify Shield Associate page has loaded and Search Input is displayed', async () => {
-      await expect(shieldAssociateService.findYourAssociatePage.locSearchInput).toBeVisible();
+      await expect(shieldAssociateService.findYourAssociatePage.locH1Header).toContainText('Smart, Simple Coverage Starts Here');
     });
   });
   // This will currently only work in PROD

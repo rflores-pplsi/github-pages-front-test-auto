@@ -20,7 +20,7 @@ test.beforeEach(async ({ context, page }) => {
 // LegalShield - US - existing user
 for (const testCase of legalshieldData.filter((testCase) => testCase.disabled == false)) {
   for (const regionUnderTest of testCase.regions) {
-    test(`Legalshield (${testCase.testCaseName}, ${regionUnderTest}) -> Checkout -> Accounts @ConsumerFlowEndToEnd @ConsumerFlowLegalShield`, async ({
+    test(`Legalshield (${testCase.testCaseName}, ${regionUnderTest}) -> Checkout -> Accounts @ConsumerFlow @ConsumerFlowLegalShield`, async ({
       page,
     }) => {
       console.log(`Test Case: Legalshield (${testCase.testCaseName}, ${regionUnderTest}) -> Checkout -> Accounts`);
