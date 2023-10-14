@@ -60,7 +60,6 @@ export class LegalshieldService {
         default:
           break;
       }
-
       await this.marketingSitesCartComponent.locContinueShoppingLink.click();
       if (counter == 1) {
         await this.page.waitForLoadState('networkidle');
@@ -79,6 +78,8 @@ export class LegalshieldService {
    */
   addLegalPlan = async (term: string): Promise<void> => {
     await this.page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/personal-plan/coverage-and-pricing/`);
+    // adding this after spending a little time attempting to use an explicit wait, and knowing the app will be changing soon
+    await this.page.waitForTimeout(2000);
     const startPlanLocator = this.page.locator(`//a[contains(@class,"lsc-add-to-cart-button") and contains(.,"${term.toLowerCase()}")]`);
     await startPlanLocator.click();
   };

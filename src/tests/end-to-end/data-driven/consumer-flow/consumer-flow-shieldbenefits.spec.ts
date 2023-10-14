@@ -38,11 +38,14 @@ for (const testCase of selfPayData.filter((testCase) => testCase.disabled == fal
       await test.step(`Click Enroll Now for Plan: ${testCase.productName} with Tier: ${testCase.tierName}`, async () => {
         await shieldBenefitsService.shieldBenefitsLegalEnrollmentPage.locBeginEnrollmentButton.click();
       });
-      await test.step(`Login or Sign Up`, async () => {
+      await test.step(`Choose Account by Email and Login`, async () => {
+        if (testCase.userType == 'Existing') {
+          await commonCheckoutService.accountPage.enterExistingAccountEmailAndLogin(basicUser.email);
+          await commonLoginService.whatsYourEmailPage.enterEmailAndContinue(basicUser.email);
+          await commonLoginService.loginPage.loginOnlyPassword(basicUser.password);
+        }
         if (testCase.userType == 'New') {
-          await commonLoginService.signUpPage.signUp();
-        } else {
-          await commonLoginService.loginPage.login(basicUser.email, basicUser.password);
+          await commonCheckoutService.accountPage.enterRandomEmailAndNewPasswordAndLogin();
         }
       });
       await test.step(`Change Address to a valid one for Region: ${regionInfo.name}`, async () => {

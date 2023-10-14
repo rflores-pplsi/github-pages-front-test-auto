@@ -18,3 +18,37 @@ export type ProductDetails = {
   term: string;
   type: string;
 };
+
+export type Supplements = {
+  cost: string;
+  name: string;
+};
+
+export type Tier = {
+  cost: string;
+  name: string;
+};
+
+export type PlanDetails = {
+  associateRegistrationType: string;
+  cost: string;
+  marketingName: string;
+  name: string;
+  oneTimeFee: string;
+  shortCode: string;
+  supplements: Supplements[];
+  term: string;
+  tier: Tier;
+  type: string;
+};
+
+export type ConsumerFlowData = {
+  disabled: boolean;
+  market: string;
+  paymentMethod: string;
+  planDetails: PlanDetails[];
+  regions: string[];
+  termTotal: string;
+  testCaseName: string;
+  userType: string;
+};

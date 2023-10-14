@@ -1,6 +1,6 @@
 import { Page, Locator } from '@playwright/test';
 
-export class CheckoutPage {
+export class ConfigureCoveragePage {
   readonly page: Page;
   readonly locRegionSelectorContainer: Locator;
   readonly locMonthlyPrice: Locator;
@@ -16,20 +16,19 @@ export class CheckoutPage {
   }
 
   selectTier = async (tierName: string): Promise<void> => {
-    const tierNameLocator = this.page.locator(`//div[contains(@class,"lsux-plan-card__tier-radio-button-group")]//p[text()="${tierName}"]`);
+    const tierNameLocator = this.page.locator(`//div[contains(@class,"lsux-plan-card__tier-radio-button-group")]//p[contains(.,"${tierName}")]`);
     await tierNameLocator.click();
   };
 
-  selectSupplementsOrTier = async (
-    supplementsOrTier: Array<{
+  selectSupplements = async (
+    supplements: Array<{
       cost: string;
       name: string;
     }>
   ): Promise<void> => {
-    for (const supplementOrTier of supplementsOrTier) {
-      const supplementOrTierLocator = this.page.locator(`//p[contains(.,"${supplementOrTier.name}")]`);
-
-      await supplementOrTierLocator.click();
+    for (const supplement of supplements) {
+      const supplementLocator = this.page.locator(`//p[contains(.,"${supplement.name}")]`);
+      await supplementLocator.click();
     }
   };
 

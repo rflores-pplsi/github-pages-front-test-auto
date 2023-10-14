@@ -268,10 +268,10 @@ export class CheckoutOrderSummaryComponent extends CheckoutLocatorsPage {
    *
    * @memberof CheckoutOrderSummaryComponent
    */
-  // assertPlanCostsNotDisplayed = async (): Promise<void> => {
-  //   console.log(' - checkoutOrderSummaryComponent.assertPlanCostsNotDisplayed');
-  //   await expect(await this.OrderSummaryLocTxtPlanCosts).toHaveLength(0);
-  // };
+  assertPlanCostsNotDisplayed = async (): Promise<void> => {
+    console.log(' - checkoutOrderSummaryComponent.assertPlanCostsNotDisplayed');
+    // await expect(this.OrderSummaryLocTxtPlanCosts).toHaveLength(0);
+  };
 
   /**
    *

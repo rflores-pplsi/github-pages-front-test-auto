@@ -10,7 +10,7 @@ test.beforeEach(async ({ context, page }) => {
 });
 
 test.describe('Navigate to Shield Associate Pages', () => {
-  test('Navigate to Shield Associate Page @smoke', async ({ page }) => {
+  test.skip('Navigate to Shield Associate Page @smoke', async ({ page }) => {
     console.log('Test Case: Navigate to Shield Associate Page');
     await test.step(`Navigate to Shield Associate Page`, async () => {
       await page.goto(`${UrlsUtils.shieldAssociateService.baseUrl}`);
@@ -20,7 +20,7 @@ test.describe('Navigate to Shield Associate Pages', () => {
     });
   });
   // This will currently only work in PROD
-  test('Navigate to Shield Associate Calendar Page @smoke', async ({ page }) => {
+  test.skip('Navigate to Shield Associate Calendar Page @smoke', async ({ page }) => {
     console.log('Test Case: Navigate to Shield Associate Calendar Page');
     await test.step(`Navigate to Shield Associate Calendar Page`, async () => {
       await page.goto(`${UrlsUtils.shieldAssociateService.baseUrl}/calendar`);

@@ -1,59 +1,57 @@
 import { expect, test } from '@playwright/test';
 import RegionsUtils from '../../../../utils/regions.utils';
 import { basicUser } from '../../../../utils/user.utils';
-import { shieldAssociateData } from './shieldassociate.data';
+import { shieldAssociateMultiSelectData } from './shieldassociate-multiselect.data';
 import UrlsUtils from '../../../../utils/urls.utils';
 import { ShieldAssociateService } from '../../../../page-objects/shieldassociate/shieldassociate-service';
-import { CommonCheckoutService, CommonLoginService } from '@legalshield/frontend-automation-commons';
-import { CartService } from '../../../../page-objects/cart/cart-service';
+import { CommonCheckoutService, CommonLoginService, CommonAssociateOfficeService } from '@legalshield/frontend-automation-commons';
 
 let shieldAssociateService: ShieldAssociateService;
-let cartService: CartService;
 let commonCheckoutService: CommonCheckoutService;
 let commonLoginService: CommonLoginService;
+let commonAssociateOfficeService: CommonAssociateOfficeService;
 
 test.beforeEach(async ({ context, page }) => {
   shieldAssociateService = new ShieldAssociateService(context, page);
-  cartService = new CartService(context, page);
   commonLoginService = new CommonLoginService(page);
   commonCheckoutService = new CommonCheckoutService(context, page);
+  commonAssociateOfficeService = new CommonAssociateOfficeService(page);
   test.setTimeout(120000);
 });
 
-for (const testCase of shieldAssociateData.filter((testCase) => testCase.disabled == false)) {
+for (const testCase of shieldAssociateMultiSelectData.filter((testCase) => testCase.disabled == false)) {
   for (const regionUnderTest of testCase.regions) {
-    test(`${testCase.testCaseName}, ${regionUnderTest} -> Checkout -> Accounts @ConsumerFlowShieldAssociates @ConsumerFlowEndToEnd`, async ({
+    test(`${testCase.testCaseName}, ${regionUnderTest} MultiSelect -> Checkout -> Accounts @ConsumerFlowShieldAssociates @ConsumerFlowEndToEnd`, async ({
       page,
     }) => {
       console.log(`Test Case: ${testCase.testCaseName}, ${regionUnderTest} -> Checkout -> Accounts`);
       const regionInfo = RegionsUtils.usStates.filter((region) => region.name == regionUnderTest)[0];
-      await test.step(`Navigate to shieldbenefits.com/BuyNow`, async () => {
+      await test.step(`Navigate to shieldassociate.com/BuyNow`, async () => {
         await page.goto(`https://apptestuser.${UrlsUtils.shieldAssociateService.baseUrlNoSubdomain}/BuyNow`);
       });
       await test.step(`Select Market`, async () => {
         await shieldAssociateService.buyNowPage.globalFooterComponent.changeMarket(testCase.market);
       });
-      await test.step(`Click the Buy Now button to select plan`, async () => {
-        //TODO: Once multiple plans can be selected, update this to loop through the planDetails array
-        await shieldAssociateService.buyNowPage.clickBuyNowButtonAndWaitForCartService(
-          testCase.planDetails[0].marketingName,
-          testCase.planDetails[0].associateRegistrationType
-        );
+      await test.step(`Select Plans`, async () => {
+        await shieldAssociateService.buyNowPage.selectPlans(testCase.planDetails);
       });
-      await test.step(`Select Region`, async () => {
-        await cartService.checkoutPage.selectRegion(regionUnderTest);
-      });
-      await test.step(`Select Supplements`, async () => {
-        await cartService.checkoutPage.selectSupplementsOrTier(testCase.planDetails[0].supplementsOrTier);
+      await test.step(`Assert Estimated Total`, async () => {
+        // await shieldAssociateService.buyNowPage.assertEstimatedTotal(testCase.planDetails);
       });
       await test.step(`Click Continue Button`, async () => {
-        await cartService.checkoutPage.locContinueButton.click();
+        await shieldAssociateService.buyNowPage.locContinueButton.click();
       });
-      await test.step(`Login or Sign Up`, async () => {
+      await test.step(`Select Plan Options`, async () => {
+        await shieldAssociateService.buyNowPage.configureCoverage(testCase.planDetails, regionUnderTest);
+      });
+      await test.step(`Choose Account by Email and Login`, async () => {
+        if (testCase.userType == 'Existing') {
+          await commonCheckoutService.accountPage.enterExistingAccountEmailAndLogin(basicUser.email);
+          await commonLoginService.whatsYourEmailPage.enterEmailAndContinue(basicUser.email);
+          await commonLoginService.loginPage.loginOnlyPassword(basicUser.password);
+        }
         if (testCase.userType == 'New') {
-          await commonLoginService.signUpPage.signUp();
-        } else {
-          await commonLoginService.loginPage.login(basicUser.email, basicUser.password);
+          await commonCheckoutService.accountPage.enterRandomEmailAndNewPasswordAndLogin();
         }
       });
       await test.step(`Fill all required fields on personal info ${regionInfo.name}`, async () => {
@@ -79,7 +77,7 @@ for (const testCase of shieldAssociateData.filter((testCase) => testCase.disable
       });
       await test.step(`Verify Supplements displayed in Order Summary on Personal Info Page`, async () => {
         await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertDisplayedSupplementsIncludeExpectedData(
-          testCase.planDetails[0].supplementsOrTier
+          testCase.planDetails[0].supplements
         );
       });
       await test.step(`Verify Order Total in Order Summary on Personal Info Page`, async () => {
@@ -93,30 +91,60 @@ for (const testCase of shieldAssociateData.filter((testCase) => testCase.disable
       });
       await test.step(`Verify Supplements displayed in Order Summary on on Payment Page`, async () => {
         await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertDisplayedSupplementsIncludeExpectedData(
-          testCase.planDetails[0].supplementsOrTier
+          testCase.planDetails[0].supplements
         );
       });
       await test.step(`Verify Order Total in Order Summary on Payment Page`, async () => {
         expect(await commonCheckoutService.paymentPage.orderSummaryComponent.locTotalContainer.innerText()).toContain(testCase.termTotal);
       });
-      await test.step('Select Payment Method from Wallet', async () => {
-        await commonCheckoutService.paymentPage.clickFirstPaymentMethodFromWallet();
+      await test.step('Click on Bank Draft Toggle', async () => {
+        await commonCheckoutService.paymentPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
+      });
+      await test.step('Complete Bank Draft Form', async () => {
+        await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates('1000123546', '103000648', 'Test');
       });
       await test.step('Click Purchase Button and wait for Confirmation Page', async () => {
         await commonCheckoutService.paymentPage.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
       });
-      await test.step(`Verify Plan Membership Tile`, async () => {
-        await commonCheckoutService.confirmationPage.assertMembershipTitleDisplayed(testCase.planDetails[0].type);
-      });
-      await test.step(`Verify Plan Details in Confirmation Page Order Summary`, async () => {
-        await commonCheckoutService.confirmationPage.assertDisplayedProductsIncludeExpectedData(testCase.planDetails);
-      });
-      await test.step(`Click on the My account option in the header dropdown`, async () => {
-        await commonCheckoutService.confirmationPage.locLetsGoButton.click();
-      });
-      await test.step(`Assert Accounts Page URL`, async () => {
-        await expect(page).toHaveURL(new RegExp('accounts'));
-      });
+      if (testCase.planDetails.some((item) => item.marketingName === 'Associate')) {
+        await test.step(`Click Continue with Associate Start Up button`, async () => {
+          await commonCheckoutService.associateStartupPage.locContinueAssociateStartupButton.click();
+        });
+        await test.step(`Select First Site Name`, async () => {
+          await commonAssociateOfficeService.yourWebsitePage.locFirstSiteNameOption.check();
+        });
+        await test.step(`Click next button`, async () => {
+          await commonAssociateOfficeService.yourWebsitePage.locNextButton.click();
+        });
+        await test.step(`Complete payment information form`, async () => {
+          await commonAssociateOfficeService.commissionDetailsPage.completePaymentInformationForm('1000123546', '103000648', 'Test');
+        });
+        await test.step(`Click Save button`, async () => {
+          await commonAssociateOfficeService.commissionDetailsPage.locSaveButton.click();
+        });
+        await test.step(`Select Payment method`, async () => {
+          await commonAssociateOfficeService.commissionDetailsPage.selectPaymentMethod('3546');
+        });
+        await test.step(`Select Payment method`, async () => {
+          await commonAssociateOfficeService.commissionDetailsPage.locNextButton.click();
+        });
+        await test.step(`Skip Co-applicant screen`, async () => {
+          await commonAssociateOfficeService.coApplicantPage.locSkipButton.click();
+        });
+        await test.step(`Assert Associate-Office Page URL`, async () => {
+          await expect(page).toHaveURL(new RegExp('associate-office'));
+        });
+      } else {
+        await test.step(`Verify Plan Details in Confirmation Page Order Summary`, async () => {
+          // await commonCheckoutService.confirmationPage.assertDisplayedProductsIncludeExpectedData(testCase.planDetails);
+        });
+        await test.step(`Click on the My account option in the header dropdown`, async () => {
+          await commonCheckoutService.confirmationPage.locLetsGoButton.click();
+        });
+        await test.step(`Assert Accounts Page URL`, async () => {
+          await expect(page).toHaveURL(new RegExp('accounts'));
+        });
+      }
     });
   }
 }

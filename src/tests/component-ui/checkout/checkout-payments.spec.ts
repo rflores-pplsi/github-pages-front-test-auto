@@ -15,7 +15,7 @@ test.beforeEach(async ({ context, page }) => {
 });
 
 test.describe('United States - Colorado, Legal Plan - Monthly', () => {
-  test.beforeEach(async ({ context, page }) => {
+  test.beforeEach(async ({ page }) => {
     await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
       await legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
     });
@@ -29,8 +29,15 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await page.waitForTimeout(500);
       await legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
     });
-    await test.step(`Log in to reach checkout service`, async () => {
-      await commonLoginService.loginPage.login(basicUser.email, basicUser.password);
+    await test.step(`Choose Account by Email`, async () => {
+      await commonCheckoutService.accountPage.locEmailAddressInput.fill(basicUser.email);
+      await commonCheckoutService.accountPage.locContinueButton.click();
+      await commonCheckoutService.accountPage.locClickHereToLoginButton.click();
+      await commonLoginService.whatsYourEmailPage.locEmailAddressInput.fill(basicUser.email);
+      await commonLoginService.whatsYourEmailPage.locContinueButton.click();
+    });
+    await test.step(`Log in with only password to reach checkout service`, async () => {
+      await commonLoginService.loginPage.loginOnlyPassword(basicUser.password);
     });
     await test.step('Populate all fields on Personal Information Page', async () => {
       await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
