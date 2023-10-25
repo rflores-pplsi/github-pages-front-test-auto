@@ -154,63 +154,13 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
   test('Verify the required message displays when DOB Month Date and Year are all empty', async () => {
     console.log('Test Case: Verify the required message displays when the DOB fields are all empty');
     await test.step('Empty DOB Month Field', async () => {
-      await commonCheckoutService.personalInfoPage.locBirthMonthInput.clear();
-    });
-    await test.step('Empty DOB Date Field', async () => {
-      await commonCheckoutService.personalInfoPage.locBirthDateInput.clear();
-    });
-    await test.step('Empty DOB Year Field', async () => {
-      await commonCheckoutService.personalInfoPage.locBirthYearInput.clear();
+      await commonCheckoutService.personalInfoPage.locDateOfBirth.clear();
     });
     await test.step('Click on the Save & Continue Button', async () => {
       await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
     });
     await test.step('Require Warning message that valid DOB is Required displays', async () => {
-      await expect(commonCheckoutService.personalInfoPage.locDateOfBirthWarningMessage).toBeVisible();
-    });
-  });
-
-  test('Verify the arrows increment/decrement the value of the Month Field and has 2 digits using the Keyboard', async ({ page }) => {
-    console.log('Test Case: Verify the Up Arrow increments the value of the DOB Month Field and has 2 digits using the Keyboard');
-    await test.step('Empty only DOB Month Field', async () => {
-      await commonCheckoutService.personalInfoPage.locBirthMonthInput.clear();
-    });
-    await test.step('Click Up Arrow twice', async () => {
-      await commonCheckoutService.personalInfoPage.locBirthMonthInput.focus();
-      await page.keyboard.press('ArrowUp');
-      await page.keyboard.press('ArrowUp');
-    });
-    await test.step('Verify the increments to 02', async () => {
-      await expect(commonCheckoutService.personalInfoPage.locBirthMonthInput).toHaveValue('02');
-    });
-    await test.step('Click Down Arrow', async () => {
-      await commonCheckoutService.personalInfoPage.locBirthMonthInput.focus();
-      await page.keyboard.press('ArrowDown');
-    });
-    await test.step('Verify the decrement to 01', async () => {
-      await expect(commonCheckoutService.personalInfoPage.locBirthMonthInput).toHaveValue('01');
-    });
-  });
-
-  test('Verify the arrows increment/decrement the value of the Date Field and has 2 digits using the Keyboard', async ({ page }) => {
-    console.log('Test Case: Verify the Up Arrow increments the value of the DOB Date Field and has 2 digits using the Keyboard');
-    await test.step('Empty only DOB Date Field', async () => {
-      await commonCheckoutService.personalInfoPage.locBirthDateInput.clear();
-    });
-    await test.step('Click Up Arrow twice', async () => {
-      await commonCheckoutService.personalInfoPage.locBirthDateInput.focus();
-      await page.keyboard.press('ArrowUp');
-      await page.keyboard.press('ArrowUp');
-    });
-    await test.step('Verify the increments to 02', async () => {
-      await expect(commonCheckoutService.personalInfoPage.locBirthDateInput).toHaveValue('02');
-    });
-    await test.step('Click Down Arrow', async () => {
-      await commonCheckoutService.personalInfoPage.locBirthDateInput.focus();
-      await page.keyboard.press('ArrowDown');
-    });
-    await test.step('Verify the decrement to 01', async () => {
-      await expect(commonCheckoutService.personalInfoPage.locBirthDateInput).toHaveValue('01');
+      await expect(commonCheckoutService.personalInfoPage.locDateOfBirthInvalidWarningMessage).toBeVisible();
     });
   });
 
@@ -324,8 +274,15 @@ test.describe('United States - Colorado, Business Plan', () => {
     await test.step(`Click on the Shopping Cart Checkout button`, async () => {
       await legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
     });
-    await test.step(`Log in to reach checkout service`, async () => {
-      await commonLoginService.loginPage.login(basicUser.email, basicUser.password);
+    await test.step(`Choose Account by Email`, async () => {
+      await commonCheckoutService.accountPage.locEmailAddressInput.fill(basicUser.email);
+      await commonCheckoutService.accountPage.locContinueButton.click();
+      await commonCheckoutService.accountPage.locClickHereToLoginButton.click();
+      await commonLoginService.whatsYourEmailPage.locEmailAddressInput.fill(basicUser.email);
+      await commonLoginService.whatsYourEmailPage.locContinueButton.click();
+    });
+    await test.step(`Log in with only password to reach checkout service`, async () => {
+      await commonLoginService.loginPage.loginOnlyPassword(basicUser.password);
     });
   });
 
@@ -523,8 +480,15 @@ test.describe('United States - Colorado, Business - Plan', () => {
     await test.step(`Click on the Shopping Cart Checkout button`, async () => {
       await legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
     });
-    await test.step(`Log in to reach checkout service`, async () => {
-      await commonLoginService.loginPage.login(basicUser.email, basicUser.password);
+    await test.step(`Choose Account by Email`, async () => {
+      await commonCheckoutService.accountPage.locEmailAddressInput.fill(basicUser.email);
+      await commonCheckoutService.accountPage.locContinueButton.click();
+      await commonCheckoutService.accountPage.locClickHereToLoginButton.click();
+      await commonLoginService.whatsYourEmailPage.locEmailAddressInput.fill(basicUser.email);
+      await commonLoginService.whatsYourEmailPage.locContinueButton.click();
+    });
+    await test.step(`Log in with only password to reach checkout service`, async () => {
+      await commonLoginService.loginPage.loginOnlyPassword(basicUser.password);
     });
     await test.step('Populate all fields on Personal Information Page', async () => {
       await commonCheckoutService.personalInfoPage.fillAllFields(

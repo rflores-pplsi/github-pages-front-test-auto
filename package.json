@@ -23,7 +23,7 @@
   "author": "PPLSI Platform Frontend Team",
   "devDependencies": {
     "@fastify/pre-commit": "^2.0.2",
-    "@legalshield/frontend-automation-commons": "^0.6.10",
+    "@legalshield/frontend-automation-commons": "^0.6.12",
     "@playwright/test": "^1.29.2",
     "@types/node": "^20.6.2",
     "@typescript-eslint/eslint-plugin": "^5.43.0",
