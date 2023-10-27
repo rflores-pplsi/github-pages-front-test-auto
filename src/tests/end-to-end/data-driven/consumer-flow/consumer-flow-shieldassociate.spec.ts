@@ -21,9 +21,7 @@ test.beforeEach(async ({ context, page }) => {
 
 for (const testCase of shieldAssociateMultiSelectData.filter((testCase) => testCase.disabled == false)) {
   for (const regionUnderTest of testCase.regions) {
-    test(`${testCase.testCaseName}, ${regionUnderTest} MultiSelect -> Checkout -> Accounts @ConsumerFlowShieldAssociates @ConsumerFlowEndToEnd`, async ({
-      page,
-    }) => {
+    test(`${testCase.testCaseName}, ${regionUnderTest} MultiSelect -> Checkout -> Accounts @e2e @ConsumerFlowShieldAssociates`, async ({ page }) => {
       console.log(`Test Case: ${testCase.testCaseName}, ${regionUnderTest} -> Checkout -> Accounts`);
       const regionInfo = RegionsUtils.usStates.filter((region) => region.name == regionUnderTest)[0];
       await test.step(`Navigate to shieldassociate.com/BuyNow`, async () => {

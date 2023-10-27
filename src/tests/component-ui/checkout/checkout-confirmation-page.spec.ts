@@ -82,7 +82,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     test('Verify the membership wrapper is displayed on Confirmation Page', async () => {
       console.log('Test Case: Verify the membership wrapper is displayed on Confirmation Page');
       await test.step('Verify the membership wrapper is displayed on Confirmation Page', async () => {
-        await expect(commonCheckoutService.confirmationPage.locMembershipWrapper).toBeVisible();
+        await expect(commonCheckoutService.confirmationPage.locConfirmationScreenContainer).toBeVisible();
       });
     });
 

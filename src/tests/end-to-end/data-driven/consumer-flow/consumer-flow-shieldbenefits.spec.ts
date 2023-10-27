@@ -20,7 +20,7 @@ test.beforeEach(async ({ context, page }) => {
 // Self-Pay Configurations - Single Plan
 for (const testCase of selfPayData.filter((testCase) => testCase.disabled == false)) {
   for (const regionUnderTest of testCase.regions) {
-    test(`ShieldBenefits (${testCase.testCaseName}, ${regionUnderTest}) -> Checkout -> Accounts @ConsumerFlowEndToEnd @ConsumerFlowShieldBenefits`, async ({
+    test(`ShieldBenefits (${testCase.testCaseName}, ${regionUnderTest}) -> Checkout -> Accounts @e2e @ConsumerFlowShieldBenefits`, async ({
       page,
     }) => {
       console.log(`Test Case: ShieldBenefits (${testCase.testCaseName}, ${regionUnderTest}) -> Checkout -> Accounts`);
@@ -82,8 +82,8 @@ for (const testCase of selfPayData.filter((testCase) => testCase.disabled == fal
         await commonCheckoutService.paymentPage.bankDraftComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
       });
       await test.step(`Click on Purchase button`, async () => {
-        await commonCheckoutService.confirmationPage.locMembershipWrapper.waitFor();
-        await expect(commonCheckoutService.confirmationPage.locMembershipWrapper).toBeVisible();
+        await commonCheckoutService.confirmationPage.locConfirmationScreenContainer.waitFor();
+        await expect(commonCheckoutService.confirmationPage.locConfirmationScreenContainer).toBeVisible();
       });
     });
   }

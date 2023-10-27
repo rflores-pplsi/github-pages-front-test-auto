@@ -9,9 +9,10 @@ export class AssociateQuestionsComponent {
 
   constructor(page: Page) {
     this.page = page;
-    this.locIndividualRadioButton = this.page.locator('//input[contains(@name,"assoc-q1-a1")]/ancestor::a');
-    this.locBusinessRadioButton = this.page.locator('//input[contains(@name,"assoc-q1-a2")]/ancestor::a');
-    this.locNoFelonyEtcRadioButton = this.page.locator('//input[contains(@name,"assoc-q2-a2")]/ancestor::a');
+    // For the Radio Buttons, I used the nth identifier reluctantly as I couldn't figure out another way (without using text on page) to differentiate. May revisit.
+    this.locIndividualRadioButton = this.page.locator('//div[@role="dialog"]//a[contains(@class,"lsux-list-item-input__button")]').nth(0);
+    this.locBusinessRadioButton = this.page.locator('//div[@role="dialog"]//a[contains(@class,"lsux-list-item-input__button")]').nth(1);
+    this.locNoFelonyEtcRadioButton = this.page.locator('//div[@role="dialog"]//a[contains(@class,"lsux-list-item-input__button")]').nth(3);
     this.locContinueButton = this.page.locator('//div[contains(@class,"lsux-modal")]//button[contains(@class,"lsux-button--primary")]');
   }
 

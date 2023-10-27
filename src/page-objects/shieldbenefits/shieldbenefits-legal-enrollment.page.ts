@@ -22,7 +22,7 @@ export class ShieldBenefitsLegalEnrollmentPage {
    */
   selectStateOrProvince = async (stateOrProvince: string): Promise<void> => {
     await this.locSelectStateDropdown.click();
-    await this.page.locator(`//div[contains(@class,"lsux-link-content--menu") and contains (.,"${stateOrProvince}")]`).click();
+    await this.page.locator(`//div[@role="listbox"]//span[contains(.,"${stateOrProvince}")]`).click();
   };
 
   /**

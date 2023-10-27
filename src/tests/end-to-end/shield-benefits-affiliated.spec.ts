@@ -87,8 +87,8 @@ for (const regionUnderTest of regionsUnderTest) {
         await commonCheckoutService.paymentPage.bankDraftComponent.locPurchaseButton.click();
       });
       await test.step(`Click on Purchase button`, async () => {
-        await commonCheckoutService.confirmationPage.locMembershipWrapper.waitFor();
-        await expect(commonCheckoutService.confirmationPage.locMembershipWrapper).toBeVisible();
+        await commonCheckoutService.confirmationPage.locConfirmationScreenContainer.waitFor();
+        await expect(commonCheckoutService.confirmationPage.locConfirmationScreenContainer).toBeVisible();
       });
       //TODO: uncomment if myaccounts dropdown re-implemented on page
       // await test.step(`Click on the My account option in the header dropdown`, async () => {

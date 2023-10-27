@@ -71,7 +71,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await commonCheckoutService.paymentPage.bankDraftComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
     });
     await test.step('Redirected to the Confirmation Page', async () => {
-      await expect(commonCheckoutService.confirmationPage.locMembershipWrapper).toBeVisible({ timeout: 100000 });
+      await expect(commonCheckoutService.confirmationPage.locConfirmationScreenContainer).toBeVisible({ timeout: 100000 });
     });
   });
 
@@ -148,7 +148,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await commonCheckoutService.paymentPage.creditCardComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
     });
     await test.step('Redirected to the Confirmation Page', async () => {
-      await expect(commonCheckoutService.confirmationPage.locMembershipWrapper).toBeVisible({ timeout: 100000 });
+      await expect(commonCheckoutService.confirmationPage.locConfirmationScreenContainer).toBeVisible({ timeout: 100000 });
     });
   });
 
@@ -349,7 +349,7 @@ test.describe('Canada - Alberta, Legal Plan', () => {
       await commonCheckoutService.paymentPage.bankDraftComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
     });
     await test.step('Redirected to the Confirmation Page', async () => {
-      await expect(commonCheckoutService.confirmationPage.locMembershipWrapper).toBeVisible({ timeout: 100000 });
+      await expect(commonCheckoutService.confirmationPage.locConfirmationScreenContainer).toBeVisible({ timeout: 100000 });
     });
   });
 
@@ -442,7 +442,7 @@ test.describe('Canada - Alberta, Legal Plan', () => {
       await commonCheckoutService.paymentPage.creditCardComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
     });
     await test.step('Redirected to the Confirmation Page', async () => {
-      await expect(commonCheckoutService.confirmationPage.locMembershipWrapper).toBeVisible({ timeout: 100000 });
+      await expect(commonCheckoutService.confirmationPage.locConfirmationScreenContainer).toBeVisible({ timeout: 100000 });
     });
   });
 });

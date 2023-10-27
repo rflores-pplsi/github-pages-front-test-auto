@@ -86,6 +86,7 @@ export class LegalshieldService {
 
   addSmallBusinessPlan = async (productName: string): Promise<void> => {
     await this.page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/plan-summary/#chart`);
+    await this.page.waitForLoadState('domcontentloaded');
     productName = productName.replace(' Legal', '');
     const getStartedButtonLocator = this.page.locator(
       `//div[contains(@class,"lsc-dynamic-single-plan  et_pb_css_mix_blend_mode_passthrough") and contains(.,"${productName}")]//a[@role="button"]`
