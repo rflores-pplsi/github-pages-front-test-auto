@@ -40,7 +40,6 @@ test('Hero Section Tests', async ({ page }) => {
   });
 });
 // Grid section tests
-// Hero Section Tests
 test('Grid Section Tests', async ({ page }) => {
   console.log(
     'Grid Section: Grid Section contains required fields - Header, Subtext, Card::Image/Title/Text/Link, Button::optionalLink, and a background color selected'
