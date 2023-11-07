@@ -1,14 +1,18 @@
 import { test, expect, Page } from '@playwright/test';
 import UrlsUtils from '../../utils/urls.utils';
 // import { HeroSectionComponent } from '../../../page-objects/common-components/hero-section.component';
-// TODO: locators from Hero Section Common Component
+// import { GridSectionComponent } from '../../../page-objects/common-components/grid-section.component';
+
+// TODO: locators
 // let heroSectionComponent: HeroSectionComponent;
+// let gridSectionComponent: GridSectionComponent;
 
 test.beforeEach(async ({ context, page }) => {
   // TODO: setup page-objects for common-components tests
   // Hero Section Tests
   // -> heroSectionComponent = new HeroSectionComponent(context, page);
   // Grid Section Tests
+  // -> gridSectionComponent = new GridSectionComponent(context, page);
   // Nav List Tests
   // Feature List Tests
   // Testimonials Tests
@@ -33,5 +37,21 @@ test('Hero Section Tests', async ({ page }) => {
     // await expect(heroSectionComponent.locCallToActionButton).toBeVisible();
     // await expect(heroSectionComponent.locCallToActionButtonText).toBeVisible();
     // await expect(heroSectionComponent.locCallToActionButtonLink).toHaveAttribute('href');
+  });
+});
+// Grid section tests
+// Hero Section Tests
+test('Grid Section Tests', async ({ page }) => {
+  console.log(
+    'Grid Section: Grid Section contains required fields - Header, Subtext, Card::Image/Title/Text/Link, Button::optionalLink, and a background color selected'
+  );
+  await test.step(`Verify the the Grid Section contents`, async () => {
+    // await expect(gridSectionComponent.locGridHeader).toContainText();
+    // await expect(gridSectionComponent.locGridSubtext).toBeVisible();
+    // await expect(gridSectionComponent.locGridCard).toBeVisible();
+    // await expect(gridSectionComponent.locGridCardImage).toBeVisible();
+    // await expect(gridSectionComponent.locGridCardTitle).toBeVisible();
+    // await expect(gridSectionComponent.locGridCardText).toBeVisible();
+    // await expect(gridSectionComponent.locGridCardLink).toHaveAttribute('href');
   });
 });
