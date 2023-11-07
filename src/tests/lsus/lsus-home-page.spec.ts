@@ -54,3 +54,21 @@ test('Grid Section Tests', async ({ page }) => {
     // await expect(gridSectionComponent.locGridCardLink).toHaveAttribute('href');
   });
 });
+// Grid section tests
+test('Grid Section Tests', async ({ page }) => {
+  console.log(
+    'Grid Section: Grid Section contains required fields - Header, Subtext, Card::Image/Title/Text/Link, Button::optionalLink, and a background color selected'
+  );
+  await test.step(`Verify the the Grid Section contents`, async () => {
+    // await expect(gridSectionComponent.locGridHeader).toContainText();
+    // await expect(gridSectionComponent.locGridSubtext).toBeVisible();
+    // await expect(gridSectionComponent.locGridCard).toBeVisible();
+    // await expect(gridSectionComponent.locGridCardImage).toBeVisible();
+    // await expect(gridSectionComponent.locGridCardTitle).toBeVisible();
+    // await expect(gridSectionComponent.locGridCardText).toBeVisible();
+    // await expect(gridSectionComponent.locGridCardLink).toHaveAttribute('href');
+    // await expect(gridSectionComponent.locGridButton).toBeVisible();
+    // await expect(gridSectionComponent.locGridButtonLink).toHaveAttribute('href');
+    // await expect(gridSectionComponent.locGridBackgroundColor).toBeVisible();
+  });
+});
