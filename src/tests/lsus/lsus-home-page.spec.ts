@@ -14,6 +14,7 @@ test.beforeEach(async ({ context, page }) => {
   // Grid Section Tests
   // -> gridSectionComponent = new GridSectionComponent(context, page);
   // Nav List Tests
+  // -> navListComponent = new NavListComponent(context, page);
   // Feature List Tests
   // Testimonials Tests
   // Fact Callouts Tests
@@ -51,24 +52,19 @@ test('Grid Section Tests', async ({ page }) => {
     // await expect(gridSectionComponent.locGridCardImage).toBeVisible();
     // await expect(gridSectionComponent.locGridCardTitle).toBeVisible();
     // await expect(gridSectionComponent.locGridCardText).toBeVisible();
-    // await expect(gridSectionComponent.locGridCardLink).toHaveAttribute('href');
-  });
-});
-// Grid section tests
-test('Grid Section Tests', async ({ page }) => {
-  console.log(
-    'Grid Section: Grid Section contains required fields - Header, Subtext, Card::Image/Title/Text/Link, Button::optionalLink, and a background color selected'
-  );
-  await test.step(`Verify the the Grid Section contents`, async () => {
-    // await expect(gridSectionComponent.locGridHeader).toContainText();
-    // await expect(gridSectionComponent.locGridSubtext).toBeVisible();
-    // await expect(gridSectionComponent.locGridCard).toBeVisible();
-    // await expect(gridSectionComponent.locGridCardImage).toBeVisible();
-    // await expect(gridSectionComponent.locGridCardTitle).toBeVisible();
-    // await expect(gridSectionComponent.locGridCardText).toBeVisible();
-    // await expect(gridSectionComponent.locGridCardLink).toHaveAttribute('href');
-    // await expect(gridSectionComponent.locGridButton).toBeVisible();
+    // await expect(gridSectionComponent.locGridCardLink).toHaveAttribute('href');    // await expect(gridSectionComponent.locGridButton).toBeVisible();
     // await expect(gridSectionComponent.locGridButtonLink).toHaveAttribute('href');
     // await expect(gridSectionComponent.locGridBackgroundColor).toBeVisible();
+  });
+});
+// Nav List Section tests
+test('Nav List Section Tests', async ({ page }) => {
+  console.log('Nav List Section: Nav List Section contains required fields - Headline, Lists::Header/Links, Disclaimer, Background Color');
+  await test.step(`Verify the the Nav List Section contents`, async () => {
+    // await expect(navListComponent.locNavListHeadline).toContainText();
+    // await expect(navListComponent.locNavListListsHeader).toBeVisible(); // repeater - many
+    // await expect(navListComponent.locNavListListsLinks).toBeVisible(); // repeater - many
+    // await expect(navListComponent.locNavListDisclaimer).toBeVisible();
+    // await expect(navListComponent.locNavListBackgroundColor).toBeVisible();
   });
 });
