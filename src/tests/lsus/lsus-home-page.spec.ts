@@ -9,6 +9,7 @@ import UrlsUtils from '../../utils/urls.utils';
 // import { ReviewSectionComponent } from '../../../page-objects/common-components/review-section.component';
 // import { LogoCloudSectionComponent } from '../../../page-objects/common-components/logo-cloud-section.component';
 // import { FeaturesGridSectionComponent } from '../../../page-objects/common-components/features-grid-section.component';
+// import { PricingSectionComponent } from '../../../page-objects/common-components/pricing-section.component';
 
 // TODO: locators
 // let heroSectionComponent: HeroSectionComponent;
@@ -20,6 +21,7 @@ import UrlsUtils from '../../utils/urls.utils';
 // let reviewSectionComponent = new ReviewSectionComponent;
 // let logoCloudSectionComponent = new LogoCloudSectionComponent;
 // let featuresGridSectionComponent = new FeaturesGridSectionComponent;
+// let pricingSectionComponent = new PricingSectionComponent;
 
 test.beforeEach(async ({ context, page }) => {
   // TODO: setup page-objects for common-components tests
@@ -42,6 +44,7 @@ test.beforeEach(async ({ context, page }) => {
   // Features Grid Tests
   // -> featuresGridSectionComponent = new FeaturesGridSectionComponent(context, page);
   // Pricing Section Tests
+  // -> pricingSectionComponent = new PricingSectionComponent(context, page);
   // Email Capture Tests
   test.slow();
 });
@@ -150,4 +153,26 @@ test('Features Grid Section', async ({ page }) => {
   // await expect(featuresGridSectionComponent.locFeaturesGridSectionCardsContentArea).toBeVisible();
   // await expect(featuresGridSectionComponent.locFeaturesGridSectionCardsLink).toHaveAttribute('href');
   // await expect(featuresGridSectionComponent.locFeaturesGridSectionBackgroundColor).toBeVisible();
+});
+// Pricing Section
+test('Pricing Section', async ({ page }) => {
+  console.log(
+    'Pricing Section: Pricing section contains required fields - Content::Headline/Paragraph, Card::PromoBadge/Image/Headline/Description/InfoTitle/Benefits::IndividualBenefits,/SubHeader/Price/PerMonth/FeeText/CTAButtonType/ButtonLink'
+  );
+  // await expect(pricingSectionComponent.locPricingSectionContentHeadline).toBeVisible();
+  // await expect(pricingSectionComponent.locPricingSectionContentParagraph).toBeVisible();
+  // await expect(pricingSectionComponent.locPricingSectionCard).toBeVisible(); // repeater fields
+  // await expect(pricingSectionComponent.locPricingSectionCardPromoBadge).toBeVisible();
+  // await expect(pricingSectionComponent.locPricingSectionCardImage).toBeVisible();
+  // await expect(pricingSectionComponent.locPricingSectionCardHeadline).toBeVisible();
+  // await expect(pricingSectionComponent.locPricingSectionCardDescription).toBeVisible();
+  // await expect(pricingSectionComponent.locPricingSectionCardInfoTitle).toBeVisible();
+  // await expect(pricingSectionComponent.locPricingSectionCardBenefits).toBeVisible(); // repeater fields
+  // await expect(pricingSectionComponent.locPricingSectionCardBenefitsIndividual).toBeVisible();
+  // await expect(pricingSectionComponent.locPricingSectionCardSubHeader).toBeVisible();
+  // await expect(pricingSectionComponent.locPricingSectionCardPrice).toBeVisible();
+  // await expect(pricingSectionComponent.locPricingSectionCardPerMonth).toBeVisible();
+  // await expect(pricingSectionComponent.locPricingSectionCardFeeText).toBeVisible();
+  // await expect(pricingSectionComponent.locPricingSectionCardCTAButtonType).toBeVisible();
+  // await expect(pricingSectionComponent.locPricingSectionCardButtonLink).toBeVisible();
 });
