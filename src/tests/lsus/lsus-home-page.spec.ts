@@ -3,10 +3,13 @@ import UrlsUtils from '../../utils/urls.utils';
 // import { HeroSectionComponent } from '../../../page-objects/common-components/hero-section.component';
 // import { GridSectionComponent } from '../../../page-objects/common-components/grid-section.component';
 // import { NavListComponent } from '../../../page-objects/common-components/nav-list-section.component';
+// import { FeatureListComponent } from '../../../page-objects/common-components/feature-list-section.component';
+
 // TODO: locators
 // let heroSectionComponent: HeroSectionComponent;
 // let gridSectionComponent: GridSectionComponent;
 // let navListComponent: NavListComponent;
+// let featureList = new FeatureListComponent;
 
 test.beforeEach(async ({ context, page }) => {
   // TODO: setup page-objects for common-components tests
@@ -69,4 +72,18 @@ test('Nav List Section Tests', async ({ page }) => {
     // await expect(navListComponent.locNavListDisclaimer).toBeVisible();
     // await expect(navListComponent.locNavListBackgroundColor).toBeVisible();
   });
+});
+// Feature List Section
+test('Feature List Section Tests', async ({ page }) => {
+  console.log(
+    'Feature List Section: Feature List Section contains required feilds - Content, Subheader, Image, List::Image/Headline/Content, Background Color'
+  );
+  // await expect(featureListComponent.locFeatureListContent).toBeVisible();
+  // await expect(featureListComponent.locFeatureListSubheader).toBeVisible();
+  // await expect(featureListComponent.locFeatureListImage).toBeVisible();
+  // await expect(featureListComponent.locFeatureListList).toContain('repeating-fields');
+  // await expect(featureListComponent.locFeatureListListImage).toBeVisible();
+  // await expect(featureListComponent.locFeatureListListHeadline).toBeVisible();
+  // await expect(featureListComponent.locFeatureListListContent).toContainText();
+  // await expect(featureListComponent.locFeatureListBackgroundColor).toBeVisible();
 });
