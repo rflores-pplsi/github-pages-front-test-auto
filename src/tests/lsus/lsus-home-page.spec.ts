@@ -10,6 +10,7 @@ import UrlsUtils from '../../utils/urls.utils';
 // import { LogoCloudSectionComponent } from '../../../page-objects/common-components/logo-cloud-section.component';
 // import { FeaturesGridSectionComponent } from '../../../page-objects/common-components/features-grid-section.component';
 // import { PricingSectionComponent } from '../../../page-objects/common-components/pricing-section.component';
+// import { EmailCaptureSectionComponent } from '../../../page-objects/common-components/email-capture-section.component';
 
 // TODO: locators
 // let heroSectionComponent: HeroSectionComponent;
@@ -22,6 +23,7 @@ import UrlsUtils from '../../utils/urls.utils';
 // let logoCloudSectionComponent = new LogoCloudSectionComponent;
 // let featuresGridSectionComponent = new FeaturesGridSectionComponent;
 // let pricingSectionComponent = new PricingSectionComponent;
+// let emailCaptureSectionComponent = new EmailCaptureSectionComponent;
 
 test.beforeEach(async ({ context, page }) => {
   // TODO: setup page-objects for common-components tests
@@ -46,6 +48,7 @@ test.beforeEach(async ({ context, page }) => {
   // Pricing Section Tests
   // -> pricingSectionComponent = new PricingSectionComponent(context, page);
   // Email Capture Tests
+  // -> emailCaptureSectionComponent = new EmailCaptureSectionComponent(context, page);
   test.slow();
 });
 
@@ -175,4 +178,18 @@ test('Pricing Section', async ({ page }) => {
   // await expect(pricingSectionComponent.locPricingSectionCardFeeText).toBeVisible();
   // await expect(pricingSectionComponent.locPricingSectionCardCTAButtonType).toBeVisible();
   // await expect(pricingSectionComponent.locPricingSectionCardButtonLink).toBeVisible();
+});
+// Email Capture Section
+test('Email Capture Section', async ({ page }) => {
+  console.log(
+    'Email Capture Section: Email Capture Section contains required fields - Header, Subtext, PolicyLink, IterableCampaignName, IterableCaptureSource, IterableListId, IterableCampaignType, Background Color'
+  );
+  // await expect(emailCaptureSectionComponent.locEmailCaptureSectionHeader).toBeVisible();
+  // await expect(emailCaptureSectionComponent.locEmailCaptureSectionSubtext).toBeVisible();
+  // await expect(emailCaptureSectionComponent.locEmailCaptureSectionPolicyLink).toHaveAttribute('href');
+  // await expect(emailCaptureSectionComponent.locEmailCaptureSectionIterableCampaignName).toBeDefined();
+  // await expect(emailCaptureSectionComponent.locEmailCaptureSectionIterableCaptureSource).toBeDefined();
+  // await expect(emailCaptureSectionComponent.locEmailCaptureSectionIterableId).toBeDefined();
+  // await expect(emailCaptureSectionComponent.locEmailCaptureSectionIterableCampaignType).toBeDefined();
+  // await expect(emailCaptureSectionComponent.locEmailCaptureSectionBackgroundColor).toBeVisible();
 });
