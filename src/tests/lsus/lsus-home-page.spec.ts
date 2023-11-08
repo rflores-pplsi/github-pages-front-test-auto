@@ -1,6 +1,6 @@
 import { test, expect, Page } from '@playwright/test';
 import UrlsUtils from '../../utils/urls.utils';
-// import { HeroSectionComponent } from '../../../page-objects/common-components/hero-section.component';
+import { HeroSectionComponent } from '../../page-objects/common-components/hero-section.component';
 // import { GridSectionComponent } from '../../../page-objects/common-components/grid-section.component';
 // import { NavListSectionComponent } from '../../../page-objects/common-components/nav-list-section.component';
 // import { FeatureListSectionComponent } from '../../../page-objects/common-components/feature-list-section.component';
@@ -13,7 +13,7 @@ import UrlsUtils from '../../utils/urls.utils';
 // import { EmailCaptureSectionComponent } from '../../../page-objects/common-components/email-capture-section.component';
 
 // TODO: locators
-// let heroSectionComponent: HeroSectionComponent;
+let heroSectionComponent: HeroSectionComponent;
 // let gridSectionComponent: GridSectionComponent;
 // let navListComponent: NavListSectionComponent;
 // let featureList = new FeatureListSectionComponent;
@@ -28,7 +28,7 @@ import UrlsUtils from '../../utils/urls.utils';
 test.beforeEach(async ({ context, page }) => {
   // TODO: setup page-objects for common-components tests
   // Hero Section Tests
-  // -> heroSectionComponent = new HeroSectionComponent(context, page);
+  heroSectionComponent = new HeroSectionComponent(context, page);
   // Grid Section Tests
   // -> gridSectionComponent = new GridSectionComponent(context, page);
   // Nav List Tests
@@ -58,13 +58,13 @@ test('Hero Section Tests', async ({ page }) => {
     'Hero Section: Hero Section contains required fields - Layout Style, Desktop/Mobile images, Headline,  and a CTA Button with appropriate link'
   );
   await test.step(`Verify the the Hero Section contents`, async () => {
-    // await expect(heroSectionComponent.locLayoutStyle).toBeVisible();
-    // await expect(heroSectionComponent.locDesktopImage).toBeVisible();
+    await expect(heroSectionComponent.locLayoutStyle).toBeVisible();
+    await expect(heroSectionComponent.locDesktopImage).toHaveAttribute('src');
     // await expect(heroSectionComponent.locMobileImage).toBeHidden();
-    // await expect(heroSectionComponent.locHeadlineText).toBeVisible();
-    // await expect(heroSectionComponent.locCallToActionButton).toBeVisible();
-    // await expect(heroSectionComponent.locCallToActionButtonText).toBeVisible();
-    // await expect(heroSectionComponent.locCallToActionButtonLink).toHaveAttribute('href');
+    await expect(heroSectionComponent.locHeadlineText).toBeVisible();
+    await expect(heroSectionComponent.locCallToActionButton).toBeVisible();
+    await expect(heroSectionComponent.locCallToActionButton).toHaveText('Get started');
+    await expect(heroSectionComponent.locCallToActionButton).toHaveAttribute('href');
   });
 });
 // Grid section tests
