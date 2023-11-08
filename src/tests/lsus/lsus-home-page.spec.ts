@@ -26,6 +26,7 @@ let heroSectionComponent: HeroSectionComponent;
 // let emailCaptureSectionComponent = new EmailCaptureSectionComponent;
 
 test.beforeEach(async ({ context, page }) => {
+  await page.goto('https://legalshield.com/'); // use Utils?
   // TODO: setup page-objects for common-components tests
   // Hero Section Tests
   heroSectionComponent = new HeroSectionComponent(context, page);
