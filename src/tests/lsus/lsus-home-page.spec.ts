@@ -7,6 +7,7 @@ import UrlsUtils from '../../utils/urls.utils';
 // import { TestimonialCarouselComponent } from '../../../page-objects/common-components/testimonial-carousel-section.component';
 // import { FactCalloutsComponent } from '../../../page-objects/common-components/fact-callouts-section.component';
 // import { ReviewSectionComponent } from '../../../page-objects/common-components/review-section.component';
+// import { LogoCloudSectionComponent } from '../../../page-objects/common-components/logo-cloud-section.component';
 
 // TODO: locators
 // let heroSectionComponent: HeroSectionComponent;
@@ -16,6 +17,7 @@ import UrlsUtils from '../../utils/urls.utils';
 // let testimonialCarousel = new TestimonialCarouselComponent;
 // let factCalloutsComponent = new FactCalloutsComponent;
 // let reviewSectionComponent = new ReviewSectionComponent;
+// let logoCloudSectionComponent = new LogoCloudSectionComponent;
 
 test.beforeEach(async ({ context, page }) => {
   // TODO: setup page-objects for common-components tests
@@ -34,6 +36,7 @@ test.beforeEach(async ({ context, page }) => {
   // Review Section Tests
   // -> reviewSectionComponent = new ReviewSectionComponent(context, page);
   // Logo Cloud Tests
+  // -> logoCloudComponent = new LogoCloudComponent(context, page);
   // Pricing Section Tests
   // Email Capture Tests
   test.slow();
@@ -121,4 +124,11 @@ test('Review Section', async ({ page }) => {
   console.log('Review Section: Review section contains required fields - Image, Background Color');
   // await expect(reviewSectionComponent.locReviewSectionImage).toBeVisible();
   // await expect(reviewSectionComponent.locReviewSectionBackground).toBeVisible();
+});
+// Logo Cloud Section
+test('Logo Cloud Section', async ({ page }) => {
+  console.log('Logo Cloud Section: Logo Cloud section contains required fields - Text, Image(s), Background Color');
+  // await expect(logoCloudSectionComponent.locLogoCloudSectionText).toBeVisible();
+  // await expect(logoCloudSectionComponent.locLogoCloudSectionImage).toBeVisible(); // repeater field
+  // await expect(logoCloudSectionComponent.locLogoCloudSectionBackground).toBeVisible();
 });
