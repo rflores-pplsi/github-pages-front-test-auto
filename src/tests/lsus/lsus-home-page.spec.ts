@@ -4,12 +4,14 @@ import UrlsUtils from '../../utils/urls.utils';
 // import { GridSectionComponent } from '../../../page-objects/common-components/grid-section.component';
 // import { NavListComponent } from '../../../page-objects/common-components/nav-list-section.component';
 // import { FeatureListComponent } from '../../../page-objects/common-components/feature-list-section.component';
+// import { TestimonialCarouselComponent } from '../../../page-objects/common-components/testimonial-carousel-section.component';
 
 // TODO: locators
 // let heroSectionComponent: HeroSectionComponent;
 // let gridSectionComponent: GridSectionComponent;
 // let navListComponent: NavListComponent;
 // let featureList = new FeatureListComponent;
+// let testimonialCarousel = new TestimonialCarouselComponent;
 
 test.beforeEach(async ({ context, page }) => {
   // TODO: setup page-objects for common-components tests
@@ -22,6 +24,7 @@ test.beforeEach(async ({ context, page }) => {
   // Feature List Tests
   // -> featureListComponent = new FeatureListComponent(context, page);
   // Testimonials Tests
+  // -> testimonialsComponent = new TestimonialsComponent(context, page);
   // Fact Callouts Tests
   // Review Section Tests
   // Logo Cloud Tests
@@ -86,4 +89,12 @@ test('Feature List Section Tests', async ({ page }) => {
   // await expect(featureListComponent.locFeatureListListHeadline).toBeVisible();
   // await expect(featureListComponent.locFeatureListListContent).toContainText();
   // await expect(featureListComponent.locFeatureListBackgroundColor).toBeVisible();
+});
+// Testimonial Carousel Section
+test('Testimonial Carousel Section Tests', async ({ page }) => {
+  console.log('Testimonial Carousel Section: Testimonial Carousel Section contains required fields - Carousel::Image/Title/Text/Link;');
+  // await expect(testimonialCarouselComponent.locTestimonialCarousel).toBeVisible(); // contains repeater fields
+  // await expect(testimonialCarouselComponent.locTestimonialCarouselImage).toBeVisible();
+  // await expect(testimonialCarouselComponent.locTestimonialCarouselText).toBeVisible();
+  // await expect(testimonialCarouselComponent.locTestimonialCarouselLink).toBeVisible();
 });
