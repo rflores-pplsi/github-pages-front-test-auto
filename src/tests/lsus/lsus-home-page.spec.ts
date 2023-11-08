@@ -2,22 +2,24 @@ import { test, expect, Page } from '@playwright/test';
 import UrlsUtils from '../../utils/urls.utils';
 // import { HeroSectionComponent } from '../../../page-objects/common-components/hero-section.component';
 // import { GridSectionComponent } from '../../../page-objects/common-components/grid-section.component';
-// import { NavListComponent } from '../../../page-objects/common-components/nav-list-section.component';
-// import { FeatureListComponent } from '../../../page-objects/common-components/feature-list-section.component';
-// import { TestimonialCarouselComponent } from '../../../page-objects/common-components/testimonial-carousel-section.component';
-// import { FactCalloutsComponent } from '../../../page-objects/common-components/fact-callouts-section.component';
+// import { NavListSectionComponent } from '../../../page-objects/common-components/nav-list-section.component';
+// import { FeatureListSectionComponent } from '../../../page-objects/common-components/feature-list-section.component';
+// import { TestimonialCarouselSectionComponent } from '../../../page-objects/common-components/testimonial-carousel-section.component';
+// import { FactCalloutsSectionComponent } from '../../../page-objects/common-components/fact-callouts-section.component';
 // import { ReviewSectionComponent } from '../../../page-objects/common-components/review-section.component';
 // import { LogoCloudSectionComponent } from '../../../page-objects/common-components/logo-cloud-section.component';
+// import { FeaturesGridSectionComponent } from '../../../page-objects/common-components/features-grid-section.component';
 
 // TODO: locators
 // let heroSectionComponent: HeroSectionComponent;
 // let gridSectionComponent: GridSectionComponent;
-// let navListComponent: NavListComponent;
-// let featureList = new FeatureListComponent;
-// let testimonialCarousel = new TestimonialCarouselComponent;
-// let factCalloutsComponent = new FactCalloutsComponent;
+// let navListComponent: NavListSectionComponent;
+// let featureList = new FeatureListSectionComponent;
+// let testimonialCarousel = new TestimonialCarouselSectionComponent;
+// let factCalloutsComponent = new FactCalloutsSectionComponent;
 // let reviewSectionComponent = new ReviewSectionComponent;
 // let logoCloudSectionComponent = new LogoCloudSectionComponent;
+// let featuresGridSectionComponent = new FeaturesGridSectionComponent;
 
 test.beforeEach(async ({ context, page }) => {
   // TODO: setup page-objects for common-components tests
@@ -37,6 +39,8 @@ test.beforeEach(async ({ context, page }) => {
   // -> reviewSectionComponent = new ReviewSectionComponent(context, page);
   // Logo Cloud Tests
   // -> logoCloudComponent = new LogoCloudComponent(context, page);
+  // Features Grid Tests
+  // -> featuresGridSectionComponent = new FeaturesGridSectionComponent(context, page);
   // Pricing Section Tests
   // Email Capture Tests
   test.slow();
@@ -131,4 +135,19 @@ test('Logo Cloud Section', async ({ page }) => {
   // await expect(logoCloudSectionComponent.locLogoCloudSectionText).toBeVisible();
   // await expect(logoCloudSectionComponent.locLogoCloudSectionImage).toBeVisible(); // repeater field
   // await expect(logoCloudSectionComponent.locLogoCloudSectionBackground).toBeVisible();
+});
+// Features Grid Section
+test('Features Grid Section', async ({ page }) => {
+  console.log(
+    'Features Grid Section: Features Grid section contains required fields - Content::Headline/Paragraph, Cards::Image/Headline/ContentArea/Link, Background Color'
+  );
+  // await expect(featuresGridSectionComponent.locFeaturesGridSectionContent).toBeVisible();
+  // await expect(featuresGridSectionComponent.locFeaturesGridSectionContentHeadline).toBeVisible();
+  // await expect(featuresGridSectionComponent.locFeaturesGridSectionContentParagraph).toBeVisible();
+  // await expect(featuresGridSectionComponent.locFeaturesGridSectionCards).toBeVisible(); // repeater fields
+  // await expect(featuresGridSectionComponent.locFeaturesGridSectionCardsImage).toBeVisible();
+  // await expect(featuresGridSectionComponent.locFeaturesGridSectionCardsHeadline).toBeVisible();
+  // await expect(featuresGridSectionComponent.locFeaturesGridSectionCardsContentArea).toBeVisible();
+  // await expect(featuresGridSectionComponent.locFeaturesGridSectionCardsLink).toHaveAttribute('href');
+  // await expect(featuresGridSectionComponent.locFeaturesGridSectionBackgroundColor).toBeVisible();
 });
