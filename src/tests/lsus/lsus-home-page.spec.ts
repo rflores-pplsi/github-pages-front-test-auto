@@ -5,6 +5,7 @@ import UrlsUtils from '../../utils/urls.utils';
 // import { NavListComponent } from '../../../page-objects/common-components/nav-list-section.component';
 // import { FeatureListComponent } from '../../../page-objects/common-components/feature-list-section.component';
 // import { TestimonialCarouselComponent } from '../../../page-objects/common-components/testimonial-carousel-section.component';
+// import { FactCalloutsComponent } from '../../../page-objects/common-components/fact-callouts-section.component';
 
 // TODO: locators
 // let heroSectionComponent: HeroSectionComponent;
@@ -12,6 +13,7 @@ import UrlsUtils from '../../utils/urls.utils';
 // let navListComponent: NavListComponent;
 // let featureList = new FeatureListComponent;
 // let testimonialCarousel = new TestimonialCarouselComponent;
+// let factCallouts = new FactCalloutsComponent;
 
 test.beforeEach(async ({ context, page }) => {
   // TODO: setup page-objects for common-components tests
@@ -26,6 +28,7 @@ test.beforeEach(async ({ context, page }) => {
   // Testimonials Tests
   // -> testimonialsComponent = new TestimonialsComponent(context, page);
   // Fact Callouts Tests
+  // -> factCalloutComponent = new FactCalloutComponent(context, page);
   // Review Section Tests
   // Logo Cloud Tests
   // Pricing Section Tests
@@ -97,4 +100,16 @@ test('Testimonial Carousel Section Tests', async ({ page }) => {
   // await expect(testimonialCarouselComponent.locTestimonialCarouselImage).toBeVisible();
   // await expect(testimonialCarouselComponent.locTestimonialCarouselText).toBeVisible();
   // await expect(testimonialCarouselComponent.locTestimonialCarouselLink).toBeVisible();
+});
+// Fact Callouts Section
+test('Fact Callouts Section', async ({ page }) => {
+  console.log(
+    'Fact Callouts Section: Fact Callouts section contains required fields - Headline, Columns::LargeStatNumber/SmallStatNumber/SmallText, Background Color'
+  );
+  // await expect(factCalloutComponent.locFactCalloutHeadline).toBeVisible();
+  // await expect(factCalloutComponent.locFactCalloutColumn).toBeVisible(); // repeater columns
+  // await expect(factCalloutComponent.locFactCalloutColumnLargeStatNumber).toBeVisible();
+  // await expect(factCalloutComponent.locFactCalloutColumnSmallStatNumber).toBeVisible();
+  // await expect(factCalloutComponent.locFactCalloutColumnSmallText).toBeVisible();
+  // await expect(factCalloutComponent.locFactCalloutBackground).toBeVisible();
 });
