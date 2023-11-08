@@ -2,10 +2,11 @@ import { test, expect, Page } from '@playwright/test';
 import UrlsUtils from '../../utils/urls.utils';
 // import { HeroSectionComponent } from '../../../page-objects/common-components/hero-section.component';
 // import { GridSectionComponent } from '../../../page-objects/common-components/grid-section.component';
-
+// import { NavListComponent } from '../../../page-objects/common-components/nav-list-section.component';
 // TODO: locators
 // let heroSectionComponent: HeroSectionComponent;
 // let gridSectionComponent: GridSectionComponent;
+// let navListComponent: NavListComponent;
 
 test.beforeEach(async ({ context, page }) => {
   // TODO: setup page-objects for common-components tests
@@ -16,6 +17,7 @@ test.beforeEach(async ({ context, page }) => {
   // Nav List Tests
   // -> navListComponent = new NavListComponent(context, page);
   // Feature List Tests
+  // -> featureListComponent = new FeatureListComponent(context, page);
   // Testimonials Tests
   // Fact Callouts Tests
   // Review Section Tests
