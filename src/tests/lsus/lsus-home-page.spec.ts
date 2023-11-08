@@ -54,7 +54,8 @@ test.beforeEach(async ({ context, page }) => {
 });
 
 // Hero Section Tests
-test('Hero Section Tests', async ({ page }) => {
+// USE_UAT=true npx playwright test --grep @d2chomepage
+test('Hero Section Tests @d2chomepage', async ({ page }) => {
   console.log(
     'Hero Section: Hero Section contains required fields - Layout Style, Desktop/Mobile images, Headline,  and a CTA Button with appropriate link'
   );
