@@ -6,6 +6,7 @@ import UrlsUtils from '../../utils/urls.utils';
 // import { FeatureListComponent } from '../../../page-objects/common-components/feature-list-section.component';
 // import { TestimonialCarouselComponent } from '../../../page-objects/common-components/testimonial-carousel-section.component';
 // import { FactCalloutsComponent } from '../../../page-objects/common-components/fact-callouts-section.component';
+// import { ReviewSectionComponent } from '../../../page-objects/common-components/review-section.component';
 
 // TODO: locators
 // let heroSectionComponent: HeroSectionComponent;
@@ -13,7 +14,8 @@ import UrlsUtils from '../../utils/urls.utils';
 // let navListComponent: NavListComponent;
 // let featureList = new FeatureListComponent;
 // let testimonialCarousel = new TestimonialCarouselComponent;
-// let factCallouts = new FactCalloutsComponent;
+// let factCalloutsComponent = new FactCalloutsComponent;
+// let reviewSectionComponent = new ReviewSectionComponent;
 
 test.beforeEach(async ({ context, page }) => {
   // TODO: setup page-objects for common-components tests
@@ -30,6 +32,7 @@ test.beforeEach(async ({ context, page }) => {
   // Fact Callouts Tests
   // -> factCalloutComponent = new FactCalloutComponent(context, page);
   // Review Section Tests
+  // -> reviewSectionComponent = new ReviewSectionComponent(context, page);
   // Logo Cloud Tests
   // Pricing Section Tests
   // Email Capture Tests
@@ -112,4 +115,10 @@ test('Fact Callouts Section', async ({ page }) => {
   // await expect(factCalloutComponent.locFactCalloutColumnSmallStatNumber).toBeVisible();
   // await expect(factCalloutComponent.locFactCalloutColumnSmallText).toBeVisible();
   // await expect(factCalloutComponent.locFactCalloutBackground).toBeVisible();
+});
+// Review Section
+test('Review Section', async ({ page }) => {
+  console.log('Review Section: Review section contains required fields - Image, Background Color');
+  // await expect(reviewSectionComponent.locReviewSectionImage).toBeVisible();
+  // await expect(reviewSectionComponent.locReviewSectionBackground).toBeVisible();
 });
