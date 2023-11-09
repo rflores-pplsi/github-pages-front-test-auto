@@ -1,7 +1,6 @@
 import { test, expect, Page } from '@playwright/test';
 import UrlsUtils from '../../../utils/urls.utils';
-import { HeroSectionComponent } from '../../../page-objects/common-components/hero-section.component';
-import { GridSectionComponent } from '../../../page-objects/common-components/grid-section.component';
+import { LegalshieldService } from '../../../page-objects/marketing-sites/legalshield/legalshield-service';
 // import { NavListSectionComponent } from '../../../page-objects/common-components/nav-list-section.component';
 // import { FeatureListSectionComponent } from '../../../page-objects/common-components/feature-list-section.component';
 // import { TestimonialCarouselSectionComponent } from '../../../page-objects/common-components/testimonial-carousel-section.component';
@@ -13,8 +12,7 @@ import { GridSectionComponent } from '../../../page-objects/common-components/gr
 // import { EmailCaptureSectionComponent } from '../../../page-objects/common-components/email-capture-section.component';
 
 // TODO: locators
-let heroSectionComponent: HeroSectionComponent;
-let gridSectionComponent: GridSectionComponent;
+let legalshieldService: LegalshieldService;
 // let navListComponent: NavListSectionComponent;
 // let featureList = new FeatureListSectionComponent;
 // let testimonialCarousel = new TestimonialCarouselSectionComponent;
@@ -28,10 +26,10 @@ let gridSectionComponent: GridSectionComponent;
 test.beforeEach(async ({ context, page }) => {
   await page.goto(UrlsUtils.legalshieldService.baseUrl); // use Utils?
   // TODO: setup page-objects for common-components tests
-  // Hero Section Tests
-  heroSectionComponent = new HeroSectionComponent(context, page);
+  // instantiate Legalshield service
+  legalshieldService = new LegalshieldService(page, context);
   // Grid Section Tests
-  gridSectionComponent = new GridSectionComponent(context, page);
+  // gridSectionComponent = new GridSectionComponent(context, page);
   // Nav List Tests
   // -> navListComponent = new NavListComponent(context, page);
   // Feature List Tests
@@ -60,13 +58,12 @@ test('Hero Section Tests @Legalshield', async ({ page }) => {
     'Hero Section: Hero Section contains required fields - Layout Style, Desktop/Mobile images, Headline, and a CTA Button with appropriate link'
   );
   await test.step(`Verify the the Hero Section contents`, async () => {
-    await expect(heroSectionComponent.locLayoutStyle).toBeVisible();
-    await expect(heroSectionComponent.locDesktopImage).toHaveAttribute('src');
-    // await expect(heroSectionComponent.locMobileImage).toBeHidden();
-    await expect(heroSectionComponent.locHeadlineText).toBeVisible();
-    await expect(heroSectionComponent.locCallToActionButton).toBeVisible();
-    await expect(heroSectionComponent.locCallToActionButton).toHaveText('Get started');
-    await expect(heroSectionComponent.locCallToActionButton).toHaveAttribute('href');
+    await expect(legalshieldService.legalshieldPage.heroSectionComponent.locLayoutStyle).toBeVisible();
+    await expect(legalshieldService.legalshieldPage.heroSectionComponent.locDesktopImage).toHaveAttribute('src');
+    await expect(legalshieldService.legalshieldPage.heroSectionComponent.locHeadlineText).toBeVisible();
+    await expect(legalshieldService.legalshieldPage.heroSectionComponent.locCallToActionButton).toBeVisible();
+    await expect(legalshieldService.legalshieldPage.heroSectionComponent.locCallToActionButton).toHaveText('Get started');
+    await expect(legalshieldService.legalshieldPage.heroSectionComponent.locCallToActionButton).toHaveAttribute('href');
   });
 });
 // Grid section tests
@@ -75,24 +72,26 @@ test('Grid Section Tests @Legalshield', async ({ page }) => {
     'Grid Section: Grid Section contains required fields - Header, Subtext, Card::Image/Title/Text/Link, Button::optionalLink, and a background color selected'
   );
   await test.step(`Verify the the Grid Section contents`, async () => {
-    for (const header of await gridSectionComponent.locGridHeader.all()) {
-      await expect(header).toBeVisible();
+    for (const header of await legalshieldService.legalshieldPage.gridSectionComponent.locGridHeader.all()) {
+      await expect.soft(header).toBeVisible();
     }
-    await expect(gridSectionComponent.locGridSubtext).toBeVisible();
-    for (const card of await gridSectionComponent.locGridCard.all()) {
-      await expect(card).toBeVisible();
+
+    await expect(legalshieldService.legalshieldPage.gridSectionComponent.locGridSubtext).toBeVisible();
+
+    for (const card of await legalshieldService.legalshieldPage.gridSectionComponent.locGridCard.all()) {
+      await expect.soft(card).toBeVisible();
     }
-    for (const image of await gridSectionComponent.locGridCardImage.all()) {
-      await expect(image).toBeVisible();
+    for (const image of await legalshieldService.legalshieldPage.gridSectionComponent.locGridCardImage.all()) {
+      await expect.soft(image).toBeVisible();
     }
-    for (const title of await gridSectionComponent.locGridCardTitle.all()) {
-      await expect(title).toBeVisible();
+    for (const title of await legalshieldService.legalshieldPage.gridSectionComponent.locGridCardTitle.all()) {
+      await expect.soft(title).toBeVisible();
     }
-    for (const cardText of await gridSectionComponent.locGridCardText.all()) {
-      await expect(cardText).toBeVisible();
+    for (const cardText of await legalshieldService.legalshieldPage.gridSectionComponent.locGridCardText.all()) {
+      await expect.soft(cardText).toBeVisible();
     }
-    for (const cardLink of await gridSectionComponent.locGridCardLink.all()) {
-      await expect(cardLink).toHaveAttribute('href');
+    for (const cardLink of await legalshieldService.legalshieldPage.gridSectionComponent.locGridCardLink.all()) {
+      await expect.soft(cardLink).toHaveAttribute('href');
     }
     //await expect(await gridSectionComponent.locGridButtonLink.getAttribute('href')).not.toBeNull(); // optional, not present on page --> timeout, not working
     //await expect(gridSectionComponent.locGridBackgroundColor).toBeVisible(); // optional, not present on page

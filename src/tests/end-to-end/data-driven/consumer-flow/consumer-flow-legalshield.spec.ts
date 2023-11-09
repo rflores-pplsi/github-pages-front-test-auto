@@ -11,7 +11,7 @@ let commonCheckoutService: CommonCheckoutService;
 let commonLoginService: CommonLoginService;
 
 test.beforeEach(async ({ context, page }) => {
-  legalshieldService = new LegalshieldService(page);
+  legalshieldService = new LegalshieldService(page, context);
   commonLoginService = new CommonLoginService(page);
   commonCheckoutService = new CommonCheckoutService(context, page);
   test.setTimeout(120000);
