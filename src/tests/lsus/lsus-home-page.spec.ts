@@ -1,7 +1,7 @@
 import { test, expect, Page } from '@playwright/test';
 import UrlsUtils from '../../utils/urls.utils';
 import { HeroSectionComponent } from '../../page-objects/common-components/hero-section.component';
-// import { GridSectionComponent } from '../../../page-objects/common-components/grid-section.component';
+import { GridSectionComponent } from '../../page-objects/common-components/grid-section.component';
 // import { NavListSectionComponent } from '../../../page-objects/common-components/nav-list-section.component';
 // import { FeatureListSectionComponent } from '../../../page-objects/common-components/feature-list-section.component';
 // import { TestimonialCarouselSectionComponent } from '../../../page-objects/common-components/testimonial-carousel-section.component';
@@ -14,7 +14,7 @@ import { HeroSectionComponent } from '../../page-objects/common-components/hero-
 
 // TODO: locators
 let heroSectionComponent: HeroSectionComponent;
-// let gridSectionComponent: GridSectionComponent;
+let gridSectionComponent: GridSectionComponent;
 // let navListComponent: NavListSectionComponent;
 // let featureList = new FeatureListSectionComponent;
 // let testimonialCarousel = new TestimonialCarouselSectionComponent;
@@ -31,7 +31,7 @@ test.beforeEach(async ({ context, page }) => {
   // Hero Section Tests
   heroSectionComponent = new HeroSectionComponent(context, page);
   // Grid Section Tests
-  // -> gridSectionComponent = new GridSectionComponent(context, page);
+  gridSectionComponent = new GridSectionComponent(context, page);
   // Nav List Tests
   // -> navListComponent = new NavListComponent(context, page);
   // Feature List Tests
@@ -70,20 +70,32 @@ test('Hero Section Tests @d2chomepage', async ({ page }) => {
   });
 });
 // Grid section tests
-test('Grid Section Tests', async ({ page }) => {
+test('Grid Section Tests @d2chomepage', async ({ page }) => {
   console.log(
     'Grid Section: Grid Section contains required fields - Header, Subtext, Card::Image/Title/Text/Link, Button::optionalLink, and a background color selected'
   );
   await test.step(`Verify the the Grid Section contents`, async () => {
-    // await expect(gridSectionComponent.locGridHeader).toContainText();
-    // await expect(gridSectionComponent.locGridSubtext).toBeVisible();
-    // await expect(gridSectionComponent.locGridCard).toBeVisible();
-    // await expect(gridSectionComponent.locGridCardImage).toBeVisible();
-    // await expect(gridSectionComponent.locGridCardTitle).toBeVisible();
-    // await expect(gridSectionComponent.locGridCardText).toBeVisible();
-    // await expect(gridSectionComponent.locGridCardLink).toHaveAttribute('href');    // await expect(gridSectionComponent.locGridButton).toBeVisible();
-    // await expect(gridSectionComponent.locGridButtonLink).toHaveAttribute('href');
-    // await expect(gridSectionComponent.locGridBackgroundColor).toBeVisible();
+    for (const header of await gridSectionComponent.locGridHeader.all()) {
+      await expect(header).toBeVisible();
+    }
+    await expect(gridSectionComponent.locGridSubtext).toBeVisible();
+    for (const card of await gridSectionComponent.locGridCard.all()) {
+      await expect(card).toBeVisible();
+    }
+    for (const image of await gridSectionComponent.locGridCardImage.all()) {
+      await expect(image).toBeVisible();
+    }
+    for (const title of await gridSectionComponent.locGridCardTitle.all()) {
+      await expect(title).toBeVisible();
+    }
+    for (const cardText of await gridSectionComponent.locGridCardText.all()) {
+      await expect(cardText).toBeVisible();
+    }
+    for (const cardLink of await gridSectionComponent.locGridCardLink.all()) {
+      await expect(cardLink).toHaveAttribute('href');
+    }
+    //await expect(await gridSectionComponent.locGridButtonLink.getAttribute('href')).not.toBeNull(); // optional, not present on page --> timeout, not working
+    //await expect(gridSectionComponent.locGridBackgroundColor).toBeVisible(); // optional, not present on page
   });
 });
 // Nav List Section tests
