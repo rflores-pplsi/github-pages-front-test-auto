@@ -1,7 +1,7 @@
 import { test, expect, Page } from '@playwright/test';
-import UrlsUtils from '../../utils/urls.utils';
-import { HeroSectionComponent } from '../../page-objects/common-components/hero-section.component';
-import { GridSectionComponent } from '../../page-objects/common-components/grid-section.component';
+import UrlsUtils from '../../../utils/urls.utils';
+import { HeroSectionComponent } from '../../../page-objects/common-components/hero-section.component';
+import { GridSectionComponent } from '../../../page-objects/common-components/grid-section.component';
 // import { NavListSectionComponent } from '../../../page-objects/common-components/nav-list-section.component';
 // import { FeatureListSectionComponent } from '../../../page-objects/common-components/feature-list-section.component';
 // import { TestimonialCarouselSectionComponent } from '../../../page-objects/common-components/testimonial-carousel-section.component';
@@ -26,7 +26,7 @@ let gridSectionComponent: GridSectionComponent;
 // let emailCaptureSectionComponent = new EmailCaptureSectionComponent;
 
 test.beforeEach(async ({ context, page }) => {
-  await page.goto('https://legalshield.com/'); // use Utils?
+  await page.goto(UrlsUtils.legalshieldService.baseUrl); // use Utils?
   // TODO: setup page-objects for common-components tests
   // Hero Section Tests
   heroSectionComponent = new HeroSectionComponent(context, page);
