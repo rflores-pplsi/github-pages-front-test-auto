@@ -1,7 +1,7 @@
-import { Locator, Page } from '@playwright/test';
+import { Locator, Page, BrowserContext } from '@playwright/test';
 import { ProductDetails } from '../../../types/types';
 import UrlsUtils from '../../../utils/urls.utils';
-
+import { LegalshieldPage } from './legalshield.page';
 import { SmallBusinessQualifyingComponent } from './legalshield-small-business-qualifying.component';
 import { MarketingSitesCartComponent } from '../marketing-sites-cart-component';
 import { MarketingSiteFooterComponent } from '../marketing-sites-footer-component';
@@ -9,18 +9,22 @@ import { MarketingSiteHeaderComponent } from '../marketing-sites-header-componen
 
 export class LegalshieldService {
   protected page: Page;
+  protected context: BrowserContext;
   readonly smallBusinessQualifyingComponent: SmallBusinessQualifyingComponent;
   readonly marketingSitesCartComponent: MarketingSitesCartComponent;
   readonly marketingSiteHeaderComponent: MarketingSiteHeaderComponent;
   readonly marketingSiteFooterComponent: MarketingSiteFooterComponent;
+  readonly legalshieldPage: LegalshieldPage;
   readonly firstGetStartedButton: Locator;
 
-  constructor(page: Page) {
+  constructor(page: Page, context: BrowserContext) {
     this.page = page;
+    this.context = context;
     this.smallBusinessQualifyingComponent = new SmallBusinessQualifyingComponent(page);
     this.marketingSitesCartComponent = new MarketingSitesCartComponent(page);
     this.marketingSiteFooterComponent = new MarketingSiteFooterComponent(page);
     this.marketingSiteHeaderComponent = new MarketingSiteHeaderComponent(page);
+    this.legalshieldPage = new LegalshieldPage(context, page);
     this.firstGetStartedButton = this.page.locator(`//div[@id="main-content"]//a[@id="lsc-add-to-cart-button"]`).nth(0);
   }
 

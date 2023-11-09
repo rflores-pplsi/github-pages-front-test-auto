@@ -32,7 +32,9 @@ export default class UrlsUtils {
   static readonly cartService = {
     baseUrl: `https://cart.${envUrlString}legalshield.com`,
   };
-
+  static readonly legalshieldService = {
+    baseUrl: `https://${envUrlString}legalshield.com`,
+  };
   static readonly shieldAssociateService = {
     baseUrl: `https://www.${envUrlString}shieldassociate.com`,
     baseUrlNoSubdomain: `${envUrlString}shieldassociate.com`,
