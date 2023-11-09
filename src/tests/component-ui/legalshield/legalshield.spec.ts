@@ -55,9 +55,9 @@ test.beforeEach(async ({ context, page }) => {
 
 // Hero Section Tests
 // USE_UAT=true npx playwright test --grep @d2chomepage
-test('Hero Section Tests @d2chomepage', async ({ page }) => {
+test('Hero Section Tests @Legalshield', async ({ page }) => {
   console.log(
-    'Hero Section: Hero Section contains required fields - Layout Style, Desktop/Mobile images, Headline,  and a CTA Button with appropriate link'
+    'Hero Section: Hero Section contains required fields - Layout Style, Desktop/Mobile images, Headline, and a CTA Button with appropriate link'
   );
   await test.step(`Verify the the Hero Section contents`, async () => {
     await expect(heroSectionComponent.locLayoutStyle).toBeVisible();
@@ -70,7 +70,7 @@ test('Hero Section Tests @d2chomepage', async ({ page }) => {
   });
 });
 // Grid section tests
-test('Grid Section Tests @d2chomepage', async ({ page }) => {
+test('Grid Section Tests @Legalshield', async ({ page }) => {
   console.log(
     'Grid Section: Grid Section contains required fields - Header, Subtext, Card::Image/Title/Text/Link, Button::optionalLink, and a background color selected'
   );
