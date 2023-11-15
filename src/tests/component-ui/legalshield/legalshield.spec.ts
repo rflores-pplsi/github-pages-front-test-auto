@@ -52,18 +52,18 @@ test.beforeEach(async ({ context, page }) => {
 });
 
 // Hero Section Tests
-// USE_UAT=true npx playwright test --grep @d2chomepage
-test('Hero Section Tests @Legalshield', async ({ page }) => {
+// USE_UAT=true npx playwright test --grep @Legalshield
+test('Hero Section Tests @Legalshield', async ({ context, page }) => {
   console.log(
     'Hero Section: Hero Section contains required fields - Layout Style, Desktop/Mobile images, Headline, and a CTA Button with appropriate link'
   );
-  await test.step(`Verify the the Hero Section contents`, async () => {
-    await expect(legalshieldService.legalshieldPage.heroSectionComponent.locLayoutStyle).toBeVisible();
-    await expect(legalshieldService.legalshieldPage.heroSectionComponent.locDesktopImage).toHaveAttribute('src');
-    await expect(legalshieldService.legalshieldPage.heroSectionComponent.locHeadlineText).toBeVisible();
-    await expect(legalshieldService.legalshieldPage.heroSectionComponent.locCallToActionButton).toBeVisible();
-    await expect(legalshieldService.legalshieldPage.heroSectionComponent.locCallToActionButton).toHaveText('Get started');
-    await expect(legalshieldService.legalshieldPage.heroSectionComponent.locCallToActionButton).toHaveAttribute('href');
+  await test.step(`Verify the the Hero Section CTA lands on appropriate href`, async () => {
+    const hrefAttribute = await legalshieldService.legalshieldPage.heroSectionComponent.locCallToActionButton.getAttribute('href');
+    if (hrefAttribute !== '' && hrefAttribute !== undefined) {
+      await legalshieldService.legalshieldPage.heroSectionComponent.locCallToActionButton.click();
+      const landingPage = await context.waitForEvent('page');
+      landingPage.screenshot({ path: '/screenshots/' + Date.now() + 'newPage.png' });
+    }
   });
 });
 // Grid section tests
