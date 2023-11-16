@@ -53,17 +53,20 @@ test.beforeEach(async ({ context, page }) => {
 
 // Hero Section Tests
 // USE_UAT=true npx playwright test --grep @Legalshield
-test('Hero Section Tests @Legalshield', async ({ context, page }) => {
+test('Hero Section Tests @Legalshield', async ({ page }) => {
   console.log(
     'Hero Section: Hero Section contains required fields - Layout Style, Desktop/Mobile images, Headline, and a CTA Button with appropriate link'
   );
   await test.step(`Verify the the Hero Section CTA lands on appropriate href`, async () => {
-    const hrefAttribute = await legalshieldService.legalshieldPage.heroSectionComponent.locCallToActionButton.getAttribute('href');
-    if (hrefAttribute !== '' && hrefAttribute !== undefined) {
-      await legalshieldService.legalshieldPage.heroSectionComponent.locCallToActionButton.click();
-      const landingPage = await context.waitForEvent('page');
-      landingPage.screenshot({ path: '/screenshots/' + Date.now() + 'newPage.png' });
-    }
+    await page.addInitScript(() => {
+      window.addEventListener('click', () => console.log('ctaClicked'));
+    });
+    page.on('console', (message) => {
+      if (message.text() === 'ctaClicked') {
+        page.screenshot({ path: `screenshots/${new Date().getTime()}.png` });
+      }
+    });
+    await legalshieldService.legalshieldPage.heroSectionComponent.locCallToActionButton.click();
   });
 });
 // Grid section tests
