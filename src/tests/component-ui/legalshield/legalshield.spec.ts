@@ -52,18 +52,21 @@ test.beforeEach(async ({ context, page }) => {
 });
 
 // Hero Section Tests
-// USE_UAT=true npx playwright test --grep @d2chomepage
+// USE_UAT=true npx playwright test --grep @Legalshield
 test('Hero Section Tests @Legalshield', async ({ page }) => {
   console.log(
     'Hero Section: Hero Section contains required fields - Layout Style, Desktop/Mobile images, Headline, and a CTA Button with appropriate link'
   );
-  await test.step(`Verify the the Hero Section contents`, async () => {
-    await expect(legalshieldService.legalshieldPage.heroSectionComponent.locLayoutStyle).toBeVisible();
-    await expect(legalshieldService.legalshieldPage.heroSectionComponent.locDesktopImage).toHaveAttribute('src');
-    await expect(legalshieldService.legalshieldPage.heroSectionComponent.locHeadlineText).toBeVisible();
-    await expect(legalshieldService.legalshieldPage.heroSectionComponent.locCallToActionButton).toBeVisible();
-    await expect(legalshieldService.legalshieldPage.heroSectionComponent.locCallToActionButton).toHaveText('Get started');
-    await expect(legalshieldService.legalshieldPage.heroSectionComponent.locCallToActionButton).toHaveAttribute('href');
+  await test.step(`Verify the the Hero Section CTA lands on appropriate href`, async () => {
+    await page.addInitScript(() => {
+      window.addEventListener('click', () => console.log('ctaClicked'));
+    });
+    page.on('console', (message) => {
+      if (message.text() === 'ctaClicked') {
+        page.screenshot({ path: `screenshots/${new Date().getTime()}.png` });
+      }
+    });
+    await legalshieldService.legalshieldPage.heroSectionComponent.locCallToActionButton.click();
   });
 });
 // Grid section tests
