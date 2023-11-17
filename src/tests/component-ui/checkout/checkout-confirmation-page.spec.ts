@@ -44,7 +44,6 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
         'Automation',
         'Tester',
         '5555555555',
-        'Home',
         '200 16th Street',
         'Denver',
         '80202',
@@ -72,21 +71,21 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       });
     });
 
-    test('Verify Welcome Header is displayed on Confirmation Page', async ({ page }) => {
+    test('Verify Welcome Header is displayed on Confirmation Page @CheckoutConfirmationPage', async () => {
       console.log('Test Case: Verify Welcome Header is displayed on Confirmation Page');
       await test.step('Verify Header is displayed on Confirmation Page', async () => {
         await expect(commonCheckoutService.confirmationPage.locConfirmationFirstHeader).toContainText('Welcome to the Family!');
       });
     });
 
-    test('Verify the membership wrapper is displayed on Confirmation Page', async () => {
+    test('Verify the membership wrapper is displayed on Confirmation Page @CheckoutConfirmationPage', async () => {
       console.log('Test Case: Verify the membership wrapper is displayed on Confirmation Page');
       await test.step('Verify the membership wrapper is displayed on Confirmation Page', async () => {
         await expect(commonCheckoutService.confirmationPage.locConfirmationScreenContainer).toBeVisible();
       });
     });
 
-    test('Verify Order Summary Contents on Confirmation Page', async () => {
+    test('Verify Order Summary Contents on Confirmation Page @CheckoutConfirmationPage', async () => {
       console.log('Test Case: Verify Order Summary Contents on Confirmation Page');
       await test.step('Verify Order Summary heading is displayed on Confirmation Page', async () => {
         await expect(commonCheckoutService.confirmationPage.locConfirmationOrderSummaryHeader).toContainText('Order Summary');
@@ -96,25 +95,25 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       });
     });
 
-    test('Verify The Whats Next Component is displayed on Confirmation Page', async () => {
+    test('Verify The Whats Next Component is displayed on Confirmation Page @CheckoutConfirmationPage', async () => {
       console.log('Test Case: Verify The Whats Next Component is displayed on Confirmation Page');
       await test.step('Verify The Whats Next heading is displayed on Confirmation Page', async () => {
         await expect(commonCheckoutService.confirmationPage.locConfirmationWhatsNextHeader).toBeVisible();
       });
     });
-    test('Verify The Check Email Component is displayed on Confirmation Page', async () => {
+    test('Verify The Check Email Component is displayed on Confirmation Page @CheckoutConfirmationPage', async () => {
       console.log('Test Case: Verify The Check Email Component is displayed on Confirmation Page');
       await test.step('Verify Check Email is within the Whats Next Box on Confirmation Page', async () => {
         await expect(commonCheckoutService.confirmationPage.locWhatsNextCheckEmailComponent).toBeVisible();
       });
     });
-    test('Verify The Download App Component is displayed on Confirmation Page', async () => {
+    test('Verify The Download App Component is displayed on Confirmation Page @CheckoutConfirmationPage', async () => {
       console.log('Test Case: Verify The Download App Component is displayed on Confirmation Page');
       await test.step('Verify Download App is within the Whats Next Box on Confirmation Page', async () => {
         await expect(commonCheckoutService.confirmationPage.locWhatsNextDownloadAppComponent).toBeVisible();
       });
     });
-    test('Verify Understand Your Plan Component is displayed on Confirmation Page', async () => {
+    test('Verify Understand Your Plan Component is displayed on Confirmation Page @CheckoutConfirmationPage', async () => {
       console.log('Test Case: Verify Understand Your Plan Component is displayed on Confirmation Page');
       await test.step('Verify Understand Your Plan is within the Whats Next Box on Confirmation Page', async () => {
         await expect(commonCheckoutService.confirmationPage.locWhatsNextUnderstandYourPlanComponent).toBeVisible();
@@ -132,7 +131,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       });
     });
 
-    test('Verify Order Summary Contents on Confirmation Page Paid by Credit Card', async ({ page }) => {
+    test('Verify Order Summary Contents on Confirmation Page Paid by Credit Card @CheckoutConfirmationPage', async () => {
       console.log('Test Case: Verify Order Summary Contents on Confirmation Page Paid by Credit Card');
       await test.step('Verify Order Summary heading is displayed on Confirmation Page Paid by Credit Card', async () => {
         await expect(commonCheckoutService.confirmationPage.locConfirmationOrderSummaryHeader).toContainText('Order Summary');

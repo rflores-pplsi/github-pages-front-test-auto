@@ -56,7 +56,6 @@ for (const regionUnderTest of regionsUnderTest) {
         'Automation',
         'Tester',
         '5555555555',
-        'Mobile',
         homeAddress,
         city,
         postalCode,

@@ -53,7 +53,6 @@ for (const testCase of selfPayData.filter((testCase) => testCase.disabled == fal
           'Test',
           'Tester',
           '5555555555',
-          'Mobile',
           regionInfo.validAddress.street,
           regionInfo.validAddress.city,
           regionInfo.validAddress.postalCode,

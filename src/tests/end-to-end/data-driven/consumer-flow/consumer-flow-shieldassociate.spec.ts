@@ -57,7 +57,6 @@ for (const testCase of shieldAssociateMultiSelectData.filter((testCase) => testC
           'Test',
           'Tester',
           '5555555555',
-          'Mobile',
           regionInfo.validAddress.street,
           regionInfo.validAddress.city,
           regionInfo.validAddress.postalCode,

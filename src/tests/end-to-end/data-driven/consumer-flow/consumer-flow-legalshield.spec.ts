@@ -47,7 +47,6 @@ for (const testCase of legalshieldData.filter((testCase) => testCase.disabled ==
           'Test',
           'Tester',
           '5555555555',
-          'Mobile',
           regionInfo.validAddress.street,
           regionInfo.validAddress.city,
           regionInfo.validAddress.postalCode,

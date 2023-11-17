@@ -41,21 +41,20 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  test('Verify Personal Information Section Header Displays', async () => {
+  test('Verify Personal Information Section Header Displays @CheckoutPersonalInfo', async () => {
     console.log('Test Case: Verify Personal Information Section Header Displays');
     await test.step('Verify Header is displayed on Personal Information Section', async () => {
       await expect(commonCheckoutService.personalInfoPage.locHeader).toContainText('Tell us about yourself');
     });
   });
 
-  test('Verify no warning messages display when all non-business required fields are entered', async () => {
+  test('Verify no warning messages display when all non-business required fields are entered @CheckoutPersonalInfo', async () => {
     console.log('Test Case: Verify no warning messages display when all non-business required fields are entered');
     await test.step('Populate all non-business fields on Personal Information Page', async () => {
       await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
         'Automation',
         'Tester',
         '5555555555',
-        'Mobile',
         '200 16th Street',
         'Denver',
         '80202',
@@ -73,7 +72,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  test('Verify the required message displays when the First Name input is empty', async () => {
+  test('Verify the required message displays when the First Name input is empty @CheckoutPersonalInfo', async () => {
     console.log('Test Case: Verify the required message displays when the First Name input is empty');
     await test.step('Empty only First Name Field', async () => {
       await commonCheckoutService.personalInfoPage.locFirstNameInput.clear();
@@ -86,7 +85,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  test('Verify the required message displays when the Last Name input is empty', async () => {
+  test('Verify the required message displays when the Last Name input is empty @CheckoutPersonalInfo', async () => {
     console.log('Test Case: Verify the required message displays when the Last Name input is empty');
     await test.step('Empty only Last Name Field', async () => {
       await commonCheckoutService.personalInfoPage.locLastNameInput.clear();
@@ -99,7 +98,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  test('Verify the required message displays when the Phone Number input is empty', async () => {
+  test('Verify the required message displays when the Phone Number input is empty @CheckoutPersonalInfo', async () => {
     console.log('Test Case: Verify the required message displays when the Phone Number input is empty');
     await test.step('Empty only Phone Number Field', async () => {
       await commonCheckoutService.personalInfoPage.locPhoneNumberInput.clear();
@@ -112,7 +111,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  test('Verify the required message displays when the Address input is empty', async () => {
+  test('Verify the required message displays when the Address input is empty @CheckoutPersonalInfo', async () => {
     console.log('Test Case: Verify the required message displays when the Address input is empty');
     await test.step('Empty only Home Address Field', async () => {
       await commonCheckoutService.personalInfoPage.locHomeAddressInput.clear();
@@ -125,7 +124,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  test('Verify the required message displays when the City input is empty', async () => {
+  test('Verify the required message displays when the City input is empty @CheckoutPersonalInfo', async () => {
     console.log('Test Case: Verify the required message displays when the City input is empty');
     await test.step('Empty only City Field', async () => {
       await commonCheckoutService.personalInfoPage.locCityInput.clear();
@@ -138,7 +137,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  test('Verify the required message displays when the PostalCode input is empty', async () => {
+  test('Verify the required message displays when the PostalCode input is empty @CheckoutPersonalInfo', async () => {
     console.log('Test Case: Verify the required message displays when the Postal Code input is empty');
     await test.step('Empty only Postal Code Field', async () => {
       await commonCheckoutService.personalInfoPage.locPostalCodeInput.clear();
@@ -151,10 +150,10 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  test('Verify the required message displays when DOB Month Date and Year are all empty', async () => {
+  test('Verify the required message displays when DOB Month Date and Year are all empty @CheckoutPersonalInfo', async () => {
     console.log('Test Case: Verify the required message displays when the DOB fields are all empty');
     await test.step('Empty DOB Month Field', async () => {
-      await commonCheckoutService.personalInfoPage.locDateOfBirth.clear();
+      await commonCheckoutService.personalInfoPage.locDateOfBirthInput.clear();
     });
     await test.step('Click on the Save & Continue Button', async () => {
       await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
@@ -164,7 +163,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  test('Verify the required message displays when the SSN input is empty', async () => {
+  test('Verify the required message displays when the SSN input is empty @CheckoutPersonalInfo', async () => {
     console.log('Test Case: Verify the required message displays when the SSN input is empty');
     await test.step('Empty only SSN Field', async () => {
       await commonCheckoutService.personalInfoPage.locSocialSecurityInput.clear();
@@ -177,7 +176,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  test('Verify the required message displays when all non-business fields are Empty on Personal Info Page', async ({ page }) => {
+  test('Verify the required message displays when all non-business fields are Empty on Personal Info Page @CheckoutPersonalInfo', async () => {
     console.log('Test Case: Verify the required message displays when all non-business fields are Empty on Personal Info Page');
     await test.step('Empty all Fields on Personal Info Page ', async () => {
       await commonCheckoutService.personalInfoPage.clearAllNonBusinessFields();
@@ -190,21 +189,20 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  test('Verify Stepper 2 is present on Personal Information Page', async () => {
+  test('Verify Stepper 2 is present on Personal Information Page @CheckoutPersonalInfo', async () => {
     console.log('Test Case: Verify Stepper 2 is present on Personal Information Page');
     await test.step('Assert that Step Circle 2 on Personal Info Page is solid black', async () => {
       await expect(commonCheckoutService.personalInfoPage.stepperComponent.locStepCircle2Current).toBeVisible();
     });
   });
 
-  test('Verify user can submit valid information on all Non-Business Forms and reach the Payment Page', async () => {
+  test('Verify user can submit valid information on all Non-Business Forms and reach the Payment Page @CheckoutPersonalInfo', async () => {
     console.log('Test Case: Verify user can submit valid information on all Non-Business Forms and reach the Payment Page');
     await test.step('Populate all fields on the Personal Information Page', async () => {
       await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
         'Automation',
         'Tester',
         '5555555555',
-        'Mobile',
         '200 16th Street',
         'Denver',
         '80202',
@@ -217,26 +215,26 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     await test.step('Click on the Save & Continue Button to go to Payment Page', async () => {
       await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
     });
-    await test.step('Assert that user is redirected to Personal Information Page and it contains header Tell us about yourself', async () => {
+    await test.step('Assert user gets to Payment Page and that Step Circle 3 on Payment Page is solid black', async () => {
       expect(commonCheckoutService.paymentPage.stepperComponent.locStepCircle3Current).toBeVisible();
     });
   });
 
-  test('Verify the Have Questions Label is visible', async () => {
+  test('Verify the Have Questions Label is visible @CheckoutPersonalInfo', async () => {
     console.log('Test Case: Verify the Have Questions Label is visible');
     await test.step('Verify the Have Questions Label is visible ', async () => {
       expect(commonCheckoutService.haveQuestionsComponent.locHaveQuestionsLabel).toBeVisible();
     });
   });
 
-  test('Verify the Phone Number button is visible', async () => {
+  test('Verify the Phone Number button is visible @CheckoutPersonalInfo', async () => {
     console.log('Test Case: Verify the Phone Number button is visible');
     await test.step('Verify the Phone Number button is visible ', async () => {
       expect(commonCheckoutService.haveQuestionsComponent.locPhoneNumberButton).toBeVisible();
     });
   });
 
-  test('Verify user is redirected back to Marketing Page when Change Link is clicked', async ({ page }) => {
+  test('Verify user is redirected back to Marketing Page when Change Link is clicked @CheckoutPersonalInfo', async ({ page }) => {
     console.log('Test Case: Verify user is redirected back to Marketing Page when Change Link is clicked');
     await test.step('Click on the Change Link to be redirected to Marketing Page', async () => {
       await commonCheckoutService.personalInfoPage.locChangeLink.click();
@@ -246,7 +244,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  test('Verify user is redirected back to Marketing Page when Edit Link is clicked', async ({ page }) => {
+  test('Verify user is redirected back to Marketing Page when Edit Link is clicked @CheckoutPersonalInfo', async ({ page }) => {
     console.log('Test Case: Verify user is redirected back to Marketing Page when Edit Link is clicked');
     await test.step('Click on the Edit Link to be redirected to Marketing Page', async () => {
       await commonCheckoutService.personalInfoPage.locEditLink.click();
@@ -272,6 +270,7 @@ test.describe('United States - Colorado, Business Plan', () => {
       await legalshieldCoverageAndPricingPage.smallBusinessQualifyingComponent.completeQualifyingQuestionnaireWithNos();
     });
     await test.step(`Click on the Shopping Cart Checkout button`, async () => {
+      await page.waitForTimeout(500);
       await legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
     });
     await test.step(`Choose Account by Email`, async () => {
@@ -286,14 +285,13 @@ test.describe('United States - Colorado, Business Plan', () => {
     });
   });
 
-  test('Verify no warning messages display when all required fields are entered', async () => {
+  test('Verify no warning messages display when all required fields are entered @CheckoutPersonalInfo', async () => {
     console.log('Test Case: Verify no warning messages display when all required fields are entered');
     await test.step('Populate all non-business fields on Personal Information Page', async () => {
       await commonCheckoutService.personalInfoPage.fillAllFields(
         'Automation',
         'Tester',
         '5555555555',
-        'Mobile',
         '200 16th Street',
         'Denver',
         '80202',
@@ -316,7 +314,7 @@ test.describe('United States - Colorado, Business Plan', () => {
     });
   });
 
-  test('Verify the required message displays when the Business Name input is empty', async () => {
+  test('Verify the required message displays when the Business Name input is empty @CheckoutPersonalInfo', async () => {
     console.log('Test Case: Verify the required message displays when the Business Name input is empty');
     await test.step('Empty only Business Name Field', async () => {
       await commonCheckoutService.personalInfoPage.locBusinessNameInput.clear();
@@ -329,55 +327,10 @@ test.describe('United States - Colorado, Business Plan', () => {
     });
   });
 
-  test('Verify the required message displays when the Date of Incorporation Month input is empty', async () => {
-    console.log('Test Case: Verify the required message displays when the Date of Incorporation Month input is empty');
-    await test.step('Empty only Date of Incorporation Month Field', async () => {
-      await commonCheckoutService.personalInfoPage.locIncorporationMonthInput.clear();
-    });
-    await test.step('Click on the Save & Continue Button', async () => {
-      await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
-    });
-    await test.step('Require Warning message that valid Date of Incorporation is Required displays', async () => {
-      await expect(commonCheckoutService.personalInfoPage.locDateOfIncorporationMonthWarningMessage).toBeVisible();
-    });
-  });
-
-  test('Verify the required message displays when the Date of Incorporation Day input is empty', async () => {
-    console.log('Test Case: Verify the required message displays when the Day of Incorporation Date input is empty');
-    await test.step('Empty only Date of Incorporation Date Field', async () => {
-      await commonCheckoutService.personalInfoPage.locIncorporationDayInput.clear();
-    });
-    await test.step('Click on the Save & Continue Button', async () => {
-      await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
-    });
-    await test.step('Require Warning message that valid Date of Incorporation is Required displays', async () => {
-      await expect(commonCheckoutService.personalInfoPage.locDateOfIncorporationDateWarningMessage).toBeVisible();
-    });
-  });
-
-  test('Verify the required message displays when the Date of Incorporation Year input is empty', async () => {
-    console.log('Test Case: Verify the required message displays when the Date of Incorporation Year input is empty');
-    await test.step('Empty only Date of Incorporation Year Field', async () => {
-      await commonCheckoutService.personalInfoPage.locIncorporationYearInput.clear();
-    });
-    await test.step('Click on the Save & Continue Button', async () => {
-      await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
-    });
-    await test.step('Require Warning message that valid Date of Incorporation is Required displays', async () => {
-      await expect(commonCheckoutService.personalInfoPage.locDateOfIncorporationYearWarningMessage).toBeVisible();
-    });
-  });
-
-  test('Verify the required message displays when Date of Incorporation Month Day and Year are all empty', async () => {
+  test('Verify the required message displays when Date of Incorporation Month Day and Year are all empty @CheckoutPersonalInfo', async () => {
     console.log('Test Case: Verify the required message displays when Date of Incorporation Month Day and Year are all empty');
-    await test.step('Empty Date of Incorporation Month Field', async () => {
-      await commonCheckoutService.personalInfoPage.locIncorporationMonthInput.clear();
-    });
     await test.step('Empty Date of Incorporation Date Field', async () => {
-      await commonCheckoutService.personalInfoPage.locIncorporationDayInput.clear();
-    });
-    await test.step('Empty Date of Incorporation Year Field', async () => {
-      await commonCheckoutService.personalInfoPage.locIncorporationYearInput.clear();
+      await commonCheckoutService.personalInfoPage.locDateOfIncorporationInput.clear();
     });
     await test.step('Click on the Save & Continue Button', async () => {
       await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
@@ -387,51 +340,7 @@ test.describe('United States - Colorado, Business Plan', () => {
     });
   });
 
-  test('Verify the arrows increment/decrement the value of the Month Field and has 2 digits using the Keyboard', async ({ page }) => {
-    console.log('Test Case: Verify the Up Arrow increments the value of the DOI Month Field and has 2 digits using the Keyboard');
-    await test.step('Empty only DOI Month Field', async () => {
-      await commonCheckoutService.personalInfoPage.locIncorporationMonthInput.clear();
-    });
-    await test.step('Click Up Arrow twice', async () => {
-      await commonCheckoutService.personalInfoPage.locIncorporationMonthInput.focus();
-      await page.keyboard.press('ArrowUp');
-      await page.keyboard.press('ArrowUp');
-    });
-    await test.step('Verify the increments to 02', async () => {
-      await expect(commonCheckoutService.personalInfoPage.locIncorporationMonthInput).toHaveValue('02');
-    });
-    await test.step('Click Down Arrow', async () => {
-      await commonCheckoutService.personalInfoPage.locIncorporationMonthInput.focus();
-      await page.keyboard.press('ArrowDown');
-    });
-    await test.step('Verify the decrement to 01', async () => {
-      await expect(commonCheckoutService.personalInfoPage.locIncorporationMonthInput).toHaveValue('01');
-    });
-  });
-
-  test('Verify the arrows increment/decrement the value of the Date Field and has 2 digits using the Keyboard', async ({ page }) => {
-    console.log('Test Case: Verify the Up Arrow increments the value of the DOI Date Field and has 2 digits using the Keyboard');
-    await test.step('Empty only DOI Date Field', async () => {
-      await commonCheckoutService.personalInfoPage.locIncorporationDayInput.clear();
-    });
-    await test.step('Click Up Arrow twice', async () => {
-      await commonCheckoutService.personalInfoPage.locIncorporationDayInput.focus();
-      await page.keyboard.press('ArrowUp');
-      await page.keyboard.press('ArrowUp');
-    });
-    await test.step('Verify the increments to 02', async () => {
-      await expect(commonCheckoutService.personalInfoPage.locIncorporationDayInput).toHaveValue('02');
-    });
-    await test.step('Click Down Arrow', async () => {
-      await commonCheckoutService.personalInfoPage.locIncorporationDayInput.focus();
-      await page.keyboard.press('ArrowDown');
-    });
-    await test.step('Verify the decrement to 01', async () => {
-      await expect(commonCheckoutService.personalInfoPage.locIncorporationDayInput).toHaveValue('01');
-    });
-  });
-
-  test('Verify the required message displays when the TaxID input is empty', async () => {
+  test('Verify the required message displays when the TaxID input is empty @CheckoutPersonalInfo', async () => {
     console.log('Test Case: Verify the required message displays when the TaxID input is empty');
     await test.step('Empty only TaxID Field', async () => {
       await commonCheckoutService.personalInfoPage.locTaxIdInput.clear();
@@ -444,7 +353,7 @@ test.describe('United States - Colorado, Business Plan', () => {
     });
   });
 
-  test('Verify the required message displays when all fields including Business Section are Empty on Personal Info Page', async () => {
+  test('Verify the required message displays when all fields including Business Section are Empty on Personal Info Page @CheckoutPersonalInfo', async () => {
     console.log('Test Case: Verify the required message displays when all fields including Business Section are Empty on Personal Info Page');
     await test.step('Empty all Fields including Business Section on Personal Info Page ', async () => {
       await commonCheckoutService.personalInfoPage.clearAllFields();
@@ -495,7 +404,6 @@ test.describe('United States - Colorado, Business - Plan', () => {
         'Automation',
         'Tester',
         '5555555555',
-        'Mobile',
         '200 16th Street',
         'Denver',
         '80202',
@@ -512,12 +420,12 @@ test.describe('United States - Colorado, Business - Plan', () => {
     });
   });
 
-  test('Verify user can submit valid information on all Forms and reach the Payment Page', async () => {
+  test('Verify user can submit valid information on all Forms and reach the Payment Page @CheckoutPersonalInfo', async () => {
     console.log('Test Case: Verify user can submit valid information on all Forms and reach the Payment Page');
     await test.step('Click on the Save & Continue Button to go to Payment Page', async () => {
       await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
     });
-    await test.step('Assert that user is redirected to Personal Information Page and it contains header Tell us about yourself', async () => {
+    await test.step('Assert user gets to Payment Page and that Step Circle 3 on Payment Page is solid black', async () => {
       expect(commonCheckoutService.paymentPage.stepperComponent.locStepCircle3Current).toBeVisible();
     });
   });
