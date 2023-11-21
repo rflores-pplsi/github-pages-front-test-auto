@@ -137,9 +137,12 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  test('Verify the required message displays when the PostalCode input is empty @CheckoutPersonalInfo', async () => {
-    console.log('Test Case: Verify the required message displays when the Postal Code input is empty');
-    await test.step('Empty only Postal Code Field', async () => {
+  test('Verify the required message displays when only the PostalCode input is empty @CheckoutPersonalInfo', async () => {
+    console.log('Test Case: Verify the required message displays when only the Postal Code input is empty');
+    await test.step('Place cursor in Postal Code Field', async () => {
+      await commonCheckoutService.personalInfoPage.locPostalCodeInput.click();
+    });
+    await test.step('Empty Postal Code Field', async () => {
       await commonCheckoutService.personalInfoPage.locPostalCodeInput.clear();
     });
     await test.step('Click on the Save & Continue Button', async () => {
