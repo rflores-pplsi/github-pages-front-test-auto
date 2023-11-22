@@ -55,6 +55,7 @@ for (const regionUnderTest of regionsUnderTest) {
         'Test',
         'Tester',
         '5555555555',
+        'Mobile',
         regionInfo.validAddress.street,
         regionInfo.validAddress.city,
         regionInfo.validAddress.postalCode,

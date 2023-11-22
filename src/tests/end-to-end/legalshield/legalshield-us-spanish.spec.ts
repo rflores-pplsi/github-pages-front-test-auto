@@ -32,7 +32,7 @@ for (const regionUnderTest of regionsUnderTest) {
       await legalshieldCoverageAndPricingPage.marketingSiteFooterComponent.selectRegion(regionUnderTest, regionAbbreviation);
     });
     await test.step(`Click on the Start Monthly Plan button`, async () => {
-      await legalshieldCoverageAndPricingPage.clickStartPlanButton('Monthly');
+      await legalshieldCoverageAndPricingPage.clickSpanishStartPlanButton('monthly');
     });
     await test.step(`Click on the Shopping Cart Checkout button`, async () => {
       await legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
@@ -55,6 +55,7 @@ for (const regionUnderTest of regionsUnderTest) {
         'Automation',
         'Tester',
         '5555555555',
+        'Mobile',
         homeAddress,
         city,
         postalCode,

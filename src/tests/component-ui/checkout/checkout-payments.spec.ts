@@ -19,11 +19,11 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
       await legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
     });
-    await test.step(`Change Region`, async () => {
-      await legalshieldCoverageAndPricingPage.marketingSiteFooterComponent.selectRegion('Colorado', 'CO');
-    });
+    // await test.step(`Change Region`, async () => {
+    //   await legalshieldCoverageAndPricingPage.marketingSiteFooterComponent.selectRegion('Colorado', 'CO');
+    // });
     await test.step(`Click on the Start Monthly Plan button`, async () => {
-      await legalshieldCoverageAndPricingPage.clickStartPlanButton('Monthly');
+      await legalshieldCoverageAndPricingPage.clickStartPlanButton('monthly');
     });
     await test.step(`Click on the Shopping Cart Checkout button`, async () => {
       await page.waitForTimeout(500);
@@ -43,6 +43,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
         'Automation',
         'Tester',
+        'Mobile',
         '5555555555',
         '200 16th Street',
         'Denver',
@@ -321,6 +322,7 @@ test.describe('Canada - Alberta, Legal Plan', () => {
         'Automation',
         'Tester',
         '5555555555',
+        'Mobile',
         '5940 Blackfoot Trail SE',
         'Calgary',
         'T2H 2B5',

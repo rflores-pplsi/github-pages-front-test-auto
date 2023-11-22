@@ -66,7 +66,6 @@ export class LegalshieldService {
       }
       await this.marketingSitesCartComponent.locContinueShoppingLink.click();
       if (counter == 1) {
-        await this.page.waitForLoadState('networkidle');
         await this.marketingSiteHeaderComponent.locShoppingCartIcon.click();
         await this.marketingSitesCartComponent.locCheckoutButton.click();
       }

@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 import RegionsUtils from '../../../../utils/regions.utils';
 import { basicUser } from '../../../../utils/user.utils';
-import { selfPayData } from './shieldbenefits.data';
+import { selfPayData } from './data/shieldbenefits.data';
 import UrlsUtils from '../../../../utils/urls.utils';
 import { ShieldBenefitsService } from '../../../../page-objects/shieldbenefits/shieldbenefits-service';
 import { CommonCheckoutService, CommonLoginService } from '@legalshield/frontend-automation-commons';
@@ -52,6 +52,7 @@ for (const testCase of selfPayData.filter((testCase) => testCase.disabled == fal
         await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
           'Test',
           'Tester',
+          'Mobile',
           '5555555555',
           regionInfo.validAddress.street,
           regionInfo.validAddress.city,

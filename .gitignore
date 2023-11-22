@@ -21,3 +21,4 @@ Screenshots
 dist
 .vscode/launch.json
 .scannerwork/
+*.tgz

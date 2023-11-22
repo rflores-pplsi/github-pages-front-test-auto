@@ -3,11 +3,11 @@ import { Page, Locator } from '@playwright/test';
 export class GroupsAffiliatedAgentPage {
   protected page: Page;
 
-  readonly locStateOrProvinceDropdown: Locator;
+  readonly locRegionDropdown: Locator;
 
   constructor(page: Page) {
     this.page = page;
-    this.locStateOrProvinceDropdown = this.page.locator('//div[@id="btn-append-to-dropdownState"]//input');
+    this.locRegionDropdown = this.page.locator('//button[@role="combobox"]');
   }
 
   /**
@@ -17,7 +17,7 @@ export class GroupsAffiliatedAgentPage {
    * @memberof GroupsAffiliatedAgentPage
    */
   selectStateOrProvince = async (state: string): Promise<void> => {
-    await this.locStateOrProvinceDropdown.click();
-    await this.page.locator(`//div[@id="btn-append-to-dropdownState"]//a[contains(.,"${state}")]`).click();
+    await this.locRegionDropdown.click();
+    await this.page.locator(`//div[@role="listbox"]//div[@role="option"]//span[contains(.,"${state}")]`).click();
   };
 }

@@ -40,6 +40,6 @@ export class WalsAffiliatedPage {
     const getAPlanButtonLocator = this.page.locator(
       `//div[contains(@class,"plan-card") and descendant::h3[normalize-space()="${planName}"]]//a[contains(@href,"plan-type")]`
     );
-    getAPlanButtonLocator.click();
+    await getAPlanButtonLocator.click();
   };
 }

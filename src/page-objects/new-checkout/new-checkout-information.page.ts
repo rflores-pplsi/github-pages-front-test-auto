@@ -31,25 +31,24 @@ export class NewCheckoutInformationPage {
   }
 
   completeContactInformationForm = async (
-    stateFilter: string,
     email: string,
     firstName: string,
     lastName: string,
+    address: string,
+    city: string,
+    postalCode: string,
     phone: string,
     type: string
   ): Promise<void> => {
-    await this.page.waitForLoadState();
-    for (const region of RegionsUtils.usStates.filter((state) => state.name == stateFilter)) {
-      await this.locEmailInput.fill(email);
-      await this.locFirstNameInput.fill(firstName);
-      await this.locLastNameInput.fill(lastName);
-      await this.locAddressInput.fill(region.validAddress.street);
-      await this.locCityInput.fill(region.validAddress.city);
-      await this.page.keyboard.press('Tab');
-      await this.selectZipCode(region.validAddress.postalCode);
-      await this.locPhoneNumberInput.type(phone);
-      await this.selectPhoneType(type);
-    }
+    await this.locEmailInput.fill(email);
+    await this.locFirstNameInput.fill(firstName);
+    await this.locLastNameInput.fill(lastName);
+    await this.locAddressInput.fill(address);
+    await this.locCityInput.fill(city);
+    await this.page.keyboard.press('Tab');
+    await this.selectZipCode(postalCode);
+    await this.locPhoneNumberInput.type(phone);
+    await this.selectPhoneType(type);
   };
 
   /**

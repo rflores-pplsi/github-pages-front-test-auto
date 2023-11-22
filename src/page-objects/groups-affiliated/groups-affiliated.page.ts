@@ -1,17 +1,21 @@
 import { Page, Locator } from '@playwright/test';
-import UrlsUtils from '../utils/urls.utils';
+import UrlsUtils from '../../utils/urls.utils';
 
 export class GroupsAffiliatedPage {
   protected page: Page;
   readonly locLanguageAndMarketDropdown: Locator;
   readonly locAgentIdInput: Locator;
-  readonly locSubmitButton: Locator;
+  readonly locContinueToEnrollmentButton: Locator;
+  readonly locEnrollNowButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
     this.locLanguageAndMarketDropdown = this.page.locator('#select_18');
-    this.locAgentIdInput = this.page.locator('//input[@placeholder="Enter Agent ID"]');
-    this.locSubmitButton = this.page.locator('//button[contains(text(),"Submit")]');
+    this.locAgentIdInput = this.page.locator('//input[@name="agentId"]');
+    this.locContinueToEnrollmentButton = this.page.locator(
+      '//div[contains(@class,"lsux-modal__button-bar")]//button[contains(@class,"lsux-button--primary")]'
+    );
+    this.locEnrollNowButton = this.page.locator('//button[contains(@class,"lsux-button--primary")]');
   }
 
   /**

@@ -24,7 +24,7 @@ for (const regionUnderTest of regionsUnderTest) {
     const city = regionInfo.validAddress.city;
     const postalCode = regionInfo.validAddress.postalCode;
     await test.step('Navigate to noussommeslegalshield.com', async () => {
-      await walsAffiliatedPage.navigateToAffiliatedWalsPage('lspro', 'noussommeslegalshield', 'ca');
+      await walsAffiliatedPage.navigateToAffiliatedWalsPage('lstestauto', 'noussommeslegalshield', 'ca');
     });
     await test.step('Select a region', async () => {
       await walsAffiliatedPage.walsGeolocateMenuComponent.changeRegion(regionUnderTest);

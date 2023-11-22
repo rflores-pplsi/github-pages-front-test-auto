@@ -11,7 +11,7 @@ export class WalsGeolocateMenuComponent {
     this.page = page;
     this.locChangeRegionLink = this.page.locator('a.open-modal-lgs-geolocate.button-region-state.la');
     this.locSelectRegionDropdown = this.page.locator('select[name="state_select"]');
-    this.locUpdateRegionButton = this.page.locator('#edit-submit--3');
+    this.locUpdateRegionButton = this.page.locator('//div[contains(@class,"modal-content")]//input[contains(@id,"edit-submit")]');
     this.locMemberLoginLink = this.page.locator('//div[@id="utility"]//li[@id="member-login"]//a');
   }
 

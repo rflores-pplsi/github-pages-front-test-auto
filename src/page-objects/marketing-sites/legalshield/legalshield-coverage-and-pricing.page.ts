@@ -55,12 +55,15 @@ export class LegalshieldCoverageAndPricingPage {
    * @memberof LegalshieldCoverageAndPricingPage
    */
   clickStartPlanButton = async (term: string): Promise<void> => {
-    let condition = false;
+    const buttonLocator = this.page.locator(`//a[@id="lsc-add-to-cart-button" and contains(.,"${term}")]`);
+    await buttonLocator.click();
+    await this.page.waitForTimeout(500);
+  };
+
+  clickSpanishStartPlanButton = async (term: string): Promise<void> => {
     const buttonLocator = this.page.locator(`//div[contains(@class,"plan-card-col") and contains(@class,"${term.toLowerCase()}")]//a`);
-    while (condition == false) {
-      await buttonLocator.click();
-      condition = await this.marketingSiteCartComponent.locCartContainerDiv.isVisible();
-    }
+    await buttonLocator.click();
+    await this.page.waitForTimeout(500);
   };
 
   /**
@@ -80,24 +83,17 @@ export class LegalshieldCoverageAndPricingPage {
    * @memberof LegalshieldCoverageAndPricingPage
    */
   navigateToLegalshieldPricingAndCoveragePage = async (market: string, language: string): Promise<void> => {
-    switch (market) {
-      case 'US':
-        this.baseUrl = UrlsUtils.marketingSitesUrls.legalShieldUSUrl;
+    switch (`${language}-${market}`) {
+      case 'en-US':
+        this.baseUrl = `${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/personal-plan/coverage-and-pricing-v2/`;
         break;
-      case 'CA':
-        this.baseUrl = UrlsUtils.marketingSitesUrls.legalShieldCAUrl;
+      case 'es-US':
+        this.baseUrl = `${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/es/plan-personal/cobertura-y-precios/`;
         break;
-    }
-    switch (language) {
-      case 'en':
-        this.subdirectory = '/personal-plan/coverage-and-pricing/';
-        break;
-      case 'es':
-        this.subdirectory = '/es/plan-personal/cobertura-y-precios/';
+      case 'en-CA':
+        this.baseUrl = `${UrlsUtils.marketingSitesUrls.legalShieldCAUrl}/personal-plan/coverage-and-pricing`;
         break;
     }
-    await this.page.goto(`${this.baseUrl}${this.subdirectory}`);
-    //TODO: REMOVE THIS IMPLICIT WAIT
-    await this.page.waitForTimeout(500);
+    await this.page.goto(this.baseUrl);
   };
 }

@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 import RegionsUtils from '../../../../utils/regions.utils';
 import { basicUser } from '../../../../utils/user.utils';
-import { legalshieldData } from './legalshield.data';
+import { legalshieldData } from './data/legalshield.data';
 import UrlsUtils from '../../../../utils/urls.utils';
 import { LegalshieldService } from '../../../../page-objects/marketing-sites/legalshield/legalshield-service';
 import { CommonCheckoutService, CommonLoginService } from '@legalshield/frontend-automation-commons';
@@ -17,7 +17,6 @@ test.beforeEach(async ({ context, page }) => {
   test.setTimeout(120000);
 });
 
-// LegalShield - US - existing user
 for (const testCase of legalshieldData.filter((testCase) => testCase.disabled == false)) {
   for (const regionUnderTest of testCase.regions) {
     test(`Legalshield (${testCase.testCaseName}, ${regionUnderTest}) -> Checkout -> Accounts @e2e @ConsumerFlowLegalShield`, async ({ page }) => {
@@ -47,6 +46,7 @@ for (const testCase of legalshieldData.filter((testCase) => testCase.disabled ==
           'Test',
           'Tester',
           '5555555555',
+          'Mobile',
           regionInfo.validAddress.street,
           regionInfo.validAddress.city,
           regionInfo.validAddress.postalCode,

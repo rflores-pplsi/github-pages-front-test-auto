@@ -26,13 +26,15 @@ for (const regionUnderTest of regionsUnderTest) {
     const regionAbbreviation = regionInfo.abbrv;
 
     await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
-      await legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
+      // await legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
+      await page.goto('https://www.legalshield.com/personal-plan/coverage-and-pricing/');
     });
-    await test.step(`Change Region`, async () => {
-      await legalshieldCoverageAndPricingPage.marketingSiteFooterComponent.selectRegion(regionUnderTest, regionAbbreviation);
-    });
+    // Change Region unavailable a percentage of the time while they roll out new changes
+    // await test.step(`Change Region`, async () => {
+    //   await legalshieldCoverageAndPricingPage.marketingSiteFooterComponent.selectRegion(regionUnderTest, regionAbbreviation);
+    // });
     await test.step(`Click on the Start Monthly Plan button`, async () => {
-      await legalshieldCoverageAndPricingPage.clickStartPlanButton('Monthly');
+      await legalshieldCoverageAndPricingPage.clickStartPlanButton('monthly');
     });
     await test.step(`Click on the Shopping Cart Checkout button`, async () => {
       await legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
@@ -55,6 +57,7 @@ for (const regionUnderTest of regionsUnderTest) {
       await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
         'Automation',
         'Tester',
+        'Mobile',
         '5555555555',
         homeAddress,
         city,

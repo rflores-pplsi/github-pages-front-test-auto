@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 import RegionsUtils from '../../../../utils/regions.utils';
 import { basicUser } from '../../../../utils/user.utils';
-import { shieldAssociateMultiSelectData } from './shieldassociate-multiselect.data';
+import { shieldAssociateMultiSelectData } from './data/shieldassociate.data';
 import UrlsUtils from '../../../../utils/urls.utils';
 import { ShieldAssociateService } from '../../../../page-objects/shieldassociate/shieldassociate-service';
 import { CommonCheckoutService, CommonLoginService, CommonAssociateOfficeService } from '@legalshield/frontend-automation-commons';
@@ -57,6 +57,7 @@ for (const testCase of shieldAssociateMultiSelectData.filter((testCase) => testC
           'Test',
           'Tester',
           '5555555555',
+          'Mobile',
           regionInfo.validAddress.street,
           regionInfo.validAddress.city,
           regionInfo.validAddress.postalCode,
