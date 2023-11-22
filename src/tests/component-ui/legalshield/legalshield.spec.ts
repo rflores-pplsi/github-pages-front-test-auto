@@ -57,20 +57,17 @@ test('Hero Section Tests @Legalshield', async ({ page }) => {
   console.log(
     'Hero Section: Hero Section contains required fields - Layout Style, Desktop/Mobile images, Headline, and a CTA Button with appropriate link'
   );
-  await test.step(`Verify the the Hero Section CTA lands on appropriate href`, async () => {
-    await page.addInitScript(() => {
-      window.addEventListener('click', () => console.log('ctaClicked'));
-    });
-    page.on('console', (message) => {
-      if (message.text() === 'ctaClicked') {
-        page.screenshot({ path: `screenshots/${new Date().getTime()}.png` });
-      }
+  await test.step(`Legalshield Hero Section Click On Button`, async () => {
+    const newPagePromise = page.on('load', () => {
+      page.screenshot({ path: `screenshots/${new Date().getTime()}.png` });
     });
     await legalshieldService.legalshieldPage.heroSectionComponent.locCallToActionButton.click();
+    const newPage = await newPagePromise;
+    console.log(await newPage.evaluate('location.href')); // url value is here
   });
 });
 // Grid section tests
-test('Grid Section Tests @Legalshield', async ({ page }) => {
+test('Grid Section Tests @', async ({ page }) => {
   console.log(
     'Grid Section: Grid Section contains required fields - Header, Subtext, Card::Image/Title/Text/Link, Button::optionalLink, and a background color selected'
   );
