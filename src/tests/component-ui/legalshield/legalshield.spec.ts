@@ -28,26 +28,7 @@ test.beforeEach(async ({ context, page }) => {
   // TODO: setup page-objects for common-components tests
   // instantiate Legalshield service
   legalshieldService = new LegalshieldService(page, context);
-  // Grid Section Tests
-  // gridSectionComponent = new GridSectionComponent(context, page);
-  // Nav List Tests
-  // -> navListComponent = new NavListComponent(context, page);
-  // Feature List Tests
-  // -> featureListComponent = new FeatureListComponent(context, page);
-  // Testimonials Tests
-  // -> testimonialsComponent = new TestimonialsComponent(context, page);
-  // Fact Callouts Tests
-  // -> factCalloutComponent = new FactCalloutComponent(context, page);
-  // Review Section Tests
-  // -> reviewSectionComponent = new ReviewSectionComponent(context, page);
-  // Logo Cloud Tests
-  // -> logoCloudComponent = new LogoCloudComponent(context, page);
-  // Features Grid Tests
-  // -> featuresGridSectionComponent = new FeaturesGridSectionComponent(context, page);
-  // Pricing Section Tests
-  // -> pricingSectionComponent = new PricingSectionComponent(context, page);
-  // Email Capture Tests
-  // -> emailCaptureSectionComponent = new EmailCaptureSectionComponent(context, page);
+
   test.slow();
 });
 
@@ -58,12 +39,9 @@ test('Hero Section Tests @Legalshield', async ({ page }) => {
     'Hero Section: Hero Section contains required fields - Layout Style, Desktop/Mobile images, Headline, and a CTA Button with appropriate link'
   );
   await test.step(`Legalshield Hero Section Click On Button`, async () => {
-    const newPagePromise = page.on('load', () => {
-      page.screenshot({ path: `screenshots/${new Date().getTime()}.png` });
-    });
     await legalshieldService.legalshieldPage.heroSectionComponent.locCallToActionButton.click();
-    const newPage = await newPagePromise;
-    console.log(await newPage.evaluate('location.href')); // url value is here
+    await expect(page).toHaveURL(new RegExp('legalshield.com/legal-plans-overview-v2'));
+    await expect(page).toHaveTitle('Prepaid Legal Plans - Online Legal Advice - LegalShield');
   });
 });
 // Grid section tests
