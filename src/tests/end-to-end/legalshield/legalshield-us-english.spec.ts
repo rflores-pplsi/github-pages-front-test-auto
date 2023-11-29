@@ -17,22 +17,16 @@ test.beforeEach(async ({ context, page }) => {
 
 const regionsUnderTest = ['New York'];
 for (const regionUnderTest of regionsUnderTest) {
-  test(`LegalShield (Legal Plan, Monthly, en-US, ${regionUnderTest}) -> Checkout -> Accounts @smoke`, async ({ page }) => {
+  test(`LegalShield (Legal Plan, Monthly, en-US, ${regionUnderTest}) -> Checkout -> Accounts @smoke @e2e`, async ({ page }) => {
     console.log(`Test Case: LegalShield (Legal Plan, Monthly, en-US, ${regionUnderTest}) -> Checkout -> Accounts`);
     const regionInfo = RegionsUtils.usStates.filter((region) => region.name == regionUnderTest)[0];
     const homeAddress = regionInfo.validAddress.street;
     const city = regionInfo.validAddress.city;
     const postalCode = regionInfo.validAddress.postalCode;
-    const regionAbbreviation = regionInfo.abbrv;
 
     await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
-      // await legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
-      await page.goto('https://www.legalshield.com/personal-plan/coverage-and-pricing/');
+      await legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
     });
-    // Change Region unavailable a percentage of the time while they roll out new changes
-    // await test.step(`Change Region`, async () => {
-    //   await legalshieldCoverageAndPricingPage.marketingSiteFooterComponent.selectRegion(regionUnderTest, regionAbbreviation);
-    // });
     await test.step(`Click on the Start Monthly Plan button`, async () => {
       await legalshieldCoverageAndPricingPage.clickStartPlanButton('monthly');
     });

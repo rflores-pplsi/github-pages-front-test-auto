@@ -17,7 +17,7 @@ test.beforeEach(async ({ context, page }) => {
 
 const regionsUnderTest = ['Ontario'];
 for (const regionUnderTest of regionsUnderTest) {
-  test('Noussommeslegalshield (Legal Plan, fr-CA, ${regionUnderTest}) -> Checkout -> Accounts @smoke', async ({ page }) => {
+  test('Noussommeslegalshield (Legal Plan, fr-CA, ${regionUnderTest}) -> Checkout -> Accounts @smoke @e2e', async ({ page }) => {
     console.log(`Test Case: Noussommeslegalshield (Legal Plan, fr-CA, ${regionUnderTest}) -> Checkout -> Accounts`);
     const regionInfo = RegionsUtils.caFrenchProvinces.filter((region) => region.name == regionUnderTest)[0];
     const homeAddress = regionInfo.validAddress.street;

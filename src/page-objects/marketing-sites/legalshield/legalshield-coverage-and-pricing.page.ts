@@ -85,7 +85,7 @@ export class LegalshieldCoverageAndPricingPage {
   navigateToLegalshieldPricingAndCoveragePage = async (market: string, language: string): Promise<void> => {
     switch (`${language}-${market}`) {
       case 'en-US':
-        this.baseUrl = `${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/personal-plan/coverage-and-pricing-v2/`;
+        this.baseUrl = `${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/personal-plan/coverage-and-pricing/`;
         break;
       case 'es-US':
         this.baseUrl = `${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/es/plan-personal/cobertura-y-precios/`;

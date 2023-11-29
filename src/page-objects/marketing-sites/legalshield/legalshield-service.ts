@@ -1,4 +1,4 @@
-import { Locator, Page, BrowserContext } from '@playwright/test';
+import { Locator, Page, BrowserContext, expect } from '@playwright/test';
 import { ProductDetails } from '../../../types/types';
 import UrlsUtils from '../../../utils/urls.utils';
 import { LegalshieldPage } from './legalshield.page';
@@ -64,10 +64,11 @@ export class LegalshieldService {
         default:
           break;
       }
-      await this.marketingSitesCartComponent.locContinueShoppingLink.click();
       if (counter == 1) {
-        await this.marketingSiteHeaderComponent.locShoppingCartIcon.click();
+        await this.page.waitForTimeout(500);
         await this.marketingSitesCartComponent.locCheckoutButton.click();
+      } else {
+        await this.marketingSitesCartComponent.locContinueShoppingLink.click();
       }
       counter--;
     }
@@ -81,20 +82,23 @@ export class LegalshieldService {
    */
   addLegalPlan = async (term: string): Promise<void> => {
     await this.page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/personal-plan/coverage-and-pricing/`);
-    // adding this after spending a little time attempting to use an explicit wait, and knowing the app will be changing soon
-    await this.page.waitForTimeout(2000);
     const startPlanLocator = this.page.locator(`//a[contains(@class,"lsc-add-to-cart-button") and contains(.,"${term.toLowerCase()}")]`);
-    await startPlanLocator.click();
+    await expect(async () => {
+      await startPlanLocator.click();
+      await expect(this.page.locator('#cart-wrapper')).toBeVisible();
+    }).toPass({ intervals: [0.3] });
   };
 
   addSmallBusinessPlan = async (productName: string): Promise<void> => {
     await this.page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/plan-summary/#chart`);
-    await this.page.waitForLoadState('domcontentloaded');
     productName = productName.replace(' Legal', '');
     const getStartedButtonLocator = this.page.locator(
       `//div[contains(@class,"lsc-dynamic-single-plan  et_pb_css_mix_blend_mode_passthrough") and contains(.,"${productName}")]//a[@role="button"]`
     );
-    await getStartedButtonLocator.click();
+    await expect(async () => {
+      await getStartedButtonLocator.click();
+      await expect(this.page.locator('#qualifying-container')).toBeVisible();
+    }).toPass({ intervals: [0.3] });
     await this.smallBusinessQualifyingComponent.completeQualifyingQuestionnaireWithNos();
   };
 
