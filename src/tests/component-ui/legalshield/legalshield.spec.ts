@@ -47,7 +47,7 @@ test('Hero Section Tests @Legalshield', async ({ page }) => {
 });
 // Grid section tests
 test('Grid Section Test Links @Legalshield', async ({ page }) => {
-  console.log('Grid Section each link is working and gathering a screenshot and the url of the resulting click through');
+  console.log('Testing each link within the Grid Section, is working then gathering a screenshot and the url of the resulting click through');
   await test.step(`Verify we are within each card in the section by checking the header text of each`, async () => {
     await expect(legalshieldService.legalshieldPage.gridSectionComponent.locGridCardTitle).toHaveText([
       'Wills and Estates',
