@@ -40,40 +40,45 @@ test('Hero Section Tests @Legalshield', async ({ page }) => {
   );
   await test.step(`Legalshield Hero Section Click On Button`, async () => {
     await legalshieldService.legalshieldPage.heroSectionComponent.locCallToActionButton.click();
+
     await expect(page).toHaveURL(new RegExp('legalshield.com/legal-plans-overview-v2'));
     await expect(page).toHaveTitle('Prepaid Legal Plans - Online Legal Advice - LegalShield');
   });
 });
 // Grid section tests
-test('Grid Section Tests @', async ({ page }) => {
+test('Grid Section Tests @testing', async ({ page }) => {
   console.log(
     'Grid Section: Grid Section contains required fields - Header, Subtext, Card::Image/Title/Text/Link, Button::optionalLink, and a background color selected'
   );
   await test.step(`Verify the the Grid Section contents`, async () => {
-    for (const header of await legalshieldService.legalshieldPage.gridSectionComponent.locGridHeader.all()) {
-      await expect.soft(header).toBeVisible();
-    }
+    await expect(legalshieldService.legalshieldPage.gridSectionComponent.locGridCardTitle).toHaveText([
+      'Wills and Estates',
+      'Family Law',
+      'Consumer Matters',
+      'Real Estate',
+    ]);
+    const links = await legalshieldService.legalshieldPage.gridSectionComponent.locGridCardLink.all();
+    console.log(links.length);
+    for await (const link of links) {
+      console.log(await link.getAttribute('href'));
+      const title = link.getAttribute('title').toString();
+      const href = link.getAttribute('href').toString();
+      console.log(title, href);
+      // await expect(page).toHaveTitle(title);
+      // await expect(page).toHaveURL(href);
 
-    await expect(legalshieldService.legalshieldPage.gridSectionComponent.locGridSubtext).toBeVisible();
-
-    for (const card of await legalshieldService.legalshieldPage.gridSectionComponent.locGridCard.all()) {
-      await expect.soft(card).toBeVisible();
+      //   await link.click({ timeout: 8000 });
+      //   const newPagePromise = page.on('load', () => {
+      //     page.screenshot({ path: `screenshots/${new Date().getTime()}.png` });
+      //     console.log(page.url());
+      //   });
     }
-    for (const image of await legalshieldService.legalshieldPage.gridSectionComponent.locGridCardImage.all()) {
-      await expect.soft(image).toBeVisible();
-    }
-    for (const title of await legalshieldService.legalshieldPage.gridSectionComponent.locGridCardTitle.all()) {
-      await expect.soft(title).toBeVisible();
-    }
-    for (const cardText of await legalshieldService.legalshieldPage.gridSectionComponent.locGridCardText.all()) {
-      await expect.soft(cardText).toBeVisible();
-    }
-    for (const cardLink of await legalshieldService.legalshieldPage.gridSectionComponent.locGridCardLink.all()) {
-      await expect.soft(cardLink).toHaveAttribute('href');
-    }
-    //await expect(await gridSectionComponent.locGridButtonLink.getAttribute('href')).not.toBeNull(); // optional, not present on page --> timeout, not working
-    //await expect(gridSectionComponent.locGridBackgroundColor).toBeVisible(); // optional, not present on page
   });
+  // for (const cardLink of await legalshieldService.legalshieldPage.gridSectionComponent.locGridCardLink.all()) {
+  //   // get each card title
+  //   // loop through each title as selector
+  //   // conditional check title then exact match cardlink
+  // }
 });
 // Nav List Section tests
 test('Nav List Section Tests', async ({ page }) => {
