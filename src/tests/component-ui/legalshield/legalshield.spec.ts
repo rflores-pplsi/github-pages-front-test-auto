@@ -46,11 +46,9 @@ test('Hero Section Tests @Legalshield', async ({ page }) => {
   });
 });
 // Grid section tests
-test('Grid Section Tests @Legalshield', async ({ page }) => {
-  console.log(
-    'Grid Section: Grid Section contains required fields - Header, Subtext, Card::Image/Title/Text/Link, Button::optionalLink, and a background color selected'
-  );
-  await test.step(`Verify the the Grid Section contents`, async () => {
+test('Grid Section Test Links @Legalshield', async ({ page }) => {
+  console.log('Grid Section each link is working and gathering a screenshot and the url of the resulting click through');
+  await test.step(`Verify we are within each card in the section by checking the header text of each`, async () => {
     await expect(legalshieldService.legalshieldPage.gridSectionComponent.locGridCardTitle).toHaveText([
       'Wills and Estates',
       'Family Law',
