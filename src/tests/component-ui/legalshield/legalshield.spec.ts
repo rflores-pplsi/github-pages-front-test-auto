@@ -60,9 +60,9 @@ test('Grid Section Tests @testing', async ({ page }) => {
     const links = await legalshieldService.legalshieldPage.gridSectionComponent.locGridCardLink.all();
     console.log(links.length);
     for await (const link of links) {
-      console.log(await link.getAttribute('href'));
-      const title = link.getAttribute('title').toString();
-      const href = link.getAttribute('href').toString();
+      await link.click();
+      const title = page.url().toString();
+      const href = page.title().toString();
       console.log(title, href);
       // await expect(page).toHaveTitle(title);
       // await expect(page).toHaveURL(href);
