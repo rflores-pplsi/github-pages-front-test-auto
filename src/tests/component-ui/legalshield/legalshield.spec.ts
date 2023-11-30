@@ -8,7 +8,7 @@ import { LegalshieldService } from '../../../page-objects/marketing-sites/legals
 // import { ReviewSectionComponent } from '../../../page-objects/common-components/review-section.component';
 // import { LogoCloudSectionComponent } from '../../../page-objects/common-components/logo-cloud-section.component';
 // import { FeaturesGridSectionComponent } from '../../../page-objects/common-components/features-grid-section.component';
-// import { PricingSectionComponent } from '../../../page-objects/common-components/pricing-section.component';
+import { PricingSectionComponent } from '../../../page-objects/common-components/pricing-section.component';
 // import { EmailCaptureSectionComponent } from '../../../page-objects/common-components/email-capture-section.component';
 
 // TODO: locators
@@ -41,7 +41,7 @@ test('Hero Section Tests @Legalshield', async ({ page }) => {
   await test.step(`Legalshield Hero Section Click On Button`, async () => {
     await legalshieldService.legalshieldPage.heroSectionComponent.locCallToActionButton.click();
 
-    await expect(page).toHaveURL(new RegExp('legalshield.com/legal-plans-overview-v2'));
+    await expect(page).toHaveURL(new RegExp('legalshield.com/legal-plans-overview'));
     await expect(page).toHaveTitle('Prepaid Legal Plans - Online Legal Advice - LegalShield');
   });
 });
@@ -142,26 +142,19 @@ test('Features Grid Section', async ({ page }) => {
   // await expect(featuresGridSectionComponent.locFeaturesGridSectionBackgroundColor).toBeVisible();
 });
 // Pricing Section
-test('Pricing Section', async ({ page }) => {
+test('Pricing Section Tests @Legalshield', async ({ page }) => {
   console.log(
     'Pricing Section: Pricing section contains required fields - Content::Headline/Paragraph, Card::PromoBadge/Image/Headline/Description/InfoTitle/Benefits::IndividualBenefits,/SubHeader/Price/PerMonth/FeeText/CTAButtonType/ButtonLink'
   );
-  // await expect(pricingSectionComponent.locPricingSectionContentHeadline).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionContentParagraph).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCard).toBeVisible(); // repeater fields
-  // await expect(pricingSectionComponent.locPricingSectionCardPromoBadge).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardImage).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardHeadline).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardDescription).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardInfoTitle).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardBenefits).toBeVisible(); // repeater fields
-  // await expect(pricingSectionComponent.locPricingSectionCardBenefitsIndividual).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardSubHeader).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardPrice).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardPerMonth).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardFeeText).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardCTAButtonType).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardButtonLink).toBeVisible();
+  const links = await legalshieldService.legalshieldPage.pricingSectionComponent.locPricingSectionCardButtonLink;
+  const count = await links.count();
+  for (let i = 0; i < count; i++) {
+    await links.nth(i).click();
+    await page.waitForLoadState();
+    await page.screenshot({ fullPage: true, path: `screenshots/${new Date().getTime()}-${i}.png` });
+    console.log(page.url());
+    await page.goBack();
+  }
 });
 // Email Capture Section
 test('Email Capture Section', async ({ page }) => {
