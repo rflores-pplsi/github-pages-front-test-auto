@@ -57,22 +57,62 @@ test('Grid Section Tests @testing', async ({ page }) => {
       'Consumer Matters',
       'Real Estate',
     ]);
-    const links = await legalshieldService.legalshieldPage.gridSectionComponent.locGridCardLink.all();
-    console.log(links.length);
-    for await (const link of links) {
-      await link.click();
-      const title = page.url().toString();
-      const href = page.title().toString();
-      console.log(title, href);
-      // await expect(page).toHaveTitle(title);
-      // await expect(page).toHaveURL(href);
+    // for await (const link of await legalshieldService.legalshieldPage.gridSectionComponent.locGridCardLink.all()) {
+    //   console.log(await link.getAttribute('href'));
+    // }
 
-      //   await link.click({ timeout: 8000 });
-      //   const newPagePromise = page.on('load', () => {
-      //     page.screenshot({ path: `screenshots/${new Date().getTime()}.png` });
-      //     console.log(page.url());
-      //   });
+    const links = legalshieldService.legalshieldPage.gridSectionComponent.locGridCardLink;
+    const count = await links.count();
+    for (let i = 0; i < count; i++) {
+      await links.nth(i).click();
+      await page.screenshot({ fullPage: true, path: `screenshots/${new Date().getTime()}-${i}.png` });
+      console.log(page.url());
+      await page.goBack();
     }
+    //   await link.nth(0).click();
+    //   await expect(page).toHaveURL(new RegExp('legalshield.com/estate-planning'));
+    //   await expect(page).toHaveTitle('Find an Estate Planning Attorney & Get Legal Advice - LegalShield');
+    //   console.log(page.url());
+    //   await page.goBack();
+    //   await link.nth(1).click();
+    //   console.log(page.url());
+    //   await expect(page).toHaveURL(new RegExp('legalshield.com/family-law'));
+    //   await expect(page).toHaveTitle('Family Law Lawyers - Get Legal Advice & Ask Questions Online');
+    //   console.log(page.url());
+    //   await page.goBack();
+    //   await link.filter({ hasText: new RegExp('consumer-finance') }).click();
+    //   await expect(page).toHaveURL(new RegExp('legalshield.com/consumer-finance'));
+    //   await expect(page).toHaveTitle('Consumer Finance & Online Legal Services - LegalShield');
+    //   await page.goBack();
+    //   await link.filter({ hasText: new RegExp('real-estate') }).click();
+    //   await expect(page).toHaveURL(new RegExp('legalshield.com/real-estate'));
+    //   await expect(page).toHaveTitle('Real Estate Lawyers & Online Legal Advice - LegalShield');
+    //   await page.goBack();
+    // }
+    // const links = await legalshieldService.legalshieldPage.gridSectionComponent.locGridCardLink.all();
+    // const linkCount = links.length;
+    // for(let i = 0; i < linkCount; i++) {
+    // try {
+    //   const [newPage] = await Promise.all([
+    //     context.waitForEvent('page', { timeout: 5000 }),
+    //       links.nth(i).click();
+    //   ]);
+    //   await newPage.waitForLoadState();
+    //   console.log(allHrefs);
+    // for await (const link of links) {
+    //   await link.click();
+    //   const title = page.url().toString();
+    //   const href = page.title().toString();
+    //   console.log(title, href);
+    // await expect(page).toHaveTitle(title);
+    // await expect(page).toHaveURL(href);
+
+    //   await link.click({ timeout: 8000 });
+    //   const newPagePromise = page.on('load', () => {
+    //     page.screenshot({ path: `screenshots/${new Date().getTime()}.png` });
+    //     console.log(page.url());
+    //   });
+    // }
   });
   // for (const cardLink of await legalshieldService.legalshieldPage.gridSectionComponent.locGridCardLink.all()) {
   //   // get each card title
