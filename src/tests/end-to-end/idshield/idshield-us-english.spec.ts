@@ -17,7 +17,7 @@ test.beforeEach(async ({ context, page }) => {
 
 const regionsUnderTest = ['California'];
 for (const regionUnderTest of regionsUnderTest) {
-  test(`IdShield (1 credit bureau monitoring, en-US, ${regionUnderTest}) -> Checkout -> Accounts @smoke`, async ({ page }) => {
+  test(`IdShield (1 credit bureau monitoring, en-US, ${regionUnderTest}) -> Checkout -> Accounts @smoke @e2e`, async ({ page }) => {
     console.log(`Test Case: IdShield (1 credit bureau monitoring, en-US, ${regionUnderTest}) -> Checkout -> Accounts`);
     const regionInfo = RegionsUtils.usStates.filter((region) => region.name == regionUnderTest)[0];
     const homeAddress = regionInfo.validAddress.street;

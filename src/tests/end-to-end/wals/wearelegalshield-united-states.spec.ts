@@ -17,7 +17,7 @@ test.beforeEach(async ({ context, page }) => {
 
 const regionsUnderTest = ['Texas'];
 for (const regionUnderTest of regionsUnderTest) {
-  test(`Wearelegalshield (Legal Plan, en-US, ${regionUnderTest}) -> Checkout -> Accounts @smoke`, async ({ page }) => {
+  test(`Wearelegalshield (Legal Plan, en-US, ${regionUnderTest}) -> Checkout -> Accounts @smoke @e2e`, async ({ page }) => {
     console.log(`Test Case: Wearelegalshield (Legal Plan, en-US, ${regionUnderTest}) -> Checkout -> Accounts`);
     const regionInfo = RegionsUtils.usStates.filter((region) => region.name == regionUnderTest)[0];
     const homeAddress = regionInfo.validAddress.street;

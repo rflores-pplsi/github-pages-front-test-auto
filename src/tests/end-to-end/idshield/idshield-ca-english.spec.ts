@@ -18,7 +18,7 @@ test.beforeEach(async ({ context, page }) => {
 
 const regionsUnderTest = ['Manitoba'];
 for (const regionUnderTest of regionsUnderTest) {
-  test(`IdShield (Individual Plan, en-CA, ${regionUnderTest}) -> Checkout -> Accounts @smoke`, async ({ page }) => {
+  test(`IdShield (Individual Plan, en-CA, ${regionUnderTest}) -> Checkout -> Accounts @smoke @e2e`, async ({ page }) => {
     console.log(`Test Case: IdShield (Individual Plan, en-CA, ${regionUnderTest}) -> Checkout -> Accounts`);
     const regionInfo = RegionsUtils.caProvinces.filter((region) => region.name == regionUnderTest)[0];
     const homeAddress = regionInfo.validAddress.street;

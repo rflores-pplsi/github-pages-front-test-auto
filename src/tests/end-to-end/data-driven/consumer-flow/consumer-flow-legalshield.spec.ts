@@ -25,21 +25,18 @@ for (const testCase of legalshieldData.filter((testCase) => testCase.disabled ==
       await test.step(`Navigate to legalshield.com for ${testCase.market}-${testCase.language}`, async () => {
         await page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/personal-plan/coverage-and-pricing/`);
       });
-      await test.step(`Select Region`, async () => {
-        await legalshieldService.marketingSiteFooterComponent.selectRegion(regionInfo.name, regionInfo.abbrv);
-      });
       await test.step(`Add Products: ${testCase.productDetails}`, async () => {
         await legalshieldService.addProductsFromProductDetails(testCase.productDetails);
       });
-      await test.step(`Choose Account by Email`, async () => {
-        await commonCheckoutService.accountPage.locEmailAddressInput.fill(basicUser.email);
-        await commonCheckoutService.accountPage.locContinueButton.click();
-        await commonCheckoutService.accountPage.locClickHereToLoginButton.click();
-        await commonLoginService.whatsYourEmailPage.locEmailAddressInput.fill(basicUser.email);
-        await commonLoginService.whatsYourEmailPage.locContinueButton.click();
-      });
-      await test.step(`Log in with only password to reach checkout service`, async () => {
-        await commonLoginService.loginPage.loginOnlyPassword(basicUser.password);
+      await test.step(`Choose Account by Email and Login`, async () => {
+        if (testCase.userType == 'Existing') {
+          await commonCheckoutService.accountPage.enterExistingAccountEmailAndLogin(basicUser.email);
+          await commonLoginService.whatsYourEmailPage.enterEmailAndContinue(basicUser.email);
+          await commonLoginService.loginPage.loginOnlyPassword(basicUser.password);
+        }
+        if (testCase.userType == 'New') {
+          await commonCheckoutService.accountPage.enterRandomEmailAndNewPasswordAndLogin();
+        }
       });
       await test.step(`Fill all required fields on personal info ${regionInfo.name}`, async () => {
         await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(

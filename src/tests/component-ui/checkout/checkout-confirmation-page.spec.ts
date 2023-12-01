@@ -19,9 +19,6 @@ test.describe('United States - Colorado, Legal Plan - Monthly, Bank Draft', () =
     await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
       await legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
     });
-    // await test.step(`Change Region`, async () => {
-    //   await legalshieldCoverageAndPricingPage.marketingSiteFooterComponent.selectRegion('Colorado', 'CO');
-    // });
     await test.step(`Click on the Start Monthly Plan button`, async () => {
       await legalshieldCoverageAndPricingPage.clickStartPlanButton('monthly');
     });
@@ -40,6 +37,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly, Bank Draft', () =
       await commonLoginService.loginPage.loginOnlyPassword(basicUser.password);
     });
     await test.step('Populate all fields on Personal Information Page', async () => {
+      await page.waitForTimeout(5000);
       await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
         'Automation',
         'Tester',

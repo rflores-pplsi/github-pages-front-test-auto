@@ -13,7 +13,7 @@ test.beforeEach(async ({ page }) => {
   groupsAffiliatedEnrollmentPage = new GroupsAffiliatedEnrollmentPage(page);
   test.slow();
 });
-test('Groups Affiliated (Agent: 12345, Primerica, en-US, New York) -> Checkout Service @smoke', async ({ page }) => {
+test('Groups Affiliated (Agent: 12345, Primerica, en-US, New York) -> Checkout Service @smoke @e2e', async ({ page }) => {
   console.log('Test Case: Groups Affiliated (Agent: 12345, Primerica, en-US, New York) -> Classic Checkout Service');
   await test.step(`Navigate to primerica Affiliated groups page`, async () => {
     await groupsAffiliatedPage.navigateToGroupsAffiliatedPage('primerica');
