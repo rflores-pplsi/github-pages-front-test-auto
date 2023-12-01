@@ -46,8 +46,7 @@ test('Hero Section Tests @Legalshield', async ({ page }) => {
   });
 });
 // Grid section tests
-test('Grid Section Test Links @Legalshield', async ({ page }) => {
-  console.log('Testing each link within the Grid Section, is working then gathering a screenshot and the url of the resulting click through');
+test('Grid Section Test Links @testing', async ({ page }) => {
   await test.step(`Verify we are within each card in the section by checking the header text of each`, async () => {
     await expect(legalshieldService.legalshieldPage.gridSectionComponent.locGridCardTitle).toHaveText([
       'Wills and Estates',
@@ -55,15 +54,18 @@ test('Grid Section Test Links @Legalshield', async ({ page }) => {
       'Consumer Matters',
       'Real Estate',
     ]);
-    const links = legalshieldService.legalshieldPage.gridSectionComponent.locGridCardLink;
-    const count = await links.count();
-    for (let i = 0; i < count; i++) {
-      await links.nth(i).click();
-      await page.waitForLoadState();
-      await page.screenshot({ fullPage: true, path: `screenshots/${new Date().getTime()}-${i}.png` });
-      console.log(page.url());
-      await page.goBack();
-    }
+    await test.step(`Click on all links within Grid Section and get the resulting page urls`, async () => {
+      const locator = legalshieldService.legalshieldPage.gridSectionComponent.locGridCardLink;
+      const results = await legalshieldService.legalshieldPage.clickLinksReturnResults(locator);
+      expect(results).toEqual(
+        expect.arrayContaining([
+          'https://uat-legalshield.com/estate-planning/',
+          'https://uat-legalshield.com/family-law/',
+          'https://uat-legalshield.com/consumer-finance/',
+          'https://uat-legalshield.com/real-estate/',
+        ])
+      );
+    });
   });
 });
 // Nav List Section tests
