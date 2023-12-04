@@ -29,7 +29,7 @@ export class PricingSectionComponent {
     this.locPricingSectionCardPromoBadge = this.page.locator('#section-pricing_section .lsux-grid .lsux-col .lsux-card--has-promo .promo-badge');
     this.locPricingSectionCardImage = this.page.locator('#section-pricing_section .lsux-grid .lsux-col .lsux-card .lsux-card__image img');
     this.locPricingSectionCardHeadline = this.page.locator(
-      '#section-pricing_section .lsux-grid .lsux-col .lsux-card .lsux-card__content h3.lsux-heading'
+      '#section-pricing_section .lsux-grid .lsux-col .lsux-card .lsux-card__content h3.lsux-heading--t31'
     );
     this.locPricingSectionCardDescription = this.page.locator(
       '#section-pricing_section .lsux-grid .lsux-col .lsux-card .lsux-card__content p.lsux-text'
@@ -47,7 +47,7 @@ export class PricingSectionComponent {
       '#section-pricing_section .lsux-grid .lsux-col .lsux-card .lsux-card__content .lsux-card__content p'
     );
     this.locPricingSectionCardPrice = this.page.locator(
-      '#section-pricing_section .lsux-grid .lsux-col .lsux-card .lsux-card__content .lsux-card__content h3.lsux-heading'
+      '#section-pricing_section .lsux-grid .lsux-col .lsux-card .lsux-card__content .lsux-card__content h3.lsux-heading--t49'
     );
     this.locPricingSectionCardPerMonth = this.page.locator(
       '#section-pricing_section .lsux-grid .lsux-col .lsux-card .lsux-card__content .lsux-card__content h3.lsux-heading span'

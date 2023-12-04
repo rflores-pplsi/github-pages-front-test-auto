@@ -17,4 +17,21 @@ export class LegalshieldPage {
     this.gridSectionComponent = new GridSectionComponent(context, page);
     this.pricingSectionComponent = new PricingSectionComponent(context, page);
   }
+  clickLinksReturnResults = async (links: Locator): Promise<Array<string>> => {
+    const count = await links.count();
+    const results = [];
+    for (let i = 0; i < count; i++) {
+      try {
+        await links.nth(i).click();
+        await this.page.waitForLoadState();
+        await this.page.screenshot({ fullPage: true, path: `screenshots/${new Date().getTime()}-${i}.png` });
+        results.push(this.page.url());
+        await this.page.goBack();
+      } catch {
+        console.log('Errored out in catch');
+        continue;
+      }
+    }
+    return results;
+  };
 }
