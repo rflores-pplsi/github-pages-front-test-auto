@@ -28,26 +28,7 @@ test.beforeEach(async ({ context, page }) => {
   // TODO: setup page-objects for common-components tests
   // instantiate Legalshield service
   legalshieldService = new LegalshieldService(page, context);
-  // Grid Section Tests
-  // gridSectionComponent = new GridSectionComponent(context, page);
-  // Nav List Tests
-  // -> navListComponent = new NavListComponent(context, page);
-  // Feature List Tests
-  // -> featureListComponent = new FeatureListComponent(context, page);
-  // Testimonials Tests
-  // -> testimonialsComponent = new TestimonialsComponent(context, page);
-  // Fact Callouts Tests
-  // -> factCalloutComponent = new FactCalloutComponent(context, page);
-  // Review Section Tests
-  // -> reviewSectionComponent = new ReviewSectionComponent(context, page);
-  // Logo Cloud Tests
-  // -> logoCloudComponent = new LogoCloudComponent(context, page);
-  // Features Grid Tests
-  // -> featuresGridSectionComponent = new FeaturesGridSectionComponent(context, page);
-  // Pricing Section Tests
-  // -> pricingSectionComponent = new PricingSectionComponent(context, page);
-  // Email Capture Tests
-  // -> emailCaptureSectionComponent = new EmailCaptureSectionComponent(context, page);
+
   test.slow();
 });
 
@@ -57,47 +38,34 @@ test('Hero Section Tests @Legalshield', async ({ page }) => {
   console.log(
     'Hero Section: Hero Section contains required fields - Layout Style, Desktop/Mobile images, Headline, and a CTA Button with appropriate link'
   );
-  await test.step(`Verify the the Hero Section CTA lands on appropriate href`, async () => {
-    await page.addInitScript(() => {
-      window.addEventListener('click', () => console.log('ctaClicked'));
-    });
-    page.on('console', (message) => {
-      if (message.text() === 'ctaClicked') {
-        page.screenshot({ path: `screenshots/${new Date().getTime()}.png` });
-      }
-    });
+  await test.step(`Legalshield Hero Section Click On Button`, async () => {
     await legalshieldService.legalshieldPage.heroSectionComponent.locCallToActionButton.click();
+
+    await expect(page).toHaveURL(new RegExp('legalshield.com/legal-plans-overview-v2'));
+    await expect(page).toHaveTitle('Prepaid Legal Plans - Online Legal Advice - LegalShield');
   });
 });
 // Grid section tests
-test('Grid Section Tests @Legalshield', async ({ page }) => {
-  console.log(
-    'Grid Section: Grid Section contains required fields - Header, Subtext, Card::Image/Title/Text/Link, Button::optionalLink, and a background color selected'
-  );
-  await test.step(`Verify the the Grid Section contents`, async () => {
-    for (const header of await legalshieldService.legalshieldPage.gridSectionComponent.locGridHeader.all()) {
-      await expect.soft(header).toBeVisible();
-    }
-
-    await expect(legalshieldService.legalshieldPage.gridSectionComponent.locGridSubtext).toBeVisible();
-
-    for (const card of await legalshieldService.legalshieldPage.gridSectionComponent.locGridCard.all()) {
-      await expect.soft(card).toBeVisible();
-    }
-    for (const image of await legalshieldService.legalshieldPage.gridSectionComponent.locGridCardImage.all()) {
-      await expect.soft(image).toBeVisible();
-    }
-    for (const title of await legalshieldService.legalshieldPage.gridSectionComponent.locGridCardTitle.all()) {
-      await expect.soft(title).toBeVisible();
-    }
-    for (const cardText of await legalshieldService.legalshieldPage.gridSectionComponent.locGridCardText.all()) {
-      await expect.soft(cardText).toBeVisible();
-    }
-    for (const cardLink of await legalshieldService.legalshieldPage.gridSectionComponent.locGridCardLink.all()) {
-      await expect.soft(cardLink).toHaveAttribute('href');
-    }
-    //await expect(await gridSectionComponent.locGridButtonLink.getAttribute('href')).not.toBeNull(); // optional, not present on page --> timeout, not working
-    //await expect(gridSectionComponent.locGridBackgroundColor).toBeVisible(); // optional, not present on page
+test('Grid Section Test Links @Legalshield', async ({ page }) => {
+  await test.step(`Verify we are within each card in the section by checking the header text of each`, async () => {
+    await expect(legalshieldService.legalshieldPage.gridSectionComponent.locGridCardTitle).toHaveText([
+      'Wills and Estates',
+      'Family Law',
+      'Consumer Matters',
+      'Real Estate',
+    ]);
+    await test.step(`Click on all links within Grid Section and get the resulting page urls`, async () => {
+      const locator = legalshieldService.legalshieldPage.gridSectionComponent.locGridCardLink;
+      const results = await legalshieldService.legalshieldPage.clickLinksReturnResults(locator);
+      expect(results).toEqual(
+        expect.arrayContaining([
+          'https://uat-legalshield.com/estate-planning/',
+          'https://uat-legalshield.com/family-law/',
+          'https://uat-legalshield.com/consumer-finance/',
+          'https://uat-legalshield.com/real-estate/',
+        ])
+      );
+    });
   });
 });
 // Nav List Section tests
