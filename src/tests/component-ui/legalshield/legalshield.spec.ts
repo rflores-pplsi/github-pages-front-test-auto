@@ -69,7 +69,7 @@ test('Grid Section Test Links @Legalshield', async ({ page }) => {
   });
 });
 // Pricing Section
-test('Pricing Section Test Links @testing', async ({ page }) => {
+test('Pricing Section Test Links @Legalshield', async ({ page }) => {
   await test.step(`Verify we are within each card in the section by checking the header text of each`, async () => {
     await expect(legalshieldService.legalshieldPage.pricingSectionComponent.locPricingSectionCardHeadline).toHaveText([
       'Personal / Family',
@@ -88,22 +88,6 @@ test('Pricing Section Test Links @testing', async ({ page }) => {
       ])
     );
   });
-  //await expect(legalshieldService.legalshieldPage.pricingSectionComponent.locPricingSectionContentHeadline).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionContentParagraph).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCard).toBeVisible(); // repeater fields
-  // await expect(pricingSectionComponent.locPricingSectionCardPromoBadge).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardImage).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardHeadline).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardDescription).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardInfoTitle).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardBenefits).toBeVisible(); // repeater fields
-  // await expect(pricingSectionComponent.locPricingSectionCardBenefitsIndividual).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardSubHeader).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardPrice).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardPerMonth).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardFeeText).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardCTAButtonType).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardButtonLink).toBeVisible();
 });
 // Nav List Section tests
 test('Nav List Section Tests', async ({ page }) => {
