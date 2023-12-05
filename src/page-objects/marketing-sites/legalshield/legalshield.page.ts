@@ -17,8 +17,8 @@ export class LegalshieldPage {
     this.context = context;
     this.heroSectionComponent = new HeroSectionComponent(context, page);
     this.gridSectionComponent = new GridSectionComponent(context, page);
-    this.navListSectionComponent = new NavListSectionComponent(context, page);
     this.pricingSectionComponent = new PricingSectionComponent(context, page);
+    this.navListSectionComponent = new NavListSectionComponent(context, page);
   }
 
   clickLinksReturnResults = async (links: Locator): Promise<Array<string>> => {
