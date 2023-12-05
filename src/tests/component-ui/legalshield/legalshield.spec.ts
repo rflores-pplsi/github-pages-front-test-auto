@@ -39,16 +39,20 @@ test('Grid Section Test Links @Legalshield', async ({ page }) => {
       expect(results).toEqual(
         expect.arrayContaining([
           'https://uat-legalshield.com/estate-planning/',
+          'Find an Estate Planning Attorney & Get Legal Advice - LegalShield',
           'https://uat-legalshield.com/family-law/',
+          'Family Law Lawyers - Get Legal Advice & Ask Questions Online',
           'https://uat-legalshield.com/consumer-finance/',
+          'Consumer Finance & Online Legal Services - LegalShield',
           'https://uat-legalshield.com/real-estate/',
+          'Real Estate Lawyers & Online Legal Advice - LegalShield',
         ])
       );
     });
   });
 });
 // Pricing Section
-test('Pricing Section Test Links @testing', async ({ page }) => {
+test('Pricing Section Test Links @Legalshield', async ({ page }) => {
   await test.step(`Verify we are within each card in the section by checking the header text of each`, async () => {
     await expect(legalshieldService.legalshieldPage.pricingSectionComponent.locPricingSectionCardHeadline).toHaveText([
       'Personal / Family',
