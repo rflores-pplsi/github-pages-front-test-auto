@@ -48,7 +48,7 @@ test('Grid Section Test Links @Legalshield', async ({ page }) => {
   });
 });
 // Pricing Section
-test('Pricing Section Test Links @Legalshield', async ({ page }) => {
+test('Pricing Section Test Links @testing', async ({ page }) => {
   await test.step(`Verify we are within each card in the section by checking the header text of each`, async () => {
     await expect(legalshieldService.legalshieldPage.pricingSectionComponent.locPricingSectionCardHeadline).toHaveText([
       'Personal / Family',
@@ -62,8 +62,11 @@ test('Pricing Section Test Links @Legalshield', async ({ page }) => {
     expect(results).toEqual(
       expect.arrayContaining([
         'https://uat-legalshield.com/personal-plan/plan-details/',
+        'Personal Legal Plan: Get Legal Advice Now! - LegalShield',
         'https://uat-legalshield.com/business-plan/plan-summary/',
+        'Online Small Business Legal Services & Pricing - LegalShield',
         'https://uat-legalshield.com/start-a-business/',
+        'Start a Business Online With Launch by LegalShield',
       ])
     );
   });
