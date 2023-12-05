@@ -10,7 +10,7 @@ test.beforeEach(async ({ context, page }) => {
   pplsiBusinessSolutionsOrientationPage = new PplsiBusinessSolutionsOrientationPage(context, page);
   pplsiPage = new PplsiPage(context, page);
 });
-test(`Business Solutions Orientation Flow @smoke`, async ({ page }) => {
+test(`Business Solutions Orientation Flow @smoke @e2e`, async ({ page }) => {
   console.log(`Test Case: Business Solutions Orientation Flow`);
   await test.step(`Navigate to PPLSI.com Business Solutions Orientation Overview page`, async () => {
     await pplsiBusinessSolutionsOrientationPage.page.goto(`${UrlsUtils.pplsiUrls.home.url}/business-solutions-orientation/`);
@@ -38,7 +38,7 @@ test(`Business Solutions Orientation Flow @smoke`, async ({ page }) => {
   });
 });
 
-test(`PPLSI footer Business Opportunity link to Business Solutions Orientation Page @smoke`, async ({ page }) => {
+test(`PPLSI footer Business Opportunity link to Business Solutions Orientation Page @smoke @e2e`, async ({ page }) => {
   console.log(`Test Case: PPLSI footer Business Opportunity link to Business Solutions Orientation Page`);
   await test.step(`Navigate to PPLSI.com Business Solutions Orientation Overview page`, async () => {
     await page.goto(`${UrlsUtils.pplsiUrls.home.url}`);

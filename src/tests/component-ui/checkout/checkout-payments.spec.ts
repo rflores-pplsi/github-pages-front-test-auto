@@ -19,9 +19,6 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
       await legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
     });
-    // await test.step(`Change Region`, async () => {
-    //   await legalshieldCoverageAndPricingPage.marketingSiteFooterComponent.selectRegion('Colorado', 'CO');
-    // });
     await test.step(`Click on the Start Monthly Plan button`, async () => {
       await legalshieldCoverageAndPricingPage.clickStartPlanButton('monthly');
     });

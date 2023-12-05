@@ -348,7 +348,7 @@ export const shieldAssociateMultiSelectData = [
         associateRegistrationType: 'individual',
         cost: '$0.00',
         marketingName: 'Associate',
-        name: 'Legalshield Advantage Plus',
+        name: 'LegalShield Advantage Plus',
         oneTimeFee: '$49',
         shortCode: 'TBD',
         supplements: [],

@@ -17,6 +17,7 @@ export class LegalshieldPage {
     this.gridSectionComponent = new GridSectionComponent(context, page);
     this.pricingSectionComponent = new PricingSectionComponent(context, page);
   }
+
   clickLinksReturnResults = async (links: Locator): Promise<Array<string>> => {
     const count = await links.count();
     const results = [];
