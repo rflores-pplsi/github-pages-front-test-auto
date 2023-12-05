@@ -1,39 +1,18 @@
 import { test, expect, Page } from '@playwright/test';
 import UrlsUtils from '../../../utils/urls.utils';
 import { LegalshieldService } from '../../../page-objects/marketing-sites/legalshield/legalshield-service';
-// import { NavListSectionComponent } from '../../../page-objects/common-components/nav-list-section.component';
-// import { FeatureListSectionComponent } from '../../../page-objects/common-components/feature-list-section.component';
-// import { TestimonialCarouselSectionComponent } from '../../../page-objects/common-components/testimonial-carousel-section.component';
-// import { FactCalloutsSectionComponent } from '../../../page-objects/common-components/fact-callouts-section.component';
-// import { ReviewSectionComponent } from '../../../page-objects/common-components/review-section.component';
-// import { LogoCloudSectionComponent } from '../../../page-objects/common-components/logo-cloud-section.component';
-// import { FeaturesGridSectionComponent } from '../../../page-objects/common-components/features-grid-section.component';
-// import { PricingSectionComponent } from '../../../page-objects/common-components/pricing-section.component';
-// import { EmailCaptureSectionComponent } from '../../../page-objects/common-components/email-capture-section.component';
 
-// TODO: locators
 let legalshieldService: LegalshieldService;
-// let navListComponent: NavListSectionComponent;
-// let featureList = new FeatureListSectionComponent;
-// let testimonialCarousel = new TestimonialCarouselSectionComponent;
-// let factCalloutsComponent = new FactCalloutsSectionComponent;
-// let reviewSectionComponent = new ReviewSectionComponent;
-// let logoCloudSectionComponent = new LogoCloudSectionComponent;
-// let featuresGridSectionComponent = new FeaturesGridSectionComponent;
-// let pricingSectionComponent = new PricingSectionComponent;
-// let emailCaptureSectionComponent = new EmailCaptureSectionComponent;
 
 test.beforeEach(async ({ context, page }) => {
-  await page.goto(UrlsUtils.legalshieldService.baseUrl); // use Utils?
-  // TODO: setup page-objects for common-components tests
+  await page.goto(UrlsUtils.legalshieldService.baseUrl);
   // instantiate Legalshield service
   legalshieldService = new LegalshieldService(page, context);
 
   test.slow();
 });
-
-// Hero Section Tests
 // USE_UAT=true npx playwright test --grep @Legalshield
+// Hero Section Tests
 test('Hero Section Tests @Legalshield', async ({ page }) => {
   console.log(
     'Hero Section: Hero Section contains required fields - Layout Style, Desktop/Mobile images, Headline, and a CTA Button with appropriate link'
@@ -68,15 +47,82 @@ test('Grid Section Test Links @Legalshield', async ({ page }) => {
     });
   });
 });
+// Pricing Section
+test('Pricing Section Test Links @Legalshield', async ({ page }) => {
+  await test.step(`Verify we are within each card in the section by checking the header text of each`, async () => {
+    await expect(legalshieldService.legalshieldPage.pricingSectionComponent.locPricingSectionCardHeadline).toHaveText([
+      'Personal / Family',
+      'Small Business',
+      'Launch',
+    ]);
+  });
+  await test.step(`Click on all links within Pricing Section Cards and get the resulting page urls`, async () => {
+    const locator = legalshieldService.legalshieldPage.pricingSectionComponent.locPricingSectionCardButtonLink;
+    const results = await legalshieldService.legalshieldPage.clickLinksReturnResults(locator);
+    expect(results).toEqual(
+      expect.arrayContaining([
+        'https://uat-legalshield.com/personal-plan/plan-details/',
+        'https://uat-legalshield.com/business-plan/plan-summary/',
+        'https://uat-legalshield.com/start-a-business/',
+      ])
+    );
+  });
+});
 // Nav List Section tests
-test('Nav List Section Tests', async ({ page }) => {
-  console.log('Nav List Section: Nav List Section contains required fields - Headline, Lists::Header/Links, Disclaimer, Background Color');
-  await test.step(`Verify the the Nav List Section contents`, async () => {
-    // await expect(navListComponent.locNavListHeadline).toContainText();
-    // await expect(navListComponent.locNavListListsHeader).toBeVisible(); // repeater - many
-    // await expect(navListComponent.locNavListListsLinks).toBeVisible(); // repeater - many
-    // await expect(navListComponent.locNavListDisclaimer).toBeVisible();
-    // await expect(navListComponent.locNavListBackgroundColor).toBeVisible();
+test('Nav List Section Test Links @Legalshield', async ({ page }) => {
+  await test.step(`Verify we are in the list section by checking the header of each list`, async () => {
+    await expect(legalshieldService.legalshieldPage.pricingSectionComponent.locPricingSectionCardHeadline).toHaveText([
+      'Personal / Family',
+      'Small Business',
+      'Launch',
+    ]);
+  });
+  await test.step(`Click on all the Nav List Section links and get the resulting page urls`, async () => {
+    const listItems = legalshieldService.legalshieldPage.navListSectionComponent.locNavListListsLinks;
+    const results = await legalshieldService.legalshieldPage.clickItemsFromUnorderedList(listItems);
+    expect(results).toEqual(
+      expect.arrayContaining([
+        'https://uat-legalshield.com/traffic-accident/',
+        'Traffic Lawyers - Tickets & Violations - LegalShield',
+        'https://uat-legalshield.com/renters/',
+        'Renters Rights Lawyers - Get Legal Advice Online - LegalShield',
+        'https://uat-legalshield.com/landlords/',
+        'Online Landlord Lawyers & Legal Advice - LegalShield',
+        'https://uat-legalshield.com/legal-protection-truck-drivers-and-other-commercial-drivers/',
+        'Online Lawyers for Commercial Truck Drivers - LegalShield',
+        'https://uat-legalshield.com/legal-protection-home-business/',
+        'Online Home Business Lawyers & Legal Advice - LegalShield',
+        'https://uat-legalshield.com/trial-defense-for-business-supplement/',
+        'Trial Defense for Business Supplement - LegalShield',
+        'https://uat-legalshield.com/intellectual-property/',
+        'Intellectual Property Protection for Small Businesses - LegalShield',
+        'https://uat-legalshield.com/collection/',
+        'Online Debt Collection Attorneys for Small Businesses - LegalShield',
+        'https://uat-legalshield.com/contracts/',
+        'Online Contract Lawyers & Advice for Small Business - LegalShield',
+        'https://uat-legalshield.com/employment/',
+        'Employment Lawyers & Online Legal Advice - LegalShield',
+        'https://uat-legalshield.com/business-licenses/',
+        'Apply for Business Licenses Online - LegalShield',
+        'https://uat-legalshield.com/civil-litigation/',
+        'Business Litigation Legal Advice for Small Businesses - LegalShield',
+        'https://uat-legalshield.com/start-a-business/business-formation/articles-of-organization/',
+        'File Articles of Organization Online - LegalShield',
+        'https://uat-legalshield.com/business-licenses/business-permits/',
+        'Apply for Business Permits Online - LegalShield',
+        'https://uat-legalshield.com/start-a-business/business-formation/business-structure/',
+        'Selecting Your New Business Legal Structure - LegalShield',
+        'https://uat-legalshield.com/start-a-business/business-formation/business-name-check/',
+        'Business Name Check - Is Your Business Name Available? - LegalShield',
+        'https://uat-legalshield.com/start-a-business/business-formation/business-type-comparison-chart/',
+        'Business Type Comparison Chart - LegalShield',
+        'https://uat-legalshield.com/start-a-business/business-formation/llc/',
+        'Form an LLC Online - LegalShield',
+      ])
+    );
+    await test.step(`Verifying that the disclaimer is visible below the nav list section`, async () => {
+      await expect(legalshieldService.legalshieldPage.navListSectionComponent.locNavListDisclaimer).toBeVisible();
+    });
   });
 });
 // Feature List Section
@@ -140,28 +186,6 @@ test('Features Grid Section', async ({ page }) => {
   // await expect(featuresGridSectionComponent.locFeaturesGridSectionCardsContentArea).toBeVisible();
   // await expect(featuresGridSectionComponent.locFeaturesGridSectionCardsLink).toHaveAttribute('href');
   // await expect(featuresGridSectionComponent.locFeaturesGridSectionBackgroundColor).toBeVisible();
-});
-// Pricing Section
-test('Pricing Section', async ({ page }) => {
-  console.log(
-    'Pricing Section: Pricing section contains required fields - Content::Headline/Paragraph, Card::PromoBadge/Image/Headline/Description/InfoTitle/Benefits::IndividualBenefits,/SubHeader/Price/PerMonth/FeeText/CTAButtonType/ButtonLink'
-  );
-  // await expect(pricingSectionComponent.locPricingSectionContentHeadline).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionContentParagraph).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCard).toBeVisible(); // repeater fields
-  // await expect(pricingSectionComponent.locPricingSectionCardPromoBadge).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardImage).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardHeadline).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardDescription).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardInfoTitle).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardBenefits).toBeVisible(); // repeater fields
-  // await expect(pricingSectionComponent.locPricingSectionCardBenefitsIndividual).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardSubHeader).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardPrice).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardPerMonth).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardFeeText).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardCTAButtonType).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardButtonLink).toBeVisible();
 });
 // Email Capture Section
 test('Email Capture Section', async ({ page }) => {
