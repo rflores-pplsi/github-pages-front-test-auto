@@ -74,7 +74,7 @@ test('Pricing Section Test Links @Legalshield', async ({ page }) => {
 // Nav List Section tests
 test('Nav List Section Test Links @Legalshield', async ({ page }) => {
   await test.step(`Verify we are in the list section by checking the header of each list`, async () => {
-    await expect(legalshieldService.legalshieldPage.pricingSectionComponent.locPricingSectionCardHeadline).toHaveText([
+    await expect(legalshieldService.legalshieldPage.navListSectionComponent.locNavListListsHeader).toHaveText([
       'Personal / Family',
       'Small Business',
       'Launch',
