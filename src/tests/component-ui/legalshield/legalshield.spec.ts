@@ -56,7 +56,7 @@ test('Pricing Section Test Links @Legalshield', async ({ page }) => {
       'Launch',
     ]);
   });
-  await test.step(`Click on all links within Pricing Section Cards and get the resulting page urls`, async () => {
+  await test.step(`Click on all links within Pricing Section Cards and get the resulting page urls and titles`, async () => {
     const locator = legalshieldService.legalshieldPage.pricingSectionComponent.locPricingSectionCardButtonLink;
     const results = await legalshieldService.legalshieldPage.clickLinksReturnResults(locator);
     expect(results).toEqual(
@@ -80,7 +80,7 @@ test('Nav List Section Test Links @Legalshield', async ({ page }) => {
       'Launch',
     ]);
   });
-  await test.step(`Click on all the Nav List Section links and get the resulting page urls`, async () => {
+  await test.step(`Click on all the Nav List Section links and get the resulting page urls and titles`, async () => {
     const listItems = legalshieldService.legalshieldPage.navListSectionComponent.locNavListListsLinks;
     const results = await legalshieldService.legalshieldPage.clickItemsFromUnorderedList(listItems);
     expect(results).toEqual(
