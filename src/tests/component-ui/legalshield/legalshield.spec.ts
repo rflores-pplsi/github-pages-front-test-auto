@@ -129,19 +129,35 @@ test('Nav List Section Test Links @Legalshield', async ({ page }) => {
   });
 });
 // Feature List Section
-test('Feature List Section Tests', async ({ page }) => {
-  console.log(
-    'Feature List Section: Feature List Section contains required feilds - Content, Subheader, Image, List::Image/Headline/Content, Background Color'
-  );
-  // await expect(featureListComponent.locFeatureListContent).toBeVisible();
-  // await expect(featureListComponent.locFeatureListSubheader).toBeVisible();
-  // await expect(featureListComponent.locFeatureListImage).toBeVisible();
-  // await expect(featureListComponent.locFeatureListList).toContain('repeating-fields');
-  // await expect(featureListComponent.locFeatureListListImage).toBeVisible();
-  // await expect(featureListComponent.locFeatureListListHeadline).toBeVisible();
-  // await expect(featureListComponent.locFeatureListListContent).toContainText();
-  // await expect(featureListComponent.locFeatureListBackgroundColor).toBeVisible();
+test('Feature List Section Test Links @Legalshield', async ({ page }) => {
+  await test.step(`Verify we are in the feature list section by checking the header text`, async () => {
+    await expect(legalshieldService.legalshieldPage.featuresGridSectionComponent.locFeatureListContentHeadline).toHaveText([
+      'Hire a lawyer the smart way, not the hard way',
+    ]);
+  });
+  await test.step(`Verify we are in the feature list section by checking the header of each card`, async () => {
+    await expect(legalshieldService.legalshieldPage.featuresGridSectionComponent.locFeatureListCardHeadline).toHaveText([
+      'Help with unlimited legal issues',
+      'Affordable legal services for as little as $1/day',
+      'Skilled, vetted lawyers in your area',
+    ]);
+  });
+  await test.step(`Click on all the Feature List Section links and get the resulting page urls and titles`, async () => {
+    const card = await legalshieldService.legalshieldPage.featuresGridSectionComponent.locFeatureListCardLink;
+    const results = await legalshieldService.legalshieldPage.clickLinksReturnResults(card);
+    expect(results).toEqual(
+      expect.arrayContaining([
+        'https://uat-legalshield.com/why-legalshield/how-it-works/',
+        'How it Works - LegalShield Prepaid Legal Services',
+        'https://uat-legalshield.com/legal-plans-overview/',
+        'Legal Plans Overview - Online Legal Advice - LegalShield',
+        'https://uat-legalshield.com/law-firms/',
+        'Lawyers Near Me - LegalShield',
+      ])
+    );
+  });
 });
+
 // Testimonial Carousel Section
 test('Testimonial Carousel Section Tests', async ({ page }) => {
   console.log('Testimonial Carousel Section: Testimonial Carousel Section contains required fields - Carousel::Image/Title/Text/Link;');
