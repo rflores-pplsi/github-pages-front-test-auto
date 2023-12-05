@@ -68,6 +68,27 @@ test('Grid Section Test Links @Legalshield', async ({ page }) => {
     });
   });
 });
+// Pricing Section
+test('Pricing Section Test Links @Legalshield', async ({ page }) => {
+  await test.step(`Verify we are within each card in the section by checking the header text of each`, async () => {
+    await expect(legalshieldService.legalshieldPage.pricingSectionComponent.locPricingSectionCardHeadline).toHaveText([
+      'Personal / Family',
+      'Small Business',
+      'Launch',
+    ]);
+  });
+  await test.step(`Click on all links within Pricing Section Cards and get the resulting page urls`, async () => {
+    const locator = legalshieldService.legalshieldPage.pricingSectionComponent.locPricingSectionCardButtonLink;
+    const results = await legalshieldService.legalshieldPage.clickLinksReturnResults(locator);
+    expect(results).toEqual(
+      expect.arrayContaining([
+        'https://uat-legalshield.com/personal-plan/plan-details/',
+        'https://uat-legalshield.com/business-plan/plan-summary/',
+        'https://uat-legalshield.com/start-a-business/',
+      ])
+    );
+  });
+});
 // Nav List Section tests
 test('Nav List Section Tests', async ({ page }) => {
   console.log('Nav List Section: Nav List Section contains required fields - Headline, Lists::Header/Links, Disclaimer, Background Color');
@@ -141,28 +162,7 @@ test('Features Grid Section', async ({ page }) => {
   // await expect(featuresGridSectionComponent.locFeaturesGridSectionCardsLink).toHaveAttribute('href');
   // await expect(featuresGridSectionComponent.locFeaturesGridSectionBackgroundColor).toBeVisible();
 });
-// Pricing Section
-test('Pricing Section', async ({ page }) => {
-  console.log(
-    'Pricing Section: Pricing section contains required fields - Content::Headline/Paragraph, Card::PromoBadge/Image/Headline/Description/InfoTitle/Benefits::IndividualBenefits,/SubHeader/Price/PerMonth/FeeText/CTAButtonType/ButtonLink'
-  );
-  // await expect(pricingSectionComponent.locPricingSectionContentHeadline).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionContentParagraph).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCard).toBeVisible(); // repeater fields
-  // await expect(pricingSectionComponent.locPricingSectionCardPromoBadge).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardImage).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardHeadline).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardDescription).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardInfoTitle).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardBenefits).toBeVisible(); // repeater fields
-  // await expect(pricingSectionComponent.locPricingSectionCardBenefitsIndividual).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardSubHeader).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardPrice).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardPerMonth).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardFeeText).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardCTAButtonType).toBeVisible();
-  // await expect(pricingSectionComponent.locPricingSectionCardButtonLink).toBeVisible();
-});
+
 // Email Capture Section
 test('Email Capture Section', async ({ page }) => {
   console.log(
