@@ -3,6 +3,7 @@ import { HeroSectionComponent } from '../../common-components/hero-section.compo
 import { GridSectionComponent } from '../../common-components/grid-section.component';
 import { PricingSectionComponent } from '../../common-components/pricing-section.component';
 import { NavListSectionComponent } from '../../common-components/nav_list-section.component';
+import { FeaturesGridSectionComponent } from '../../common-components/features-grid-section.component';
 
 export class LegalshieldPage {
   readonly page: Page;
@@ -11,6 +12,7 @@ export class LegalshieldPage {
   readonly gridSectionComponent: GridSectionComponent;
   readonly pricingSectionComponent: PricingSectionComponent;
   readonly navListSectionComponent: NavListSectionComponent;
+  readonly featuresGridSectionComponent: FeaturesGridSectionComponent;
 
   constructor(context: BrowserContext, page: Page) {
     this.page = page;
@@ -19,6 +21,7 @@ export class LegalshieldPage {
     this.gridSectionComponent = new GridSectionComponent(context, page);
     this.pricingSectionComponent = new PricingSectionComponent(context, page);
     this.navListSectionComponent = new NavListSectionComponent(context, page);
+    this.featuresGridSectionComponent = new FeaturesGridSectionComponent(context, page);
   }
 
   clickLinksReturnResults = async (links: Locator): Promise<Array<string>> => {
