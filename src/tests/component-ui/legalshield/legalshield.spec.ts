@@ -29,7 +29,7 @@ test('Grid Section Test Links @Legalshield', async ({ page }) => {
       'Consumer Matters',
       'Real Estate',
     ]);
-    await test.step(`Click on all links within Grid Section and get the resulting page urls`, async () => {
+    await test.step(`Click on all links within Grid Section and get the resulting page urls and titles`, async () => {
       const locator = legalshieldService.legalshieldPage.gridSectionComponent.locGridCardLink;
       const results = await legalshieldService.legalshieldPage.clickLinksReturnResults(locator);
       expect(results).toEqual(
