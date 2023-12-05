@@ -17,7 +17,7 @@ test('Hero Section Tests @Legalshield', async ({ page }) => {
   await test.step(`Legalshield Hero Section Click On Button`, async () => {
     await legalshieldService.legalshieldPage.heroSectionComponent.locCallToActionButton.click();
     await expect(page).toHaveURL(new RegExp('legalshield.com/legal-plans-overview-v2'));
-    await expect(page).toHaveTitle('Prepaid Legal Plans - Online Legal Advice - LegalShield');
+    await expect(page).toHaveTitle('Legal Plans Overview, Get Online Legal Advice - LegalShield');
   });
 });
 // Grid section tests
