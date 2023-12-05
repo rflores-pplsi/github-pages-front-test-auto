@@ -14,12 +14,8 @@ test.beforeEach(async ({ context, page }) => {
 // USE_UAT=true npx playwright test --grep @Legalshield
 // Hero Section Tests
 test('Hero Section Tests @Legalshield', async ({ page }) => {
-  console.log(
-    'Hero Section: Hero Section contains required fields - Layout Style, Desktop/Mobile images, Headline, and a CTA Button with appropriate link'
-  );
   await test.step(`Legalshield Hero Section Click On Button`, async () => {
     await legalshieldService.legalshieldPage.heroSectionComponent.locCallToActionButton.click();
-
     await expect(page).toHaveURL(new RegExp('legalshield.com/legal-plans-overview-v2'));
     await expect(page).toHaveTitle('Prepaid Legal Plans - Online Legal Advice - LegalShield');
   });
