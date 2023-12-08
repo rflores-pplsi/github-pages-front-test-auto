@@ -89,6 +89,21 @@ export const legalshieldServiceData = [
         ],
       },
     },
+    featuresGridSection: {
+      included: false,
+      expectedHeaders: [
+        'Help with unlimited legal issues',
+        'Affordable legal services for as little as $1/day',
+        'Skilled, vetted lawyers in your area',
+      ],
+      links: {
+        expectedUrlsAndTitles: [
+          { url: 'legalshield.com/why-legalshield/how-it-works/', title: 'What is LegalShield? Learn How it Works - LegalShield' },
+          { url: 'legalshield.com/legal-plans-overview/', title: 'Legal Plans Overview, Get Online Legal Advice - LegalShield' },
+          { url: 'legalshield.com/law-firms/', title: 'Find a Traffic Lawyer for Tickets & Violations - LegalShield' },
+        ],
+      },
+    },
   },
   {
     disabled: false,
@@ -128,6 +143,65 @@ export const legalshieldServiceData = [
       expectedHeaders: [],
       links: {
         expectedUrlsAndTitles: [],
+      },
+    },
+    featuresGridSection: {
+      included: false,
+      expectedHeaders: [],
+      links: {
+        expectedUrlsAndTitles: [],
+      },
+    },
+  },
+  {
+    disabled: false,
+    pageName: 'Legal Plans Overview',
+    url: `${UrlsUtils.legalshieldService.baseUrl}/legal-plans-overview/`,
+    heroSection: {
+      included: true,
+      expectedHeader: '',
+      expectedDescription: '',
+      button: {
+        included: true,
+        expectedTitle: 'Legal Plans Overview, Get Online Legal Advice - LegalShield',
+        expectedUrl: 'legalshield.com/legal-plans-overview/',
+      },
+    },
+    gridSection: {
+      included: false,
+      expectedHeaders: [],
+      links: {
+        expectedUrlsAndTitles: [],
+      },
+    },
+    pricingSection: {
+      included: false,
+      expectedHeaders: [],
+      links: {
+        addToCart: false,
+        expectedPlanNameCostInCart: [],
+        expectedUrlsAndTitles: [],
+      },
+    },
+    navListSection: {
+      included: false,
+      expectedHeaders: [],
+      links: {
+        expectedUrlsAndTitles: [],
+      },
+    },
+    featuresGridSection: {
+      included: true,
+      expectedHeaders: [],
+      links: {
+        expectedUrlsAndTitles: [
+          { url: 'legalshield.com/estate-planning/', title: 'Find an Estate Planning Attorney & Get Legal Advice - LegalShield' },
+          { url: 'legalshield.com/renters/', title: 'Renters Rights - Find Your Renters Rights Attorney - LegalShield' },
+          { url: 'legalshield.com/business-plan/plan-summary/', title: 'Small Business Legal Services & Protection - LegalShield' },
+          { url: 'legalshield.com/family-law/', title: 'Family Law Lawyers - Get Legal Advice & Ask Questions Online' },
+          { url: 'legalshield.com/employment/', title: 'Employment Lawyers & Online Legal Advice - LegalShield' },
+          { url: 'legalshield.com/start-a-business/', title: 'Starting a Business - Legal Consultation & Advice - LegalShield' },
+        ],
       },
     },
   },

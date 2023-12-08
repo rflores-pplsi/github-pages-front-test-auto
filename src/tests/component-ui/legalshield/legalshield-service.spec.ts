@@ -117,4 +117,32 @@ for (const pageUnderTest of legalshieldServiceData.filter((legalshieldPage) => l
       });
     }
   });
+
+  test.describe(`Features Grid Section`, async () => {
+    test.beforeEach(async ({ context, page }) => {
+      legalshieldService = new LegalshieldService(page, context);
+      await test.step(`Navigate to the ${pageUnderTest.pageName} page`, async () => {
+        await page.goto(pageUnderTest.url);
+      });
+    });
+    if (pageUnderTest.featuresGridSection.included == true) {
+      test(`${pageUnderTest.pageName} page: Verify Features Grid Section`, async () => {
+        console.log(`Test Case: ${pageUnderTest.pageName} page: Verify Features Grid Section} page`);
+        await test.step(`Verify headers of expected Cards`, async () => {
+          if (pageUnderTest.featuresGridSection.expectedHeaders.length > 0) {
+            expect(await legalshieldService.featuresGridSectionComponent.locFeatureGridCardHeadline.allInnerTexts()).toStrictEqual(
+              pageUnderTest.featuresGridSection.expectedHeaders
+            );
+          }
+          await test.step(`Click on all links and Verify the URL and Title`, async () => {
+            const locator = legalshieldService.featuresGridSectionComponent.locFeatureGridCardLink;
+            await legalshieldService.clickAllLinksAndVerifyExpectedUrlAndTitle(
+              locator,
+              pageUnderTest.featuresGridSection.links.expectedUrlsAndTitles
+            );
+          });
+        });
+      });
+    }
+  });
 }

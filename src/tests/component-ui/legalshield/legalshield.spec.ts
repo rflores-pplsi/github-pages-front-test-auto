@@ -124,35 +124,6 @@ test.beforeEach(async ({ context, page }) => {
 //     });
 //   });
 // });
-// // Feature List Section
-// test('Feature List Section Test Links @Legalshield', async ({ page }) => {
-//   await test.step(`Verify we are in the feature list section by checking the header text`, async () => {
-//     await expect(legalshieldService.featuresGridSectionComponent.locFeatureListContentHeadline).toHaveText([
-//       'Hire a lawyer the smart way, not the hard way',
-//     ]);
-//   });
-//   await test.step(`Verify we are in the feature list section by checking the header of each card`, async () => {
-//     await expect(legalshieldService.featuresGridSectionComponent.locFeatureListCardHeadline).toHaveText([
-//       'Help with unlimited legal issues',
-//       'Affordable legal services for as little as $1/day',
-//       'Skilled, vetted lawyers in your area',
-//     ]);
-//   });
-//   await test.step(`Click on all the Feature List Section links and get the resulting page urls and titles`, async () => {
-//     const card = await legalshieldService.featuresGridSectionComponent.locFeatureListCardLink;
-//     const results = await legalshieldService.clickAllLinksAndVerifyExpectedUrlAndTitle(card);
-//     expect(results).toEqual(
-//       expect.arrayContaining([
-//         'https://uat-legalshield.com/why-legalshield/how-it-works/',
-//         'How it Works - LegalShield Prepaid Legal Services',
-//         'https://uat-legalshield.com/legal-plans-overview/',
-//         'Legal Plans Overview - Online Legal Advice - LegalShield',
-//         'https://uat-legalshield.com/law-firms/',
-//         'Lawyers Near Me - LegalShield',
-//       ])
-//     );
-//   });
-// });
 
 // Testimonial Carousel Section
 test('Testimonial Carousel Section Tests', async ({ page }) => {
@@ -186,21 +157,6 @@ test('Logo Cloud Section', async ({ page }) => {
   // await expect(logoCloudSectionComponent.locLogoCloudSectionText).toBeVisible();
   // await expect(logoCloudSectionComponent.locLogoCloudSectionImage).toBeVisible(); // repeater field
   // await expect(logoCloudSectionComponent.locLogoCloudSectionBackground).toBeVisible();
-});
-// Features Grid Section
-test('Features Grid Section', async ({ page }) => {
-  console.log(
-    'Features Grid Section: Features Grid section contains required fields - Content::Headline/Paragraph, Cards::Image/Headline/ContentArea/Link, Background Color'
-  );
-  // await expect(featuresGridSectionComponent.locFeaturesGridSectionContent).toBeVisible();
-  // await expect(featuresGridSectionComponent.locFeaturesGridSectionContentHeadline).toBeVisible();
-  // await expect(featuresGridSectionComponent.locFeaturesGridSectionContentParagraph).toBeVisible();
-  // await expect(featuresGridSectionComponent.locFeaturesGridSectionCards).toBeVisible(); // repeater fields
-  // await expect(featuresGridSectionComponent.locFeaturesGridSectionCardsImage).toBeVisible();
-  // await expect(featuresGridSectionComponent.locFeaturesGridSectionCardsHeadline).toBeVisible();
-  // await expect(featuresGridSectionComponent.locFeaturesGridSectionCardsContentArea).toBeVisible();
-  // await expect(featuresGridSectionComponent.locFeaturesGridSectionCardsLink).toHaveAttribute('href');
-  // await expect(featuresGridSectionComponent.locFeaturesGridSectionBackgroundColor).toBeVisible();
 });
 // Email Capture Section
 test('Email Capture Section', async ({ page }) => {
