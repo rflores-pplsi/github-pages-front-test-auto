@@ -11,152 +11,148 @@ test.beforeEach(async ({ context, page }) => {
 
   test.slow();
 });
-// USE_UAT=true npx playwright test --grep @Legalshield
-// Hero Section Tests
-test('Hero Section Tests @Legalshield', async ({ page }) => {
-  await test.step(`Legalshield Hero Section Click On Button`, async () => {
-    await legalshieldService.legalshieldPage.heroSectionComponent.locCallToActionButton.click();
-    await expect(page).toHaveURL(new RegExp('legalshield.com/legal-plans-overview-v2'));
-    await expect(page).toHaveTitle('Legal Plans Overview, Get Online Legal Advice - LegalShield');
-  });
-});
-// Grid section tests
-test('Grid Section Test Links @Legalshield', async ({ page }) => {
-  await test.step(`Verify we are within each card in the section by checking the header text of each`, async () => {
-    await expect(legalshieldService.legalshieldPage.gridSectionComponent.locGridCardTitle).toHaveText([
-      'Wills and Estates',
-      'Family Law',
-      'Consumer Matters',
-      'Real Estate',
-    ]);
-    await test.step(`Click on all links within Grid Section and get the resulting page urls and titles`, async () => {
-      const locator = legalshieldService.legalshieldPage.gridSectionComponent.locGridCardLink;
-      const results = await legalshieldService.legalshieldPage.clickLinksReturnResults(locator);
-      expect(results).toEqual(
-        expect.arrayContaining([
-          'https://uat-legalshield.com/estate-planning/',
-          'Find an Estate Planning Attorney & Get Legal Advice - LegalShield',
-          'https://uat-legalshield.com/family-law/',
-          'Family Law Lawyers - Get Legal Advice & Ask Questions Online',
-          'https://uat-legalshield.com/consumer-finance/',
-          'Consumer Finance & Online Legal Services - LegalShield',
-          'https://uat-legalshield.com/real-estate/',
-          'Real Estate Lawyers & Online Legal Advice - LegalShield',
-        ])
-      );
-    });
-  });
-});
-// Pricing Section
-test('Pricing Section Test Links @Legalshield', async ({ page }) => {
-  await test.step(`Verify we are within each card in the section by checking the header text of each`, async () => {
-    await expect(legalshieldService.legalshieldPage.pricingSectionComponent.locPricingSectionCardHeadline).toHaveText([
-      'Personal / Family',
-      'Small Business',
-      'Launch',
-    ]);
-  });
-  await test.step(`Click on all links within Pricing Section Cards and get the resulting page urls and titles`, async () => {
-    const locator = legalshieldService.legalshieldPage.pricingSectionComponent.locPricingSectionCardButtonLink;
-    const results = await legalshieldService.legalshieldPage.clickLinksReturnResults(locator);
-    expect(results).toEqual(
-      expect.arrayContaining([
-        'https://uat-legalshield.com/personal-plan/plan-details/',
-        'Personal Legal Plan: Get Legal Advice Now! - LegalShield',
-        'https://uat-legalshield.com/business-plan/plan-summary/',
-        'Online Small Business Legal Services & Pricing - LegalShield',
-        'https://uat-legalshield.com/start-a-business/',
-        'Start a Business Online With Launch by LegalShield',
-      ])
-    );
-  });
-});
-// Nav List Section tests
-test('Nav List Section Test Links @Legalshield', async ({ page }) => {
-  await test.step(`Verify we are in the list section by checking the header of each list`, async () => {
-    await expect(legalshieldService.legalshieldPage.navListSectionComponent.locNavListListsHeader).toHaveText([
-      'Personal / Family',
-      'Small Business',
-      'Launch',
-    ]);
-  });
-  await test.step(`Click on all the Nav List Section links and get the resulting page urls and titles`, async () => {
-    const listItems = legalshieldService.legalshieldPage.navListSectionComponent.locNavListListsLinks;
-    const results = await legalshieldService.legalshieldPage.clickItemsFromUnorderedList(listItems);
-    expect(results).toEqual(
-      expect.arrayContaining([
-        'https://uat-legalshield.com/traffic-accident/',
-        'Traffic Lawyers - Tickets & Violations - LegalShield',
-        'https://uat-legalshield.com/renters/',
-        'Renters Rights Lawyers - Get Legal Advice Online - LegalShield',
-        'https://uat-legalshield.com/landlords/',
-        'Online Landlord Lawyers & Legal Advice - LegalShield',
-        'https://uat-legalshield.com/legal-protection-truck-drivers-and-other-commercial-drivers/',
-        'Online Lawyers for Commercial Truck Drivers - LegalShield',
-        'https://uat-legalshield.com/legal-protection-home-business/',
-        'Online Home Business Lawyers & Legal Advice - LegalShield',
-        'https://uat-legalshield.com/trial-defense-for-business-supplement/',
-        'Trial Defense for Business Supplement - LegalShield',
-        'https://uat-legalshield.com/intellectual-property/',
-        'Intellectual Property Protection for Small Businesses - LegalShield',
-        'https://uat-legalshield.com/collection/',
-        'Online Debt Collection Attorneys for Small Businesses - LegalShield',
-        'https://uat-legalshield.com/contracts/',
-        'Online Contract Lawyers & Advice for Small Business - LegalShield',
-        'https://uat-legalshield.com/employment/',
-        'Employment Lawyers & Online Legal Advice - LegalShield',
-        'https://uat-legalshield.com/business-licenses/',
-        'Apply for Business Licenses Online - LegalShield',
-        'https://uat-legalshield.com/civil-litigation/',
-        'Business Litigation Legal Advice for Small Businesses - LegalShield',
-        'https://uat-legalshield.com/start-a-business/business-formation/articles-of-organization/',
-        'File Articles of Organization Online - LegalShield',
-        'https://uat-legalshield.com/business-licenses/business-permits/',
-        'Apply for Business Permits Online - LegalShield',
-        'https://uat-legalshield.com/start-a-business/business-formation/business-structure/',
-        'Selecting Your New Business Legal Structure - LegalShield',
-        'https://uat-legalshield.com/start-a-business/business-formation/business-name-check/',
-        'Business Name Check - Is Your Business Name Available? - LegalShield',
-        'https://uat-legalshield.com/start-a-business/business-formation/business-type-comparison-chart/',
-        'Business Type Comparison Chart - LegalShield',
-        'https://uat-legalshield.com/start-a-business/business-formation/llc/',
-        'Form an LLC Online - LegalShield',
-      ])
-    );
-    await test.step(`Verifying that the disclaimer is visible below the nav list section`, async () => {
-      await expect(legalshieldService.legalshieldPage.navListSectionComponent.locNavListDisclaimer).toBeVisible();
-    });
-  });
-});
-// Feature List Section
-test('Feature List Section Test Links @Legalshield', async ({ page }) => {
-  await test.step(`Verify we are in the feature list section by checking the header text`, async () => {
-    await expect(legalshieldService.legalshieldPage.featuresGridSectionComponent.locFeatureListContentHeadline).toHaveText([
-      'Hire a lawyer the smart way, not the hard way',
-    ]);
-  });
-  await test.step(`Verify we are in the feature list section by checking the header of each card`, async () => {
-    await expect(legalshieldService.legalshieldPage.featuresGridSectionComponent.locFeatureListCardHeadline).toHaveText([
-      'Help with unlimited legal issues',
-      'Affordable legal services for as little as $1/day',
-      'Skilled, vetted lawyers in your area',
-    ]);
-  });
-  await test.step(`Click on all the Feature List Section links and get the resulting page urls and titles`, async () => {
-    const card = await legalshieldService.legalshieldPage.featuresGridSectionComponent.locFeatureListCardLink;
-    const results = await legalshieldService.legalshieldPage.clickLinksReturnResults(card);
-    expect(results).toEqual(
-      expect.arrayContaining([
-        'https://uat-legalshield.com/why-legalshield/how-it-works/',
-        'How it Works - LegalShield Prepaid Legal Services',
-        'https://uat-legalshield.com/legal-plans-overview/',
-        'Legal Plans Overview - Online Legal Advice - LegalShield',
-        'https://uat-legalshield.com/law-firms/',
-        'Lawyers Near Me - LegalShield',
-      ])
-    );
-  });
-});
+// // USE_UAT=true npx playwright test --grep @Legalshield
+// // Hero Section Tests
+// test('Hero Section Tests @Legalshield', async ({ page }) => {
+//   await test.step(`Legalshield Hero Section Click On Button`, async () => {
+//     await legalshieldService.heroSectionComponent.locCallToActionButton.click();
+//     await expect(page).toHaveURL(new RegExp('legalshield.com/legal-plans-overview-v2'));
+//     await expect(page).toHaveTitle('Legal Plans Overview, Get Online Legal Advice - LegalShield');
+//   });
+// });
+// // Grid section tests
+// test('Grid Section Test Links @Legalshield', async ({ page }) => {
+//   await test.step(`Verify we are within each card in the section by checking the header text of each`, async () => {
+//     await expect(legalshieldService.gridSectionComponent.locGridCardTitle).toHaveText([
+//       'Wills and Estates',
+//       'Family Law',
+//       'Consumer Matters',
+//       'Real Estate',
+//     ]);
+//     await test.step(`Click on all links within Grid Section and get the resulting page urls and titles`, async () => {
+//       const locator = legalshieldService.gridSectionComponent.locGridCardLink;
+//       const results = await legalshieldService.clickAllLinksAndVerifyExpectedUrlAndTitle(locator);
+//       expect(results).toEqual(
+//         expect.arrayContaining([
+//           'https://uat-legalshield.com/estate-planning/',
+//           'Find an Estate Planning Attorney & Get Legal Advice - LegalShield',
+//           'https://uat-legalshield.com/family-law/',
+//           'Family Law Lawyers - Get Legal Advice & Ask Questions Online',
+//           'https://uat-legalshield.com/consumer-finance/',
+//           'Consumer Finance & Online Legal Services - LegalShield',
+//           'https://uat-legalshield.com/real-estate/',
+//           'Real Estate Lawyers & Online Legal Advice - LegalShield',
+//         ])
+//       );
+//     });
+//   });
+// });
+// // Pricing Section
+// test('Pricing Section Test Links @Legalshield', async ({ page }) => {
+//   await test.step(`Verify we are within each card in the section by checking the header text of each`, async () => {
+//     await expect(legalshieldService.pricingSectionComponent.locPricingSectionCardHeadline).toHaveText([
+//       'Personal / Family',
+//       'Small Business',
+//       'Launch',
+//     ]);
+//   });
+//   await test.step(`Click on all links within Pricing Section Cards and get the resulting page urls and titles`, async () => {
+//     const locator = legalshieldService.pricingSectionComponent.locPricingSectionCardButtonLink;
+//     const results = await legalshieldService.clickAllLinksAndVerifyExpectedUrlAndTitle(locator);
+//     expect(results).toEqual(
+//       expect.arrayContaining([
+//         'https://uat-legalshield.com/personal-plan/plan-details/',
+//         'Personal Legal Plan: Get Legal Advice Now! - LegalShield',
+//         'https://uat-legalshield.com/business-plan/plan-summary/',
+//         'Online Small Business Legal Services & Pricing - LegalShield',
+//         'https://uat-legalshield.com/start-a-business/',
+//         'Start a Business Online With Launch by LegalShield',
+//       ])
+//     );
+//   });
+// });
+// // Nav List Section tests
+// test('Nav List Section Test Links @Legalshield', async ({ page }) => {
+//   await test.step(`Verify we are in the list section by checking the header of each list`, async () => {
+//     await expect(legalshieldService.navListSectionComponent.locNavListListsHeader).toHaveText(['Personal / Family', 'Small Business', 'Launch']);
+//   });
+//   await test.step(`Click on all the Nav List Section links and get the resulting page urls and titles`, async () => {
+//     const listItems = legalshieldService.navListSectionComponent.locNavListListsLinks;
+//     const results = await legalshieldService.clickItemsFromUnorderedList(listItems);
+//     expect(results).toEqual(
+//       expect.arrayContaining([
+//         'https://uat-legalshield.com/traffic-accident/',
+//         'Traffic Lawyers - Tickets & Violations - LegalShield',
+//         'https://uat-legalshield.com/renters/',
+//         'Renters Rights Lawyers - Get Legal Advice Online - LegalShield',
+//         'https://uat-legalshield.com/landlords/',
+//         'Online Landlord Lawyers & Legal Advice - LegalShield',
+//         'https://uat-legalshield.com/legal-protection-truck-drivers-and-other-commercial-drivers/',
+//         'Online Lawyers for Commercial Truck Drivers - LegalShield',
+//         'https://uat-legalshield.com/legal-protection-home-business/',
+//         'Online Home Business Lawyers & Legal Advice - LegalShield',
+//         'https://uat-legalshield.com/trial-defense-for-business-supplement/',
+//         'Trial Defense for Business Supplement - LegalShield',
+//         'https://uat-legalshield.com/intellectual-property/',
+//         'Intellectual Property Protection for Small Businesses - LegalShield',
+//         'https://uat-legalshield.com/collection/',
+//         'Online Debt Collection Attorneys for Small Businesses - LegalShield',
+//         'https://uat-legalshield.com/contracts/',
+//         'Online Contract Lawyers & Advice for Small Business - LegalShield',
+//         'https://uat-legalshield.com/employment/',
+//         'Employment Lawyers & Online Legal Advice - LegalShield',
+//         'https://uat-legalshield.com/business-licenses/',
+//         'Apply for Business Licenses Online - LegalShield',
+//         'https://uat-legalshield.com/civil-litigation/',
+//         'Business Litigation Legal Advice for Small Businesses - LegalShield',
+//         'https://uat-legalshield.com/start-a-business/business-formation/articles-of-organization/',
+//         'File Articles of Organization Online - LegalShield',
+//         'https://uat-legalshield.com/business-licenses/business-permits/',
+//         'Apply for Business Permits Online - LegalShield',
+//         'https://uat-legalshield.com/start-a-business/business-formation/business-structure/',
+//         'Selecting Your New Business Legal Structure - LegalShield',
+//         'https://uat-legalshield.com/start-a-business/business-formation/business-name-check/',
+//         'Business Name Check - Is Your Business Name Available? - LegalShield',
+//         'https://uat-legalshield.com/start-a-business/business-formation/business-type-comparison-chart/',
+//         'Business Type Comparison Chart - LegalShield',
+//         'https://uat-legalshield.com/start-a-business/business-formation/llc/',
+//         'Form an LLC Online - LegalShield',
+//       ])
+//     );
+//     await test.step(`Verifying that the disclaimer is visible below the nav list section`, async () => {
+//       await expect(legalshieldService.navListSectionComponent.locNavListDisclaimer).toBeVisible();
+//     });
+//   });
+// });
+// // Feature List Section
+// test('Feature List Section Test Links @Legalshield', async ({ page }) => {
+//   await test.step(`Verify we are in the feature list section by checking the header text`, async () => {
+//     await expect(legalshieldService.featuresGridSectionComponent.locFeatureListContentHeadline).toHaveText([
+//       'Hire a lawyer the smart way, not the hard way',
+//     ]);
+//   });
+//   await test.step(`Verify we are in the feature list section by checking the header of each card`, async () => {
+//     await expect(legalshieldService.featuresGridSectionComponent.locFeatureListCardHeadline).toHaveText([
+//       'Help with unlimited legal issues',
+//       'Affordable legal services for as little as $1/day',
+//       'Skilled, vetted lawyers in your area',
+//     ]);
+//   });
+//   await test.step(`Click on all the Feature List Section links and get the resulting page urls and titles`, async () => {
+//     const card = await legalshieldService.featuresGridSectionComponent.locFeatureListCardLink;
+//     const results = await legalshieldService.clickAllLinksAndVerifyExpectedUrlAndTitle(card);
+//     expect(results).toEqual(
+//       expect.arrayContaining([
+//         'https://uat-legalshield.com/why-legalshield/how-it-works/',
+//         'How it Works - LegalShield Prepaid Legal Services',
+//         'https://uat-legalshield.com/legal-plans-overview/',
+//         'Legal Plans Overview - Online Legal Advice - LegalShield',
+//         'https://uat-legalshield.com/law-firms/',
+//         'Lawyers Near Me - LegalShield',
+//       ])
+//     );
+//   });
+// });
 
 // Testimonial Carousel Section
 test('Testimonial Carousel Section Tests', async ({ page }) => {

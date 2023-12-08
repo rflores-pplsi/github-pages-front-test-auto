@@ -52,3 +52,13 @@ export type ConsumerFlowData = {
   testCaseName: string;
   userType: string;
 };
+
+export type PageUrlAndTitleArray = {
+  url: string;
+  title: string;
+}[];
+
+export type PlanNameCostArray = {
+  name: string;
+  cost: string;
+}[];

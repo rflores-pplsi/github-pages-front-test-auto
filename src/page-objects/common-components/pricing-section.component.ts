@@ -8,7 +8,7 @@ export class PricingSectionComponent {
   readonly locPricingSectionCard: Locator;
   readonly locPricingSectionCardPromoBadge: Locator;
   readonly locPricingSectionCardImage: Locator;
-  readonly locPricingSectionCardHeadline: Locator;
+  readonly locCardHeader: Locator;
   readonly locPricingSectionCardDescription: Locator;
   readonly locPricingSectionCardInfoTitle: Locator;
   readonly locPricingSectionCardBenefits: Locator;
@@ -28,9 +28,7 @@ export class PricingSectionComponent {
     this.locPricingSectionCard = this.page.locator('#section-pricing_section .lsux-grid .lsux-col .lsux-card');
     this.locPricingSectionCardPromoBadge = this.page.locator('#section-pricing_section .lsux-grid .lsux-col .lsux-card--has-promo .promo-badge');
     this.locPricingSectionCardImage = this.page.locator('#section-pricing_section .lsux-grid .lsux-col .lsux-card .lsux-card__image img');
-    this.locPricingSectionCardHeadline = this.page.locator(
-      '#section-pricing_section .lsux-grid .lsux-col .lsux-card .lsux-card__content h3.lsux-heading--t31'
-    );
+    this.locCardHeader = this.page.locator('#section-pricing_section .lsux-grid .lsux-col .lsux-card .lsux-card__content h3.lsux-heading--t31');
     this.locPricingSectionCardDescription = this.page.locator(
       '#section-pricing_section .lsux-grid .lsux-col .lsux-card .lsux-card__content p.lsux-text'
     );
