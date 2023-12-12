@@ -104,6 +104,16 @@ export const legalshieldServiceData = [
         ],
       },
     },
+    callToActionSection: {
+      included: false,
+      expectedHeader: '',
+      expectedDescription: '',
+      button: {
+        included: true,
+        expectedTitle: '',
+        expectedUrl: '',
+      },
+    },
   },
   {
     disabled: false,
@@ -150,6 +160,16 @@ export const legalshieldServiceData = [
       expectedHeaders: [],
       links: {
         expectedUrlsAndTitles: [],
+      },
+    },
+    callToActionSection: {
+      included: false,
+      expectedHeader: '',
+      expectedDescription: '',
+      button: {
+        included: true,
+        expectedTitle: '',
+        expectedUrl: '',
       },
     },
   },
@@ -202,6 +222,16 @@ export const legalshieldServiceData = [
           { url: 'legalshield.com/employment/', title: 'Employment Lawyers & Online Legal Advice - LegalShield' },
           { url: 'legalshield.com/start-a-business/', title: 'Starting a Business - Legal Consultation & Advice - LegalShield' },
         ],
+      },
+    },
+    callToActionSection: {
+      included: false,
+      expectedHeader: '',
+      expectedDescription: '',
+      button: {
+        included: true,
+        expectedTitle: '',
+        expectedUrl: '',
       },
     },
   },

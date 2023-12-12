@@ -11,6 +11,7 @@ import { GridSectionComponent } from '../../common-components/grid-section.compo
 import { PricingSectionComponent } from '../../common-components/pricing-section.component';
 import { NavListSectionComponent } from '../../common-components/nav_list-section.component';
 import { FeaturesGridSectionComponent } from '../../common-components/features-grid-section.component';
+import { CallToActionSectionComponent } from '../../common-components/call-to-action-sction.component';
 
 export class LegalshieldService {
   protected page: Page;
@@ -24,6 +25,7 @@ export class LegalshieldService {
   readonly pricingSectionComponent: PricingSectionComponent;
   readonly navListSectionComponent: NavListSectionComponent;
   readonly featuresGridSectionComponent: FeaturesGridSectionComponent;
+  readonly callToActionSectionComponent: CallToActionSectionComponent;
   readonly legalshieldPage: LegalshieldPage;
   readonly firstGetStartedButton: Locator;
 
@@ -39,6 +41,7 @@ export class LegalshieldService {
     this.pricingSectionComponent = new PricingSectionComponent(context, page);
     this.navListSectionComponent = new NavListSectionComponent(context, page);
     this.featuresGridSectionComponent = new FeaturesGridSectionComponent(context, page);
+    this.callToActionSectionComponent = new CallToActionSectionComponent(context, page);
     this.legalshieldPage = new LegalshieldPage(context, page);
     this.firstGetStartedButton = this.page.locator(`//div[@id="main-content"]//a[@id="lsc-add-to-cart-button"]`).nth(0);
   }

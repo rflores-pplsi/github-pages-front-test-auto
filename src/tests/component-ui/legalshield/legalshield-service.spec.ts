@@ -127,7 +127,7 @@ for (const pageUnderTest of legalshieldServiceData.filter((legalshieldPage) => l
     });
     if (pageUnderTest.featuresGridSection.included == true) {
       test(`${pageUnderTest.pageName} page: Verify Features Grid Section`, async () => {
-        console.log(`Test Case: ${pageUnderTest.pageName} page: Verify Features Grid Section} page`);
+        console.log(`Test Case: ${pageUnderTest.pageName} page: Verify Features Grid Section page`);
         await test.step(`Verify headers of expected Cards`, async () => {
           if (pageUnderTest.featuresGridSection.expectedHeaders.length > 0) {
             expect(await legalshieldService.featuresGridSectionComponent.locFeatureGridCardHeadline.allInnerTexts()).toStrictEqual(
@@ -142,6 +142,38 @@ for (const pageUnderTest of legalshieldServiceData.filter((legalshieldPage) => l
             );
           });
         });
+      });
+    }
+  });
+  test.describe(`Call To Action Section`, async () => {
+    test.beforeEach(async ({ context, page }) => {
+      legalshieldService = new LegalshieldService(page, context);
+      await test.step(`Navigate to the ${pageUnderTest.pageName} page`, async () => {
+        await page.goto(pageUnderTest.url);
+      });
+    });
+    if (pageUnderTest.callToActionSection.included == true) {
+      test(`${pageUnderTest.pageName} page: Verify Call To Action Section`, async ({ page }) => {
+        console.log(`Test Case: ${pageUnderTest.pageName} page: Verify Call To Action Section`);
+        if (pageUnderTest.callToActionSection.expectedHeader != '') {
+          await test.step(`Verify Call To Action Header`, async () => {
+            await expect(legalshieldService.callToActionSectionComponent.header).toContainText(pageUnderTest.callToActionSection.expectedHeader);
+          });
+        }
+        if (pageUnderTest.callToActionSection.expectedDescription != '') {
+          await test.step(`Verify Call To Action Description`, async () => {
+            await expect(legalshieldService.callToActionSectionComponent.description).toContainText(
+              pageUnderTest.callToActionSection.expectedDescription
+            );
+          });
+        }
+        if (pageUnderTest.callToActionSection.button.included) {
+          await test.step(`Legalshield Call To Action Section Click On Button`, async () => {
+            await legalshieldService.callToActionSectionComponent.locCallToActionButton.click();
+            await expect(page).toHaveURL(new RegExp(`${pageUnderTest.callToActionSection.button.expectedUrl}`));
+            await expect(page).toHaveTitle(pageUnderTest.callToActionSection.button.expectedTitle);
+          });
+        }
       });
     }
   });
