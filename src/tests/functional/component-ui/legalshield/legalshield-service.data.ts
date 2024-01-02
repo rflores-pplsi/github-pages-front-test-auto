@@ -34,4 +34,22 @@ export const legalshieldServiceData = [
     pageName: 'Legal Plans Overview',
     url: `${UrlsUtils.legalshieldService.baseUrl}/legal-plans-overview/`,
   },
+
+  {
+    disabled: true,
+    pageName: 'Business Plan Essentials',
+    url: `${UrlsUtils.legalshieldService.baseUrl}/business-plan/coverage-pricing-essentials-v2/`,
+  },
+
+  {
+    disabled: true,
+    pageName: 'Business Plan Plus',
+    url: `${UrlsUtils.legalshieldService.baseUrl}/business-plan/coverage-pricing-plus-v2/`,
+  },
+
+  {
+    disabled: true,
+    pageName: 'Business Plan Pro',
+    url: `${UrlsUtils.legalshieldService.baseUrl}/business-plan/coverage-pricing-pro-v2/`,
+  },
 ];
