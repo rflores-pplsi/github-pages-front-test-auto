@@ -10,6 +10,9 @@ const config: PlaywrightTestConfig = {
       name: 'chromium',
       use: {
         ...devices['Desktop Chrome'],
+        launchOptions: {
+          args: ['--remote-debugging-port=9222'],
+        },
         screenshot: 'on',
         trace: 'on',
         video: 'on',
