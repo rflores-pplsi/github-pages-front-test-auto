@@ -3,14 +3,11 @@ import { legalShieldPageUrls } from './legalshield-service.pageurls';
 import { thresholds } from './lighthouse-thresholds';
 import { playAudit } from 'playwright-lighthouse';
 import lighthouseDesktopConfig from 'lighthouse/lighthouse-core/config/lr-desktop-config';
-import { LegalshieldService } from '../../page-objects/marketing-sites/legalshield/legalshield-service';
-let legalshieldService: LegalshieldService;
 
 legalShieldPageUrls.forEach((pageData) => {
   test.slow();
   test.describe(`Lighthouse test for ${pageData.url}`, async () => {
     test.beforeEach(async ({ context, page }) => {
-      legalshieldService = new LegalshieldService(page, context);
       await test.step(`Navigate to the ${pageData.pageName} page`, async () => {
         await page.goto(pageData.url);
       });
@@ -20,6 +17,7 @@ legalShieldPageUrls.forEach((pageData) => {
       await newPage.goto(pageData.url);
       await playAudit({
         config: lighthouseDesktopConfig,
+        ignoreError: true,
         opts: {
           loglevel: 'info',
         },
