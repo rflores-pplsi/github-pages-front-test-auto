@@ -9,7 +9,8 @@
   "scripts": {
     "check-types": "npx tsc --noEmit",
     "lint": "eslint . --ext .ts",
-    "lint:fix": "eslint --fix ."
+    "lint:fix": "eslint --fix .",
+    "testa11y": "USE_PROD=true npx playwright test a11y.spec.ts --headed"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
   ],
   "author": "PPLSI Platform Frontend Team",
   "devDependencies": {
+    "@axe-core/playwright": "^4.8.2",
     "@fastify/pre-commit": "^2.0.2",
     "@legalshield/frontend-automation-commons": "^0.6.16",
     "@playwright/test": "^1.40.1",
@@ -29,6 +31,7 @@
     "@typescript-eslint/eslint-plugin": "^5.43.0",
     "@typescript-eslint/parser": "^5.43.0",
     "allure-playwright": "^2.9.2",
+    "axe-html-reporter": "^2.2.3",
     "dotenv": "^16.0.3",
     "eslint": "^8.27.0",
     "eslint-config-prettier": "^8.5.0",
