@@ -1,4 +1,4 @@
-import { Locator, Page, BrowserContext, expect } from '@playwright/test';
+import { Locator, Page, BrowserContext, expect, test, Response } from '@playwright/test';
 import { ProductDetails, PageUrlAndTitleArray, PlanNameCostArray } from '../../../types/types';
 import UrlsUtils from '../../../utils/urls.utils';
 import { LegalshieldPage } from './legalshield.page';
@@ -11,7 +11,7 @@ import { GridSectionComponent } from '../../common-components/grid-section.compo
 import { PricingSectionComponent } from '../../common-components/pricing-section.component';
 import { NavListSectionComponent } from '../../common-components/nav_list-section.component';
 import { FeaturesGridSectionComponent } from '../../common-components/features-grid-section.component';
-import { CallToActionSectionComponent } from '../../common-components/call-to-action-sction.component';
+import { CallToActionSectionComponent } from '../../common-components/call-to-action-section.component';
 
 export class LegalshieldService {
   protected page: Page;
@@ -28,6 +28,14 @@ export class LegalshieldService {
   readonly callToActionSectionComponent: CallToActionSectionComponent;
   readonly legalshieldPage: LegalshieldPage;
   readonly firstGetStartedButton: Locator;
+  readonly locLinksThatNavigateToNewPage: Locator;
+  readonly locLinksThatNavigateToNewTab: Locator;
+  readonly locContainersWithAddToCartLinks: Locator;
+  readonly locLinksThatAddToCart: Locator;
+  readonly locLinksThatTriggerPopUps: Locator;
+  readonly locDisplayedPopUpContainer: Locator;
+  readonly locPopUpCloseButton: Locator;
+  readonly locAnchorLinks: Locator;
 
   constructor(page: Page, context: BrowserContext) {
     this.page = page;
@@ -44,7 +52,40 @@ export class LegalshieldService {
     this.callToActionSectionComponent = new CallToActionSectionComponent(context, page);
     this.legalshieldPage = new LegalshieldPage(context, page);
     this.firstGetStartedButton = this.page.locator(`//div[@id="main-content"]//a[@id="lsc-add-to-cart-button"]`).nth(0);
+
+    this.locLinksThatNavigateToNewPage = this.page.locator(
+      'body .lsux-link[href]:not([target="_blank"]):not([href*="javascript:void(0)"]):not([href*="#"]), body .lsux-button--primary[href]:not([target="_blank"]):not([href*="javascript:void(0)"]):not([href*="#"])'
+    );
+    this.locLinksThatNavigateToNewTab = this.page.locator(
+      'body .lsux-link[href]:is([target="_blank"]), body .lsux-button--primary[href]:is([target="_blank"])'
+    );
+
+    this.locContainersWithAddToCartLinks = this.page.locator(
+      'body .lsux-card:has(a#lsc-add-to-cart-button):first-child h3.lsux-heading--t31 , body .lsux-heading:has(a#lsc-add-to-cart-button)'
+    );
+    this.locLinksThatAddToCart = this.page.locator(
+      'body .lsux-card:has(a#lsc-add-to-cart-button) a,body .lsux-heading:has(a#lsc-add-to-cart-button) a'
+    );
+    this.locLinksThatTriggerPopUps = this.page.locator('body .lsux-link[href][id*="open-modal"], body .lsux-button--primary[href][id*="open-modal"]');
+
+    this.locDisplayedPopUpContainer = this.page.locator('[id*="modal"][style*="display: block"]');
+    this.locPopUpCloseButton = this.page.locator('[id*="modal"][style*="display: block"] img');
+    this.locAnchorLinks = this.page.locator('body .lsux-link[href*="#"], body .lsux-button--primary[href*="#"]');
   }
+
+  navigateToUrl = async (url: string): Promise<void> => {
+    await this.page.goto(url);
+    // Keeping this around to see if the prod dialog
+    // eslint-disable-next-line const-case/uppercase
+    const dialogCloseButton = '//div[contains(@class,"ub-emb-iframe-wrapper ub-emb-visible")]//button';
+    const isDialogPresent = await this.page
+      .waitForSelector(dialogCloseButton, { timeout: 3000 })
+      .then(() => true)
+      .catch(() => false);
+    if (isDialogPresent == true) {
+      await this.page.locator(dialogCloseButton).click();
+    }
+  };
 
   /**
    *
@@ -182,24 +223,6 @@ export class LegalshieldService {
     }
   };
 
-  clickAllLinksAndVerifyThCartIsUpdated = async (links: Locator, planNameAndCost: PlanNameCostArray): Promise<void> => {
-    const count = await links.count();
-    for (let i = 0; i < count; i++) {
-      try {
-        await links.nth(i).click();
-        await this.page.screenshot({ fullPage: true, path: `screenshots/${new Date().getTime()}-${i}.png` });
-        await expect.soft(this.marketingSitesCartComponent.locCartContainerDiv).toContainText(planNameAndCost[i].name);
-        await expect.soft(this.marketingSitesCartComponent.locCartContainerDiv).toContainText(planNameAndCost[i].cost);
-        await expect.soft(this.marketingSiteHeaderComponent.locShoppingCartItemAddedNotification).toBeVisible();
-        await this.marketingSitesCartComponent.locTrashCanIcon.click();
-        await this.marketingSitesCartComponent.locContinueShoppingLink.click();
-      } catch {
-        console.log('Errored out in catch');
-        continue;
-      }
-    }
-  };
-
   clickItemsFromUnorderedList = async (listItems: Locator): Promise<Array<string>> => {
     const items = await listItems.all();
     let results = [];
@@ -217,5 +240,90 @@ export class LegalshieldService {
     }
     results = await Promise.all(results);
     return results;
+  };
+
+  clickNavigationLocatorsAndVerifyResponseCodes = async (pageUnderTestURL: string, locator: Locator, expectedStatusCode: number): Promise<void> => {
+    const locators = await locator.all();
+    let response: Response;
+    console.log(`Found ${locators.length} elements`);
+    for (const locator of locators) {
+      const expectedURL = await locator.getAttribute('href');
+      await test.step(`Click link to navigate to ${expectedURL}`, async () => {
+        [response] = await Promise.all([this.page.waitForResponse((response) => response.url() === expectedURL), locator.click()]);
+      });
+      await test.step(`Verify Status:200`, async () => {
+        expect.soft(response.status()).toBe(expectedStatusCode);
+      });
+      await test.step(`Return to Page Under Test`, async () => {
+        await this.page.goto(pageUnderTestURL);
+      });
+    }
+  };
+
+  clickNavigationLocatorsAndVerifyNewTabURLWithoutError = async (locator: Locator): Promise<void> => {
+    const locators = await locator.all();
+    let newTab: Page;
+    console.log(`Found ${locators.length} elements`);
+    for (const locator of locators) {
+      const expectedURL = await locator.getAttribute('href');
+      await test.step(`Click link to navigate to ${expectedURL}`, async () => {
+        [newTab] = await Promise.all([this.context.waitForEvent('page'), await locator.click()]);
+      });
+      await test.step(`Verify Expected URL loads without a Page Not Found`, async () => {
+        expect.soft(newTab.url()).toBe(expectedURL);
+        expect.soft((await newTab.title()).toLowerCase).not.toContain('page not found');
+      });
+    }
+  };
+
+  clickAllAddToCartLinksAndVerifyCartIsUpdated = async (container: Locator): Promise<void> => {
+    const containers = await container.all();
+    let index = 0;
+    console.log(`Found ${containers.length} containers`);
+    for (const container of containers) {
+      const containerInnerText = await container.allInnerTexts();
+      const planName = containerInnerText[0].split('\n')[0].replace('Plan', '');
+      await test.step(`Click add To Cart link for ${planName}`, async () => {
+        await this.locLinksThatAddToCart.nth(index).click();
+      });
+      if (planName.includes('Business') || planName.includes('Essentials') || planName.includes('Pro') || planName.includes('Plus')) {
+        await this.smallBusinessQualifyingComponent.completeQualifyingQuestionnaireWithNos();
+      }
+      await test.step(`Verify Cart contains Plan Name and Header displays plan added notification icon`, async () => {
+        await expect.soft(this.marketingSitesCartComponent.locCartContainerDiv).toContainText(planName);
+        await expect.soft(this.marketingSiteHeaderComponent.locShoppingCartItemAddedNotification).toBeVisible();
+      });
+      await this.marketingSitesCartComponent.locTrashCanIcon.click();
+      await this.marketingSitesCartComponent.locContinueShoppingLink.click();
+      index++;
+    }
+  };
+
+  clickAllPopUpLinksAndVerifyPopUpDisplays = async (locator: Locator): Promise<void> => {
+    const locators = await locator.all();
+    console.log(`Found ${locators.length} elements`);
+    for (const locator of locators) {
+      await test.step(`Click link to navigate to display Pop Up`, async () => {
+        await locator.click();
+      });
+      await test.step(`Verify Pop Up is displayed`, async () => {
+        await expect.soft(this.locDisplayedPopUpContainer).toBeVisible();
+      });
+      await this.locPopUpCloseButton.click();
+    }
+  };
+
+  clickAllAnchorLinksAndVerifyScroll = async (locator: Locator): Promise<void> => {
+    const locators = await locator.all();
+    console.log(`Found ${locators.length} elements`);
+    for (const locator of locators) {
+      await test.step(`Click link to scroll to a section on this page`, async () => {
+        await locator.click();
+      });
+      await test.step(`Verify page has scrolled`, async () => {
+        const pageScrollY = await this.page.evaluate(() => window.scrollY);
+        expect(pageScrollY).toBeGreaterThan(0);
+      });
+    }
   };
 }
