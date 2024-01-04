@@ -40,7 +40,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  test.only('Verify redirected to Login Service after clicking on Click here to Login button on Modal @LoginExistingUser', async () => {
+  test('Verify redirected to Login Service after clicking on Click here to Login button on Modal @LoginExistingUser', async () => {
     console.log('Test Case: Verify redirected to Login Service after clicking on Click here to Login button on Modal');
     await test.step(`Enter Existing Email Address`, async () => {
       await commonCheckoutService.accountPage.locEmailAddressInput.fill(basicUser.email);

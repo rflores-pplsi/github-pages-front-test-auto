@@ -1,6 +1,7 @@
 import { Locator, Page, BrowserContext, expect, test, Response } from '@playwright/test';
 import { ProductDetails, PageUrlAndTitleArray, PlanNameCostArray } from '../../../types/types';
 import UrlsUtils from '../../../utils/urls.utils';
+import { HeaderComponent } from './header.page';
 import { LegalshieldPage } from './legalshield.page';
 import { SmallBusinessQualifyingComponent } from './legalshield-small-business-qualifying.component';
 import { MarketingSitesCartComponent } from '../marketing-sites-cart-component';
@@ -16,6 +17,7 @@ import { CallToActionSectionComponent } from '../../common-components/call-to-ac
 export class LegalshieldService {
   protected page: Page;
   protected context: BrowserContext;
+  readonly headerComponent: HeaderComponent;
   readonly smallBusinessQualifyingComponent: SmallBusinessQualifyingComponent;
   readonly marketingSitesCartComponent: MarketingSitesCartComponent;
   readonly marketingSiteHeaderComponent: MarketingSiteHeaderComponent;
@@ -40,6 +42,7 @@ export class LegalshieldService {
   constructor(page: Page, context: BrowserContext) {
     this.page = page;
     this.context = context;
+    this.headerComponent = new HeaderComponent(page);
     this.smallBusinessQualifyingComponent = new SmallBusinessQualifyingComponent(page);
     this.marketingSitesCartComponent = new MarketingSitesCartComponent(page);
     this.marketingSiteFooterComponent = new MarketingSiteFooterComponent(page);
@@ -52,14 +55,12 @@ export class LegalshieldService {
     this.callToActionSectionComponent = new CallToActionSectionComponent(context, page);
     this.legalshieldPage = new LegalshieldPage(context, page);
     this.firstGetStartedButton = this.page.locator(`//div[@id="main-content"]//a[@id="lsc-add-to-cart-button"]`).nth(0);
-
     this.locLinksThatNavigateToNewPage = this.page.locator(
       'body .lsux-link[href]:not([target="_blank"]):not([href*="javascript:void(0)"]):not([href*="#"]), body .lsux-button--primary[href]:not([target="_blank"]):not([href*="javascript:void(0)"]):not([href*="#"])'
     );
     this.locLinksThatNavigateToNewTab = this.page.locator(
       'body .lsux-link[href]:is([target="_blank"]), body .lsux-button--primary[href]:is([target="_blank"]), body .lsux-download-app a[href]:is([target="_blank"]), body .lsux-button--tertiary a[href]:is([target="_blank"])'
     );
-
     this.locContainersWithAddToCartLinks = this.page.locator(
       'body .lsux-card:has(a#lsc-add-to-cart-button):first-child h3.lsux-heading--t31 , body .lsux-heading:has(a#lsc-add-to-cart-button)'
     );
@@ -67,7 +68,6 @@ export class LegalshieldService {
       'body .lsux-card:has(a#lsc-add-to-cart-button) a,body .lsux-heading:has(a#lsc-add-to-cart-button) a'
     );
     this.locLinksThatTriggerPopUps = this.page.locator('body .lsux-link[href][id*="open-modal"], body .lsux-button--primary[href][id*="open-modal"]');
-
     this.locDisplayedPopUpContainer = this.page.locator('[id*="modal"][style*="display: block"]');
     this.locPopUpCloseButton = this.page.locator('[id*="modal"][style*="display: block"] img');
     this.locAnchorLinks = this.page.locator('body .lsux-link[href*="#"], body .lsux-button--primary[href*="#"]');
