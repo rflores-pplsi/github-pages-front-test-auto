@@ -57,7 +57,7 @@ export class LegalshieldService {
       'body .lsux-link[href]:not([target="_blank"]):not([href*="javascript:void(0)"]):not([href*="#"]), body .lsux-button--primary[href]:not([target="_blank"]):not([href*="javascript:void(0)"]):not([href*="#"])'
     );
     this.locLinksThatNavigateToNewTab = this.page.locator(
-      'body .lsux-link[href]:is([target="_blank"]), body .lsux-button--primary[href]:is([target="_blank"])'
+      'body .lsux-link[href]:is([target="_blank"]), body .lsux-button--primary[href]:is([target="_blank"]), body .lsux-download-app a[href]:is([target="_blank"])'
     );
 
     this.locContainersWithAddToCartLinks = this.page.locator(
@@ -259,7 +259,6 @@ export class LegalshieldService {
       });
     }
   };
-
   clickNavigationLocatorsAndVerifyNewTabURLWithoutError = async (locator: Locator): Promise<void> => {
     const locators = await locator.all();
     let newTab: Page;
