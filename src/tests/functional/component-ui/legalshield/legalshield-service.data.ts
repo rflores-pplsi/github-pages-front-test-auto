@@ -36,20 +36,14 @@ export const legalshieldServiceData = [
   },
 
   {
-    disabled: true,
-    pageName: 'Business Plan Essentials',
-    url: `${UrlsUtils.legalshieldService.baseUrl}/business-plan/coverage-pricing-essentials-v2/`,
+    disabled: false,
+    pageName: 'Choose a Business Plan',
+    url: `${UrlsUtils.legalshieldService.baseUrl}/business-plan/choose-a-plan/`,
   },
 
   {
-    disabled: true,
-    pageName: 'Business Plan Plus',
-    url: `${UrlsUtils.legalshieldService.baseUrl}/business-plan/coverage-pricing-plus-v2/`,
-  },
-
-  {
-    disabled: true,
-    pageName: 'Business Plan Pro',
-    url: `${UrlsUtils.legalshieldService.baseUrl}/business-plan/coverage-pricing-pro-v2/`,
+    disabled: false,
+    pageName: 'Business Plan FAQ',
+    url: `${UrlsUtils.legalshieldService.baseUrl}/business-plan/faq/`,
   },
 ];
