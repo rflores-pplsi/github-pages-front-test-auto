@@ -46,4 +46,10 @@ export const legalshieldServiceData = [
     pageName: 'Business Plan FAQ',
     url: `${UrlsUtils.legalshieldService.baseUrl}/business-plan/faq/`,
   },
+
+  {
+    disabled: false,
+    pageName: 'Business Licenses Federal and State Requirements',
+    url: `${UrlsUtils.legalshieldService.baseUrl}/business-licenses/federal-and-state-requirements/`,
+  },
 ];
