@@ -33,11 +33,11 @@ for (const pageUnderTest of legalshieldServiceData.filter((pageUnderTest) => pag
 
   test(`${pageUnderTest.pageName} page: Click links that add to cart, verify cart updated`, async () => {
     await legalshieldService.navigateToUrl(pageUnderTest.url);
-    test.skip((await legalshieldService.locContainersWithAddToCartLinks.count()) == 0, 'No add to cart links found');
+    test.skip((await legalshieldService.locLinksThatAddToCart.count()) == 0, 'No add to cart links found');
     console.log(`Test Case: ${pageUnderTest.pageName} page: Click links that add to cart, verify cart updated`);
     test.slow();
     await test.step(`Click All add to cart Links and verify cart is updated`, async () => {
-      await legalshieldService.clickAllAddToCartLinksAndVerifyCartIsUpdated(legalshieldService.locContainersWithAddToCartLinks);
+      await legalshieldService.clickAllAddToCartLinksAndVerifyCartIsUpdated(legalshieldService.locLinksThatAddToCart);
     });
   });
 

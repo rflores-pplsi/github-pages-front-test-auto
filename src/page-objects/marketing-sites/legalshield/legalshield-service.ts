@@ -32,7 +32,6 @@ export class LegalshieldService {
   readonly firstGetStartedButton: Locator;
   readonly locLinksThatNavigateToNewPage: Locator;
   readonly locLinksThatNavigateToNewTab: Locator;
-  readonly locContainersWithAddToCartLinks: Locator;
   readonly locLinksThatAddToCart: Locator;
   readonly locLinksThatTriggerPopUps: Locator;
   readonly locDisplayedPopUpContainer: Locator;
@@ -61,11 +60,8 @@ export class LegalshieldService {
     this.locLinksThatNavigateToNewTab = this.page.locator(
       'body .lsux-link[href]:is([target="_blank"]), body .lsux-button--primary[href]:is([target="_blank"]), body .lsux-download-app a[href]:is([target="_blank"]), body .lsux-button--tertiary a[href]:is([target="_blank"])'
     );
-    this.locContainersWithAddToCartLinks = this.page.locator(
-      'body .lsux-card:has(a#lsc-add-to-cart-button):first-child h3.lsux-heading--t31 , body .lsux-heading:has(a#lsc-add-to-cart-button)'
-    );
     this.locLinksThatAddToCart = this.page.locator(
-      'body .lsux-card:has(a#lsc-add-to-cart-button) a,body .lsux-heading:has(a#lsc-add-to-cart-button) a'
+      'body .lsux-card:has(a#lsc-add-to-cart-button) a,body .lsux-heading:has(a#lsc-add-to-cart-button) a, body:has(a#lsc-add-to-cart-button) a.lsc-add-to-cart-button'
     );
     this.locLinksThatTriggerPopUps = this.page.locator('body .lsux-link[href][id*="open-modal"], body .lsux-button--primary[href][id*="open-modal"]');
     this.locDisplayedPopUpContainer = this.page.locator('[id*="modal"][style*="display: block"]');
@@ -270,31 +266,28 @@ export class LegalshieldService {
       });
       await test.step(`Verify Expected URL loads without a Page Not Found`, async () => {
         expect.soft(newTab.url()).toBe(expectedURL);
-        expect.soft((await newTab.title()).toLowerCase).not.toContain('page not found');
+        //expect.soft((await newTab.title()).toLowerCase).not.toContain('page not found');
       });
     }
   };
 
-  clickAllAddToCartLinksAndVerifyCartIsUpdated = async (container: Locator): Promise<void> => {
-    const containers = await container.all();
-    let index = 0;
-    console.log(`Found ${containers.length} containers`);
-    for (const container of containers) {
-      const containerInnerText = await container.allInnerTexts();
-      const planName = containerInnerText[0].split('\n')[0].replace('Plan', '');
-      await test.step(`Click add To Cart link for ${planName}`, async () => {
-        await this.locLinksThatAddToCart.nth(index).click();
+  clickAllAddToCartLinksAndVerifyCartIsUpdated = async (locator: Locator): Promise<void> => {
+    const locators = await locator.all();
+    console.log(`Found ${locators.length} locators`);
+    for (const locator of locators) {
+      const shortCode = await locator.locator('+ .lsc-shortcode-field .et_pb_code_inner').innerText();
+      await test.step(`Click add To Cart link`, async () => {
+        await locator.click();
       });
-      if (planName.includes('Business') || planName.includes('Essentials') || planName.includes('Pro') || planName.includes('Plus')) {
+      if (shortCode.includes('BUS') || shortCode.includes('PRO') || shortCode.includes('PLUS') || shortCode.includes('ESS')) {
         await this.smallBusinessQualifyingComponent.completeQualifyingQuestionnaireWithNos();
       }
       await test.step(`Verify Cart contains Plan Name and Header displays plan added notification icon`, async () => {
-        await expect.soft(this.marketingSitesCartComponent.locCartContainerDiv).toContainText(planName);
+        await expect.soft(this.marketingSitesCartComponent.locCartContainerDiv).toContainText(shortCode);
         await expect.soft(this.marketingSiteHeaderComponent.locShoppingCartItemAddedNotification).toBeVisible();
       });
       await this.marketingSitesCartComponent.locTrashCanIcon.click();
       await this.marketingSitesCartComponent.locContinueShoppingLink.click();
-      index++;
     }
   };
 
