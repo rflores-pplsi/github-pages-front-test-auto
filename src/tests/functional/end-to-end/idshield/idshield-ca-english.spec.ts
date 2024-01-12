@@ -77,14 +77,18 @@ for (const regionUnderTest of regionsUnderTest) {
     await test.step(`Fill out Bank Draft form and Submit`, async () => {
       await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormCanada('0000000', '11242', '260', 'Tester');
     });
-    await test.step(`Click on the Purchase button`, async () => {
-      await commonCheckoutService.paymentPage.bankDraftComponent.locPurchaseButton.click();
-    });
-    await test.step(`Click Let's Go Link`, async () => {
-      await commonCheckoutService.paymentPage.confirmationPage.locLetsGoButton.click();
-    });
-    await test.step(`Assert Accounts Page URL`, async () => {
-      await expect(page).toHaveURL(new RegExp('accounts'));
-    });
+    if (process.env.USE_PROD == 'true') {
+      console.log('* Do not finish transaction in PRODUCTION environment *');
+    } else {
+      await test.step(`Click on the Purchase button`, async () => {
+        await commonCheckoutService.paymentPage.bankDraftComponent.locPurchaseButton.click();
+      });
+      await test.step(`Click Let's Go Link`, async () => {
+        await commonCheckoutService.paymentPage.confirmationPage.locLetsGoButton.click();
+      });
+      await test.step(`Assert Accounts Page URL`, async () => {
+        await expect(page).toHaveURL(new RegExp('accounts'));
+      });
+    }
   });
 }

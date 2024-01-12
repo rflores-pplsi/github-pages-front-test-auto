@@ -35,7 +35,7 @@ for (const testCase of weAreLegalshieldData.filter((testCase) => testCase.disabl
       await test.step(`Add Plans: ${testCase.planDetails}`, async () => {
         await walsService.addPlansFromProductDetails(testCase.planDetails);
       });
-      //TODO: Create/find account that allows purchase from associate account
+      // TODO: Create/find account that allows purchase from associate account
       //   await test.step(`Fill all required fields on personal info ${regionInfo.name}`, async () => {
       //     await newCheckoutService.newCheckoutInformationPage.completeContactInformationForm(
       //       'test@tester.com',
@@ -60,12 +60,16 @@ for (const testCase of weAreLegalshieldData.filter((testCase) => testCase.disabl
       //   await test.step(`Complete Bank Draft Form`, async () => {
       //     await newCheckoutService.newCheckoutPaymentPage.completeBankDraftFrom('Tester', '103000648', '1000123546');
       //   });
-      //   await test.step(`Click Purchase Button`, async () => {
-      //     await newCheckoutService.newCheckoutPaymentPage.locSaveBankDraftButton.click();
-      //   });
-      //   await test.step(`Assert Confirmation Page`, async () => {
-      //     await expect(newCheckoutService.newCheckoutConfirmationPage.locConfirmationWrapper).toBeVisible();
-      //   });
+      //   if (process.env.USE_PROD == 'true') {
+      //     console.log('* Do not finish transaction in PRODUCTION environment *');
+      //   } else {
+      //     await test.step(`Click Purchase Button`, async () => {
+      //       await newCheckoutService.newCheckoutPaymentPage.locSaveBankDraftButton.click();
+      //     });
+      //     await test.step(`Assert Confirmation Page`, async () => {
+      //       await expect(newCheckoutService.newCheckoutConfirmationPage.locConfirmationWrapper).toBeVisible();
+      //     });
+      //   }
     });
   }
 }

@@ -83,21 +83,25 @@ for (const regionUnderTest of regionsUnderTest) {
       await test.step(`Fill out Bank Draft form`, async () => {
         await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates('1000123546', '103000648', 'Test');
       });
-      await test.step(`Click on Purchase button`, async () => {
-        await commonCheckoutService.paymentPage.bankDraftComponent.locPurchaseButton.click();
-      });
-      await test.step(`Click on Purchase button`, async () => {
-        await commonCheckoutService.confirmationPage.locConfirmationScreenContainer.waitFor();
-        await expect(commonCheckoutService.confirmationPage.locConfirmationScreenContainer).toBeVisible();
-      });
-      //TODO: uncomment if myaccounts dropdown re-implemented on page
-      // await test.step(`Click on the My account option in the header dropdown`, async () => {
-      //   await commonCheckoutService.paymentPage.globalHeaderComponent.locAccountMenuDropDown.click();
-      //   await commonCheckoutService.paymentPage.globalHeaderComponent.locAccountMenuMyAccountLink.click();
-      // });
-      // await test.step(`Assert Accounts Page URL`, async () => {
-      //   await expect(page).toHaveURL(new RegExp('accounts'));
-      // });
+      if (process.env.USE_PROD == 'true') {
+        console.log('* Do not finish transaction in PRODUCTION environment *');
+      } else {
+        await test.step(`Click on Purchase button`, async () => {
+          await commonCheckoutService.paymentPage.bankDraftComponent.locPurchaseButton.click();
+        });
+        await test.step(`Click on Purchase button`, async () => {
+          await commonCheckoutService.confirmationPage.locConfirmationScreenContainer.waitFor();
+          await expect(commonCheckoutService.confirmationPage.locConfirmationScreenContainer).toBeVisible();
+        });
+        //TODO: uncomment if myaccounts dropdown re-implemented on page
+        // await test.step(`Click on the My account option in the header dropdown`, async () => {
+        //   await commonCheckoutService.paymentPage.globalHeaderComponent.locAccountMenuDropDown.click();
+        //   await commonCheckoutService.paymentPage.globalHeaderComponent.locAccountMenuMyAccountLink.click();
+        // });
+        // await test.step(`Assert Accounts Page URL`, async () => {
+        //   await expect(page).toHaveURL(new RegExp('accounts'));
+        // });
+      }
     }
   });
 }

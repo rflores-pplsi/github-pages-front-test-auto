@@ -52,11 +52,15 @@ for (const regionUnderTest of regionsUnderTest) {
     // await test.step(`Validate Order Summary on Payment Info Page`, async () => {
     //   expect(await checkoutPage.locOrderSummaryComponentTotalAmount.innerText()).toContain('$29.95');
     // });
-    // await test.step(`Fill out Bank Draft form and Submit`, async () => {
-    //   await checkoutPage.completeBankDraftFormUnitedStates('1000123546', '103000648', 'Test', 'Test Bank');
-    // });
-    // await test.step(`Assert Confirmation Page URL`, async () => {
-    //   await expect(checkoutPage.locConfirmationPageWelcomeHeader).toBeVisible({ timeout: 100000 });
-    // });
+    // if (process.env.USE_PROD == 'true') {
+    //   console.log('* Do not finish transaction in PRODUCTION environment *');
+    // } else {
+    //   await test.step(`Fill out Bank Draft form and Submit`, async () => {
+    //     await checkoutPage.completeBankDraftFormUnitedStates('1000123546', '103000648', 'Test', 'Test Bank');
+    //   });
+    //   await test.step(`Assert Confirmation Page URL`, async () => {
+    //     await expect(checkoutPage.locConfirmationPageWelcomeHeader).toBeVisible({ timeout: 100000 });
+    //   });
+    // }
   });
 }

@@ -105,47 +105,51 @@ for (const testCase of legalshieldAssociateData.filter((testCase) => testCase.di
       await test.step('Complete Bank Draft Form', async () => {
         await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates('1000123546', '103000648', 'Test');
       });
-      await test.step('Click Purchase Button and wait for Confirmation Page', async () => {
-        await commonCheckoutService.paymentPage.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
-      });
-      if (testCase.planDetails.some((item) => item.marketingName === 'Associate')) {
-        await test.step(`Click Continue with Associate Start Up button`, async () => {
-          await commonCheckoutService.associateStartupPage.locContinueAssociateStartupButton.click();
-        });
-        await test.step(`Select First Site Name`, async () => {
-          await commonAssociateOfficeService.yourWebsitePage.locFirstSiteNameOption.check();
-        });
-        await test.step(`Click next button`, async () => {
-          await commonAssociateOfficeService.yourWebsitePage.locNextButton.click();
-        });
-        await test.step(`Complete payment information form`, async () => {
-          await commonAssociateOfficeService.commissionDetailsPage.completePaymentInformationForm('1000123546', '103000648', 'Test');
-        });
-        await test.step(`Click Save button`, async () => {
-          await commonAssociateOfficeService.commissionDetailsPage.locSaveButton.click();
-        });
-        await test.step(`Select Payment method`, async () => {
-          await commonAssociateOfficeService.commissionDetailsPage.selectPaymentMethod('3546');
-        });
-        await test.step(`Click Next Button`, async () => {
-          await commonAssociateOfficeService.commissionDetailsPage.locNextButton.click();
-        });
-        await test.step(`Skip Co-applicant screen`, async () => {
-          await commonAssociateOfficeService.coApplicantPage.locSkipButton.click();
-        });
-        await test.step(`Assert Associate-Office Page URL`, async () => {
-          await expect.soft(page).toHaveURL(new RegExp('associate-office'));
-        });
+      if (process.env.USE_PROD == 'true') {
+        console.log('* Do not finish transaction in PRODUCTION environment *');
       } else {
-        await test.step(`Verify Plan Details in Confirmation Page Order Summary`, async () => {
-          // await commonCheckoutService.confirmationPage.assertDisplayedProductsIncludeExpectedData(testCase.planDetails);
+        await test.step('Click Purchase Button and wait for Confirmation Page', async () => {
+          await commonCheckoutService.paymentPage.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
         });
-        await test.step(`Click on the My account option in the header dropdown`, async () => {
-          await commonCheckoutService.confirmationPage.locLetsGoButton.click();
-        });
-        await test.step(`Assert Accounts Page URL`, async () => {
-          await expect.soft(page).toHaveURL(new RegExp('accounts'));
-        });
+        if (testCase.planDetails.some((item) => item.marketingName === 'Associate')) {
+          await test.step(`Click Continue with Associate Start Up button`, async () => {
+            await commonCheckoutService.associateStartupPage.locContinueAssociateStartupButton.click();
+          });
+          await test.step(`Select First Site Name`, async () => {
+            await commonAssociateOfficeService.yourWebsitePage.locFirstSiteNameOption.check();
+          });
+          await test.step(`Click next button`, async () => {
+            await commonAssociateOfficeService.yourWebsitePage.locNextButton.click();
+          });
+          await test.step(`Complete payment information form`, async () => {
+            await commonAssociateOfficeService.commissionDetailsPage.completePaymentInformationForm('1000123546', '103000648', 'Test');
+          });
+          await test.step(`Click Save button`, async () => {
+            await commonAssociateOfficeService.commissionDetailsPage.locSaveButton.click();
+          });
+          await test.step(`Select Payment method`, async () => {
+            await commonAssociateOfficeService.commissionDetailsPage.selectPaymentMethod('3546');
+          });
+          await test.step(`Click Next Button`, async () => {
+            await commonAssociateOfficeService.commissionDetailsPage.locNextButton.click();
+          });
+          await test.step(`Skip Co-applicant screen`, async () => {
+            await commonAssociateOfficeService.coApplicantPage.locSkipButton.click();
+          });
+          await test.step(`Assert Associate-Office Page URL`, async () => {
+            await expect.soft(page).toHaveURL(new RegExp('associate-office'));
+          });
+        } else {
+          await test.step(`Verify Plan Details in Confirmation Page Order Summary`, async () => {
+            // await commonCheckoutService.confirmationPage.assertDisplayedProductsIncludeExpectedData(testCase.planDetails);
+          });
+          await test.step(`Click on the My account option in the header dropdown`, async () => {
+            await commonCheckoutService.confirmationPage.locLetsGoButton.click();
+          });
+          await test.step(`Assert Accounts Page URL`, async () => {
+            await expect.soft(page).toHaveURL(new RegExp('accounts'));
+          });
+        }
       }
     });
   }
@@ -220,7 +224,6 @@ for (const testCase of legalshieldAssociateCanadaData.filter((testCase) => testC
         await page.waitForTimeout(1000);
         await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
       });
-      await page.pause();
       await test.step(`Verify Plans displayed in Order Summary on on Payment Page`, async () => {
         await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertDisplayedPlansIncludeExpectedData(testCase.planDetails);
       });
@@ -236,50 +239,53 @@ for (const testCase of legalshieldAssociateCanadaData.filter((testCase) => testC
         await commonCheckoutService.paymentPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
       });
       await test.step('Complete Bank Draft Form', async () => {
-        // await commonCheckoutService.paymentPage.creditCardComponent.completeCreditCardForm('4444333322221111', '1225', '123', 'Test User', '80202');
         await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormCanada('0000011', '11242', '260', 'Tester');
       });
-      await test.step('Click Purchase Button and wait for Confirmation Page', async () => {
-        await commonCheckoutService.paymentPage.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
-      });
-      if (testCase.planDetails.some((item) => item.marketingName === 'Associé')) {
-        await test.step(`Click Continue with Associate Start Up button`, async () => {
-          await commonCheckoutService.associateStartupPage.locContinueAssociateStartupButton.click();
-        });
-        await test.step(`Select First Site Name`, async () => {
-          await commonAssociateOfficeService.yourWebsitePage.locFirstSiteNameOption.check();
-        });
-        await test.step(`Click next button`, async () => {
-          await commonAssociateOfficeService.yourWebsitePage.locNextButton.click();
-        });
-        await test.step(`Complete payment information form`, async () => {
-          await commonAssociateOfficeService.commissionDetailsPage.completePaymentInformationFormFrench('1000123546', '11111', '222', 'Test');
-        });
-        await test.step(`Click Save button`, async () => {
-          await commonAssociateOfficeService.commissionDetailsPage.locSaveButton.click();
-        });
-        await test.step(`Select Payment method`, async () => {
-          await commonAssociateOfficeService.commissionDetailsPage.selectPaymentMethod('3546');
-        });
-        await test.step(`Click Next Button`, async () => {
-          await commonAssociateOfficeService.commissionDetailsPage.locNextButton.click();
-        });
-        await test.step(`Skip Co-applicant screen`, async () => {
-          await commonAssociateOfficeService.coApplicantPage.locSkipButton.click();
-        });
-        await test.step(`Assert Associate-Office Page URL`, async () => {
-          await expect.soft(page).toHaveURL(new RegExp('associate-office'));
-        });
+      if (process.env.USE_PROD == 'true') {
+        console.log('* Do not finish transaction in PRODUCTION environment *');
       } else {
-        await test.step(`Verify Plan Details in Confirmation Page Order Summary`, async () => {
-          // await commonCheckoutService.confirmationPage.assertDisplayedProductsIncludeExpectedData(testCase.planDetails);
+        await test.step('Click Purchase Button and wait for Confirmation Page', async () => {
+          await commonCheckoutService.paymentPage.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
         });
-        await test.step(`Click on the My account option in the header dropdown`, async () => {
-          await commonCheckoutService.confirmationPage.locLetsGoButton.click();
-        });
-        await test.step(`Assert Accounts Page URL`, async () => {
-          await expect.soft(page).toHaveURL(new RegExp('accounts'));
-        });
+        if (testCase.planDetails.some((item) => item.marketingName === 'Associé')) {
+          await test.step(`Click Continue with Associate Start Up button`, async () => {
+            await commonCheckoutService.associateStartupPage.locContinueAssociateStartupButton.click();
+          });
+          await test.step(`Select First Site Name`, async () => {
+            await commonAssociateOfficeService.yourWebsitePage.locFirstSiteNameOption.check();
+          });
+          await test.step(`Click next button`, async () => {
+            await commonAssociateOfficeService.yourWebsitePage.locNextButton.click();
+          });
+          await test.step(`Complete payment information form`, async () => {
+            await commonAssociateOfficeService.commissionDetailsPage.completePaymentInformationFormFrench('1000123546', '11111', '222', 'Test');
+          });
+          await test.step(`Click Save button`, async () => {
+            await commonAssociateOfficeService.commissionDetailsPage.locSaveButton.click();
+          });
+          await test.step(`Select Payment method`, async () => {
+            await commonAssociateOfficeService.commissionDetailsPage.selectPaymentMethod('3546');
+          });
+          await test.step(`Click Next Button`, async () => {
+            await commonAssociateOfficeService.commissionDetailsPage.locNextButton.click();
+          });
+          await test.step(`Skip Co-applicant screen`, async () => {
+            await commonAssociateOfficeService.coApplicantPage.locSkipButton.click();
+          });
+          await test.step(`Assert Associate-Office Page URL`, async () => {
+            await expect.soft(page).toHaveURL(new RegExp('associate-office'));
+          });
+        } else {
+          await test.step(`Verify Plan Details in Confirmation Page Order Summary`, async () => {
+            // await commonCheckoutService.confirmationPage.assertDisplayedProductsIncludeExpectedData(testCase.planDetails);
+          });
+          await test.step(`Click on the My account option in the header dropdown`, async () => {
+            await commonCheckoutService.confirmationPage.locLetsGoButton.click();
+          });
+          await test.step(`Assert Accounts Page URL`, async () => {
+            await expect.soft(page).toHaveURL(new RegExp('accounts'));
+          });
+        }
       }
     });
   }
