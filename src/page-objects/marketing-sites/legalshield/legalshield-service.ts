@@ -37,6 +37,7 @@ export class LegalshieldService {
   readonly locDisplayedPopUpContainer: Locator;
   readonly locPopUpCloseButton: Locator;
   readonly locAnchorLinks: Locator;
+  readonly locEmailCaptureSection: Locator;
 
   constructor(page: Page, context: BrowserContext) {
     this.page = page;
@@ -67,6 +68,7 @@ export class LegalshieldService {
     this.locDisplayedPopUpContainer = this.page.locator('[id*="modal"][style*="display: block"]');
     this.locPopUpCloseButton = this.page.locator('[id*="modal"][style*="display: block"] img');
     this.locAnchorLinks = this.page.locator('body .lsux-link[href*="#"], body .lsux-button--primary[href*="#"]');
+    this.locEmailCaptureSection = this.page.locator('body #section-email_capture');
   }
 
   navigateToUrl = async (url: string): Promise<void> => {
@@ -315,6 +317,25 @@ export class LegalshieldService {
       await test.step(`Verify page has scrolled`, async () => {
         const pageScrollY = await this.page.evaluate(() => window.scrollY);
         expect(pageScrollY).toBeGreaterThan(0);
+      });
+    }
+  };
+  fillOutEmailFormAndSubmit = async (locator: Locator): Promise<void> => {
+    const forms = await locator.all();
+    let response: Response;
+    console.log(`Found ${forms.length} email forms`);
+    for (const form of forms) {
+      await test.step(`Fill out email form and submit it`, async () => {
+        await form.locator('#iterable-email-form input#firstname').fill('Test Name');
+        await form.locator('#iterable-email-form input#email').fill('testingLSUS@lsus-testing.com');
+        [response] = await Promise.all([
+          this.page.waitForResponse((response) => response.status() === 200),
+          await form.locator('#iterable-email-form input.email-submit').click(),
+        ]);
+        await test.step(`Verify Status:200`, async () => {
+          console.log('response: ' + response.text());
+          expect.soft(response.status()).toBe(200);
+        });
       });
     }
   };

@@ -60,4 +60,13 @@ for (const pageUnderTest of legalshieldServiceData.filter((pageUnderTest) => pag
       await legalshieldService.clickAllAnchorLinksAndVerifyScroll(legalshieldService.locAnchorLinks);
     });
   });
+  test(`${pageUnderTest.pageName} page: Find and submit email forms, verify successful submission`, async () => {
+    await legalshieldService.navigateToUrl(pageUnderTest.url);
+    test.skip((await legalshieldService.locEmailCaptureSection.count()) == 0, 'No email forms found');
+    console.log(`Test Case: ${pageUnderTest.pageName} page: Find and submit email forms, verify successful submission`);
+    test.slow();
+    await test.step(`Fill out email form, then submit`, async () => {
+      await legalshieldService.fillOutEmailFormAndSubmit(legalshieldService.locEmailCaptureSection);
+    });
+  });
 }
