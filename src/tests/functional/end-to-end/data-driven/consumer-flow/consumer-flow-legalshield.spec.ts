@@ -19,7 +19,9 @@ test.beforeEach(async ({ context, page }) => {
 
 for (const testCase of legalshieldData.filter((testCase) => testCase.disabled == false)) {
   for (const regionUnderTest of testCase.regions) {
-    test(`Legalshield (${testCase.testCaseName}, ${regionUnderTest}) -> Checkout -> Accounts @e2e @ConsumerFlowLegalShield`, async ({ page }) => {
+    test(`Legalshield (${testCase.testCaseName}, ${regionUnderTest}) -> Checkout -> Accounts @e2e @ConsumerFlowLegalShieldPlans`, async ({
+      page,
+    }) => {
       console.log(`Test Case: Legalshield (${testCase.testCaseName}, ${regionUnderTest}) -> Checkout -> Accounts`);
       const regionInfo = RegionsUtils.usStates.filter((region) => region.name == regionUnderTest)[0];
       await test.step(`Navigate to legalshield.com for ${testCase.market}-${testCase.language}`, async () => {

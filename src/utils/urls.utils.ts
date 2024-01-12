@@ -35,9 +35,9 @@ export default class UrlsUtils {
   static readonly legalshieldService = {
     baseUrl: `https://${envUrlString}legalshield.com`,
   };
-  static readonly shieldAssociateService = {
-    baseUrl: `https://www.${envUrlString}shieldassociate.com`,
-    baseUrlNoSubdomain: `${envUrlString}shieldassociate.com`,
+  static readonly legalshieldAssociateService = {
+    baseUrl: `https://www.${envUrlString}legalshieldassociate.com`,
+    baseUrlNoSubdomain: `${envUrlString}legalshieldassociate.com`,
   };
 
   static readonly legalshieldUrls = {

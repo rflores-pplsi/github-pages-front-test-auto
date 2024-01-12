@@ -43,11 +43,11 @@ export class BuyNowPage {
     for (const plan of planDetails) {
       const priceCardLocator = this.page.locator(`//h2[text()="${plan.marketingName}"]/ancestor::div[@data-pplsi-event-id="price-card-container"]`);
       await priceCardLocator.click();
-      if (plan.marketingName === 'Small Business') {
+      if (plan.marketingName === 'Small Business' || plan.marketingName === 'Petite Entreprise') {
         await this.smallBusinessQuestionsComponent.locPubliclyTradedOrNonProfitNoCheckbox.click();
         await this.smallBusinessQuestionsComponent.locContinueButton.click();
       }
-      if (plan.marketingName === 'Associate') {
+      if (plan.marketingName === 'Associate' || plan.marketingName === 'Associé') {
         await this.associateQuestionsComponent.answerStartUpQuestions(plan.associateRegistrationType);
         await this.associateQuestionsComponent.locContinueButton.click();
       }
@@ -80,6 +80,7 @@ export class BuyNowPage {
     if (planDetails && planDetails.some((plan) => plan.marketingName === 'Associate')) {
       await this.configureAssociate();
     }
+    await this.cartService.configureCoveragePage.locContinueButton.click();
   };
 
   //TODO: abstract out shared code from the following methods

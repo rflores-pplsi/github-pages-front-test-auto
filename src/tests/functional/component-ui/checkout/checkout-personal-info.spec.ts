@@ -276,7 +276,6 @@ test.describe('United States - Colorado, Business Plan', () => {
       await legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
     });
     await test.step(`Choose Account by Email`, async () => {
-      await page.pause();
       await commonCheckoutService.accountPage.locEmailAddressInput.fill(basicUser.email);
       await commonCheckoutService.accountPage.locContinueButton.click();
       await commonCheckoutService.accountPage.locClickHereToLoginButton.click();

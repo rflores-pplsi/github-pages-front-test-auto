@@ -13,7 +13,7 @@ const config: PlaywrightTestConfig = {
         launchOptions: {
           args: ['--remote-debugging-port=9222'],
         },
-        screenshot: 'on',
+        screenshot: 'only-on-failure',
         trace: 'on',
         video: 'on',
       },

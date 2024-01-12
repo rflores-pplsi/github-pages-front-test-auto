@@ -33,6 +33,9 @@ export class ConfigureCoveragePage {
   };
 
   selectRegion = async (region: string): Promise<void> => {
+    if (region == 'Québec') {
+      region = 'Quebec';
+    }
     await this.locRegionSelectorContainer.click();
     const regionOptionLocator = this.page.locator(`//span[contains(.,"${region}")]`);
     await regionOptionLocator.click();
