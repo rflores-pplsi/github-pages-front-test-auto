@@ -55,6 +55,18 @@ export const legalshieldServiceData = [
 
   {
     disabled: false,
+    pageName: 'Business Licenses DBA',
+    url: `${UrlsUtils.legalshieldService.baseUrl}/business-licenses/dba/`,
+  },
+
+  {
+    disabled: false,
+    pageName: 'Business Licenses Business Permits',
+    url: `${UrlsUtils.legalshieldService.baseUrl}/business-licenses/business-permits/`,
+  },
+
+  {
+    disabled: false,
     pageName: 'FAQ',
     url: `${UrlsUtils.legalshieldService.baseUrl}/faq`,
   },
