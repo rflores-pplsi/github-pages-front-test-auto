@@ -69,4 +69,16 @@ export const legalshieldServiceData = [
     pageName: 'FAQ',
     url: `${UrlsUtils.legalshieldService.baseUrl}/faq`,
   },
+
+  {
+    disabled: false,
+    pageName: 'Traffic Accident',
+    url: `${UrlsUtils.legalshieldService.baseUrl}/traffic-accident`,
+  },
+
+  {
+    disabled: false,
+    pageName: 'Renters',
+    url: `${UrlsUtils.legalshieldService.baseUrl}/renters`,
+  },
 ];
