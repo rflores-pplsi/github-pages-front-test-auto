@@ -56,7 +56,7 @@ export class LegalshieldService {
     this.legalshieldPage = new LegalshieldPage(context, page);
     this.firstGetStartedButton = this.page.locator(`//div[@id="main-content"]//a[@id="lsc-add-to-cart-button"]`).nth(0);
     this.locLinksThatNavigateToNewPage = this.page.locator(
-      'body .lsux-link[href]:not([target="_blank"]):not([href*="javascript:void(0)"]):not([href*="#"]), body .lsux-button--primary[href]:not([target="_blank"]):not([href*="javascript:void(0)"]):not([href*="#"])'
+      'body .lsux-link[href]:not([target="_blank"]):not([href*="javascript:void(0)"]):not([href*="#"]), body .lsux-button--primary[href]:not([target="_blank"]):not([href*="javascript:void(0)"]):not([href*="#"]),body .lsux-button--secondary[href]:not([target="_blank"]):not([href*="javascript:void(0)"]):not([href*="#"])'
     );
     this.locLinksThatNavigateToNewTab = this.page.locator(
       'body .lsux-link[href]:is([target="_blank"]), body .lsux-button--primary[href]:is([target="_blank"]), body .lsux-download-app a[href]:is([target="_blank"]), body .lsux-button--tertiary a[href]:is([target="_blank"])'
@@ -333,7 +333,6 @@ export class LegalshieldService {
           await form.locator('#iterable-email-form input.email-submit').click(),
         ]);
         await test.step(`Verify Status:200`, async () => {
-          console.log('response: ' + response.text());
           expect.soft(response.status()).toBe(200);
         });
       });
