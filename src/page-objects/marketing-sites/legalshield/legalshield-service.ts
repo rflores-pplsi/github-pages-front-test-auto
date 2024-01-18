@@ -77,7 +77,7 @@ export class LegalshieldService {
     // eslint-disable-next-line const-case/uppercase
     const dialogCloseButton = '//div[contains(@class,"ub-emb-iframe-wrapper ub-emb-visible")]//button';
     const isDialogPresent = await this.page
-      .waitForSelector(dialogCloseButton, { timeout: 3000 })
+      .waitForSelector(dialogCloseButton, { timeout: 6000 })
       .then(() => true)
       .catch(() => false);
     if (isDialogPresent == true) {
