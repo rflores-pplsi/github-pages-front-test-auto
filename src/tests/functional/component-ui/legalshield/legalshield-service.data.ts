@@ -81,4 +81,28 @@ export const legalshieldServiceData = [
     pageName: 'Renters',
     url: `${UrlsUtils.legalshieldService.baseUrl}/renters`,
   },
+
+  {
+    disabled: false,
+    pageName: 'Employment',
+    url: `${UrlsUtils.legalshieldService.baseUrl}/employment`,
+  },
+
+  {
+    disabled: false,
+    pageName: 'Employment Hiring and Firing',
+    url: `${UrlsUtils.legalshieldService.baseUrl}/employment/hiring-and-firing`,
+  },
+
+  {
+    disabled: false,
+    pageName: 'Employment Workers Comp',
+    url: `${UrlsUtils.legalshieldService.baseUrl}/employment/workers-comp/`,
+  },
+
+  {
+    disabled: false,
+    pageName: 'Employment Ada',
+    url: `${UrlsUtils.legalshieldService.baseUrl}/employment/ada/`,
+  },
 ];
