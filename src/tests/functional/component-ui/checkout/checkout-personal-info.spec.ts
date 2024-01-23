@@ -1,30 +1,20 @@
-import { test, expect } from '@playwright/test';
+import { expect } from '@playwright/test';
 import { basicUser } from '../../../../utils/user.utils';
 import UrlsUtils from '../../../../utils/urls.utils';
-import { LegalshieldCoverageAndPricingPage } from '../../../../page-objects/marketing-sites/legalshield/legalshield-coverage-and-pricing.page';
-import { CommonLoginService, CommonCheckoutService } from '@legalshield/frontend-automation-commons';
-
-let legalshieldCoverageAndPricingPage: LegalshieldCoverageAndPricingPage;
-let commonCheckoutService: CommonCheckoutService;
-let commonLoginService: CommonLoginService;
-test.beforeEach(async ({ context, page }) => {
-  test.slow();
-  legalshieldCoverageAndPricingPage = new LegalshieldCoverageAndPricingPage(page);
-  commonLoginService = new CommonLoginService(page);
-  commonCheckoutService = new CommonCheckoutService(context, page);
-});
+import { test } from '../../../../fixtures/frontend-ui.fixture';
 
 test.describe('United States - Colorado, Legal Plan - Monthly', () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ page, legalshieldService, commonCheckoutService, commonLoginService }) => {
+    test.slow();
     await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
-      await legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
+      await legalshieldService.legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
     });
     await test.step(`Click on the Start Monthly Plan button`, async () => {
-      await legalshieldCoverageAndPricingPage.clickStartPlanButton('monthly');
+      await legalshieldService.legalshieldCoverageAndPricingPage.clickStartPlanButton('monthly');
     });
     await test.step(`Click on the Shopping Cart Checkout button`, async () => {
       await page.waitForTimeout(500);
-      await legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
+      await legalshieldService.legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
     });
     await test.step(`Choose Account by Email`, async () => {
       await commonCheckoutService.accountPage.locEmailAddressInput.fill(basicUser.email);
@@ -38,14 +28,16 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  test('Verify Personal Information Section Header Displays @CheckoutPersonalInfoPage', async () => {
+  test('Verify Personal Information Section Header Displays @CheckoutPersonalInfoPage', async ({ commonCheckoutService }) => {
     console.log('Test Case: Verify Personal Information Section Header Displays');
     await test.step('Verify Header is displayed on Personal Information Section', async () => {
       await expect(commonCheckoutService.personalInfoPage.locHeader).toContainText('Tell us about yourself');
     });
   });
 
-  test('Verify no warning messages display when all non-business required fields are entered @CheckoutPersonalInfoPage', async () => {
+  test('Verify no warning messages display when all non-business required fields are entered @CheckoutPersonalInfoPage', async ({
+    commonCheckoutService,
+  }) => {
     console.log('Test Case: Verify no warning messages display when all non-business required fields are entered');
     await test.step('Populate all non-business fields on Personal Information Page', async () => {
       await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
@@ -70,7 +62,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  test('Verify the required message displays when the First Name input is empty @CheckoutPersonalInfoPage', async () => {
+  test('Verify the required message displays when the First Name input is empty @CheckoutPersonalInfoPage', async ({ commonCheckoutService }) => {
     console.log('Test Case: Verify the required message displays when the First Name input is empty');
     await test.step('Empty only First Name Field', async () => {
       await commonCheckoutService.personalInfoPage.locFirstNameInput.clear();
@@ -83,7 +75,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  test('Verify the required message displays when the Last Name input is empty @CheckoutPersonalInfoPage', async () => {
+  test('Verify the required message displays when the Last Name input is empty @CheckoutPersonalInfoPage', async ({ commonCheckoutService }) => {
     console.log('Test Case: Verify the required message displays when the Last Name input is empty');
     await test.step('Empty only Last Name Field', async () => {
       await commonCheckoutService.personalInfoPage.locLastNameInput.clear();
@@ -96,7 +88,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  test('Verify the required message displays when the Phone Number input is empty @CheckoutPersonalInfoPage', async () => {
+  test('Verify the required message displays when the Phone Number input is empty @CheckoutPersonalInfoPage', async ({ commonCheckoutService }) => {
     console.log('Test Case: Verify the required message displays when the Phone Number input is empty');
     await test.step('Empty only Phone Number Field', async () => {
       await commonCheckoutService.personalInfoPage.locPhoneNumberInput.clear();
@@ -109,7 +101,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  test('Verify the required message displays when the Address input is empty @CheckoutPersonalInfoPage', async () => {
+  test('Verify the required message displays when the Address input is empty @CheckoutPersonalInfoPage', async ({ commonCheckoutService }) => {
     console.log('Test Case: Verify the required message displays when the Address input is empty');
     await test.step('Empty only Home Address Field', async () => {
       await commonCheckoutService.personalInfoPage.locHomeAddressInput.clear();
@@ -122,7 +114,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  test('Verify the required message displays when the City input is empty @CheckoutPersonalInfoPage', async () => {
+  test('Verify the required message displays when the City input is empty @CheckoutPersonalInfoPage', async ({ commonCheckoutService }) => {
     console.log('Test Case: Verify the required message displays when the City input is empty');
     await test.step('Empty only City Field', async () => {
       await commonCheckoutService.personalInfoPage.locCityInput.clear();
@@ -135,7 +127,9 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  test('Verify the required message displays when only the PostalCode input is empty @CheckoutPersonalInfoPage', async () => {
+  test('Verify the required message displays when only the PostalCode input is empty @CheckoutPersonalInfoPage', async ({
+    commonCheckoutService,
+  }) => {
     console.log('Test Case: Verify the required message displays when only the Postal Code input is empty');
     await test.step('Place cursor in Postal Code Field', async () => {
       await commonCheckoutService.personalInfoPage.locPostalCodeInput.click();
@@ -151,7 +145,9 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  test('Verify the required message displays when DOB Month Date and Year are all empty @CheckoutPersonalInfoPage', async () => {
+  test('Verify the required message displays when DOB Month Date and Year are all empty @CheckoutPersonalInfoPage', async ({
+    commonCheckoutService,
+  }) => {
     console.log('Test Case: Verify the required message displays when the DOB fields are all empty');
     await test.step('Empty DOB Month Field', async () => {
       await commonCheckoutService.personalInfoPage.locDateOfBirthInput.clear();
@@ -164,7 +160,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  test('Verify the required message displays when the SSN input is empty @CheckoutPersonalInfoPage', async () => {
+  test('Verify the required message displays when the SSN input is empty @CheckoutPersonalInfoPage', async ({ commonCheckoutService }) => {
     console.log('Test Case: Verify the required message displays when the SSN input is empty');
     await test.step('Empty only SSN Field', async () => {
       await commonCheckoutService.personalInfoPage.locSocialSecurityInput.clear();
@@ -177,7 +173,9 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  test('Verify the required message displays when all non-business fields are Empty on Personal Info Page @CheckoutPersonalInfoPage', async () => {
+  test('Verify the required message displays when all non-business fields are Empty on Personal Info Page @CheckoutPersonalInfoPage', async ({
+    commonCheckoutService,
+  }) => {
     console.log('Test Case: Verify the required message displays when all non-business fields are Empty on Personal Info Page');
     await test.step('Empty all Fields on Personal Info Page ', async () => {
       await commonCheckoutService.personalInfoPage.clearAllNonBusinessFields();
@@ -190,14 +188,16 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  test('Verify Stepper 2 is present on Personal Information Page @CheckoutPersonalInfoPage', async () => {
+  test('Verify Stepper 2 is present on Personal Information Page @CheckoutPersonalInfoPage', async ({ commonCheckoutService }) => {
     console.log('Test Case: Verify Stepper 2 is present on Personal Information Page');
     await test.step('Assert that Step Circle 2 on Personal Info Page is solid black', async () => {
       await expect(commonCheckoutService.personalInfoPage.stepperComponent.locStepCircle2Current).toBeVisible();
     });
   });
 
-  test('Verify user can submit valid information on all Non-Business Forms and reach the Payment Page @CheckoutPersonalInfoPage', async () => {
+  test('Verify user can submit valid information on all Non-Business Forms and reach the Payment Page @CheckoutPersonalInfoPage', async ({
+    commonCheckoutService,
+  }) => {
     console.log('Test Case: Verify user can submit valid information on all Non-Business Forms and reach the Payment Page');
     await test.step('Populate all fields on the Personal Information Page', async () => {
       await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
@@ -222,21 +222,24 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  test('Verify the Have Questions Label is visible @CheckoutPersonalInfoPage', async () => {
+  test('Verify the Have Questions Label is visible @CheckoutPersonalInfoPage', async ({ commonCheckoutService }) => {
     console.log('Test Case: Verify the Have Questions Label is visible');
     await test.step('Verify the Have Questions Label is visible ', async () => {
       expect(commonCheckoutService.haveQuestionsComponent.locHaveQuestionsLabel).toBeVisible();
     });
   });
 
-  test('Verify the Phone Number button is visible @CheckoutPersonalInfoPage', async () => {
+  test('Verify the Phone Number button is visible @CheckoutPersonalInfoPage', async ({ commonCheckoutService }) => {
     console.log('Test Case: Verify the Phone Number button is visible');
     await test.step('Verify the Phone Number button is visible ', async () => {
       expect(commonCheckoutService.haveQuestionsComponent.locPhoneNumberButton).toBeVisible();
     });
   });
 
-  test('Verify user is redirected back to Marketing Page when Change Link is clicked @CheckoutPersonalInfoPage', async ({ page }) => {
+  test('Verify user is redirected back to Marketing Page when Change Link is clicked @CheckoutPersonalInfoPage', async ({
+    page,
+    commonCheckoutService,
+  }) => {
     console.log('Test Case: Verify user is redirected back to Marketing Page when Change Link is clicked');
     await test.step('Click on the Change Link to be redirected to Marketing Page', async () => {
       await commonCheckoutService.personalInfoPage.locChangeLink.click();
@@ -246,7 +249,10 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  test('Verify user is redirected back to Marketing Page when Edit Link is clicked @CheckoutPersonalInfoPage', async ({ page }) => {
+  test('Verify user is redirected back to Marketing Page when Edit Link is clicked @CheckoutPersonalInfoPage', async ({
+    page,
+    commonCheckoutService,
+  }) => {
     console.log('Test Case: Verify user is redirected back to Marketing Page when Edit Link is clicked');
     await test.step('Click on the Edit Link to be redirected to Marketing Page', async () => {
       await commonCheckoutService.personalInfoPage.locEditLink.click();
@@ -258,22 +264,23 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
 });
 
 test.describe('United States - Colorado, Business Plan', () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ page, legalshieldService, commonCheckoutService, commonLoginService }) => {
+    test.slow();
     await test.step(`Navigate to legalshield business plan summary page`, async () => {
       await page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/plan-summary/`);
     });
     await test.step(`Change Region`, async () => {
-      await legalshieldCoverageAndPricingPage.marketingSiteFooterComponent.selectRegion('Colorado', 'CO');
+      await legalshieldService.legalshieldCoverageAndPricingPage.marketingSiteFooterComponent.selectRegion('Colorado', 'CO');
     });
     await test.step(`Click on the SMB ESS Plan button`, async () => {
-      await legalshieldCoverageAndPricingPage.locEssGetStartedButton.click();
+      await legalshieldService.legalshieldCoverageAndPricingPage.locEssGetStartedButton.click();
     });
     await test.step('Select No for Small Business Questions', async () => {
-      await legalshieldCoverageAndPricingPage.smallBusinessQualifyingComponent.completeQualifyingQuestionnaireWithNos();
+      await legalshieldService.legalshieldCoverageAndPricingPage.smallBusinessQualifyingComponent.completeQualifyingQuestionnaireWithNos();
     });
     await test.step(`Click on the Shopping Cart Checkout button`, async () => {
       await page.waitForTimeout(500);
-      await legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
+      await legalshieldService.legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
     });
     await test.step(`Choose Account by Email`, async () => {
       await commonCheckoutService.accountPage.locEmailAddressInput.fill(basicUser.email);
@@ -287,7 +294,7 @@ test.describe('United States - Colorado, Business Plan', () => {
     });
   });
 
-  test('Verify no warning messages display when all required fields are entered @CheckoutPersonalInfoPage', async () => {
+  test('Verify no warning messages display when all required fields are entered @CheckoutPersonalInfoPage', async ({ commonCheckoutService }) => {
     console.log('Test Case: Verify no warning messages display when all required fields are entered');
     await test.step('Populate all non-business fields on Personal Information Page', async () => {
       await commonCheckoutService.personalInfoPage.fillAllFields(
@@ -317,7 +324,7 @@ test.describe('United States - Colorado, Business Plan', () => {
     });
   });
 
-  test('Verify the required message displays when the Business Name input is empty @CheckoutPersonalInfoPage', async () => {
+  test('Verify the required message displays when the Business Name input is empty @CheckoutPersonalInfoPage', async ({ commonCheckoutService }) => {
     console.log('Test Case: Verify the required message displays when the Business Name input is empty');
     await test.step('Empty only Business Name Field', async () => {
       await commonCheckoutService.personalInfoPage.locBusinessNameInput.clear();
@@ -330,7 +337,9 @@ test.describe('United States - Colorado, Business Plan', () => {
     });
   });
 
-  test('Verify the required message displays when Date of Incorporation Month Day and Year are all empty @CheckoutPersonalInfoPage', async () => {
+  test('Verify the required message displays when Date of Incorporation Month Day and Year are all empty @CheckoutPersonalInfoPage', async ({
+    commonCheckoutService,
+  }) => {
     console.log('Test Case: Verify the required message displays when Date of Incorporation Month Day and Year are all empty');
     await test.step('Empty Date of Incorporation Date Field', async () => {
       await commonCheckoutService.personalInfoPage.locDateOfIncorporationInput.clear();
@@ -343,7 +352,7 @@ test.describe('United States - Colorado, Business Plan', () => {
     });
   });
 
-  test('Verify the required message displays when the TaxID input is empty @CheckoutPersonalInfoPage', async () => {
+  test('Verify the required message displays when the TaxID input is empty @CheckoutPersonalInfoPage', async ({ commonCheckoutService }) => {
     console.log('Test Case: Verify the required message displays when the TaxID input is empty');
     await test.step('Empty only TaxID Field', async () => {
       await commonCheckoutService.personalInfoPage.locTaxIdInput.clear();
@@ -356,7 +365,9 @@ test.describe('United States - Colorado, Business Plan', () => {
     });
   });
 
-  test('Verify the required message displays when all fields including Business Section are Empty on Personal Info Page @CheckoutPersonalInfoPage', async () => {
+  test('Verify the required message displays when all fields including Business Section are Empty on Personal Info Page @CheckoutPersonalInfoPage', async ({
+    commonCheckoutService,
+  }) => {
     console.log('Test Case: Verify the required message displays when all fields including Business Section are Empty on Personal Info Page');
     await test.step('Empty all Fields including Business Section on Personal Info Page ', async () => {
       await commonCheckoutService.personalInfoPage.clearAllFields();
@@ -371,26 +382,23 @@ test.describe('United States - Colorado, Business Plan', () => {
 });
 
 test.describe('United States - Colorado, Business - Plan', () => {
-  test.beforeEach(async ({ context, page }) => {
+  test.beforeEach(async ({ page, legalshieldService, commonCheckoutService, commonLoginService }) => {
     test.slow();
-    legalshieldCoverageAndPricingPage = new LegalshieldCoverageAndPricingPage(page);
-    commonLoginService = new CommonLoginService(page);
-    commonCheckoutService = new CommonCheckoutService(context, page);
 
     await test.step(`Navigate to legalshield business plan summary page`, async () => {
       await page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/plan-summary/`);
     });
     await test.step(`Change Region`, async () => {
-      await legalshieldCoverageAndPricingPage.marketingSiteFooterComponent.selectRegion('Colorado', 'CO');
+      await legalshieldService.legalshieldCoverageAndPricingPage.marketingSiteFooterComponent.selectRegion('Colorado', 'CO');
     });
     await test.step(`Click on the SMB ESS Plan button`, async () => {
-      await legalshieldCoverageAndPricingPage.locEssGetStartedButton.click();
+      await legalshieldService.legalshieldCoverageAndPricingPage.locEssGetStartedButton.click();
     });
     await test.step('Select No for Small Business Questions', async () => {
-      await legalshieldCoverageAndPricingPage.smallBusinessQualifyingComponent.completeQualifyingQuestionnaireWithNos();
+      await legalshieldService.legalshieldCoverageAndPricingPage.smallBusinessQualifyingComponent.completeQualifyingQuestionnaireWithNos();
     });
     await test.step(`Click on the Shopping Cart Checkout button`, async () => {
-      await legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
+      await legalshieldService.legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
     });
     await test.step(`Choose Account by Email`, async () => {
       await commonCheckoutService.accountPage.locEmailAddressInput.fill(basicUser.email);
@@ -424,7 +432,9 @@ test.describe('United States - Colorado, Business - Plan', () => {
     });
   });
 
-  test('Verify user can submit valid information on all Forms and reach the Payment Page @CheckoutPersonalInfoPage', async () => {
+  test('Verify user can submit valid information on all Forms and reach the Payment Page @CheckoutPersonalInfoPage', async ({
+    commonCheckoutService,
+  }) => {
     console.log('Test Case: Verify user can submit valid information on all Forms and reach the Payment Page');
     await test.step('Click on the Save & Continue Button to go to Payment Page', async () => {
       await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();

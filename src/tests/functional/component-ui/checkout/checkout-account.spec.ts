@@ -1,33 +1,26 @@
-import { test, expect } from '@playwright/test';
+import { expect } from '@playwright/test';
 import { basicUser } from '../../../../utils/user.utils';
-import { LegalshieldCoverageAndPricingPage } from '../../../../page-objects/marketing-sites/legalshield/legalshield-coverage-and-pricing.page';
-import { CommonLoginService, CommonCheckoutService } from '@legalshield/frontend-automation-commons';
+import { test } from '../../../../fixtures/frontend-ui.fixture';
 
-let legalshieldCoverageAndPricingPage: LegalshieldCoverageAndPricingPage;
-let commonCheckoutService: CommonCheckoutService;
-let commonLoginService: CommonLoginService;
-test.beforeEach(async ({ context, page }) => {
+test.beforeEach(async () => {
   test.slow();
-  legalshieldCoverageAndPricingPage = new LegalshieldCoverageAndPricingPage(page);
-  commonLoginService = new CommonLoginService(page);
-  commonCheckoutService = new CommonCheckoutService(context, page);
 });
 
 test.describe('United States - Colorado, Legal Plan - Monthly', () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ page, legalshieldService }) => {
     await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
-      await legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
+      await legalshieldService.legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
     });
     await test.step(`Click on the Start Monthly Plan button`, async () => {
-      await legalshieldCoverageAndPricingPage.clickStartPlanButton('monthly');
+      await legalshieldService.legalshieldCoverageAndPricingPage.clickStartPlanButton('monthly');
     });
     await test.step(`Click on the Shopping Cart Checkout button`, async () => {
       await page.waitForTimeout(500);
-      await legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
+      await legalshieldService.legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
     });
   });
 
-  test('Verify that the Email Already on File Modal Already Exists  @LoginExistingUser', async () => {
+  test('Verify that the Email Already on File Modal Already Exists  @LoginExistingUser', async ({ commonCheckoutService }) => {
     console.log('Test Case: Verify that the Email Already on File Modal Already Exists');
     await test.step(`Enter Existing Email Address`, async () => {
       await commonCheckoutService.accountPage.locEmailAddressInput.fill(basicUser.email);
@@ -40,7 +33,10 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  test('Verify redirected to Login Service after clicking on Click here to Login button on Modal @LoginExistingUser', async () => {
+  test('Verify redirected to Login Service after clicking on Click here to Login button on Modal @LoginExistingUser', async ({
+    commonCheckoutService,
+    commonLoginService,
+  }) => {
     console.log('Test Case: Verify redirected to Login Service after clicking on Click here to Login button on Modal');
     await test.step(`Enter Existing Email Address`, async () => {
       await commonCheckoutService.accountPage.locEmailAddressInput.fill(basicUser.email);
@@ -56,7 +52,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  test('Verify Email Already on File modal disappears after clicking close button @LoginExistingUser', async ({ page }) => {
+  test('Verify Email Already on File modal disappears after clicking close button @LoginExistingUser', async ({ commonCheckoutService }) => {
     console.log('Test Case: Verify Email Already on File modal disappears after clicking close button');
     await test.step(`Enter Existing Email Address`, async () => {
       await commonCheckoutService.accountPage.locEmailAddressInput.fill(basicUser.email);

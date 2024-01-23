@@ -1,8 +1,9 @@
-import { test, expect } from '@playwright/test';
+import { expect } from '@playwright/test';
 import RegionsUtils from '../../../../utils/regions.utils';
 import { basicUser } from '../../../../utils/user.utils';
 import { WalsAffiliatedPage } from '../../../../page-objects/wals/wals-affiliated.page';
 import { CommonLoginService, CommonCheckoutService } from '@legalshield/frontend-automation-commons';
+import { test } from '../../../../fixtures/frontend-ui.fixture';
 
 let walsAffiliatedPage: WalsAffiliatedPage;
 let loginPage: CommonLoginService;
@@ -17,7 +18,7 @@ test.beforeEach(async ({ context, page }) => {
 
 const regionsUnderTest = ['Ontario'];
 for (const regionUnderTest of regionsUnderTest) {
-  test(`Test Case: Wearelegalshield (Legal Plan, en-CA, ${regionUnderTest}) -> Checkout -> Accounts @smoke @e2e`, async ({ page }) => {
+  test(`Test Case: Wearelegalshield (Legal Plan, en-CA, ${regionUnderTest}) -> Checkout -> Accounts @smoke @e2e`, async ({ page, walsService }) => {
     console.log(`Test Case: Wearelegalshield (Legal Plan, en-CA, ${regionUnderTest}) -> Checkout -> Accounts`);
     const regionInfo = RegionsUtils.caProvinces.filter((region) => region.name == regionUnderTest)[0];
     const homeAddress = regionInfo.validAddress.street;
@@ -25,19 +26,19 @@ for (const regionUnderTest of regionsUnderTest) {
     const postalCode = regionInfo.validAddress.postalCode;
 
     await test.step('Navigate to weareleglshield.com', async () => {
-      await walsAffiliatedPage.navigateToAffiliatedWalsPage('lstestauto', 'wearelegalshield', 'ca');
+      await walsService.walsAffiliatedPage.navigateToAffiliatedWalsPage('lstestauto', 'wearelegalshield', 'ca');
     });
     await test.step('Select a region', async () => {
-      await walsAffiliatedPage.walsGeolocateMenuComponent.changeRegion(regionUnderTest);
+      await walsService.walsAffiliatedPage.walsGeolocateMenuComponent.changeRegion(regionUnderTest);
     });
     await test.step('Click on GET A PLAN button', async () => {
-      await walsAffiliatedPage.clickOnGetAPlanButton('Legal Plan');
+      await walsService.walsAffiliatedPage.clickOnGetAPlanButton('Legal Plan');
     });
     await test.step('Click Continue button in shopping cart', async () => {
-      await walsAffiliatedPage.walsCartComponent.locContinueButton.click();
+      await walsService.walsAffiliatedPage.walsCartComponent.locContinueButton.click();
     });
     await test.step('Click Checkout button in shopping cart', async () => {
-      await walsAffiliatedPage.walsCartComponent.locCheckoutButton.click();
+      await walsService.walsAffiliatedPage.walsCartComponent.locCheckoutButton.click();
     });
     await page.pause();
     //TODO:Uncomment as soon as WALS is hitting checkout v3

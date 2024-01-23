@@ -1,30 +1,19 @@
-import { test, expect } from '@playwright/test';
+import { expect } from '@playwright/test';
 import { basicUser } from '../../../../utils/user.utils';
-import { LegalshieldCoverageAndPricingPage } from '../../../../page-objects/marketing-sites/legalshield/legalshield-coverage-and-pricing.page';
-import { CommonLoginService, CommonCheckoutService } from '@legalshield/frontend-automation-commons';
-
-let legalshieldCoverageAndPricingPage: LegalshieldCoverageAndPricingPage;
-let commonLoginService: CommonLoginService;
-let commonCheckoutService: CommonCheckoutService;
-
-test.beforeEach(async ({ context, page }) => {
-  test.setTimeout(120000);
-  legalshieldCoverageAndPricingPage = new LegalshieldCoverageAndPricingPage(page);
-  commonLoginService = new CommonLoginService(page);
-  commonCheckoutService = new CommonCheckoutService(context, page);
-});
+import { test } from '../../../../fixtures/frontend-ui.fixture';
 
 test.describe('United States - Colorado, Legal Plan - Monthly, Bank Draft', () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ page, legalshieldService, commonCheckoutService, commonLoginService }) => {
+    test.setTimeout(120000);
     await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
-      await legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
+      await legalshieldService.legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
     });
     await test.step(`Click on the Start Monthly Plan button`, async () => {
-      await legalshieldCoverageAndPricingPage.clickStartPlanButton('monthly');
+      await legalshieldService.legalshieldCoverageAndPricingPage.clickStartPlanButton('monthly');
     });
     await test.step(`Click on the Shopping Cart Checkout button`, async () => {
       await page.waitForTimeout(500);
-      await legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
+      await legalshieldService.legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
     });
     await test.step(`Choose Account by Email`, async () => {
       await commonCheckoutService.accountPage.locEmailAddressInput.fill(basicUser.email);
@@ -67,21 +56,21 @@ test.describe('United States - Colorado, Legal Plan - Monthly, Bank Draft', () =
   });
 
   test.describe('United States - Colorado, Legal Plan - Monthly, Bank Draft', () => {
-    test('Verify Welcome Header is displayed on Confirmation Page @CheckoutConfirmationPage', async () => {
+    test('Verify Welcome Header is displayed on Confirmation Page @CheckoutConfirmationPage', async ({ commonCheckoutService }) => {
       console.log('Test Case: Verify Welcome Header is displayed on Confirmation Page');
       await test.step('Verify Header is displayed on Confirmation Page', async () => {
         await expect(commonCheckoutService.confirmationPage.locConfirmationFirstHeader).toContainText('Welcome to the Family!');
       });
     });
 
-    test('Verify the membership wrapper is displayed on Confirmation Page @CheckoutConfirmationPage', async () => {
+    test('Verify the membership wrapper is displayed on Confirmation Page @CheckoutConfirmationPage', async ({ commonCheckoutService }) => {
       console.log('Test Case: Verify the membership wrapper is displayed on Confirmation Page');
       await test.step('Verify the membership wrapper is displayed on Confirmation Page', async () => {
         await expect(commonCheckoutService.confirmationPage.locConfirmationScreenContainer).toBeVisible();
       });
     });
 
-    test('Verify Order Summary Contents on Confirmation Page @CheckoutConfirmationPage', async () => {
+    test('Verify Order Summary Contents on Confirmation Page @CheckoutConfirmationPage', async ({ commonCheckoutService }) => {
       console.log('Test Case: Verify Order Summary Contents on Confirmation Page');
       await test.step('Verify Order Summary heading is displayed on Confirmation Page', async () => {
         await expect(commonCheckoutService.confirmationPage.locConfirmationOrderSummaryHeader).toContainText('Order Summary');
@@ -91,25 +80,25 @@ test.describe('United States - Colorado, Legal Plan - Monthly, Bank Draft', () =
       });
     });
 
-    test('Verify The Whats Next Component is displayed on Confirmation Page @CheckoutConfirmationPage', async () => {
+    test('Verify The Whats Next Component is displayed on Confirmation Page @CheckoutConfirmationPage', async ({ commonCheckoutService }) => {
       console.log('Test Case: Verify The Whats Next Component is displayed on Confirmation Page');
       await test.step('Verify The Whats Next heading is displayed on Confirmation Page', async () => {
         await expect(commonCheckoutService.confirmationPage.locConfirmationWhatsNextHeader).toBeVisible();
       });
     });
-    test('Verify The Check Email Component is displayed on Confirmation Page @CheckoutConfirmationPage', async () => {
+    test('Verify The Check Email Component is displayed on Confirmation Page @CheckoutConfirmationPage', async ({ commonCheckoutService }) => {
       console.log('Test Case: Verify The Check Email Component is displayed on Confirmation Page');
       await test.step('Verify Check Email is within the Whats Next Box on Confirmation Page', async () => {
         await expect(commonCheckoutService.confirmationPage.locWhatsNextCheckEmailComponent).toBeVisible();
       });
     });
-    test('Verify The Download App Component is displayed on Confirmation Page @CheckoutConfirmationPage', async () => {
+    test('Verify The Download App Component is displayed on Confirmation Page @CheckoutConfirmationPage', async ({ commonCheckoutService }) => {
       console.log('Test Case: Verify The Download App Component is displayed on Confirmation Page');
       await test.step('Verify Download App is within the Whats Next Box on Confirmation Page', async () => {
         await expect(commonCheckoutService.confirmationPage.locWhatsNextDownloadAppComponent).toBeVisible();
       });
     });
-    test('Verify Understand Your Plan Component is displayed on Confirmation Page @CheckoutConfirmationPage', async () => {
+    test('Verify Understand Your Plan Component is displayed on Confirmation Page @CheckoutConfirmationPage', async ({ commonCheckoutService }) => {
       console.log('Test Case: Verify Understand Your Plan Component is displayed on Confirmation Page');
       await test.step('Verify Understand Your Plan is within the Whats Next Box on Confirmation Page', async () => {
         await expect(commonCheckoutService.confirmationPage.locWhatsNextUnderstandYourPlanComponent).toBeVisible();
@@ -119,19 +108,20 @@ test.describe('United States - Colorado, Legal Plan - Monthly, Bank Draft', () =
 });
 
 test.describe('United States - Colorado, Legal Plan - Monthly, Credit Card', () => {
-  test.beforeEach(async ({ page }) => {
+  test.beforeEach(async ({ page, legalshieldService, commonCheckoutService, commonLoginService }) => {
+    test.setTimeout(120000);
     await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
-      await legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
+      await legalshieldService.legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
     });
     // await test.step(`Change Region`, async () => {
     //   await legalshieldCoverageAndPricingPage.marketingSiteFooterComponent.selectRegion('Colorado', 'CO');
     // });
     await test.step(`Click on the Start Monthly Plan button`, async () => {
-      await legalshieldCoverageAndPricingPage.clickStartPlanButton('monthly');
+      await legalshieldService.legalshieldCoverageAndPricingPage.clickStartPlanButton('monthly');
     });
     await test.step(`Click on the Shopping Cart Checkout button`, async () => {
       await page.waitForTimeout(500);
-      await legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
+      await legalshieldService.legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
     });
     await test.step(`Choose Account by Email`, async () => {
       await commonCheckoutService.accountPage.locEmailAddressInput.fill(basicUser.email);
@@ -169,7 +159,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly, Credit Card', () 
     });
   });
 
-  test('Verify Order Summary Contents on Confirmation Page Paid by Credit Card @CheckoutConfirmationPage', async () => {
+  test('Verify Order Summary Contents on Confirmation Page Paid by Credit Card @CheckoutConfirmationPage', async ({ commonCheckoutService }) => {
     console.log('Test Case: Verify Order Summary Contents on Confirmation Page Paid by Credit Card');
     await test.step('Verify Order Summary heading is displayed on Confirmation Page Paid by Credit Card', async () => {
       await expect(commonCheckoutService.confirmationPage.locConfirmationOrderSummaryHeader).toContainText('Order Summary');

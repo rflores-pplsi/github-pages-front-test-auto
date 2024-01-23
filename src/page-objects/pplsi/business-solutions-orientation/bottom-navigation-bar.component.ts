@@ -6,7 +6,7 @@ import { Locator, Page } from '@playwright/test';
  * @export
  * @class PplsiBusinessSolutionsOrientationBottomNavigationBarComponent
  */
-export class PplsiBusinessSolutionsOrientationBottomNavigationBarComponent {
+export class BottomNavigationBarComponent {
   readonly page: Page;
   readonly locGetStartedButton: Locator;
   readonly locNextButton: Locator;

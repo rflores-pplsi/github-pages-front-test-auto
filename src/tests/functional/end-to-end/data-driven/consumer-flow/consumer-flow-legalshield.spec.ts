@@ -1,27 +1,19 @@
-import { expect, test } from '@playwright/test';
+import { expect } from '@playwright/test';
 import RegionsUtils from '../../../../../utils/regions.utils';
 import { basicUser } from '../../../../../utils/user.utils';
 import { legalshieldData } from './data/legalshield.data';
 import UrlsUtils from '../../../../../utils/urls.utils';
-import { LegalshieldService } from '../../../../../page-objects/marketing-sites/legalshield/legalshield-service';
-import { CommonCheckoutService, CommonLoginService } from '@legalshield/frontend-automation-commons';
-
-let legalshieldService: LegalshieldService;
-let commonCheckoutService: CommonCheckoutService;
-let commonLoginService: CommonLoginService;
-
-test.beforeEach(async ({ context, page }) => {
-  legalshieldService = new LegalshieldService(page, context);
-  commonLoginService = new CommonLoginService(page);
-  commonCheckoutService = new CommonCheckoutService(context, page);
-  test.setTimeout(120000);
-});
+import { test } from '../../../../../fixtures/frontend-ui.fixture';
 
 for (const testCase of legalshieldData.filter((testCase) => testCase.disabled == false)) {
   for (const regionUnderTest of testCase.regions) {
     test(`Legalshield (${testCase.testCaseName}, ${regionUnderTest}) -> Checkout -> Accounts @e2e @ConsumerFlowLegalShieldPlans`, async ({
       page,
+      legalshieldService,
+      commonCheckoutService,
+      commonLoginService,
     }) => {
+      test.setTimeout(120000);
       console.log(`Test Case: Legalshield (${testCase.testCaseName}, ${regionUnderTest}) -> Checkout -> Accounts`);
       const regionInfo = RegionsUtils.usStates.filter((region) => region.name == regionUnderTest)[0];
       await test.step(`Navigate to legalshield.com for ${testCase.market}-${testCase.language}`, async () => {

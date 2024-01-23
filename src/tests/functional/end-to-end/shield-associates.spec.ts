@@ -1,17 +1,11 @@
-import { test, expect } from '@playwright/test';
+import { expect } from '@playwright/test';
 import UrlsUtils from '../../../utils/urls.utils';
-import { ShieldAssociateService } from '../../../page-objects/shieldassociate/shieldassociate-service';
-
-let shieldAssociateService: ShieldAssociateService;
-
-test.beforeEach(async ({ context, page }) => {
-  shieldAssociateService = new ShieldAssociateService(context, page);
-  test.slow();
-});
+import { test } from '../../../fixtures/frontend-ui.fixture';
 
 test.describe('Navigate to Shield Associate Pages', () => {
-  test.skip('Navigate to Shield Associate Page @smoke @e2e', async ({ page }) => {
+  test.skip('Navigate to Shield Associate Page @smoke @e2e', async ({ page, shieldAssociateService }) => {
     console.log('Test Case: Navigate to Shield Associate Page');
+    test.slow();
     await test.step(`Navigate to Shield Associate Page`, async () => {
       await page.goto(`${UrlsUtils.legalshieldAssociateService.baseUrl}`);
     });
@@ -20,8 +14,9 @@ test.describe('Navigate to Shield Associate Pages', () => {
     });
   });
   // This will currently only work in PROD
-  test.skip('Navigate to Shield Associate Calendar Page @smoke @e2e', async ({ page }) => {
+  test.skip('Navigate to Shield Associate Calendar Page @smoke @e2e', async ({ page, shieldAssociateService }) => {
     console.log('Test Case: Navigate to Shield Associate Calendar Page');
+    test.slow();
     await test.step(`Navigate to Shield Associate Calendar Page`, async () => {
       await page.goto(`${UrlsUtils.legalshieldAssociateService.baseUrl}/calendar`);
     });

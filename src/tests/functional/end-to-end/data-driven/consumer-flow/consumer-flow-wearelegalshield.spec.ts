@@ -1,30 +1,17 @@
-import { expect, test } from '@playwright/test';
+import { expect } from '@playwright/test';
 import RegionsUtils from '../../../../../utils/regions.utils';
-import { basicUser } from '../../../../../utils/user.utils';
-import { WalsService } from '../../../../../page-objects/wals/wals-service';
-import { CommonCheckoutService, CommonLoginService } from '@legalshield/frontend-automation-commons';
 import { weAreLegalshieldData } from './data/wearelegalshield.data';
-import { NewCheckoutService } from '../../../../../page-objects/new-checkout/new-checkout-service';
-
-let walsService: WalsService;
-let commonCheckoutService: CommonCheckoutService;
-let commonLoginService: CommonLoginService;
-let newCheckoutService: NewCheckoutService;
-
-test.beforeEach(async ({ context, page }) => {
-  walsService = new WalsService(page);
-  commonLoginService = new CommonLoginService(page);
-  commonCheckoutService = new CommonCheckoutService(context, page);
-  newCheckoutService = new NewCheckoutService(context, page);
-  test.setTimeout(120000);
-});
+import { test } from '../../../../../fixtures/frontend-ui.fixture';
 
 for (const testCase of weAreLegalshieldData.filter((testCase) => testCase.disabled == false)) {
   for (const regionUnderTest of testCase.regions) {
     test(`WeAreLegalShield (${testCase.testCaseName}, ${regionUnderTest}) -> Checkout -> Accounts @e2e @ConsumerFlowWeAreLegalShield @smoke`, async ({
       page,
+      newCheckoutService,
+      walsService,
     }) => {
       console.log(`Test Case: WeAreLegalShield (${testCase.testCaseName}, ${regionUnderTest}) -> Checkout -> Accounts`);
+      test.setTimeout(120000);
       const regionInfo = RegionsUtils.usStates.filter((region) => region.name == regionUnderTest)[0];
       await test.step(`Navigate to wearelegalshield.com for `, async () => {
         await walsService.walsAffiliatedPage.navigateToAffiliatedWalsPage('apptestuser', 'wearelegalshield', 'com');

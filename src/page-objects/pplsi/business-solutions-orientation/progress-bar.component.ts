@@ -6,7 +6,7 @@ import { Locator, Page } from '@playwright/test';
  * @export
  * @class PplsiBusinessSolutionsOrientationProgressBarComponent
  */
-export class PplsiBusinessSolutionsOrientationProgressBarComponent {
+export class ProgressBarComponent {
   readonly page: Page;
   readonly locGetStartedButton: Locator;
   readonly locNextButton: Locator;

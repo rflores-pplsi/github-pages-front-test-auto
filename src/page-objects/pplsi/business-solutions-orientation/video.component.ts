@@ -6,7 +6,7 @@ import { Locator, Page, FrameLocator, expect } from '@playwright/test';
  * @export
  * @class PplsiBusinessSolutionsOrientationVideoComponent
  */
-export class PplsiBusinessSolutionsOrientationVideoComponent {
+export class VideoComponent {
   readonly page: Page;
   readonly locVideoPlayerFrame: FrameLocator;
   readonly locVideoPlayerPlayButton: Locator;

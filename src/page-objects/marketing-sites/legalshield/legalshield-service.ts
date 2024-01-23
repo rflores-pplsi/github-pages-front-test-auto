@@ -3,6 +3,7 @@ import { ProductDetails, PageUrlAndTitleArray, PlanNameCostArray } from '../../.
 import UrlsUtils from '../../../utils/urls.utils';
 import { HeaderComponent } from './header.page';
 import { LegalshieldPage } from './legalshield.page';
+import { LegalshieldCoverageAndPricingPage } from './legalshield-coverage-and-pricing.page';
 import { SmallBusinessQualifyingComponent } from './legalshield-small-business-qualifying.component';
 import { MarketingSitesCartComponent } from '../marketing-sites-cart-component';
 import { MarketingSiteFooterComponent } from '../marketing-sites-footer-component';
@@ -29,6 +30,7 @@ export class LegalshieldService {
   readonly featuresGridSectionComponent: FeaturesGridSectionComponent;
   readonly callToActionSectionComponent: CallToActionSectionComponent;
   readonly legalshieldPage: LegalshieldPage;
+  readonly legalshieldCoverageAndPricingPage: LegalshieldCoverageAndPricingPage;
   readonly firstGetStartedButton: Locator;
   readonly locLinksThatNavigateToNewPage: Locator;
   readonly locLinksThatNavigateToNewTab: Locator;
@@ -54,6 +56,7 @@ export class LegalshieldService {
     this.featuresGridSectionComponent = new FeaturesGridSectionComponent(context, page);
     this.callToActionSectionComponent = new CallToActionSectionComponent(context, page);
     this.legalshieldPage = new LegalshieldPage(context, page);
+    this.legalshieldCoverageAndPricingPage = new LegalshieldCoverageAndPricingPage(page);
     this.firstGetStartedButton = this.page.locator(`//div[@id="main-content"]//a[@id="lsc-add-to-cart-button"]`).nth(0);
     this.locLinksThatNavigateToNewPage = this.page.locator(
       'body .lsux-link[href]:not([target="_blank"]):not([href*="javascript:void(0)"]):not([href*="#"]), body .lsux-button--primary[href]:not([target="_blank"]):not([href*="javascript:void(0)"]):not([href*="#"]),body .lsux-button--secondary[href]:not([target="_blank"]):not([href*="javascript:void(0)"]):not([href*="#"])'

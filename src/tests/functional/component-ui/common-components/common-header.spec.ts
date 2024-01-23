@@ -1,20 +1,11 @@
-import { test, expect } from '@playwright/test';
+import { expect } from '@playwright/test';
 import UrlsUtils from '../../../../utils/urls.utils';
-import { CommonHeaderComponent } from '../../../../page-objects/common-components/common-header.component';
-import { CommonLoginService } from '@legalshield/frontend-automation-commons';
 import { basicUser } from '../../../../utils/user.utils';
+import { test } from '../../../../fixtures/frontend-ui.fixture';
 
-let commonHeaderComponent: CommonHeaderComponent;
-let commonLoginService: CommonLoginService;
-
-test.beforeEach(async ({ page }) => {
-  test.slow();
-  commonHeaderComponent = new CommonHeaderComponent(page);
-  commonLoginService = new CommonLoginService(page);
-});
-
-test('User can reveal the Help options by clicking the Help button', async ({ page }) => {
+test('User can reveal the Help options by clicking the Help button', async ({ page, commonHeaderComponent }) => {
   console.log('Test Case: User can reveal the Help options by clicking the Help button');
+  test.slow();
   await test.step(`Navigate to login service`, async () => {
     await page.goto(UrlsUtils.legalshieldUrls.login.url);
   });
@@ -28,8 +19,9 @@ test('User can reveal the Help options by clicking the Help button', async ({ pa
   });
 });
 
-test('User can reveal the Language options by clicking the Globe icon', async ({ page }) => {
+test('User can reveal the Language options by clicking the Globe icon', async ({ page, commonHeaderComponent }) => {
   console.log('Test Case: User can reveal the Language options by clicking the Globe icon');
+  test.slow();
   await test.step(`Navigate to login service`, async () => {
     await page.goto(UrlsUtils.legalshieldUrls.login.url);
   });
@@ -44,8 +36,9 @@ test('User can reveal the Language options by clicking the Globe icon', async ({
   });
 });
 
-test('User can select en-US from the Language options menu', async ({ page }) => {
+test('User can select en-US from the Language options menu', async ({ page, commonHeaderComponent }) => {
   console.log('Test Case: User can select en-US from the Language options menu');
+  test.slow();
   await test.step(`Navigate to login service`, async () => {
     await page.goto(UrlsUtils.legalshieldUrls.login.url);
   });
@@ -60,8 +53,9 @@ test('User can select en-US from the Language options menu', async ({ page }) =>
   });
 });
 
-test('User can select es-US from the Language options menu', async ({ page }) => {
+test('User can select es-US from the Language options menu', async ({ page, commonHeaderComponent }) => {
   console.log('Test Case: User can select es-US from the Language options menu');
+  test.slow();
   await test.step(`Navigate to login service`, async () => {
     await page.goto(UrlsUtils.legalshieldUrls.login.url);
   });
@@ -73,8 +67,9 @@ test('User can select es-US from the Language options menu', async ({ page }) =>
   });
 });
 
-test('User can select en-CA from the Language options menu', async ({ page }) => {
+test('User can select en-CA from the Language options menu', async ({ page, commonHeaderComponent }) => {
   console.log('Test Case: User can select en-CA from the Language options menu');
+  test.slow();
   await test.step(`Navigate to login service`, async () => {
     await page.goto(UrlsUtils.legalshieldUrls.login.url);
   });
@@ -86,8 +81,9 @@ test('User can select en-CA from the Language options menu', async ({ page }) =>
   });
 });
 
-test('User can select fr-CA from the Language options menu', async ({ page }) => {
+test('User can select fr-CA from the Language options menu', async ({ page, commonHeaderComponent }) => {
   console.log('Test Case: User can select fr-CA from the Language options menu');
+  test.slow();
   await test.step(`Navigate to login service`, async () => {
     await page.goto(UrlsUtils.legalshieldUrls.login.url);
   });
@@ -99,8 +95,9 @@ test('User can select fr-CA from the Language options menu', async ({ page }) =>
   });
 });
 
-test('Common Header displays the following in the Login service', async ({ page }) => {
+test('Common Header displays the following in the Login service', async ({ page, commonHeaderComponent }) => {
   console.log('Test Case: Common Header displays the following in the Login service');
+  test.slow();
   await test.step(`Navigate to login service`, async () => {
     await page.goto(UrlsUtils.legalshieldUrls.login.url);
   });
@@ -116,8 +113,9 @@ test('Common Header displays the following in the Login service', async ({ page 
   });
 });
 
-test('Common Header displays the following in the Accounts service', async ({ page }) => {
+test('Common Header displays the following in the Accounts service', async ({ page, commonHeaderComponent, commonLoginService }) => {
   console.log('Test Case: Common Header displays the following in the Accounts service');
+  test.slow();
   await test.step(`Navigate to login service`, async () => {
     await page.goto(UrlsUtils.legalshieldUrls.login.url);
   });
@@ -136,8 +134,9 @@ test('Common Header displays the following in the Accounts service', async ({ pa
   });
 });
 
-test('Common Header displays the following in the Cart-Builder service', async ({ page }) => {
+test('Common Header displays the following in the Cart-Builder service', async ({ page, commonHeaderComponent, commonLoginService }) => {
   console.log('Test Case: Common Header displays the following in the Cart-Builder service');
+  test.slow();
   test.skip(); // remove skip and update test case once cart-builder is finished
   await test.step(`Navigate to login service`, async () => {
     await page.goto(UrlsUtils.legalshieldUrls.login.url);
@@ -157,8 +156,9 @@ test('Common Header displays the following in the Cart-Builder service', async (
   });
 });
 
-test('User can reveal the Account menu by clicking on the My Account dropdown', async ({ page }) => {
+test('User can reveal the Account menu by clicking on the My Account dropdown', async ({ page, commonHeaderComponent, commonLoginService }) => {
   console.log('Test Case: User can reveal the Account menu by clicking on the My Account dropdown');
+  test.slow();
   await test.step(`Navigate to login service`, async () => {
     await page.goto(UrlsUtils.legalshieldUrls.login.url);
   });
@@ -177,8 +177,13 @@ test('User can reveal the Account menu by clicking on the My Account dropdown', 
   });
 });
 
-test('User can navigate to the Accounts Home page by clicking the Account menu My products link', async ({ page }) => {
+test('User can navigate to the Accounts Home page by clicking the Account menu My products link', async ({
+  page,
+  commonHeaderComponent,
+  commonLoginService,
+}) => {
   console.log('Test Case: User can navigate to the Accounts Home page by clicking the Account menu My products link');
+  test.slow();
   await test.step(`Navigate to login service`, async () => {
     await page.goto(UrlsUtils.legalshieldUrls.login.url);
   });
@@ -196,8 +201,13 @@ test('User can navigate to the Accounts Home page by clicking the Account menu M
   });
 });
 
-test('User can navigate to the Accounts Profile page by clicking the Account menu My Account link', async ({ page }) => {
+test('User can navigate to the Accounts Profile page by clicking the Account menu My Account link', async ({
+  page,
+  commonHeaderComponent,
+  commonLoginService,
+}) => {
   console.log('Test Case: User can navigate to the Accounts Profile page by clicking the Account menu My Account link');
+  test.slow();
   await test.step(`Navigate to login service`, async () => {
     await page.goto(UrlsUtils.legalshieldUrls.login.url);
   });
@@ -212,8 +222,9 @@ test('User can navigate to the Accounts Profile page by clicking the Account men
   });
 });
 
-test('User can sign out of their account by clicking the Account menu Sign Out link', async ({ page }) => {
+test('User can sign out of their account by clicking the Account menu Sign Out link', async ({ page, commonHeaderComponent, commonLoginService }) => {
   console.log('Test Case: User can sign out of their account by clicking the Account menu Sign Out link');
+  test.slow();
   await test.step(`Navigate to login service`, async () => {
     await page.goto(UrlsUtils.legalshieldUrls.login.url);
   });

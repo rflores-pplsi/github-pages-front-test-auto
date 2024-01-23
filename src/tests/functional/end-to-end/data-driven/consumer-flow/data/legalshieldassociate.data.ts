@@ -392,7 +392,7 @@ export const legalshieldAssociateData = [
 export const legalshieldAssociateCanadaData = [
   {
     disabled: false,
-    market: 'Canada - French',
+    market: 'Canada - Français',
     paymentMethod: 'bank draft',
     planDetails: [
       {
@@ -416,7 +416,7 @@ export const legalshieldAssociateCanadaData = [
   },
   {
     disabled: false,
-    market: 'Canada - French',
+    market: 'Canada - Français',
     paymentMethod: 'bank draft',
     planDetails: [
       {
@@ -440,7 +440,7 @@ export const legalshieldAssociateCanadaData = [
   },
   {
     disabled: false,
-    market: 'Canada - French',
+    market: 'Canada - Français',
     paymentMethod: 'bank draft',
     planDetails: [
       {

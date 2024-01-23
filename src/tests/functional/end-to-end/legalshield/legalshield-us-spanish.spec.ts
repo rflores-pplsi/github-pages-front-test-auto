@@ -1,24 +1,18 @@
 import RegionsUtils from '../../../../utils/regions.utils';
 import { basicUser } from '../../../../utils/user.utils';
-import { test, expect } from '@playwright/test';
-import { LegalshieldCoverageAndPricingPage } from '../../../../page-objects/marketing-sites/legalshield/legalshield-coverage-and-pricing.page';
-import { CommonLoginService, CommonCheckoutService } from '@legalshield/frontend-automation-commons';
-
-let legalshieldCoverageAndPricingPage: LegalshieldCoverageAndPricingPage;
-let commonLoginService: CommonLoginService;
-let commonCheckoutService: CommonCheckoutService;
-
-test.beforeEach(async ({ context, page }) => {
-  test.setTimeout(120000);
-  commonLoginService = new CommonLoginService(page);
-  legalshieldCoverageAndPricingPage = new LegalshieldCoverageAndPricingPage(page);
-  commonCheckoutService = new CommonCheckoutService(context, page);
-});
+import { expect } from '@playwright/test';
+import { test } from '../../../../fixtures/frontend-ui.fixture';
 
 const regionsUnderTest = ['California'];
 for (const regionUnderTest of regionsUnderTest) {
-  test(`LegalShield (Legal Plan, es-US, ${regionUnderTest}) -> Checkout -> Accounts @smoke @e2e`, async ({ page }) => {
+  test(`LegalShield (Legal Plan, es-US, ${regionUnderTest}) -> Checkout -> Accounts @smoke @e2e`, async ({
+    page,
+    legalshieldService,
+    commonLoginService,
+    commonCheckoutService,
+  }) => {
     console.log(`Test Case: LegalShield (Legal Plan, es-US, ${regionUnderTest}) -> Checkout -> Accounts`);
+    test.setTimeout(120000);
     const regionInfo = RegionsUtils.usStates.filter((region) => region.name == regionUnderTest)[0];
     const homeAddress = regionInfo.validAddress.street;
     const city = regionInfo.validAddress.city;
@@ -26,16 +20,16 @@ for (const regionUnderTest of regionsUnderTest) {
     const regionAbbreviation = regionInfo.abbrv;
 
     await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
-      await legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'es');
+      await legalshieldService.legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'es');
     });
     await test.step(`Change Region`, async () => {
-      await legalshieldCoverageAndPricingPage.marketingSiteFooterComponent.selectRegion(regionUnderTest, regionAbbreviation);
+      await legalshieldService.legalshieldCoverageAndPricingPage.marketingSiteFooterComponent.selectRegion(regionUnderTest, regionAbbreviation);
     });
     await test.step(`Click on the Start Monthly Plan button`, async () => {
-      await legalshieldCoverageAndPricingPage.clickSpanishStartPlanButton('monthly');
+      await legalshieldService.legalshieldCoverageAndPricingPage.clickSpanishStartPlanButton('monthly');
     });
     await test.step(`Click on the Shopping Cart Checkout button`, async () => {
-      await legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
+      await legalshieldService.legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
     });
     await test.step(`Choose Account by Email`, async () => {
       await commonCheckoutService.accountPage.locEmailAddressInput.fill(basicUser.email);

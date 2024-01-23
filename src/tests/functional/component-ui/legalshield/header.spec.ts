@@ -1,21 +1,17 @@
-import { test, expect, Page, Response } from '@playwright/test';
+import { expect, Response } from '@playwright/test';
 import UrlsUtils from '../../../../utils/urls.utils';
-import { LegalshieldService } from '../../../../page-objects/marketing-sites/legalshield/legalshield-service';
 import { headerTwoLinksData, headerThreeLinksData } from './headerLinks.data';
+import { test } from '../../../../fixtures/frontend-ui.fixture';
 
-let legalshieldService: LegalshieldService;
-
-test.beforeEach(async ({ context, page }) => {
-  test.slow();
-  legalshieldService = new LegalshieldService(page, context);
+test.beforeEach(async ({ legalshieldService }) => {
   await legalshieldService.navigateToUrl(UrlsUtils.legalshieldService.baseUrl);
 });
 
 for (const testCase of headerTwoLinksData.filter((testCase) => testCase.disabled == false)) {
-  test(`${testCase.testCaseName} @LegalShieldHeader`, async ({ page }) => {
+  test(`${testCase.testCaseName} @LegalShieldHeader`, async ({ page, legalshieldService }) => {
     console.log(`Test Case: ${testCase.testCaseName}`);
+    test.slow();
     let response: Response;
-
     await test.step(`Click on the ${testCase.secondLevelLink} link`, async () => {
       [response] = await Promise.all([
         page.waitForResponse((response) => response.url().includes(testCase.expectedUrl)),
@@ -32,10 +28,10 @@ for (const testCase of headerTwoLinksData.filter((testCase) => testCase.disabled
 }
 
 for (const testCase of headerThreeLinksData.filter((testCase) => testCase.disabled == false)) {
-  test(`${testCase.testCaseName} @LegalShieldHeader`, async ({ page }) => {
+  test(`${testCase.testCaseName} @LegalShieldHeader`, async ({ page, legalshieldService }) => {
     console.log(`Test Case: ${testCase.testCaseName}`);
+    test.slow();
     let response: Response;
-
     await test.step(`Click on the ${testCase.thirdLevelLink} link`, async () => {
       [response] = await Promise.all([
         page.waitForResponse((response) => response.url().includes(testCase.expectedUrl)),

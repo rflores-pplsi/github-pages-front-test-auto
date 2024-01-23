@@ -1,34 +1,25 @@
 import { expect } from '@playwright/test';
-import RegionsUtils from '../../../../../utils/regions.utils';
-import { basicUser } from '../../../../../utils/user.utils';
-import { selfPayData } from './data/shieldbenefits.data';
-import UrlsUtils from '../../../../../utils/urls.utils';
-import { test } from '../../../../../fixtures/frontend-ui.fixture';
+import RegionsUtils from '../../../../../../utils/regions.utils';
+import { basicUser } from '../../../../../../utils/user.utils';
+import { legalshieldData } from '../data/legalshield.data';
+import UrlsUtils from '../../../../../../utils/urls.utils';
+import { test } from '../../../../../../fixtures/frontend-ui.fixture';
 
-// Self-Pay Configurations - Single Plan
-for (const testCase of selfPayData.filter((testCase) => testCase.disabled == false)) {
+for (const testCase of legalshieldData.filter((testCase) => testCase.disabled == false)) {
   for (const regionUnderTest of testCase.regions) {
-    test(`ShieldBenefits (${testCase.testCaseName}, ${regionUnderTest}) -> Checkout -> Accounts @e2e @ConsumerFlowShieldBenefits`, async ({
+    test(`Legalshield (${testCase.testCaseName}, ${regionUnderTest}) -> Checkout -> Accounts @e2e @ConsumerFlowLegalShieldPlans`, async ({
       page,
+      legalshieldService,
       commonCheckoutService,
       commonLoginService,
-      shieldBenefitsService,
     }) => {
-      console.log(`Test Case: ShieldBenefits (${testCase.testCaseName}, ${regionUnderTest}) -> Checkout -> Accounts`);
-      test.setTimeout(120000);
+      console.log(`Test Case: Legalshield (${testCase.testCaseName}, ${regionUnderTest}) -> Checkout -> Accounts`);
       const regionInfo = RegionsUtils.usStates.filter((region) => region.name == regionUnderTest)[0];
-
-      await test.step(`Navigate to Shield Benefits Pricing Page for Group: ${testCase.groupNameOrNumber}`, async () => {
-        await page.goto(`${UrlsUtils.shieldBenefits.home.url}/${testCase.groupNameOrNumber}/enrollment`);
+      await test.step(`Navigate to legalshield.com for ${testCase.market}-${testCase.language}`, async () => {
+        await page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/personal-plan/coverage-and-pricing/`);
       });
-      await test.step(`Select State: ${regionUnderTest}`, async () => {
-        await shieldBenefitsService.shieldBenefitsLegalEnrollmentPage.selectStateOrProvince(regionUnderTest);
-      });
-      await test.step(`Check product checkbox for product: ${testCase.productName} with Tier: ${testCase.tierName}`, async () => {
-        await shieldBenefitsService.shieldBenefitsLegalEnrollmentPage.checkProductCheckbox(testCase.productName);
-      });
-      await test.step(`Click Enroll Now for Plan: ${testCase.productName} with Tier: ${testCase.tierName}`, async () => {
-        await shieldBenefitsService.shieldBenefitsLegalEnrollmentPage.locBeginEnrollmentButton.click();
+      await test.step(`Add Products: ${testCase.productDetails}`, async () => {
+        await legalshieldService.addProductsFromProductDetails(testCase.productDetails);
       });
       await test.step(`Choose Account by Email and Login`, async () => {
         if (testCase.userType == 'Existing') {
@@ -40,12 +31,12 @@ for (const testCase of selfPayData.filter((testCase) => testCase.disabled == fal
           await commonCheckoutService.accountPage.enterRandomEmailAndNewPasswordAndLogin();
         }
       });
-      await test.step(`Change Address to a valid one for Region: ${regionInfo.name}`, async () => {
+      await test.step(`Fill all required fields on personal info ${regionInfo.name}`, async () => {
         await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
           'Test',
           'Tester',
-          'Mobile',
           '5555555555',
+          'Mobile',
           regionInfo.validAddress.street,
           regionInfo.validAddress.city,
           regionInfo.validAddress.postalCode,
@@ -54,11 +45,15 @@ for (const testCase of selfPayData.filter((testCase) => testCase.disabled == fal
           '1990',
           '3333333333'
         );
+        if (await commonCheckoutService.personalInfoPage.locBusinessNameInput.isVisible()) {
+          await commonCheckoutService.personalInfoPage.fillBusinessInformationFields('Testers Inc', '10', '10', '2021', '945433337');
+        }
       });
+
       await test.step(`Verify Order Total in Order Summary`, async () => {
         expect(await commonCheckoutService.personalInfoPage.orderSummaryComponent.locTotalContainer.innerText()).toContain(testCase.termTotal);
       });
-      await test.step(`Click Save and Continue Button`, async () => {
+      await test.step(`Click Save and Continue and wait for Payment page`, async () => {
         await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
       });
       await test.step(`Verify Order Total in Order Summary`, async () => {
@@ -73,9 +68,11 @@ for (const testCase of selfPayData.filter((testCase) => testCase.disabled == fal
       await test.step('Click Purchase Button', async () => {
         await commonCheckoutService.paymentPage.bankDraftComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
       });
-      await test.step(`Click on Purchase button`, async () => {
-        await commonCheckoutService.confirmationPage.locConfirmationScreenContainer.waitFor();
-        await expect(commonCheckoutService.confirmationPage.locConfirmationScreenContainer).toBeVisible();
+      await test.step(`Click on the Let's Go button`, async () => {
+        await commonCheckoutService.confirmationPage.locLetsGoButton.click();
+      });
+      await test.step(`Assert Accounts Page URL`, async () => {
+        await expect(page).toHaveURL(new RegExp('accounts'));
       });
     });
   }

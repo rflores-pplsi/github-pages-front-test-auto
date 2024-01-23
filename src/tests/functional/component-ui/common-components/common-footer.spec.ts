@@ -1,16 +1,10 @@
-import { test, expect, Page } from '@playwright/test';
+import { expect, Page } from '@playwright/test';
 import UrlsUtils from '../../../../utils/urls.utils';
-import { CommonFooterComponent } from '../../../../page-objects/common-components/common-footer.component';
+import { test } from '../../../../fixtures/frontend-ui.fixture';
 
-let commonFooterComponent: CommonFooterComponent;
-
-test.beforeEach(async ({ context, page }) => {
-  test.slow();
-  commonFooterComponent = new CommonFooterComponent(context, page);
-});
-
-test('Common Footer displays the appropriate links and copyright info', async ({ page }) => {
+test('Common Footer displays the appropriate links and copyright info', async ({ page, commonFooterComponent }) => {
   console.log('Test Case: Common Footer displays the appropriate links and copyright info');
+  test.slow();
   await test.step(`Navigate to login service`, async () => {
     await page.goto(UrlsUtils.legalshieldUrls.login.url);
   });
@@ -22,8 +16,12 @@ test('Common Footer displays the appropriate links and copyright info', async ({
   });
 });
 
-test('User can click the Terms of Service Link from the Login service and open the Terms of Service in a new Tab', async ({ page }) => {
+test('User can click the Terms of Service Link from the Login service and open the Terms of Service in a new Tab', async ({
+  page,
+  commonFooterComponent,
+}) => {
   console.log('Test Case: User can click the Terms of Service Link from the Login service and open the Terms of Service in a new Tab');
+  test.slow();
   let newPage: Page;
   await test.step(`Navigate to login service`, async () => {
     await page.goto(UrlsUtils.legalshieldUrls.login.url);
@@ -36,8 +34,12 @@ test('User can click the Terms of Service Link from the Login service and open t
   });
 });
 
-test('User can click the Privacy Policy Link from the Login service and open the Privacy Policy in a new Tab', async ({ page }) => {
+test('User can click the Privacy Policy Link from the Login service and open the Privacy Policy in a new Tab', async ({
+  page,
+  commonFooterComponent,
+}) => {
   console.log('Test Case: User can click the Privacy Policy Link from the Login service and open the Privacy Policy in a new Tab');
+  test.slow();
   let newPage: Page;
   await test.step(`Navigate to login service`, async () => {
     await page.goto(UrlsUtils.legalshieldUrls.login.url);
@@ -50,8 +52,9 @@ test('User can click the Privacy Policy Link from the Login service and open the
   });
 });
 
-test('User can click the Legal Link from the Login service and open the Legal Disclaimer in a new Tab', async ({ page }) => {
+test('User can click the Legal Link from the Login service and open the Legal Disclaimer in a new Tab', async ({ page, commonFooterComponent }) => {
   console.log('Test Case: User can click the Legal Link from the Login service and open the Legal Disclaimer  in a new Tab');
+  test.slow();
   let newPage: Page;
   await test.step(`Navigate to login service`, async () => {
     await page.goto(UrlsUtils.legalshieldUrls.login.url);

@@ -1,24 +1,17 @@
 import RegionsUtils from '../../../utils/regions.utils';
-import { test, expect } from '@playwright/test';
+import { expect } from '@playwright/test';
 import { basicUser } from '../../../utils/user.utils';
-import { ShieldBenefitsService } from '../../../page-objects/shieldbenefits/shieldbenefits-service';
-import { CommonLoginService, CommonCheckoutService } from '@legalshield/frontend-automation-commons';
-
-let shieldBenefitsService: ShieldBenefitsService;
-let commonLoginService: CommonLoginService;
-let commonCheckoutService: CommonCheckoutService;
-
-test.beforeEach(async ({ context, page }) => {
-  shieldBenefitsService = new ShieldBenefitsService(page);
-  commonLoginService = new CommonLoginService(page);
-  commonCheckoutService = new CommonCheckoutService(context, page);
-  test.slow();
-});
+import { test } from '../../../fixtures/frontend-ui.fixture';
 
 const regionsUnderTest = ['New York'];
 for (const regionUnderTest of regionsUnderTest) {
-  test('Shield Benefits (nnlegaltest7, Legal Plan Family) -> Checkout -> Accounts @smoke @e2e', async ({ page }) => {
+  test('Shield Benefits (nnlegaltest7, Legal Plan Family) -> Checkout -> Accounts @smoke @e2e', async ({
+    shieldBenefitsService,
+    commonCheckoutService,
+    commonLoginService,
+  }) => {
     console.log('Test Case: Shield Benefits (nnlegaltest7, Legal Plan Family) -> Checkout -> Accounts');
+    test.slow();
     const regionInfo = RegionsUtils.usStates.filter((region) => region.name == regionUnderTest)[0];
     const homeAddress = regionInfo.validAddress.street;
     const city = regionInfo.validAddress.city;

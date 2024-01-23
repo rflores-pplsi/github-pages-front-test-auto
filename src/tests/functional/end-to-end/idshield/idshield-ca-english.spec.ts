@@ -1,25 +1,19 @@
 import RegionsUtils from '../../../../utils/regions.utils';
 import { basicUser } from '../../../../utils/user.utils';
-import { test, expect } from '@playwright/test';
-import { IdshieldPage } from '../../../../page-objects/marketing-sites/idshield/idshield.page';
-import { CommonLoginService, CommonCheckoutService } from '@legalshield/frontend-automation-commons';
+import { expect } from '@playwright/test';
 import UrlsUtils from '../../../../utils/urls.utils';
-
-let idshieldPage: IdshieldPage;
-let commonLoginService: CommonLoginService;
-let commonCheckoutService: CommonCheckoutService;
-
-test.beforeEach(async ({ context, page }) => {
-  test.setTimeout(120000);
-  commonLoginService = new CommonLoginService(page);
-  idshieldPage = new IdshieldPage(page);
-  commonCheckoutService = new CommonCheckoutService(context, page);
-});
+import { test } from '../../../../fixtures/frontend-ui.fixture';
 
 const regionsUnderTest = ['Manitoba'];
 for (const regionUnderTest of regionsUnderTest) {
-  test(`IdShield (Individual Plan, en-CA, ${regionUnderTest}) -> Checkout -> Accounts @smoke @e2e`, async ({ page }) => {
+  test(`IdShield (Individual Plan, en-CA, ${regionUnderTest}) -> Checkout -> Accounts @smoke @e2e`, async ({
+    page,
+    idshieldService,
+    commonLoginService,
+    commonCheckoutService,
+  }) => {
     console.log(`Test Case: IdShield (Individual Plan, en-CA, ${regionUnderTest}) -> Checkout -> Accounts`);
+    test.setTimeout(120000);
     const regionInfo = RegionsUtils.caProvinces.filter((region) => region.name == regionUnderTest)[0];
     const homeAddress = regionInfo.validAddress.street;
     const city = regionInfo.validAddress.city;
@@ -30,12 +24,12 @@ for (const regionUnderTest of regionsUnderTest) {
       await page.goto(UrlsUtils.marketingSitesUrls.idShieldCAUrl);
     });
     await test.step(`Change Region`, async () => {
-      await idshieldPage.selectRegion(regionUnderTest, regionAbbreviation);
-      await idshieldPage.locUpdateRegionButton.click();
+      await idshieldService.idshieldPage.selectRegion(regionUnderTest, regionAbbreviation);
+      await idshieldService.idshieldPage.locUpdateRegionButton.click();
       await page.waitForSelector(`//div[(@id="page-container") and contains(.,"${regionsUnderTest}")]`);
     });
     await test.step(`Click on the Sign Up button`, async () => {
-      await idshieldPage.clickGetStartedButton('Individual Plan');
+      await idshieldService.idshieldPage.clickGetStartedButton('Individual Plan');
     });
     await test.step(`Choose Account by Email`, async () => {
       await commonCheckoutService.accountPage.locEmailAddressInput.fill(basicUser.email);

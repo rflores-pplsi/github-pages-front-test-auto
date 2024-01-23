@@ -1,24 +1,18 @@
 import RegionsUtils from '../../../../utils/regions.utils';
 import { basicUser } from '../../../../utils/user.utils';
-import { test, expect } from '@playwright/test';
-import { IdshieldIndividualPlanPage } from '../../../../page-objects/marketing-sites/idshield/idshield-individual-plan.page';
-import { CommonLoginService, CommonCheckoutService } from '@legalshield/frontend-automation-commons';
-
-let idshieldIndividualPlanPage: IdshieldIndividualPlanPage;
-let commonLoginService: CommonLoginService;
-let commonCheckoutService: CommonCheckoutService;
-
-test.beforeEach(async ({ context, page }) => {
-  test.setTimeout(120000);
-  commonLoginService = new CommonLoginService(page);
-  idshieldIndividualPlanPage = new IdshieldIndividualPlanPage(page);
-  commonCheckoutService = new CommonCheckoutService(context, page);
-});
+import { expect } from '@playwright/test';
+import { test } from '../../../../fixtures/frontend-ui.fixture';
 
 const regionsUnderTest = ['California'];
 for (const regionUnderTest of regionsUnderTest) {
-  test(`IdShield (1 credit bureau monitoring, en-US, ${regionUnderTest}) -> Checkout -> Accounts @smoke @e2e`, async ({ page }) => {
+  test(`IdShield (1 credit bureau monitoring, en-US, ${regionUnderTest}) -> Checkout -> Accounts @smoke @e2e`, async ({
+    page,
+    idshieldService,
+    commonCheckoutService,
+    commonLoginService,
+  }) => {
     console.log(`Test Case: IdShield (1 credit bureau monitoring, en-US, ${regionUnderTest}) -> Checkout -> Accounts`);
+    test.setTimeout(120000);
     const regionInfo = RegionsUtils.usStates.filter((region) => region.name == regionUnderTest)[0];
     const homeAddress = regionInfo.validAddress.street;
     const city = regionInfo.validAddress.city;
@@ -26,16 +20,16 @@ for (const regionUnderTest of regionsUnderTest) {
     const regionAbbreviation = regionInfo.abbrv;
 
     await test.step(`Navigate to idshield pricing and coverage page`, async () => {
-      await idshieldIndividualPlanPage.navigateToIdshieldIndividualPlanPage();
+      await idshieldService.idshieldIndividualPlanPage.navigateToIdshieldIndividualPlanPage();
     });
     await test.step(`Change Region`, async () => {
-      await idshieldIndividualPlanPage.marketingSiteFooterComponent.selectRegion(regionUnderTest, regionAbbreviation);
+      await idshieldService.idshieldIndividualPlanPage.marketingSiteFooterComponent.selectRegion(regionUnderTest, regionAbbreviation);
     });
     await test.step(`Click on the Sign Up button`, async () => {
-      await idshieldIndividualPlanPage.clickSignUpButton('1 credit bureau monitoring');
+      await idshieldService.idshieldIndividualPlanPage.clickSignUpButton('1 credit bureau monitoring');
     });
     await test.step(`Click on the Shopping Cart Checkout button`, async () => {
-      await idshieldIndividualPlanPage.marketingSiteCartComponent.locCheckoutButton.click();
+      await idshieldService.idshieldIndividualPlanPage.marketingSiteCartComponent.locCheckoutButton.click();
     });
     await test.step(`Choose Account by Email`, async () => {
       await commonCheckoutService.accountPage.locEmailAddressInput.fill(basicUser.email);

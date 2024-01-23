@@ -6,7 +6,7 @@ import { BrowserContext, expect, Locator, Page } from '@playwright/test';
  * @export
  * @class PplsiBusinessSolutionsOrientationResourcesComponent
  */
-export class PplsiBusinessSolutionsOrientationResourcesComponent {
+export class ResourcesComponent {
   readonly page: Page;
   readonly context: BrowserContext;
   readonly locResourcesContainer: Locator;

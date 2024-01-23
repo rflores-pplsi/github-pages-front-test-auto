@@ -1,5 +1,5 @@
 import { Page, BrowserContext } from '@playwright/test';
-import { PplsiFooterComponent } from './pplsi-footer.component';
+import { PplsiFooterComponent } from './footer.component';
 
 /**
  *

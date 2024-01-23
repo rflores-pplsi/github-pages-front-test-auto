@@ -1,30 +1,21 @@
-import { expect, test } from '@playwright/test';
+import { expect } from '@playwright/test';
 import RegionsUtils from '../../../../../utils/regions.utils';
 import { basicUser } from '../../../../../utils/user.utils';
 import { legalshieldAssociateData, legalshieldAssociateCanadaData } from './data/legalshieldassociate.data';
 import UrlsUtils from '../../../../../utils/urls.utils';
-import { ShieldAssociateService } from '../../../../../page-objects/shieldassociate/shieldassociate-service';
-import { CommonCheckoutService, CommonLoginService, CommonAssociateOfficeService } from '@legalshield/frontend-automation-commons';
-
-let shieldAssociateService: ShieldAssociateService;
-let commonCheckoutService: CommonCheckoutService;
-let commonLoginService: CommonLoginService;
-let commonAssociateOfficeService: CommonAssociateOfficeService;
-
-test.beforeEach(async ({ context, page }) => {
-  shieldAssociateService = new ShieldAssociateService(context, page);
-  commonLoginService = new CommonLoginService(page);
-  commonCheckoutService = new CommonCheckoutService(context, page);
-  commonAssociateOfficeService = new CommonAssociateOfficeService(page);
-  test.setTimeout(200000);
-});
+import { test } from '../../../../../fixtures/frontend-ui.fixture';
 
 for (const testCase of legalshieldAssociateData.filter((testCase) => testCase.disabled == false)) {
   for (const regionUnderTest of testCase.regions) {
     test(`${testCase.testCaseName}, ${regionUnderTest}: Checkout -> Accounts @e2e @ConsumerFlowLegalShieldAssociates ${testCase.tag}`, async ({
       page,
+      commonAssociateOfficeService,
+      commonCheckoutService,
+      commonLoginService,
+      shieldAssociateService,
     }) => {
       console.log(`Test Case: ${testCase.testCaseName}, ${regionUnderTest} -> Checkout -> Accounts`);
+      test.setTimeout(200000);
       const regionInfo = RegionsUtils.usStates.filter((region) => region.name == regionUnderTest)[0];
       await test.step(`Navigate to shieldassociate.com/BuyNow`, async () => {
         await page.goto(`https://apptestuser.${UrlsUtils.legalshieldAssociateService.baseUrlNoSubdomain}/BuyNow`);
@@ -159,15 +150,21 @@ for (const testCase of legalshieldAssociateCanadaData.filter((testCase) => testC
   for (const regionUnderTest of testCase.regions) {
     test(`${testCase.testCaseName}, ${regionUnderTest}: Checkout -> Accounts @e2e @ConsumerFlowLegalshieldAssociatesFrenchCanada`, async ({
       page,
+      commonAssociateOfficeService,
+      commonCheckoutService,
+      commonLoginService,
+      shieldAssociateService,
     }) => {
       console.log(`Test Case: ${testCase.testCaseName}, ${regionUnderTest} -> Checkout -> Accounts`);
+      test.setTimeout(200000);
       const regionInfo = RegionsUtils.caProvinces.filter((region) => region.name == regionUnderTest)[0];
       await test.step(`Navigate to shieldassociate.com/BuyNow?market=fr-ca`, async () => {
-        await page.goto(`https://apptestuser.${UrlsUtils.legalshieldAssociateService.baseUrlNoSubdomain}/BuyNow?market=fr-ca`);
+        await page.goto(`https://apptestuser.${UrlsUtils.legalshieldAssociateService.baseUrlNoSubdomain}/BuyNow`);
+        // await page.goto(`https://apptestuser.${UrlsUtils.legalshieldAssociateService.baseUrlNoSubdomain}/BuyNow?market=fr-ca`);
       });
-      // await test.step(`Select Market`, async () => {
-      //   await shieldAssociateService.buyNowPage.globalFooterComponent.changeMarket(testCase.market);
-      // });
+      await test.step(`Select Market`, async () => {
+        await shieldAssociateService.buyNowPage.globalFooterComponent.changeMarket(testCase.market);
+      });
       await test.step(`Select Plans`, async () => {
         await shieldAssociateService.buyNowPage.selectPlans(testCase.planDetails);
       });
