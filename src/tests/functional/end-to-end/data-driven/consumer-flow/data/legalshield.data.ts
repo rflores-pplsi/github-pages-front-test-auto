@@ -25,6 +25,17 @@ export const legalshieldData = [
     disabled: false,
     language: 'en',
     market: 'US',
+    productDetails: [{ cost: '$29.95', name: 'Legal Plan', shortCode: 'LPUS21', term: 'Monthly', type: 'LegalShield' }],
+    regions: ['Florida'],
+    term: 'Monthly',
+    termTotal: '$29.95',
+    testCaseName: 'Legal Plan, Guest',
+    userType: 'Guest',
+  },
+  {
+    disabled: false,
+    language: 'en',
+    market: 'US',
     productDetails: [
       { cost: '$29.95', name: 'Legal Plan', shortCode: 'LPUS21', term: 'Monthly', type: 'LegalShield' },
       {

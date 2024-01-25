@@ -31,6 +31,9 @@ for (const testCase of legalshieldData.filter((testCase) => testCase.disabled ==
         if (testCase.userType == 'New') {
           await commonCheckoutService.accountPage.enterRandomEmailAndNewPasswordAndLogin();
         }
+        if (testCase.userType == 'Guest') {
+          await commonCheckoutService.accountPage.enterRandomEmailAndContinueAsGuest();
+        }
       });
       await test.step(`Fill all required fields on personal info ${regionInfo.name}`, async () => {
         await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
