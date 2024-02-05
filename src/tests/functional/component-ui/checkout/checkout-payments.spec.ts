@@ -318,7 +318,7 @@ test.describe('Canada - Alberta, Legal Plan', () => {
       await legalshieldService.legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('CA', 'en');
     });
     await test.step(`Change Region`, async () => {
-      await legalshieldService.legalshieldCoverageAndPricingPage.changeCanadianRegion('Alberta', 'AB');
+      await legalshieldService.legalshieldCoverageAndPricingPage.selectRegion('Alberta', 'AB');
     });
     await test.step(`Click on the Start Monthly Plan button`, async () => {
       await legalshieldService.legalshieldCoverageAndPricingPage.clickCanadaGetStartedButton();

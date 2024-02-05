@@ -21,12 +21,10 @@ for (const regionUnderTest of regionsUnderTest) {
     const regionAbbreviation = regionInfo.abbrv;
 
     await test.step(`Navigate to idshield canada page`, async () => {
-      await page.goto(UrlsUtils.marketingSitesUrls.idShieldCAUrl);
+      await idshieldService.idshieldPage.navigateToIdShieldPage();
     });
     await test.step(`Change Region`, async () => {
       await idshieldService.idshieldPage.selectRegion(regionUnderTest, regionAbbreviation);
-      await idshieldService.idshieldPage.locUpdateRegionButton.click();
-      await page.waitForSelector(`//div[(@id="page-container") and contains(.,"${regionsUnderTest}")]`);
     });
     await test.step(`Click on the Sign Up button`, async () => {
       await idshieldService.idshieldPage.clickGetStartedButton('Individual Plan');
@@ -46,7 +44,7 @@ for (const regionUnderTest of regionsUnderTest) {
     });
     await test.step(`Update Personal Info to match region`, async () => {
       await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
-        'Automation',
+        'IDshieldCA',
         'Tester',
         '5555555555',
         'Mobile',

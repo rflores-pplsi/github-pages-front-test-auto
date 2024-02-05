@@ -46,7 +46,7 @@ for (const regionUnderTest of regionsUnderTest) {
     });
     test.step(`Fill all required fields on personal info ${regionInfo.name}`, async () => {
       await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
-        'Test',
+        'IDShieldUS',
         'Tester',
         '5555555555',
         'Mobile',

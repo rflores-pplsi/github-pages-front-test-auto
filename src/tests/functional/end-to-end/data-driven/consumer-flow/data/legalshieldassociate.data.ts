@@ -48,7 +48,7 @@ export const legalshieldAssociateData = [
     userType: 'Existing',
   },
   {
-    disabled: false,
+    disabled: true, //disabled while they sort out guest checkout
     market: 'United States - English',
     paymentMethod: 'bank draft',
     planDetails: [

@@ -13,8 +13,9 @@ export class LegalshieldCoverageAndPricingPage {
   readonly smallBusinessQualifyingComponent: SmallBusinessQualifyingComponent;
   readonly locMainContentDiv: Locator;
   readonly locStartMonthlyPlanButton: Locator;
-  readonly locCanadaUpdateRegionSelect: Locator;
-  readonly locCanadaUpdateRegionButton: Locator;
+  readonly locRegionSelectDropdown: Locator;
+  // readonly locCanadaUpdateRegionButton: Locator;
+  readonly locUpdateRegionButton: Locator;
   readonly locCanadaGetStartedButton: Locator;
   readonly locEssGetStartedButton: Locator;
 
@@ -27,9 +28,10 @@ export class LegalshieldCoverageAndPricingPage {
     this.smallBusinessQualifyingComponent = new SmallBusinessQualifyingComponent(page);
     this.locMainContentDiv = this.page.locator('//div[@id="sticky-offset-menu"]//a[contains(.,"Shop Legal Plans")]');
     this.locStartMonthlyPlanButton = this.page.locator('//div[contains(@class,"plan-card-col") and contains(@class,"monthly")]//a');
-    this.locCanadaUpdateRegionSelect = this.page.locator('//select[contains(@class,"lsc-region-popup__selector")]');
-    this.locCanadaUpdateRegionButton = this.page.locator('//button[contains(.,"Update region")]');
-    this.locCanadaGetStartedButton = this.page.locator('//span[contains(.,"Get started")]');
+    this.locRegionSelectDropdown = this.page.locator('//select[contains(@class,"lsc-region-popup__selector")]');
+    // this.locCanadaUpdateRegionButton = this.page.locator('//button[contains(.,"Update region")]');
+    this.locUpdateRegionButton = this.page.locator('//button[contains(.,"Update region")]');
+    this.locCanadaGetStartedButton = this.page.locator('//div[@id="lsc-add-to-cart-button"]//span[contains(.,"Get")]');
     this.locEssGetStartedButton = this.page
       .getByRole('cell', { name: '$49 Billed per month Get Started' })
       .getByRole('link', { name: 'Get Started' });
@@ -42,10 +44,9 @@ export class LegalshieldCoverageAndPricingPage {
    * @param {string} regionAbbreviation
    * @memberof LegalshieldCoverageAndPricingPage
    */
-  changeCanadianRegion = async (region: string, regionAbbreviation: string): Promise<void> => {
-    await this.locCanadaUpdateRegionSelect.selectOption(regionAbbreviation);
-    await this.locCanadaUpdateRegionButton.click();
-    await this.page.waitForSelector(`//div[(@id="page-container") and contains(.,"${region}")]`);
+  selectRegion = async (region: string, regionAbbreviation: string): Promise<void> => {
+    await this.locRegionSelectDropdown.selectOption(regionAbbreviation);
+    await this.locUpdateRegionButton.click();
   };
 
   /**

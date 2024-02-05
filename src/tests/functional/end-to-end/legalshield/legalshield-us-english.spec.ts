@@ -21,6 +21,10 @@ for (const regionUnderTest of regionsUnderTest) {
     await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
       await legalshieldService.legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
     });
+    // Will fail in UAT as change region is prompted
+    // await test.step(`Select Region`, async () => {
+    //   await legalshieldService.legalshieldCoverageAndPricingPage.selectRegion(regionUnderTest, regionInfo.abbrv);
+    // });
     await test.step(`Click on the Start Monthly Plan button`, async () => {
       await legalshieldService.legalshieldCoverageAndPricingPage.clickStartPlanButton('monthly');
     });
@@ -43,7 +47,7 @@ for (const regionUnderTest of regionsUnderTest) {
 
     await test.step(`Update Personal Info to match region`, async () => {
       await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
-        'Automation',
+        'LegalShieldENUS',
         'Tester',
         'Mobile',
         '5555555555',

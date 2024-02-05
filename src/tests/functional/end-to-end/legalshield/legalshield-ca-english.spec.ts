@@ -23,7 +23,7 @@ for (const regionUnderTest of regionsUnderTest) {
       await legalshieldService.legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('CA', 'en');
     });
     await test.step(`Change Canadian Region`, async () => {
-      await legalshieldService.legalshieldCoverageAndPricingPage.changeCanadianRegion(regionUnderTest, regionAbbreviation);
+      await legalshieldService.legalshieldCoverageAndPricingPage.selectRegion(regionUnderTest, regionAbbreviation);
     });
     await test.step(`Click on the Get Started button`, async () => {
       await legalshieldService.legalshieldCoverageAndPricingPage.locCanadaGetStartedButton.click();
@@ -46,7 +46,7 @@ for (const regionUnderTest of regionsUnderTest) {
     });
     await test.step(`Update Personal Info to match region`, async () => {
       await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
-        'Automation',
+        'LegalShieldCA',
         'Tester',
         '5555555555',
         'Mobile',

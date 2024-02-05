@@ -47,7 +47,7 @@ for (const regionUnderTest of regionsUnderTest) {
     });
     await test.step(`Update Personal Info to match region`, async () => {
       await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
-        'Automation',
+        'ShieldBenefits',
         'Tester',
         '5555555555',
         'Mobile',

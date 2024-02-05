@@ -276,6 +276,12 @@ export class LegalshieldService {
     }
   };
 
+  /**
+   *
+   *
+   * @param {Locator} locator
+   * @memberof LegalshieldService
+   */
   clickAllAddToCartLinksAndVerifyCartIsUpdated = async (locator: Locator): Promise<void> => {
     const locators = await locator.all();
     console.log(`Found ${locators.length} locators`);
@@ -296,6 +302,12 @@ export class LegalshieldService {
     }
   };
 
+  /**
+   *
+   *
+   * @param {Locator} locator
+   * @memberof LegalshieldService
+   */
   clickAllPopUpLinksAndVerifyPopUpDisplays = async (locator: Locator): Promise<void> => {
     const locators = await locator.all();
     console.log(`Found ${locators.length} elements`);
@@ -310,6 +322,12 @@ export class LegalshieldService {
     }
   };
 
+  /**
+   *
+   *
+   * @param {Locator} locator
+   * @memberof LegalshieldService
+   */
   clickAllAnchorLinksAndVerifyScroll = async (locator: Locator): Promise<void> => {
     const locators = await locator.all();
     console.log(`Found ${locators.length} elements`);
@@ -323,6 +341,13 @@ export class LegalshieldService {
       });
     }
   };
+
+  /**
+   *
+   *
+   * @param {Locator} locator
+   * @memberof LegalshieldService
+   */
   fillOutEmailFormAndSubmit = async (locator: Locator): Promise<void> => {
     const forms = await locator.all();
     let response: Response;

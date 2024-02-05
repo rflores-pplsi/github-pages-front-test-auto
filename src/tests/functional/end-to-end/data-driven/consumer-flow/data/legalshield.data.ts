@@ -22,7 +22,7 @@ export const legalshieldData = [
     userType: 'New',
   },
   {
-    disabled: false,
+    disabled: true, //disabled while they sort out guest checkout
     language: 'en',
     market: 'US',
     productDetails: [{ cost: '$29.95', name: 'Legal Plan', shortCode: 'LPUS21', term: 'Monthly', type: 'LegalShield' }],
