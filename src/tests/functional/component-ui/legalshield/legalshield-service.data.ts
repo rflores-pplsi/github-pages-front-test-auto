@@ -105,4 +105,9 @@ export const legalshieldServiceData = [
     pageName: 'Employment Ada',
     url: `${UrlsUtils.legalshieldService.baseUrl}/employment/ada/`,
   },
+  {
+    disabled: false,
+    pageName: 'Family Law',
+    url: `${UrlsUtils.legalshieldService.baseUrl}/family-law/`,
+  },
 ];
