@@ -110,4 +110,9 @@ export const legalshieldServiceData = [
     pageName: 'Family Law',
     url: `${UrlsUtils.legalshieldService.baseUrl}/family-law/`,
   },
+  {
+    disabled: false,
+    pageName: 'How to Cancel Your Plan',
+    url: `${UrlsUtils.legalshieldService.baseUrl}/legalshield-how-cancel-your-plan/`,
+  },
 ];

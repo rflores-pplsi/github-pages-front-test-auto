@@ -2,13 +2,6 @@ import type { Reporter, FullConfig, Suite, TestCase, TestResult, FullResult } fr
 import * as dotenv from 'dotenv';
 class MyReporter implements Reporter {
   private apiNewRelicUrl = 'https://insights-collector.newrelic.com/v1/accounts/124794/events';
-  onBegin(config: FullConfig, suite: Suite) {
-    // console.log(`onBegin:: Starting the run with ${suite.allTests().length} tests`);
-  }
-
-  onTestBegin(test: TestCase) {
-    // console.log(`onTestBegin:: Starting test ${test.title}`);
-  }
   private reportData = [
     {
       duration: 0,
@@ -17,6 +10,13 @@ class MyReporter implements Reporter {
     },
   ];
 
+  onBegin(config: FullConfig, suite: Suite) {
+    // console.log(`onBegin:: Starting the run with ${suite.allTests().length} tests`);
+  }
+
+  onTestBegin(test: TestCase) {
+    // console.log(`onTestBegin:: Starting test ${test.title}`);
+  }
   //  Test Case Properties
   //  annotations: test.description
   //  expectedStatus: "passed"|"failed"|"timedOut"|"skipped"|"interrupted"
@@ -38,10 +38,6 @@ class MyReporter implements Reporter {
   }
 
   onEnd(result: FullResult) {
-    const testResults = JSON.stringify(result);
-    const status = result.status;
-    const startTime = result.startTime;
-    const duration = result.duration;
     const allResults = JSON.stringify(this.reportData);
     // Send to New Relic Ingestion API
     const apiKey = process.env.API_NEW_RELIC_INGEST_KEY || '';
