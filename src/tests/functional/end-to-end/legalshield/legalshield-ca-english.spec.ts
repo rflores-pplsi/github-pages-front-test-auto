@@ -5,7 +5,7 @@ import { test } from '../../../../fixtures/frontend-ui.fixture';
 
 const regionsUnderTest = ['Alberta'];
 for (const regionUnderTest of regionsUnderTest) {
-  test(`Legalshield (Legal Plan, en-CA, ${regionUnderTest}) -> Checkout -> Accounts @smoke @e2e`, async ({
+  test(`Legalshield (Legal Plan, en-CA, ${regionUnderTest}) -> Checkout -> Accounts @smoke `, async ({
     page,
     legalshieldService,
     commonCheckoutService,

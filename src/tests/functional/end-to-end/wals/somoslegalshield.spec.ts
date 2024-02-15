@@ -9,7 +9,7 @@ test.beforeEach(async ({ context, page }) => {
 
 const regionsUnderTest = ['Florida'];
 for (const regionUnderTest of regionsUnderTest) {
-  test(`Somoslegalshield (Legal Plan, es-US, ${regionUnderTest}) -> Checkout -> Accounts @smoke @e2e`, async ({ page, walsService }) => {
+  test(`Somoslegalshield (Legal Plan, es-US, ${regionUnderTest}) -> Checkout -> Accounts @smoke `, async ({ page, walsService }) => {
     console.log(`Test Case: Somoslegalshield (Legal Plan, es-US, ${regionUnderTest}) -> Checkout -> Accounts`);
     const regionInfo = RegionsUtils.usStates.filter((region) => region.name == regionUnderTest)[0];
     const homeAddress = regionInfo.validAddress.street;

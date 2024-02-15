@@ -8,7 +8,7 @@ import { test } from '../../../../../fixtures/frontend-ui.fixture';
 // Self-Pay Configurations - Single Plan
 for (const testCase of selfPayData.filter((testCase) => testCase.disabled == false)) {
   for (const regionUnderTest of testCase.regions) {
-    test(`ShieldBenefits (${testCase.testCaseName}, ${regionUnderTest}) -> Checkout -> Accounts @e2e @ConsumerFlowShieldBenefits`, async ({
+    test(`ShieldBenefits - Consumer Flow (${testCase.testCaseName}, ${regionUnderTest}) @shieldbenefits-consumerflow ${testCase.tag}`, async ({
       page,
       commonCheckoutService,
       commonLoginService,
@@ -44,8 +44,8 @@ for (const testCase of selfPayData.filter((testCase) => testCase.disabled == fal
         await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
           'Test',
           'Tester',
-          'Mobile',
           '5555555555',
+          'Mobile',
           regionInfo.validAddress.street,
           regionInfo.validAddress.city,
           regionInfo.validAddress.postalCode,

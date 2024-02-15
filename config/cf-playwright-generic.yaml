@@ -1,0 +1,38 @@
+version: '1.0'
+
+stages:
+  - 'setup'
+  - 'test'
+  - 'notify'
+
+steps:
+  clone:
+    title: 'Cloning repository'
+    type: 'git-clone'
+    repo: 'LegalShield/frontend-test-automation'
+    revision: 'QAOPS-498/newYamlDirectory'
+    git: 'github-all'
+    stage: 'setup'
+
+  install-node:
+    title: 'Install Dependencies'
+    type: 'freestyle'
+    stage: 'setup'
+    image: 'node:${{NODE_VERSION}}'
+    working_directory: '${{clone}}'
+    commands:
+      - 'git config user.name "lsc-io"'
+      - 'git config user.email ivanolson@pplsi.com'
+      - "npm config set '//npm.pkg.github.com/:_authToken' ${GIT_PERSONAL_ACCESS_TOKEN}"
+      - 'npm ci'
+
+  smoke-test:
+    title: 'Playwright Test'
+    type: 'freestyle'
+    image: 'mcr.microsoft.com/playwright'
+    working_directory: '${{clone}}'
+    commands:
+      - "echo '//npm.pkg.github.com/:_authToken=${{GIT_PERSONAL_ACCESS_TOKEN}}' >> ~/.npmrc"
+      - bash -c "npx playwright install"
+      - bash -c "${{PLAYWRIGHT_ENV}} npx playwright test --grep ${{PLAYWRIGHT_SUITE_TAG}} --retries 3"
+    stage: 'test'

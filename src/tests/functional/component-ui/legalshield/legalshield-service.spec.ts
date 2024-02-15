@@ -2,7 +2,9 @@ import { legalshieldServiceData } from './legalshield-service.data';
 import { test } from '../../../../fixtures/frontend-ui.fixture';
 
 for (const pageUnderTest of legalshieldServiceData.filter((pageUnderTest) => pageUnderTest.disabled == false)) {
-  test(`${pageUnderTest.pageName} page: Click links that navigate to another page, verify status code:200`, async ({ legalshieldService }) => {
+  test(`${pageUnderTest.pageName} page: Click links that navigate to another page, verify status code:200 @ComponentLegalShield`, async ({
+    legalshieldService,
+  }) => {
     await legalshieldService.navigateToUrl(pageUnderTest.url);
     test.skip((await legalshieldService.locLinksThatNavigateToNewPage.count()) == 0, 'No links that navigate to a new tab found');
     console.log(`Test Case: ${pageUnderTest.pageName} page: Click links that navigate to another page, verify status code:200`);
@@ -16,7 +18,7 @@ for (const pageUnderTest of legalshieldServiceData.filter((pageUnderTest) => pag
     });
   });
 
-  test(`${pageUnderTest.pageName} page: Click links that navigate to a new tab, verify URL without Page Not Found`, async ({
+  test(`${pageUnderTest.pageName} page: Click links that navigate to a new tab, verify URL without Page Not Found @ComponentLegalShield`, async ({
     legalshieldService,
   }) => {
     await legalshieldService.navigateToUrl(pageUnderTest.url);
@@ -28,7 +30,7 @@ for (const pageUnderTest of legalshieldServiceData.filter((pageUnderTest) => pag
     });
   });
 
-  test(`${pageUnderTest.pageName} page: Click links that add to cart, verify cart updated`, async ({ legalshieldService }) => {
+  test(`${pageUnderTest.pageName} page: Click links that add to cart, verify cart updated @ComponentLegalShield`, async ({ legalshieldService }) => {
     await legalshieldService.navigateToUrl(pageUnderTest.url);
     test.skip((await legalshieldService.locLinksThatAddToCart.count()) == 0, 'No add to cart links found');
     console.log(`Test Case: ${pageUnderTest.pageName} page: Click links that add to cart, verify cart updated`);
@@ -38,7 +40,9 @@ for (const pageUnderTest of legalshieldServiceData.filter((pageUnderTest) => pag
     });
   });
 
-  test(`${pageUnderTest.pageName} page: Click links that trigger Pop Up, verify Pop Up displayed`, async ({ legalshieldService }) => {
+  test(`${pageUnderTest.pageName} page: Click links that trigger Pop Up, verify Pop Up displayed @ComponentLegalShield`, async ({
+    legalshieldService,
+  }) => {
     await legalshieldService.navigateToUrl(pageUnderTest.url);
     test.skip((await legalshieldService.locLinksThatTriggerPopUps.count()) == 0, 'No links that trigger Pop Ups found');
     console.log(`Test Case: ${pageUnderTest.pageName} page: Click links that trigger Pop Up, verify Pop Up displayed`);
@@ -48,7 +52,7 @@ for (const pageUnderTest of legalshieldServiceData.filter((pageUnderTest) => pag
     });
   });
 
-  test(`${pageUnderTest.pageName} page: Click anchor links, verify scroll`, async ({ legalshieldService }) => {
+  test(`${pageUnderTest.pageName} page: Click anchor links, verify scroll @ComponentLegalShield`, async ({ legalshieldService }) => {
     await legalshieldService.navigateToUrl(pageUnderTest.url);
     test.skip((await legalshieldService.locAnchorLinks.count()) == 0, 'No anchor links found');
     console.log(`Test Case: ${pageUnderTest.pageName} page: Click anchor links, verify scroll`);
@@ -57,7 +61,9 @@ for (const pageUnderTest of legalshieldServiceData.filter((pageUnderTest) => pag
       await legalshieldService.clickAllAnchorLinksAndVerifyScroll(legalshieldService.locAnchorLinks);
     });
   });
-  test(`${pageUnderTest.pageName} page: Find and submit email forms, verify successful submission`, async ({ legalshieldService }) => {
+  test(`${pageUnderTest.pageName} page: Find and submit email forms, verify successful submission @ComponentLegalShield`, async ({
+    legalshieldService,
+  }) => {
     await legalshieldService.navigateToUrl(pageUnderTest.url);
     test.skip((await legalshieldService.locEmailCaptureSection.count()) == 0, 'No email forms found');
     console.log(`Test Case: ${pageUnderTest.pageName} page: Find and submit email forms, verify successful submission`);

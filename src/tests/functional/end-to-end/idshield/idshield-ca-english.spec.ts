@@ -6,7 +6,7 @@ import { test } from '../../../../fixtures/frontend-ui.fixture';
 
 const regionsUnderTest = ['Manitoba'];
 for (const regionUnderTest of regionsUnderTest) {
-  test(`IdShield (Individual Plan, en-CA, ${regionUnderTest}) -> Checkout -> Accounts @smoke @e2e`, async ({
+  test(`IdShield (Individual Plan, en-CA, ${regionUnderTest}) -> Checkout -> Accounts @smoke `, async ({
     page,
     idshieldService,
     commonLoginService,

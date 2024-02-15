@@ -37,7 +37,7 @@ export const weAreLegalshieldData = [
     ],
     regions: ['Colorado'],
     termTotal: '$29.95',
-    testCaseName: 'Legal Plan',
-    userType: 'New',
+    testCaseName: 'Legal Plan, Existing User',
+    userType: 'Existing',
   },
 ];

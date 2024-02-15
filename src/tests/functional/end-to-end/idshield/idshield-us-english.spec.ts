@@ -5,7 +5,7 @@ import { test } from '../../../../fixtures/frontend-ui.fixture';
 
 const regionsUnderTest = ['California'];
 for (const regionUnderTest of regionsUnderTest) {
-  test(`IdShield (1 credit bureau monitoring, en-US, ${regionUnderTest}) -> Checkout -> Accounts @smoke @e2e`, async ({
+  test(`IdShield (1 credit bureau monitoring, en-US, ${regionUnderTest}) -> Checkout -> Accounts @smoke @super-smoke`, async ({
     page,
     idshieldService,
     commonCheckoutService,
@@ -14,9 +14,6 @@ for (const regionUnderTest of regionsUnderTest) {
     console.log(`Test Case: IdShield (1 credit bureau monitoring, en-US, ${regionUnderTest}) -> Checkout -> Accounts`);
     test.setTimeout(120000);
     const regionInfo = RegionsUtils.usStates.filter((region) => region.name == regionUnderTest)[0];
-    const homeAddress = regionInfo.validAddress.street;
-    const city = regionInfo.validAddress.city;
-    const postalCode = regionInfo.validAddress.postalCode;
     const regionAbbreviation = regionInfo.abbrv;
 
     await test.step(`Navigate to idshield pricing and coverage page`, async () => {
@@ -44,7 +41,7 @@ for (const regionUnderTest of regionsUnderTest) {
     await test.step(`Validate Order Summary on Personal Info Page`, async () => {
       expect(await commonCheckoutService.personalInfoPage.orderSummaryComponent.locTotalContainer.innerText()).toContain('$14.95');
     });
-    test.step(`Fill all required fields on personal info ${regionInfo.name}`, async () => {
+    await test.step(`Fill all required fields on personal info ${regionInfo.name}`, async () => {
       await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
         'IDShieldUS',
         'Tester',
@@ -73,7 +70,7 @@ for (const regionUnderTest of regionsUnderTest) {
     await test.step(`Fill out Bank Draft form and Submit`, async () => {
       await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates('1000123546', '103000648', 'Test');
     });
-    if (process.env.USE_PROD == 'true') {
+    if (process.env.USE_PROD == '') {
       console.log('* Do not finish transaction in PRODUCTION environment *');
     } else {
       await test.step(`Click on the Purchase button`, async () => {

@@ -2,26 +2,27 @@ import { expect } from '@playwright/test';
 import RegionsUtils from '../../../../../utils/regions.utils';
 import { basicUser } from '../../../../../utils/user.utils';
 import { legalshieldData } from './data/legalshield.data';
-import UrlsUtils from '../../../../../utils/urls.utils';
 import { test } from '../../../../../fixtures/frontend-ui.fixture';
 
 for (const testCase of legalshieldData.filter((testCase) => testCase.disabled == false)) {
   for (const regionUnderTest of testCase.regions) {
-    test(`Legalshield (${testCase.testCaseName}, ${regionUnderTest}) -> Checkout -> Accounts @e2e @ConsumerFlowLegalShieldPlans`, async ({
+    test(`Legalshield - Consumer Flow (${testCase.testCaseName}, ${regionUnderTest}) @legalshield-consumerflow ${testCase.tags}`, async ({
       page,
       legalshieldService,
       commonCheckoutService,
       commonLoginService,
     }) => {
       test.setTimeout(120000);
-      console.log(`Test Case: Legalshield (${testCase.testCaseName}, ${regionUnderTest}) -> Checkout -> Accounts`);
+      console.log(`Test Case: Legalshield - Consumer Flow (${testCase.testCaseName}, ${regionUnderTest}) `);
       const regionInfo = RegionsUtils.usStates.filter((region) => region.name == regionUnderTest)[0];
       await test.step(`Navigate to legalshield.com for ${testCase.market}-${testCase.language}`, async () => {
-        await page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/personal-plan/coverage-and-pricing/`);
+        await legalshieldService.legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage(testCase.market, testCase.language);
       });
-      await test.step(`Select Region`, async () => {
-        await legalshieldService.legalshieldCoverageAndPricingPage.selectRegion(regionUnderTest, regionInfo.abbrv);
-      });
+      if (process.env.USE_UAT == 'true') {
+        await test.step(`Select Region`, async () => {
+          await legalshieldService.legalshieldCoverageAndPricingPage.selectRegion(regionUnderTest, regionInfo.abbrv);
+        });
+      }
       await test.step(`Add Products: ${testCase.productDetails}`, async () => {
         await legalshieldService.addProductsFromProductDetails(testCase.productDetails);
       });
@@ -70,17 +71,22 @@ for (const testCase of legalshieldData.filter((testCase) => testCase.disabled ==
         await commonCheckoutService.paymentPage.creditCardComponent.locCreditCardBankDraftToggle.click();
       });
       await test.step(`Fill Bank Draft Form and Submit`, async () => {
+        await page.waitForTimeout(500);
         await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates('0000000', '000000000', 'Tester');
       });
-      await test.step('Click Purchase Button', async () => {
-        await commonCheckoutService.paymentPage.bankDraftComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
-      });
-      await test.step(`Click on the Let's Go button`, async () => {
-        await commonCheckoutService.confirmationPage.locLetsGoButton.click();
-      });
-      await test.step(`Assert Accounts Page URL`, async () => {
-        await expect(page).toHaveURL(new RegExp('accounts'));
-      });
+      if (process.env.USE_PROD == '') {
+        console.log('* Do not finish transaction in PRODUCTION environment *');
+      } else {
+        await test.step('Click Purchase Button', async () => {
+          await commonCheckoutService.paymentPage.bankDraftComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
+        });
+        await test.step(`Click on the Let's Go button`, async () => {
+          await commonCheckoutService.confirmationPage.locLetsGoButton.click();
+        });
+        await test.step(`Assert Accounts Page URL`, async () => {
+          await expect(page).toHaveURL(new RegExp('accounts'));
+        });
+      }
     });
   }
 }

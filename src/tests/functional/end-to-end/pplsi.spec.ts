@@ -2,7 +2,7 @@ import { expect } from '@playwright/test';
 import UrlsUtils from '../../../utils/urls.utils';
 import { test } from '../../../fixtures/frontend-ui.fixture';
 
-test(`Business Solutions Orientation Flow @smoke @e2e`, async ({ page, pplsiService }) => {
+test(`Business Solutions Orientation Flow @smoke `, async ({ page, pplsiService }) => {
   console.log(`Test Case: Business Solutions Orientation Flow`);
   await test.step(`Navigate to PPLSI.com Business Solutions Orientation Overview page`, async () => {
     await page.goto(`${UrlsUtils.pplsiUrls.home.url}/business-solutions-orientation/`);
@@ -30,7 +30,7 @@ test(`Business Solutions Orientation Flow @smoke @e2e`, async ({ page, pplsiServ
   });
 });
 
-test(`PPLSI footer Business Opportunity link to Business Solutions Orientation Page @smoke @e2e`, async ({ page, pplsiService }) => {
+test(`PPLSI footer Business Opportunity link to Business Solutions Orientation Page @smoke `, async ({ page, pplsiService }) => {
   console.log(`Test Case: PPLSI footer Business Opportunity link to Business Solutions Orientation Page`);
   await test.step(`Navigate to PPLSI.com Business Solutions Orientation Overview page`, async () => {
     await page.goto(`${UrlsUtils.pplsiUrls.home.url}`);

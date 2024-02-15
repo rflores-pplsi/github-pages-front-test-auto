@@ -142,7 +142,7 @@ export class LegalshieldService {
    */
   addLegalPlan = async (term: string): Promise<void> => {
     await this.page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/personal-plan/coverage-and-pricing/`);
-    const startPlanLocator = this.page.locator(`//a[contains(@class,"lsc-add-to-cart-button") and contains(.,"${term.toLowerCase()}")]`);
+    const startPlanLocator = this.page.locator(`//div[contains(@class,"lsux-card__content") and contains(.,"${term}")]//a`);
     await expect(async () => {
       await startPlanLocator.click();
       await expect(this.page.locator('#cart-wrapper')).toBeVisible();

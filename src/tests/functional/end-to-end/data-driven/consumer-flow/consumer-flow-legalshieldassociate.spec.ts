@@ -7,17 +7,17 @@ import { test } from '../../../../../fixtures/frontend-ui.fixture';
 
 for (const testCase of legalshieldAssociateData.filter((testCase) => testCase.disabled == false)) {
   for (const regionUnderTest of testCase.regions) {
-    test(`${testCase.testCaseName}, ${regionUnderTest}: Checkout -> Accounts @e2e @ConsumerFlowShieldAssociates ${testCase.tag}`, async ({
+    test(`Legalshield Associates - Consumer Flow${testCase.testCaseName}, ${regionUnderTest}) @legalshieldassociates-consumerflow ${testCase.tag}`, async ({
       page,
       commonAssociateOfficeService,
       commonCheckoutService,
       commonLoginService,
       shieldAssociateService,
     }) => {
-      console.log(`Test Case: ${testCase.testCaseName}, ${regionUnderTest} -> Checkout -> Accounts`);
-      test.setTimeout(200000);
+      console.log(`Test Case: Legalshield Associates - Consumer Flow (${testCase.testCaseName}, ${regionUnderTest})`);
+      test.slow();
       const regionInfo = RegionsUtils.usStates.filter((region) => region.name == regionUnderTest)[0];
-      await test.step(`Navigate to shieldassociate.com/BuyNow`, async () => {
+      await test.step(`Navigate to legalshieldassociate.com/BuyNow`, async () => {
         await page.goto(`https://apptestuser.${UrlsUtils.legalshieldAssociateService.baseUrlNoSubdomain}/BuyNow`);
       });
       await test.step(`Select Market`, async () => {
@@ -99,7 +99,7 @@ for (const testCase of legalshieldAssociateData.filter((testCase) => testCase.di
       await test.step('Complete Bank Draft Form', async () => {
         await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates('1000123546', '103000648', 'Test');
       });
-      if (process.env.USE_PROD == 'true') {
+      if (process.env.USE_PROD == '') {
         console.log('* Do not finish transaction in PRODUCTION environment *');
       } else {
         await test.step('Click Purchase Button and wait for Confirmation Page', async () => {
@@ -151,7 +151,7 @@ for (const testCase of legalshieldAssociateData.filter((testCase) => testCase.di
 
 for (const testCase of legalshieldAssociateCanadaData.filter((testCase) => testCase.disabled == false)) {
   for (const regionUnderTest of testCase.regions) {
-    test(`${testCase.testCaseName}, ${regionUnderTest}: Checkout -> Accounts @e2e @ConsumerFlowShieldAssociatesFrenchCanada`, async ({
+    test(`${testCase.testCaseName}, ${regionUnderTest}: Checkout -> Accounts @legalshieldassociates-consumerflow`, async ({
       page,
       commonAssociateOfficeService,
       commonCheckoutService,
@@ -252,7 +252,7 @@ for (const testCase of legalshieldAssociateCanadaData.filter((testCase) => testC
             await commonCheckoutService.associateStartupPage.locContinueAssociateStartupButton.click();
           });
           await test.step(`Select First Site Name`, async () => {
-            await commonAssociateOfficeService.yourWebsitePage.locFirstSiteNameOption.check();
+            await commonAssociateOfficeService.yourWebsitePage.locFirstSiteNameOptionFrench.click();
           });
           await test.step(`Click next button`, async () => {
             await commonAssociateOfficeService.yourWebsitePage.locNextButton.click();

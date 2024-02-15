@@ -235,7 +235,6 @@ for (const tc of partialFringeData.filter((tc) => tc.disabled == false)) {
       });
       await test.step(`Click Enroll Now for Plan: ${tc.planName} with Tier: ${tc.tierName}`, async () => {
         // await checkoutConfirmationPage.clickEnrollNowButtonFromShieldBenefitsPricingPage(tc.planName, tc.tierName);
-        await checkoutConfirmationPage.page.pause();
         await checkoutConfirmationPage.clickBeginEnrollmentButton();
       });
       await test.step(`Login with Credentials - Email:  ${basicUser.email}, Password: ${basicUser.password}`, async () => {

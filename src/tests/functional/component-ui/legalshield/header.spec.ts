@@ -8,7 +8,7 @@ test.beforeEach(async ({ legalshieldService }) => {
 });
 
 for (const testCase of headerTwoLinksData.filter((testCase) => testCase.disabled == false)) {
-  test(`${testCase.testCaseName} @LegalShieldHeader`, async ({ page, legalshieldService }) => {
+  test(`${testCase.testCaseName} @ComponentLegalShieldService`, async ({ page, legalshieldService }) => {
     console.log(`Test Case: ${testCase.testCaseName}`);
     test.slow();
     let response: Response;
@@ -28,7 +28,7 @@ for (const testCase of headerTwoLinksData.filter((testCase) => testCase.disabled
 }
 
 for (const testCase of headerThreeLinksData.filter((testCase) => testCase.disabled == false)) {
-  test(`${testCase.testCaseName} @LegalShieldHeader`, async ({ page, legalshieldService }) => {
+  test(`${testCase.testCaseName} @ComponentLegalShieldService`, async ({ page, legalshieldService }) => {
     console.log(`Test Case: ${testCase.testCaseName}`);
     test.slow();
     let response: Response;

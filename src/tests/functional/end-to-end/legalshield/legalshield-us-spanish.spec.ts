@@ -5,7 +5,7 @@ import { test } from '../../../../fixtures/frontend-ui.fixture';
 
 const regionsUnderTest = ['California'];
 for (const regionUnderTest of regionsUnderTest) {
-  test(`LegalShield (Legal Plan, es-US, ${regionUnderTest}) -> Checkout -> Accounts @smoke @e2e`, async ({
+  test(`LegalShield (Legal Plan, es-US, ${regionUnderTest}) -> Checkout -> Accounts @smoke `, async ({
     page,
     legalshieldService,
     commonLoginService,
@@ -23,10 +23,11 @@ for (const regionUnderTest of regionsUnderTest) {
       await legalshieldService.legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'es');
       await page.waitForTimeout(1000);
     });
-    // Will fail in UAT as change region is prompted
-    // await test.step(`Change Region`, async () => {
-    //   await legalshieldService.legalshieldCoverageAndPricingPage.selectRegion(regionUnderTest, regionAbbreviation);
-    // });
+    if (process.env.USE_UAT == 'true') {
+      await test.step(`Change Region`, async () => {
+        await legalshieldService.legalshieldCoverageAndPricingPage.selectRegion(regionUnderTest, regionAbbreviation);
+      });
+    }
     await test.step(`Click on the Start Monthly Plan button`, async () => {
       await legalshieldService.legalshieldCoverageAndPricingPage.clickSpanishStartPlanButton('monthly');
     });

@@ -5,7 +5,7 @@ import { test } from '../../../../fixtures/frontend-ui.fixture';
 
 const regionsUnderTest = ['New York'];
 for (const regionUnderTest of regionsUnderTest) {
-  test(`LegalShield (Legal Plan, Monthly, en-US, ${regionUnderTest}) -> Checkout -> Accounts @smoke @e2e`, async ({
+  test(`LegalShield (Legal Plan, Monthly, en-US, ${regionUnderTest}) -> Checkout -> Accounts`, async ({
     page,
     legalshieldService,
     commonLoginService,
@@ -17,7 +17,6 @@ for (const regionUnderTest of regionsUnderTest) {
     const homeAddress = regionInfo.validAddress.street;
     const city = regionInfo.validAddress.city;
     const postalCode = regionInfo.validAddress.postalCode;
-
     await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
       await legalshieldService.legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
     });
@@ -26,7 +25,7 @@ for (const regionUnderTest of regionsUnderTest) {
     //   await legalshieldService.legalshieldCoverageAndPricingPage.selectRegion(regionUnderTest, regionInfo.abbrv);
     // });
     await test.step(`Click on the Start Monthly Plan button`, async () => {
-      await legalshieldService.legalshieldCoverageAndPricingPage.clickStartPlanButton('monthly');
+      await legalshieldService.legalshieldCoverageAndPricingPage.clickStartPlanButton('Monthly');
     });
     await test.step(`Click on the Shopping Cart Checkout button`, async () => {
       await legalshieldService.legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();

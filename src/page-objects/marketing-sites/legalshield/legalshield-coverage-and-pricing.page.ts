@@ -56,7 +56,7 @@ export class LegalshieldCoverageAndPricingPage {
    * @memberof LegalshieldCoverageAndPricingPage
    */
   clickStartPlanButton = async (term: string): Promise<void> => {
-    const buttonLocator = this.page.locator(`//a[@id="lsc-add-to-cart-button" and contains(.,"${term}")]`);
+    const buttonLocator = this.page.locator(`//div[contains(@class,"lsux-card__content") and contains(.,"${term}")]//a`);
     await buttonLocator.click();
     await this.page.waitForTimeout(500);
   };

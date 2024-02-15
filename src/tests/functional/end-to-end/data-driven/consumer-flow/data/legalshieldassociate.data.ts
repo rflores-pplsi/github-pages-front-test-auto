@@ -18,9 +18,9 @@ export const legalshieldAssociateData = [
       },
     ],
     regions: ['Colorado'],
-    tag: '@smoke',
+    tag: '@smoke @super-smoke',
     termTotal: '$29.95',
-    testCaseName: 'Legal Plan Family - New Account',
+    testCaseName: 'Legal Plan Family, New User',
     userType: 'New',
   },
   {
@@ -42,9 +42,9 @@ export const legalshieldAssociateData = [
       },
     ],
     regions: ['Colorado'],
-    tag: '@smoke',
+    tag: '',
     termTotal: '$29.95',
-    testCaseName: 'Legal Plan Family - Existing Account',
+    testCaseName: 'Legal Plan Family, Existing User',
     userType: 'Existing',
   },
   {
@@ -68,7 +68,7 @@ export const legalshieldAssociateData = [
     regions: ['Colorado'],
     tag: '@smoke',
     termTotal: '$29.95',
-    testCaseName: 'Legal Plan Family - Guest',
+    testCaseName: 'Legal Plan Family, Guest User',
     userType: 'Guest',
   },
   {
@@ -106,7 +106,7 @@ export const legalshieldAssociateData = [
     regions: ['Colorado'],
     tag: '',
     termTotal: '$89.75',
-    testCaseName: 'Legal Plan Family - All Supplements',
+    testCaseName: 'Legal Plan Family, All Supplements',
     userType: 'New',
   },
   {
@@ -128,9 +128,9 @@ export const legalshieldAssociateData = [
       },
     ],
     regions: ['Colorado'],
-    tag: '',
+    tag: '@smoke @super-smoke',
     termTotal: '$29.95',
-    testCaseName: 'IdShield Family - 1 Bureau Credit Monitoring',
+    testCaseName: 'IDShield Family, 1 Bureau Credit Monitoring',
     userType: 'New',
   },
   {
@@ -154,7 +154,7 @@ export const legalshieldAssociateData = [
     regions: ['Colorado'],
     tag: '',
     termTotal: '$34.95',
-    testCaseName: 'IdShield Family - 3 Bureau Credit Monitoring',
+    testCaseName: 'IDShield Family, 3 Bureau Credit Monitoring',
     userType: 'New',
   },
   {
@@ -178,7 +178,7 @@ export const legalshieldAssociateData = [
     regions: ['Colorado'],
     tag: '',
     termTotal: '$14.95',
-    testCaseName: 'IdShield Individual - 1 Bureau Credit Monitoring',
+    testCaseName: 'IDShield Individual, 1 Bureau Credit Monitoring',
     userType: 'New',
   },
   {
@@ -202,7 +202,7 @@ export const legalshieldAssociateData = [
     regions: ['Colorado'],
     tag: '',
     termTotal: '$19.95',
-    testCaseName: 'IdShield Individual - 3 Bureau Credit Monitoring',
+    testCaseName: 'IDShield Individual, 3 Bureau Credit Monitoring',
     userType: 'New',
   },
   {
@@ -226,7 +226,7 @@ export const legalshieldAssociateData = [
     regions: ['Colorado'],
     tag: '',
     termTotal: '$49.00',
-    testCaseName: 'Small Business - Business Essentials Supplement',
+    testCaseName: 'Small Business, Business Essentials Supplement',
     userType: 'New',
   },
   {
@@ -250,7 +250,7 @@ export const legalshieldAssociateData = [
     regions: ['Colorado'],
     tag: '',
     termTotal: '$99.00',
-    testCaseName: 'Small Business - Business Plus Supplement',
+    testCaseName: 'Small Business, Business Plus Supplement',
     userType: 'New',
   },
   {
@@ -274,7 +274,7 @@ export const legalshieldAssociateData = [
     regions: ['Colorado'],
     tag: '',
     termTotal: '$169.00',
-    testCaseName: 'Small Business - Business Pro Supplement',
+    testCaseName: 'Small Business, Business Pro Supplement',
     userType: 'New',
   },
   {
@@ -298,7 +298,7 @@ export const legalshieldAssociateData = [
     regions: ['Colorado'],
     tag: '',
     termTotal: '$0.00',
-    testCaseName: 'Associate - LegalShield Advantage Plus',
+    testCaseName: 'Associate, LegalShield Advantage Plus',
     userType: 'New',
   },
   {
@@ -432,7 +432,7 @@ export const legalshieldAssociateData = [
     regions: ['Colorado'],
     tag: '',
     termTotal: '$198.65',
-    testCaseName: 'All Plans - All Supplements',
+    testCaseName: 'All Plans, All Supplements',
     userType: 'New',
   },
 ];
@@ -459,8 +459,8 @@ export const legalshieldAssociateCanadaData = [
     regions: ['Quebec'],
     tag: '',
     termTotal: '$24.95',
-    testCaseName: 'IdShield Family - 1 Bureau Credit Monitoring',
-    userType: 'New',
+    testCaseName: 'IDShield Family, 1 Bureau Credit Monitoring',
+    userType: 'Existing',
   },
   {
     disabled: false,
@@ -483,8 +483,8 @@ export const legalshieldAssociateCanadaData = [
     regions: ['Quebec'],
     tag: '',
     termTotal: '$9.95',
-    testCaseName: 'IdShield Individual - 1 Bureau Credit Monitoring',
-    userType: 'New',
+    testCaseName: 'IDShield Individual, 1 Bureau Credit Monitoring',
+    userType: 'Existing',
   },
   {
     disabled: false,
@@ -507,7 +507,7 @@ export const legalshieldAssociateCanadaData = [
     regions: ['Ontario'],
     tag: '',
     termTotal: '$0.00',
-    testCaseName: 'Associate - LegalShield Advantage Plus',
-    userType: 'New',
+    testCaseName: 'Associate, LegalShield Advantage Plus',
+    userType: 'Existing',
   },
 ];

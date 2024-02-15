@@ -1,0 +1,52 @@
+version: '1.0'
+
+stages:
+  - 'quick'
+  - 'regular'
+  - 'complete'
+
+steps:
+  smoke-all:
+    title: 'Smoke Test UAT'
+    stage: 'regular'
+    type: parallel
+    steps:
+      ls_smoke_uat:
+        title: 'LegalShield'
+        type: codefresh-run
+        arguments:
+          PIPELINE_ID: 65a6ba6467341dac3a405057
+          ENABLE_NOTIFICATIONS: true
+          VARIABLE:
+            - PLAYWRIGHT_SUITE_TAG="@ls-smoke"
+            - PLAYWRIGHT_ENV="USE_UAT=true"
+
+      lsa_smoke_uat:
+        title: 'LegalShield Associate'
+        type: codefresh-run
+        arguments:
+          PIPELINE_ID: 65a6ba6467341dac3a405057
+          ENABLE_NOTIFICATIONS: true
+          VARIABLE:
+            - PLAYWRIGHT_SUITE_TAG="@lsa-smoke"
+            - PLAYWRIGHT_ENV="USE_UAT=true"
+
+      sb_smoke_uat:
+        title: 'Shield Benefits'
+        type: codefresh-run
+        arguments:
+          PIPELINE_ID: 65a6ba6467341dac3a405057
+          ENABLE_NOTIFICATIONS: true
+          VARIABLE:
+            - PLAYWRIGHT_SUITE_TAG="@shieldbenefits-smoke"
+            - PLAYWRIGHT_ENV="USE_UAT=true"
+
+      wals_smoke_uat:
+        title: 'WALS'
+        type: codefresh-run
+        arguments:
+          PIPELINE_ID: 65a6ba6467341dac3a405057
+          ENABLE_NOTIFICATIONS: true
+          VARIABLE:
+            - PLAYWRIGHT_SUITE_TAG="@wals-smoke"
+            - PLAYWRIGHT_ENV="USE_UAT=true"

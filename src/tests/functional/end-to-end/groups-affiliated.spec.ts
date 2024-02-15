@@ -1,7 +1,7 @@
 import { expect } from '@playwright/test';
 import { test } from '../../../fixtures/frontend-ui.fixture';
 
-test('Groups Affiliated (Agent: 12345, Primerica, en-US, New York) -> Checkout Service @smoke @e2e', async ({ page, groupsAffiliatedService }) => {
+test('Groups Affiliated (Agent: 12345, Primerica, en-US, New York) -> Checkout Service @smoke ', async ({ page, groupsAffiliatedService }) => {
   console.log('Test Case: Groups Affiliated (Agent: 12345, Primerica, en-US, New York) -> Classic Checkout Service');
   test.slow();
   await test.step(`Navigate to primerica Affiliated groups page`, async () => {

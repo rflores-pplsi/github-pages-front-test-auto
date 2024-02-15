@@ -3,7 +3,7 @@ import UrlsUtils from '../../../utils/urls.utils';
 import { test } from '../../../fixtures/frontend-ui.fixture';
 
 test.describe('Navigate to Shield Associate Pages', () => {
-  test.skip('Navigate to Shield Associate Page @smoke @e2e', async ({ page, shieldAssociateService }) => {
+  test.skip('Navigate to Shield Associate Page @smoke ', async ({ page, shieldAssociateService }) => {
     console.log('Test Case: Navigate to Shield Associate Page');
     test.slow();
     await test.step(`Navigate to Shield Associate Page`, async () => {
@@ -14,7 +14,7 @@ test.describe('Navigate to Shield Associate Pages', () => {
     });
   });
   // This will currently only work in PROD
-  test.skip('Navigate to Shield Associate Calendar Page @smoke @e2e', async ({ page, shieldAssociateService }) => {
+  test.skip('Navigate to Shield Associate Calendar Page @smoke ', async ({ page, shieldAssociateService }) => {
     console.log('Test Case: Navigate to Shield Associate Calendar Page');
     test.slow();
     await test.step(`Navigate to Shield Associate Calendar Page`, async () => {
