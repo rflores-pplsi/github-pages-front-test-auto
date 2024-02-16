@@ -70,7 +70,7 @@ for (const regionUnderTest of regionsUnderTest) {
     await test.step(`Fill out Bank Draft form and Submit`, async () => {
       await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates('1000123546', '103000648', 'Test');
     });
-    if (process.env.USE_PROD == '') {
+    if (process.env.USE_PROD == 'true') {
       console.log('* Do not finish transaction in PRODUCTION environment *');
     } else {
       await test.step(`Click on the Purchase button`, async () => {

@@ -74,7 +74,7 @@ for (const testCase of legalshieldData.filter((testCase) => testCase.disabled ==
         await page.waitForTimeout(500);
         await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates('0000000', '000000000', 'Tester');
       });
-      if (process.env.USE_PROD == '') {
+      if (process.env.USE_PROD == 'true') {
         console.log('* Do not finish transaction in PRODUCTION environment *');
       } else {
         await test.step('Click Purchase Button', async () => {

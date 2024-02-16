@@ -99,7 +99,7 @@ for (const testCase of legalshieldAssociateData.filter((testCase) => testCase.di
       await test.step('Complete Bank Draft Form', async () => {
         await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates('1000123546', '103000648', 'Test');
       });
-      if (process.env.USE_PROD == '') {
+      if (process.env.USE_PROD == 'true') {
         console.log('* Do not finish transaction in PRODUCTION environment *');
       } else {
         await test.step('Click Purchase Button and wait for Confirmation Page', async () => {
