@@ -43,8 +43,8 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
       await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
         'Automation',
         'Tester',
-        'Mobile',
         '5555555555',
+        'Mobile',
         '200 16th Street',
         'Denver',
         '80202',
@@ -219,6 +219,72 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
     await test.step('Assert user gets to Payment Page and that Step Circle 3 on Payment Page is solid black', async () => {
       expect(commonCheckoutService.paymentPage.stepperComponent.locStepCircle3Current).toBeVisible();
+    });
+  });
+
+  //
+
+  test('Verify user will not get an error in birthday field by tabbing or hitting enter when address field is empty @CheckoutPersonalInfoPage', async ({
+    commonCheckoutService,
+    page,
+  }) => {
+    console.log('Test Case: Verify user will not get an error in birthday field by tabbing or hitting enter when address field is empty');
+    await test.step('Populate all non-business fields on Personal Information Page leaving address, city, and zip empty', async () => {
+      await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
+        'Automation',
+        'Tester',
+        '5555555555',
+        'Mobile',
+        '',
+        '',
+        '',
+        '10',
+        '10',
+        '2001',
+        '3333'
+      );
+    });
+
+    await test.step('Click Enter to get Warning under Address, City, and Zip but not DOB', async () => {
+      await page.keyboard.press('Enter');
+    });
+
+    await test.step('Require Warning message that Address is Required displays', async () => {
+      await expect(commonCheckoutService.personalInfoPage.locHomeAddressWarningMessage).toBeVisible();
+    });
+
+    await test.step('Require Warning message that City is Required displays', async () => {
+      await expect(commonCheckoutService.personalInfoPage.locCityWarningMessage).toBeVisible();
+    });
+
+    await test.step('Require Warning message that ZipCode is Required displays', async () => {
+      await expect(commonCheckoutService.personalInfoPage.locPostalCodeWarningMessage).toBeVisible();
+    });
+
+    await test.step('Enter Address City and Zip Code ', async () => {
+      await commonCheckoutService.personalInfoPage.fillRequiredAddressFields('200 16th Street', 'Denver', '80202');
+    });
+
+    await test.step('Tab from ZipCode field to DOB field', async () => {
+      await page.keyboard.press('Tab');
+    });
+
+    await test.step('Empty DOB Month Field', async () => {
+      await commonCheckoutService.personalInfoPage.locDateOfBirthInput.clear();
+    });
+
+    await test.step('Click Tab from the Keyboard the cursor should go into SSN field', async () => {
+      await page.keyboard.press('Tab');
+      await page.keyboard.press('Tab');
+      await page.keyboard.press('Tab');
+    });
+
+    await test.step('Click Enter to get Warning under DOB field', async () => {
+      await page.keyboard.press('Enter');
+    });
+
+    await test.step('Require Warning message that DOB is Required displays', async () => {
+      await expect(commonCheckoutService.personalInfoPage.locDateOfBirthInvalidWarningMessage).toBeVisible();
     });
   });
 
@@ -434,6 +500,7 @@ test.describe('United States - Colorado, Business - Plan', () => {
 
   test('Verify user can submit valid information on all Forms and reach the Payment Page @CheckoutPersonalInfoPage', async ({
     commonCheckoutService,
+    page,
   }) => {
     console.log('Test Case: Verify user can submit valid information on all Forms and reach the Payment Page');
     await test.step('Click on the Save & Continue Button to go to Payment Page', async () => {
@@ -441,6 +508,7 @@ test.describe('United States - Colorado, Business - Plan', () => {
     });
     await test.step('Assert user gets to Payment Page and that Step Circle 3 on Payment Page is solid black', async () => {
       expect(commonCheckoutService.paymentPage.stepperComponent.locStepCircle3Current).toBeVisible();
+      await page.waitForTimeout(100);
     });
   });
 });
