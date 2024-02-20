@@ -9,19 +9,21 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
       await legalshieldService.legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
     });
+    if (process.env.USE_UAT == 'true') {
+      await test.step(`Select Region`, async () => {
+        await legalshieldService.legalshieldCoverageAndPricingPage.selectRegion('Colorado', 'CO');
+      });
+    }
     await test.step(`Click on the Start Monthly Plan button`, async () => {
-      await legalshieldService.legalshieldCoverageAndPricingPage.clickStartPlanButton('monthly');
+      await legalshieldService.legalshieldCoverageAndPricingPage.clickStartPlanButton('Monthly');
     });
     await test.step(`Click on the Shopping Cart Checkout button`, async () => {
       await page.waitForTimeout(500);
       await legalshieldService.legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
     });
     await test.step(`Choose Account by Email`, async () => {
-      await commonCheckoutService.accountPage.locEmailAddressInput.fill(basicUser.email);
-      await commonCheckoutService.accountPage.locContinueButton.click();
-      await commonCheckoutService.accountPage.locClickHereToLoginButton.click();
-      await commonLoginService.whatsYourEmailPage.locEmailAddressInput.fill(basicUser.email);
-      await commonLoginService.whatsYourEmailPage.locContinueButton.click();
+      await commonCheckoutService.accountPage.enterExistingAccountEmailAndLogin(basicUser.email);
+      await commonLoginService.whatsYourEmailPage.enterEmailAndContinue(basicUser.email);
     });
     await test.step(`Log in with only password to reach checkout service`, async () => {
       await commonLoginService.loginPage.loginOnlyPassword(basicUser.password);
@@ -222,8 +224,6 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
-  //
-
   test('Verify user will not get an error in birthday field by tabbing or hitting enter when address field is empty @CheckoutPersonalInfoPage', async ({
     commonCheckoutService,
     page,
@@ -335,9 +335,11 @@ test.describe('United States - Colorado, Business Plan', () => {
     await test.step(`Navigate to legalshield business plan summary page`, async () => {
       await page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/plan-summary/`);
     });
-    await test.step(`Change Region`, async () => {
-      await legalshieldService.legalshieldCoverageAndPricingPage.marketingSiteFooterComponent.selectRegion('Colorado', 'CO');
-    });
+    if (process.env.USE_UAT == 'true') {
+      await test.step(`Select Region`, async () => {
+        await legalshieldService.legalshieldCoverageAndPricingPage.selectRegion('Colorado', 'CO');
+      });
+    }
     await test.step(`Click on the SMB ESS Plan button`, async () => {
       await legalshieldService.legalshieldCoverageAndPricingPage.locEssGetStartedButton.click();
     });
@@ -454,9 +456,11 @@ test.describe('United States - Colorado, Business - Plan', () => {
     await test.step(`Navigate to legalshield business plan summary page`, async () => {
       await page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/plan-summary/`);
     });
-    await test.step(`Change Region`, async () => {
-      await legalshieldService.legalshieldCoverageAndPricingPage.marketingSiteFooterComponent.selectRegion('Colorado', 'CO');
-    });
+    if (process.env.USE_UAT == 'true') {
+      await test.step(`Select Region`, async () => {
+        await legalshieldService.legalshieldCoverageAndPricingPage.selectRegion('Colorado', 'CO');
+      });
+    }
     await test.step(`Click on the SMB ESS Plan button`, async () => {
       await legalshieldService.legalshieldCoverageAndPricingPage.locEssGetStartedButton.click();
     });
