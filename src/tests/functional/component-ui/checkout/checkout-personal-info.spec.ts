@@ -9,11 +9,6 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
       await legalshieldService.legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
     });
-    if (process.env.USE_UAT == 'true') {
-      await test.step(`Select Region`, async () => {
-        await legalshieldService.legalshieldCoverageAndPricingPage.selectRegion('Colorado', 'CO');
-      });
-    }
     await test.step(`Click on the Start Monthly Plan button`, async () => {
       await legalshieldService.legalshieldCoverageAndPricingPage.clickStartPlanButton('Monthly');
     });
@@ -335,11 +330,7 @@ test.describe('United States - Colorado, Business Plan', () => {
     await test.step(`Navigate to legalshield business plan summary page`, async () => {
       await page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/plan-summary/`);
     });
-    if (process.env.USE_UAT == 'true') {
-      await test.step(`Select Region`, async () => {
-        await legalshieldService.legalshieldCoverageAndPricingPage.selectRegion('Colorado', 'CO');
-      });
-    }
+
     await test.step(`Click on the SMB ESS Plan button`, async () => {
       await legalshieldService.legalshieldCoverageAndPricingPage.locEssGetStartedButton.click();
     });
@@ -456,11 +447,7 @@ test.describe('United States - Colorado, Business - Plan', () => {
     await test.step(`Navigate to legalshield business plan summary page`, async () => {
       await page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/plan-summary/`);
     });
-    if (process.env.USE_UAT == 'true') {
-      await test.step(`Select Region`, async () => {
-        await legalshieldService.legalshieldCoverageAndPricingPage.selectRegion('Colorado', 'CO');
-      });
-    }
+
     await test.step(`Click on the SMB ESS Plan button`, async () => {
       await legalshieldService.legalshieldCoverageAndPricingPage.locEssGetStartedButton.click();
     });
