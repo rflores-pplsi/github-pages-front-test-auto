@@ -115,4 +115,9 @@ export const legalshieldServiceData = [
     pageName: 'How to Cancel Your Plan',
     url: `${UrlsUtils.legalshieldService.baseUrl}/legalshield-how-cancel-your-plan/`,
   },
+  {
+    disabled: false,
+    pageName: 'Real Estate',
+    url: `${UrlsUtils.legalshieldService.baseUrl}/real-estate/`,
+  },
 ];
