@@ -23,13 +23,8 @@ for (const regionUnderTest of regionsUnderTest) {
       await legalshieldService.legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'es');
       await page.waitForTimeout(1000);
     });
-    if (process.env.USE_UAT == 'true') {
-      await test.step(`Change Region`, async () => {
-        await legalshieldService.legalshieldCoverageAndPricingPage.selectRegion(regionUnderTest, regionAbbreviation);
-      });
-    }
     await test.step(`Click on the Start Monthly Plan button`, async () => {
-      await legalshieldService.legalshieldCoverageAndPricingPage.clickSpanishStartPlanButton('monthly');
+      await legalshieldService.legalshieldCoverageAndPricingPage.clickSpanishStartPlanButton('mensual');
     });
     await test.step(`Click on the Shopping Cart Checkout button`, async () => {
       await legalshieldService.legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();

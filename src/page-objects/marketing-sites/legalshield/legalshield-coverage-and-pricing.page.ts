@@ -61,8 +61,14 @@ export class LegalshieldCoverageAndPricingPage {
     await this.page.waitForTimeout(500);
   };
 
+  /**
+   *
+   *
+   * @param {string} term
+   * @memberof LegalshieldCoverageAndPricingPage
+   */
   clickSpanishStartPlanButton = async (term: string): Promise<void> => {
-    const buttonLocator = this.page.locator(`//div[contains(@class,"plan-card-col") and contains(@class,"${term.toLowerCase()}")]//a`);
+    const buttonLocator = this.page.locator(`//a[contains(@class,"sc-add-to-cart-button") and contains(.,"${term}")]`);
     await buttonLocator.click();
     await this.page.waitForTimeout(500);
   };

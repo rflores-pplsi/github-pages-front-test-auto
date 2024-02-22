@@ -18,11 +18,6 @@ for (const testCase of legalshieldData.filter((testCase) => testCase.disabled ==
       await test.step(`Navigate to legalshield.com for ${testCase.market}-${testCase.language}`, async () => {
         await legalshieldService.legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage(testCase.market, testCase.language);
       });
-      if (process.env.USE_UAT == 'true') {
-        await test.step(`Select Region`, async () => {
-          await legalshieldService.legalshieldCoverageAndPricingPage.selectRegion(regionUnderTest, regionInfo.abbrv);
-        });
-      }
       await test.step(`Add Products: ${testCase.productDetails}`, async () => {
         await legalshieldService.addProductsFromProductDetails(testCase.productDetails);
       });

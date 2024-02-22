@@ -4,6 +4,8 @@ import UrlsUtils from '../../../utils/urls.utils';
 import { HeaderComponent } from './header.page';
 import { LegalshieldPage } from './legalshield.page';
 import { LegalshieldCoverageAndPricingPage } from './legalshield-coverage-and-pricing.page';
+import { LegalshieldPlusPage } from './legalshield-plus.page';
+import { LegalshieldPlusHeaderComponent } from './legalshield-plus-header.component';
 import { SmallBusinessQualifyingComponent } from './legalshield-small-business-qualifying.component';
 import { MarketingSitesCartComponent } from '../marketing-sites-cart-component';
 import { MarketingSiteFooterComponent } from '../marketing-sites-footer-component';
@@ -19,6 +21,8 @@ export class LegalshieldService {
   protected page: Page;
   protected context: BrowserContext;
   readonly headerComponent: HeaderComponent;
+  readonly legalshieldPlusHeaderComponent: LegalshieldPlusHeaderComponent;
+  readonly legalshieldPlusPage: LegalshieldPlusPage;
   readonly smallBusinessQualifyingComponent: SmallBusinessQualifyingComponent;
   readonly marketingSitesCartComponent: MarketingSitesCartComponent;
   readonly marketingSiteHeaderComponent: MarketingSiteHeaderComponent;
@@ -45,6 +49,8 @@ export class LegalshieldService {
     this.page = page;
     this.context = context;
     this.headerComponent = new HeaderComponent(page);
+    this.legalshieldPlusPage = new LegalshieldPlusPage(context, page);
+    this.legalshieldPlusHeaderComponent = new LegalshieldPlusHeaderComponent(page);
     this.smallBusinessQualifyingComponent = new SmallBusinessQualifyingComponent(page);
     this.marketingSitesCartComponent = new MarketingSitesCartComponent(page);
     this.marketingSiteFooterComponent = new MarketingSiteFooterComponent(page);
@@ -76,7 +82,6 @@ export class LegalshieldService {
 
   navigateToUrl = async (url: string): Promise<void> => {
     await this.page.goto(url);
-    // Keeping this around to see if the prod dialog
     // eslint-disable-next-line const-case/uppercase
     const dialogCloseButton = '//div[contains(@class,"ub-emb-iframe-wrapper ub-emb-visible")]//button';
     const isDialogPresent = await this.page
