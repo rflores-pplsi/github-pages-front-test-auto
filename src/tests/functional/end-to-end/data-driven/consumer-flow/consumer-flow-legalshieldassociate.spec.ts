@@ -48,60 +48,63 @@ for (const testCase of legalshieldAssociateData.filter((testCase) => testCase.di
           await commonCheckoutService.accountPage.enterRandomEmailAndContinueAsGuest();
         }
       });
-      await test.step(`Fill all required fields on personal info ${regionInfo.name}`, async () => {
-        await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
-          'Test',
-          'Tester',
-          '5555555555',
-          'Mobile',
-          regionInfo.validAddress.street,
-          regionInfo.validAddress.city,
-          regionInfo.validAddress.postalCode,
-          '10',
-          '10',
-          '1990',
-          '3333333333'
-        );
-        if (await commonCheckoutService.personalInfoPage.locBusinessNameInput.isVisible()) {
-          await commonCheckoutService.personalInfoPage.fillBusinessInformationFields('Testers Inc', '10', '10', '2021', '945433337');
-        }
-      });
-      await test.step(`Verify Plans displayed in Order Summary on Personal Info Page`, async () => {
-        await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertDisplayedPlansIncludeExpectedData(testCase.planDetails);
-      });
-      await test.step(`Verify Supplements displayed in Order Summary on Personal Info Page`, async () => {
-        await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertDisplayedSupplementsIncludeExpectedData(
-          testCase.planDetails[0].supplements
-        );
-      });
-      await test.step(`Verify Order Total in Order Summary on Personal Info Page`, async () => {
-        expect.soft(await commonCheckoutService.personalInfoPage.orderSummaryComponent.locTotalContainer.innerText()).toContain(testCase.termTotal);
-      });
-      await test.step(`Click Save and Continue and wait for Payment page`, async () => {
-        //TODO: someday remove this if you have time to figure out the click not responding
-        await page.waitForTimeout(1000);
-        await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
-      });
-      await test.step(`Verify Plans displayed in Order Summary on on Payment Page`, async () => {
-        await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertDisplayedPlansIncludeExpectedData(testCase.planDetails);
-      });
-      await test.step(`Verify Supplements displayed in Order Summary on on Payment Page`, async () => {
-        await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertDisplayedSupplementsIncludeExpectedData(
-          testCase.planDetails[0].supplements
-        );
-      });
-      await test.step(`Verify Order Total in Order Summary on Payment Page`, async () => {
-        expect.soft(await commonCheckoutService.paymentPage.orderSummaryComponent.locTotalContainer.innerText()).toContain(testCase.termTotal);
-      });
-      await test.step('Click on Bank Draft Toggle', async () => {
-        await commonCheckoutService.paymentPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
-      });
-      await test.step('Complete Bank Draft Form', async () => {
-        await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates('1000123546', '103000648', 'Test');
-      });
       if (process.env.USE_PROD == 'true') {
-        console.log('* Do not finish transaction in PRODUCTION environment *');
+        console.log('* Production: Stop test at personal info page *');
+        await test.step(`Assert Checkout Service Reached`, async () => {
+          await commonCheckoutService.personalInfoPage.stepperComponent.locStepCircle1Current.isVisible();
+        });
       } else {
+        await test.step(`Fill all required fields on personal info ${regionInfo.name}`, async () => {
+          await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
+            'Test',
+            'Tester',
+            '5555555555',
+            'Mobile',
+            regionInfo.validAddress.street,
+            regionInfo.validAddress.city,
+            regionInfo.validAddress.postalCode,
+            '10',
+            '10',
+            '1990',
+            '3333333333'
+          );
+          if (await commonCheckoutService.personalInfoPage.locBusinessNameInput.isVisible()) {
+            await commonCheckoutService.personalInfoPage.fillBusinessInformationFields('Testers Inc', '10', '10', '2021', '945433337');
+          }
+        });
+        await test.step(`Verify Plans displayed in Order Summary on Personal Info Page`, async () => {
+          await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertDisplayedPlansIncludeExpectedData(testCase.planDetails);
+        });
+        await test.step(`Verify Supplements displayed in Order Summary on Personal Info Page`, async () => {
+          await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertDisplayedSupplementsIncludeExpectedData(
+            testCase.planDetails[0].supplements
+          );
+        });
+        await test.step(`Verify Order Total in Order Summary on Personal Info Page`, async () => {
+          expect.soft(await commonCheckoutService.personalInfoPage.orderSummaryComponent.locTotalContainer.innerText()).toContain(testCase.termTotal);
+        });
+        await test.step(`Click Save and Continue and wait for Payment page`, async () => {
+          //TODO: someday remove this if you have time to figure out the click not responding
+          await page.waitForTimeout(1000);
+          await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
+        });
+        await test.step(`Verify Plans displayed in Order Summary on on Payment Page`, async () => {
+          await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertDisplayedPlansIncludeExpectedData(testCase.planDetails);
+        });
+        await test.step(`Verify Supplements displayed in Order Summary on on Payment Page`, async () => {
+          await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertDisplayedSupplementsIncludeExpectedData(
+            testCase.planDetails[0].supplements
+          );
+        });
+        await test.step(`Verify Order Total in Order Summary on Payment Page`, async () => {
+          expect.soft(await commonCheckoutService.paymentPage.orderSummaryComponent.locTotalContainer.innerText()).toContain(testCase.termTotal);
+        });
+        await test.step('Click on Bank Draft Toggle', async () => {
+          await commonCheckoutService.paymentPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
+        });
+        await test.step('Complete Bank Draft Form', async () => {
+          await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates('1000123546', '103000648', 'Test');
+        });
         await test.step('Click Purchase Button and wait for Confirmation Page', async () => {
           await commonCheckoutService.paymentPage.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
         });
@@ -151,7 +154,7 @@ for (const testCase of legalshieldAssociateData.filter((testCase) => testCase.di
 
 for (const testCase of legalshieldAssociateCanadaData.filter((testCase) => testCase.disabled == false)) {
   for (const regionUnderTest of testCase.regions) {
-    test(`${testCase.testCaseName}, ${regionUnderTest}: Checkout -> Accounts @legalshieldassociates-consumerflow`, async ({
+    test(`${testCase.testCaseName}, ${regionUnderTest}: Checkout -> Accounts @legalshieldassociates-consumerflow ${testCase.tag}`, async ({
       page,
       commonAssociateOfficeService,
       commonCheckoutService,
@@ -190,60 +193,64 @@ for (const testCase of legalshieldAssociateCanadaData.filter((testCase) => testC
           await commonCheckoutService.accountPage.enterRandomEmailAndNewPasswordAndLogin();
         }
       });
-      await test.step(`Fill all required fields on personal info ${regionInfo.name}`, async () => {
-        await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
-          'Test',
-          'Tester',
-          '5555555555',
-          'Mobile',
-          regionInfo.validAddress.street,
-          regionInfo.validAddress.city,
-          regionInfo.validAddress.postalCode,
-          '10',
-          '10',
-          '1990',
-          '3333333333'
-        );
-        if (await commonCheckoutService.personalInfoPage.locBusinessNameInput.isVisible()) {
-          await commonCheckoutService.personalInfoPage.fillBusinessInformationFields('Testers Inc', '10', '10', '2021', '945433337');
-        }
-      });
-      await test.step(`Verify Plans displayed in Order Summary on Personal Info Page`, async () => {
-        await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertDisplayedPlansIncludeExpectedData(testCase.planDetails);
-      });
-      await test.step(`Verify Supplements displayed in Order Summary on Personal Info Page`, async () => {
-        await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertDisplayedSupplementsIncludeExpectedData(
-          testCase.planDetails[0].supplements
-        );
-      });
-      await test.step(`Verify Order Total in Order Summary on Personal Info Page`, async () => {
-        expect.soft(await commonCheckoutService.personalInfoPage.orderSummaryComponent.locTotalContainer.innerText()).toContain(testCase.termTotal);
-      });
-      await test.step(`Click Save and Continue and wait for Payment page`, async () => {
-        //TODO: someday remove this if you have time to figure out the click not responding
-        await page.waitForTimeout(1000);
-        await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
-      });
-      await test.step(`Verify Plans displayed in Order Summary on on Payment Page`, async () => {
-        await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertDisplayedPlansIncludeExpectedData(testCase.planDetails);
-      });
-      await test.step(`Verify Supplements displayed in Order Summary on on Payment Page`, async () => {
-        await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertDisplayedSupplementsIncludeExpectedData(
-          testCase.planDetails[0].supplements
-        );
-      });
-      await test.step(`Verify Order Total in Order Summary on Payment Page`, async () => {
-        expect.soft(await commonCheckoutService.paymentPage.orderSummaryComponent.locTotalContainer.innerText()).toContain(testCase.termTotal);
-      });
-      await test.step('Click on Bank Draft Toggle', async () => {
-        await commonCheckoutService.paymentPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
-      });
-      await test.step('Complete Bank Draft Form', async () => {
-        await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormCanada('0000011', '11242', '260', 'Tester');
-      });
       if (process.env.USE_PROD == 'true') {
-        console.log('* Do not finish transaction in PRODUCTION environment *');
+        await test.step(`Assert Checkout Service Reached`, async () => {
+          await commonCheckoutService.personalInfoPage.stepperComponent.locStepCircle1Current.isVisible();
+        });
+        console.log('* Production: Stop test at personal info page *');
       } else {
+        await test.step(`Fill all required fields on personal info ${regionInfo.name}`, async () => {
+          await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
+            'Test',
+            'Tester',
+            '5555555555',
+            'Mobile',
+            regionInfo.validAddress.street,
+            regionInfo.validAddress.city,
+            regionInfo.validAddress.postalCode,
+            '10',
+            '10',
+            '1990',
+            '3333333333'
+          );
+          if (await commonCheckoutService.personalInfoPage.locBusinessNameInput.isVisible()) {
+            await commonCheckoutService.personalInfoPage.fillBusinessInformationFields('Testers Inc', '10', '10', '2021', '945433337');
+          }
+        });
+        await test.step(`Verify Plans displayed in Order Summary on Personal Info Page`, async () => {
+          await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertDisplayedPlansIncludeExpectedData(testCase.planDetails);
+        });
+        await test.step(`Verify Supplements displayed in Order Summary on Personal Info Page`, async () => {
+          await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertDisplayedSupplementsIncludeExpectedData(
+            testCase.planDetails[0].supplements
+          );
+        });
+        await test.step(`Verify Order Total in Order Summary on Personal Info Page`, async () => {
+          expect.soft(await commonCheckoutService.personalInfoPage.orderSummaryComponent.locTotalContainer.innerText()).toContain(testCase.termTotal);
+        });
+        await test.step(`Click Save and Continue and wait for Payment page`, async () => {
+          //TODO: someday remove this if you have time to figure out the click not responding
+          await page.waitForTimeout(1000);
+          await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
+        });
+        await test.step(`Verify Plans displayed in Order Summary on on Payment Page`, async () => {
+          await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertDisplayedPlansIncludeExpectedData(testCase.planDetails);
+        });
+        await test.step(`Verify Supplements displayed in Order Summary on on Payment Page`, async () => {
+          await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertDisplayedSupplementsIncludeExpectedData(
+            testCase.planDetails[0].supplements
+          );
+        });
+        await test.step(`Verify Order Total in Order Summary on Payment Page`, async () => {
+          expect.soft(await commonCheckoutService.paymentPage.orderSummaryComponent.locTotalContainer.innerText()).toContain(testCase.termTotal);
+        });
+        await test.step('Click on Bank Draft Toggle', async () => {
+          await commonCheckoutService.paymentPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
+        });
+        await test.step('Complete Bank Draft Form', async () => {
+          await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormCanada('0000011', '11242', '260', 'Tester');
+        });
+
         await test.step('Click Purchase Button and wait for Confirmation Page', async () => {
           await commonCheckoutService.paymentPage.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
         });
