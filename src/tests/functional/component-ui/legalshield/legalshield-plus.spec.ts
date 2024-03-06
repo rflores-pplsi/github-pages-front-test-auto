@@ -8,6 +8,11 @@ for (const testCase of headerTwoLinksData.filter((testCase) => testCase.disabled
     console.log(`Test Case: ${testCase.testCaseName}`);
     test.slow();
     let response: Response;
+    await test.step(`Navigate to lsa plus page`, async () => {
+      await legalshieldService.legalshieldPlusPage.page.goto(
+        `https://${testCase.associate}.${UrlsUtils.legalshieldAssociateService.baseUrlNoSubdomain}/?lsaplus=true`
+      );
+    });
     await test.step(`Click on the ${testCase.secondLevelLink} link`, async () => {
       [response] = await Promise.all([
         page.waitForResponse((response) => response.url().includes(testCase.expectedUrl)),

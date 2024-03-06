@@ -42,36 +42,39 @@ for (const regionUnderTest of regionsUnderTest) {
     await test.step(`Validate Order Summary on Personal Info Page`, async () => {
       expect(await commonCheckoutService.personalInfoPage.orderSummaryComponent.locTotalContainer.innerText()).toContain('$29.95');
     });
-    await test.step(`Update Personal Info to match region`, async () => {
-      await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
-        'LegalShieldESUS',
-        'Tester',
-        '5555555555',
-        'Mobile',
-        homeAddress,
-        city,
-        postalCode,
-        '10',
-        '10',
-        '2001',
-        '3333'
-      );
-    });
-    await test.step(`Click Save and Continue and wait for Payment page to load`, async () => {
-      await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
-    });
-    await test.step(`Validate Order Summary on Payment Info Page`, async () => {
-      expect(await commonCheckoutService.paymentPage.orderSummaryComponent.locTotalContainer.innerText()).toContain('$29.95');
-    });
-    await test.step(`Click on the Bank Draft Toggle`, async () => {
-      await commonCheckoutService.paymentPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
-    });
-    await test.step(`Fill out Bank Draft form`, async () => {
-      await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates('1000123546', '103000648', 'Test');
-    });
     if (process.env.USE_PROD == 'true') {
-      console.log('* Do not finish transaction in PRODUCTION environment *');
+      console.log('* Production: Stop test at personal info page *');
+      await test.step(`Assert Checkout Service Reached`, async () => {
+        await commonCheckoutService.personalInfoPage.stepperComponent.locStepCircle1Current.isVisible();
+      });
     } else {
+      await test.step(`Update Personal Info to match region`, async () => {
+        await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
+          'LegalShieldESUS',
+          'Tester',
+          '5555555555',
+          'Mobile',
+          homeAddress,
+          city,
+          postalCode,
+          '10',
+          '10',
+          '2001',
+          '3333'
+        );
+      });
+      await test.step(`Click Save and Continue and wait for Payment page to load`, async () => {
+        await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
+      });
+      await test.step(`Validate Order Summary on Payment Info Page`, async () => {
+        expect(await commonCheckoutService.paymentPage.orderSummaryComponent.locTotalContainer.innerText()).toContain('$29.95');
+      });
+      await test.step(`Click on the Bank Draft Toggle`, async () => {
+        await commonCheckoutService.paymentPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
+      });
+      await test.step(`Fill out Bank Draft form`, async () => {
+        await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates('1000123546', '103000648', 'Test');
+      });
       await test.step(`Click on the Purchase button`, async () => {
         await commonCheckoutService.paymentPage.bankDraftComponent.locPurchaseButton.click();
       });

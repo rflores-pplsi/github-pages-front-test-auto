@@ -25,7 +25,7 @@ test('Groups Affiliated (Agent: 12345, Primerica, en-US, New York) -> Checkout S
   await test.step(`Click Begin Enrollment Button`, async () => {
     await groupsAffiliatedService.groupsAffiliatedEnrollmentPage.locBeginEnrollmentButton.click();
   });
-  await test.step(`Assert navigation to classic checkout`, async () => {
+  await test.step(`Assert navigation to checkout`, async () => {
     await expect(page).toHaveURL(new RegExp('checkoutv3.legalshield'));
   });
 });

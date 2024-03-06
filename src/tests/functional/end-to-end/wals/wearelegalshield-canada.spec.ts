@@ -18,7 +18,11 @@ test.beforeEach(async ({ context, page }) => {
 
 const regionsUnderTest = ['Ontario'];
 for (const regionUnderTest of regionsUnderTest) {
-  test(`Test Case: Wearelegalshield (Legal Plan, en-CA, ${regionUnderTest}) -> Checkout -> Accounts @smoke `, async ({ page, walsService }) => {
+  test(`Test Case: Wearelegalshield (Legal Plan, en-CA, ${regionUnderTest}) -> Checkout -> Accounts @smoke `, async ({
+    page,
+    walsService,
+    newCheckoutService,
+  }) => {
     console.log(`Test Case: Wearelegalshield (Legal Plan, en-CA, ${regionUnderTest}) -> Checkout -> Accounts`);
     const regionInfo = RegionsUtils.caProvinces.filter((region) => region.name == regionUnderTest)[0];
     const homeAddress = regionInfo.validAddress.street;
@@ -39,6 +43,10 @@ for (const regionUnderTest of regionsUnderTest) {
     });
     await test.step('Click Checkout button in shopping cart', async () => {
       await walsService.walsAffiliatedPage.walsCartComponent.locCheckoutButton.click();
+    });
+    await test.step('Assert NewCheckout url', async () => {
+      await newCheckoutService.newCheckoutInformationPage.locAddressInput.waitFor();
+      expect(page.url()).toContain('newcheckout');
     });
     //TODO:Uncomment as soon as WALS is hitting checkout v3
     // await test.step(`Log in to reach checkout service`, async () => {

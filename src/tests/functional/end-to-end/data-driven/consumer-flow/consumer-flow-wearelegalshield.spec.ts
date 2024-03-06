@@ -22,34 +22,37 @@ for (const testCase of weAreLegalshieldData.filter((testCase) => testCase.disabl
       await test.step(`Add Plans: ${testCase.planDetails}`, async () => {
         await walsService.addPlansFromProductDetails(testCase.planDetails);
       });
-      // TODO: Create/find account that allows purchase from associate account
-      await test.step(`Fill all required fields on personal info ${regionInfo.name}`, async () => {
-        await newCheckoutService.newCheckoutInformationPage.completeContactInformationForm(
-          'test@tester.com',
-          'Test',
-          'Tester',
-          regionInfo.validAddress.street,
-          regionInfo.validAddress.city,
-          regionInfo.validAddress.postalCode,
-          '5555555555',
-          'Mobile'
-        );
-      });
-      await test.step(`Fill all required fields on security info ${regionInfo.name}`, async () => {
-        await newCheckoutService.newCheckoutInformationPage.completeSecurityInformationForm('01012000', '2222');
-      });
-      await test.step(`Click Continue Button`, async () => {
-        await newCheckoutService.newCheckoutInformationPage.locContinueButton.click();
-      });
-      await test.step(`Select Bank Draft Payment Type`, async () => {
-        await newCheckoutService.newCheckoutPaymentPage.locBankDraftButton.click();
-      });
-      await test.step(`Complete Bank Draft Form`, async () => {
-        await newCheckoutService.newCheckoutPaymentPage.completeBankDraftFrom('Tester', '103000648', '1000123546');
-      });
       if (process.env.USE_PROD == 'true') {
-        console.log('* Do not finish transaction in PRODUCTION environment *');
+        console.log('* Production: Stop test at personal info page *');
+        await test.step(`Assert Checkout Service Reached`, async () => {
+          await newCheckoutService.newCheckoutInformationPage.locAddressInput.waitFor();
+          expect(page.url()).toContain('newcheckout');
+        });
       } else {
+        await test.step(`Fill all required fields on personal info ${regionInfo.name}`, async () => {
+          await newCheckoutService.newCheckoutInformationPage.completeContactInformationForm(
+            'test@tester.com',
+            'Test',
+            'Tester',
+            regionInfo.validAddress.street,
+            regionInfo.validAddress.city,
+            regionInfo.validAddress.postalCode,
+            '5555555555',
+            'Mobile'
+          );
+        });
+        await test.step(`Fill all required fields on security info ${regionInfo.name}`, async () => {
+          await newCheckoutService.newCheckoutInformationPage.completeSecurityInformationForm('01012000', '2222');
+        });
+        await test.step(`Click Continue Button`, async () => {
+          await newCheckoutService.newCheckoutInformationPage.locContinueButton.click();
+        });
+        await test.step(`Select Bank Draft Payment Type`, async () => {
+          await newCheckoutService.newCheckoutPaymentPage.locBankDraftButton.click();
+        });
+        await test.step(`Complete Bank Draft Form`, async () => {
+          await newCheckoutService.newCheckoutPaymentPage.completeBankDraftFrom('Tester', '103000648', '1000123546');
+        });
         await test.step(`Click Purchase Button`, async () => {
           await newCheckoutService.newCheckoutPaymentPage.locSaveBankDraftButton.click();
         });

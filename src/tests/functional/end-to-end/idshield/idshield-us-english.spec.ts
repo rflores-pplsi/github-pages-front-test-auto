@@ -15,7 +15,6 @@ for (const regionUnderTest of regionsUnderTest) {
     test.setTimeout(120000);
     const regionInfo = RegionsUtils.usStates.filter((region) => region.name == regionUnderTest)[0];
     const regionAbbreviation = regionInfo.abbrv;
-
     await test.step(`Navigate to idshield pricing and coverage page`, async () => {
       await idshieldService.idshieldIndividualPlanPage.navigateToIdshieldIndividualPlanPage();
     });
@@ -41,38 +40,41 @@ for (const regionUnderTest of regionsUnderTest) {
     await test.step(`Validate Order Summary on Personal Info Page`, async () => {
       expect(await commonCheckoutService.personalInfoPage.orderSummaryComponent.locTotalContainer.innerText()).toContain('$14.95');
     });
-    await test.step(`Fill all required fields on personal info ${regionInfo.name}`, async () => {
-      await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
-        'IDShieldUS',
-        'Tester',
-        '5555555555',
-        'Mobile',
-        regionInfo.validAddress.street,
-        regionInfo.validAddress.city,
-        regionInfo.validAddress.postalCode,
-        '10',
-        '10',
-        '1990',
-        '3333'
-      );
-    });
-    await test.step(`Click Save and Continue Button`, async () => {
-      //TODO: remove this wait after figuring out what exactly is interrupting button click
-      await page.waitForTimeout(3000);
-      await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
-    });
-    await test.step(`Validate Order Summary on Payment Info Page`, async () => {
-      expect(await commonCheckoutService.paymentPage.orderSummaryComponent.locTotalContainer.innerText()).toContain('$14.95');
-    });
-    await test.step(`Click on the Bank Draft Toggle`, async () => {
-      await commonCheckoutService.paymentPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
-    });
-    await test.step(`Fill out Bank Draft form and Submit`, async () => {
-      await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates('1000123546', '103000648', 'Test');
-    });
     if (process.env.USE_PROD == 'true') {
-      console.log('* Do not finish transaction in PRODUCTION environment *');
+      console.log('* Production: Stop test at personal info page *');
+      await test.step(`Assert Checkout Service Reached`, async () => {
+        await commonCheckoutService.personalInfoPage.stepperComponent.locStepCircle1Current.isVisible();
+      });
     } else {
+      await test.step(`Fill all required fields on personal info ${regionInfo.name}`, async () => {
+        await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
+          'IDShieldUS',
+          'Tester',
+          '5555555555',
+          'Mobile',
+          regionInfo.validAddress.street,
+          regionInfo.validAddress.city,
+          regionInfo.validAddress.postalCode,
+          '10',
+          '10',
+          '1990',
+          '3333'
+        );
+      });
+      await test.step(`Click Save and Continue Button`, async () => {
+        //TODO: remove this wait after figuring out what exactly is interrupting button click
+        await page.waitForTimeout(3000);
+        await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
+      });
+      await test.step(`Validate Order Summary on Payment Info Page`, async () => {
+        expect(await commonCheckoutService.paymentPage.orderSummaryComponent.locTotalContainer.innerText()).toContain('$14.95');
+      });
+      await test.step(`Click on the Bank Draft Toggle`, async () => {
+        await commonCheckoutService.paymentPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
+      });
+      await test.step(`Fill out Bank Draft form and Submit`, async () => {
+        await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates('1000123546', '103000648', 'Test');
+      });
       await test.step(`Click on the Purchase button`, async () => {
         await commonCheckoutService.paymentPage.bankDraftComponent.locPurchaseButton.click();
       });
