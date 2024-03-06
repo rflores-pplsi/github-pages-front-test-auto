@@ -2,7 +2,7 @@ import { legalshieldServiceData } from './legalshield-service.data';
 import { test } from '../../../../fixtures/frontend-ui.fixture';
 
 for (const pageUnderTest of legalshieldServiceData.filter((pageUnderTest) => pageUnderTest.disabled == false)) {
-  test(`${pageUnderTest.pageName} page: Click links that navigate to another page, verify status code:200 @ComponentLegalShield`, async ({
+  test(`${pageUnderTest.pageName} page: Click links that navigate to another page, verify status code:200 @ComponentLegalShield @prod-daily-health`, async ({
     legalshieldService,
   }) => {
     await legalshieldService.navigateToUrl(pageUnderTest.url);
@@ -18,7 +18,7 @@ for (const pageUnderTest of legalshieldServiceData.filter((pageUnderTest) => pag
     });
   });
 
-  test(`${pageUnderTest.pageName} page: Click links that navigate to a new tab, verify URL without Page Not Found @ComponentLegalShield`, async ({
+  test(`${pageUnderTest.pageName} page: Click links that navigate to a new tab, verify URL without Page Not Found @ComponentLegalShield @prod-daily-health`, async ({
     legalshieldService,
   }) => {
     await legalshieldService.navigateToUrl(pageUnderTest.url);
@@ -30,7 +30,9 @@ for (const pageUnderTest of legalshieldServiceData.filter((pageUnderTest) => pag
     });
   });
 
-  test(`${pageUnderTest.pageName} page: Click links that add to cart, verify cart updated @ComponentLegalShield`, async ({ legalshieldService }) => {
+  test(`${pageUnderTest.pageName} page: Click links that add to cart, verify cart updated @ComponentLegalShield @prod-daily-health`, async ({
+    legalshieldService,
+  }) => {
     await legalshieldService.navigateToUrl(pageUnderTest.url);
     test.skip((await legalshieldService.locLinksThatAddToCart.count()) == 0, 'No add to cart links found');
     console.log(`Test Case: ${pageUnderTest.pageName} page: Click links that add to cart, verify cart updated`);
@@ -40,7 +42,7 @@ for (const pageUnderTest of legalshieldServiceData.filter((pageUnderTest) => pag
     });
   });
 
-  test(`${pageUnderTest.pageName} page: Click links that trigger Pop Up, verify Pop Up displayed @ComponentLegalShield`, async ({
+  test(`${pageUnderTest.pageName} page: Click links that trigger Pop Up, verify Pop Up displayed @ComponentLegalShield @prod-daily-health`, async ({
     legalshieldService,
   }) => {
     await legalshieldService.navigateToUrl(pageUnderTest.url);
@@ -52,7 +54,9 @@ for (const pageUnderTest of legalshieldServiceData.filter((pageUnderTest) => pag
     });
   });
 
-  test(`${pageUnderTest.pageName} page: Click anchor links, verify scroll @ComponentLegalShield`, async ({ legalshieldService }) => {
+  test(`${pageUnderTest.pageName} page: Click anchor links, verify scroll @ComponentLegalShield @prod-daily-health`, async ({
+    legalshieldService,
+  }) => {
     await legalshieldService.navigateToUrl(pageUnderTest.url);
     test.skip((await legalshieldService.locAnchorLinks.count()) == 0, 'No anchor links found');
     console.log(`Test Case: ${pageUnderTest.pageName} page: Click anchor links, verify scroll`);
@@ -61,7 +65,7 @@ for (const pageUnderTest of legalshieldServiceData.filter((pageUnderTest) => pag
       await legalshieldService.clickAllAnchorLinksAndVerifyScroll(legalshieldService.locAnchorLinks);
     });
   });
-  test(`${pageUnderTest.pageName} page: Find and submit email forms, verify successful submission @ComponentLegalShield`, async ({
+  test(`${pageUnderTest.pageName} page: Find and submit email forms, verify successful submission @ComponentLegalShield @prod-daily-health`, async ({
     legalshieldService,
   }) => {
     await legalshieldService.navigateToUrl(pageUnderTest.url);
