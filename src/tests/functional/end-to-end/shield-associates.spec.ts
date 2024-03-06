@@ -3,11 +3,11 @@ import UrlsUtils from '../../../utils/urls.utils';
 import { test } from '../../../fixtures/frontend-ui.fixture';
 
 test.describe('Navigate to Shield Associate Pages', () => {
-  test.skip('Navigate to Shield Associate Page @smoke ', async ({ page, shieldAssociateService }) => {
+  test('Navigate to Shield Associate Page @smoke ', async ({ page, shieldAssociateService }) => {
     console.log('Test Case: Navigate to Shield Associate Page');
     test.slow();
     await test.step(`Navigate to Shield Associate Page`, async () => {
-      await page.goto(`${UrlsUtils.legalshieldAssociateService.baseUrl}`);
+      await page.goto(`${UrlsUtils.shieldAssociateService.baseUrl}`);
     });
     await test.step('Verify Shield Associate page has loaded and Search Input is displayed', async () => {
       await expect(shieldAssociateService.findYourAssociatePage.locH1Header).toContainText('Smart, Simple Coverage Starts Here');
