@@ -1,10 +1,16 @@
-import { Page } from '@playwright/test';
+import { Locator, Page } from '@playwright/test';
 
 export class LegalshieldPlusHeaderComponent {
   protected page: Page;
+  readonly locHeaderLogo: Locator;
+  readonly locUserIconDropdown: Locator;
+  readonly locUserMenuMyProductsLink: Locator;
 
   constructor(page: Page) {
     this.page = page;
+    this.locHeaderLogo = this.page.locator('//div[@id="lsdsLargeLogoId"]');
+    this.locUserIconDropdown = this.page.locator('//button[@id="lsdsUserButtonId"]');
+    this.locUserMenuMyProductsLink = this.page.locator('//div[@id="lsdsSignedOutId"]');
   }
 
   clickMenuLinkWithTwoLevels = async (levelOneLink: string, levelTwoLink: string): Promise<void> => {

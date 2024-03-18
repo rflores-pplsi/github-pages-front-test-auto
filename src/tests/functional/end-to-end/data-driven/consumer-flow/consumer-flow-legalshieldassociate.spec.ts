@@ -7,7 +7,7 @@ import { test } from '../../../../../fixtures/frontend-ui.fixture';
 
 for (const testCase of legalshieldAssociateData.filter((testCase) => testCase.disabled == false)) {
   for (const regionUnderTest of testCase.regions) {
-    test(`Legalshield Associates - Consumer Flow${testCase.testCaseName}, ${regionUnderTest}) @legalshieldassociates-consumerflow ${testCase.tag}`, async ({
+    test(`Legalshield Associates - Consumer Flow${testCase.testCaseName}, ${regionUnderTest}) @legalshieldassociates-consumerflow @buynow @cartbuilder ${testCase.tag}`, async ({
       page,
       commonAssociateOfficeService,
       commonCheckoutService,
@@ -154,7 +154,7 @@ for (const testCase of legalshieldAssociateData.filter((testCase) => testCase.di
 
 for (const testCase of legalshieldAssociateCanadaData.filter((testCase) => testCase.disabled == false)) {
   for (const regionUnderTest of testCase.regions) {
-    test(`${testCase.testCaseName}, ${regionUnderTest}: Checkout -> Accounts @legalshieldassociates-consumerflow ${testCase.tag}`, async ({
+    test(`${testCase.testCaseName}, ${regionUnderTest}: Checkout -> Accounts @legalshieldassociates-consumerflow @buynow @cartbuilder ${testCase.tag}`, async ({
       page,
       commonAssociateOfficeService,
       commonCheckoutService,
