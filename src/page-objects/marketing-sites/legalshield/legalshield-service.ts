@@ -6,6 +6,7 @@ import { LegalshieldPage } from './legalshield.page';
 import { LegalshieldCoverageAndPricingPage } from './legalshield-coverage-and-pricing.page';
 import { LegalshieldPlusPage } from '../../legalshield-associates/legalshield-plus.page';
 import { LegalshieldPlusHeaderComponent } from '../../legalshield-associates/legalshield-plus-header.component';
+import { LegalshieldPlusStickyHeaderComponent } from '../../legalshield-associates/legalshield-plus-sticky-header.component';
 import { SmallBusinessQualifyingComponent } from './legalshield-small-business-qualifying.component';
 import { MarketingSitesCartComponent } from '../marketing-sites-cart-component';
 import { MarketingSiteFooterComponent } from '../marketing-sites-footer-component';
@@ -23,6 +24,7 @@ export class LegalshieldService {
   readonly headerComponent: HeaderComponent;
   readonly legalshieldPlusHeaderComponent: LegalshieldPlusHeaderComponent;
   readonly legalshieldPlusPage: LegalshieldPlusPage;
+  readonly legalshieldPlusStickyHeaderComponent: LegalshieldPlusStickyHeaderComponent;
   readonly smallBusinessQualifyingComponent: SmallBusinessQualifyingComponent;
   readonly marketingSitesCartComponent: MarketingSitesCartComponent;
   readonly marketingSiteHeaderComponent: MarketingSiteHeaderComponent;
@@ -51,6 +53,7 @@ export class LegalshieldService {
     this.headerComponent = new HeaderComponent(page);
     this.legalshieldPlusPage = new LegalshieldPlusPage(context, page);
     this.legalshieldPlusHeaderComponent = new LegalshieldPlusHeaderComponent(page);
+    this.legalshieldPlusStickyHeaderComponent = new LegalshieldPlusStickyHeaderComponent(page);
     this.smallBusinessQualifyingComponent = new SmallBusinessQualifyingComponent(page);
     this.marketingSitesCartComponent = new MarketingSitesCartComponent(page);
     this.marketingSiteFooterComponent = new MarketingSiteFooterComponent(page);
