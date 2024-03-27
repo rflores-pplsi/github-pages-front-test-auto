@@ -1,6 +1,6 @@
 import { Locator, Page, expect, BrowserContext } from '@playwright/test';
 
-export class LegalshieldPlusProductCardComponent {
+export class PlusProductCardComponent {
   protected page: Page;
   protected context: BrowserContext;
   readonly locProductCardInfoSectionContainer: Locator;

@@ -12,28 +12,28 @@ for (const testCase of legalshieldAssociateData.filter((testCase) => testCase.di
       commonAssociateOfficeService,
       commonCheckoutService,
       commonLoginService,
-      shieldAssociateService,
+      legalshieldAssociateService,
     }) => {
       console.log(`Test Case: Legalshield Associates - Consumer Flow (${testCase.testCaseName}, ${regionUnderTest})`);
       test.slow();
       const regionInfo = RegionsUtils.usStates.filter((region) => region.name == regionUnderTest)[0];
       await test.step(`Navigate to legalshieldassociate.com/BuyNow`, async () => {
-        await page.goto(`https://apptestuser.${UrlsUtils.legalshieldAssociateService.baseUrlNoSubdomain}/BuyNow`);
+        await page.goto(`https://apptestuser.${UrlsUtils.legallegalshieldAssociateService.baseUrlNoSubdomain}/BuyNow`);
       });
       await test.step(`Select Market`, async () => {
-        await shieldAssociateService.buyNowPage.globalFooterComponent.changeMarket(testCase.market);
+        await legalshieldAssociateService.buyNowPage.globalFooterComponent.changeMarket(testCase.market);
       });
       await test.step(`Select Plans`, async () => {
-        await shieldAssociateService.buyNowPage.selectPlans(testCase.planDetails);
+        await legalshieldAssociateService.buyNowPage.selectPlans(testCase.planDetails);
       });
       await test.step(`Assert Estimated Total`, async () => {
-        // await shieldAssociateService.buyNowPage.assertEstimatedTotal(testCase.planDetails);
+        // await legalshieldAssociateService .buyNowPage.assertEstimatedTotal(testCase.planDetails);
       });
       await test.step(`Click Continue Button`, async () => {
-        await shieldAssociateService.buyNowPage.locContinueButton.click();
+        await legalshieldAssociateService.buyNowPage.locContinueButton.click();
       });
       await test.step(`Select Plan Options`, async () => {
-        await shieldAssociateService.buyNowPage.configureCoverage(testCase.planDetails, regionUnderTest);
+        await legalshieldAssociateService.buyNowPage.configureCoverage(testCase.planDetails, regionUnderTest);
       });
       await test.step(`Choose Account by Email and Login`, async () => {
         if (testCase.userType == 'Existing') {
@@ -159,29 +159,29 @@ for (const testCase of legalshieldAssociateCanadaData.filter((testCase) => testC
       commonAssociateOfficeService,
       commonCheckoutService,
       commonLoginService,
-      shieldAssociateService,
+      legalshieldAssociateService,
     }) => {
       console.log(`Test Case: ${testCase.testCaseName}, ${regionUnderTest} -> Checkout -> Accounts`);
       test.setTimeout(200000);
       const regionInfo = RegionsUtils.caProvinces.filter((region) => region.name == regionUnderTest)[0];
       await test.step(`Navigate to shieldassociate.com/BuyNow?market=fr-ca`, async () => {
-        await page.goto(`https://apptestuser.${UrlsUtils.legalshieldAssociateService.baseUrlNoSubdomain}/BuyNow`);
-        // await page.goto(`https://apptestuser.${UrlsUtils.legalshieldAssociateService.baseUrlNoSubdomain}/BuyNow?market=fr-ca`);
+        await page.goto(`https://apptestuser.${UrlsUtils.legallegalshieldAssociateService.baseUrlNoSubdomain}/BuyNow`);
+        // await page.goto(`https://apptestuser.${UrlsUtils.legallegalshieldAssociateService .baseUrlNoSubdomain}/BuyNow?market=fr-ca`);
       });
       await test.step(`Select Market`, async () => {
-        await shieldAssociateService.buyNowPage.globalFooterComponent.changeMarket(testCase.market);
+        await legalshieldAssociateService.buyNowPage.globalFooterComponent.changeMarket(testCase.market);
       });
       await test.step(`Select Plans`, async () => {
-        await shieldAssociateService.buyNowPage.selectPlans(testCase.planDetails);
+        await legalshieldAssociateService.buyNowPage.selectPlans(testCase.planDetails);
       });
       await test.step(`Assert Estimated Total`, async () => {
-        // await shieldAssociateService.buyNowPage.assertEstimatedTotal(testCase.planDetails);
+        // await legalshieldAssociateService .buyNowPage.assertEstimatedTotal(testCase.planDetails);
       });
       await test.step(`Click Continue Button`, async () => {
-        await shieldAssociateService.buyNowPage.locContinueButton.click();
+        await legalshieldAssociateService.buyNowPage.locContinueButton.click();
       });
       await test.step(`Select Plan Options`, async () => {
-        await shieldAssociateService.buyNowPage.configureCoverage(testCase.planDetails, regionUnderTest);
+        await legalshieldAssociateService.buyNowPage.configureCoverage(testCase.planDetails, regionUnderTest);
       });
       await test.step(`Choose Account by Email and Login`, async () => {
         if (testCase.userType == 'Existing') {

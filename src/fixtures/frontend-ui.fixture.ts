@@ -1,9 +1,11 @@
+/* eslint-disable sort-keys-fix/sort-keys-fix */
+/* eslint-disable sort-keys */
 import { test as base } from '@playwright/test';
 import { IdshieldService } from '../page-objects/marketing-sites/idshield/idshield-service';
 import { GroupsAffiliatedService } from '../page-objects/groups-affiliated/groups-affiliated-service';
 import { LegalshieldService } from '../page-objects/marketing-sites/legalshield/legalshield-service';
+import { LegalshieldAssociateService } from '../page-objects/legalshield-associate/legalshieldassociate-service';
 import { PplsiService } from '../page-objects/pplsi/pplsi-service';
-import { ShieldAssociateService } from '../page-objects/shieldassociate/shieldassociate-service';
 import { CommonCheckoutService, CommonLoginService, CommonAssociateOfficeService } from '@legalshield/frontend-automation-commons';
 import { ShieldBenefitsService } from '../page-objects/shieldbenefits/shieldbenefits-service';
 import { NewCheckoutService } from '../page-objects/new-checkout/new-checkout-service';
@@ -15,8 +17,8 @@ export type MyFirstFixture = {
   idshieldService: IdshieldService;
   groupsAffiliatedService: GroupsAffiliatedService;
   legalshieldService: LegalshieldService;
+  legalshieldAssociateService: LegalshieldAssociateService;
   pplsiService: PplsiService;
-  shieldAssociateService: ShieldAssociateService;
   shieldBenefitsService: ShieldBenefitsService;
   commonCheckoutService: CommonCheckoutService;
   commonHeaderComponent: CommonHeaderComponent;
@@ -53,14 +55,14 @@ export const test = base.extend<MyFirstFixture>({
   legalshieldService: async ({ page, context }, use) => {
     await use(new LegalshieldService(page, context));
   },
+  legalshieldAssociateService: async ({ page, context }, use) => {
+    await use(new LegalshieldAssociateService(page, context));
+  },
   newCheckoutService: async ({ page, context }, use) => {
     await use(new NewCheckoutService(context, page));
   },
   pplsiService: async ({ page, context }, use) => {
     await use(new PplsiService(page, context));
-  },
-  shieldAssociateService: async ({ page, context }, use) => {
-    await use(new ShieldAssociateService(context, page));
   },
   shieldBenefitsService: async ({ page }, use) => {
     await use(new ShieldBenefitsService(page));

@@ -1,6 +1,6 @@
 import { Locator, Page } from '@playwright/test';
 
-export class LegalshieldPlusStickyHeaderComponent {
+export class PlusStickyHeaderComponent {
   protected page: Page;
   readonly locStickyHeaderContainer: Locator;
   readonly locAssociatePhoneNumber: Locator;

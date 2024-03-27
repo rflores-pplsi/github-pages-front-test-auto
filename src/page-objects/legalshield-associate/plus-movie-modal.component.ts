@@ -1,6 +1,6 @@
 import { FrameLocator, Locator, Page, expect } from '@playwright/test';
 
-export class LegalshieldPlusMovieModalComponent {
+export class PlusMovieModalComponent {
   protected page: Page;
   readonly locMovieModalContainer: Locator;
   readonly locMovieModalIframe: FrameLocator;

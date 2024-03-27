@@ -1,6 +1,6 @@
 import { Locator, Page } from '@playwright/test';
 
-export class LegalshieldPlusHeaderComponent {
+export class PlusHeaderComponent {
   protected page: Page;
   readonly locHeaderLogo: Locator;
   readonly locUserIconDropdown: Locator;

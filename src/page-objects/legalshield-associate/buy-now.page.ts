@@ -1,8 +1,8 @@
 import { BrowserContext, Page, Locator, expect } from '@playwright/test';
 import { GlobalHeaderComponent, GlobalFooterComponent } from '@legalshield/frontend-automation-commons';
 import { CartService } from '../cart/cart-service';
-import { SmallBusinessQuestionsComponent } from '../shieldassociate/small-business-questions.component';
-import { AssociateQuestionsComponent } from '../shieldassociate/associate-questions.component';
+import { SmallBusinessQuestionsComponent } from './small-business-questions.component';
+import { AssociateQuestionsComponent } from './associate-questions.component';
 import { PlanDetails } from '../../types/types';
 
 export class BuyNowPage {
