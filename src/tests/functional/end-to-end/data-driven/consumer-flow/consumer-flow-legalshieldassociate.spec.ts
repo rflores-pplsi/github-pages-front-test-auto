@@ -18,7 +18,7 @@ for (const testCase of legalshieldAssociateData.filter((testCase) => testCase.di
       test.slow();
       const regionInfo = RegionsUtils.usStates.filter((region) => region.name == regionUnderTest)[0];
       await test.step(`Navigate to legalshieldassociate.com/BuyNow`, async () => {
-        await page.goto(`https://apptestuser.${UrlsUtils.legallegalshieldAssociateService.baseUrlNoSubdomain}/BuyNow`);
+        await page.goto(`https://apptestuser.${UrlsUtils.legalshieldAssociateService.baseUrlNoSubdomain}/BuyNow`);
       });
       await test.step(`Select Market`, async () => {
         await legalshieldAssociateService.buyNowPage.globalFooterComponent.changeMarket(testCase.market);
@@ -165,8 +165,7 @@ for (const testCase of legalshieldAssociateCanadaData.filter((testCase) => testC
       test.setTimeout(200000);
       const regionInfo = RegionsUtils.caProvinces.filter((region) => region.name == regionUnderTest)[0];
       await test.step(`Navigate to shieldassociate.com/BuyNow?market=fr-ca`, async () => {
-        await page.goto(`https://apptestuser.${UrlsUtils.legallegalshieldAssociateService.baseUrlNoSubdomain}/BuyNow`);
-        // await page.goto(`https://apptestuser.${UrlsUtils.legallegalshieldAssociateService .baseUrlNoSubdomain}/BuyNow?market=fr-ca`);
+        await page.goto(`https://apptestuser.${UrlsUtils.legalshieldAssociateService.baseUrlNoSubdomain}/BuyNow`);
       });
       await test.step(`Select Market`, async () => {
         await legalshieldAssociateService.buyNowPage.globalFooterComponent.changeMarket(testCase.market);

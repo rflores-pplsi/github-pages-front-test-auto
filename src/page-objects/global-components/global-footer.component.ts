@@ -1,6 +1,6 @@
 import { Page, Locator, BrowserContext } from '@playwright/test';
 
-export class CommonFooterComponent {
+export class GlobalFooterComponent {
   protected page: Page;
   readonly context: BrowserContext;
   readonly locTermsOfServiceLink: Locator;
@@ -17,11 +17,6 @@ export class CommonFooterComponent {
     this.locCopyrightText = this.page.locator('//a[contains(@href,"/disclaimer")]');
   }
 
-  /**
-   *
-   *
-   * @memberof AccountsBasePage
-   */
   clickTermsOfServiceLink = async (): Promise<Page> => {
     const [newPage] = await Promise.all([this.context.waitForEvent('page'), await this.locTermsOfServiceLink.click()]);
     return newPage;

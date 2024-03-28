@@ -1,6 +1,6 @@
 import { Page, Locator } from '@playwright/test';
 
-export class CommonHeaderComponent {
+export class GlobalHeaderComponent {
   protected page: Page;
   readonly locAccountsHeader: Locator;
   readonly locLoginHeader: Locator;
@@ -57,45 +57,24 @@ export class CommonHeaderComponent {
     this.locAccountMenuSignOutLink = this.page.locator('//a[contains(.,"Sign out")]');
   }
 
-  /**
-   *
-   *
-   * @param {string} option
-   * @memberof CommonHeaderComponent
-   */
   selectMarketLanguage = async (option: string): Promise<void> => {
     await this.locGlobeButton.click();
     const optionLocator = this.page.locator(`//span[@id="lsdsLanguageDropdownId"]//a[contains(.,"${option}")]`);
     await optionLocator.click();
   };
 
-  /**
-   *
-   *
-   * @memberof CommonHeaderComponent
-   */
   navigateToAccountsHomePageThroughMyProductsLink = async (): Promise<void> => {
     await this.locAccountMenuDropDown.click();
     await this.locAccountMenuMyProductsLink.click();
     await this.page.waitForURL(new RegExp('/home'));
   };
 
-  /**
-   *
-   *
-   * @memberof CommonHeaderComponent
-   */
   navigateToAccountsProfilePageThroughMyAccountsLink = async (): Promise<void> => {
     await this.locAccountMenuDropDown.click();
     await this.locAccountMenuMyAccountLink.click();
     await this.page.waitForURL(new RegExp('/profile'));
   };
 
-  /**
-   *
-   *
-   * @memberof CommonHeaderComponent
-   */
   signOut = async (): Promise<void> => {
     await this.locAccountMenuDropDown.click();
     await this.locAccountMenuSignOutLink.click();

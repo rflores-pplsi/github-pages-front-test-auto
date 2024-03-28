@@ -10,8 +10,8 @@ import { CommonCheckoutService, CommonLoginService, CommonAssociateOfficeService
 import { ShieldBenefitsService } from '../page-objects/shieldbenefits/shieldbenefits-service';
 import { NewCheckoutService } from '../page-objects/new-checkout/new-checkout-service';
 import { WalsService } from '../page-objects/wals/wals-service';
-import { CommonFooterComponent } from '../page-objects/common-components/common-footer.component';
-import { CommonHeaderComponent } from '../page-objects/common-components/common-header.component';
+import { GlobalFooterComponent } from '../page-objects/global-components/global-footer.component';
+import { GlobalHeaderComponent } from '../page-objects/global-components/global-header.component';
 
 export type MyFirstFixture = {
   idshieldService: IdshieldService;
@@ -21,8 +21,8 @@ export type MyFirstFixture = {
   pplsiService: PplsiService;
   shieldBenefitsService: ShieldBenefitsService;
   commonCheckoutService: CommonCheckoutService;
-  commonHeaderComponent: CommonHeaderComponent;
-  commonFooterComponent: CommonFooterComponent;
+  commonHeaderComponent: GlobalHeaderComponent;
+  commonFooterComponent: GlobalFooterComponent;
   commonLoginService: CommonLoginService;
   commonAssociateOfficeService: CommonAssociateOfficeService;
   newCheckoutService: NewCheckoutService;
@@ -38,10 +38,10 @@ export const test = base.extend<MyFirstFixture>({
     await use(new CommonCheckoutService(context, page));
   },
   commonFooterComponent: async ({ page, context }, use) => {
-    await use(new CommonFooterComponent(context, page));
+    await use(new GlobalFooterComponent(context, page));
   },
   commonHeaderComponent: async ({ page }, use) => {
-    await use(new CommonHeaderComponent(page));
+    await use(new GlobalHeaderComponent(page));
   },
   commonLoginService: async ({ page }, use) => {
     await use(new CommonLoginService(page));

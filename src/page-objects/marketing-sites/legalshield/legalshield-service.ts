@@ -8,12 +8,12 @@ import { SmallBusinessQualifyingComponent } from './legalshield-small-business-q
 import { MarketingSitesCartComponent } from '../marketing-sites-cart-component';
 import { MarketingSiteFooterComponent } from '../marketing-sites-footer-component';
 import { MarketingSiteHeaderComponent } from '../marketing-sites-header-component';
-import { HeroSectionComponent } from '../../common-components/hero-section.component';
-import { GridSectionComponent } from '../../common-components/grid-section.component';
-import { PricingSectionComponent } from '../../common-components/pricing-section.component';
-import { NavListSectionComponent } from '../../common-components/nav_list-section.component';
-import { FeaturesGridSectionComponent } from '../../common-components/features-grid-section.component';
-import { CallToActionSectionComponent } from '../../common-components/call-to-action-section.component';
+import { HeroSectionComponent } from '../../global-components/hero-section.component';
+import { GridSectionComponent } from '../../global-components/grid-section.component';
+import { PricingSectionComponent } from '../../global-components/pricing-section.component';
+import { NavListSectionComponent } from '../../global-components/nav_list-section.component';
+import { FeaturesGridSectionComponent } from '../../global-components/features-grid-section.component';
+import { CallToActionSectionComponent } from '../../global-components/call-to-action-section.component';
 
 export class LegalshieldService {
   protected page: Page;

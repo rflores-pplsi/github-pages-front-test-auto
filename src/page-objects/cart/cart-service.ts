@@ -1,16 +1,16 @@
 import { BrowserContext, Page } from '@playwright/test';
-import { CommonHeaderComponent } from '../common-components/common-header.component';
-import { CommonFooterComponent } from '../common-components/common-footer.component';
+import { GlobalHeaderComponent } from '../global-components/global-header.component';
+import { GlobalFooterComponent } from '../global-components/global-footer.component';
 import { ConfigureCoveragePage } from './configure-coverage.page';
 
 export class CartService {
   readonly configureCoveragePage: ConfigureCoveragePage;
-  readonly commonHeaderComponent: CommonHeaderComponent;
-  readonly commonFooterComponent: CommonFooterComponent;
+  readonly commonHeaderComponent: GlobalHeaderComponent;
+  readonly commonFooterComponent: GlobalFooterComponent;
 
   constructor(context: BrowserContext, page: Page) {
     this.configureCoveragePage = new ConfigureCoveragePage(page);
-    this.commonHeaderComponent = new CommonHeaderComponent(page);
-    this.commonFooterComponent = new CommonFooterComponent(context, page);
+    this.commonHeaderComponent = new GlobalHeaderComponent(page);
+    this.commonFooterComponent = new GlobalFooterComponent(context, page);
   }
 }
