@@ -131,8 +131,23 @@ test.describe('Legalshield Associate - Sticky Header: ', () => {
     await test.step(`Navigate to Legal Associate Plus page`, async () => {
       await page.goto(`https://cartb1all.${UrlsUtils.legalshieldAssociateService.baseUrlNoSubdomain}/?lsaplus=true`);
     });
-    await test.step('Verify Associate image is displayed in teh header', async () => {
+    await test.step('Verify Associate image is displayed in the header', async () => {
       expect(legalshieldAssociateService.plusStickyHeaderComponent.locAssociateImage).toBeVisible;
+    });
+  });
+});
+//***
+test.describe('Legalshield Associate - Testimonial Content: ', () => {
+  test.only('Test Case: Verify Testimonial is Present on the Home Page  @legalshieldassociatesplus-component', async ({
+    page,
+    legalshieldAssociateService,
+  }) => {
+    console.log('Test Case: Verify Testimonial is Present on the Home Page ');
+    await test.step(`Navigate to Legal Associate Plus page`, async () => {
+      await page.goto(`https://cartb1all.${UrlsUtils.legalshieldAssociateService.baseUrlNoSubdomain}/?lsaplus=true`);
+    });
+    await test.step('Verify Testimonial image is displayed on home page', async () => {
+      expect(legalshieldAssociateService.plusTestimonialComponent.locTestimonialContainer).toBeVisible;
     });
   });
 });

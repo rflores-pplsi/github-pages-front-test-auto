@@ -1,6 +1,7 @@
 import { Page, BrowserContext } from '@playwright/test';
 import { PlusHeaderComponent } from './plus-header.component';
 import { PlusStickyHeaderComponent } from './plus-sticky-header.component';
+import { PlusTestimonialComponent } from './plus-testimonial.component';
 import { PlusProductCardComponent } from './plus-product-card.component';
 import { PlusMovieModalComponent } from './plus-movie-modal.component';
 import { PlusCartFooterComponent } from './plus-cart-footer.component';
@@ -12,6 +13,7 @@ export class LegalshieldAssociateService {
   protected page: Page;
   readonly plusHeaderComponent: PlusHeaderComponent;
   readonly plusStickyHeaderComponent: PlusStickyHeaderComponent;
+  readonly plusTestimonialComponent: PlusTestimonialComponent;
   readonly plusProductCardComponent: PlusProductCardComponent;
   readonly plusMovieModalComponent: PlusMovieModalComponent;
   readonly plusCartFooterComponent: PlusCartFooterComponent;
@@ -23,6 +25,7 @@ export class LegalshieldAssociateService {
     this.page = page;
     this.plusHeaderComponent = new PlusHeaderComponent(page);
     this.plusStickyHeaderComponent = new PlusStickyHeaderComponent(page);
+    this.plusTestimonialComponent = new PlusTestimonialComponent(page);
     this.plusProductCardComponent = new PlusProductCardComponent(page);
     this.plusMovieModalComponent = new PlusMovieModalComponent(page);
     this.plusCartFooterComponent = new PlusCartFooterComponent(page);
