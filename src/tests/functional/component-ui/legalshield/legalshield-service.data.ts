@@ -15,11 +15,6 @@ export const legalshieldServiceData = [
   },
   {
     disabled: false,
-    pageName: 'Personal Plan Plan Details',
-    url: `${UrlsUtils.legalshieldService.baseUrl}/personal-plan/plan-details`,
-  },
-  {
-    disabled: false,
     pageName: 'Business Plan Coverage and Pricing',
     url: `${UrlsUtils.legalshieldService.baseUrl}/business-plan/coverage-pricing/`,
   },

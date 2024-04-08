@@ -43,7 +43,7 @@ class MyReporter implements Reporter {
     const body = JSON.stringify([
       {
         duration: result.duration,
-        eventType: 'PlaywrightReporter',
+        eventType: 'Playwright',
         status: result.status,
         title: test.title,
       },

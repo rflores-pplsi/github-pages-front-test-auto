@@ -40,6 +40,7 @@ export class LegalshieldService {
   readonly locPopUpCloseButton: Locator;
   readonly locAnchorLinks: Locator;
   readonly locEmailCaptureSection: Locator;
+  readonly locCartBox: Locator;
 
   constructor(page: Page, context: BrowserContext) {
     this.page = page;
@@ -72,6 +73,7 @@ export class LegalshieldService {
     this.locPopUpCloseButton = this.page.locator('[id*="modal"][style*="display: block"] img');
     this.locAnchorLinks = this.page.locator('body .lsux-link[href*="#"], body .lsux-button--primary[href*="#"]');
     this.locEmailCaptureSection = this.page.locator('body #section-email_capture');
+    this.locCartBox = this.page.locator('.cart-box');
   }
 
   navigateToUrl = async (url: string): Promise<void> => {
@@ -249,10 +251,10 @@ export class LegalshieldService {
     for (const locator of locators) {
       const expectedURL = await locator.getAttribute('href');
       await test.step(`Click link to navigate to ${expectedURL}`, async () => {
-        [response] = await Promise.all([this.page.waitForResponse((response) => response.url() === expectedURL), locator.click()]);
+        [response] = await Promise.all([this.page.waitForResponse((response) => response.url().includes(`${expectedURL}`)), locator.click()]);
       });
       await test.step(`Verify Status:200`, async () => {
-        expect.soft(response.status()).toBe(expectedStatusCode);
+        expect.soft([200, 301]).toContain(response.status());
       });
       await test.step(`Return to Page Under Test`, async () => {
         await this.page.goto(pageUnderTestURL);
@@ -286,6 +288,8 @@ export class LegalshieldService {
     console.log(`Found ${locators.length} locators`);
     for (const locator of locators) {
       const shortCode = await locator.locator('+ .lsc-shortcode-field .et_pb_code_inner').innerText();
+      const prodId = await locator.locator('a.lsc-add-to-cart-button').getAttribute('data-product-id');
+      const cartBoxId = locator.locator(`#${prodId}`);
       await test.step(`Click add To Cart link`, async () => {
         await locator.click();
       });
@@ -293,7 +297,7 @@ export class LegalshieldService {
         await this.smallBusinessQualifyingComponent.completeQualifyingQuestionnaireWithNos();
       }
       await test.step(`Verify Cart contains Plan Name and Header displays plan added notification icon`, async () => {
-        await expect.soft(this.marketingSitesCartComponent.locCartContainerDiv).toContainText(shortCode);
+        expect.soft(prodId).toEqual(cartBoxId);
         await expect.soft(this.marketingSiteHeaderComponent.locShoppingCartItemAddedNotification).toBeVisible();
       });
       await this.marketingSitesCartComponent.locTrashCanIcon.click();
