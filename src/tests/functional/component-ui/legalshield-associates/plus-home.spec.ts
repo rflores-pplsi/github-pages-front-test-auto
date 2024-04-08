@@ -136,21 +136,6 @@ test.describe('Legalshield Associate - Sticky Header: ', () => {
     });
   });
 });
-//***
-test.describe('Legalshield Associate - Testimonial Content: ', () => {
-  test.only('Test Case: Verify Testimonial is Present on the Home Page  @legalshieldassociatesplus-component', async ({
-    page,
-    legalshieldAssociateService,
-  }) => {
-    console.log('Test Case: Verify Testimonial is Present on the Home Page ');
-    await test.step(`Navigate to Legal Associate Plus page`, async () => {
-      await page.goto(`https://cartb1all.${UrlsUtils.legalshieldAssociateService.baseUrlNoSubdomain}/?lsaplus=true`);
-    });
-    await test.step('Verify Testimonial image is displayed on home page', async () => {
-      expect(legalshieldAssociateService.plusTestimonialComponent.locTestimonialContainer).toBeVisible;
-    });
-  });
-});
 
 test.describe('Legalshield Associate - Hero Content: ', () => {
   test('Test Case: Test Case 1 @legalshieldassociatesplus-component', async ({ page, legalshieldAssociateService }) => {
@@ -162,13 +147,89 @@ test.describe('Legalshield Associate - Hero Content: ', () => {
   });
 });
 
-test.describe('Legalshield Associate - Explore Membership: ', () => {
-  test('Test Case: Test Case 1 @legalshieldassociatesplus-component', async ({ page, legalshieldAssociateService }) => {
-    console.log('Test Case: Test Case 1');
+test.describe('Legalshield Associate - Membership Menu: ', () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto(`https://cartb1all.${UrlsUtils.legalshieldAssociateService.baseUrlNoSubdomain}/?lsaplus=true`);
+  });
+  test(`Click on All Memberships Button and verify the expected product cards @legalshieldassociatesplus-component`, async ({
+    legalshieldAssociateService,
+  }) => {
+    console.log(`Test Case: Click on All Memberships Button and verify the expected product cards`);
+    await test.step(`Click on All Memberships Button`, async () => {
+      await legalshieldAssociateService.plusExplorerMembershipMenuComponent.clickMenuButton('All Memberships');
+    });
+    await test.step(`Verify expected product cards`, async () => {
+      await legalshieldAssociateService.plusHomePage.assertDisplayedPlanNamesIncludeExpectedNames([
+        'Business Builder',
+        'Legal Plan Family',
+        'IDShield Family',
+        'IDShield Individual',
+        'Small Business',
+        'Associate',
+        'Commercial Drivers Legal Plan',
+        'Super Commercial Drivers Legal Plan',
+      ]);
+    });
   });
 
-  test('Test Case: Test Case 2 @legalshieldassociatesplus-component', async ({ page, legalshieldAssociateService }) => {
-    console.log('Test Case: Test Case 2');
+  test(`Click on LegalShield Plan Button and verify the expected product cards @legalshieldassociatesplus-component`, async ({
+    legalshieldAssociateService,
+  }) => {
+    console.log(`Test Case: Click on LegalShield Plan Button and verify the expected product cards`);
+    await test.step(`Click on LegalShield Plan Button`, async () => {
+      await legalshieldAssociateService.plusExplorerMembershipMenuComponent.clickMenuButton('LegalShield');
+    });
+    await test.step(`Verify expected product cards`, async () => {
+      await legalshieldAssociateService.plusHomePage.assertDisplayedPlanNamesIncludeExpectedNames(['Legal Plan Family']);
+    });
+  });
+
+  test(`Click on IDShield Plan Button and verify the expected product cards @legalshieldassociatesplus-component`, async ({
+    legalshieldAssociateService,
+  }) => {
+    console.log(`Test Case: Click on IDShield Plan Button and verify the expected product cards`);
+    await test.step(`Click on IDShield Plan Button`, async () => {
+      await legalshieldAssociateService.plusExplorerMembershipMenuComponent.clickMenuButton('IDShield');
+    });
+    await test.step(`Verify expected product cards`, async () => {
+      await legalshieldAssociateService.plusHomePage.assertDisplayedPlanNamesIncludeExpectedNames(['IDShield Family', 'IDShield Individual']);
+    });
+  });
+
+  test(`Click on Small Business Plan Button and verify the expected product cards @legalshieldassociatesplus-component`, async ({
+    legalshieldAssociateService,
+  }) => {
+    console.log(`Test Case: Click on Small Business Plan Button and verify the expected product cards`);
+    await test.step(`Click on Small Business Plan Button`, async () => {
+      await legalshieldAssociateService.plusExplorerMembershipMenuComponent.clickMenuButton('Small Business');
+    });
+    await test.step(`Verify expected product cards`, async () => {
+      await legalshieldAssociateService.plusHomePage.assertDisplayedPlanNamesIncludeExpectedNames(['Small Business']);
+    });
+  });
+
+  test(`Click on Become an Associate Plan Button and verify the expected product cards @legalshieldassociatesplus-component`, async ({
+    legalshieldAssociateService,
+  }) => {
+    console.log(`Test Case: Click on Become an Associate Plan Button and verify the expected product cards`);
+    await test.step(`Click on Become an Associate Plan Button`, async () => {
+      await legalshieldAssociateService.plusExplorerMembershipMenuComponent.clickMenuButton('Become an Associate');
+    });
+    await test.step(`Verify expected product cards`, async () => {
+      await legalshieldAssociateService.plusHomePage.assertDisplayedPlanNamesIncludeExpectedNames(['Associate']);
+    });
+  });
+
+  test(`Click on Commercial Drivers Plan Button and verify the expected product cards @legalshieldassociatesplus-component`, async ({
+    legalshieldAssociateService,
+  }) => {
+    console.log(`Test Case: Click on Commercial Drivers Plan Button and verify the expected product cards`);
+    await test.step(`Click on Commercial Drivers Plan Button`, async () => {
+      await legalshieldAssociateService.plusExplorerMembershipMenuComponent.clickMenuButton('Commerical Drivers');
+    });
+    await test.step(`Verify expected product cards`, async () => {
+      await legalshieldAssociateService.plusHomePage.assertDisplayedPlanNamesIncludeExpectedNames(['Commercial Drivers Legal Plan']);
+    });
   });
 });
 
@@ -276,6 +337,21 @@ test.describe('Legalshield Associate - Product Cards: ', () => {
       await legalshieldAssociateService.plusProductCardComponent.verifyAddedButtonIsVisible('Legal Plan Family');
       expect(legalshieldAssociateService.plusCartFooterComponent.locCartFooterContainer).toBeVisible();
       expect(legalshieldAssociateService.plusCartFooterComponent.locCartFooterContainer).toContainText('4');
+    });
+  });
+});
+
+test.describe('Legalshield Associate - Testimonial Content: ', () => {
+  test('Test Case: Verify Testimonial is Present on the Home Page  @legalshieldassociatesplus-component', async ({
+    page,
+    legalshieldAssociateService,
+  }) => {
+    console.log('Test Case: Verify Testimonial is Present on the Home Page ');
+    await test.step(`Navigate to Legal Associate Plus page`, async () => {
+      await page.goto(`https://cartb1all.${UrlsUtils.legalshieldAssociateService.baseUrlNoSubdomain}/?lsaplus=true`);
+    });
+    await test.step('Verify Testimonial image is displayed on home page', async () => {
+      expect(legalshieldAssociateService.plusTestimonialComponent.locTestimonialContainer).toBeVisible;
     });
   });
 });

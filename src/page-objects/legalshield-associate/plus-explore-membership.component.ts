@@ -1,16 +1,16 @@
 import { Locator, Page } from '@playwright/test';
 
-export class LegalshieldPlusExploreMembershipComponent {
+export class PlusExploreMembershipComponent {
   protected page: Page;
   readonly locExploreMembershipContainer: Locator;
 
   constructor(page: Page) {
     this.page = page;
-    //TBD: Fill out page as application completes, double check locator
-    this.locExploreMembershipContainer = this.page.locator('');
+    this.locExploreMembershipContainer = this.page.locator('//div[contains(@class,"btn-container-desktop")]');
   }
 
-  method1 = async (): Promise<void> => {
-    //TBD: Fill out page as application completes
+  clickMenuButton = async (buttonTitle: string): Promise<void> => {
+    const buttonTitleLocator = this.locExploreMembershipContainer.locator(`//button[contains(.,"${buttonTitle}")]`);
+    await buttonTitleLocator.click();
   };
 }

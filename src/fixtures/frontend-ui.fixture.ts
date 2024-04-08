@@ -4,7 +4,7 @@ import { test as base } from '@playwright/test';
 import { IdshieldService } from '../page-objects/marketing-sites/idshield/idshield-service';
 import { GroupsAffiliatedService } from '../page-objects/groups-affiliated/groups-affiliated-service';
 import { LegalshieldService } from '../page-objects/marketing-sites/legalshield/legalshield-service';
-import { LegalshieldAssociateService } from '../page-objects/legalshield-associate/legalshieldassociate-service';
+import { LegalshieldAssociateService } from '../page-objects/legalshield-associate/legalshieldassociate.service';
 import { PplsiService } from '../page-objects/pplsi/pplsi-service';
 import { CommonCheckoutService, CommonLoginService, CommonAssociateOfficeService } from '@legalshield/frontend-automation-commons';
 import { ShieldBenefitsService } from '../page-objects/shieldbenefits/shieldbenefits-service';

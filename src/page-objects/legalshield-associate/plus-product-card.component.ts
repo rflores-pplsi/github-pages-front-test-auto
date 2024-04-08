@@ -4,6 +4,7 @@ export class PlusProductCardComponent {
   protected page: Page;
   protected context: BrowserContext;
   readonly locProductCardInfoSectionContainer: Locator;
+  readonly locPlanNamesArray: Locator;
   readonly locPlayButton: Locator;
   readonly locFeaturesAvailableContainer: Locator;
 
@@ -11,6 +12,7 @@ export class PlusProductCardComponent {
     this.page = page;
     this.context = page.context();
     this.locProductCardInfoSectionContainer = this.page.locator('//div[contains(@class,"lsux-product-card__info-section")]');
+    this.locPlanNamesArray = this.locProductCardInfoSectionContainer.locator('//h3');
     this.locPlayButton = this.locProductCardInfoSectionContainer.locator('//span[contains(.,"▶")]');
     this.locFeaturesAvailableContainer = this.locProductCardInfoSectionContainer.locator(
       '//div[contains(@class,"lsux-product-card__features-available")]'
