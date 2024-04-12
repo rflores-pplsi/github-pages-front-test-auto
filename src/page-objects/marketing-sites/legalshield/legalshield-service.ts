@@ -79,9 +79,9 @@ export class LegalshieldService {
   navigateToUrl = async (url: string): Promise<void> => {
     await this.page.goto(url);
     // eslint-disable-next-line const-case/uppercase
-    const dialogCloseButton = '//div[contains(@class,"ub-emb-iframe-wrapper ub-emb-visible")]//button';
+    const dialogCloseButton = '//div[contains(@class,"ub-emb-visible")]//button';
     const isDialogPresent = await this.page
-      .waitForSelector(dialogCloseButton, { timeout: 6000 })
+      .waitForSelector(dialogCloseButton, { timeout: 9000 })
       .then(() => true)
       .catch(() => false);
     if (isDialogPresent == true) {
@@ -286,22 +286,28 @@ export class LegalshieldService {
   clickAllAddToCartLinksAndVerifyCartIsUpdated = async (locator: Locator): Promise<void> => {
     const locators = await locator.all();
     console.log(`Found ${locators.length} locators`);
+
     for (const locator of locators) {
-      const shortCode = await locator.locator('+ .lsc-shortcode-field .et_pb_code_inner').innerText();
-      const prodId = await locator.locator('a.lsc-add-to-cart-button').getAttribute('data-product-id');
-      const cartBoxId = locator.locator(`#${prodId}`);
-      await test.step(`Click add To Cart link`, async () => {
-        await locator.click();
-      });
-      if (shortCode.includes('BUS') || shortCode.includes('PRO') || shortCode.includes('PLUS') || shortCode.includes('ESS')) {
-        await this.smallBusinessQualifyingComponent.completeQualifyingQuestionnaireWithNos();
-      }
-      await test.step(`Verify Cart contains Plan Name and Header displays plan added notification icon`, async () => {
-        expect.soft(prodId).toEqual(cartBoxId);
-        await expect.soft(this.marketingSiteHeaderComponent.locShoppingCartItemAddedNotification).toBeVisible();
-      });
-      await this.marketingSitesCartComponent.locTrashCanIcon.click();
-      await this.marketingSitesCartComponent.locContinueShoppingLink.click();
+      if (await locator.isVisible()) {
+        const shortCode = await locator.locator('+ .lsc-shortcode-field .et_pb_code_inner').innerText();
+        const prodId = await locator.getAttribute('data-product-id');
+        await test.step(`Click add To Cart link`, async () => {
+          await locator.click();
+        });
+        const cartBoxId = await this.page.locator('.cart-box').getAttribute('id');
+        console.log(`${prodId?.toString()} = ${cartBoxId?.toString()}`);
+        if (shortCode.includes('BUS') || shortCode.includes('PRO') || shortCode.includes('PLUS') || shortCode.includes('ESS')) {
+          await this.smallBusinessQualifyingComponent.completeQualifyingQuestionnaireWithNos();
+        }
+        await test.step(`Verify Cart contains any Plan Name and Header displays plan added notification icon`, async () => {
+          const locCart = this.page.locator('//div[@id="cart-container"]//div[@class="cart-box"]'); // check if parent product exists
+          await expect.soft(locCart).toBeVisible();
+          await expect.soft(this.page.locator(`//div[@id="cart-container"]//div[@id="${prodId?.toString()}"]`)).toBeVisible(); // check if supp exists
+          await expect.soft(this.marketingSiteHeaderComponent.locShoppingCartItemAddedNotification).toBeVisible();
+        });
+        await this.marketingSitesCartComponent.locTrashCanIcon.nth(1).click();
+        await this.marketingSitesCartComponent.locContinueShoppingLink.click();
+      } // end isVisible()
     }
   };
 
@@ -368,5 +374,22 @@ export class LegalshieldService {
         });
       });
     }
+  };
+  // set cookies for GBB
+  setCookiesForGBB = async (): Promise<void> => {
+    // Retrieve all cookies
+    const allCookies = await this.context.cookies();
+
+    // Filter out the cookie you want to delete
+    const cookiesToKeep = allCookies.filter((cookie) => cookie.name !== 'pplsi-region');
+
+    // Clear all cookies
+    await this.context.clearCookies();
+
+    // Set the remaining cookies back
+    await this.context.addCookies(cookiesToKeep);
+    const newCookie = [{ name: 'pplsi-region', url: `${this.page.url()}`, value: 'GA' }];
+    await this.context.addCookies(newCookie);
+    this.context.addCookies(cookiesToKeep);
   };
 }

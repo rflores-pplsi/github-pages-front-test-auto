@@ -50,36 +50,14 @@ class MyReporter implements Reporter {
     ]);
 
     fetch(this.apiNewRelicUrl, { body: body, headers: headersInfo, method: 'POST' })
-      //.then((response) => response.json())
-      .then((response) => console.log(`Test: ${test.title} send successfully? ` + response.ok))
+      .then((response) => response.json())
       .catch((error) => {
         console.error('Error:', error);
       });
-    // console.log(`onEnd:: Finished the run: status: ${status}, startTime: ${startTime}, duration: ${duration}, reportData: ${allResults}`);
     // console.log(`onTestEnd:: Finished test ${test.title}: ${result.status}`);
   }
 
   onEnd(result: FullResult) {
-    // const allResults = JSON.stringify(this.reportData);
-    // const allResultsString = allResults.toString();
-    // // Send to New Relic Ingestion API
-    // const apiKey = process.env.API_NEW_RELIC_INGEST_KEY || '';
-    // const headersInfo = {
-    //   'Content-Type': 'application/json',
-    //   'X-Insert-Key': apiKey,
-    // };
-    // const body = JSON.stringify([
-    //   {
-    //     eventType: 'PlaywrightReporter',
-    //     result: allResultsString,
-    //   },
-    // ]);
-    // fetch(this.apiNewRelicUrl, { body: body, headers: headersInfo, method: 'POST' })
-    //   //.then((response) => response.json())
-    //   .then((data) => console.log('data sent to NewRelic success? ' + allResultsString))
-    //   .catch((error) => {
-    //     console.error('Error:', error);
-    //   });
     // // console.log(`onEnd:: Finished the run: status: ${status}, startTime: ${startTime}, duration: ${duration}, reportData: ${allResults}`);
   }
 }

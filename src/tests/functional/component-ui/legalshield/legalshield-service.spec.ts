@@ -30,10 +30,15 @@ for (const pageUnderTest of legalshieldServiceData.filter((pageUnderTest) => pag
     });
   });
 
-  test(`${pageUnderTest.pageName} page: Click links that add to cart, verify cart updated @ComponentLegalShield @prod-daily-health`, async ({
+  test(`${pageUnderTest.pageName} page: Click links that add to cart, verify cart updated @ComponentLegalShield @prod-daily-health @gbb`, async ({
     legalshieldService,
   }) => {
     await legalshieldService.navigateToUrl(pageUnderTest.url);
+    // set cookies if GBB pages are enabled
+    if (pageUnderTest.url.includes('gbb2=true')) {
+      await legalshieldService.setCookiesForGBB();
+    }
+
     test.skip((await legalshieldService.locLinksThatAddToCart.count()) == 0, 'No add to cart links found');
     console.log(`Test Case: ${pageUnderTest.pageName} page: Click links that add to cart, verify cart updated`);
     test.setTimeout(200000);

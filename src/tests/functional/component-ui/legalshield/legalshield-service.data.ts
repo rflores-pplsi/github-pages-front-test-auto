@@ -15,6 +15,11 @@ export const legalshieldServiceData = [
   },
   {
     disabled: false,
+    pageName: 'Personal Plan Plan Details',
+    url: `${UrlsUtils.legalshieldService.baseUrl}/personal-plan/plan-details`,
+  },
+  {
+    disabled: false,
     pageName: 'Business Plan Coverage and Pricing',
     url: `${UrlsUtils.legalshieldService.baseUrl}/business-plan/coverage-pricing/`,
   },
@@ -114,5 +119,46 @@ export const legalshieldServiceData = [
     disabled: false,
     pageName: 'Real Estate',
     url: `${UrlsUtils.legalshieldService.baseUrl}/real-estate/`,
+  },
+  // all GBB properties below
+  {
+    disabled: false,
+    pageName: 'Landlords',
+    url: `${UrlsUtils.legalshieldService.baseUrl}/landlords/?gbb2=true`,
+  },
+  {
+    disabled: false,
+    pageName: 'Landlords Negotiating Leases',
+    url: `${UrlsUtils.legalshieldService.baseUrl}/landlords/negotiating-leases/?gbb2=true`,
+  },
+  {
+    disabled: false,
+    pageName: 'Landlords Tenant Without a Lease',
+    url: `${UrlsUtils.legalshieldService.baseUrl}/landlords/tenant-without-a-lease/?gbb2=true`,
+  },
+  {
+    disabled: false,
+    pageName: 'Landlords How to Evict a Tenant',
+    url: `${UrlsUtils.legalshieldService.baseUrl}/landlords/how-to-evict-a-tenant/?gbb2=true`,
+  },
+  {
+    disabled: false,
+    pageName: 'Landlords Eviction Defenses',
+    url: `${UrlsUtils.legalshieldService.baseUrl}/landlords/eviction-defenses/?gbb2=true`,
+  },
+  {
+    disabled: false,
+    pageName: 'Landlords Problem Tenant',
+    url: `${UrlsUtils.legalshieldService.baseUrl}/landlords/problem-tenant/?gbb2=true`,
+  },
+  {
+    disabled: false,
+    pageName: 'Landlords Security Deposit',
+    url: `${UrlsUtils.legalshieldService.baseUrl}/landlords/security-deposit/?gbb2=true`,
+  },
+  {
+    disabled: false,
+    pageName: 'Personal Plan Coverage and Pricing',
+    url: `${UrlsUtils.legalshieldService.baseUrl}/personal-plan/coverage-and-pricing/?gbb2=true`,
   },
 ];
