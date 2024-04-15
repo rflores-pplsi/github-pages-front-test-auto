@@ -158,7 +158,7 @@ export const legalshieldServiceData = [
   },
   {
     disabled: false,
-    pageName: 'Personal Plan Coverage and Pricing',
+    pageName: 'GBB: Personal Plan Coverage and Pricing',
     url: `${UrlsUtils.legalshieldService.baseUrl}/personal-plan/coverage-and-pricing/?gbb2=true`,
   },
 ];
