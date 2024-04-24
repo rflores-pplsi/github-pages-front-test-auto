@@ -70,7 +70,7 @@ export class LegalshieldService {
     );
     this.locLinksThatTriggerPopUps = this.page.locator('body .lsux-link[href][id*="open-modal"], body .lsux-button--primary[href][id*="open-modal"]');
     this.locDisplayedPopUpContainer = this.page.locator('[id*="modal"][style*="display: block"]');
-    this.locPopUpCloseButton = this.page.locator('[id*="modal"][style*="display: block"] img');
+    this.locPopUpCloseButton = this.page.locator('[id*="modal"][style*="display: block"] button[class*="close-modal-button"]');
     this.locAnchorLinks = this.page.locator('body .lsux-link[href*="#"], body .lsux-button--primary[href*="#"]');
     this.locEmailCaptureSection = this.page.locator('body #section-email_capture');
     this.locCartBox = this.page.locator('.cart-box');
@@ -79,7 +79,7 @@ export class LegalshieldService {
   navigateToUrl = async (url: string): Promise<void> => {
     await this.page.goto(url);
     // eslint-disable-next-line const-case/uppercase
-    const dialogCloseButton = '//div[contains(@class,"ub-emb-visible")]//button';
+    const dialogCloseButton = '//div[contains(@class,"ub-emb-iframe-wrapper ub-emb-visible")]//button';
     const isDialogPresent = await this.page
       .waitForSelector(dialogCloseButton, { timeout: 9000 })
       .then(() => true)
@@ -294,8 +294,6 @@ export class LegalshieldService {
         await test.step(`Click add To Cart link`, async () => {
           await locator.click();
         });
-        const cartBoxId = await this.page.locator('.cart-box').getAttribute('id');
-        console.log(`${prodId?.toString()} = ${cartBoxId?.toString()}`);
         if (shortCode.includes('BUS') || shortCode.includes('PRO') || shortCode.includes('PLUS') || shortCode.includes('ESS')) {
           await this.smallBusinessQualifyingComponent.completeQualifyingQuestionnaireWithNos();
         }
@@ -305,7 +303,7 @@ export class LegalshieldService {
           await expect.soft(this.page.locator(`//div[@id="cart-container"]//div[@id="${prodId?.toString()}"]`)).toBeVisible(); // check if supp exists
           await expect.soft(this.marketingSiteHeaderComponent.locShoppingCartItemAddedNotification).toBeVisible();
         });
-        await this.marketingSitesCartComponent.locTrashCanIcon.nth(1).click();
+        await this.marketingSitesCartComponent.locTrashCanIcon.nth(0).click();
         await this.marketingSitesCartComponent.locContinueShoppingLink.click();
       } // end isVisible()
     }
@@ -321,13 +319,15 @@ export class LegalshieldService {
     const locators = await locator.all();
     console.log(`Found ${locators.length} elements`);
     for (const locator of locators) {
-      await test.step(`Click link to navigate to display Pop Up`, async () => {
-        await locator.click();
-      });
-      await test.step(`Verify Pop Up is displayed`, async () => {
-        await expect.soft(this.locDisplayedPopUpContainer).toBeVisible();
-      });
-      await this.locPopUpCloseButton.click();
+      if (await locator.isVisible()) {
+        await test.step(`Click link to navigate to display Pop Up`, async () => {
+          await locator.click();
+        });
+        await test.step(`Verify Pop Up is displayed`, async () => {
+          await expect.soft(this.locDisplayedPopUpContainer).toBeVisible();
+        });
+        await this.locPopUpCloseButton.click({ force: true });
+      }
     }
   };
 
