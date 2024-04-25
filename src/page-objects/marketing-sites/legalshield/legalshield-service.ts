@@ -341,12 +341,16 @@ export class LegalshieldService {
     const locators = await locator.all();
     console.log(`Found ${locators.length} elements`);
     for (const locator of locators) {
+      // get value of locator's href
+      const locId = await locator.getAttribute('href');
+      // create new locator from above value
+      const locAnchor = this.page.locator(`${locId}`);
+
       await test.step(`Click link to scroll to a section on this page`, async () => {
+        // click on anchor link
         await locator.click();
-      });
-      await test.step(`Verify page has scrolled`, async () => {
-        const pageScrollY = await this.page.evaluate(() => window.scrollY);
-        expect(pageScrollY).toBeGreaterThan(0);
+        // wait for the anchor to be in the viewport
+        await expect(locAnchor).toBeInViewport();
       });
     }
   };
