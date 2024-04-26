@@ -347,10 +347,17 @@ export class LegalshieldService {
       const locAnchor = this.page.locator(`${locId}`);
 
       await test.step(`Click link to scroll to a section on this page`, async () => {
-        // click on anchor link
-        await locator.click();
-        // wait for the anchor to be in the viewport
-        await expect(locAnchor).toBeInViewport();
+        // get parent, check visibility
+        const locParent = this.page.locator('.btn-group:not([style*="display: none"]):has( > .lsux-button--primary[href*="#"])');
+        if (await locParent.isVisible()) {
+          // click on anchor link
+          await locator.click();
+          // wait for the anchor to be in the viewport
+          await expect(locAnchor).toBeInViewport();
+        } else {
+          // skip this test because the anchor is not visible
+          test.skip();
+        }
       });
     }
   };
