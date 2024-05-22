@@ -5,7 +5,7 @@ import { test } from '../../../../../fixtures/frontend-ui.fixture';
 
 for (const testCase of weAreLegalshieldData.filter((testCase) => testCase.disabled == false)) {
   for (const regionUnderTest of testCase.regions) {
-    test(`WeAreLegalShield (${testCase.testCaseName}, ${regionUnderTest}) @wearelegalshield-consumerflow`, async ({
+    test(`WeAreLegalShield  - Consumer Flow (${testCase.testCaseName}, ${regionUnderTest}) @wearelegalshield-consumerflow`, async ({
       page,
       newCheckoutService,
       walsService,

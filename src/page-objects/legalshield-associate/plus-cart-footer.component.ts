@@ -8,8 +8,8 @@ export class PlusCartFooterComponent {
 
   constructor(page: Page) {
     this.page = page;
-    this.locCartFooterContainer = this.page.locator('//div[contains(@class,"footer-container")]');
-    this.locPriceContainer = this.locCartFooterContainer.locator('//div[contains(@class,"price-container")]');
-    this.locContinueButton = this.locCartFooterContainer.locator('//button[contains(@class,"lsux-button--primary")]');
+    this.locCartFooterContainer = this.page.locator('//div[contains(@class,"tw-flex tw-items-center tw-justify-center tw-flex-col tw-sticky")]');
+    this.locPriceContainer = this.page.locator('//div[contains(@class,"tw-flex tw-items-center tw-justify-between")]');
+    this.locContinueButton = this.page.locator('//button[@data-pplsi-event-id="buy-now-button"]');
   }
 }

@@ -151,34 +151,6 @@ export class CheckoutOrderSummaryComponent extends ShieldBenefitsLegalPricingPag
     return planRow;
   };
 
-  // resetOrderSummaryRows = async (): Promise<void> => {
-  //   console.log(' - checkoutOrderSummaryComponent.resetOrderSummaryRows');
-  //   orderSummary.orderSummaryRows.forEach(async (row) => {
-  //     delete row.planName;
-  //   )}
-  // };
-
-  // Figure out .textContent for Webkit failures
-  // /**
-  //  * @param {number} [i=0]
-  //  * @memberof CheckoutOrderSummaryComponent
-  //  */
-  // captureOrderSummaryRow = async (i: number = 0): Promise<OrderSummaryRow> => {
-  //   console.log(' - checkoutOrderSummaryComponent.captureOrderSummaryRow');
-  //   const planNameText = await this.page.textContent(`//div[contains(@class,"plan-name-row")][${i}]`);
-  //   console.log(planNameText);
-  //   await this.page.pause();
-  //   // const planNameJsHandle = (await this.page.$$(txtPlanNames))[i].getProperty('innerText');
-  //   // const planNameText = await (await planNameJsHandle).jsonValue();
-  //   // const planCostJsHandle = (await this.page.$$(txtPlanCosts))[i].getProperty('innerText');
-  //   const planCostText = await this.page.textContent(
-  //     `//div[contains(@class,"lsux-row half children2 content-row mb-4")]//div[contains(@class,"right-label-col")]//p[${i}]`
-  //   );
-  //   const planRow = new OrderSummaryRow(planNameText, planCostText);
-  //   return planRow;
-  // };
-
-  // ========================== Navigate Methods ===========================
   // ========================== Click Methods ==============================
 
   /**

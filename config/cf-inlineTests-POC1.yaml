@@ -1,0 +1,76 @@
+# version: '1.0'
+
+# stages:
+#   - 'teams_notify_start'
+#   - 'setup'
+#   - 'test'
+#   - 'notify'
+
+# hooks:
+#   on_success:
+#     image: codefreshplugins/cfstep-msteams-notifier:latest
+#     environment:
+#       - MSTEAMS_WEBHOOK_URL=${{MSTEAMS_DEVOPS_UPDATES}}
+#       - MSTEAMS_TITLE=✅✅ Pipeline ${{CF_PIPELINE_NAME}} Succeeded ✅✅
+
+#   on_fail:
+#     steps:
+#       devops_updates:
+#         image: codefreshplugins/cfstep-msteams-notifier:latest
+#         environment:
+#           - MSTEAMS_WEBHOOK_URL=${{MSTEAMS_DEVOPS_UPDATES}}
+#           - MSTEAMS_TITLE=🚨🚨 Pipeline ${{CF_PIPELINE_NAME}} Failed 🚨🚨
+#       general_updates:
+#         image: codefreshplugins/cfstep-msteams-notifier:latest
+#         environment:
+#           - MSTEAMS_WEBHOOK_URL=${{TEAM_AUTOMATION_REPORTING_WEBHOOK_URL}}
+#           - MSTEAMS_TITLE=Smoke - PROD - Failed
+#           - MSTEAMS_ACTIVITY_SUBTITLE=legalshield/frontend-test-automation@main
+#           - MSTEAMS_LINK_URL=${{CF_BUILD_URL}}
+#           - MSTEAMS_ACTIVITY_IMAGE=https://github.com/${{CF_BUILD_INITIATOR}}.png
+#         # when:
+#         #   condition:
+#         #     all:
+#         #       executeForMainBranch: "'${{CF_BRANCH}}' == 'main'"
+
+# steps:
+#   teams_notify_start:
+#     stage: 'teams_notify_start'
+#     image: codefreshplugins/cfstep-msteams-notifier:latest
+#     environment:
+#       - MSTEAMS_WEBHOOK_URL=${{MSTEAMS_DEVOPS_UPDATES}}
+#       - MSTEAMS_TITLE=🚧🚧 Pipeline ${{CF_PIPELINE_NAME}} Started 🚧🚧
+
+#   clone:
+#     title: 'Cloning repository'
+#     type: 'git-clone'
+#     repo: 'LegalShield/frontend-test-automation'
+#     revision: 'main'
+#     git: 'github-all'
+#     stage: 'setup'
+
+#   install-node:
+#     title: 'Install Dependencies'
+#     type: 'freestyle'
+#     stage: 'setup'
+#     image: 'node:${{NODE_VERSION}}'
+#     working_directory: '${{clone}}'
+#     commands:
+#       - 'git config user.name "lsc-io"'
+#       - 'git config user.email ivanolson@pplsi.com'
+#       - "npm config set '//npm.pkg.github.com/:_authToken' ${GIT_PERSONAL_ACCESS_TOKEN}"
+#       - 'npm ci'
+
+#   smoke-test:
+#     title: 'Smoke Test'
+#     type: 'freestyle'
+#     image: 'mcr.microsoft.com/playwright'
+#     working_directory: '${{clone}}'
+#     commands:
+#       - "echo '//npm.pkg.github.com/:_authToken=${{GIT_PERSONAL_ACCESS_TOKEN}}' >> ~/.npmrc"
+#       - bash -c "npx playwright install"
+#       - bash -c "npx playwright test --grep @smoke --retries 3"
+#     environment:
+#       - LS_ENV=production
+#       - USE_PROD=true
+#     stage: 'test'

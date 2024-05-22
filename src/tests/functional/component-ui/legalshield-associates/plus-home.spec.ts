@@ -277,7 +277,7 @@ test.describe('Legalshield Associate - Product Cards: ', () => {
   test(`Click Get a Plan button to add plan to cart @legalshieldassociatesplus-component`, async ({ legalshieldAssociateService }) => {
     console.log(`Test Case: Click Get a Plan button to add plan to cart`);
     await test.step(`Click get a plan button`, async () => {
-      await legalshieldAssociateService.plusProductCardComponent.clickGetAPlanButton('Legal Plan Family');
+      await legalshieldAssociateService.plusProductCardComponent.clickAddToCartButton('Legal Plan Family');
     });
     await test.step(`Verify Button Text Changes and cart appears`, async () => {
       await legalshieldAssociateService.plusProductCardComponent.verifyAddedButtonIsVisible('Legal Plan Family');
@@ -288,7 +288,7 @@ test.describe('Legalshield Associate - Product Cards: ', () => {
   test(`Click Added button to remove plan from cart @legalshieldassociatesplus-component`, async ({ legalshieldAssociateService }) => {
     console.log(`Test Case: Click Added button to remove plan from art cart`);
     await test.step(`Click get a plan button`, async () => {
-      await legalshieldAssociateService.plusProductCardComponent.clickGetAPlanButton('Legal Plan Family');
+      await legalshieldAssociateService.plusProductCardComponent.clickAddToCartButton('Legal Plan Family');
     });
     await test.step(`Click Added button`, async () => {
       await legalshieldAssociateService.plusProductCardComponent.clickAddedButton('Legal Plan Family');
@@ -322,16 +322,16 @@ test.describe('Legalshield Associate - Product Cards: ', () => {
   test(`Add multiple plans and verify price-container @legalshieldassociatesplus-component`, async ({ legalshieldAssociateService }) => {
     console.log(`Test Case: Add multiple plans and verify price-container`);
     await test.step(`Click get a plan button`, async () => {
-      await legalshieldAssociateService.plusProductCardComponent.clickGetAPlanButton('Legal Plan Family');
+      await legalshieldAssociateService.plusProductCardComponent.clickAddToCartButton('Legal Plan Family');
     });
     await test.step(`Click get a plan button`, async () => {
-      await legalshieldAssociateService.plusProductCardComponent.clickGetAPlanButton('IDShield Family');
+      await legalshieldAssociateService.plusProductCardComponent.clickAddToCartButton('IDShield Family');
     });
     await test.step(`Click get a plan button`, async () => {
-      await legalshieldAssociateService.plusProductCardComponent.clickGetAPlanButton('IDShield Individual');
+      await legalshieldAssociateService.plusProductCardComponent.clickAddToCartButton('IDShield Individual');
     });
     await test.step(`Click get a plan button`, async () => {
-      await legalshieldAssociateService.plusProductCardComponent.clickGetAPlanButton('Small Business');
+      await legalshieldAssociateService.plusProductCardComponent.clickAddToCartButton('Small Business');
     });
     await test.step(`Verify Button Text Changes and Verify Cart info`, async () => {
       await legalshieldAssociateService.plusProductCardComponent.verifyAddedButtonIsVisible('Legal Plan Family');
@@ -408,7 +408,7 @@ test.describe('Legalshield Associate - Cart Footer: ', () => {
   }) => {
     console.log(`Test Case: Click Get a Plan button to add plan to cart`);
     await test.step(`Click get a plan button`, async () => {
-      await legalshieldAssociateService.plusProductCardComponent.clickGetAPlanButton('Legal Plan Family');
+      await legalshieldAssociateService.plusProductCardComponent.clickAddToCartButton('Legal Plan Family');
     });
     await test.step(`Click Continue Button`, async () => {
       await legalshieldAssociateService.plusCartFooterComponent.locCartFooterContainer.click();

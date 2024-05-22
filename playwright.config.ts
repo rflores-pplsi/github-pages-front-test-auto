@@ -5,6 +5,7 @@ import { PlaywrightTestConfig, devices } from '@playwright/test';
 
 const config: PlaywrightTestConfig = {
   forbidOnly: !!process.env.CI,
+
   projects: [
     {
       name: 'chromium',
@@ -12,6 +13,7 @@ const config: PlaywrightTestConfig = {
         ...devices['Desktop Chrome'],
         launchOptions: {
           args: ['--remote-debugging-port=9222'],
+          // slowMo: 500,
         },
         screenshot: 'only-on-failure',
         trace: 'on',

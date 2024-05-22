@@ -30,6 +30,29 @@ export type MyFirstFixture = {
 };
 
 export const test = base.extend<MyFirstFixture>({
+  //addends ?qatester=automation query param to all goto urls, used for analytics filtering
+  page: async ({ page }, use) => {
+    const goto = page.goto.bind(page);
+    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type, jsdoc/require-jsdoc
+    function modifiedGoto(
+      url: string,
+      options:
+        | {
+            referer?: string | undefined;
+            timeout?: /* eslint-disable sort-keys-fix/sort-keys-fix */
+            /* eslint-disable sort-keys */
+            number | undefined;
+            waitUntil?: 'load' | 'domcontentloaded' | 'networkidle' | 'commit' | undefined;
+          }
+        | undefined
+    ) {
+      url += '?qatester=automation';
+      return goto(url, options);
+    }
+    page.goto = modifiedGoto;
+    await use(page);
+    page.goto = goto;
+  },
   //NOTE -> these classes are only instantiated when they are called
   commonAssociateOfficeService: async ({ page }, use) => {
     await use(new CommonAssociateOfficeService(page));

@@ -16,7 +16,7 @@ export class ConfigureCoveragePage {
   }
 
   selectTier = async (tierName: string): Promise<void> => {
-    const tierNameLocator = this.page.locator(`//div[contains(@class,"lsux-plan-card__tier-radio-button-group")]//p[contains(.,"${tierName}")]`);
+    const tierNameLocator = this.page.locator(`//li[contains(@class,"lsux-plan-card__tier-list-item-input") and contains(.,"${tierName}")]`);
     await tierNameLocator.click();
   };
 

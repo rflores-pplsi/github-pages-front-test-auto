@@ -4,6 +4,7 @@ import UrlsUtils from '../../../utils/urls.utils';
 import { HeaderComponent } from './header.page';
 import { LegalshieldPage } from './legalshield.page';
 import { LegalshieldCoverageAndPricingPage } from './legalshield-coverage-and-pricing.page';
+import { GbbAllPlansPage } from './gbb-allplans.page';
 import { SmallBusinessQualifyingComponent } from './legalshield-small-business-qualifying.component';
 import { MarketingSitesCartComponent } from '../marketing-sites-cart-component';
 import { MarketingSiteFooterComponent } from '../marketing-sites-footer-component';
@@ -31,6 +32,7 @@ export class LegalshieldService {
   readonly callToActionSectionComponent: CallToActionSectionComponent;
   readonly legalshieldPage: LegalshieldPage;
   readonly legalshieldCoverageAndPricingPage: LegalshieldCoverageAndPricingPage;
+  readonly gbbAllPlansPage: GbbAllPlansPage;
   readonly firstGetStartedButton: Locator;
   readonly locLinksThatNavigateToNewPage: Locator;
   readonly locLinksThatNavigateToNewTab: Locator;
@@ -58,6 +60,7 @@ export class LegalshieldService {
     this.callToActionSectionComponent = new CallToActionSectionComponent(context, page);
     this.legalshieldPage = new LegalshieldPage(context, page);
     this.legalshieldCoverageAndPricingPage = new LegalshieldCoverageAndPricingPage(page);
+    this.gbbAllPlansPage = new GbbAllPlansPage(page);
     this.firstGetStartedButton = this.page.locator(`//div[@id="main-content"]//a[@id="lsc-add-to-cart-button"]`).nth(0);
     this.locLinksThatNavigateToNewPage = this.page.locator(
       'body .lsux-link[href]:not([target="_blank"]):not([href*="javascript:void(0)"]):not([href*="#"]), body .lsux-button--primary[href]:not([target="_blank"]):not([href*="javascript:void(0)"]):not([href*="#"]),body .lsux-button--secondary[href]:not([target="_blank"]):not([href*="javascript:void(0)"]):not([href*="#"])'
@@ -105,9 +108,9 @@ export class LegalshieldService {
         case 'Commercial Drivers Legal Plan':
           await this.addCommercialDriversLegalPlan();
           break;
-        case 'Small Business Legal Essentials':
-        case 'Small Business Legal Plus':
-        case 'Small Business Legal Pro':
+        case 'Essentials':
+        case 'Plus':
+        case 'Pro':
           await this.addSmallBusinessPlan(product.name);
           break;
         case 'Home Business Supplement':
@@ -154,7 +157,7 @@ export class LegalshieldService {
     await this.page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/plan-summary/#chart`);
     productName = productName.replace(' Legal', '');
     const getStartedButtonLocator = this.page.locator(
-      `//div[contains(@class,"lsc-dynamic-single-plan  et_pb_css_mix_blend_mode_passthrough") and contains(.,"${productName}")]//a[@role="button"]`
+      `//div[contains(@class,"lsux-container lsux-container--white lsux-card__content") and contains(.,"${productName}")]//a[@role="button"]`
     );
     await expect(async () => {
       await getStartedButtonLocator.click();

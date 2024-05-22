@@ -35,18 +35,18 @@ export const legalshieldData = [
     testCaseName: 'Legal Plan, New User',
     userType: 'New',
   },
-  {
-    disabled: true, //disabled while they sort out guest checkout
-    language: 'en',
-    market: 'US',
-    productDetails: [{ cost: '$29.95', name: 'Legal Plan', shortCode: 'LPUS21', term: 'Monthly', type: 'LegalShield' }],
-    regions: ['Florida'],
-    tags: '',
-    term: 'Monthly',
-    termTotal: '$29.95',
-    testCaseName: 'Legal Plan, Guest',
-    userType: 'Guest',
-  },
+  // {
+  //   disabled: true, //disabled while they sort out guest checkout
+  //   language: 'en',
+  //   market: 'US',
+  //   productDetails: [{ cost: '$29.95', name: 'Legal Plan', shortCode: 'LPUS21', term: 'Monthly', type: 'LegalShield' }],
+  //   regions: ['Florida'],
+  //   tags: '',
+  //   term: 'Monthly',
+  //   termTotal: '$29.95',
+  //   testCaseName: 'Legal Plan, Guest',
+  //   userType: 'Guest',
+  // },
   {
     disabled: false,
     language: 'en',
@@ -94,7 +94,7 @@ export const legalshieldData = [
     disabled: false,
     language: 'en',
     market: 'US',
-    productDetails: [{ cost: '$49.00', name: 'Small Business Legal Essentials', shortCode: 'ESS', term: 'Monthly', type: 'LegalShield' }],
+    productDetails: [{ cost: '$49.00', name: 'Essentials', shortCode: 'ESS', term: 'Monthly', type: 'LegalShield' }],
     regions: ['Florida'],
     term: 'Monthly',
     termTotal: '$49.00',
@@ -106,7 +106,7 @@ export const legalshieldData = [
     language: 'en',
     market: 'US',
     productDetails: [
-      { cost: '$49.00', name: 'Small Business Legal Essentials', shortCode: 'ESS', term: 'Monthly', type: 'LegalShield' },
+      { cost: '$49.00', name: 'Essentials', shortCode: 'ESS', term: 'Monthly', type: 'LegalShield' },
       { cost: '$29.95', name: 'Legal Plan', shortCode: 'LPUS21', term: 'Monthly', type: 'LegalShield' },
     ],
     regions: ['Colorado'],
@@ -121,7 +121,7 @@ export const legalshieldData = [
     language: 'en',
     market: 'US',
     productDetails: [
-      { cost: '$49.00', name: 'Small Business Legal Essentials', shortCode: 'ESS', term: 'Monthly', type: 'LegalShield' },
+      { cost: '$49.00', name: 'Essentials', shortCode: 'ESS', term: 'Monthly', type: 'LegalShield' },
       { cost: '$29.95', name: 'Legal Plan', shortCode: 'LPUS21', term: 'Monthly', type: 'LegalShield' },
       {
         cost: '$14.95',
@@ -164,7 +164,7 @@ export const legalshieldData = [
     disabled: false,
     language: 'en',
     market: 'US',
-    productDetails: [{ cost: '$99.00', name: 'Small Business Legal Plus', shortCode: 'PLUS', term: 'Monthly', type: 'LegalShield' }],
+    productDetails: [{ cost: '$99.00', name: 'Plus', shortCode: 'PLUS', term: 'Monthly', type: 'LegalShield' }],
     regions: ['Ohio'],
     tags: '',
     term: 'Monthly',
@@ -177,7 +177,7 @@ export const legalshieldData = [
     language: 'en',
     market: 'US',
     productDetails: [
-      { cost: '$99.00', name: 'Small Business Legal Plus', shortCode: 'PLUS', term: 'Monthly', type: 'LegalShield' },
+      { cost: '$99.00', name: 'Plus', shortCode: 'PLUS', term: 'Monthly', type: 'LegalShield' },
       { cost: '$29.95', name: 'Legal Plan', shortCode: 'LPUS21', term: 'Monthly', type: 'LegalShield' },
     ],
     regions: ['Ohio'],
@@ -192,7 +192,7 @@ export const legalshieldData = [
     language: 'en',
     market: 'US',
     productDetails: [
-      { cost: '$99.00', name: 'Small Business Legal Plus', shortCode: 'PLUS', term: 'Monthly', type: 'LegalShield' },
+      { cost: '$99.00', name: 'Plus', shortCode: 'PLUS', term: 'Monthly', type: 'LegalShield' },
       { cost: '$29.95', name: 'Legal Plan', shortCode: 'LPUS21', term: 'Monthly', type: 'LegalShield' },
       {
         cost: '$14.95',
@@ -235,7 +235,7 @@ export const legalshieldData = [
     disabled: false,
     language: 'en',
     market: 'US',
-    productDetails: [{ cost: '$169.00', name: 'Small Business Legal Pro', shortCode: 'PRO', term: 'Monthly', type: 'LegalShield' }],
+    productDetails: [{ cost: '$169.00', name: 'Pro', shortCode: 'PRO', term: 'Monthly', type: 'LegalShield' }],
     regions: ['Virginia'],
     term: 'Monthly',
     termTotal: '$169.00',
@@ -247,7 +247,7 @@ export const legalshieldData = [
     language: 'en',
     market: 'US',
     productDetails: [
-      { cost: '$169.00', name: 'Small Business Legal Pro', shortCode: 'PRO', term: 'Monthly', type: 'LegalShield' },
+      { cost: '$169.00', name: 'Pro', shortCode: 'PRO', term: 'Monthly', type: 'LegalShield' },
       { cost: '$29.95', name: 'Legal Plan', shortCode: 'LPUS21', term: 'Monthly', type: 'LegalShield' },
     ],
     regions: ['Illinois'],
@@ -262,7 +262,7 @@ export const legalshieldData = [
     language: 'en',
     market: 'US',
     productDetails: [
-      { cost: '$169.00', name: 'Small Business Legal Pro', shortCode: 'PRO', term: 'Monthly', type: 'LegalShield' },
+      { cost: '$169.00', name: 'Pro', shortCode: 'PRO', term: 'Monthly', type: 'LegalShield' },
       { cost: '$29.95', name: 'Legal Plan', shortCode: 'LPUS21', term: 'Monthly', type: 'LegalShield' },
       {
         cost: '$14.95',

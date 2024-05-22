@@ -48,16 +48,18 @@ export class PlusProductCardComponent {
     return newPage;
   };
 
-  clickGetAPlanButton = async (planName: string): Promise<void> => {
-    const getAPlanButton = this.page.locator(
-      `//div[contains(@class,"lsux-product-card__info-section") and contains(.,"${planName}")]//div[@class="lsux-product-card__card-desc"]//button[contains(@class,"lsux-button--primary")]`
-    );
-    await getAPlanButton.click();
+  clickAddToCartButton = async (planName: string): Promise<void> => {
+    const addToCartButton = this.page
+      .locator(
+        `//div[contains(@class,"tw-overflow-hidden")and descendant::div[text()="${planName}"]]//button[contains(@class,"lsux-button--primary") and not(contains(@class, 'md:tw-hidden'))]`
+      )
+      .nth(0);
+    await addToCartButton.click();
   };
 
   verifyAddedButtonIsVisible = async (planName: string): Promise<void> => {
     const addedButton = this.page.locator(
-      `//div[contains(@class,"lsux-product-card__info-section") and contains(.,"${planName}")]//div[@class="lsux-product-card__card-desc"]//button[contains(@class,"lsux-button--primary") and contains(.,"Added")]`
+      ` //div[contains(@class,"lsux-product-card__info-section") and contains(.,"${planName}")]//div[@class="lsux-product-card__card-desc"]//button[contains(@class,"lsux-button--primary") and contains(.,"Added")]`
     );
     await expect(addedButton).toBeVisible();
   };

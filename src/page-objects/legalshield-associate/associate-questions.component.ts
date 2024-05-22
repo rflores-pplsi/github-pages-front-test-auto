@@ -9,22 +9,18 @@ export class AssociateQuestionsComponent {
 
   constructor(page: Page) {
     this.page = page;
-    // For the Radio Buttons, I used the nth identifier reluctantly as I couldn't figure out another way (without using text on page) to differentiate. May revisit.
-    this.locIndividualRadioButton = this.page.locator('//div[@role="dialog"]//a[contains(@class,"lsux-list-item-input__button")]').nth(0);
-    this.locBusinessRadioButton = this.page.locator('//div[@role="dialog"]//a[contains(@class,"lsux-list-item-input__button")]').nth(1);
-    this.locNoFelonyEtcRadioButton = this.page.locator('//div[@role="dialog"]//a[contains(@class,"lsux-list-item-input__button")]').nth(3);
-    this.locContinueButton = this.page.locator('//div[contains(@class,"lsux-modal")]//button[contains(@class,"lsux-button--primary")]');
+    this.locIndividualRadioButton = this.page.locator('#individual');
+    this.locBusinessRadioButton = this.page.locator('#business');
+    this.locNoFelonyEtcRadioButton = this.page.locator('#felony_false');
+    this.locContinueButton = this.page.locator(
+      '//button[contains(@class,"lsux-button lsux-button--primary lsux-button--rectangular") and contains(.,"Continue")]'
+    );
   }
 
-  answerStartUpQuestions = async (individualOrBusiness: string): Promise<void> => {
-    switch (individualOrBusiness) {
-      case 'individual':
-        await this.locIndividualRadioButton.click();
-        break;
-      case 'business':
-        await this.locBusinessRadioButton.click();
-        break;
-    }
+  answerStartUpQuestions = async (registeredAs: string): Promise<void> => {
+    const registeredAsRadioLocator = this.page.locator(`//input[@name="${registeredAs}"]`);
+    await registeredAsRadioLocator.click();
     await this.locNoFelonyEtcRadioButton.click();
+    await this.locContinueButton.click();
   };
 }

@@ -7,9 +7,9 @@ export class SmallBusinessQuestionsComponent {
 
   constructor(page: Page) {
     this.page = page;
-    this.locPubliclyTradedOrNonProfitNoCheckbox = this.page
-      .locator('//div[contains(@class,"lsux-modal")]//a[contains(@class,"lsux-list-item-input__button")]')
+    this.locPubliclyTradedOrNonProfitNoCheckbox = this.page.locator('#publiclyTraded_false');
+    this.locContinueButton = this.page
+      .locator('//button[contains(@class,"lsux-button lsux-button--primary lsux-button--rectangular") and contains(.,"Continue")]')
       .nth(1);
-    this.locContinueButton = this.page.locator('//div[contains(@class,"lsux-modal")]//button[contains(@class,"lsux-button--primary")]');
   }
 }

@@ -6,7 +6,7 @@ import { test } from '../../../../../fixtures/frontend-ui.fixture';
 
 for (const testCase of legalshieldData.filter((testCase) => testCase.disabled == false)) {
   for (const regionUnderTest of testCase.regions) {
-    test(`Legalshield - Consumer Flow (${testCase.testCaseName}, ${regionUnderTest}) @legalshield-consumerflow ${testCase.tags}`, async ({
+    test(`Legalshield (${testCase.testCaseName}, ${regionUnderTest}) @legalshield-consumerflow ${testCase.tags}`, async ({
       page,
       legalshieldService,
       commonCheckoutService,
@@ -41,18 +41,25 @@ for (const testCase of legalshieldData.filter((testCase) => testCase.disabled ==
         });
       } else {
         await test.step(`Fill all required fields on personal info ${regionInfo.name}`, async () => {
-          await commonCheckoutService.personalInfoPage.fillAllNonBusinessFormFields(
+          //TODO: remove after finding a way to explicitly wait
+          await page.waitForTimeout(1000);
+          await commonCheckoutService.personalInfoPage.fillAllFields(
             'Test',
             'Tester',
             '5555555555',
-            'Mobile',
+            'Business',
             regionInfo.validAddress.street,
             regionInfo.validAddress.city,
             regionInfo.validAddress.postalCode,
             '10',
             '10',
             '1990',
-            '3333333333'
+            '3333333333',
+            'Testers Inc',
+            '10',
+            '10',
+            '2021',
+            '945433337'
           );
           if (await commonCheckoutService.personalInfoPage.locBusinessNameInput.isVisible()) {
             await commonCheckoutService.personalInfoPage.fillBusinessInformationFields('Testers Inc', '10', '10', '2021', '945433337');
