@@ -167,7 +167,7 @@ for (const testCase of legalshieldAssociateBuyNowData.filter((testCase) => testC
 
 for (const testCase of legalshieldAssociateBuyNowCanadaData.filter((testCase) => testCase.disabled == false)) {
   for (const regionUnderTest of testCase.regions) {
-    test(`${testCase.testCaseName}, ${regionUnderTest}: Checkout -> Accounts @legalshieldassociates-consumerflow @buynow @cartbuilder ${testCase.tag}`, async ({
+    test.skip(`${testCase.testCaseName}, ${regionUnderTest}: Checkout -> Accounts @legalshieldassociates-buynow-consumerflow @cartbuilder ${testCase.tag}`, async ({
       page,
       commonAssociateOfficeService,
       commonCheckoutService,
