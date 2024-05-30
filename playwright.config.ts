@@ -30,7 +30,7 @@ const config: PlaywrightTestConfig = {
     //   use: { ...devices['Desktop Safari'], screenshot: 'on', trace: 'on', video: 'on' },
     // },
   ],
-  reporter: [['dot'], ['html', { open: 'always' }], ['allure-playwright'], ['./pplsi-reporter.ts']],
+  reporter: [['dot'], ['html', { open: 'always', outputFolder: 'playwright-report' }], ['allure-playwright'], ['./pplsi-reporter.ts']],
   retries: 0,
   // setting workers to '1' disables parallel running, workers can also be set at runtime in the command line
   workers: 1,

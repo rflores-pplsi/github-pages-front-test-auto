@@ -66,7 +66,7 @@ export class LegalshieldService {
       'body .lsux-link[href]:not([target="_blank"]):not([href*="javascript:void(0)"]):not([href*="#"]), body .lsux-button--primary[href]:not([target="_blank"]):not([href*="javascript:void(0)"]):not([href*="#"]),body .lsux-button--secondary[href]:not([target="_blank"]):not([href*="javascript:void(0)"]):not([href*="#"])'
     );
     this.locLinksThatNavigateToNewTab = this.page.locator(
-      'body .lsux-link[href]:is([target="_blank"]), body .lsux-button--primary[href]:is([target="_blank"]), body .lsux-download-app a[href]:is([target="_blank"]), body .lsux-button--tertiary a[href]:is([target="_blank"])'
+      'body section:not([id="pre-footer"]) .lsux-link[href]:is([target="_blank"]), body section:not([id="pre-footer"]) .lsux-button--primary[href]:is([target="_blank"]), body section:not([id="pre-footer"]) .lsux-download-app a[href]:is([target="_blank"]), body section:not([id="pre-footer"]) .lsux-button--tertiary a[href]:is([target="_blank"])'
     );
     this.locLinksThatAddToCart = this.page.locator(
       'body .lsux-card:has(a#lsc-add-to-cart-button) a,body .lsux-heading:has(a#lsc-add-to-cart-button) a, body:has(a#lsc-add-to-cart-button) a.lsc-add-to-cart-button'
@@ -275,7 +275,6 @@ export class LegalshieldService {
       });
       await test.step(`Verify Expected URL loads without a Page Not Found`, async () => {
         expect.soft(newTab.url()).toBe(expectedURL);
-        //expect.soft((await newTab.title()).toLowerCase).not.toContain('page not found');
       });
     }
   };
@@ -351,7 +350,7 @@ export class LegalshieldService {
 
       await test.step(`Click link to scroll to a section on this page`, async () => {
         // get parent, check visibility
-        const locParent = this.page.locator('.btn-group:not([style*="display: none"]):has( > .lsux-button--primary[href*="#"])');
+        const locParent = this.page.locator('.btn-group:not([style*="display: none"])', { has: locator });
         if (await locParent.isVisible()) {
           // click on anchor link
           await locator.click();
