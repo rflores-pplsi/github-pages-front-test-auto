@@ -1,5 +1,7 @@
 import { legalshieldServiceData } from './legalshield-service.data';
-import { test } from '../../../../fixtures/frontend-ui.fixture';
+import { legalshieldServiceGbbData } from './legalshield-service-gbb.data';
+import { expect, test } from '../../../../fixtures/frontend-ui.fixture';
+import UrlsUtils from '../../../../utils/urls.utils';
 
 for (const pageUnderTest of legalshieldServiceData.filter((pageUnderTest) => pageUnderTest.disabled == false)) {
   test(`${pageUnderTest.pageName} page: Click links that navigate to another page, verify status code:200 @ComponentLegalShield @prod-daily-health`, async ({
@@ -30,16 +32,31 @@ for (const pageUnderTest of legalshieldServiceData.filter((pageUnderTest) => pag
     });
   });
 
-  test(`${pageUnderTest.pageName} page: Click links that add to cart, verify cart updated @ComponentLegalShield @prod-daily-health @gbb`, async ({
+  test(`${pageUnderTest.pageName} page: Click GBB links that add to cart, verify cart updated @ComponentLegalShield @prod-daily-health @gbb`, async ({
     legalshieldService,
+    page,
   }) => {
+    test.skip(pageUnderTest.expectCtas === false, 'No add to cart links expected');
     await legalshieldService.navigateToUrl(pageUnderTest.url);
-    // set cookies if GBB pages are enabled
-    if (pageUnderTest.url.includes('gbb2=true')) {
-      await legalshieldService.setCookiesForGBB();
-    }
+    // Set region cookie to GBB activated region
+    await legalshieldService.setCookiesForGBB('pplsi-region', 'GA');
+    console.log(`Test Case: ${pageUnderTest.pageName} page: Click GBB links that add to cart, verify cart updated`);
+    test.setTimeout(200000);
+    await test.step(`Click All add to cart Links and verify cart is updated`, async () => {
+      await legalshieldService.clickAllGBBAddToCartLinksAndVerifyCartIsUpdated(legalshieldService.locLinksThatAddToCart);
+    });
+  });
 
-    test.skip((await legalshieldService.locLinksThatAddToCart.count()) == 0, 'No add to cart links found');
+  test(`${pageUnderTest.pageName} page: Click links that add to cart, verify cart updated @ComponentLegalShield @prod-daily-health`, async ({
+    legalshieldService,
+    page,
+  }) => {
+    test.skip(pageUnderTest.expectCtas === false, 'No add to cart links expected');
+    await legalshieldService.navigateToUrl(pageUnderTest.url);
+    // Set region cookie to GBB not-activated region
+    if (pageUnderTest.url.includes('gbb2=true')) {
+      await legalshieldService.setCookiesForGBB('pplsi-region', 'HA');
+    }
     console.log(`Test Case: ${pageUnderTest.pageName} page: Click links that add to cart, verify cart updated`);
     test.setTimeout(200000);
     await test.step(`Click All add to cart Links and verify cart is updated`, async () => {
@@ -79,6 +96,29 @@ for (const pageUnderTest of legalshieldServiceData.filter((pageUnderTest) => pag
     test.setTimeout(200000);
     await test.step(`Fill out email form, then submit`, async () => {
       await legalshieldService.fillOutEmailFormAndSubmit(legalshieldService.locEmailCaptureSection);
+    });
+  });
+}
+
+for (const stateUnderTest of legalshieldServiceGbbData.filter((stateUnderTest) => stateUnderTest.disabled == false)) {
+  test(`Verify ${stateUnderTest.stateName} GBB displayed = ${stateUnderTest.expectedGbb} @GBBDisplay ${stateUnderTest.tag}`, async ({
+    page,
+    legalshieldService,
+  }) => {
+    test.slow();
+    console.log(`Test Case: Verify ${stateUnderTest.stateName} GBB displayed = ${stateUnderTest.expectedGbb}`);
+    await test.step(`Navigate to GBB page`, async () => {
+      await legalshieldService.navigateToUrl(UrlsUtils.legalshieldService.baseUrl + '/personal-plan/coverage-and-pricing/?gbb2=true');
+    });
+    await test.step(`Update state through console`, async () => {
+      await legalshieldService.setCookiesForGBB('pplsi-region', `${stateUnderTest.stateAbbreviation}`);
+    });
+    await test.step(`Verify GBB elements`, async () => {
+      if (stateUnderTest.expectedGbb == true) {
+        expect(legalshieldService.gbbPricingSectionComponent.locGbbPricingSection).toBeVisible();
+      } else {
+        expect(legalshieldService.gbbPricingSectionComponent.locGbbPricingSection).not.toBeVisible();
+      }
     });
   });
 }

@@ -7,6 +7,7 @@ export class MarketingSitesCartComponent {
   readonly locContinueShoppingLink: Locator;
   readonly locSmallBusinessQuestionBox: Locator;
   readonly locTrashCanIcon: Locator;
+  readonly locPlanNames: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -15,5 +16,6 @@ export class MarketingSitesCartComponent {
     this.locContinueShoppingLink = this.page.locator('//div[@id="continue-shopping-link"]//a');
     this.locSmallBusinessQuestionBox = this.page.locator('//div[@id="qualifying-container"]//div[@class="pop-up-title"]');
     this.locTrashCanIcon = this.page.locator('//img[contains(@class,"trash-icon")]');
+    this.locPlanNames = this.page.locator('//div[contains(@class,"cart-plan")]//p');
   }
 }
