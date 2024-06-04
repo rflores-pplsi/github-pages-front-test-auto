@@ -5,11 +5,8 @@ import { test } from '../../../../fixtures/frontend-ui.fixture';
 test.describe('United States - Colorado, Legal Plan - Monthly', () => {
   test.beforeEach(async ({ page, legalshieldService, commonCheckoutService, commonLoginService }) => {
     test.setTimeout(120000);
-    await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
-      await legalshieldService.legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
-    });
-    await test.step(`Click on the Start Monthly Plan button`, async () => {
-      await legalshieldService.legalshieldCoverageAndPricingPage.clickStartPlanButton('Monthly');
+    await test.step(`Navigate to the legalshield pricing and coverage page and Click on the Start Monthly Plan button`, async () => {
+      await legalshieldService.addLegalPlan('Monthly');
     });
     await test.step(`Click on the Shopping Cart Checkout button`, async () => {
       await page.waitForTimeout(500);

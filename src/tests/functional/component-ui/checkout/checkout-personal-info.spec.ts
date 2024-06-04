@@ -1,16 +1,12 @@
 import { expect } from '@playwright/test';
 import { basicUser } from '../../../../utils/user.utils';
-import UrlsUtils from '../../../../utils/urls.utils';
 import { test } from '../../../../fixtures/frontend-ui.fixture';
 
 test.describe('United States - Colorado, Legal Plan - Monthly', () => {
   test.beforeEach(async ({ page, legalshieldService, commonCheckoutService, commonLoginService }) => {
     test.slow();
-    await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
-      await legalshieldService.legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
-    });
-    await test.step(`Click on the Start Monthly Plan button`, async () => {
-      await legalshieldService.legalshieldCoverageAndPricingPage.clickStartPlanButton('Monthly');
+    await test.step(`Navigate to the legalshield pricing and coverage page and Click on the Start Monthly Plan button`, async () => {
+      await legalshieldService.addLegalPlan('Monthly');
     });
     await test.step(`Click on the Shopping Cart Checkout button`, async () => {
       await page.waitForTimeout(500);
@@ -327,15 +323,8 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
 test.describe('United States - Colorado, Business Plan', () => {
   test.beforeEach(async ({ page, legalshieldService, commonCheckoutService, commonLoginService }) => {
     test.slow();
-    await test.step(`Navigate to legalshield business plan summary page`, async () => {
-      await page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/plan-summary/`);
-    });
-
-    await test.step(`Click on the SMB ESS Plan button`, async () => {
-      await legalshieldService.legalshieldCoverageAndPricingPage.locEssGetStartedButton.click();
-    });
-    await test.step('Select No for Small Business Questions', async () => {
-      await legalshieldService.legalshieldCoverageAndPricingPage.smallBusinessQualifyingComponent.completeQualifyingQuestionnaireWithNos();
+    await test.step(`Navigate to legalshield business plan summary page and Click on the SMB ESS Plan button`, async () => {
+      await legalshieldService.addSmallBusinessPlan('Essentials');
     });
     await test.step(`Click on the Shopping Cart Checkout button`, async () => {
       await page.waitForTimeout(500);
@@ -444,17 +433,11 @@ test.describe('United States - Colorado, Business - Plan', () => {
   test.beforeEach(async ({ page, legalshieldService, commonCheckoutService, commonLoginService }) => {
     test.slow();
 
-    await test.step(`Navigate to legalshield business plan summary page`, async () => {
-      await page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/plan-summary/`);
-    });
-
-    await test.step(`Click on the SMB ESS Plan button`, async () => {
-      await legalshieldService.legalshieldCoverageAndPricingPage.locEssGetStartedButton.click();
-    });
-    await test.step('Select No for Small Business Questions', async () => {
-      await legalshieldService.legalshieldCoverageAndPricingPage.smallBusinessQualifyingComponent.completeQualifyingQuestionnaireWithNos();
+    await test.step(`Navigate to legalshield business plan summary page and Click on the SMB ESS Plan button`, async () => {
+      await legalshieldService.addSmallBusinessPlan('Essentials');
     });
     await test.step(`Click on the Shopping Cart Checkout button`, async () => {
+      await page.waitForTimeout(500);
       await legalshieldService.legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
     });
     await test.step(`Choose Account by Email`, async () => {
@@ -494,12 +477,13 @@ test.describe('United States - Colorado, Business - Plan', () => {
     page,
   }) => {
     console.log('Test Case: Verify user can submit valid information on all Forms and reach the Payment Page');
+    test.setTimeout(200000);
     await test.step('Click on the Save & Continue Button to go to Payment Page', async () => {
       await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
     });
     await test.step('Assert user gets to Payment Page and that Step Circle 3 on Payment Page is solid black', async () => {
       expect(commonCheckoutService.paymentPage.stepperComponent.locStepCircle3Current).toBeVisible();
-      await page.waitForTimeout(100);
+      await page.waitForTimeout(500);
     });
   });
 });

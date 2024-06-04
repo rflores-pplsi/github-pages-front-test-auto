@@ -32,9 +32,7 @@ export class LegalshieldCoverageAndPricingPage {
     // this.locCanadaUpdateRegionButton = this.page.locator('//button[contains(.,"Update region")]');
     this.locUpdateRegionButton = this.page.locator('//button[contains(.,"Update region")]');
     this.locCanadaGetStartedButton = this.page.locator('//div[@id="lsc-add-to-cart-button"]//span[contains(.,"Get")]');
-    this.locEssGetStartedButton = this.page
-      .getByRole('cell', { name: '$49 Billed per month Get Started' })
-      .getByRole('link', { name: 'Get Started' });
+    this.locEssGetStartedButton = this.page.locator('//th[contains(.,"Essentials")]//a');
   }
 
   /**

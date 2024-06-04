@@ -154,7 +154,7 @@ export class LegalshieldService {
   };
 
   addSmallBusinessPlan = async (productName: string): Promise<void> => {
-    await this.page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/plan-summary/#chart`);
+    await this.page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/plan-summary/`);
     productName = productName.replace(' Legal', '');
     const getStartedButtonLocator = this.page.locator(
       `//div[contains(@class,"lsux-container lsux-container--white lsux-card__content") and contains(.,"${productName}")]//a[@role="button"]`
