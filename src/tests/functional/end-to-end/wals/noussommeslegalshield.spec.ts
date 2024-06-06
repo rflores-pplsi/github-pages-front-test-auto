@@ -9,7 +9,7 @@ test.beforeEach(async ({ context, page }) => {
 
 const regionsUnderTest = ['Ontario'];
 for (const regionUnderTest of regionsUnderTest) {
-  test('Noussommeslegalshield (Legal Plan, fr-CA, ${regionUnderTest}) -> Checkout -> Accounts @smoke ', async ({
+  test(`Noussommeslegalshield (Legal Plan, fr-CA, ${regionUnderTest}) -> Checkout -> Accounts @smoke`, async ({
     page,
     walsService,
     newCheckoutService,

@@ -3,6 +3,7 @@ import UrlsUtils from '../../../utils/urls.utils';
 import { test } from '../../../fixtures/frontend-ui.fixture';
 
 test.describe('Navigate to Shield Associate Pages', () => {
+  // This will currently only work in PROD
   test('Navigate to Shield Associate Page @smoke ', async ({ page, legalshieldAssociateService }) => {
     console.log('Test Case: Navigate to Shield Associate Page');
     test.slow();

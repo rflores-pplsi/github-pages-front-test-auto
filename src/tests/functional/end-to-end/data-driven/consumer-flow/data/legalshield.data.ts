@@ -3,9 +3,21 @@ export const legalshieldData = [
     disabled: false,
     language: 'en',
     market: 'US',
+    productDetails: [{ cost: '$29.95', name: 'Basic', shortCode: 'LPUS21', term: 'Monthly', type: 'LegalShield' }],
+    regions: ['Colorado'],
+    tags: '@smoke',
+    term: 'Monthly',
+    termTotal: '$29.95',
+    testCaseName: 'GBB: Basic Plan, Existing User',
+    userType: 'Existing',
+  },
+  {
+    disabled: false,
+    language: 'en',
+    market: 'US',
     productDetails: [{ cost: '$29.95', name: 'Legal Plan', shortCode: 'LPUS21', term: 'Monthly', type: 'LegalShield' }],
     regions: ['New York'],
-    tags: '@smoke @super-smoke',
+    tags: '@smoke',
     term: 'Monthly',
     termTotal: '$29.95',
     testCaseName: 'Legal Plan, Existing User',
@@ -36,7 +48,7 @@ export const legalshieldData = [
     userType: 'New',
   },
   // {
-  //   disabled: true, //disabled while they sort out guest checkout
+  //   disabled: false, //disabled while they sort out guest checkout
   //   language: 'en',
   //   market: 'US',
   //   productDetails: [{ cost: '$29.95', name: 'Legal Plan', shortCode: 'LPUS21', term: 'Monthly', type: 'LegalShield' }],

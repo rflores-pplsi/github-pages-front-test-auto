@@ -79,26 +79,4 @@ export class LegalshieldCoverageAndPricingPage {
   clickCanadaGetStartedButton = async (): Promise<void> => {
     await this.locCanadaGetStartedButton.click({ force: true });
   };
-
-  /**
-   *
-   *
-   * @param {string} market
-   * @param {string} language
-   * @memberof LegalshieldCoverageAndPricingPage
-   */
-  navigateToLegalshieldPricingAndCoveragePage = async (market: string, language: string): Promise<void> => {
-    switch (`${language}-${market}`) {
-      case 'en-US':
-        this.baseUrl = `${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/personal-plan/coverage-and-pricing/`;
-        break;
-      case 'es-US':
-        this.baseUrl = `${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/es/plan-personal/cobertura-y-precios/`;
-        break;
-      case 'en-CA':
-        this.baseUrl = `${UrlsUtils.marketingSitesUrls.legalShieldCAUrl}/personal-plan/coverage-and-pricing`;
-        break;
-    }
-    await this.page.goto(this.baseUrl);
-  };
 }

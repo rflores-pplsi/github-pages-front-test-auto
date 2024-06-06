@@ -5,6 +5,12 @@ import { test } from '../../../../fixtures/frontend-ui.fixture';
 test.describe('United States - Colorado, Legal Plan - Monthly', () => {
   test.beforeEach(async ({ page, legalshieldService, commonCheckoutService, commonLoginService }) => {
     test.setTimeout(120000);
+    await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
+      await legalshieldService.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
+    });
+    // await test.step(`Click on the Start Monthly Plan button`, async () => {
+    //   await legalshieldService.legalshieldCoverageAndPricingPage.clickStartPlanButton('Monthly');
+    // });
     await test.step(`Navigate to the legalshield pricing and coverage page and Click on the Start Monthly Plan button`, async () => {
       await legalshieldService.addLegalPlan('Monthly');
     });
@@ -309,7 +315,7 @@ test.describe('Canada - Alberta, Legal Plan', () => {
   test.beforeEach(async ({ legalshieldService, commonCheckoutService, commonLoginService }) => {
     test.setTimeout(120000);
     await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
-      await legalshieldService.legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('CA', 'en');
+      await legalshieldService.navigateToLegalshieldPricingAndCoveragePage('CA', 'en');
     });
     await test.step(`Change Region`, async () => {
       await legalshieldService.legalshieldCoverageAndPricingPage.selectRegion('Alberta', 'AB');

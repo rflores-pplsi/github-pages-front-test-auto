@@ -1,32 +1,28 @@
 import { expect } from '@playwright/test';
 import RegionsUtils from '../../../../../utils/regions.utils';
 import { basicUser } from '../../../../../utils/user.utils';
-import { legalshieldData } from './data/legalshield.data';
+import { idshieldData } from './data/idshield.data';
 import { test } from '../../../../../fixtures/frontend-ui.fixture';
 
-for (const testCase of legalshieldData.filter((testCase) => testCase.disabled == false)) {
+for (const testCase of idshieldData.filter((testCase) => testCase.disabled == false)) {
   for (const regionUnderTest of testCase.regions) {
-    test(`Legalshield (${testCase.testCaseName}, ${regionUnderTest}) @legalshield-consumerflow ${testCase.tags}`, async ({
+    test(`Legalshield (${testCase.testCaseName}, ${regionUnderTest}) @idshield-consumerflow ${testCase.tags}`, async ({
       page,
-      legalshieldService,
+      idshieldService,
       commonCheckoutService,
       commonLoginService,
     }) => {
       test.setTimeout(120000);
       console.log(`Test Case: Legalshield - Consumer Flow (${testCase.testCaseName}, ${regionUnderTest}) `);
       const regionInfo = RegionsUtils.usStates.filter((region) => region.name == regionUnderTest)[0];
-      await test.step(`Navigate to legalshield.com for ${testCase.market}-${testCase.language}`, async () => {
-        await legalshieldService.navigateToLegalshieldPricingAndCoveragePage(testCase.market, testCase.language);
+      await test.step(`Navigate to idshield for ${testCase.market}-${testCase.language}`, async () => {
+        await idshieldService.idshieldIndividualPlanPage.navigateToIdshieldPage(testCase.market, testCase.language);
       });
-      await test.step(`Change Region`, async () => {
-        await legalshieldService.setPplsiRegionCookie('pplsi-region', regionInfo.abbrv);
+      await test.step(`Update region`, async () => {
+        await idshieldService.idshieldPage.selectRegion(regionInfo.name, regionInfo.abbrv);
       });
-      await test.step(`Add Products: ${testCase.productDetails}`, async () => {
-        if ((await page.locator('#gbb-pricing-section').isVisible()) == true) {
-          await legalshieldService.gbbAllPlansPage.addProductsFromProductDetails(testCase.productDetails);
-        } else {
-          await legalshieldService.addProductsFromProductDetails(testCase.productDetails);
-        }
+      await test.step(`Add Products: ${testCase.planDetails}`, async () => {
+        await idshieldService.addProductsFromProductDetails(testCase.planDetails);
       });
       await test.step(`Choose Account by Email and Login`, async () => {
         if (testCase.userType == 'Existing') {

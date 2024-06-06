@@ -9,7 +9,7 @@ test.beforeEach(async () => {
 test.describe('United States - Colorado, Legal Plan - Monthly', () => {
   test.beforeEach(async ({ page, legalshieldService }) => {
     await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
-      await legalshieldService.legalshieldCoverageAndPricingPage.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
+      await legalshieldService.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
     });
     await test.step(`Click on the Start Monthly Plan button`, async () => {
       await legalshieldService.legalshieldCoverageAndPricingPage.clickStartPlanButton('monthly');

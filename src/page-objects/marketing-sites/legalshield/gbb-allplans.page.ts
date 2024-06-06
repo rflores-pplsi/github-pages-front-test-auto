@@ -1,13 +1,17 @@
-import { Page } from '@playwright/test';
+import { Locator, Page } from '@playwright/test';
 import { ProductDetails } from '../../../types/types';
 import { MarketingSitesCartComponent } from '../marketing-sites-cart-component';
 
 export class GbbAllPlansPage {
   readonly page: Page;
+  addToCartSelector: string;
+  readonly locAnnualToggle: Locator;
   readonly marketingSitesCartComponent: MarketingSitesCartComponent;
 
   constructor(page: Page) {
     this.page = page;
+    this.addToCartSelector = '';
+    this.locAnnualToggle = this.page.locator('//div[@data-period="annual"]');
     this.marketingSitesCartComponent = new MarketingSitesCartComponent(this.page);
   }
 
@@ -26,16 +30,18 @@ export class GbbAllPlansPage {
   };
 
   clickAddToCartButton = async (planName: string, term: string): Promise<void> => {
+    const cardLocator = this.page.locator(
+      `//div[contains(concat(' ', normalize-space(@class), ' '), ' pricing-card ') and .//div[normalize-space(text())='${planName}']]`
+    );
+
     if (term === 'Annual') {
-      const annualAddToCartButtonLocator = this.page.locator(
-        `//div[contains(concat(' ', normalize-space(@class), ' '), ' lsux-card ') and contains(., '${planName}') and .//p[contains(text(), 'A')]]//a`
-      );
-      await annualAddToCartButtonLocator.click();
-    } else {
-      const monthlyAddToCartButtonLocator = this.page.locator(
-        `//div[contains(concat(' ', normalize-space(@class), ' '), ' lsux-card ') and contains(., '${planName}') and .//p[not(contains(text(), 'A'))]]//a`
-      );
-      await monthlyAddToCartButtonLocator.click();
+      await this.locAnnualToggle.click();
+      this.addToCartSelector = `//div[contains(@class,"cta-section-annual")]//a`;
     }
+    if (term === 'Monthly') {
+      this.addToCartSelector = `//div[contains(@class,"cta-section-month")]//a`;
+    }
+    const monthlyAddToCartButtonLocator = cardLocator.locator(this.addToCartSelector);
+    await monthlyAddToCartButtonLocator.click();
   };
 }

@@ -1,3 +1,4 @@
+/* eslint-disable const-case/uppercase */
 import { Locator, Page, BrowserContext, expect, test, Response } from '@playwright/test';
 import { ProductDetails, PageUrlAndTitleArray, PlanNameCostArray } from '../../../types/types';
 import UrlsUtils from '../../../utils/urls.utils';
@@ -85,16 +86,34 @@ export class LegalshieldService {
   navigateToUrl = async (url: string): Promise<void> => {
     await this.page.goto(url);
     // eslint-disable-next-line const-case/uppercase
-    const dialogCloseButton = '//div[contains(@class,"ub-emb-iframe-wrapper ub-emb-visible")]//button';
-    const isDialogPresent = await this.page
-      .waitForSelector(dialogCloseButton, { timeout: 9000 })
-      .then(() => true)
-      .catch(() => false);
-    if (isDialogPresent == true) {
-      await this.page.locator(dialogCloseButton).click();
+    if (process.env.USE_PROD == 'true') {
+      const dialogCloseButton = '//div[contains(@class,"ub-emb-iframe-wrapper ub-emb-visible")]//button';
+      const isDialogPresent = await this.page
+        .waitForSelector(dialogCloseButton, { timeout: 9000 })
+        .then(() => true)
+        .catch(() => false);
+      if (isDialogPresent == true) {
+        await this.page.locator(dialogCloseButton).click();
+      }
     }
   };
 
+  navigateToLegalshieldPricingAndCoveragePage = async (market: string, language: string): Promise<void> => {
+    let url = ''; // Add default value for url
+    switch (`${language}-${market}`) {
+      case 'en-US':
+        url = `${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/personal-plan/coverage-and-pricing/`;
+        break;
+      case 'es-US':
+        url = `${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/es/plan-personal/cobertura-y-precios/`;
+        break;
+      case 'en-CA':
+        url = `${UrlsUtils.marketingSitesUrls.legalShieldCAUrl}/personal-plan/coverage-and-pricing`;
+        break;
+    }
+    await this.navigateToUrl(url);
+    await this.page.reload();
+  };
   /**
    *
    *
@@ -419,7 +438,7 @@ export class LegalshieldService {
     }
   };
   // set cookies for GBB
-  setCookiesForGBB = async (newCookieName: string, newCookieValue: string): Promise<void> => {
+  setPplsiRegionCookie = async (newCookieName: string, newCookieValue: string): Promise<void> => {
     // Retrieve all cookies
     const allCookies = await this.context.cookies();
 

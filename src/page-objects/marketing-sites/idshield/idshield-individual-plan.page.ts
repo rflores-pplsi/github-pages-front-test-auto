@@ -44,24 +44,20 @@ export class IdshieldIndividualPlanPage {
    * @param {string} [language='English']
    * @memberof IdshieldIndividualPlanPage
    */
-  navigateToIdshieldIndividualPlanPage = async (market = 'United States', language = 'English'): Promise<void> => {
+  navigateToIdshieldPage = async (market = 'United States', language = 'English'): Promise<void> => {
     switch (market) {
       case 'United States':
-        this.baseUrl = UrlsUtils.marketingSitesUrls.idShieldUSUrl;
+        this.baseUrl = `${UrlsUtils.idShieldService.baseUrlNoTopLevelDomain}.com`;
         break;
       case 'Canada':
-        this.baseUrl = UrlsUtils.marketingSitesUrls.idShieldCAUrl;
+        if (language == 'French') {
+          this.baseUrl = `${UrlsUtils.idShieldService.baseUrlNoTopLevelDomain}.ca/fr`;
+        } else {
+          this.baseUrl = `${UrlsUtils.idShieldService.baseUrlNoTopLevelDomain}.ca`;
+        }
     }
-    switch (language) {
-      case 'English':
-        this.subdirectory = '/individual-plan/';
-        break;
-      case 'Spanish':
-        this.subdirectory = 'TODO if Spanish idshield is a thing';
-        break;
-    }
-    await this.page.goto(`${this.baseUrl}${this.subdirectory}`);
+    await this.page.goto(`${this.baseUrl}`);
     //TODO: REMOVE THIS IMPLICIT WAIT
-    await this.page.waitForTimeout(500);
+    // await this.page.waitForTimeout(500);
   };
 }
