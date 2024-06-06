@@ -36,7 +36,7 @@ for (const pageUnderTest of legalshieldServiceData.filter((pageUnderTest) => pag
     legalshieldService,
     page,
   }) => {
-    test.skip(pageUnderTest.expectCtas === false, 'No add to cart links expected');
+    test.skip(pageUnderTest.expectAddToCartButton === false, 'No add to cart links expected');
     await legalshieldService.navigateToUrl(pageUnderTest.url);
     // Set region cookie to GBB activated region
     await legalshieldService.setCookiesForGBB('pplsi-region', 'GA');
@@ -51,7 +51,7 @@ for (const pageUnderTest of legalshieldServiceData.filter((pageUnderTest) => pag
     legalshieldService,
     page,
   }) => {
-    test.skip(pageUnderTest.expectCtas === false, 'No add to cart links expected');
+    test.skip(pageUnderTest.expectAddToCartButton === false, 'No add to cart links expected');
     await legalshieldService.navigateToUrl(pageUnderTest.url);
     // Set region cookie to GBB not-activated region
     if (pageUnderTest.url.includes('gbb2=true')) {
