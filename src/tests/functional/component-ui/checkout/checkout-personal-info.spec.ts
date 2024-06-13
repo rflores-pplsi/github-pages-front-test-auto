@@ -299,6 +299,21 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
+  test('Verify the information icon is visible and displays text @CheckoutPersonalInfoPage', async ({ commonCheckoutService, page }) => {
+    console.log('Test Case: Verify the information icon is visible and displays text');
+    await test.step('Verify the information icon is visible ', async () => {
+      await commonCheckoutService.personalInfoPage.locInformationIcon.isVisible();
+    });
+    await test.step('Hover over the information icon', async () => {
+      await commonCheckoutService.personalInfoPage.locInformationIcon.hover();
+    });
+    await test.step('Verify the information icon displays text', async () => {
+      await expect(commonCheckoutService.personalInfoPage.locInformationIconTooltip).toContainText(
+        'Click here to update your state/province. Because we tailor our benefits based on your location, this will empty your shopping cart. Once you have confirmed your region, you will need to reselect your items for checkout so we can update your plan to give you the best value.'
+      );
+    });
+  });
+
   test('Verify user is redirected back to Marketing Page when Change Link is clicked @CheckoutPersonalInfoPage', async ({
     page,
     commonCheckoutService,
