@@ -100,6 +100,60 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
+  test('Verify the required message displays when Invalid Phone Number starting with zero is entered @CheckoutPersonalInfoPage', async ({
+    commonCheckoutService,
+  }) => {
+    console.log('Test Case: Verify the required message displays when Invalid Phone Number starting with zero is entered');
+    await test.step('Empty only Phone Number Field', async () => {
+      await commonCheckoutService.personalInfoPage.locPhoneNumberInput.clear();
+    });
+    await test.step('Enter an invalid phone number starting with zero', async () => {
+      await commonCheckoutService.personalInfoPage.locPhoneNumberInput.fill('0002221111');
+    });
+    await test.step('Click on the Save & Continue Button', async () => {
+      await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
+    });
+    await test.step('Require Warning message that Phone Number is Required displays', async () => {
+      await expect(commonCheckoutService.personalInfoPage.locPhoneNumberInvalidWarningMessage).toBeVisible();
+    });
+  });
+
+  test('Verify the required message displays when Invalid Phone Number starting with one is entered @CheckoutPersonalInfoPage', async ({
+    commonCheckoutService,
+  }) => {
+    console.log('Test Case: Verify the required message displays when Invalid Phone Number starting with one is entered');
+    await test.step('Empty only Phone Number Field', async () => {
+      await commonCheckoutService.personalInfoPage.locPhoneNumberInput.clear();
+    });
+    await test.step('Enter an invalid phone number starting with zero', async () => {
+      await commonCheckoutService.personalInfoPage.locPhoneNumberInput.fill('1112227654');
+    });
+    await test.step('Click on the Save & Continue Button', async () => {
+      await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
+    });
+    await test.step('Require Warning message that Phone Number is Required displays', async () => {
+      await expect(commonCheckoutService.personalInfoPage.locPhoneNumberInvalidWarningMessage).toBeVisible();
+    });
+  });
+
+  test('Verify the required message displays when Phone Number less than the expected length is entered @CheckoutPersonalInfoPage', async ({
+    commonCheckoutService,
+  }) => {
+    console.log('Test Case: Verify the required message displays when Phone Number less than the expected length');
+    await test.step('Empty only Phone Number Field', async () => {
+      await commonCheckoutService.personalInfoPage.locPhoneNumberInput.clear();
+    });
+    await test.step('Enter an invalid phone number starting with zero', async () => {
+      await commonCheckoutService.personalInfoPage.locPhoneNumberInput.fill('9999');
+    });
+    await test.step('Click on the Save & Continue Button', async () => {
+      await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
+    });
+    await test.step('Require Warning message that Phone Number is Required displays', async () => {
+      await expect(commonCheckoutService.personalInfoPage.locPhoneNumberInvalidWarningMessage).toBeVisible();
+    });
+  });
+
   test('Verify the required message displays when the Address input is empty @CheckoutPersonalInfoPage', async ({ commonCheckoutService }) => {
     console.log('Test Case: Verify the required message displays when the Address input is empty');
     await test.step('Empty only Home Address Field', async () => {
