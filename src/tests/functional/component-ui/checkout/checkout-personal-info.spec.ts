@@ -167,6 +167,36 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
   });
 
+  test('Verify the required message displays when the Home Address input is invalid length @CheckoutPersonalInfoPage', async ({
+    commonCheckoutService,
+  }) => {
+    console.log('Test Case: Verify the required message displays when the Home Address input is invalid length');
+    await test.step('Enter a invalid length in the Home Address Field', async () => {
+      await commonCheckoutService.personalInfoPage.locHomeAddressInput.fill('12345AddressExceedsLengthOfThirty');
+    });
+    await test.step('Click on the Save & Continue Button', async () => {
+      await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
+    });
+    await test.step('Require Warning message that Home Address exceeds expected length', async () => {
+      await expect(commonCheckoutService.personalInfoPage.locAddressExceedsWarningMessage).toBeVisible();
+    });
+  });
+
+  test('Verify the required message displays when the Address 2 input is invalid length @CheckoutPersonalInfoPage', async ({
+    commonCheckoutService,
+  }) => {
+    console.log('Test Case: Verify the required message displays when the Address 2 input is invalid length');
+    await test.step('Enter a invalid length in the Address 2 Field', async () => {
+      await commonCheckoutService.personalInfoPage.locHomeAddressInput2.fill('12345AddressExceedsLengthOfThirty');
+    });
+    await test.step('Click on the Save & Continue Button', async () => {
+      await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
+    });
+    await test.step('Require Warning message that Address Lne 2 exceeds expected length', async () => {
+      await expect(commonCheckoutService.personalInfoPage.locAddressExceedsWarningMessage).toBeVisible();
+    });
+  });
+
   test('Verify the required message displays when the City input is empty @CheckoutPersonalInfoPage', async ({ commonCheckoutService }) => {
     console.log('Test Case: Verify the required message displays when the City input is empty');
     await test.step('Empty only City Field', async () => {
