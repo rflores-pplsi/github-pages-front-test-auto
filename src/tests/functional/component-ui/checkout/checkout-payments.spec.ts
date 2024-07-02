@@ -2,17 +2,14 @@ import { expect, Page } from '@playwright/test';
 import { basicUser } from '../../../../utils/user.utils';
 import { test } from '../../../../fixtures/frontend-ui.fixture';
 
-test.describe('United States - Colorado, Legal Plan - Monthly', () => {
+test.describe('United States - Colorado, GBB Advanced Legal Plan - Monthly', () => {
   test.beforeEach(async ({ page, legalshieldService, commonCheckoutService, commonLoginService }) => {
     test.setTimeout(120000);
     await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
       await legalshieldService.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
     });
-    // await test.step(`Click on the Start Monthly Plan button`, async () => {
-    //   await legalshieldService.legalshieldCoverageAndPricingPage.clickStartPlanButton('Monthly');
-    // });
-    await test.step(`Navigate to the legalshield pricing and coverage page and Click on the Start Monthly Plan button`, async () => {
-      await legalshieldService.addLegalPlan('Monthly');
+    await test.step(`Click on the Start Monthly Advanced Plan button`, async () => {
+      await legalshieldService.legalshieldCoverageAndPricingPage.pricingCardComponent.clickAddToCartButton('Advanced', 'Monthly');
     });
     await test.step(`Click on the Shopping Cart Checkout button`, async () => {
       await page.waitForTimeout(500);
@@ -42,6 +39,13 @@ test.describe('United States - Colorado, Legal Plan - Monthly', () => {
     });
     await test.step('Click on the Save & Continue Button to go to Payment Page', async () => {
       await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
+    });
+  });
+
+  test('Verify Payment Section Header Displays on Payment Page @CheckoutPaymentPage', async ({ commonCheckoutService }) => {
+    console.log('Test Case: Verify Payment Section Header Displays on Payment Page');
+    await test.step('Verify Header is displayed on Payment Page', async () => {
+      await expect(commonCheckoutService.paymentPage.locPaymentHeader).toHaveText('How would you like to pay?');
     });
   });
 

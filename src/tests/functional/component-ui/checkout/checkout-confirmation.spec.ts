@@ -2,17 +2,14 @@ import { expect } from '@playwright/test';
 import { basicUser } from '../../../../utils/user.utils';
 import { test } from '../../../../fixtures/frontend-ui.fixture';
 
-test.describe('United States - Colorado, Legal Plan - Monthly, Bank Draft', () => {
+test.describe('United States - Colorado, GBB Advanced Legal Plan - Monthly, Bank Draft', () => {
   test.beforeEach(async ({ page, legalshieldService, commonCheckoutService, commonLoginService }) => {
     test.setTimeout(120000);
     await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
       await legalshieldService.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
     });
-    // await test.step(`Click on the Start Monthly Plan button`, async () => {
-    //   await legalshieldService.legalshieldCoverageAndPricingPage.clickStartPlanButton('Monthly');
-    // });
-    await test.step(`Navigate to the legalshield pricing and coverage page and Click on the Start Monthly Plan button`, async () => {
-      await legalshieldService.addLegalPlan('Monthly');
+    await test.step(`Click on the Start Monthly Advanced Plan button`, async () => {
+      await legalshieldService.legalshieldCoverageAndPricingPage.pricingCardComponent.clickAddToCartButton('Advanced', 'Monthly');
     });
     await test.step(`Click on the Shopping Cart Checkout button`, async () => {
       await page.waitForTimeout(500);
@@ -75,7 +72,7 @@ test.describe('United States - Colorado, Legal Plan - Monthly, Bank Draft', () =
       await expect(commonCheckoutService.confirmationPage.locConfirmationOrderSummaryHeader).toContainText('Order Summary');
     });
     await test.step('Verify Plan and Cost is displayed in the Order Summary on Confirmation Page', async () => {
-      await commonCheckoutService.confirmationPage.assertPlanDetailsCardInformation('Legal Plan', '$29.95', 'Monthly', false);
+      await commonCheckoutService.confirmationPage.assertPlanDetailsCardInformation('ADVANCED LEGAL PLAN', '$39.95', 'Monthly', false);
     });
   });
 

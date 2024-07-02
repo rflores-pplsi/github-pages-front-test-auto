@@ -3,6 +3,7 @@ import UrlsUtils from '../../../utils/urls.utils';
 import { MarketingSitesCartComponent } from '../marketing-sites-cart-component';
 import { MarketingSiteFooterComponent } from '../marketing-sites-footer-component';
 import { SmallBusinessQualifyingComponent } from './legalshield-small-business-qualifying.component';
+import { PricingCardComponent } from './pricing-card.component';
 
 export class LegalshieldCoverageAndPricingPage {
   readonly page: Page;
@@ -11,6 +12,7 @@ export class LegalshieldCoverageAndPricingPage {
   readonly marketingSiteCartComponent: MarketingSitesCartComponent;
   readonly marketingSiteFooterComponent: MarketingSiteFooterComponent;
   readonly smallBusinessQualifyingComponent: SmallBusinessQualifyingComponent;
+  readonly pricingCardComponent: PricingCardComponent;
   readonly locMainContentDiv: Locator;
   readonly locStartMonthlyPlanButton: Locator;
   readonly locRegionSelectDropdown: Locator;
@@ -26,6 +28,7 @@ export class LegalshieldCoverageAndPricingPage {
     this.marketingSiteCartComponent = new MarketingSitesCartComponent(page);
     this.marketingSiteFooterComponent = new MarketingSiteFooterComponent(page);
     this.smallBusinessQualifyingComponent = new SmallBusinessQualifyingComponent(page);
+    this.pricingCardComponent = new PricingCardComponent(page);
     this.locMainContentDiv = this.page.locator('//div[@id="sticky-offset-menu"]//a[contains(.,"Shop Legal Plans")]');
     this.locStartMonthlyPlanButton = this.page.locator('//div[contains(@class,"plan-card-col") and contains(@class,"monthly")]//a');
     this.locRegionSelectDropdown = this.page.locator('//select[contains(@class,"lsc-region-popup__selector")]');
@@ -55,6 +58,12 @@ export class LegalshieldCoverageAndPricingPage {
    */
   clickStartPlanButton = async (term: string): Promise<void> => {
     const buttonLocator = this.page.locator(`//div[contains(@class,"lsux-card__content") and contains(.,"${term}")]//a`);
+    await buttonLocator.click();
+    await this.page.waitForTimeout(500);
+  };
+
+  clickAddToCartButton = async (PlanName: string): Promise<void> => {
+    const buttonLocator = this.page.locator(`//div[contains(@class,"lsux-card__content") and contains(.,"${PlanName}")]//a`);
     await buttonLocator.click();
     await this.page.waitForTimeout(500);
   };

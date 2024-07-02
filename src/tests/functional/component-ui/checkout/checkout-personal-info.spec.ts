@@ -2,17 +2,14 @@ import { expect } from '@playwright/test';
 import { basicUser } from '../../../../utils/user.utils';
 import { test } from '../../../../fixtures/frontend-ui.fixture';
 
-test.describe('United States - Colorado, Legal Plan - Monthly', () => {
+test.describe('United States - Colorado, GBB Advanced Legal Plan - Monthly', () => {
   test.beforeEach(async ({ page, legalshieldService, commonCheckoutService, commonLoginService }) => {
     test.slow();
     await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
       await legalshieldService.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
     });
-    // await test.step(`Click on the Start Monthly Plan button`, async () => {
-    //   await legalshieldService.legalshieldCoverageAndPricingPage.clickStartPlanButton('Monthly');
-    // });
-    await test.step(`Navigate to the legalshield pricing and coverage page and Click on the Start Monthly Plan button`, async () => {
-      await legalshieldService.addLegalPlan('Monthly');
+    await test.step(`Click on the Start Monthly Plan button`, async () => {
+      await legalshieldService.legalshieldCoverageAndPricingPage.pricingCardComponent.clickAddToCartButton('Advanced', 'Monthly');
     });
     await test.step(`Click on the Shopping Cart Checkout button`, async () => {
       await page.waitForTimeout(500);
@@ -432,7 +429,8 @@ test.describe('United States - Colorado, Business Plan', () => {
       await legalshieldService.addSmallBusinessPlan('Essentials');
     });
     await test.step(`Click on the Shopping Cart Checkout button`, async () => {
-      await page.waitForTimeout(500);
+      //TODO revisit to remove timeouts
+      await page.waitForTimeout(1000);
       await legalshieldService.legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
     });
     await test.step(`Choose Account by Email`, async () => {
@@ -449,7 +447,7 @@ test.describe('United States - Colorado, Business Plan', () => {
 
   test('Verify no warning messages display when all required fields are entered @CheckoutPersonalInfoPage', async ({ commonCheckoutService }) => {
     console.log('Test Case: Verify no warning messages display when all required fields are entered');
-    await test.step('Populate all non-business fields on Personal Information Page', async () => {
+    await test.step('Populate all business fields on Personal Information Page', async () => {
       await commonCheckoutService.personalInfoPage.fillAllFields(
         'Automation',
         'Tester',
@@ -542,7 +540,7 @@ test.describe('United States - Colorado, Business - Plan', () => {
       await legalshieldService.addSmallBusinessPlan('Essentials');
     });
     await test.step(`Click on the Shopping Cart Checkout button`, async () => {
-      await page.waitForTimeout(500);
+      await page.waitForTimeout(1000);
       await legalshieldService.legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
     });
     await test.step(`Choose Account by Email`, async () => {
