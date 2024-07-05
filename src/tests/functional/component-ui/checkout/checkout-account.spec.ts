@@ -6,17 +6,25 @@ test.beforeEach(async () => {
   test.slow();
 });
 
-test.describe('United States - Colorado, Legal Plan - Monthly', () => {
+test.describe('United States - Colorado, GBB Advanced Legal Plan - Monthly', () => {
   test.beforeEach(async ({ page, legalshieldService }) => {
+    test.slow();
     await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
       await legalshieldService.navigateToLegalshieldPricingAndCoveragePage('US', 'en');
     });
     await test.step(`Click on the Start Monthly Plan button`, async () => {
-      await legalshieldService.legalshieldCoverageAndPricingPage.clickStartPlanButton('monthly');
+      await legalshieldService.legalshieldCoverageAndPricingPage.pricingCardComponent.clickAddToCartButton('Advanced', 'Monthly');
     });
     await test.step(`Click on the Shopping Cart Checkout button`, async () => {
       await page.waitForTimeout(500);
       await legalshieldService.legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
+    });
+  });
+
+  test('Verify the Trust Pilot Widget is displayed on the Accounts Login Page @LoginExistingUser', async ({ commonCheckoutService }) => {
+    console.log('Test Case: Verify the Trust Pilot Widget is displayed on the Accounts Login Page');
+    await test.step(`Trust Pilot Widget is displayed`, async () => {
+      await expect(commonCheckoutService.accountPage.locTrustPilotWidget).toBeVisible();
     });
   });
 
