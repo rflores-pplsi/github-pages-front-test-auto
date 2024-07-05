@@ -244,6 +244,21 @@ test.describe('United States - Colorado, GBB Advanced Legal Plan - Monthly', () 
     });
   });
 
+  test('Verify the required message displays when the Name on Card input is invalid on the US Credit Card Page @CheckoutPaymentPage', async ({
+    commonCheckoutService,
+  }) => {
+    console.log('Test Case: Verify the required message displays when the Name on Card input is invalid on the US Credit Card Page');
+    await test.step('On the Credit Card Form - Enter invalid  Name on Card Field and all other fields are populated correctly', async () => {
+      await commonCheckoutService.paymentPage.creditCardComponent.completeCreditCardForm('4444333322221111', '1225', '123', '$am 7ester', '80202');
+    });
+    await test.step('Click Purchase button', async () => {
+      await commonCheckoutService.paymentPage.creditCardComponent.locPurchaseButton.click();
+    });
+    await test.step('Warning message that Name on Card is Invalid displays', async () => {
+      await expect(commonCheckoutService.paymentPage.creditCardComponent.locNameOnCardWarningMessage).toBeVisible();
+    });
+  });
+
   test('Verify the required message displays when the Name on Card input is invalid Length on the US Credit Card Page @CheckoutPaymentPage', async ({
     commonCheckoutService,
   }) => {
