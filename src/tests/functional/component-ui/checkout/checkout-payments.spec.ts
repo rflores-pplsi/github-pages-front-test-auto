@@ -214,6 +214,21 @@ test.describe('United States - Colorado, GBB Advanced Legal Plan - Monthly', () 
     });
   });
 
+  test('Verify the required message displays when the Security Code input is invalid length on the US Credit Card Page @CheckoutPaymentPage', async ({
+    commonCheckoutService,
+  }) => {
+    console.log('Test Case: Verify the required message displays when the Security Code input is invalid length on the US Credit Card Page');
+    await test.step('On the Credit Card Form -  Enter invalid Security Code length and all other fields are populated correctly', async () => {
+      await commonCheckoutService.paymentPage.creditCardComponent.completeCreditCardForm('4444333322221111', '1225', '33', 'Test User', '80202');
+    });
+    await test.step('Click Purchase button', async () => {
+      await commonCheckoutService.paymentPage.creditCardComponent.locPurchaseButton.click();
+    });
+    await test.step('Warning message that Security Code length is Invalid displays', async () => {
+      await expect(commonCheckoutService.paymentPage.creditCardComponent.locSecurityCodeWarningMessage).toBeVisible();
+    });
+  });
+
   test('Verify the required message displays when the Name on Card input is empty on the US Credit Card Page @CheckoutPaymentPage', async ({
     commonCheckoutService,
   }) => {
