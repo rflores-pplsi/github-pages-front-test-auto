@@ -289,6 +289,21 @@ test.describe('United States - Colorado, GBB Advanced Legal Plan - Monthly', () 
     });
   });
 
+  test('Verify the required message displays when the Billing Postal Code input is invalid length on the US Credit Card Page @CheckoutPaymentPage', async ({
+    commonCheckoutService,
+  }) => {
+    console.log('Test Case: Verify the required message displays when the Billing Postal Code input is invalid length on the US Credit Card Page');
+    await test.step('On the Credit Card Form - enter invalid length on Billing Postal Code and all other fields are populated correctly', async () => {
+      await commonCheckoutService.paymentPage.creditCardComponent.completeCreditCardForm('4444333322221111', '1225', '123 ', 'Test User', '44');
+    });
+    await test.step('Click Purchase button', async () => {
+      await commonCheckoutService.paymentPage.creditCardComponent.locPurchaseButton.click();
+    });
+    await test.step('Warning message that Billing Postal Code is invalid length displays', async () => {
+      await expect(commonCheckoutService.paymentPage.creditCardComponent.locBillingPostalCodeWarningMessage).toBeVisible();
+    });
+  });
+
   test('Verify the required message displays when all fields are Empty on the US Credit Card Page @CheckoutPaymentPage', async ({
     commonCheckoutService,
   }) => {
@@ -507,6 +522,23 @@ test.describe('Canada - Alberta, Legal Plan', () => {
     });
     await test.step('Required Warning messages displays', async () => {
       await commonCheckoutService.paymentPage.bankDraftComponent.assertCABankDraftErrorsAreDisplayed();
+    });
+  });
+
+  test('Verify the required message displays when the Billing Postal Code input is invalid length on the Canada Credit Card Page @CheckoutPaymentPage', async ({
+    commonCheckoutService,
+  }) => {
+    console.log(
+      'Test Case: Verify the required message displays when the Billing Postal Code input is invalid length on the Canada Credit Card Page'
+    );
+    await test.step('On the Credit Card Form - enter invalid length on Billing Postal Code and all other fields are populated correctly', async () => {
+      await commonCheckoutService.paymentPage.creditCardComponent.completeCreditCardForm('4444333322221111', '1225', '123 ', 'Test User', '44');
+    });
+    await test.step('Click Purchase button', async () => {
+      await commonCheckoutService.paymentPage.creditCardComponent.locPurchaseButton.click();
+    });
+    await test.step('Warning message that Billing Postal Code is invalid length displays', async () => {
+      await expect(commonCheckoutService.paymentPage.creditCardComponent.locBillingPostalCodeWarningMessage).toBeVisible();
     });
   });
 
