@@ -511,8 +511,21 @@ test.describe('United States - Colorado, Business Plan', () => {
     await test.step('Click on the Save & Continue Button', async () => {
       await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
     });
-    await test.step('Require Warning message that SSN is Required displays', async () => {
+    await test.step('Require Warning message that Tax ID is Required displays', async () => {
       await expect(commonCheckoutService.personalInfoPage.locBusinessTaxIdWarningMessage).toBeVisible();
+    });
+  });
+
+  test('Verify the required message displays when the TaxID input is invalid @CheckoutPersonalInfoPage', async ({ commonCheckoutService }) => {
+    console.log('Test Case: Verify the required message displays when the TaxID input is invalid');
+    await test.step('Enter Invalid Tax ID in TaxID Field', async () => {
+      await commonCheckoutService.personalInfoPage.locTaxIdInput.fill('55');
+    });
+    await test.step('Click on the Save & Continue Button', async () => {
+      await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
+    });
+    await test.step('Require Warning message that Tax ID is Invalid is displays', async () => {
+      await expect(commonCheckoutService.personalInfoPage.locBusinessTaxIdInvalidMessage).toBeVisible();
     });
   });
 
