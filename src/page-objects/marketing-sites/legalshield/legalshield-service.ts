@@ -46,6 +46,7 @@ export class LegalshieldService {
   readonly locAnchorLinks: Locator;
   readonly locEmailCaptureSection: Locator;
   readonly locCartBox: Locator;
+  readonly locPreFooterNavigation: Locator;
 
   constructor(page: Page, context: BrowserContext) {
     this.page = page;
@@ -81,6 +82,7 @@ export class LegalshieldService {
     this.locAnchorLinks = this.page.locator('body .lsux-link[href*="#"], body .lsux-button--primary[href*="#"]');
     this.locEmailCaptureSection = this.page.locator('body #section-email_capture');
     this.locCartBox = this.page.locator('.cart-box');
+    this.locPreFooterNavigation = this.page.locator('body section#pre-footer .footer-navigation ul.menu li.menu-item a');
   }
 
   navigateToUrl = async (url: string): Promise<void> => {

@@ -21,7 +21,6 @@ for (const testCase of headerTwoLinksData.filter((testCase) => testCase.disabled
     await test.step('Verify URL and Response Status Code', async () => {
       await test.step(`Verify Status: 200`, async () => {
         expect.soft(response.status()).toBe(200);
-        await page.goBack();
       });
     });
   });
@@ -45,7 +44,6 @@ for (const testCase of headerThreeLinksData.filter((testCase) => testCase.disabl
     await test.step('Verify URL and Response Status Code', async () => {
       await test.step(`Verify Status: 200`, async () => {
         expect.soft(response.status()).toBe(200);
-        await page.goBack();
       });
     });
   });
