@@ -225,6 +225,24 @@ test.describe('United States - Colorado, GBB Advanced Legal Plan - Monthly', () 
     });
   });
 
+  test('Verify the required message displays when only the PostalCode input is invalid @CheckoutPersonalInfoPage', async ({
+    commonCheckoutService,
+  }) => {
+    console.log('Test Case: Verify the required message displays when only the Postal Code input is invalid');
+    await test.step('Place cursor in Postal Code Field', async () => {
+      await commonCheckoutService.personalInfoPage.locPostalCodeInput.click();
+    });
+    await test.step('Enter Invalid Postal Code in the Postal Code Field', async () => {
+      await commonCheckoutService.personalInfoPage.locPostalCodeInput.fill('55');
+    });
+    await test.step('Click on the Save & Continue Button', async () => {
+      await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
+    });
+    await test.step('Require Warning message that Postal Code is Requires displays', async () => {
+      await expect(commonCheckoutService.personalInfoPage.locPostalCodeInvalidMessage).toBeVisible();
+    });
+  });
+
   test('Verify the required message displays when DOB Month Date and Year are all empty @CheckoutPersonalInfoPage', async ({
     commonCheckoutService,
   }) => {
@@ -600,6 +618,49 @@ test.describe('United States - Colorado, Business - Plan', () => {
     await test.step('Assert user gets to Payment Page and that Step Circle 3 on Payment Page is solid black', async () => {
       expect(commonCheckoutService.paymentPage.stepperComponent.locStepCircle3Current).toBeVisible();
       await page.waitForTimeout(500);
+    });
+  });
+});
+
+test.describe('Canada - Alberta, Legal Plan', () => {
+  test.beforeEach(async ({ legalshieldService, commonCheckoutService, commonLoginService }) => {
+    test.setTimeout(120000);
+    await test.step(`Navigate to legalshield pricing and coverage page`, async () => {
+      await legalshieldService.navigateToLegalshieldPricingAndCoveragePage('CA', 'en');
+    });
+    await test.step(`Change Region`, async () => {
+      await legalshieldService.legalshieldCoverageAndPricingPage.selectRegion('Alberta', 'AB');
+    });
+    await test.step(`Click on the Start Monthly Plan button`, async () => {
+      await legalshieldService.legalshieldCoverageAndPricingPage.clickCanadaGetStartedButton();
+    });
+    await test.step(`Click on the Shopping Cart Checkout button`, async () => {
+      await legalshieldService.legalshieldCoverageAndPricingPage.marketingSiteCartComponent.locCheckoutButton.click();
+    });
+    await test.step(`Choose Account by Email`, async () => {
+      await commonCheckoutService.accountPage.enterExistingAccountEmailAndLogin(basicUser.email);
+      await commonLoginService.whatsYourEmailPage.enterEmailAndContinue(basicUser.email);
+    });
+    await test.step(`Log in with only password to reach checkout service`, async () => {
+      await commonLoginService.loginPage.loginOnlyPassword(basicUser.password);
+    });
+  });
+
+  test('Verify the required message displays when the PostalCode input is invalid for Canada @CheckoutPersonalInfoPage', async ({
+    commonCheckoutService,
+  }) => {
+    console.log('Test Case: Verify the required message displays when only the Postal Code input is invalid for Canada');
+    await test.step('Place cursor in Postal Code Field', async () => {
+      await commonCheckoutService.personalInfoPage.locPostalCodeInput.click();
+    });
+    await test.step('Enter Invalid Postal Code in the Postal Code Field', async () => {
+      await commonCheckoutService.personalInfoPage.locPostalCodeInput.fill('Z5');
+    });
+    await test.step('Click on the Save & Continue Button', async () => {
+      await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
+    });
+    await test.step('Require Warning message that Postal Code is Requires displays', async () => {
+      await expect(commonCheckoutService.personalInfoPage.locPostalCodeInvalidMessage).toBeVisible();
     });
   });
 });
