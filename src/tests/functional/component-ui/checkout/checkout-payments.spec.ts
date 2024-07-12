@@ -139,18 +139,80 @@ test.describe('United States - Colorado, GBB Advanced Legal Plan - Monthly', () 
     });
   });
 
-  test('Verify that we can reach the confirmation page with valid information on the US Credit Card Page @CheckoutPaymentPage', async ({
+  test('Verify that we can reach the confirmation page with valid information on the US Credit Card Page using a Visa Card @CheckoutPaymentPage', async ({
     commonCheckoutService,
   }) => {
-    console.log('Test Case: Verify that we can reach the confirmation page with valid information on the US Credit Card Page');
-    await test.step(' Fill out Credit Card Form', async () => {
-      await commonCheckoutService.paymentPage.creditCardComponent.completeCreditCardForm('4444333322221111', '1225', '123', 'Test User', '80202');
+    console.log('Test Case: Verify that we can reach the confirmation page with valid information on the US Credit Card Page using Visa Card');
+    await test.step(' Fill out Credit Card Form with a Visa Card', async () => {
+      await commonCheckoutService.paymentPage.creditCardComponent.completeCreditCardForm('4444333322221111', '1228', '123', 'Test User', '80202');
     });
     await test.step('Click Purchase button', async () => {
       await commonCheckoutService.paymentPage.creditCardComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
     });
     await test.step('Redirected to the Confirmation Page', async () => {
       await expect(commonCheckoutService.confirmationPage.locConfirmationScreenContainer).toBeVisible({ timeout: 100000 });
+    });
+  });
+
+  test('Verify that we can reach the confirmation page with valid information on the US Credit Card Page using a Discover Card @CheckoutPaymentPage', async ({
+    commonCheckoutService,
+  }) => {
+    console.log('Test Case: Verify that we can reach the confirmation page with valid information on the US Credit Card Page using a Discover Card');
+    await test.step(' Fill out Credit Card Form with a Discover Card', async () => {
+      await commonCheckoutService.paymentPage.creditCardComponent.completeCreditCardForm('6011487849458552', '1228', '123', 'Test User', '80202');
+    });
+    await test.step('Click Purchase button', async () => {
+      await commonCheckoutService.paymentPage.creditCardComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
+    });
+    await test.step('Redirected to the Confirmation Page', async () => {
+      await expect(commonCheckoutService.confirmationPage.locConfirmationScreenContainer).toBeVisible({ timeout: 100000 });
+    });
+  });
+
+  test('Verify that we can reach the confirmation page with valid information on the US Credit Card Page using a Master Card @CheckoutPaymentPage', async ({
+    commonCheckoutService,
+  }) => {
+    console.log('Test Case: Verify that we can reach the confirmation page with valid information on the US Credit Card Page using a Master Card');
+    await test.step(' Fill out Credit Card Form with a Master Card', async () => {
+      await commonCheckoutService.paymentPage.creditCardComponent.completeCreditCardForm('5180502330105004', '1228', '123', 'Test User', '80202');
+    });
+    await test.step('Click Purchase button', async () => {
+      await commonCheckoutService.paymentPage.creditCardComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
+    });
+    await test.step('Redirected to the Confirmation Page', async () => {
+      await expect(commonCheckoutService.confirmationPage.locConfirmationScreenContainer).toBeVisible({ timeout: 100000 });
+    });
+  });
+
+  test('Verify that we can reach the confirmation page with valid information on the US Credit Card Page using an American Express Card @CheckoutPaymentPage', async ({
+    commonCheckoutService,
+  }) => {
+    console.log(
+      'Test Case: Verify that we can reach the confirmation page with valid information on the US Credit Card Page using an American Express Card'
+    );
+    await test.step(' Fill out Credit Card Form with a American Express Card', async () => {
+      await commonCheckoutService.paymentPage.creditCardComponent.completeCreditCardForm('6011487849458552', '1228', '1234', 'Test User', '80202');
+    });
+    await test.step('Click Purchase button', async () => {
+      await commonCheckoutService.paymentPage.creditCardComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
+    });
+    await test.step('Redirected to the Confirmation Page', async () => {
+      await expect(commonCheckoutService.confirmationPage.locConfirmationScreenContainer).toBeVisible({ timeout: 100000 });
+    });
+  });
+
+  test('Verify Invalid Payment popup Error Message appears when Invalid Credit Card number is entered @CheckoutPaymentPage', async ({
+    commonCheckoutService,
+  }) => {
+    console.log('Test Case: Verify Invalid Payment popup Error Message appears when Invalid Credit Card number is entered');
+    await test.step(' Fill out Credit Card Form with an Invalid Card', async () => {
+      await commonCheckoutService.paymentPage.creditCardComponent.completeCreditCardForm('4444444444444444', '1228', '123', 'Test User', '80202');
+    });
+    await test.step('Click Purchase button', async () => {
+      await commonCheckoutService.paymentPage.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
+    });
+    await test.step('Verify Popup Payment Error message appears on the Payment Page', async () => {
+      await expect(commonCheckoutService.paymentPage.locPaymentError).toBeVisible({ timeout: 100000 });
     });
   });
 
