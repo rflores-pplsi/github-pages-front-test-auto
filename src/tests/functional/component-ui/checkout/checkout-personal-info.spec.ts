@@ -258,6 +258,34 @@ test.describe('United States - Colorado, GBB Advanced Legal Plan - Monthly', () 
     });
   });
 
+  test('Verify the required message displays when DOB is invalid @CheckoutPersonalInfoPage', async ({ commonCheckoutService }) => {
+    console.log('Test Case: Verify the required message displays when DOB is invalid @CheckoutPersonalInfoPage');
+    await test.step('Enter an invalid DOB', async () => {
+      await commonCheckoutService.personalInfoPage.fillDateOfBirthInput('15', '33', '1900');
+    });
+    await test.step('Click on the Save & Continue Button', async () => {
+      await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
+    });
+    await test.step('Require Warning message that the DOB is Invalid', async () => {
+      await expect(commonCheckoutService.personalInfoPage.locInvalidDateOfBirthMessage).toBeVisible();
+    });
+  });
+
+  test('Verify the required message displays when DOB shows customer is less that 18 years old @CheckoutPersonalInfoPage', async ({
+    commonCheckoutService,
+  }) => {
+    console.log('Test Case: Verify the required message displays when DOB shows customer is less that 18 years old');
+    await test.step('Enter a the current Year in the DOB Field', async () => {
+      await commonCheckoutService.personalInfoPage.fillDateOfBirthInput('10', '10', '2024');
+    });
+    await test.step('Click on the Save & Continue Button', async () => {
+      await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
+    });
+    await test.step('Require Warning message that valid DOB must be 18 years displays', async () => {
+      await expect(commonCheckoutService.personalInfoPage.locDateOfBirthOver18Message).toBeVisible();
+    });
+  });
+
   test('Verify the required message displays when the SSN input is empty @CheckoutPersonalInfoPage', async ({ commonCheckoutService }) => {
     console.log('Test Case: Verify the required message displays when the SSN input is empty');
     await test.step('Empty only SSN Field', async () => {
