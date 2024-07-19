@@ -549,6 +549,19 @@ test.describe('United States - Colorado, Business Plan', () => {
     });
   });
 
+  test('Verify the required message displays when Date of Incorporation is invalid @CheckoutPersonalInfoPage', async ({ commonCheckoutService }) => {
+    console.log('Test Case: Verify the required message displays when Date of Incorporation is invalid @CheckoutPersonalInfoPage');
+    await test.step('Enter an invalid Date of Incorporation', async () => {
+      await commonCheckoutService.personalInfoPage.fillDateOfIncorporationField('15', '33', '3333');
+    });
+    await test.step('Click on the Save & Continue Button', async () => {
+      await commonCheckoutService.personalInfoPage.locSaveAndContinueButton.click();
+    });
+    await test.step('Require Warning message that the DOB is Invalid', async () => {
+      await expect(commonCheckoutService.personalInfoPage.locInvalidDateOfIncorporationMessage).toBeVisible();
+    });
+  });
+
   test('Verify the required message displays when the TaxID input is empty @CheckoutPersonalInfoPage', async ({ commonCheckoutService }) => {
     console.log('Test Case: Verify the required message displays when the TaxID input is empty');
     await test.step('Empty only TaxID Field', async () => {
