@@ -3,7 +3,7 @@ import UrlsUtils from '../../../../utils/urls.utils';
 import { test } from '../../../../fixtures/frontend-ui.fixture';
 
 // Pre-Footer Navigation Links Testing
-test.only(`LSUS Home page: Check Pre-Footer navigation links, verify status code:200 @prod-daily-health`, async ({ legalshieldService, page }) => {
+test(`LSUS Home page: Check Pre-Footer navigation links, verify status code:200 @prod-daily-health`, async ({ legalshieldService, page }) => {
   await page.goto(UrlsUtils.marketingSitesUrls.legalShieldUSUrl);
   test.skip((await legalshieldService.locPreFooterNavigation.count()) == 0, 'No Pre-Footer navigation links found');
   console.log(`Test Case: Home page: Check Pre-Footer navigation links, verify status code:200`);

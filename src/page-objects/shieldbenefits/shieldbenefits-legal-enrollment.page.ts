@@ -32,12 +32,14 @@ export class ShieldBenefitsLegalEnrollmentPage {
    * @memberof ShieldBenefitsLegalEnrollmentPage
    */
   checkProductCheckbox = async (productName: string): Promise<void> => {
-    const boxToCheckLocator = await this.page
-      .locator('label')
-      .filter({ hasText: `${productName}` })
-      .getByTestId('lsux-cb-container__icon');
-    if (await boxToCheckLocator.isEnabled()) {
-      boxToCheckLocator.click();
-    }
+    // const boxToCheckLocator = this.page
+    //   .locator('label')
+    //   .filter({ hasText: `${productName}` })
+    //   .getByTestId('lsux-cb-container__icon');
+    const boxToCheckLocator = this.page.locator(`//form[@data-testid="lsux-cb-container" and contains(.,"${productName}")]//button`);
+    await boxToCheckLocator.click({ force: true });
+    // if (await boxToCheckLocator.isEnabled()) {
+    //   boxToCheckLocator.click();
+    // }
   };
 }

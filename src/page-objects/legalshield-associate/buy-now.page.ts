@@ -21,6 +21,7 @@ export class BuyNowPage {
   readonly locTierContinueButton: Locator;
   readonly locSupplementsContinueWithoutSupplementsButton: Locator;
   readonly locSupplementsContinueButton: Locator;
+  readonly locSelectYourStateDropdown: Locator;
 
   constructor(context: BrowserContext, page: Page) {
     this.page = page;
@@ -36,6 +37,7 @@ export class BuyNowPage {
     this.locTierContinueButton = this.page.locator('//button[contains(.,"Continue")]').nth(0);
     this.locSupplementsContinueWithoutSupplementsButton = this.page.locator('//button[contains(.,"Continue without additional supplements")]');
     this.locSupplementsContinueButton = this.page.locator('//button[contains(., "Continue") and not(@disabled)]');
+    this.locSelectYourStateDropdown = this.page.locator('//button[contains(.,"Select your state")]');
   }
 
   clickBuyNowButtonAndWaitForCartService = async (planName: string, associateRegistrationType: string): Promise<void> => {
@@ -67,10 +69,11 @@ export class BuyNowPage {
     }
   };
 
-  newSelectPlans = async (planDetails: Array<PlanDetails>): Promise<void> => {
+  newSelectPlans = async (planDetails: Array<PlanDetails>, region: string): Promise<void> => {
     for (const plan of planDetails) {
       const priceCardLocator = this.page.locator(`//button[descendant::div[text() = "${plan.marketingName}"]]`);
       await priceCardLocator.click();
+      await this.selectRegion(region);
       // Small Business Qualifying Flow
       if (plan.marketingName.includes('Small Business')) {
         await this.plusSmallBusinessQualifyingComponent.submitSmallBusinessQualifyingForm();
@@ -203,5 +206,11 @@ export class BuyNowPage {
       expectedEstimatedTotal += parseFloat(plan.cost.replace('$', ''));
     }
     await expect(this.locEstimatedTotal).toContainText(`$${expectedEstimatedTotal.toFixed(2)}`);
+  };
+
+  selectRegion = async (region: string): Promise<void> => {
+    await this.locSelectYourStateDropdown.click();
+    const optionLocator = this.page.locator(`//span[contains(.,"${region}")]`);
+    await optionLocator.click();
   };
 }

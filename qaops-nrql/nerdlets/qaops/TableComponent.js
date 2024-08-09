@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
 function ResponseTable({ response }) {
   const [sortField, setSortField] = useState(0);
-  const [sortDirection, setSortDirection] = useState("asc");
+  const [sortDirection, setSortDirection] = useState('asc');
   const [isToggled, setIsToggled] = useState(false);
   const [activeColumn, setActiveColumn] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
 
-  const onSort = field => {
+  const onSort = (field) => {
     let fieldIsToggled = !isToggled;
-    const newDirection = sortDirection === "asc" ? "desc" : "asc";
+    const newDirection = sortDirection === 'asc' ? 'desc' : 'asc';
     setSortField(field);
     setSortDirection(newDirection);
     setIsToggled(fieldIsToggled);
@@ -19,49 +19,49 @@ function ResponseTable({ response }) {
   };
 
   const renderHeader = () => {
-    let headerElement = ["duration", "status", "title", "timestamp"];
+    let headerElement = ['duration', 'status', 'title', 'timestamp'];
     return headerElement.map((key, index) => {
       return (
         <th
           key={index}
           onClick={() => onSort(key)}
-          className={sortField === key ? (isToggled ? "tri triangle-bottom" : "tri triangle-top") : ""}
+          className={sortField === key ? (isToggled ? 'tri triangle-bottom' : 'tri triangle-top') : ''}
           scope="column"
         >
-          {" "}
+          {' '}
           {key.toUpperCase()}
         </th>
       );
     });
   };
-  const formatTime = time => {
+  const formatTime = (time) => {
     let fTime = new Date(time);
     let hours = fTime.getUTCHours();
     let minutes = fTime.getUTCMinutes();
     let seconds = fTime.getUTCSeconds();
 
     // Pad the minutes and seconds with leading zeros, if required
-    hours = hours < 10 ? "0" + hours : hours;
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
+    hours = hours < 10 ? '0' + hours : hours;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
 
     // Format the duration
     let duration = `${hours}:${minutes}:${seconds}`;
 
     return duration;
   };
-  const formatDate = timestamp => {
+  const formatDate = (timestamp) => {
     let fDate = new Date(timestamp);
-    return fDate.toLocaleDateString("en-US") + " " + fDate.toLocaleTimeString("en-US");
+    return fDate.toLocaleDateString('en-US') + ' ' + fDate.toLocaleTimeString('en-US');
   };
   const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(response[0].data.length / itemsPerPage); i++) {
     pageNumbers.push(i);
   }
 
-  const renderPageNumbers = pageNumbers.map(number => {
+  const renderPageNumbers = pageNumbers.map((number) => {
     return (
-      <li key={number} className={currentPage === number ? "page-item active" : "page-item"}>
+      <li key={number} className={currentPage === number ? 'page-item active' : 'page-item'}>
         <a onClick={() => setCurrentPage(number)} className="page-link">
           {number}
         </a>
@@ -73,10 +73,10 @@ function ResponseTable({ response }) {
     if (sortField !== null) {
       sortedData.sort((a, b) => {
         if (a[sortField] < b[sortField]) {
-          return sortDirection === "asc" ? -1 : 1;
+          return sortDirection === 'asc' ? -1 : 1;
         }
         if (a[sortField] > b[sortField]) {
-          return sortDirection === "asc" ? 1 : -1;
+          return sortDirection === 'asc' ? 1 : -1;
         }
         return 0;
       });

@@ -9,7 +9,6 @@ import { PplsiService } from '../page-objects/pplsi/pplsi-service';
 import { CommonCheckoutService, CommonLoginService, CommonAssociateOfficeService } from '@legalshield/frontend-automation-commons';
 import { ShieldBenefitsService } from '../page-objects/shieldbenefits/shieldbenefits-service';
 import { NewCheckoutService } from '../page-objects/new-checkout/new-checkout-service';
-import { WalsService } from '../page-objects/wals/wals-service';
 import { GlobalFooterComponent } from '../page-objects/global-components/global-footer.component';
 import { GlobalHeaderComponent } from '../page-objects/global-components/global-header.component';
 
@@ -26,7 +25,6 @@ export type MyFirstFixture = {
   commonLoginService: CommonLoginService;
   commonAssociateOfficeService: CommonAssociateOfficeService;
   newCheckoutService: NewCheckoutService;
-  walsService: WalsService;
 };
 
 export const test = base.extend<MyFirstFixture>({
@@ -89,9 +87,6 @@ export const test = base.extend<MyFirstFixture>({
   },
   shieldBenefitsService: async ({ page }, use) => {
     await use(new ShieldBenefitsService(page));
-  },
-  walsService: async ({ page }, use) => {
-    await use(new WalsService(page));
   },
 });
 

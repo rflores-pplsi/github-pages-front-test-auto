@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import Chart from "./ChartComponent";
+import React, { useState, useEffect } from 'react';
+import Chart from './ChartComponent';
 
 export default class BarGraph extends React.Component {
   render() {
@@ -7,21 +7,8 @@ export default class BarGraph extends React.Component {
 
     // Use sortedData to generate the JSON object
     let dailyData = {};
-    const monthNames = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ];
-    rawData[0].data.forEach(item => {
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    rawData[0].data.forEach((item) => {
       const date = new Date(item.timestamp);
       const day = date.getDate(); // getDate() returns the day of the month
       const month = monthNames[date.getMonth()]; // getMonth() returns the month

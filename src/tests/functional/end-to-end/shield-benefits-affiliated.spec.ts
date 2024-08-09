@@ -36,11 +36,11 @@ for (const regionUnderTest of regionsUnderTest) {
       await commonCheckoutService.accountPage.locEmailAddressInput.fill(basicUser.email);
       await commonCheckoutService.accountPage.locContinueButton.click();
       await commonCheckoutService.accountPage.locClickHereToLoginButton.click();
-      await commonLoginService.whatsYourEmailPage.locEmailAddressInput.fill(basicUser.email);
-      await commonLoginService.whatsYourEmailPage.locContinueButton.click();
+      // await commonLoginService.whatsYourEmailPage.locEmailAddressInput.fill(basicUser.email);
+      // await commonLoginService.whatsYourEmailPage.locContinueButton.click();
     });
     await test.step(`Log in with only password to reach checkout service`, async () => {
-      await commonLoginService.loginPage.loginOnlyPassword(basicUser.password);
+      await commonLoginService.loginPage.login(basicUser.email, basicUser.password);
     });
     await test.step(`Validate Order Summary on Personal Info Page`, async () => {
       expect(await commonCheckoutService.personalInfoPage.orderSummaryComponent.locTotalContainer.innerText()).toContain('$23.95');

@@ -1,5 +1,5 @@
-import React from "react";
-import NrqlQuery from "nr1";
+import React from 'react';
+import NrqlQuery from 'nr1';
 
 class DataFetcher extends React.Component {
   getQuery() {
@@ -12,7 +12,7 @@ class DataFetcher extends React.Component {
       <NrqlQuery accountIds={[124794]} query={this.getQuery()} pollInterval={60000}>
         {({ data }) => {
           if (!data) {
-            return "";
+            return '';
           } else {
             const sValue = this.props.selectedValue;
             return { data, sValue };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   Card,
   CardBody,
@@ -12,39 +12,39 @@ import {
   BarChart,
   LineChart,
   Select,
-  SelectItem
-} from "nr1";
-import PassedComponent from "./PassedComponent";
-import FailedComponent from "./FailedComponent";
-import SkippedComponent from "./SkippedComponent";
-import TimedOutComponent from "./TimedOutComponent";
-import ResponseTable from "./TableComponent";
-import BarGraph from "./BarGraphComponent";
-import fullResults from "./fullResultsComponent";
+  SelectItem,
+} from 'nr1';
+import PassedComponent from './PassedComponent';
+import FailedComponent from './FailedComponent';
+import SkippedComponent from './SkippedComponent';
+import TimedOutComponent from './TimedOutComponent';
+import ResponseTable from './TableComponent';
+import BarGraph from './BarGraphComponent';
+import fullResults from './fullResultsComponent';
 
 // https://docs.newrelic.com/docs/new-relic-programmable-platform-introduction
-import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default class QaopsNerdlet extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       data: null,
-      selectedValue: "passed"
+      selectedValue: 'passed',
     };
   }
 
-  getQuery = passedValue => {
-    let query = "";
-    if (passedValue === "passed") {
+  getQuery = (passedValue) => {
+    let query = '';
+    if (passedValue === 'passed') {
       query = `SELECT * FROM Playwright WHERE status = 'passed' LIMIT MAX SINCE 1 MONTHS AGO`;
-    } else if (passedValue === "failed") {
+    } else if (passedValue === 'failed') {
       query = `SELECT * FROM Playwright WHERE status = 'failed' LIMIT MAX SINCE 1 MONTHS AGO`;
-    } else if (passedValue === "skipped") {
+    } else if (passedValue === 'skipped') {
       query = `SELECT * FROM Playwright WHERE status = 'skipped' LIMIT MAX SINCE 1 MONTHS AGO`;
-    } else if (passedValue === "timedOut") {
+    } else if (passedValue === 'timedOut') {
       query = `SELECT * FROM Playwright WHERE status = 'timedOut' LIMIT MAX SINCE 1 MONTHS AGO`;
-    } else if (passedValue === "interrupted") {
+    } else if (passedValue === 'interrupted') {
       query = `SELECT * FROM Playwright WHERE status = 'interrupted' LIMIT MAX SINCE 1 MONTHS AGO`;
     }
     return query;
@@ -118,7 +118,7 @@ export default class QaopsNerdlet extends React.Component {
             <NrqlQuery accountIds={[124794]} query="SELECT * FROM Playwright SINCE 1 DAYS AGO" pollInterval={60000}>
               {({ data }) => {
                 if (!data) {
-                  return "";
+                  return '';
                 } else {
                   return <ResponseTable response={data} />;
                 }
@@ -146,7 +146,7 @@ export default class QaopsNerdlet extends React.Component {
               <NrqlQuery accountIds={[124794]} query={this.getQuery(this.state.selectedValue)} pollInterval={60000}>
                 {({ data }) => {
                   if (!data) {
-                    return "";
+                    return '';
                   } else {
                     return <BarGraph rawData={data} selectedValue={this.state.selectedValue} />;
                   }
@@ -165,7 +165,7 @@ export default class QaopsNerdlet extends React.Component {
                 // console.log(data);
                 if (!data) {
                   //console.log("no data available");
-                  return "no data available";
+                  return 'no data available';
                 } else {
                   // console.log(data);
                   return `${data[0].data[0].testResults}`;

@@ -250,4 +250,12 @@ export default class UrlsUtils {
     legalShieldCAUrl: `https://www.${envUrlString}legalshield.ca`,
     legalShieldUSUrl: `https://www.${envUrlString}legalshield.com`,
   };
+
+  revertCheckoutURLToBypassOnePage = async (url: string) => {
+    const urlObj = new URL(url);
+    const baseUrl = `${urlObj.origin}/`;
+    const orderId = urlObj.searchParams.get('id');
+    const newOrderId = `?id=67d78c01-78a1-49bc-83ea-35a09ee34cd4`;
+    return `${baseUrl}${newOrderId}`;
+  };
 }

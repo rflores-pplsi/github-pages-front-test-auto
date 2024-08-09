@@ -33,8 +33,7 @@ for (const testCase of selfPayData.filter((testCase) => testCase.disabled == fal
       await test.step(`Choose Account by Email and Login`, async () => {
         if (testCase.userType == 'Existing') {
           await commonCheckoutService.accountPage.enterExistingAccountEmailAndLogin(basicUser.email);
-          await commonLoginService.whatsYourEmailPage.enterEmailAndContinue(basicUser.email);
-          await commonLoginService.loginPage.loginOnlyPassword(basicUser.password);
+          await commonLoginService.loginPage.login(basicUser.email, basicUser.password);
         }
         if (testCase.userType == 'New') {
           await commonCheckoutService.accountPage.enterRandomEmailAndNewPasswordAndLogin();
