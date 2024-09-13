@@ -1,16 +1,15 @@
-/* eslint-disable sort-keys-fix/sort-keys-fix */
-/* eslint-disable sort-keys */
 import { test as base } from '@playwright/test';
 import { IdshieldService } from '../page-objects/marketing-sites/idshield/idshield-service';
 import { GroupsAffiliatedService } from '../page-objects/groups-affiliated/groups-affiliated-service';
 import { LegalshieldService } from '../page-objects/marketing-sites/legalshield/legalshield-service';
 import { LegalshieldAssociateService } from '../page-objects/legalshield-associate/legalshieldassociate.service';
 import { PplsiService } from '../page-objects/pplsi/pplsi-service';
-import { CommonCheckoutService, CommonLoginService, CommonAssociateOfficeService } from '@legalshield/frontend-automation-commons';
+import { CommonCheckoutService, CommonLoginService } from '@legalshield/frontend-automation-commons';
 import { ShieldBenefitsService } from '../page-objects/shieldbenefits/shieldbenefits-service';
 import { NewCheckoutService } from '../page-objects/new-checkout/new-checkout-service';
 import { GlobalFooterComponent } from '../page-objects/global-components/global-footer.component';
 import { GlobalHeaderComponent } from '../page-objects/global-components/global-header.component';
+import { AssociateOfficeService } from '../page-objects/associate-office/associate-office.service';
 
 export type MyFirstFixture = {
   idshieldService: IdshieldService;
@@ -23,25 +22,23 @@ export type MyFirstFixture = {
   commonHeaderComponent: GlobalHeaderComponent;
   commonFooterComponent: GlobalFooterComponent;
   commonLoginService: CommonLoginService;
-  commonAssociateOfficeService: CommonAssociateOfficeService;
   newCheckoutService: NewCheckoutService;
+  associateOfficeService: AssociateOfficeService;
 };
 
 export const test = base.extend<MyFirstFixture>({
   //addends ?qatester=automation query param to all goto urls, used for analytics filtering
   page: async ({ page }, use) => {
     const goto = page.goto.bind(page);
-    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type, jsdoc/require-jsdoc
     function modifiedGoto(
       url: string,
       options:
         | {
-            referer?: string | undefined;
-            timeout?: /* eslint-disable sort-keys-fix/sort-keys-fix */
-            /* eslint-disable sort-keys */
-            number | undefined;
-            waitUntil?: 'load' | 'domcontentloaded' | 'networkidle' | 'commit' | undefined;
-          }
+          referer?: string | undefined;
+          timeout?:
+          number | undefined;
+          waitUntil?: 'load' | 'domcontentloaded' | 'networkidle' | 'commit' | undefined;
+        }
         | undefined
     ) {
       url += '?qatester=automation';
@@ -52,8 +49,8 @@ export const test = base.extend<MyFirstFixture>({
     page.goto = goto;
   },
   //NOTE -> these classes are only instantiated when they are called
-  commonAssociateOfficeService: async ({ page }, use) => {
-    await use(new CommonAssociateOfficeService(page));
+  associateOfficeService: async ({ page }, use) => {
+    await use(new AssociateOfficeService(page));
   },
   commonCheckoutService: async ({ page, context }, use) => {
     await use(new CommonCheckoutService(context, page));

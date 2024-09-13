@@ -1,6 +1,3 @@
-/* eslint-disable sort-keys-fix/sort-keys-fix */
-/* eslint-disable sort-keys */
-
 export const legalshieldServiceGbbData = [
   { disabled: false, stateName: 'Alabama', stateAbbreviation: 'AL', expectedGbb: false, tag: '@gbboff' },
   { disabled: false, stateName: 'Alaska', stateAbbreviation: 'AK', expectedGbb: false, tag: '@gbboff' },

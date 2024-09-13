@@ -7,7 +7,7 @@ import lighthouseDesktopConfig from 'lighthouse/lighthouse-core/config/lr-deskto
 legalShieldPageUrls.forEach((pageData) => {
   test.slow();
   test.describe(`Lighthouse test for ${pageData.url}`, async () => {
-    test.beforeEach(async ({ context, page }) => {
+    test.beforeEach(async ({ page }) => {
       await test.step(`Navigate to the ${pageData.pageName} page`, async () => {
         await page.goto(pageData.url);
       });

@@ -1,5 +1,4 @@
 import { Locator, Page } from '@playwright/test';
-// eslint-disable-next-line no-undef, @typescript-eslint/no-explicit-any, const-case/uppercase
 declare const IS_NITROPACK: any;
 /**
  *

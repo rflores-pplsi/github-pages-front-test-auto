@@ -1,41 +1,41 @@
 {
-  "extends": ["plugin:@typescript-eslint/recommended", "prettier", "plugin:prettier/recommended", "plugin:jsdoc/recommended"],
+  "root": true,
+  "env": {
+    "node": true,
+    "amd": true,
+    "mocha": true
+  },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
-    "ecmaVersion": "latest",
-    "project": "tsconfig.json",
-    "sourceType": "module"
+    "ecmaVersion": 2022,
+    "sourceType": "module",
+    "warnOnUnsupportedTypeScriptVersion": false
   },
-  "plugins": ["@typescript-eslint", "sort-keys-fix", "const-case", "jsdoc"],
   "rules": {
-    "no-empty-pattern": "warn",
-    "@typescript-eslint/explicit-function-return-type": "warn",
-    "@typescript-eslint/no-explicit-any": 2,
-    "@typescript-eslint/no-misused-promises": [
+    "semi": [
       "error",
+      "always"
+    ],
+    "no-var": [
+      "error"
+    ],
+    "eol-last": [
+      "error",
+      "always"
+    ],
+    "no-multiple-empty-lines": [
+      1,
       {
-        "checksConditionals": true,
-        "checksVoidReturn": {
-          "arguments": false
-        }
+        "max": 1
       }
     ],
-    "camelcase": [2, { "properties": "always" }],
-    "const-case/uppercase": "error",
-    "jsdoc/newline-after-description": 0,
-    "jsdoc/require-param-description": 0,
-    "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 0 }],
-    "prettier/prettier": ["error", { "endOfLine": "auto" }],
-    "sort-keys": ["error", "asc", { "caseSensitive": true, "minKeys": 2, "natural": false }],
-    "sort-keys-fix/sort-keys-fix": "warn"
-  },
-  "settings": {
-    "jsdoc": {
-      "tagNamePreference": {
-        "exports": "export",
-        "returns": "return",
-        "extends": "extends"
-      }
-    }
+    "no-unused-vars": "warn",
+    "object-curly-spacing": [
+      "error",
+      "always"
+    ],
+    "no-duplicate-imports": [
+      "warn"
+    ]
   }
 }

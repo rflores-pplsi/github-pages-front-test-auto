@@ -1,5 +1,4 @@
-import { Page, Locator, expect, FrameLocator } from '@playwright/test';
-import RegionsUtils from '../../utils/regions.utils';
+import { Page, Locator, FrameLocator } from '@playwright/test';
 
 export class NewCheckoutPaymentPage {
   protected page: Page;

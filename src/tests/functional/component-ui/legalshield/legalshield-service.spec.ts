@@ -34,7 +34,6 @@ for (const pageUnderTest of legalshieldServiceData.filter((pageUnderTest) => pag
 
   test(`${pageUnderTest.pageName} page: Click GBB links that add to cart, verify cart updated @ComponentLegalShield @prod-daily-health @gbb`, async ({
     legalshieldService,
-    page,
   }) => {
     test.skip(pageUnderTest.expectAddToCartButton === false, 'No add to cart links expected');
     await legalshieldService.navigateToUrl(pageUnderTest.url);
@@ -49,7 +48,6 @@ for (const pageUnderTest of legalshieldServiceData.filter((pageUnderTest) => pag
 
   test(`${pageUnderTest.pageName} page: Click links that add to cart, verify cart updated @ComponentLegalShield @prod-daily-health`, async ({
     legalshieldService,
-    page,
   }) => {
     test.skip(pageUnderTest.expectAddToCartButton === false, 'No add to cart links expected');
     await legalshieldService.navigateToUrl(pageUnderTest.url);
@@ -102,8 +100,7 @@ for (const pageUnderTest of legalshieldServiceData.filter((pageUnderTest) => pag
 
 for (const stateUnderTest of legalshieldServiceGbbData.filter((stateUnderTest) => stateUnderTest.disabled == false)) {
   test(`Verify ${stateUnderTest.stateName} GBB displayed = ${stateUnderTest.expectedGbb} @GBBDisplay ${stateUnderTest.tag}`, async ({
-    page,
-    legalshieldService,
+        legalshieldService,
   }) => {
     test.slow();
     console.log(`Test Case: Verify ${stateUnderTest.stateName} GBB displayed = ${stateUnderTest.expectedGbb}`);

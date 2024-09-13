@@ -1,5 +1,3 @@
-/* eslint-disable sort-keys-fix/sort-keys-fix */
-/* eslint-disable sort-keys */
 import UrlsUtils from '../../../../utils/urls.utils';
 
 export const legalshieldServiceData = [

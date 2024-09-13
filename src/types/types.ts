@@ -42,6 +42,8 @@ export type PlanDetails = {
   type: string;
 };
 
+export type PlanDetailsArray = PlanDetails[];
+
 export type ConsumerFlowData = {
   disabled: boolean;
   market: string;

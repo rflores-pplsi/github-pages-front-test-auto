@@ -1,5 +1,4 @@
 import type { Reporter, FullConfig, Suite, TestCase, TestResult, FullResult } from '@playwright/test/reporter';
-import * as dotenv from 'dotenv';
 
 interface reportData {
   duration: number;

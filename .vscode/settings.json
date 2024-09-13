@@ -1,17 +1,10 @@
 {
-  "eslint.alwaysShowStatus": true,
   "eslint.lintTask.enable": true,
   "editor.tabSize": 2,
-  "editor.formatOnPaste": true,
-  "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
   "terminal.integrated.scrollback": 10000,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
   "cSpell.words": [
     "abbrv",
     "accountholder",
@@ -75,5 +68,19 @@
     "wpengine",
     "yopmail",
     "zipcodes"
-  ]
+  ],
+  "eslint.format.enable": true,
+  "editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+  "eslint.codeActionsOnSave.rules": null,
+  "[jsonc]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  },
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true
 }

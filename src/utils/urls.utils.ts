@@ -5,7 +5,6 @@ dotenv.config();
 const envUrlString = EnvironmentUtil.getEnvUrlString();
 const envLaunchUrlString = EnvironmentUtil.getLaunchUrlString();
 const envTestHarnessString = EnvironmentUtil.getTestHarnessUrlString();
-const envWalsUrlString = EnvironmentUtil.getWalsEnvUrlString();
 const envPplsiUrlString = EnvironmentUtil.getPplsiEnvString();
 
 /**
@@ -158,49 +157,6 @@ export default class UrlsUtils {
     },
   };
 
-  static readonly wals = {
-    damesdejustice: {
-      urlCanadaNoSubdomain: `${envWalsUrlString}damesdejustice.ca`,
-      urlUnitedStatesNoSubdomain: `${envWalsUrlString}damesdejustice.com`,
-    },
-    ladiesofjustice: {
-      urlCanadaNoSubdomain: `${envWalsUrlString}ladiesofjustice.ca`,
-      urlUnitedStatesNoSubdomain: `${envWalsUrlString}ladiesofjustice.com`,
-    },
-    noussommeslegalshield: {
-      urlCanadaNoSubdomain: `${envWalsUrlString}noussommeslegalshield.ca`,
-    },
-    somoslegalshield: {
-      urlUnitedStatesNoSubdomain: `${envWalsUrlString}wearelegalshield.com`,
-    },
-
-    urls: {
-      ddev: `http://lspro.${envWalsUrlString}wearelegalshield.com`,
-      urlAppTestUserDamesDeJusticeCa: `https://apptestuser.${envWalsUrlString}damesdejustice.ca`,
-      urlAppTestUserEnCa: `https://apptestuser.${envWalsUrlString}wearelegalshield.ca`,
-      urlAppTestUserFrCa: `https://apptestuser.${envWalsUrlString}noussommeslegalshield.ca`,
-      urlAppTestUserLadiesCa: `https://apptestuser.${envWalsUrlString}ladiesofjustice.ca`,
-      urlAppTestUserLadiesUs: `https://apptestuser.${envWalsUrlString}ladiesofjustice.com`,
-      urlAppTestUserSpUS: `https://apptestuser.${envWalsUrlString}somoslegalshield.com`,
-      urlAssociate: `https://${envWalsUrlString}wearelegalshield.com`,
-      urlBenefits: `https://apptestuser.${envWalsUrlString}wearelegalshield.com`,
-      urlDamesDeJustice: `https://${envWalsUrlString}damesdejustice.ca`,
-      urlEnCa: `https://lspro.${envWalsUrlString}wearelegalshield.ca`,
-      urlEnCanada: `https://${envWalsUrlString}wearelegalshield.ca`,
-      urlEnUS: `https://lspro.${envWalsUrlString}wearelegalshield.com`,
-      urlFrCa: `https://lspro.${envWalsUrlString}noussommeslegalshield.ca`,
-      urlLadies: `https://${envWalsUrlString}ladiesofjustice.com`,
-      urlLadiesCa: `https://${envWalsUrlString}ladiesofjustice.ca`,
-      urlNous: `https://${envWalsUrlString}noussommeslegalshield.ca`,
-      urlSomos: `https://${envWalsUrlString}somoslegalshield.com`,
-      urlSpUS: `https://lspro.${envWalsUrlString}somoslegalshield.com`,
-    },
-    weAreLegalshield: {
-      urlCanadaNoSubdomain: `${envWalsUrlString}wearelegalshield.ca`,
-      urlUnitedStatesNoSubdomain: `${envWalsUrlString}wearelegalshield.com`,
-    },
-  };
-
   static readonly channelsUrls = {
     advantage: {
       url: `https://associate-office.${envUrlString}legalshield.com/advantage`,
@@ -254,7 +210,6 @@ export default class UrlsUtils {
   revertCheckoutURLToBypassOnePage = async (url: string) => {
     const urlObj = new URL(url);
     const baseUrl = `${urlObj.origin}/`;
-    const orderId = urlObj.searchParams.get('id');
     const newOrderId = `?id=67d78c01-78a1-49bc-83ea-35a09ee34cd4`;
     return `${baseUrl}${newOrderId}`;
   };

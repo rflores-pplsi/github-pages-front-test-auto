@@ -16,11 +16,11 @@ export const legalshieldData = [
     language: 'en',
     market: 'US',
     productDetails: [{ cost: '$29.95', name: 'Legal Plan', shortCode: 'LPUS21', term: 'Monthly', type: 'LegalShield' }],
-    regions: ['Alaska'],
+    regions: ['Oregon'],
     tags: '@smoke',
     term: 'Monthly',
     termTotal: '$29.95',
-    testCaseName: 'Legal Plan, Existing User',
+    testCaseName: 'Non GBB: Legal Plan, Existing User',
     userType: 'Existing',
   },
   {

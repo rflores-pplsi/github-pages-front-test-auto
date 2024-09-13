@@ -1,4 +1,4 @@
-import { Locator, Page, expect, Response } from '@playwright/test';
+import { expect, Response } from '@playwright/test';
 import UrlsUtils from '../../../../utils/urls.utils';
 import { test } from '../../../../fixtures/frontend-ui.fixture';
 
@@ -20,6 +20,6 @@ test(`LSUS Home page: Check Pre-Footer navigation links, verify status code:200 
           expect.soft([200, 301]).toContain(response.status());
         });
       });
-    } // end for loop
+    }
   });
 });

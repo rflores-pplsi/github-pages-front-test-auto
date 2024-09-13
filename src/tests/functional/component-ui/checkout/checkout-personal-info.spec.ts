@@ -426,7 +426,7 @@ test.describe('United States - Colorado, GBB Advanced Legal Plan - Monthly', () 
     });
   });
 
-  test('Verify the information icon is visible and displays text @CheckoutPersonalInfoPage', async ({ commonCheckoutService, page }) => {
+  test('Verify the information icon is visible and displays text @CheckoutPersonalInfoPage', async ({ commonCheckoutService }) => {
     console.log('Test Case: Verify the information icon is visible and displays text');
     await test.step('Verify the information icon is visible ', async () => {
       await commonCheckoutService.personalInfoPage.locInformationIcon.isVisible();

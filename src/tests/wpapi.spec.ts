@@ -1,5 +1,3 @@
-/* eslint-disable const-case/uppercase */
-import { expect, test } from '@playwright/test';
 import UrlsUtils from '../utils/urls.utils';
 
 interface Page {

@@ -1,5 +1,4 @@
-import { Page, Locator, expect } from '@playwright/test';
-import RegionsUtils from '../../utils/regions.utils';
+import { Page, Locator } from '@playwright/test';
 
 export class NewCheckoutInformationPage {
   protected page: Page;

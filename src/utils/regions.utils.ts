@@ -1,5 +1,3 @@
-import { Locator, Page } from '@playwright/test';
-
 /**
  * @export
  * @class RegionsUtils
@@ -1354,52 +1352,13 @@ export default class RegionsUtils {
       },
     },
   ];
-  private page: Page;
-  private baseURL: string;
-  readonly eleSDDFooterProvince: Locator;
-  readonly eleSOPFooterSelectedProvince: Locator;
-  /**
-   * Creates an instance of RegionsUtils.
-   * @param {Page} page
-   * @param {string} baseURL
-   * @memberof RegionsUtils
-   */
-  constructor(page: Page, baseURL: string) {
-    this.page = page;
-    this.baseURL = baseURL;
-    this.eleSDDFooterProvince = page.locator('#lsc_footer_region_selector_default .lsc_region_selector');
-    this.eleSOPFooterSelectedProvince = page.locator('#lsc_footer_region_selector_default .lsc_region_selector option:checked');
-  }
 
-  /**
-   *
-   *
-   * @return {*}  {Promise<string>}
-   * @memberof RegionsUtils
-   */
-  async getCurrentSelectedProvinceFromFooter(): Promise<string> {
-    return await this.eleSOPFooterSelectedProvince.innerText();
+  static getRegionInfo(regionName: string) {
+    const regionInfo = this.usStates.find((region) => region.name == regionName);
+    if (!regionInfo) {
+      throw new Error(`Region not found: ${regionName}`);
+    }
+    return regionInfo;
   }
-
-  /**
-   *
-   *
-   * @param {string} province
-   * @return {*}  {Promise<void>}
-   * @memberof RegionsUtils
-   */
-  // async selectProvinceFromFooter(province: string): Promise<void> {
-  // // eslint-disable-next-line no-undef
-  // await retryAsync(
-  //   async () => {
-  //     await this.ele_sddFooterProvince.selectOption({ label: `${province}` });
-  //     return this.ele_sopFooterSelectedProvince.innerText();
-  //   },
-  //   {
-  //     delay: 500,
-  //     maxTry: 5,
-  //     until: (lastResult) => lastResult === province,
-  //   }
-  // );
-  // }
 }
+

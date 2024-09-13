@@ -1,6 +1,5 @@
-/* eslint-disable const-case/uppercase */
 import { Locator, Page, BrowserContext, expect, test, Response } from '@playwright/test';
-import { ProductDetails, PageUrlAndTitleArray, PlanNameCostArray } from '../../../types/types';
+import { ProductDetails, PageUrlAndTitleArray } from '../../../types/types';
 import UrlsUtils from '../../../utils/urls.utils';
 import { HeaderComponent } from './header.page';
 import { LegalshieldPage } from './legalshield.page';
@@ -87,7 +86,6 @@ export class LegalshieldService {
 
   navigateToUrl = async (url: string): Promise<void> => {
     await this.page.goto(url);
-    // eslint-disable-next-line const-case/uppercase
     if (process.env.USE_PROD == 'true') {
       const dialogCloseButton = '//div[contains(@class,"ub-emb-iframe-wrapper ub-emb-visible")]//button';
       const isDialogPresent = await this.page
@@ -281,7 +279,7 @@ export class LegalshieldService {
         [response] = await Promise.all([this.page.waitForResponse((response) => response.url().includes(`${expectedURL}`)), locator.click()]);
       });
       await test.step(`Verify Status:200`, async () => {
-        expect.soft([200, 301]).toContain(response.status());
+        expect.soft([expectedStatusCode, 301]).toContain(response.status());
       });
       await test.step(`Return to Page Under Test`, async () => {
         await this.page.goto(pageUnderTestURL);

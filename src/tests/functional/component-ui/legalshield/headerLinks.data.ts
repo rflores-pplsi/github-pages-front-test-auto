@@ -1,5 +1,3 @@
-/* eslint-disable sort-keys-fix/sort-keys-fix */
-/* eslint-disable sort-keys */
 export const headerThreeLinksData = [
   {
     testCaseName: 'Verify the Plans/Personal & Family/Coverage and Pricing link',
