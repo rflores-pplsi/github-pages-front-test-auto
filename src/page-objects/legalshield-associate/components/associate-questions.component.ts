@@ -9,7 +9,7 @@ export class AssociateQuestionsComponent {
     this.page = page;
     this.locNoFelonyEtcRadioButton = this.page.locator('#felony_false');
     this.locContinueButton = this.page.locator(
-      '//button[contains(@class,"lsux-button lsux-button--primary lsux-button--rectangular") and contains(.,"Continue")]'
+      '//button[not(@disabled) and contains(.,"Continue")]'
     );
   }
   // #region Navigation

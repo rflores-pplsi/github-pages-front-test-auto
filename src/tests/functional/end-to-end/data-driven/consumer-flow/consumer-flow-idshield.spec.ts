@@ -6,7 +6,7 @@ import { test } from '../../../../../fixtures/frontend-ui.fixture';
 
 for (const testCase of idshieldData.filter((testCase) => testCase.disabled == false)) {
   for (const regionUnderTest of testCase.regions) {
-    test(`Legalshield (${testCase.testCaseName}, ${regionUnderTest}) @idshield-consumerflow ${testCase.tags}`, async ({
+    test (`IDShield (${testCase.testCaseName}, ${regionUnderTest}) @idshield-consumerflow ${testCase.tags}`, async ({
       page,
       idshieldService,
       commonCheckoutService,

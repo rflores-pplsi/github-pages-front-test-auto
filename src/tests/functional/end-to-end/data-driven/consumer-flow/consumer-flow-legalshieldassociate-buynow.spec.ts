@@ -19,10 +19,10 @@ for (const testCase of legalshieldAssociateBuyNowData.filter((testCase) => testC
       test.slow();
       const regionInfo = RegionsUtils.usStates.filter((region) => region.name == regionUnderTest)[0];
       await test.step(`Navigate to legalshieldassociate.com/BuyNow`, async () => {
-        await legalshieldAssociateService.buyNowPage.navigateToBuyNowPage('apptestuser');
+        await legalshieldAssociateService.buyNowPage.navigateToBuyNowPage('cartb1all');
       });
        await test.step(`Force geo-location`, async () => {
-        await legalshieldService.setPplsiRegionCookie('region', regionInfo.abbrv);
+        await legalshieldService.setCookie('region', regionInfo.abbrv);
       });
       await test.step(`Select Market`, async () => {
         await legalshieldAssociateService.buyNowPage.headerComponent.selectMarket(testCase.market);
@@ -154,6 +154,7 @@ for (const testCase of legalshieldAssociateBuyNowCanadaData.filter((testCase) =>
       associateOfficeService,
       commonCheckoutService,
       commonLoginService,
+      legalshieldService,
       legalshieldAssociateService,
     }) => {
       console.log(`Test Case: ${testCase.testCaseName}, ${regionUnderTest} -> Checkout -> Accounts`);
@@ -161,6 +162,9 @@ for (const testCase of legalshieldAssociateBuyNowCanadaData.filter((testCase) =>
       const regionInfo = RegionsUtils.caProvinces.filter((region) => region.name == regionUnderTest)[0];
       await test.step(`Navigate to legalshieldassociate.com/BuyNow`, async () => {
         await legalshieldAssociateService.buyNowPage.navigateToBuyNowPage('apptestuser');
+      });
+       await test.step(`Change Region`, async () => {
+        await legalshieldService.setCookie('region', regionInfo.abbrv);
       });
       await test.step(`Select Market`, async () => {
         await legalshieldAssociateService.buyNowPage.headerComponent.selectMarket(testCase.market);

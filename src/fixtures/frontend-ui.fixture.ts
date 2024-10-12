@@ -1,7 +1,7 @@
 import { test as base } from '@playwright/test';
 import { IdshieldService } from '../page-objects/marketing-sites/idshield/idshield-service';
 import { GroupsAffiliatedService } from '../page-objects/groups-affiliated/groups-affiliated-service';
-import { LegalshieldService } from '../page-objects/marketing-sites/legalshield/legalshield-service';
+import { LegalshieldService } from '../page-objects/marketing-sites/legalshield/legalshield.service';
 import { LegalshieldAssociateService } from '../page-objects/legalshield-associate/legalshieldassociate.service';
 import { PplsiService } from '../page-objects/pplsi/pplsi-service';
 import { CommonCheckoutService, CommonLoginService } from '@legalshield/frontend-automation-commons';
@@ -41,7 +41,10 @@ export const test = base.extend<MyFirstFixture>({
         }
         | undefined
     ) {
-      url += '?qatester=automation';
+      // temporary until they fix redirect issue
+      if (!url.includes('pplsi.com')) {
+        url += '?qatester=automation';
+      } 
       return goto(url, options);
     }
     page.goto = modifiedGoto;

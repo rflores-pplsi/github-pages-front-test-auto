@@ -9,6 +9,7 @@ for (const testCase of legalshieldAssociateData.filter((testCase) => testCase.di
   for (const regionUnderTest of testCase.regions) {
     test(`Legalshield Associates - Consumer Flow ${testCase.testCaseName}, ${regionUnderTest}) @legalshieldassociates-consumerflow ${testCase.tag}`, async ({
       page,
+      legalshieldService,
       associateOfficeService,
       commonCheckoutService,
       commonLoginService,
@@ -19,6 +20,9 @@ for (const testCase of legalshieldAssociateData.filter((testCase) => testCase.di
       const regionInfo = RegionsUtils.getRegionInfo(regionUnderTest);
       await test.step(`Navigate to legalshieldassociate home page`, async () => {
         await legalshieldAssociateService.homePage.navigateToHomePage();
+      });
+       await test.step(`Change Region`, async () => {
+        await legalshieldService.setCookie('region', regionInfo.abbrv);
       });
       await test.step(`Select Market`, async () => {
         await legalshieldAssociateService.homePage.headerComponent.selectMarket(testCase.market);

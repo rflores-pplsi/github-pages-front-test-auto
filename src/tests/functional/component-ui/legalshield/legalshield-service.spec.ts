@@ -38,7 +38,7 @@ for (const pageUnderTest of legalshieldServiceData.filter((pageUnderTest) => pag
     test.skip(pageUnderTest.expectAddToCartButton === false, 'No add to cart links expected');
     await legalshieldService.navigateToUrl(pageUnderTest.url);
     // Set region cookie to GBB activated region
-    await legalshieldService.setPplsiRegionCookie('pplsi-region', 'GA');
+    await legalshieldService.setCookie('pplsi-region', 'GA');
     console.log(`Test Case: ${pageUnderTest.pageName} page: Click GBB links that add to cart, verify cart updated`);
     test.setTimeout(200000);
     await test.step(`Click All add to cart Links and verify cart is updated`, async () => {
@@ -53,7 +53,7 @@ for (const pageUnderTest of legalshieldServiceData.filter((pageUnderTest) => pag
     await legalshieldService.navigateToUrl(pageUnderTest.url);
     // Set region cookie to GBB not-activated region
     if (pageUnderTest.url.includes('gbb2=true')) {
-      await legalshieldService.setPplsiRegionCookie('pplsi-region', 'HA');
+      await legalshieldService.setCookie('pplsi-region', 'HA');
     }
     console.log(`Test Case: ${pageUnderTest.pageName} page: Click links that add to cart, verify cart updated`);
     test.setTimeout(200000);
@@ -108,7 +108,7 @@ for (const stateUnderTest of legalshieldServiceGbbData.filter((stateUnderTest) =
       await legalshieldService.navigateToUrl(UrlsUtils.legalshieldService.baseUrl + '/personal-plan/coverage-and-pricing/?gbb2=true');
     });
     await test.step(`Update state through console`, async () => {
-      await legalshieldService.setPplsiRegionCookie('pplsi-region', `${stateUnderTest.stateAbbreviation}`);
+      await legalshieldService.setCookie('pplsi-region', `${stateUnderTest.stateAbbreviation}`);
     });
     await test.step(`Verify GBB elements`, async () => {
       if (stateUnderTest.expectedGbb == true) {

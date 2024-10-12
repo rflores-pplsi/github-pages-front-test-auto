@@ -1,6 +1,6 @@
 export const legalshieldAssociateData = [
   {
-    disabled: true, //enable after configuring GBB associate
+    disabled: false, //enable after configuring GBB associate
     market: 'United States - English',
     paymentMethod: 'bank draft',
     planDetails: [
@@ -39,7 +39,7 @@ export const legalshieldAssociateData = [
     userType: 'New',
   },
   {
-    disabled: true, //enable after configuring GBB associate
+    disabled: false, //enable after configuring GBB associate
     market: 'United States - English',
     paymentMethod: 'bank draft',
     planDetails: [
@@ -71,14 +71,14 @@ export const legalshieldAssociateData = [
         type: 'LegalShield',
       },
     ],
-    regions: ['Ohio'],
+    regions: ['Texas'],
     tag: '',
     termTotal: '$127.70',
     testCaseName: 'Legal Plan Family, Preferred - All Supplements',
     userType: 'New',
   },
   {
-    disabled: true, //enable after configuring GBB associate
+    disabled: false, //enable after configuring GBB associate
     market: 'United States - English',
     paymentMethod: 'bank draft',
     planDetails: [
@@ -116,7 +116,6 @@ export const legalshieldAssociateData = [
     testCaseName: 'Legal Plan Family, Premium - All Supplements',
     userType: 'New',
   },
-
   {
     disabled: false,
     market: 'United States - English',
@@ -126,59 +125,11 @@ export const legalshieldAssociateData = [
         associateRegistrationType: 'NA',
         cost: '$29.95',
         marketingName: 'Legal Plan',
-        name: 'Legal Plan Family',
-        oneTimeFee: 'NA',
-        shortCode: 'LPUS21',
-        supplements: [],
-        term: 'Monthly',
-        tier: { cost: 'NA', name: 'NA' },
-        type: 'LegalShield',
-      },
-    ],
-    regions: ['Colorado', 'Massachusetts'],
-    tag: '',
-    termTotal: '$29.95',
-    testCaseName: 'Legal Plan Family, New User',
-    userType: 'New',
-  },
-  {
-    disabled: false,
-    market: 'United States - English',
-    paymentMethod: 'bank draft',
-    planDetails: [
-      {
-        associateRegistrationType: 'NA',
-        cost: '$29.95',
-        marketingName: 'Legal Plan',
-        name: 'Legal Plan Family',
-        oneTimeFee: 'NA',
-        shortCode: 'LPUS21',
-        supplements: [],
-        term: 'Monthly',
-        tier: { cost: 'NA', name: 'NA' },
-        type: 'LegalShield',
-      },
-    ],
-    regions: ['Colorado'],
-    tag: '',
-    termTotal: '$29.95',
-    testCaseName: 'Legal Plan Family, Existing User',
-    userType: 'Existing',
-  },
-  {
-    disabled: false,
-    market: 'United States - English',
-    paymentMethod: 'bank draft',
-    planDetails: [
-      {
-        associateRegistrationType: 'NA',
-        cost: '$29.95',
-        marketingName: 'Legal Plan',
-        name: 'Legal Plan Family',
+        name: 'Basic',
         oneTimeFee: 'NA',
         shortCode: 'LPUS21',
         supplements: [
-          { cost: '$29.95', name: 'Home Business Add-On' },
+          { cost: '$14.95', name: 'Home Business Supplement' },
           { cost: '$14.95', name: 'Business Plus Supplement' },
           {
             cost: '$14.95',
@@ -191,18 +142,117 @@ export const legalshieldAssociateData = [
           {
             cost: '$14.95',
             name: 'Ride Share & Delivery Drivers Supplement',
-          },
-        ],
+          },],
         term: 'Monthly',
-        tier: { cost: 'NA', name: 'NA' },
+        tier: { cost: '$0.00', name: 'Basic' },
+        type: 'LegalShield',
+      },
+    ],
+    regions: ['Oregon', 'Massachusetts'],
+    tag: '',
+    termTotal: '$104.70',
+    testCaseName: 'Legal Plan Family - Basic, New User',
+    userType: 'New',
+  },
+  {
+    disabled: false,
+    market: 'United States - English',
+    paymentMethod: 'bank draft',
+    planDetails: [
+      {
+        associateRegistrationType: 'NA',
+        cost: '$29.95',
+        marketingName: 'Legal Plan',
+        name: 'Legal Plan Family - Preferred',
+        oneTimeFee: 'NA',
+        shortCode: 'LPUS21',
+        supplements: [
+          { cost: '$14.95', name: 'Home Business Supplement' },
+          { cost: '$14.95', name: 'Business Plus Supplement' },
+          {
+            cost: '$14.95',
+            name: 'Trial Defense Supplement',
+          },
+          {
+            cost: '$14.95',
+            name: 'Gun Owners Supplement',
+          },
+          {
+            cost: '$14.95',
+            name: 'Ride Share & Delivery Drivers Supplement',
+          },],
+        term: 'Monthly',
+        tier: { cost: '$8.00', name: 'Preferred' },
+        type: 'LegalShield',
+      },
+    ],
+    regions: ['Oregon'],
+    tag: '',
+    termTotal: '$112.70',
+    testCaseName: 'Legal Plan Family - Preferred, New User',
+    userType: 'New',
+  },
+  {
+    disabled: false,
+    market: 'United States - English',
+    paymentMethod: 'bank draft',
+    planDetails: [
+      {
+        associateRegistrationType: 'NA',
+        cost: '$29.95',
+        marketingName: 'Legal Plan',
+        name: 'Legal Plan Family - Premium',
+        oneTimeFee: 'NA',
+        shortCode: 'LPUS21',
+        supplements: [
+          { cost: '$14.95', name: 'Home Business Supplement' },
+          { cost: '$14.95', name: 'Business Plus Supplement' },
+          {
+            cost: '$14.95',
+            name: 'Trial Defense Supplement',
+          },
+          {
+            cost: '$14.95',
+            name: 'Gun Owners Supplement',
+          },
+          {
+            cost: '$14.95',
+            name: 'Ride Share & Delivery Drivers Supplement',
+          },],
+        term: 'Monthly',
+        tier: { cost: '$20.00', name: 'Premium' },
+        type: 'LegalShield',
+      },
+    ],
+    regions: ['Oregon', 'Alaska'],
+    tag: '',
+    termTotal: '$112.70',
+    testCaseName: 'Legal Plan Family - Premium, New User',
+    userType: 'New',
+  },
+  {
+    disabled: false,
+    market: 'United States - English',
+    paymentMethod: 'bank draft',
+    planDetails: [
+      {
+        associateRegistrationType: 'NA',
+        cost: '$29.95',
+        marketingName: 'Legal Plan',
+        name: 'Basic',
+        oneTimeFee: 'NA',
+        shortCode: 'LPUS21',
+        supplements: [],
+        term: 'Monthly',
+        tier: { cost: '$0.00', name: 'Basic' },
         type: 'LegalShield',
       },
     ],
     regions: ['Colorado'],
     tag: '',
-    termTotal: '$119.70',
-    testCaseName: 'Legal Plan Family, All Supplements',
-    userType: 'New',
+    termTotal: '$29.95',
+    testCaseName: 'Legal Plan Family, Existing User',
+    userType: 'Existing',
   },
   {
     disabled: false,
@@ -393,7 +443,7 @@ export const legalshieldAssociateData = [
     regions: ['Colorado'],
     tag: '',
     termTotal: '$49.00',
-    testCaseName: 'Associate',
+    testCaseName: 'Associate Startup - LegalShield Advantage Plus',
     userType: 'New',
   },
   {
@@ -453,7 +503,7 @@ export const legalshieldAssociateData = [
         associateRegistrationType: 'NA',
         cost: '$29.95',
         marketingName: 'Legal Plan',
-        name: 'Legal Plan Family',
+        name: 'Basic',
         oneTimeFee: 'NA',
         shortCode: 'LPUS21',
         supplements: [
@@ -467,10 +517,6 @@ export const legalshieldAssociateData = [
           },
           {
             cost: '$14.95',
-            name: 'Business Plus Supplement',
-          },
-          {
-            cost: '$14.95',
             name: 'Gun Owners Supplement',
           },
           {
@@ -479,7 +525,7 @@ export const legalshieldAssociateData = [
           },
         ],
         term: 'Monthly',
-        tier: { cost: 'NA', name: 'NA' },
+        tier: { cost: '$0.00', name: 'Basic' },
         type: 'LegalShield',
       },
       {

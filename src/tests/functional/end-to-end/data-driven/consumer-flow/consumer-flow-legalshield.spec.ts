@@ -22,7 +22,7 @@ for (const testCase of legalshieldData.filter((testCase) => testCase.disabled ==
         await legalshieldService.navigateToLegalshieldPricingAndCoveragePage(testCase.market, testCase.language);
       });
       await test.step(`Change Region`, async () => {
-        await legalshieldService.setPplsiRegionCookie('pplsi-region', regionInfo.abbrv);
+        await legalshieldService.setCookie('pplsi-region', regionInfo.abbrv);
       });
       await test.step(`Add Products: ${testCase.productDetails}`, async () => {
         if ((await page.locator('#gbb-pricing-section').isVisible()) == true) {

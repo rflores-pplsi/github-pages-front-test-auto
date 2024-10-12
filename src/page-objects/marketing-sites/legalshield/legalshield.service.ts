@@ -65,7 +65,8 @@ export class LegalshieldService {
     this.legalshieldPage = new LegalshieldPage(context, page);
     this.legalshieldCoverageAndPricingPage = new LegalshieldCoverageAndPricingPage(page);
     this.gbbAllPlansPage = new GbbAllPlansPage(page);
-    this.firstGetStartedButton = this.page.locator(`//div[@id="main-content"]//a[@id="lsc-add-to-cart-button"]`).nth(0);
+    this.firstGetStartedButton = this.page.locator(`//div[contains(@class,"pricing-card-button")]//a[@id="lsc-add-to-cart-button"]`).nth(1);
+
     this.locLinksThatNavigateToNewPage = this.page.locator(
       'body .lsux-link[href]:not([target="_blank"]):not([href*="javascript:void(0)"]):not([href*="#"]), body .lsux-button--primary[href]:not([target="_blank"]):not([href*="javascript:void(0)"]):not([href*="#"]),body .lsux-button--secondary[href]:not([target="_blank"]):not([href*="javascript:void(0)"]):not([href*="#"])'
     );
@@ -112,7 +113,6 @@ export class LegalshieldService {
         break;
     }
     await this.navigateToUrl(url);
-    await this.page.reload();
   };
   /**
    *
@@ -127,6 +127,11 @@ export class LegalshieldService {
         case 'Legal Plan':
           await this.addLegalPlan(product.term);
           break;
+        case 'Basic':
+        case 'Advanced':
+        case 'Premium':
+          await this.addGbbPlan(product.name, product.term);
+          break;
         case 'Commercial Drivers Legal Plan':
           await this.addCommercialDriversLegalPlan();
           break;
@@ -136,6 +141,7 @@ export class LegalshieldService {
           await this.addSmallBusinessPlan(product.name);
           break;
         case 'Home Business Supplement':
+        case 'Home Business Add-On':
           await this.addHomeBusinessSupplement();
           break;
         case 'Trial Defense Supplement':
@@ -175,6 +181,14 @@ export class LegalshieldService {
     }).toPass({ intervals: [0.3] });
   };
 
+  addGbbPlan = async (productName: string, term: string): Promise<void> => {
+    await this.page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/personal-plan/coverage-and-pricing/`);
+    await expect(async () => {
+      await this.legalshieldCoverageAndPricingPage.pricingCardComponent.clickAddToCartButton(productName, term);
+      await expect(this.page.locator('#cart-wrapper')).toBeVisible();
+    }).toPass({ intervals: [0.3] });
+  };
+  
   addSmallBusinessPlan = async (productName: string): Promise<void> => {
     await this.page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/plan-summary/`);
     productName = productName.replace(' Legal', '');
@@ -206,6 +220,12 @@ export class LegalshieldService {
     await this.page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/legal-protection-home-business/`);
     await this.firstGetStartedButton.click();
   };
+
+  addHomeBusinessAddOn = async (): Promise<void> => {
+    await this.page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/legal-protection-home-business/`);
+    await this.firstGetStartedButton.click();
+  };
+
   /**
    *
    *
@@ -438,7 +458,7 @@ export class LegalshieldService {
     }
   };
   // set cookies for GBB
-  setPplsiRegionCookie = async (newCookieName: string, newCookieValue: string): Promise<void> => {
+  setCookie = async (newCookieName: string, newCookieValue: string): Promise<void> => {
     // Retrieve all cookies
     const allCookies = await this.context.cookies();
 

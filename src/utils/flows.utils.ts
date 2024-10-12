@@ -20,7 +20,7 @@ export async function selectLegalshieldAssociatesPlansFromPlanDetails(planDetail
   for (const plan of planDetails) {
     if (page.url().includes('buynow')) {
       // Plan select for Buy Now Page
-      await page.locator(`//button[descendant::div[text() = "${plan.marketingName}"]]`).click();
+      await page.locator(`//button[contains(@id,"${plan.marketingName}")]`).click();
     } else {
       // Plan select for Home Page
       await productCardComponent.clickAddToCartButton(plan.marketingName);
@@ -32,7 +32,7 @@ export async function selectLegalshieldAssociatesPlansFromPlanDetails(planDetail
     // Tier Flow
     if (
       plan.marketingName.includes('IDShield') ||
-      plan.marketingName.includes('Commercial Drivers') ||
+      plan.marketingName.includes('CDLP') || 
       plan.marketingName.includes('Small Business') ||
       (plan.marketingName.includes('Legal Plan') && plan.tier.name !== 'NA')
     ) {

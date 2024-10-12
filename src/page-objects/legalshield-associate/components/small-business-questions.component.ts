@@ -9,7 +9,7 @@ export class SmallBusinessQuestionsComponent {
     this.page = page;
     this.locPubliclyTradedOrNonProfitNoCheckbox = this.page.locator('#publiclyTraded_false');
     this.locContinueButton = this.page.locator(
-      '//button[not(@disabled) and contains(@class,"lsux-button lsux-button--primary lsux-button--rectangular") and contains(.,"Continue")]'
+      '//button[not(@disabled) and contains(.,"Continue")]'
     );
   }
 

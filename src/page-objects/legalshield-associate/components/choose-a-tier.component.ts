@@ -13,16 +13,21 @@ export class ChooseATierComponent {
 
   // #region Actions
   selectTier = async (planName: string, tierName: string): Promise<void> => {
-    let tierNameLocator: Locator;
+    // French IDShield plans have a different button structure
     if (planName.includes('IDShield') && !this.page.url().includes('/fr')) {
-      tierNameLocator = this.page.locator(`//button[contains(.,"${planName}") and contains(.,"${tierName}")]`);
+      await this.page.locator(`//button[contains(.,"${planName}") and contains(.,"${tierName}")]`).click();
+      await this.locTierContinueButton.click();
     } else {
-      tierNameLocator = this.page.locator(`//button[@data-state='unchecked' and descendant::div[text() = '${tierName}']]`);
+      // Basic, Preferred, and Premium plans have a different button structure
+      if (tierName.includes('Basic') || tierName.includes('Preferred') || tierName.includes('Premium')) {  
+        await this.page.locator(`//button[@data-testid="tier-select-${tierName}"]`).click();
+      } else {
+        await this.page.locator(`//button[@data-state='unchecked' and descendant::div[text() = '${tierName}']]`).click();
+        await this.locTierContinueButton.click();
+      }
     }
-    await tierNameLocator.click();
-    await this.locTierContinueButton.click();
   };
-  // #endregion Actions
+  // #endregion Actions       
 
   // #region Assertions
   // #endregion Assertions

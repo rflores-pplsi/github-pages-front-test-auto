@@ -17,7 +17,7 @@ export class ProductCardComponent {
   clickAddToCartButton = async (planName: string): Promise<void> => {
     const addToCartButton = this.page
       .locator(
-        `//div[contains(@class,"tw-overflow-hidden")and descendant::div[text()="${planName}"]]//button[contains(@class,"lsux-button--primary") and not(contains(@class, 'md:tw-hidden'))]`
+        `//button[@data-testid="add-offer-button-desktop-${planName}"]`
       )
       .nth(0);
     await addToCartButton.click();

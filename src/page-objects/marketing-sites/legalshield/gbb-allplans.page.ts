@@ -1,4 +1,4 @@
-import { Page } from '@playwright/test';
+import { Page, expect } from '@playwright/test';
 import { ProductDetails } from '../../../types/types';
 import { MarketingSitesCartComponent } from '../marketing-sites-cart-component';
 import { PricingCardComponent } from './pricing-card.component';
@@ -17,7 +17,11 @@ export class GbbAllPlansPage {
   addProductsFromProductDetails = async (productDetails: Array<ProductDetails>): Promise<void> => {
     let counter = productDetails.length;
     for (const product of productDetails) {
+      await expect(async () => {
       await this.pricingCardComponent.clickAddToCartButton(product.name, product.term);
+      await expect(this.marketingSitesCartComponent.locCheckoutButton).toBeVisible();
+    }).toPass({ intervals: [0.3] });
+      
     }
     if (counter == 1) {
       await this.page.waitForTimeout(500);
