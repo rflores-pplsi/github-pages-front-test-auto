@@ -5,10 +5,10 @@ import { AssociateQuestionsComponent } from '../page-objects/legalshield-associa
 import { SmallBusinessQuestionsComponent } from '../page-objects/legalshield-associate/components/small-business-questions.component';
 import { ChooseATierComponent } from '../page-objects/legalshield-associate/components/choose-a-tier.component';
 import { AdditionalSupplementsComponent } from '../page-objects/legalshield-associate/components/additional-supplements.component';
-import { CartComponent } from '../page-objects/legalshield-associate/components/cart.component';
 import { PlanDetails } from '../types/types';
+import { LegalshieldAssociateService } from '../page-objects/legalshield-associate/legalshieldassociate.service';
 
-export async function selectLegalshieldAssociatesPlansFromPlanDetails(planDetails: Array<PlanDetails>, state: string, page: Page): Promise<void> {
+export async function selectLegalshieldAssociatesPlansFromPlanDetails(planDetails: Array<PlanDetails>, region: string, page: Page): Promise<void> {
   // Iterates through the planDetails array and selects the plans and supplements and their corresponding configurations
   const headerComponent = new HeaderComponent(page);
   const productCardComponent = new ProductCardComponent(page);
@@ -16,30 +16,38 @@ export async function selectLegalshieldAssociatesPlansFromPlanDetails(planDetail
   const chooseATierComponent = new ChooseATierComponent(page);
   const additionalSupplementsComponent = new AdditionalSupplementsComponent(page);
   const smallBusinessQuestionsComponent = new SmallBusinessQuestionsComponent(page);
+  const legalshieldAssociateService = new LegalshieldAssociateService(page, page.context());
 
   for (const plan of planDetails) {
+      // Select Plan Flow
     if (page.url().includes('buynow')) {
-      // Plan select for Buy Now Page
-      await page.locator(`//button[contains(@id,"${plan.marketingName}")]`).click();
+      // Plan select for Buy Now Page  
+      await page.locator(`//button[.//div[text()="${plan.marketingName}"]]`).click();
     } else {
-      // Plan select for Home Page
+      // Plan select for LSA Home Page
       await productCardComponent.clickAddToCartButton(plan.marketingName);
     }
-    // Startup Question Flow
+    // Startup Question Flow - Early Order
     if (plan.marketingName.includes('Associate') || plan.marketingName.includes('Associé') || plan.marketingName.includes('Business Builder')) {
       await associateQuestionsComponent.answerStartUpQuestions('individual');
     }
     // Tier Flow
     if (
+      plan.marketingName.includes('LegalShield') ||
       plan.marketingName.includes('IDShield') ||
-      plan.marketingName.includes('CDLP') || 
+      plan.marketingName.includes('Commercial Drivers') || 
       plan.marketingName.includes('Small Business') ||
       (plan.marketingName.includes('Legal Plan') && plan.tier.name !== 'NA')
     ) {
       await chooseATierComponent.selectTier(plan.name, plan.tier.name);
     }
+     // Select Region Flow
+    if (page.url().includes('en-ca')) {
+      await legalshieldAssociateService.buyNowPage.selectRegionComponent.selectProvince(region);
+    }
     // Supplements Flow
     if (
+      plan.marketingName.includes('LegalShield') ||
       (plan.marketingName.includes('Legal Plan') && !plan.marketingName.includes('Commercial Drivers')) ||
       plan.marketingName.includes('Small Business')
     ) {
@@ -50,7 +58,11 @@ export async function selectLegalshieldAssociatesPlansFromPlanDetails(planDetail
       await smallBusinessQuestionsComponent.selectPubliclyTradedOrNonProfitNo();
       await smallBusinessQuestionsComponent.clickContinueButton();
     }
+    // Breaks the loop if the plan is the last plan in the planDetails array
     if (planDetails.indexOf(plan) === planDetails.length - 1) {
+      if (plan.term === 'Annual') {
+        await productCardComponent.selectAnnualBillingPeriod();
+      }
       break;
     } else {
       await headerComponent.clickShoppingCartButton();

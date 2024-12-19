@@ -19,14 +19,14 @@ for (const testCase of legalshieldAssociateBuyNowData.filter((testCase) => testC
       test.slow();
       const regionInfo = RegionsUtils.usStates.filter((region) => region.name == regionUnderTest)[0];
       await test.step(`Navigate to legalshieldassociate.com/BuyNow`, async () => {
-        await legalshieldAssociateService.buyNowPage.navigateToBuyNowPage('cartb1all');
+        await legalshieldAssociateService.buyNowPage.navigateToBuyNowPage('cartb8basic');
       });
-       await test.step(`Force geo-location`, async () => {
+      await test.step(`Force geo-location`, async () => {
         await legalshieldService.setCookie('region', regionInfo.abbrv);
       });
       await test.step(`Select Market`, async () => {
         await legalshieldAssociateService.buyNowPage.headerComponent.selectMarket(testCase.market);
-      });
+      }); 
       await test.step(`Select Plans`, async () => {
         selectLegalshieldAssociatesPlansFromPlanDetails(testCase.planDetails, regionUnderTest, page);
       });
@@ -36,6 +36,9 @@ for (const testCase of legalshieldAssociateBuyNowData.filter((testCase) => testC
       await test.step(`Verify Plans, Supplements and Costs are displayed in Order Summary on Account Page`, async () => {
         await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertExpectedProductsAndCostsDisplayed(testCase.planDetails);
       });
+      await test.step(`Verify Monthly Cost in Order Summary on Account Page`, async () => {
+        await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertMonthlyTotal(testCase.termTotal);
+      }); 
       await test.step(`Choose Account by Email and Login`, async () => {
         if (testCase.userType == 'Existing') {
           await commonCheckoutService.accountPage.enterExistingAccountEmailAndLogin(basicUser.email);
@@ -56,7 +59,7 @@ for (const testCase of legalshieldAssociateBuyNowData.filter((testCase) => testC
       } else {
         await test.step(`Fill all required fields on personal info`, async () => {
           //TODO: remove after finding a way to explicitly wait
-          await page.waitForTimeout(1000);
+          await page.waitForTimeout(3000);
           await commonCheckoutService.personalInfoPage.fillAllFields(
             'Test',
             'Tester',
@@ -79,6 +82,9 @@ for (const testCase of legalshieldAssociateBuyNowData.filter((testCase) => testC
         await test.step(`Verify Plans, Supplements and Costs are displayed in Order Summary on Personal Info Page`, async () => {
           await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertExpectedProductsAndCostsDisplayed(testCase.planDetails);
         });
+        await test.step(`Verify Monthly Cost in Order Summary on Personal Info Page`, async () => {
+          await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertMonthlyTotal(testCase.termTotal);
+        }); 
         await test.step(`Click Save and Continue and wait for Payment page`, async () => {
           await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
         });
@@ -91,8 +97,11 @@ for (const testCase of legalshieldAssociateBuyNowData.filter((testCase) => testC
         await test.step(`Verify Plans, Supplements and Costs are displayed in Order Summary on Payment Page`, async () => {
           await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertExpectedProductsAndCostsDisplayed(testCase.planDetails);
         });
+        await test.step(`Verify Monthly Cost in Order Summary on Payment Page`, async () => {
+          await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertMonthlyTotal(testCase.termTotal);
+        }); 
         await test.step('Click on Bank Draft Toggle', async () => {
-          await commonCheckoutService.paymentPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
+          await commonCheckoutService.paymentPage.clickBankDraftToggle();
         });
         await test.step('Complete Bank Draft Form', async () => {
           await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates('1000123546', '103000648', 'Test');
@@ -148,8 +157,7 @@ for (const testCase of legalshieldAssociateBuyNowData.filter((testCase) => testC
 
 for (const testCase of legalshieldAssociateBuyNowCanadaData.filter((testCase) => testCase.disabled == false)) {
   for (const regionUnderTest of testCase.regions) {
-    // TODO: Remove skip after updating translation strategy
-    test.fixme(`Legalshield Associates (buynow) - Consumer Flow (${testCase.testCaseName}, ${regionUnderTest}) @legalshieldassociates-buynow-consumerflow ${testCase.tag}`, async ({
+    test.skip(`Legalshield Associates (buynow) - Consumer Flow (${testCase.testCaseName}, ${regionUnderTest}) @legalshieldassociates-buynow-consumerflow ${testCase.tag}`, async ({
       page,
       associateOfficeService,
       commonCheckoutService,
@@ -161,13 +169,13 @@ for (const testCase of legalshieldAssociateBuyNowCanadaData.filter((testCase) =>
       test.setTimeout(200000);
       const regionInfo = RegionsUtils.caProvinces.filter((region) => region.name == regionUnderTest)[0];
       await test.step(`Navigate to legalshieldassociate.com/BuyNow`, async () => {
-        await legalshieldAssociateService.buyNowPage.navigateToBuyNowPage('apptestuser');
-      });
-       await test.step(`Change Region`, async () => {
-        await legalshieldService.setCookie('region', regionInfo.abbrv);
-      });
+        await legalshieldAssociateService.buyNowPage.navigateToBuyNowPage('cartb1all');
+      });      
       await test.step(`Select Market`, async () => {
         await legalshieldAssociateService.buyNowPage.headerComponent.selectMarket(testCase.market);
+      });
+      await test.step(`Force geo-location`, async () => {
+        await legalshieldService.setCookie('region', regionInfo.abbrv);
       });
       await test.step(`Select Plans`, async () => {
         await selectLegalshieldAssociatesPlansFromPlanDetails(testCase.planDetails, regionUnderTest, page);
@@ -178,6 +186,9 @@ for (const testCase of legalshieldAssociateBuyNowCanadaData.filter((testCase) =>
       await test.step(`Verify Plans, Supplements and Costs are displayed in Order Summary on Account Page`, async () => {
         await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertExpectedProductsAndCostsDisplayed(testCase.planDetails);
       });
+      await test.step(`Verify Monthly Cost in Order Summary on Account Page`, async () => {
+        await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertMonthlyTotal(testCase.termTotal);
+      });      
       await test.step(`Choose Account by Email and Login`, async () => {
         if (testCase.userType == 'Existing') {
           await commonCheckoutService.accountPage.enterExistingAccountEmailAndLogin(basicUser.email);
@@ -198,7 +209,7 @@ for (const testCase of legalshieldAssociateBuyNowCanadaData.filter((testCase) =>
       } else {
         await test.step(`Fill all required fields on personal info`, async () => {
           //TODO: remove after finding a way to explicitly wait
-          await page.waitForTimeout(1000);
+          await page.waitForTimeout(3000);
           await commonCheckoutService.personalInfoPage.fillAllFields(
             'Test',
             'Tester',
@@ -218,20 +229,23 @@ for (const testCase of legalshieldAssociateBuyNowCanadaData.filter((testCase) =>
             '945433337'
           );
         });
-        await test.step(`Verify Plans displayed in Order Summary on Personal Info Page`, async () => {
+        await test.step(`Verify Plans, Supplements and Costs are displayed in Order Summary on Personal Info Page`, async () => {
           await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertExpectedProductsAndCostsDisplayed(testCase.planDetails);
         });
+        await test.step(`Verify Monthly Cost in Order Summary on Profile Page`, async () => {
+          await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertMonthlyTotal(testCase.termTotal);
+        }); 
         await test.step(`Click Save and Continue and wait for Payment page`, async () => {
           await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
-        });
-        await test.step(`Verify Plans displayed in Order Summary on on Payment Page`, async () => {
-          await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertExpectedProductsAndCostsDisplayed(testCase.planDetails);
         });
         await test.step(`Verify Plans, Supplements and Costs are displayed in Order Summary on Payment Page`, async () => {
           await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertExpectedProductsAndCostsDisplayed(testCase.planDetails);
         });
+        await test.step(`Verify Monthly Cost in Order Summary on Payment Page`, async () => {
+          await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertMonthlyTotal(testCase.termTotal);
+        });
         await test.step('Click on Bank Draft Toggle', async () => {
-          await commonCheckoutService.paymentPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
+          await commonCheckoutService.paymentPage.clickBankDraftToggle();
         });
         await test.step('Complete Bank Draft Form', async () => {
           await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormCanada('0000011', '11242', '260', 'Tester');

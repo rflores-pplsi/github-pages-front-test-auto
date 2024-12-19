@@ -13,6 +13,7 @@ export type LocalStorageSelectedItem = {
 
 export type ProductDetails = {
   cost: string;
+  marketingName: string;
   name: string;
   shortCode: string;
   term: string;

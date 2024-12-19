@@ -22,7 +22,7 @@ export class IdshieldService {
   addProductsFromProductDetails = async (planDetails: Array<PlanDetails>): Promise<void> => {
     let counter = planDetails.length;
     for (const plan of planDetails) {
-      await this.clickLocLearnMoreButton(plan.marketingName);
+      await this.clickLearnMoreButton(plan.marketingName);
       await this.selectTier(plan.tier.name);
     }
     if (counter == 1) {
@@ -34,9 +34,9 @@ export class IdshieldService {
     counter--;
   };
 
-  clickLocLearnMoreButton = async (planName: string): Promise<void> => {
+  clickLearnMoreButton = async (planName: string): Promise<void> => {
     const learnMoreButton = this.page.locator(
-      `//div[contains(concat(' ', normalize-space(@class), ' '), ' price-card ') and contains(.,"${planName}")]//a`
+      `//div[contains(@class,"slot-pricing-card") and .//div[text()="${planName}"]]//a`
     );
     await learnMoreButton.click();
   };

@@ -5,11 +5,13 @@ import { LegalshieldService } from '../page-objects/marketing-sites/legalshield/
 import { LegalshieldAssociateService } from '../page-objects/legalshield-associate/legalshieldassociate.service';
 import { PplsiService } from '../page-objects/pplsi/pplsi-service';
 import { CommonCheckoutService, CommonLoginService } from '@legalshield/frontend-automation-commons';
+import { CheckoutService } from '../page-objects/checkout/checkout-service';
 import { ShieldBenefitsService } from '../page-objects/shieldbenefits/shieldbenefits-service';
 import { NewCheckoutService } from '../page-objects/new-checkout/new-checkout-service';
 import { GlobalFooterComponent } from '../page-objects/global-components/global-footer.component';
 import { GlobalHeaderComponent } from '../page-objects/global-components/global-header.component';
 import { AssociateOfficeService } from '../page-objects/associate-office/associate-office.service';
+import { AccountService } from '../page-objects/account/account.service';
 
 export type MyFirstFixture = {
   idshieldService: IdshieldService;
@@ -19,18 +21,20 @@ export type MyFirstFixture = {
   pplsiService: PplsiService;
   shieldBenefitsService: ShieldBenefitsService;
   commonCheckoutService: CommonCheckoutService;
+  checkoutService: CheckoutService;
   commonHeaderComponent: GlobalHeaderComponent;
   commonFooterComponent: GlobalFooterComponent;
   commonLoginService: CommonLoginService;
   newCheckoutService: NewCheckoutService;
   associateOfficeService: AssociateOfficeService;
+  accountService: AccountService;
 };
 
 export const test = base.extend<MyFirstFixture>({
   //addends ?qatester=automation query param to all goto urls, used for analytics filtering
   page: async ({ page }, use) => {
     const goto = page.goto.bind(page);
-    function modifiedGoto(
+    async function modifiedGoto(
       url: string,
       options:
         | {
@@ -45,7 +49,7 @@ export const test = base.extend<MyFirstFixture>({
       if (!url.includes('pplsi.com')) {
         url += '?qatester=automation';
       } 
-      return goto(url, options);
+      return await goto(url, options);
     }
     page.goto = modifiedGoto;
     await use(page);
@@ -57,6 +61,9 @@ export const test = base.extend<MyFirstFixture>({
   },
   commonCheckoutService: async ({ page, context }, use) => {
     await use(new CommonCheckoutService(context, page));
+  },
+  checkoutService: async ({ page }, use) => {
+    await use(new CheckoutService(page));
   },
   commonFooterComponent: async ({ page, context }, use) => {
     await use(new GlobalFooterComponent(context, page));
@@ -87,6 +94,9 @@ export const test = base.extend<MyFirstFixture>({
   },
   shieldBenefitsService: async ({ page }, use) => {
     await use(new ShieldBenefitsService(page));
+  },
+  accountService: async ({ page }, use) => {
+    await use(new AccountService(page));
   },
 });
 

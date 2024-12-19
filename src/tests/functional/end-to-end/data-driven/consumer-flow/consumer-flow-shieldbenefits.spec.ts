@@ -79,7 +79,7 @@ for (const testCase of selfPayData.filter((testCase) => testCase.disabled == fal
 
         });
         await test.step(`Click Bank Draft Tab`, async () => {
-          await commonCheckoutService.paymentPage.creditCardComponent.locCreditCardBankDraftToggle.click();
+          await commonCheckoutService.paymentPage.clickBankDraftToggle();
         });
         await test.step(`Fill Bank Draft Form and Submit`, async () => {
           await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates('0000000', '000000000', 'Tester');

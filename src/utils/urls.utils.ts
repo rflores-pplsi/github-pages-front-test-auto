@@ -43,9 +43,9 @@ export default class UrlsUtils {
     baseUrlNoSubdomain: `${envUrlString}shieldassociate.com`,
   };
   static readonly idShieldService = {
-    baseUrl: `https://www.${envUrlString}idshield`,
+    baseUrl: `https://www2.${envUrlString}idshield`,
     baseUrlNoSubdomain: `${envUrlString}idshield.com`,
-    baseUrlNoTopLevelDomain: `https://www.${envUrlString}idshield`,
+    baseUrlNoTopLevelDomain: `https://www2.${envUrlString}idshield`,
   };
 
   static readonly legalshieldUrls = {

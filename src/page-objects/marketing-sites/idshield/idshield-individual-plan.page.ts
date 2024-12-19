@@ -11,6 +11,7 @@ export class IdshieldIndividualPlanPage {
   readonly marketingSiteFooterComponent: MarketingSiteFooterComponent;
   readonly locMainContentDiv: Locator;
   readonly locStartMonthlyPlanButton: Locator;
+  readonly locDismissSalesDialogBox: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -20,6 +21,7 @@ export class IdshieldIndividualPlanPage {
     this.marketingSiteFooterComponent = new MarketingSiteFooterComponent(page);
     this.locMainContentDiv = this.page.locator('//div[@id="sticky-offset-menu"]//a[contains(.,"Shop Legal Plans")]');
     this.locStartMonthlyPlanButton = this.page.locator('//a[contains(.,"Start monthly plan")]');
+    this.locDismissSalesDialogBox = this.page.locator('//div[contains(@class,"ub-emb-iframe-wrapper ub-emb-visible")]//button[contains(@class,"ub-emb-close")]');
   }
 
   /**
@@ -30,12 +32,17 @@ export class IdshieldIndividualPlanPage {
    */
   clickSignUpButton = async (term: string): Promise<void> => {
     let condition = false;
-    const buttonLocator = this.page.locator(`//div[contains(@class,"lsc-dynamic-single-plan") and contains(.,"${term}")]//a`);
+    const buttonLocator = this.page.locator(`//div[contains(@class,"pricing18_content") and contains(.,"${term}")]//a`);
     while (condition == false) {
       await buttonLocator.click();
       condition = await this.marketingSiteCartComponent.locCartContainerDiv.isVisible();
     }
   };
+
+  clickDismissSalesDialogBoxButton = async (): Promise<void> => {
+    await this.locDismissSalesDialogBox.click();
+  };
+
 
   /**
    *
@@ -57,7 +64,5 @@ export class IdshieldIndividualPlanPage {
         }
     }
     await this.page.goto(`${this.baseUrl}`);
-    //TODO: REMOVE THIS IMPLICIT WAIT
-    // await this.page.waitForTimeout(500);
   };
 }

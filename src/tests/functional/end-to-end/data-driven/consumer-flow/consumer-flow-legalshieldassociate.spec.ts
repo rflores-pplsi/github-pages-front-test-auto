@@ -36,6 +36,9 @@ for (const testCase of legalshieldAssociateData.filter((testCase) => testCase.di
       await test.step(`Verify Plans, Supplements and Costs are displayed in Order Summary on Account Page`, async () => {
         await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertExpectedProductsAndCostsDisplayed(testCase.planDetails);
       });
+      await test.step(`Verify Monthly Cost in Order Summary on Account Page`, async () => {
+          await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertTermTotal(testCase.planDetails[0].term, testCase.termTotal, testCase.planDetails[0].oneTimeFee);
+      });
       await test.step(`Choose Account by Email and Login`, async () => {
         if (testCase.userType == 'Existing') {
           await commonCheckoutService.accountPage.enterExistingAccountEmailAndLogin(basicUser.email);
@@ -56,7 +59,7 @@ for (const testCase of legalshieldAssociateData.filter((testCase) => testCase.di
       } else {
         await test.step(`Fill all required fields on personal info ${regionInfo.name}`, async () => {
           //TODO: remove after finding a way to explicitly wait
-          await page.waitForTimeout(1000);
+          await page.waitForTimeout(5000);
           await commonCheckoutService.personalInfoPage.fillAllFields(
             'Test',
             'Tester',
@@ -79,6 +82,9 @@ for (const testCase of legalshieldAssociateData.filter((testCase) => testCase.di
         await test.step(`Verify Plans, Supplements and Costs are displayed in Order Summary on Personal Info Page`, async () => {
           await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertExpectedProductsAndCostsDisplayed(testCase.planDetails);
         });
+        await test.step(`Verify Monthly Cost in Order Summary on Personal Info Page`, async () => {
+          await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertTermTotal(testCase.planDetails[0].term, testCase.termTotal, testCase.planDetails[0].oneTimeFee);
+        });
         await test.step(`Click Save and Continue and wait for Payment page`, async () => {
           await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
         });
@@ -91,8 +97,11 @@ for (const testCase of legalshieldAssociateData.filter((testCase) => testCase.di
         await test.step(`Verify Plans, Supplements and Costs are displayed in Order Summary on Payment Page`, async () => {
           await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertExpectedProductsAndCostsDisplayed(testCase.planDetails);
         });
+        await test.step(`Verify Monthly Cost in Order Summary on Payment Page`, async () => {
+          await commonCheckoutService.personalInfoPage.orderSummaryComponent.assertTermTotal(testCase.planDetails[0].term, testCase.termTotal, testCase.planDetails[0].oneTimeFee);
+        });
         await test.step('Click on Bank Draft Toggle', async () => {
-          await commonCheckoutService.paymentPage.bankDraftComponent.locCreditCardBankDraftToggle.click();
+          await commonCheckoutService.paymentPage.clickBankDraftToggle();
         });
         await test.step('Complete Bank Draft Form', async () => {
           await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates('1000123546', '103000648', 'Test');

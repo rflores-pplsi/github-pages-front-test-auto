@@ -7,7 +7,7 @@ export class MarketingSiteHeaderComponent {
 
   constructor(page: Page) {
     this.page = page;
-    this.locShoppingCartIcon = this.page.locator('//div[@id="lsc-header-cart-icon-desktop"]');
+    this.locShoppingCartIcon = this.page.locator('//div[@data-minicart-element="cart-icon"]');
     this.locShoppingCartItemAddedNotification = this.page.locator('//div[contains(@class,"lsdsFixedHeader")]//div[contains(@class,"notification")]');
   }
 

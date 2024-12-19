@@ -19,7 +19,7 @@ export class IdshieldPage {
     this.subdirectory = '';
     this.marketingSiteCartComponent = new MarketingSitesCartComponent(page);
     this.marketingSiteFooterComponent = new MarketingSiteFooterComponent(page);
-    this.locRegionSelect = this.page.locator('//div[contains(@class,"general-popup__body")]//select');
+    this.locRegionSelect = this.page.locator('//div[@id="lsc_footer_region_selector_default"]//select[@aria-label="Region selector"]');
     this.locUpdateRegionButton = this.page.locator('//div[contains(@class,"general-popup__body")]//button');
     this.locSeePlanHeaderNavigationOption = this.page.locator(
       '//div[@id="top-nav-section"]//div[contains(@class,"et_pb_menu__menu")]//li[contains(@class,"shop-plans")]//a'
@@ -46,8 +46,7 @@ export class IdshieldPage {
   selectRegion = async (region: string, regionAbbreviation: string): Promise<void> => {
     //TODO: refactor to only need region parameter AND to be usable for other languages/domains
     await this.locRegionSelect.selectOption(regionAbbreviation);
-    await this.page.waitForSelector(`//div[contains(@class,"general-popup__body")]//select[contains(.,"${region}")]`);
-    await this.locUpdateRegionButton.click();
+    await this.page.waitForLoadState('load');
   };
 
   /**

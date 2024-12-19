@@ -18,7 +18,7 @@ export const idshieldData = [
         type: 'LegalShield',
       },
     ],
-    regions: ['Colorado'],
+    regions: ['Texas'],
     tags: '@smoke',
     termTotal: '$14.95',
     testCaseName: 'IDShield Individual, 1B',

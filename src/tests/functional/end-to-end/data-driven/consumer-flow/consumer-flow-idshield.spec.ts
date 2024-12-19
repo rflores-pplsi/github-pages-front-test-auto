@@ -6,9 +6,10 @@ import { test } from '../../../../../fixtures/frontend-ui.fixture';
 
 for (const testCase of idshieldData.filter((testCase) => testCase.disabled == false)) {
   for (const regionUnderTest of testCase.regions) {
-    test (`IDShield (${testCase.testCaseName}, ${regionUnderTest}) @idshield-consumerflow ${testCase.tags}`, async ({
+    test(`IDShield (${testCase.testCaseName}, ${regionUnderTest}) @idshield-consumerflow ${testCase.tags}`, async ({
       page,
       idshieldService,
+      legalshieldService,
       commonCheckoutService,
       commonLoginService,
     }) => {
@@ -18,8 +19,8 @@ for (const testCase of idshieldData.filter((testCase) => testCase.disabled == fa
       await test.step(`Navigate to idshield for ${testCase.market}-${testCase.language}`, async () => {
         await idshieldService.idshieldIndividualPlanPage.navigateToIdshieldPage(testCase.market, testCase.language);
       });
-      await test.step(`Update region`, async () => {
-        await idshieldService.idshieldPage.selectRegion(regionInfo.name, regionInfo.abbrv);
+      await test.step(`Force geo-location`, async () => {
+        await legalshieldService.setCookie('region', regionInfo.abbrv);
       });
       await test.step(`Add Products: ${testCase.planDetails}`, async () => {
         await idshieldService.addProductsFromProductDetails(testCase.planDetails);
@@ -81,7 +82,7 @@ for (const testCase of idshieldData.filter((testCase) => testCase.disabled == fa
           // expect(await commonCheckoutService.paymentPage.orderSummaryComponent.locTotalContainer.innerText()).toContain(testCase.termTotal);
         });
         await test.step(`Click Bank Draft Tab`, async () => {
-          await commonCheckoutService.paymentPage.creditCardComponent.locCreditCardBankDraftToggle.click();
+          await commonCheckoutService.paymentPage.clickBankDraftToggle();
         });
         await test.step(`Fill Bank Draft Form and Submit`, async () => {
           await page.waitForTimeout(500);

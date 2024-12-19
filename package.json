@@ -10,8 +10,7 @@
     "postinstall": "npx playwright install",
     "check-types": "npx tsc --noEmit",
     "lint": "eslint . --ext .ts",
-    "lint:fix": "eslint --fix .",
-    "testa11y": "USE_PROD=true npx playwright test a11y.spec.ts --headed"
+    "lint:fix": "eslint --fix ."
   },
   "repository": {
     "type": "git",
@@ -26,7 +25,7 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.8.2",
     "@fastify/pre-commit": "^2.0.2",
-    "@legalshield/frontend-automation-commons": "^0.6.33",
+    "@legalshield/frontend-automation-commons": "^0.6.34",
     "@playwright/test": "^1.40.1",
     "@types/node": "^20.6.2",
     "@typescript-eslint/eslint-plugin": "^5.62.0",

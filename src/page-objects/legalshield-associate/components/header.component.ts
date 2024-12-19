@@ -19,6 +19,10 @@ export class HeaderComponent {
     await this.locMarketSelectDropdown.click();
     const marketSelectionLocator = this.page.getByRole('menuitem').getByText(market);
     await marketSelectionLocator.click();
+    //TODO: update wait to use market parameter before submitting PR!
+    if (market.includes('Canada') ) {
+      await this.page.waitForURL(new RegExp('(ca|fr)/'));
+    };
     await this.page.waitForLoadState('load');
   };
 

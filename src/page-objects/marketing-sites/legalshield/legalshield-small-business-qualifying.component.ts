@@ -11,7 +11,7 @@ export class SmallBusinessQualifyingComponent {
     this.page = page;
     this.locPubliclyTradedNoButton = this.page.locator('#traded-company-no');
     this.locNonProfitBusinessNoButton = this.page.locator('#non-profit-no');
-    this.locAddToCartButton = this.page.locator('#add-to-cart-btn');
+    this.locAddToCartButton = this.page.locator('//a[@aria-label="Add to cart."]');
   }
 
   /**
@@ -22,6 +22,10 @@ export class SmallBusinessQualifyingComponent {
   completeQualifyingQuestionnaireWithNos = async (): Promise<void> => {
     await this.locPubliclyTradedNoButton.click();
     await this.locNonProfitBusinessNoButton.click();
-    await this.locAddToCartButton.click();
+    await this.clickAddToCartButton();
   };
+
+  clickAddToCartButton = async (): Promise<void> => {
+    await this.locAddToCartButton.click();
+  }; 
 }

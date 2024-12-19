@@ -6,6 +6,7 @@ import { ProductCardComponent } from './components/product-card.component';
 import { AssociateQuestionsComponent } from './components/associate-questions.component';
 import { SmallBusinessQuestionsComponent } from './components/small-business-questions.component';
 import { CartComponent } from './components/cart.component';
+import { SelectRegionComponent } from './components/select-region.component'; 
 import UrlsUtils from '../../utils/urls.utils';
 
 export class BuyNowPage {
@@ -16,6 +17,7 @@ export class BuyNowPage {
   readonly associateQuestionsComponent: AssociateQuestionsComponent;
   readonly productCardComponent: ProductCardComponent;
   readonly cartComponent: CartComponent;
+  readonly selectRegionComponent: SelectRegionComponent;
   private locEstimatedTotal: Locator;
   private locContinueButton: Locator;
   private locTierContinueButton: Locator;
@@ -31,6 +33,7 @@ export class BuyNowPage {
     this.associateQuestionsComponent = new AssociateQuestionsComponent(page);
     this.productCardComponent = new ProductCardComponent(page);
     this.cartComponent = new CartComponent(page);
+    this.selectRegionComponent = new SelectRegionComponent(page);
     this.locEstimatedTotal = this.page.locator('//div[contains(@class,"price-container")]/p[contains(.,"$")]');
     this.locContinueButton = this.page.locator('//button[@data-pplsi-event-id="buy-now-button"]');
     this.locTierContinueButton = this.page.locator('//button[contains(.,"Continue")]').nth(0);
@@ -44,15 +47,7 @@ export class BuyNowPage {
     await this.page.goto(`https://${associate}.${UrlsUtils.legalshieldAssociateService.baseUrlNoSubdomain}/BuyNow`);
   };
   // #endregion Navigation
-
-  // #region Actions
-  selectRegion = async (region: string): Promise<void> => {
-    await this.locSelectYourStateDropdown.click();
-    const optionLocator = this.page.locator(`//span[contains(.,"${region}")]`);
-    await optionLocator.click();
-  };
-  // #endregion Actions
-
+  
   // #region Assertions
   assertEstimatedTotal = async (planDetails: Array<PlanDetails>): Promise<void> => {
     let expectedEstimatedTotal = 0.0;
