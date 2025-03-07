@@ -69,6 +69,7 @@ export class PaymentsPage {
   }
   async clickPurchaseButton(): Promise<void> {
     await this.locPurchaseButton.click();
+    await this.page.waitForResponse(response => response.url().includes('purchases.api') && response.status() === 200);
   }
   // #endregion Actions
 

@@ -2,10 +2,11 @@ export const legalshieldData = [
   {
     disabled: false,
     testCaseName: 'Legalshield - Basic, Monthly, Existing User',
-    tags: '@smoke',
+    tags: '@smoke @Matt',
+    prodPurchase: true,
     language: 'en',
     market: 'US',
-    regions: ['California'],
+    regions: ['Colorado'],
     term: 'Monthly',
     productDetails: [{ cost: '$29.95', marketingName: 'Basic', name: 'BASIC LEGAL PLAN', shortCode: 'LP24D1', term: 'Monthly', type: 'LegalShield' }],
     userType: 'Existing',
@@ -17,6 +18,7 @@ export const legalshieldData = [
     disabled: true,
     testCaseName: 'Legalshield - Basic, Annual, Existing User',
     tags: '',
+    prodPurchase: false,
     language: 'en',
     market: 'US',
     regions: ['Massachusetts'],
@@ -31,6 +33,7 @@ export const legalshieldData = [
     disabled: true,
     testCaseName: 'Legalshield - Advanced, Annual, Existing User',
     tags: '',
+    prodPurchase: false,
     language: 'en',
     market: 'US',
     regions: ['Michigan'],
@@ -45,6 +48,7 @@ export const legalshieldData = [
     disabled: true,
     testCaseName: 'Legalshield - Premium, Annual, Existing User',
     tags: '',
+    prodPurchase: false,
     language: 'en',
     market: 'US',
     regions: ['New Jersey'],
@@ -55,9 +59,11 @@ export const legalshieldData = [
     totalDueToday: '$647.46',
   },
   {
-    disabled: false,
+    //enable after building out one-page from exp 600
+    disabled: true,
     testCaseName: 'Legalshield - Basic, New User',
     tags: '',
+    prodPurchase: false,
     language: 'en',
     market: 'US',
     regions: ['New York'],
@@ -70,7 +76,8 @@ export const legalshieldData = [
   {
     disabled: false,
     testCaseName: 'Legalshield - Advanced, Existing User',
-    tags: '',
+    tags: '@Matt',
+    prodPurchase: false,
     language: 'en',
     market: 'US',
     regions: ['Florida'],
@@ -84,6 +91,7 @@ export const legalshieldData = [
     disabled: false,
     testCaseName: 'Legalshield - Premium, Existing User',
     tags: '',
+    prodPurchase: false,
     language: 'en',
     market: 'US',
     regions: ['Illinois'],
@@ -97,6 +105,7 @@ export const legalshieldData = [
     disabled: false,
     testCaseName: 'Legal Plan - Basic, All Supplements',
     tags: ' ',
+    prodPurchase: false,
     language: 'en',
     market: 'US',
     regions: ['Ohio'],
@@ -116,6 +125,7 @@ export const legalshieldData = [
     disabled: false,
     testCaseName: 'Small Business Legal Essentials, Existing User',
     tags: '',
+    prodPurchase: false,
     language: 'en',
     market: 'US',
     regions: ['Florida'],
@@ -130,6 +140,7 @@ export const legalshieldData = [
     disabled: true,
     testCaseName: 'Small Business Legal Essentials + Legal Plan, Existing User',
     tags: '',
+    prodPurchase: false,
     language: 'en',
     market: 'US',
     regions: ['Colorado'],
@@ -147,6 +158,7 @@ export const legalshieldData = [
     disabled: true,
     testCaseName: 'Small Business Legal Essentials + Legal Plan + All Supplements, Existing User',
     tags: '',
+    prodPurchase: false,
     language: 'en',
     market: 'US',
     regions: ['Texas'],
@@ -165,6 +177,7 @@ export const legalshieldData = [
   },
   {
     disabled: false,
+    prodPurchase: false,
     language: 'en',
     market: 'US',
     productDetails: [{ cost: '$99.00', marketingName: 'Plus Plan', name: 'Small Business Legal Plus', shortCode: 'PLUS', term: 'Monthly', type: 'LegalShield' }],
@@ -179,6 +192,7 @@ export const legalshieldData = [
   {
     //enable after page-switching cart-refresh bug fixed
     disabled: true,
+    prodPurchase: false,
     language: 'en',
     market: 'US',
     productDetails: [
@@ -196,6 +210,7 @@ export const legalshieldData = [
   {
     //enable after page-switching cart-refresh bug fixed
     disabled: true,
+    prodPurchase: false,
     language: 'en',
     market: 'US',
     productDetails: [
@@ -217,6 +232,7 @@ export const legalshieldData = [
   },
   {
     disabled: false,
+    prodPurchase: false,
     language: 'en',
     market: 'US',
     productDetails: [{ cost: '$169.00', marketingName: 'Pro Plan', name: 'Small Business Legal Pro', shortCode: 'PRO', term: 'Monthly', type: 'LegalShield' }],
@@ -230,6 +246,7 @@ export const legalshieldData = [
   {
     //enable after page-switching cart-refresh bug fixed
     disabled: true,
+    prodPurchase: false,
     language: 'en',
     market: 'US',
     productDetails: [      
@@ -247,6 +264,7 @@ export const legalshieldData = [
   {
     //enable after page-switching cart-refresh bug fixed
     disabled: true,
+    prodPurchase: false,
     language: 'en',
     market: 'US',
     productDetails: [

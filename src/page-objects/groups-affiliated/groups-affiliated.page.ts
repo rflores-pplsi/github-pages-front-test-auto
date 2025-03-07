@@ -13,7 +13,7 @@ export class GroupsAffiliatedPage {
     this.locLanguageAndMarketDropdown = this.page.locator('#select_18');
     this.locAgentIdInput = this.page.locator('//input[@name="agentId"]');
     this.locContinueToEnrollmentButton = this.page.locator(
-      '//div[contains(@class,"lsux-modal__button-bar")]//button[contains(@class,"lsux-button--primary")]'
+      '//button[@type="submit"]'
     );
     this.locEnrollNowButton = this.page.locator('//button[contains(@class,"lsux-button--primary")]');
   }

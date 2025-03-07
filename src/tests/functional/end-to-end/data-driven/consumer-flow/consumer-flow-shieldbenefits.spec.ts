@@ -8,7 +8,7 @@ import { test } from '../../../../../fixtures/frontend-ui.fixture';
 // Self-Pay Configurations - Single Plan
 for (const testCase of selfPayData.filter((testCase) => testCase.disabled == false)) {
   for (const regionUnderTest of testCase.regions) {
-    test(`ShieldBenefits - Consumer Flow (${testCase.testCaseName}, ${regionUnderTest}) @shieldbenefits-consumerflow ${testCase.tag}`, async ({
+    test(`ShieldBenefits - Consumer Flow (${testCase.testCaseName}, ${regionUnderTest}) @shieldbenefits-consumerflow @e2e ${testCase.tag}`, async ({
       page,
       commonCheckoutService,
       commonLoginService,
@@ -39,10 +39,10 @@ for (const testCase of selfPayData.filter((testCase) => testCase.disabled == fal
           await commonCheckoutService.accountPage.enterRandomEmailAndNewPasswordAndLogin();
         }
       });
-      if (process.env.USE_PROD == 'true') {
+      if (process.env.USE_PROD == 'true' && testCase.prodPurchase == false) {
         console.log('* Production: Stop test at personal info page *');
-        await test.step(`Assert Checkout Service Reached`, async () => {
-          await commonCheckoutService.personalInfoPage.stepperComponent.locStepCircle1Current.isVisible();
+        await test.step(`Assert checkoutV3 rendered`, async () => {
+          await expect(commonCheckoutService.personalInfoPage.locSaveAndContinueButton).toBeVisible();     
         });
       } else {
         await test.step(`Fill all required fields on personal info ${regionInfo.name}`, async () => {
@@ -75,8 +75,7 @@ for (const testCase of selfPayData.filter((testCase) => testCase.disabled == fal
           await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
         });
         await test.step(`Verify Order Total in Order Summary`, async () => {
-                    // bring this data sheet up to standard with other datasheets in separate ticket: QAOPS-760
-
+          // bring this data sheet up to standard with other datasheets in separate ticket: QAOPS-760
         });
         await test.step(`Click Bank Draft Tab`, async () => {
           await commonCheckoutService.paymentPage.clickBankDraftToggle();

@@ -20,6 +20,8 @@ export class LegalshieldCoverageAndPricingPage {
   readonly locUpdateRegionButton: Locator;
   readonly locCanadaGetStartedButton: Locator;
   readonly locEssGetStartedButton: Locator;
+  private locMonthlyToggle: Locator;
+  private locAnnuallyToggle: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -36,8 +38,19 @@ export class LegalshieldCoverageAndPricingPage {
     this.locUpdateRegionButton = this.page.locator('//button[contains(.,"Update region")]');
     this.locCanadaGetStartedButton = this.page.locator('//div[@id="lsc-add-to-cart-button"]//span[contains(.,"Get")]');
     this.locEssGetStartedButton = this.page.locator('//th[contains(.,"Essentials")]//a');
+    this.locMonthlyToggle = this.page.locator('//div[@class="pricing-new"]//a[@data-w-tab="Tab 1"]');
+    this.locAnnuallyToggle = this.page.locator('//div[@class="pricing-new"]//a[@data-w-tab="Tab 2"]');
   }
 
+
+  clickMonthlyToggle = async (): Promise<void> => { 
+    await this.locMonthlyToggle.click(); 
+  };
+
+  clickAnnuallyToggle = async (): Promise<void> => { 
+    await this.locAnnuallyToggle.click(); 
+  };  
+  
   /**
    *
    *

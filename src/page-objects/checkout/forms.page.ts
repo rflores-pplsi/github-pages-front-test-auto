@@ -38,8 +38,6 @@ export class FormsPage {
   private readonly locInformationIconTooltip: Locator;
   private readonly locPhoneTypeSelectOption: (phoneType: string) => Locator;
   private readonly locDownArrowOnPhoneType: Locator;
-  // temporary fix for error message, TODO: dev/qa can add unique locators for each error message
-  private readonly locInvalidErrorMessage: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -75,8 +73,6 @@ export class FormsPage {
     this.locInformationIconTooltip = this.page.locator('.info-tooltip-text');
     this.locPhoneTypeSelectOption = (phoneType: string) => this.page.getByLabel( phoneType );  
     this.locDownArrowOnPhoneType = this.page.locator('.lsux-select__trigger__icon');
-    //Validation Error Messages
-    this.locInvalidErrorMessage = this.page.locator('.lsux-form-field-container__hint_text--invalid');
   }
 
   // #region Navigation
@@ -199,27 +195,40 @@ export class FormsPage {
     await this.locPhoneNumberInput.fill(testDataAccount?.phoneNumber || '');
   }
 
-  async fillSecurityInfoForm(customSecurityInfoData?: ISecurityInfoData): Promise<void> {
+  changeAddress = async (
+    homeAddress: string,
+    city: string,
+    postalCode: string,
+  ): Promise<void> => {
+    await this.enterHomeAddress(homeAddress);
+    await this.enterCityName(city);
+    await this.enterZipCode(postalCode);
+  };
+
+  fillSecurityInfoForm = async (customSecurityInfoData?: ISecurityInfoData): Promise<void> => {
     // get profile data to fill out form
     await this.focusAndTypeDateOfBirth(customSecurityInfoData?.dob || '');
     await this.locSSNInput.fill(customSecurityInfoData?.ssn || '');
-  }
+  };
 
-  async fillBusinessInfoForm(customBusinessInfoData?: IBusinessInfoData): Promise<void> {
+  fillBusinessInfoForm = async (customBusinessInfoData?: IBusinessInfoData): Promise<void> =>{
     // get profile data to fill out form
     await this.locBusinessNameInput.fill(customBusinessInfoData?.businessName || '');
     await this.focusAndTypeDateOfIncorporation(customBusinessInfoData?.businessDOI || '');
     await this.locBusinessTaxIdInput.fill(customBusinessInfoData?.businessTaxID || '');
-  }
+  };
 
-  async fillAccountAndSecurityInfoForm(testDataAccount?: IAccountInfoData, testDataSecurity?: ISecurityInfoData): Promise<void> { 
+  fillAccountAndSecurityInfoForm = async (testDataAccount?: IAccountInfoData, testDataSecurity?: ISecurityInfoData): Promise<void> => { 
     await this.fillAccountInfoForm(testDataAccount);
     await this.fillSecurityInfoForm(testDataSecurity);  
-  }
+  };
 
   // #endregion Actions
 
   // #region Assertions
+  assertContinueToPaymentButtonVisible = async (): Promise<void> => {
+    await expect(this.locContinueToPaymentButton).toBeVisible();
+  };
   // #endregion Assertions
 }
 

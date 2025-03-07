@@ -11,7 +11,7 @@ export class IdshieldIndividualPlanPage {
   readonly marketingSiteFooterComponent: MarketingSiteFooterComponent;
   readonly locMainContentDiv: Locator;
   readonly locStartMonthlyPlanButton: Locator;
-  readonly locDismissSalesDialogBox: Locator;
+  readonly locSalesDialogBoxCloseButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -21,7 +21,7 @@ export class IdshieldIndividualPlanPage {
     this.marketingSiteFooterComponent = new MarketingSiteFooterComponent(page);
     this.locMainContentDiv = this.page.locator('//div[@id="sticky-offset-menu"]//a[contains(.,"Shop Legal Plans")]');
     this.locStartMonthlyPlanButton = this.page.locator('//a[contains(.,"Start monthly plan")]');
-    this.locDismissSalesDialogBox = this.page.locator('//div[contains(@class,"ub-emb-iframe-wrapper ub-emb-visible")]//button[contains(@class,"ub-emb-close")]');
+    this.locSalesDialogBoxCloseButton = this.page.locator('//div[contains(@class,"ub-emb-iframe-wrapper ub-emb-visible")]//button[contains(@class,"ub-emb-close")]');
   }
 
   /**
@@ -39,8 +39,8 @@ export class IdshieldIndividualPlanPage {
     }
   };
 
-  clickDismissSalesDialogBoxButton = async (): Promise<void> => {
-    await this.locDismissSalesDialogBox.click();
+  clickSalesDialogCloseButton = async (): Promise<void> => {
+    await this.locSalesDialogBoxCloseButton.click();
   };
 
 
@@ -51,7 +51,7 @@ export class IdshieldIndividualPlanPage {
    * @param {string} [language='English']
    * @memberof IdshieldIndividualPlanPage
    */
-  navigateToIdshieldPage = async (market = 'United States', language = 'English'): Promise<void> => {
+  navigateToIdshieldPage = async (market: string = 'United States', language: string = 'English'): Promise<void> => {
     switch (market) {
       case 'United States':
         this.baseUrl = `${UrlsUtils.idShieldService.baseUrlNoTopLevelDomain}.com`;
@@ -64,5 +64,8 @@ export class IdshieldIndividualPlanPage {
         }
     }
     await this.page.goto(`${this.baseUrl}`);
+    if (process.env.USE_PROD == 'true') {
+      await this.clickSalesDialogCloseButton();
+    }
   };
 }

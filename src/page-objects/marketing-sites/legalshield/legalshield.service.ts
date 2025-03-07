@@ -16,7 +16,8 @@ import { NavListSectionComponent } from '../../global-components/nav_list-sectio
 import { FeaturesGridSectionComponent } from '../../global-components/features-grid-section.component';
 import { CallToActionSectionComponent } from '../../global-components/call-to-action-section.component';
 import { GbbPricingSectionComponent } from '../../global-components/gbb-pricing-section.component';
-import { OrderSummaryComponent } from '../../checkout/components/order-summary.component';
+import { EmbeddedCartComponent } from './embedded-cart-component';
+import { clickLocatorWithRetry, addQueryParamToUrl } from '../../../utils/helpers';
 
 export class LegalshieldService {
   protected page: Page;
@@ -33,6 +34,7 @@ export class LegalshieldService {
   readonly featuresGridSectionComponent: FeaturesGridSectionComponent;
   readonly callToActionSectionComponent: CallToActionSectionComponent;
   readonly gbbPricingSectionComponent: GbbPricingSectionComponent;
+  readonly embeddedCartComponent: EmbeddedCartComponent;
   readonly legalshieldPage: LegalshieldPage;
   readonly legalshieldCoverageAndPricingPage: LegalshieldCoverageAndPricingPage;
   readonly gbbAllPlansPage: GbbAllPlansPage;
@@ -47,6 +49,7 @@ export class LegalshieldService {
   readonly locEmailCaptureSection: Locator;
   readonly locCartBox: Locator;
   readonly locPreFooterNavigation: Locator;
+  private locPromotionDialogCloseButton: Locator;
 
   constructor(page: Page, context: BrowserContext) {
     this.page = page;
@@ -63,11 +66,11 @@ export class LegalshieldService {
     this.featuresGridSectionComponent = new FeaturesGridSectionComponent(context, page);
     this.callToActionSectionComponent = new CallToActionSectionComponent(context, page);
     this.gbbPricingSectionComponent = new GbbPricingSectionComponent(context, page);
+    this.embeddedCartComponent = new EmbeddedCartComponent(page);
     this.legalshieldPage = new LegalshieldPage(context, page);
     this.legalshieldCoverageAndPricingPage = new LegalshieldCoverageAndPricingPage(page);
     this.gbbAllPlansPage = new GbbAllPlansPage(page);
     this.firstGetStartedButton = this.page.locator(`//div[contains(@class, 'pricing') and contains(@class, 'plan')]//a`);
-
     this.locLinksThatNavigateToNewPage = this.page.locator(
       'body .lsux-link[href]:not([target="_blank"]):not([href*="javascript:void(0)"]):not([href*="#"]), body .lsux-button--primary[href]:not([target="_blank"]):not([href*="javascript:void(0)"]):not([href*="#"]),body .lsux-button--secondary[href]:not([target="_blank"]):not([href*="javascript:void(0)"]):not([href*="#"])'
     );
@@ -84,15 +87,19 @@ export class LegalshieldService {
     this.locEmailCaptureSection = this.page.locator('body #section-email_capture');
     this.locCartBox = this.page.locator('.cart-box');
     this.locPreFooterNavigation = this.page.locator('body section#pre-footer .footer-navigation ul.menu li.menu-item a');
+    this.locPromotionDialogCloseButton = this.page.locator('//div[contains(@class,"ub-emb-iframe-wrapper ub-emb-visible")]//button');
   }
 
-  navigateToUrl = async (url: string): Promise<Page> => {
+  navigateToUrl = async (url: string): Promise<void> => {
     await this.page.goto(url);
+    await this.page.waitForLoadState('load');
     if (process.env.USE_PROD == 'true') {
-      const dialogCloseButton = '//div[contains(@class,"ub-emb-iframe-wrapper ub-emb-visible")]//button';
-      await this.page.locator(dialogCloseButton).click();
+      await this.closePromotionDialog();
     }
-    return this.page;
+  };
+
+  closePromotionDialog = async (): Promise<void> => {
+    await this.locPromotionDialogCloseButton.click();
   };
 
   navigateToLegalshieldPricingAndCoveragePage = async (market: string, language: string): Promise<void> => {
@@ -116,7 +123,7 @@ export class LegalshieldService {
    * @param {Array<ProductDetails>} productDetails
    * @memberof LegalshieldService
    */
-  addProductsFromProductDetails = async (productDetails: Array<ProductDetails>): Promise<void> => {
+  addProductsFromProductDetails = async (productDetails: Array<ProductDetails>, region: string, experience: string = ''): Promise<void> => {
     let counter = productDetails.length;
     for (const product of productDetails) {
       switch (product.marketingName) {
@@ -128,6 +135,13 @@ export class LegalshieldService {
         case 'Trial Defense Supplement':
         case 'Gun Owners Supplement':
         case 'Ride Share and Delivery Supplement':
+        await this.addExperienceQueryParam(experience);
+        await this.setCookie('pplsi-region', region);
+          if (product.term == 'Annual') {
+            await this.legalshieldCoverageAndPricingPage.clickAnnuallyToggle();
+          } else {
+            await this.legalshieldCoverageAndPricingPage.clickMonthlyToggle();
+          }
           await this.addPlanUsingShortCode(product.shortCode, product.term);
           break;
         case 'Commercial Drivers Legal Plan':
@@ -136,14 +150,16 @@ export class LegalshieldService {
         case 'Essentials Plan':
         case 'Plus Plan':
         case 'Pro Plan':
+          await this.navigateToUrl(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/coverage-pricing`);
+          await this.addExperienceQueryParam(experience);
+          await this.setCookie('pplsi-region', region);
           await this.addSmallBusinessPlan(product.shortCode, product.term);
           break;
         default:
           break;
       }
       if (counter == 1) {
-        await this.marketingSiteHeaderComponent.locShoppingCartIcon.click();
-        await this.marketingSitesCartComponent.locCheckoutButton.click();
+        break;
       }
       counter--;
     }
@@ -155,9 +171,11 @@ export class LegalshieldService {
    };
 
   addSmallBusinessPlan = async (productShortCode: string, term: string): Promise<void> => {
-    await this.navigateToUrl(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/coverage-pricing`);
-    await this.page.waitForLoadState('load');
-    await this.addPlanUsingShortCode(productShortCode, term);
+    const smallBusinessGetStartedLocator = this.page.locator(`//div[contains(@class,"axiom-design-system--pricing-19b_content")]//a[@data-product-shortcode="${productShortCode}"]`);
+    const cartProductShortCodeLocator = this.page.locator(`//div[@id="cart-items"]//a[@data-product-shortcode="${productShortCode}"]`);
+    await smallBusinessGetStartedLocator.click();
+    await clickLocatorWithRetry(this.smallBusinessQualifyingComponent.locAddToCartButton,cartProductShortCodeLocator);
+    await this.embeddedCartComponent.clickContinueShoppingButton();
    };
 
   addCommercialDriversLegalPlan = async (productShortCode: string, term: string): Promise<void> => {
@@ -169,14 +187,11 @@ export class LegalshieldService {
 
   addPlanUsingShortCode = async (productShortCode: string, term: string): Promise<void> => {
     await expect(async () => {
-      const addToCartLocator = this.page.locator(`//a[@data-product-shortcode="${productShortCode}"]`).nth(0);   
-      const cartItemProductShortCodeLocator = this.page.locator(`//div[@id="cart-items"]//a[@data-product-shortcode="${productShortCode}"]`);
-      await addToCartLocator.click();
+      const addToCartLocator = this.page.locator(`//a[@data-product-shortcode="${productShortCode}" and not(ancestor::*[contains(@class, "pricing-legacy")])]`).nth(0);   
+      const cartProductShortCodeLocator = this.page.locator(`//div[@id="cart-items"]//a[@data-product-shortcode="${productShortCode}"]`);
+      await clickLocatorWithRetry(addToCartLocator,cartProductShortCodeLocator);
       await this.configurePlan(productShortCode);
-      await cartItemProductShortCodeLocator.waitFor();
-      await this.page.waitForTimeout(500);
-      await this.marketingSitesCartComponent.locContinueShoppingLink.click();
-      await this.marketingSitesCartComponent.locCartContainerDiv.waitFor({ state: 'hidden' });
+      await this.embeddedCartComponent.clickContinueShoppingButton();;
     }).toPass({ intervals: [0.3] });    
   };
 
@@ -189,25 +204,12 @@ export class LegalshieldService {
       default:
           break;
     }
-    
   };
-  
-  // addSmallBusinessPlan = async (productShortCode: string): Promise<void> => {
-  //   await this.page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/coverage-pricing`);
-  //   const getStartedButtonLocator = this.page.locator(
-  //     `//div[@class="cart-plan"]//a[@data-product-shortcode="${productShortCode}"]`
-  //   );
-  //   await expect(async () => {
-  //     await getStartedButtonLocator.click();
-  //     await expect(this.page.locator('#qualifying-container')).toBeVisible();
-  //   }).toPass({ intervals: [0.3] });
-  //   await this.smallBusinessQualifyingComponent.completeQualifyingQuestionnaireWithNos();
-  // };
 
-
- 
-  
-  
+  addExperienceQueryParam = async (experience: string): Promise<void> => {
+    const urlWithQueryParam = await addQueryParamToUrl(this.page.url(), 'exp', experience);
+    await this.page.goto(urlWithQueryParam);
+  };
 
   clickAllLinksAndVerifyExpectedUrlAndTitle = async (links: Locator, expectedUrlAndTitleArray: PageUrlAndTitleArray): Promise<void> => {
     const count = await links.count();
@@ -242,6 +244,7 @@ export class LegalshieldService {
       });
     }
   };
+
   clickNavigationLocatorsAndVerifyNewTabURLWithoutError = async (locator: Locator): Promise<void> => {
     const locators = await locator.all();
     let newTab: Page;
@@ -393,7 +396,6 @@ export class LegalshieldService {
       });
     }
   };
-  // set cookies for GBB
   setCookie = async (newCookieName: string, newCookieValue: string): Promise<void> => {
     // Retrieve all cookies
     const allCookies = await this.context.cookies();
@@ -409,4 +411,4 @@ export class LegalshieldService {
     await this.page.reload();
     await this.page.waitForLoadState('load');
   };
-}
+};

@@ -12,6 +12,8 @@ import { GlobalFooterComponent } from '../page-objects/global-components/global-
 import { GlobalHeaderComponent } from '../page-objects/global-components/global-header.component';
 import { AssociateOfficeService } from '../page-objects/associate-office/associate-office.service';
 import { AccountService } from '../page-objects/account/account.service';
+import { OfficeService } from '../page-objects/office/office.service';
+import { addQueryParamToUrl } from '../utils/helpers';
 
 export type MyFirstFixture = {
   idshieldService: IdshieldService;
@@ -28,6 +30,7 @@ export type MyFirstFixture = {
   newCheckoutService: NewCheckoutService;
   associateOfficeService: AssociateOfficeService;
   accountService: AccountService;
+  officeService: OfficeService;
 };
 
 export const test = base.extend<MyFirstFixture>({
@@ -45,11 +48,8 @@ export const test = base.extend<MyFirstFixture>({
         }
         | undefined
     ) {
-      // temporary until they fix redirect issue
-      if (!url.includes('pplsi.com')) {
-        url += '?qatester=automation';
-      } 
-      return await goto(url, options);
+      const urlWithQueryParameter = await addQueryParamToUrl(url, 'qatester', 'e2e-automation');
+      return goto(urlWithQueryParameter, options);
     }
     page.goto = modifiedGoto;
     await use(page);
@@ -97,6 +97,9 @@ export const test = base.extend<MyFirstFixture>({
   },
   accountService: async ({ page }, use) => {
     await use(new AccountService(page));
+  },
+  officeService: async ({ page }, use) => {
+    await use(new OfficeService(page));
   },
 });
 

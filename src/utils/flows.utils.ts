@@ -37,9 +37,9 @@ export async function selectLegalshieldAssociatesPlansFromPlanDetails(planDetail
       plan.marketingName.includes('IDShield') ||
       plan.marketingName.includes('Commercial Drivers') || 
       plan.marketingName.includes('Small Business') ||
-      (plan.marketingName.includes('Legal Plan') && plan.tier.name !== 'NA')
+      (plan.marketingName.includes('Legal Plan'))
     ) {
-      await chooseATierComponent.selectTier(plan.name, plan.tier.name);
+      await chooseATierComponent.selectTier(plan.name, plan.tier.name, plan.term);
     }
      // Select Region Flow
     if (page.url().includes('en-ca')) {
@@ -60,9 +60,6 @@ export async function selectLegalshieldAssociatesPlansFromPlanDetails(planDetail
     }
     // Breaks the loop if the plan is the last plan in the planDetails array
     if (planDetails.indexOf(plan) === planDetails.length - 1) {
-      if (plan.term === 'Annual') {
-        await productCardComponent.selectAnnualBillingPeriod();
-      }
       break;
     } else {
       await headerComponent.clickShoppingCartButton();

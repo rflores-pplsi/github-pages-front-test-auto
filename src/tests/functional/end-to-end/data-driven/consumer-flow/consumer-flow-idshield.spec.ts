@@ -3,10 +3,11 @@ import RegionsUtils from '../../../../../utils/regions.utils';
 import { basicUser } from '../../../../../utils/user.utils';
 import { idshieldData } from './data/idshield.data';
 import { test } from '../../../../../fixtures/frontend-ui.fixture';
+import { CheckoutService } from '../../../../../page-objects/checkout/checkout-service';
 
 for (const testCase of idshieldData.filter((testCase) => testCase.disabled == false)) {
   for (const regionUnderTest of testCase.regions) {
-    test(`IDShield (${testCase.testCaseName}, ${regionUnderTest}) @idshield-consumerflow ${testCase.tags}`, async ({
+    test(`IDShield (${testCase.testCaseName}, ${regionUnderTest}) @idshield-consumerflow @e2e ${testCase.tags}`, async ({
       page,
       idshieldService,
       legalshieldService,
@@ -28,8 +29,7 @@ for (const testCase of idshieldData.filter((testCase) => testCase.disabled == fa
       await test.step(`Choose Account by Email and Login`, async () => {
         if (testCase.userType == 'Existing') {
           await commonCheckoutService.accountPage.enterExistingAccountEmailAndLogin(basicUser.email);
-          await commonLoginService.whatsYourEmailPage.enterEmailAndContinue(basicUser.email);
-          await commonLoginService.loginPage.loginOnlyPassword(basicUser.password);
+          await commonLoginService.loginPage.login(basicUser.email, basicUser.password);
         }
         if (testCase.userType == 'New') {
           await commonCheckoutService.accountPage.enterRandomEmailAndNewPasswordAndLogin();
@@ -38,12 +38,6 @@ for (const testCase of idshieldData.filter((testCase) => testCase.disabled == fa
           await commonCheckoutService.accountPage.enterRandomEmailAndContinueAsGuest();
         }
       });
-      if (process.env.USE_PROD == 'true') {
-        console.log('* Production: Stop test at personal info page *');
-        await test.step(`Assert Checkout Service Reached`, async () => {
-          await commonCheckoutService.personalInfoPage.stepperComponent.locStepCircle1Current.isVisible();
-        });
-      } else {
         await test.step(`Fill all required fields on personal info ${regionInfo.name}`, async () => {
           //TODO: remove after finding a way to explicitly wait
           await page.waitForTimeout(1000);
@@ -69,35 +63,40 @@ for (const testCase of idshieldData.filter((testCase) => testCase.disabled == fa
             await commonCheckoutService.personalInfoPage.fillBusinessInformationFields('Testers Inc', '10', '10', '2021', '945433337');
           }
         });
-
-        await test.step(`Verify Order Total in Order Summary`, async () => {
-          //TODO: update data sheet to lsa standard
-          // expect(await commonCheckoutService.personalInfoPage.orderSummaryComponent.locTotalContainer.innerText()).toContain(testCase.termTotal);
-        });
-        await test.step(`Click Save and Continue and wait for Payment page`, async () => {
-          await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
-        });
-        await test.step(`Verify Order Total in Order Summary`, async () => {
-          //TODO: update data sheet to lsa standard
-          // expect(await commonCheckoutService.paymentPage.orderSummaryComponent.locTotalContainer.innerText()).toContain(testCase.termTotal);
-        });
-        await test.step(`Click Bank Draft Tab`, async () => {
-          await commonCheckoutService.paymentPage.clickBankDraftToggle();
-        });
-        await test.step(`Fill Bank Draft Form and Submit`, async () => {
-          await page.waitForTimeout(500);
-          await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates('0000000', '000000000', 'Tester');
-        });
-        await test.step('Click Purchase Button', async () => {
-          await commonCheckoutService.paymentPage.bankDraftComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
-        });
-        await test.step(`Click on the Let's Go button`, async () => {
-          await commonCheckoutService.confirmationPage.locLetsGoButton.click();
-        });
-        await test.step(`Assert Accounts Page URL`, async () => {
-          await expect(page).toHaveURL(new RegExp('accounts'));
-        });
-      }
+        if (process.env.USE_PROD == 'true') {
+        console.log('* Production: Stop test at personal info page *');
+          await test.step(`Assert Accounts Page URL`, async () => {
+            await expect(commonCheckoutService.personalInfoPage.locSaveAndContinueButton).toBeVisible();
+          });
+        } else {
+          await test.step(`Verify Order Total in Order Summary`, async () => {
+            //TODO: update data sheet to lsa standard
+            // expect(await commonCheckoutService.personalInfoPage.orderSummaryComponent.locTotalContainer.innerText()).toContain(testCase.termTotal);
+          });
+          await test.step(`Click Save and Continue and wait for Payment page`, async () => {
+            await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
+          });
+          await test.step(`Verify Order Total in Order Summary`, async () => {
+            //TODO: update data sheet to lsa standard
+            // expect(await commonCheckoutService.paymentPage.orderSummaryComponent.locTotalContainer.innerText()).toContain(testCase.termTotal);
+          });
+          await test.step(`Click Bank Draft Tab`, async () => {
+            await commonCheckoutService.paymentPage.clickBankDraftToggle();
+          });
+          await test.step(`Fill Bank Draft Form and Submit`, async () => {
+            await page.waitForTimeout(500);
+            await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates('0000000', '000000000', 'Tester');
+          });
+          await test.step('Click Purchase Button', async () => {
+            await commonCheckoutService.paymentPage.bankDraftComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
+          });
+          await test.step(`Click on the Let's Go button`, async () => {
+            await commonCheckoutService.confirmationPage.locLetsGoButton.click();
+          });
+          await test.step(`Assert Accounts Page URL`, async () => {
+            await expect(page).toHaveURL(new RegExp('accounts'));
+          });
+        }
     });
   }
 }
