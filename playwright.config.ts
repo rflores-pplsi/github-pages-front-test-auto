@@ -13,22 +13,23 @@ const config: PlaywrightTestConfig = {
         ...devices['Desktop Chrome'],
         launchOptions: {
           args: ['--remote-debugging-port=9222'],
-          // slowMo: 500,
         },
         screenshot: 'only-on-failure',
         trace: 'on',
         video: 'on',
       },
     },
-
-    // {
-    //   name: 'firefox',
-    //   use: { ...devices['Desktop Firefox'], screenshot: 'on', trace: 'on', video: 'on' },
-    // },
-    // {
-    //   name: 'webkit',
-    //   use: { ...devices['Desktop Safari'], screenshot: 'on', trace: 'on', video: 'on' },
-    // },
+    {
+      name: 'mcp',
+      use: {
+        ...devices['Desktop Chrome'],
+        // MCP-specific options can be added here if needed
+        channel: 'chrome',
+        screenshot: 'only-on-failure',
+        trace: 'on',
+        video: 'on',
+      },
+    },
   ],
   reporter: [['dot'], ['html', { open: 'always', outputFolder: 'playwright-report' }], ['allure-playwright'], ['./pplsi-reporter.ts']],
   retries: 0,

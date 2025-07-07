@@ -1,0 +1,507 @@
+{
+  "summary": {
+    "totalLinks": 91,
+    "workingLinks": 91,
+    "brokenLinks": 0,
+    "pagesCrawled": 39
+  },
+  "brokenLinks": [],
+  "workingLinks": [
+    {
+      "url": "https://www.pplsi.com/privacy-policy/?qatester=linkchecker",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/why-legalshield/how-it-works",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/estate-planning",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/consumer-finance",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/renters",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/real-estate",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/landlords",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/family-law",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/employment-law",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/traffic-accident",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/legal-protection-truck-drivers-and-other-commercial-drivers",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/personal-plan/supplements",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/collection",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/business-licenses",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/civil-litigation",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/contracts",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/employment",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/intellectual-property",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/small-business-add-on-coverage",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/resources/blog",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/faq",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/resources/news",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/resources/consumer-stress-legal-index",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/contact",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/law-firms",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/resources/employee-benefits",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/blog/dealing-with-consumer-law-issues-legalshield-provides-help",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/blog/online-purchase-gone-wrong",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/legal-plans-overview",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://login.legalshield.com/login?qatester=linkchecker",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://login.legalshield.com/login?qatester=linkchecker",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/legal-plans-overview",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/why-legalshield/how-it-works",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/estate-planning",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/family-law",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/consumer-finance",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/real-estate",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/traffic-accident",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/renters",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/landlords",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/legal-protection-truck-drivers-and-other-commercial-drivers",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/legal-protection-home-business",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/extended-trial-and-lawsuit-defense-protection",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/intellectual-property",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/collection",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/contracts",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/employment",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/business-licenses",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/civil-litigation",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/estate-planning",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/traffic-accident",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/real-estate",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.trustpilot.com/review/legalshield.com?utm_medium=trustbox&utm_source=MiniCarousel&qatester=linkchecker",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/why-legalshield/how-it-works",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/legal-plans-overview",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/personal-plan/coverage-and-pricing",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/business-plan/coverage-pricing",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/privacy-policy",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/why-legalshield/how-it-works",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/legal-plans-overview",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/estate-planning",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/consumer-finance",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/real-estate",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/renters",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/landlords",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/family-law",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/employment-law",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/traffic-accident",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/personal-plan/supplements",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/collection",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/business-licenses",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/civil-litigation",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/contracts",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/employment",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/intellectual-property",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/business-plus-supplement",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/resources/blog",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/resources/consumer-stress-legal-index",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/faq",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/contact",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/resources/employee-benefits",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/why-legalshield/about",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/leadership",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/resources/news",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://legalshieldcorp.wd1.myworkdayjobs.com/lsc?qatester=linkchecker",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/terms-of-service",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/privacy-policy",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.uat-legalshield.com/disclaimer",
+      "status": 200,
+      "statusText": "OK"
+    },
+    {
+      "url": "https://www.linkedin.com/company/legalshieldofficial?qatester=linkchecker",
+      "status": 200,
+      "statusText": "OK"
+    }
+  ],
+  "crawledPages": [
+    "https://www.uat-legalshield.com/",
+    "https://www.uat-legalshield.com/why-legalshield/how-it-works",
+    "https://www.uat-legalshield.com/estate-planning",
+    "https://www.uat-legalshield.com/consumer-finance",
+    "https://www.uat-legalshield.com/renters",
+    "https://www.uat-legalshield.com/real-estate",
+    "https://www.uat-legalshield.com/landlords",
+    "https://www.uat-legalshield.com/family-law",
+    "https://www.uat-legalshield.com/employment-law",
+    "https://www.uat-legalshield.com/traffic-accident",
+    "https://www.uat-legalshield.com/legal-protection-truck-drivers-and-other-commercial-drivers",
+    "https://www.uat-legalshield.com/personal-plan/supplements",
+    "https://www.uat-legalshield.com/collection",
+    "https://www.uat-legalshield.com/business-licenses",
+    "https://www.uat-legalshield.com/civil-litigation",
+    "https://www.uat-legalshield.com/contracts",
+    "https://www.uat-legalshield.com/employment",
+    "https://www.uat-legalshield.com/intellectual-property",
+    "https://www.uat-legalshield.com/small-business-add-on-coverage",
+    "https://www.uat-legalshield.com/resources/blog",
+    "https://www.uat-legalshield.com/faq",
+    "https://www.uat-legalshield.com/resources/news",
+    "https://www.uat-legalshield.com/resources/consumer-stress-legal-index",
+    "https://www.uat-legalshield.com/contact",
+    "https://www.uat-legalshield.com/law-firms",
+    "https://www.uat-legalshield.com/resources/employee-benefits",
+    "https://www.uat-legalshield.com/blog/dealing-with-consumer-law-issues-legalshield-provides-help",
+    "https://www.uat-legalshield.com/blog/online-purchase-gone-wrong",
+    "https://www.uat-legalshield.com/legal-plans-overview",
+    "https://www.uat-legalshield.com/legal-protection-home-business",
+    "https://www.uat-legalshield.com/extended-trial-and-lawsuit-defense-protection",
+    "https://www.uat-legalshield.com/personal-plan/coverage-and-pricing",
+    "https://www.uat-legalshield.com/business-plan/coverage-pricing",
+    "https://www.uat-legalshield.com/privacy-policy",
+    "https://www.uat-legalshield.com/business-plus-supplement",
+    "https://www.uat-legalshield.com/why-legalshield/about",
+    "https://www.uat-legalshield.com/leadership",
+    "https://www.uat-legalshield.com/terms-of-service",
+    "https://www.uat-legalshield.com/disclaimer"
+  ]
+}

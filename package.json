@@ -26,6 +26,7 @@
     "@axe-core/playwright": "^4.8.2",
     "@fastify/pre-commit": "^2.0.2",
     "@legalshield/frontend-automation-commons": "^0.6.35",
+    "@playwright/mcp": "^0.0.29",
     "@playwright/test": "^1.40.1",
     "@types/node": "^20.6.2",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
