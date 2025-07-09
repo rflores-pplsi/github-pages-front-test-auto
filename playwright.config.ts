@@ -19,17 +19,6 @@ const config: PlaywrightTestConfig = {
         video: 'on',
       },
     },
-    {
-      name: 'mcp',
-      use: {
-        ...devices['Desktop Chrome'],
-        // MCP-specific options can be added here if needed
-        channel: 'chrome',
-        screenshot: 'only-on-failure',
-        trace: 'on',
-        video: 'on',
-      },
-    },
   ],
   reporter: [['dot'], ['html', { open: 'always', outputFolder: 'playwright-report' }], ['allure-playwright'], ['./pplsi-reporter.ts']],
   retries: 0,
