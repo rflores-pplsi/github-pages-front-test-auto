@@ -5,11 +5,17 @@ import RegionsUtils from '../../../../utils/regions.utils';
 RegionsUtils.usStates
   .filter((region) => region.name)
   .forEach((regionUnderTestObject) => {
-    
     // Functional test for LegalShield Advanced Plan contract PDF
     test(`Advanced plan contract PDF opens and is readable for ${regionUnderTestObject.name} @regression`, async ({ page, context }) => {
       // 1. Navigate to the coverage and pricing page
-      await page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/personal-plan/coverage-and-pricing`);
+      await page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/personal-plan/coverage-and-pricing?regionChange=true`);
+
+      test.step(`Select region ${regionUnderTestObject.abbrv} from popup selector and reload page`, async () => {
+        const regionSelector = page.locator('select[name="locationModalRegion"]');
+        await regionSelector.selectOption(regionUnderTestObject.abbrv);
+        // click button with Update Region text
+        await page.getByRole('button', { name: 'Update Region' }).click();
+      });
 
       // 2. Dismiss privacy banner if present
       const privacyContinue = page.getByRole('button', { name: 'Continue' });
