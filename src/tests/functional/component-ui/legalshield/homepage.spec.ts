@@ -26,7 +26,7 @@ test.describe('LegalShield Homepage', () => {
     await page.goBack();
   });
 
-  test('Main CTA buttons navigate to correct pages', async ({ page }) => {
+  test('Main CTA buttons navigate to correct pages @cta', async ({ page }) => {
     // Target the two visible "See details" CTAs above the footer
     const seeDetailsButtons = page.locator('a:has-text("See details")');
     // First is Personal, second is Business

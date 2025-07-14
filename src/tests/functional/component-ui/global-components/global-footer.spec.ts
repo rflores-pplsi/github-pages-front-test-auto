@@ -9,10 +9,10 @@ test('Common Footer displays the appropriate links and copyright info', async ({
     await page.goto(UrlsUtils.legalshieldUrls.login.url);
   });
   await test.step(`Verify the the Footer contents`, async () => {
-    await expect(commonFooterComponent.locTermsOfServiceLink).toBeVisible();
-    await expect(commonFooterComponent.locPrivacyPolicyLink).toBeVisible();
-    await expect(commonFooterComponent.locLegalLink).toBeVisible();
-    await expect(commonFooterComponent.locCopyrightText).toBeVisible();
+    await expect.soft(commonFooterComponent.locTermsOfServiceLink).toBeVisible();
+    await expect.soft(commonFooterComponent.locPrivacyPolicyLink).toBeVisible();
+    await expect.soft(commonFooterComponent.locLegalLink).toBeVisible();
+    await expect.soft(commonFooterComponent.locCopyrightText).toBeVisible();
   });
 });
 

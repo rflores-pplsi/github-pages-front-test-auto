@@ -13,9 +13,8 @@ import { GlobalHeaderComponent } from '../page-objects/global-components/global-
 import { AssociateOfficeService } from '../page-objects/associate-office/associate-office.service';
 import { AccountService } from '../page-objects/account/account.service';
 import { OfficeService } from '../page-objects/office/office.service';
-import { addQueryParamToUrl } from '../utils/helpers';
 
-export type MyFirstFixture = {
+export type FrontendUIFixture = {
   idshieldService: IdshieldService;
   groupsAffiliatedService: GroupsAffiliatedService;
   legalshieldService: LegalshieldService;
@@ -31,25 +30,24 @@ export type MyFirstFixture = {
   associateOfficeService: AssociateOfficeService;
   accountService: AccountService;
   officeService: OfficeService;
+  isHeadless: boolean;
 };
 
-export const test = base.extend<MyFirstFixture>({
+export const test = base.extend<FrontendUIFixture>({
   //addends ?qatester=automation query param to all goto urls, used for analytics filtering
   page: async ({ page }, use) => {
     const goto = page.goto.bind(page);
     async function modifiedGoto(
       url: string,
-      options:
-        | {
-          referer?: string | undefined;
-          timeout?:
-          number | undefined;
-          waitUntil?: 'load' | 'domcontentloaded' | 'networkidle' | 'commit' | undefined;
-        }
-        | undefined
+      options: Parameters<typeof page.goto>[1] = {}
     ) {
-      const urlWithQueryParameter = await addQueryParamToUrl(url, 'qatester', 'e2e-automation');
-      return goto(urlWithQueryParameter, options);
+      const urlObj = new URL(url);
+      urlObj.searchParams.set('qatester', 'automation');
+      const updatedOptions: Parameters<typeof page.goto>[1] = {
+        waitUntil: 'domcontentloaded',
+        ...options,
+      };
+      return goto(urlObj.href, updatedOptions);
     }
     page.goto = modifiedGoto;
     await use(page);
@@ -101,6 +99,12 @@ export const test = base.extend<MyFirstFixture>({
   officeService: async ({ page }, use) => {
     await use(new OfficeService(page));
   },
+
+  isHeadless: async ({ browser }, use) => {
+  const isHeadless = (browser as any)["_options"]?.headless ?? true;
+  await use(isHeadless);
+},
+
 });
 
 export { expect } from '@playwright/test';

@@ -3,6 +3,7 @@ import { IdshieldPage } from './idshield.page';
 import { IdshieldIndividualPlanPage } from './idshield-individual-plan.page';
 import { PlanDetails } from '../../../types/types';
 import { MarketingSitesCartComponent } from '../marketing-sites-cart-component';
+import { MarketingFooterComponent } from '../marketing-footer.component';
 
 export class IdshieldService {
   protected page: Page;
@@ -10,6 +11,7 @@ export class IdshieldService {
   readonly idshieldPage: IdshieldPage;
   readonly idshieldIndividualPlanPage: IdshieldIndividualPlanPage;
   readonly marketingSitesCartComponent: MarketingSitesCartComponent;
+  readonly marketingFooterComponent: MarketingFooterComponent;
 
   constructor(page: Page, context: BrowserContext) {
     this.page = page;
@@ -17,6 +19,7 @@ export class IdshieldService {
     this.idshieldPage = new IdshieldPage(page);
     this.idshieldIndividualPlanPage = new IdshieldIndividualPlanPage(page);
     this.marketingSitesCartComponent = new MarketingSitesCartComponent(page);
+    this.marketingFooterComponent = new MarketingFooterComponent(context, page);
   }
 
   addProductsFromProductDetails = async (planDetails: Array<PlanDetails>): Promise<void> => {

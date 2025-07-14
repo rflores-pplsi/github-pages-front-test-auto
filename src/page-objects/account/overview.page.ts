@@ -1,6 +1,4 @@
 import { Page, expect, Locator } from '@playwright/test';
-import { AccountService } from './account.service';
-
 
 export class OverviewPage {
   protected page: Page;

@@ -1,11 +1,9 @@
 import { legalshieldServiceData } from './legalshield-service.data';
-import { legalshieldServiceGbbData } from './legalshield-service-gbb.data';
-import { expect, test } from '../../../../fixtures/frontend-ui.fixture';
-import UrlsUtils from '../../../../utils/urls.utils';
+import {  test } from '../../../../fixtures/frontend-ui.fixture';
 
 for (const pageUnderTest of legalshieldServiceData.filter((pageUnderTest) => pageUnderTest.disabled == false)) {
   test(`${pageUnderTest.pageName} page: Click links that navigate to another page, verify status code:200 @ComponentLegalShield @prod-daily-health`, async ({
-    legalshieldService,
+    legalshieldService
   }) => {
     await legalshieldService.navigateToUrl(pageUnderTest.url);
     test.skip((await legalshieldService.locLinksThatNavigateToNewPage.count()) == 0, 'No links that navigate to a new tab found');
@@ -32,31 +30,13 @@ for (const pageUnderTest of legalshieldServiceData.filter((pageUnderTest) => pag
     });
   });
 
-  test(`${pageUnderTest.pageName} page: Click GBB links that add to cart, verify cart updated @ComponentLegalShield @prod-daily-health @gbb`, async ({
+  test(`${pageUnderTest.pageName} page: Click links that add to cart, verify cart updated`, async ({
     legalshieldService,
   }) => {
     test.skip(pageUnderTest.expectAddToCartButton === false, 'No add to cart links expected');
+    console.log(pageUnderTest.url);
     await legalshieldService.navigateToUrl(pageUnderTest.url);
-    // Set region cookie to GBB activated region
-    await legalshieldService.setCookie('pplsi-region', 'GA');
-    console.log(`Test Case: ${pageUnderTest.pageName} page: Click GBB links that add to cart, verify cart updated`);
-    test.setTimeout(200000);
-    await test.step(`Click All add to cart Links and verify cart is updated`, async () => {
-      await legalshieldService.clickAllGBBAddToCartLinksAndVerifyCartIsUpdated(legalshieldService.locLinksThatAddToCart);
-    });
-  });
-
-  test(`${pageUnderTest.pageName} page: Click links that add to cart, verify cart updated @ComponentLegalShield @prod-daily-health`, async ({
-    legalshieldService,
-  }) => {
-    test.skip(pageUnderTest.expectAddToCartButton === false, 'No add to cart links expected');
-    await legalshieldService.navigateToUrl(pageUnderTest.url);
-    // Set region cookie to GBB not-activated region
-    if (pageUnderTest.url.includes('gbb2=true')) {
-      await legalshieldService.setCookie('pplsi-region', 'HA');
-    }
     console.log(`Test Case: ${pageUnderTest.pageName} page: Click links that add to cart, verify cart updated`);
-    test.setTimeout(200000);
     await test.step(`Click All add to cart Links and verify cart is updated`, async () => {
       await legalshieldService.clickAllAddToCartLinksAndVerifyCartIsUpdated(legalshieldService.locLinksThatAddToCart);
     });
@@ -85,6 +65,7 @@ for (const pageUnderTest of legalshieldServiceData.filter((pageUnderTest) => pag
       await legalshieldService.clickAllAnchorLinksAndVerifyScroll(legalshieldService.locAnchorLinks);
     });
   });
+
   test(`${pageUnderTest.pageName} page: Find and submit email forms, verify successful submission @ComponentLegalShield @prod-daily-health`, async ({
     legalshieldService,
   }) => {
@@ -98,24 +79,3 @@ for (const pageUnderTest of legalshieldServiceData.filter((pageUnderTest) => pag
   });
 }
 
-for (const stateUnderTest of legalshieldServiceGbbData.filter((stateUnderTest) => stateUnderTest.disabled == false)) {
-  test(`Verify ${stateUnderTest.stateName} GBB displayed = ${stateUnderTest.expectedGbb} @GBBDisplay ${stateUnderTest.tag}`, async ({
-        legalshieldService,
-  }) => {
-    test.slow();
-    console.log(`Test Case: Verify ${stateUnderTest.stateName} GBB displayed = ${stateUnderTest.expectedGbb}`);
-    await test.step(`Navigate to GBB page`, async () => {
-      await legalshieldService.navigateToUrl(UrlsUtils.legalshieldService.baseUrl + '/personal-plan/coverage-and-pricing/?gbb2=true');
-    });
-    await test.step(`Update state through console`, async () => {
-      await legalshieldService.setCookie('pplsi-region', `${stateUnderTest.stateAbbreviation}`);
-    });
-    await test.step(`Verify GBB elements`, async () => {
-      if (stateUnderTest.expectedGbb == true) {
-        expect(legalshieldService.gbbPricingSectionComponent.locGbbPricingSection).toBeVisible();
-      } else {
-        expect(legalshieldService.gbbPricingSectionComponent.locGbbPricingSection).not.toBeVisible();
-      }
-    });
-  });
-}

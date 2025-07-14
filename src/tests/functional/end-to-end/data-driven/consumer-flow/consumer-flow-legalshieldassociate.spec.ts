@@ -62,6 +62,8 @@ for (const testCase of legalshieldAssociateData.filter((testCase) => testCase.di
       } else {
         await test.step(`Fill out Bank Draft Form and Continue`, async () => {
           await officeService.purchasePage.clickCreditCardBankDraftToggle();
+          //TODO: revisit this wait and find an explicit one if possible
+          await page.waitForTimeout(500);
           await officeService.purchasePage.fillBankDraftForm('00000011', '103000648', 'Test Tester');
           await officeService.purchasePage.clickPaymentContinueButton();
         });

@@ -1,14 +1,12 @@
 import { Page, Locator } from '@playwright/test';
 import UrlsUtils from '../../../utils/urls.utils';
 import { MarketingSitesCartComponent } from '../marketing-sites-cart-component';
-import { MarketingSiteFooterComponent } from '../marketing-sites-footer-component';
 
 export class IdshieldIndividualPlanPage {
   protected page: Page;
   baseUrl: string;
   subdirectory: string;
   readonly marketingSiteCartComponent: MarketingSitesCartComponent;
-  readonly marketingSiteFooterComponent: MarketingSiteFooterComponent;
   readonly locMainContentDiv: Locator;
   readonly locStartMonthlyPlanButton: Locator;
   readonly locSalesDialogBoxCloseButton: Locator;
@@ -18,7 +16,6 @@ export class IdshieldIndividualPlanPage {
     this.baseUrl = UrlsUtils.marketingSitesUrls.idShieldUSUrl;
     this.subdirectory = '';
     this.marketingSiteCartComponent = new MarketingSitesCartComponent(page);
-    this.marketingSiteFooterComponent = new MarketingSiteFooterComponent(page);
     this.locMainContentDiv = this.page.locator('//div[@id="sticky-offset-menu"]//a[contains(.,"Shop Legal Plans")]');
     this.locStartMonthlyPlanButton = this.page.locator('//a[contains(.,"Start monthly plan")]');
     this.locSalesDialogBoxCloseButton = this.page.locator('//div[contains(@class,"ub-emb-iframe-wrapper ub-emb-visible")]//button[contains(@class,"ub-emb-close")]');

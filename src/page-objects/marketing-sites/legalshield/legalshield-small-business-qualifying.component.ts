@@ -11,7 +11,7 @@ export class SmallBusinessQualifyingComponent {
     this.page = page;
     this.locPubliclyTradedNoButton = this.page.locator('#traded-company-no');
     this.locNonProfitBusinessNoButton = this.page.locator('#non-profit-no');
-    this.locAddToCartButton = this.page.locator('//a[@aria-label="Add to cart."]');
+    this.locAddToCartButton = this.page.locator('//button[@aria-label="Add to cart."]');
   }
 
   /**

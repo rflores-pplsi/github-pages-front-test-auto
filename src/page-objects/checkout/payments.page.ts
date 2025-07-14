@@ -9,7 +9,7 @@ export class PaymentsPage {
   readonly locAccountInfoSummaryDetails:Locator;
   readonly locAccountInfoSummaryHeader: Locator;
   readonly locPaymentIframe: FrameLocator;
-  private readonly locBankdraftToggle: Locator;
+  private readonly locBankDraftToggle: Locator;
   private readonly locCreditCardNumberInput: Locator;
   private readonly locCreditCardExpirationDateInput: Locator;
   private readonly locCreditCardCVVInput: Locator;
@@ -28,7 +28,7 @@ export class PaymentsPage {
     this.locAccountInfoSummaryHeader = this.page.locator('.AccountInfoSummaryHeading').getByText('Account information');
     this.locPaymentIframe = this.page.frameLocator('//iframe[@title=\'payment iframe\']');
     //Payment Information Form
-    this.locBankdraftToggle = this.locPaymentIframe.locator('#bank_account');
+    this.locBankDraftToggle = this.locPaymentIframe.locator('#bank_account');
     this.locCreditCardNumberInput = this.locPaymentIframe.getByPlaceholder('Card Number');
     this.locCreditCardExpirationDateInput = this.locPaymentIframe.getByPlaceholder('MM/YY');
     this.locCreditCardCVVInput = this.locPaymentIframe.locator('//*[@id="security_code"]');
@@ -48,7 +48,7 @@ export class PaymentsPage {
   // #region Actions
 
   async clickPaymentToggle(): Promise<void> {
-    await this.locBankdraftToggle.click();
+    await this.locBankDraftToggle.click();
   }
   
   async fillPaymentInfoFormWithCreditCard(customCreditCardData?: object): Promise<void> {
@@ -62,7 +62,7 @@ export class PaymentsPage {
   
   async fillPaymentInfoFormWithBankDraft(customBankDraftData?: object): Promise<void> {
     const testDataBankDraft: IBankDraftDataForUS = getDefaultBankDraftData(customBankDraftData); 
-    await this.locBankdraftToggle.click();
+    await this.locBankDraftToggle.click();
     await this.locBankDraftAccountNumberInput.fill(testDataBankDraft.accountNumber);
     await this.locBankDraftRoutingNumberInput.fill(testDataBankDraft.routingNumber);
     await this.locBankDraftAccountHolderNameInput.fill(testDataBankDraft.accountHolderName);

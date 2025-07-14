@@ -1,4 +1,5 @@
 import { Page, Locator, FrameLocator, expect } from '@playwright/test';
+import { clickLocatorWithRetry } from '../../utils/helpers';
 
 export class PurchasePage {
   private locEmailAddressInput: Locator;
@@ -149,10 +150,7 @@ export class PurchasePage {
   };
 
   async clickCreditCardBankDraftToggle(): Promise<void> {
-    await this.locBankDraftToggle.click();
-    await this.page.waitForResponse(response => 
-      response.url().includes('/paymentMethods/new') && response.status() === 200
-    );
+    await clickLocatorWithRetry(this.locBankDraftToggle,this.locBankNameInput);
   };
 
   async fillAccountNumberInput(accountNumber: string): Promise<void> {

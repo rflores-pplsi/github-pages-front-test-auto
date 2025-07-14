@@ -189,7 +189,7 @@ export const legalshieldAssociateBuyNowData = [
     ],
     prodPurchase: false,
     regions: ['Colorado'],
-    tag: '@smoke',
+    tag: '@smoke @payment503',
     termTotal: '$29.95',
     testCaseName: 'IDShield Family, Family 1B',
     userType: 'New',

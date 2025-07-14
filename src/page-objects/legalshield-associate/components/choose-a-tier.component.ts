@@ -8,7 +8,7 @@ export class ChooseATierComponent {
   constructor(page: Page) {
     this.page = page;
     this.locTierContinueButton = this.page.locator('//button[contains(.,"Continue")]').nth(0);
-    this.locAnnualToggle = this.page.locator('//button[contains(@id,"radix-:rd:-trigger-ANNUAL")]');
+    this.locAnnualToggle = this.page.locator('//button[contains(@id,"ANNUAL")]');
   }
   // #region Navigation
   // #endregion Navigation

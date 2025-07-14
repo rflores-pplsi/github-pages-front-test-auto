@@ -55,15 +55,15 @@ export class FormsPage {
     //Account Information Form
     this.locFirstNameInput = this.page.getByPlaceholder('First Name');
     this.locLastNameInput = this.page.getByPlaceholder('Last Name');
-    this.locHomeAddressInput = this.page.getByPlaceholder('Home Address');
-    this.locHomeAddress2Input = this.page.getByPlaceholder('Address Line 2 (optional)');
+    this.locHomeAddressInput = this.page.getByPlaceholder('Address');
+    this.locHomeAddress2Input = this.page.getByPlaceholder('Suite, apartment, floor');
     this.locCityInput = this.page.getByPlaceholder('City');
     this.locStateInput = this.page.locator('//div[contains(@class,"lsux-col") and contains(.,"State")]//p').nth(1);
-    this.locZipCodeInput = this.page.getByPlaceholder('Postal Code');
-    this.locPhoneNumberInput = this.page.getByPlaceholder('(555) 555-5555');
-    this.locPhoneTypeInput = this.page.getByPlaceholder('Select Type');
-    this.locDOBInput = this.page.locator('//input[@name="dateOfBirth"]');
-    this.locSSNInput = this.page.getByPlaceholder('Last 4 SSN or SIN');
+    this.locZipCodeInput = this.page.getByPlaceholder('Zip code');
+    this.locPhoneNumberInput = this.page.getByPlaceholder('(123) 456-7890');
+    this.locPhoneTypeInput = this.page.locator('//select[@id="phone-type"]');
+    this.locDOBInput = this.page.getByPlaceholder('YYYY-MM-DD');
+    this.locSSNInput = this.page.getByPlaceholder('SSN');
     this.locBusinessNameInput = this.page.getByPlaceholder('Business Name');
     this.locDateOfIncorporationInput = this.page.locator('//input[@name="dateOfIncorporation"]');
     this.locBusinessTaxIdInput = this.page.getByPlaceholder('EIN / TIN');

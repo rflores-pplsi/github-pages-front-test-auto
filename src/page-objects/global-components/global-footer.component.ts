@@ -11,8 +11,8 @@ export class GlobalFooterComponent {
   constructor(context: BrowserContext, page: Page) {
     this.page = page;
     this.context = context;
-    this.locTermsOfServiceLink = this.page.locator('//a[contains(@href,"/terms-service")]');
-    this.locPrivacyPolicyLink = this.page.locator('//a[contains(@href,"/privacy-policy")]');
+    this.locTermsOfServiceLink = this.page.locator('//div[contains(@class,"lsux-footer")]//a[contains(@href,"/terms-service")]');
+    this.locPrivacyPolicyLink = this.page.locator('//div[contains(@class,"lsux-footer")]//a[contains(@href,"/privacy-policy")]');
     this.locLegalLink = this.page.locator('//a[contains(@href,"/disclaimer")]');
     this.locCopyrightText = this.page.locator('//a[contains(@href,"/disclaimer")]');
   }

@@ -1,4 +1,4 @@
-import { Page, Locator } from '@playwright/test';
+import { Page, Locator, expect } from '@playwright/test';
 
 export class PostPurchasePage {
   private locPaymentSuccessfulMessage: Locator;
@@ -13,9 +13,18 @@ export class PostPurchasePage {
   // #endregion Actions
 
   // #region Assertions
+  // async assertPaymentSuccessfulMessageIsVisible(): Promise<void> {
+  //   await this.page.waitForURL(new RegExp('/post-purchase'));
+  //   await expect(this.locPaymentSuccessfulMessage).toBeVisible();
+  // }
+
   async assertPaymentSuccessfulMessageIsVisible(): Promise<void> {
-    await this.page.waitForURL(new RegExp('/post-purchase'));
-    await this.locPaymentSuccessfulMessage.isVisible();
+  await this.page.waitForURL(/\/post-purchase/);
+  if(!await this.locPaymentSuccessfulMessage.isVisible()){ 
+
+  } else {
+    await this.page.pause();
   }
+}
   // #endregion Assertions
 }

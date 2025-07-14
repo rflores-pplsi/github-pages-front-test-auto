@@ -2,8 +2,8 @@ export const legalshieldData = [
   {
     disabled: false,
     testCaseName: 'Legalshield - Basic, Monthly, Existing User',
-    tags: '@smoke @Matt',
-    prodPurchase: true,
+    tags: '@smoke',
+    prodPurchase: false,
     language: 'en',
     market: 'US',
     regions: ['Colorado'],
@@ -76,7 +76,7 @@ export const legalshieldData = [
   {
     disabled: false,
     testCaseName: 'Legalshield - Advanced, Existing User',
-    tags: '@Matt',
+    tags: '',
     prodPurchase: false,
     language: 'en',
     market: 'US',
@@ -122,7 +122,7 @@ export const legalshieldData = [
     totalDueToday: '$104.75',
   },
   {
-    disabled: false,
+    disabled: true, //move to separate spec file for SMB if there is value before SMB implements embedded checkout (January?)
     testCaseName: 'Small Business Legal Essentials, Existing User',
     tags: '',
     prodPurchase: false,
@@ -137,7 +137,8 @@ export const legalshieldData = [
   },
   {
     //enable after page-switching cart-refresh bug fixed
-    disabled: true,
+    //move to separate spec file for SMB if there is value before SMB implements embedded checkout (January?)
+    disabled: true, 
     testCaseName: 'Small Business Legal Essentials + Legal Plan, Existing User',
     tags: '',
     prodPurchase: false,
@@ -155,6 +156,7 @@ export const legalshieldData = [
   },
   {
     //enable after page-switching cart-refresh bug fixed
+    //move to separate spec file for SMB if there is value before SMB implements embedded checkout (January?)
     disabled: true,
     testCaseName: 'Small Business Legal Essentials + Legal Plan + All Supplements, Existing User',
     tags: '',
@@ -176,7 +178,8 @@ export const legalshieldData = [
     totalDueToday: '$138.75',
   },
   {
-    disabled: false,
+    //move to separate spec file for SMB if there is value before SMB implements embedded checkout (January?)
+    disabled: true,
     prodPurchase: false,
     language: 'en',
     market: 'US',
@@ -191,6 +194,7 @@ export const legalshieldData = [
   },
   {
     //enable after page-switching cart-refresh bug fixed
+    //move to separate spec file for SMB if there is value before SMB implements embedded checkout (January?)
     disabled: true,
     prodPurchase: false,
     language: 'en',
@@ -209,6 +213,7 @@ export const legalshieldData = [
   },
   {
     //enable after page-switching cart-refresh bug fixed
+    //move to separate spec file for SMB if there is value before SMB implements embedded checkout (January?)
     disabled: true,
     prodPurchase: false,
     language: 'en',
@@ -231,7 +236,8 @@ export const legalshieldData = [
     userType: 'Existing',
   },
   {
-    disabled: false,
+    //move to separate spec file for SMB if there is value before SMB implements embedded checkout (January?)
+    disabled: true,
     prodPurchase: false,
     language: 'en',
     market: 'US',
@@ -245,6 +251,7 @@ export const legalshieldData = [
   },
   {
     //enable after page-switching cart-refresh bug fixed
+    //move to separate spec file for SMB if there is value before SMB implements embedded checkout (January?)
     disabled: true,
     prodPurchase: false,
     language: 'en',
@@ -263,6 +270,7 @@ export const legalshieldData = [
   },
   {
     //enable after page-switching cart-refresh bug fixed
+    //move to separate spec file for SMB if there is value before SMB implements embedded checkout (January?)
     disabled: true,
     prodPurchase: false,
     language: 'en',

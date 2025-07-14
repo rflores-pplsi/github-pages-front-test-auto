@@ -1,7 +1,6 @@
 import { Page, Locator } from '@playwright/test';
 import UrlsUtils from '../../../utils/urls.utils';
 import { MarketingSitesCartComponent } from '../marketing-sites-cart-component';
-import { MarketingSiteFooterComponent } from '../marketing-sites-footer-component';
 import { SmallBusinessQualifyingComponent } from './legalshield-small-business-qualifying.component';
 import { PricingCardComponent } from './pricing-card.component';
 
@@ -10,7 +9,6 @@ export class LegalshieldCoverageAndPricingPage {
   baseUrl: string;
   subdirectory: string;
   readonly marketingSiteCartComponent: MarketingSitesCartComponent;
-  readonly marketingSiteFooterComponent: MarketingSiteFooterComponent;
   readonly smallBusinessQualifyingComponent: SmallBusinessQualifyingComponent;
   readonly pricingCardComponent: PricingCardComponent;
   readonly locMainContentDiv: Locator;
@@ -28,7 +26,6 @@ export class LegalshieldCoverageAndPricingPage {
     this.baseUrl = UrlsUtils.marketingSitesUrls.legalShieldUSUrl;
     this.subdirectory = '';
     this.marketingSiteCartComponent = new MarketingSitesCartComponent(page);
-    this.marketingSiteFooterComponent = new MarketingSiteFooterComponent(page);
     this.smallBusinessQualifyingComponent = new SmallBusinessQualifyingComponent(page);
     this.pricingCardComponent = new PricingCardComponent(page);
     this.locMainContentDiv = this.page.locator('//div[@id="sticky-offset-menu"]//a[contains(.,"Shop Legal Plans")]');

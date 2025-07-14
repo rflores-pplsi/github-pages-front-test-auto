@@ -17,7 +17,6 @@ for (const testCase of selfPayData.filter((testCase) => testCase.disabled == fal
       console.log(`Test Case: ShieldBenefits (${testCase.testCaseName}, ${regionUnderTest}) -> Checkout -> Accounts`);
       test.setTimeout(120000);
       const regionInfo = RegionsUtils.usStates.filter((region) => region.name == regionUnderTest)[0];
-
       await test.step(`Navigate to Shield Benefits Pricing Page for Group: ${testCase.groupNameOrNumber}`, async () => {
         await page.goto(`${UrlsUtils.shieldBenefits.home.url}/${testCase.groupNameOrNumber}/enrollment`);
       });
