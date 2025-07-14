@@ -7,26 +7,6 @@ interface reportData {
 }
 class MyReporter implements Reporter {
   private apiNewRelicUrl = 'https://insights-collector.newrelic.com/v1/accounts/124794/events';
-  private async sendReport(message: unknown) {
-    const apiKey = process.env.API_NEW_RELIC_INGEST_KEY || '';
-    const headersInfo = {
-      'Content-Type': 'application/json',
-      'X-Insert-Key': apiKey,
-    };
-    const body = JSON.stringify([
-      {
-        eventType: 'PlaywrightFullReport',
-        testResults: message,
-      },
-    ]);
-    try {
-      const response = await fetch(this.apiNewRelicUrl, { body: body, headers: headersInfo, method: 'POST' });
-      const jsonResponse = await response.json();
-      return jsonResponse;
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  }
   private reportData: reportData[] = []; // Add reportData property
   failsMessage = '';
   passed = 0;
@@ -97,32 +77,70 @@ class MyReporter implements Reporter {
   }
 
   async onEnd(result: FullResult) {
-    const message = await this.buildMessage(result);
-    this.sendReport(message);
+    const summaryObject = this.buildSummaryObject(result);
+    
+    await this.sendReport(summaryObject);
     // Implement your Logic to send this message whenever you want.
     // e.i. Send to New Relic Here...
-
     // // console.log(`onEnd:: Finished the run: status: ${status}, startTime: ${startTime}, duration: ${duration}, reportData: ${allResults}`);
+  }
+
+  private buildSummaryObject(result: FullResult) {
+    let resultsMessage = '';
+    if (this.failed === 0) {
+      resultsMessage = 'All tests passed!';
+    } else if (this.failed === 1 && this.failsMessage) {
+      // Try to extract the first failed test title from failsMessage
+      const match = this.failsMessage.match(/Test Case: ([^\n]+)/);
+      if (match && match[1]) {
+        resultsMessage = `${match[1]} failed.`;
+      } else {
+        resultsMessage = '1 test failed.';
+      }
+    } else if (this.failed > 1) {
+      resultsMessage = `${this.failed} tests failed.`;
+    }
+    // Format duration as Xm Ys
+    const totalSeconds = (result.duration / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = (totalSeconds - minutes * 60).toFixed(2);
+    const durationString = `${minutes}m ${seconds}s`;
+    return {
+      duration: durationString,
+      status: this.failed > 0 ? 'failed' : 'passed',
+      passed: this.passed,
+      failed: this.failed,
+      skipped: this.skipped,
+      interrupted: this.interrupted,
+      failures: this.failsMessage,
+      'Results Message': resultsMessage,
+      // Optionally add more fields as needed
+    };
+  }
+
+  private async sendReport(summaryObject: Record<string, unknown>) {
+    const apiKey = process.env.API_NEW_RELIC_INGEST_KEY || '';
+    const headersInfo = {
+      'Content-Type': 'application/json',
+      'X-Insert-Key': apiKey,
+    };
+    const body = JSON.stringify([
+      {
+        eventType: 'PlaywrightFullReport',
+        ...summaryObject,
+      },
+    ]);
+    try {
+      const response = await fetch(this.apiNewRelicUrl, { body: body, headers: headersInfo, method: 'POST' });
+      const jsonResponse = await response.json();
+      return jsonResponse;
+    } catch (error) {
+      console.error('Error:', error);
+    }
   }
 
   private addFailMessage(message: string) {
     this.failsMessage += `\n${message}`;
-  }
-  private async buildMessage(result: FullResult) {
-    const status = this.failed > 0 ? 'failed' : 'passed';
-    const duration = result.duration;
-    const allResults = JSON.stringify(this.reportData);
-    const resultMarkdownMessage = `
-      Test Run Summary: 
-      - Duration: ${duration}
-      - Passed: ${this.passed}
-      - Failed: ${this.failed}
-      - Skipped: ${this.skipped}
-      - Interrupted: ${this.interrupted}
-      
-      ${this.failsMessage ? `Failures: ${this.failsMessage}` : ':thumbsup: All tests passed!'}`;
-    //console.log(resultMarkdownMessage);
-    return resultMarkdownMessage;
   }
 }
 export default MyReporter;
