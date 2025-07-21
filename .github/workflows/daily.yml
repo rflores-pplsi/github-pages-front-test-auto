@@ -1,7 +1,7 @@
-name: Playwright Tests - Daily
+name: Regression - 6am CST Daily
 on:
   schedule:
-    - cron: '*/10 * * * *'  # Runs every 10 minutes
+    - cron: '0 6 * * *'  # Runs every day at 6 AM UTC ( 12am CST )
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,7 +17,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Run Playwright tests
-        run: USE_UAT=true npx playwright test --grep @regression
+        run: USE_UAT=true npx playwright test --grep @regression --workers=4
       - name: Upload test results
         uses: actions/upload-artifact@v4
         if: ${{ always() }}
