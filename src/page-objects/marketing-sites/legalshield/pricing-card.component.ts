@@ -11,15 +11,12 @@ export class PricingCardComponent {
     this.locAnnualToggle = this.page.locator('//a[contains(.,"Annually")]');
   }
 
-  clickAddToCartButton = async (productShortCode: string, term: string): Promise<void> => {
+  clickAddToCartButton = async (productShortCode: string, term: string, planName: string): Promise<void> => {
     if (term === 'Annual') {
       await this.locAnnualToggle.click();
     }
-    // Currently UAT, remove after confirming future state
-    // const addToCartLocator = this.page.locator(
-    //   `//a[@data-product-shortcode="${planName}"]`
-    // ).nth(0);    
-    const addToCartLocator = this.page.locator(`//div[contains(@class,"lsc-add-to-cart-button") and .//div[@class="et_pb_code_inner" and text()="${productShortCode}"]]//a`);
+    // Updated selector: find <a> with aria-label starting 'Add to cart' and containing plan name
+    const addToCartLocator = this.page.locator(`a[aria-label^='Add to cart'][aria-label*='${planName.toUpperCase()}']`).first();
     await addToCartLocator.click();
   };
 }

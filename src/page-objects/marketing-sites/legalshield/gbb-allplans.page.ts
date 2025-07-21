@@ -18,7 +18,7 @@ export class GbbAllPlansPage {
     let counter = productDetails.length;
     for (const product of productDetails) {
       await expect(async () => {
-      await this.pricingCardComponent.clickAddToCartButton(product.name, product.term);
+      await this.pricingCardComponent.clickAddToCartButton(product.shortCode, product.name, product.term);
       await expect(this.marketingSitesCartComponent.locCheckoutButton).toBeVisible();
     }).toPass({ intervals: [0.3] });
       
