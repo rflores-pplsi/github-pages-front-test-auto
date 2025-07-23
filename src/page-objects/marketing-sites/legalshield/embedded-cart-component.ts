@@ -4,6 +4,7 @@ import { ProductDetails } from '../../../types/types';
 import { IBankDraftDataForUS, ICreditCardData } from '../../../interfaces/checkout-interfaces';
 import { getDefaultCreditCardData } from '../../../utils/credit-card-info-utils';
 import { getDefaultBankDraftData } from '../../../utils/bank-draft-info-utils';
+import { clickLocatorWithRetry } from '../../../utils/helpers';
 
 export class EmbeddedCartComponent {
   readonly page: Page;
@@ -141,12 +142,15 @@ export class EmbeddedCartComponent {
     await this.locFirstNameInput.fill(firstName);
   };
   
-  enterExistingEmailAddress = async (email: string, pass: string): Promise<void> => {
+  enterExistingEmailAndLogin = async (email: string, pass: string): Promise<void> => {
       await this.fillEmailAddress(email);
       await this.page.keyboard.press('Tab');
       await this.page.waitForSelector('//h3[contains(text(),"Welcome back!")]');
       await this.clickWelcomeBackSignInButton();
-      await this.commonLoginService.loginPage.login(email, pass);
+      await this.commonLoginService.loginPage.locLoginEmailOrUsernameInput.fill(email);
+      await this.page.locator('//button[@type="submit"]').click();
+      await this.commonLoginService.loginPage.locLoginPasswordInput.fill(pass);
+      await this.page.locator('//button[@type="submit"]').click();   
   };
 
   enterNewRandomEmailAddress = async (): Promise<void> =>{
@@ -217,7 +221,6 @@ export class EmbeddedCartComponent {
 
   assertExpectedProductsAndCostsDisplayed = async (productDetails: ProductDetails[]): Promise<void> => {
     const displayedProductsArray = await this.getDisplayedProductsInfoArray();
-    console.log(`Displayed Products: ${JSON.stringify(displayedProductsArray)}`);
     for (const productDetail of productDetails) {
       const productMatch = displayedProductsArray.some((displayedProduct) => {  
         return (
@@ -256,7 +259,7 @@ export class EmbeddedCartComponent {
   }; 
   
   async clickPaymentToggle(): Promise<void> {
-    await this.locBankDraftToggle.click();
+    await clickLocatorWithRetry(this.locBankDraftToggle,this.locBankDraftAccountNumberInput);
   }
 
   async fillPaymentInfoFormWithCreditCard(customCreditCardData?: object): Promise<void> {

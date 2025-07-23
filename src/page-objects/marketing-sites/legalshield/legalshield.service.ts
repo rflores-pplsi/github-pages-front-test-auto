@@ -3,7 +3,6 @@ import { ProductDetails, PageUrlAndTitleArray } from '../../../types/types';
 import UrlsUtils from '../../../utils/urls.utils';
 import { LegalshieldPage } from './legalshield.page';
 import { LegalshieldCoverageAndPricingPage } from './legalshield-coverage-and-pricing.page';
-import { GbbAllPlansPage } from './gbb-allplans.page';
 import { SmallBusinessQualifyingComponent } from './legalshield-small-business-qualifying.component';
 import { MarketingSitesCartComponent } from '../marketing-sites-cart-component';
 import { HeaderComponent } from '../header-component';
@@ -17,6 +16,7 @@ import { GbbPricingSectionComponent } from '../../global-components/gbb-pricing-
 import { EmbeddedCartComponent } from './embedded-cart-component';
 import { clickLocatorWithRetry, addQueryParamToUrl } from '../../../utils/helpers';
 import { MarketingFooterComponent } from '../../marketing-sites/marketing-footer.component';
+
 export class LegalshieldService {
   protected page: Page;
   protected context: BrowserContext;
@@ -34,7 +34,6 @@ export class LegalshieldService {
   readonly marketingFooterComponent: MarketingFooterComponent;
   readonly legalshieldPage: LegalshieldPage;
   readonly legalshieldCoverageAndPricingPage: LegalshieldCoverageAndPricingPage;
-  readonly gbbAllPlansPage: GbbAllPlansPage;
   readonly firstGetStartedButton: Locator;
   readonly locLinksThatNavigateToNewPage: Locator;
   readonly locLinksThatNavigateToNewTab: Locator;
@@ -67,7 +66,6 @@ export class LegalshieldService {
     this.marketingFooterComponent = new MarketingFooterComponent(context, page);
     this.legalshieldPage = new LegalshieldPage(context, page);
     this.legalshieldCoverageAndPricingPage = new LegalshieldCoverageAndPricingPage(page);
-    this.gbbAllPlansPage = new GbbAllPlansPage(page);
     this.firstGetStartedButton = this.page.locator(`//div[contains(@class, 'pricing') and contains(@class, 'plan')]//a`);
     this.locLinksThatNavigateToNewPage = this.page.locator(
       'body .lsux-link[href]:not([target="_blank"]):not([href*="javascript:void(0)"]):not([href*="#"]), body .lsux-button--primary[href]:not([target="_blank"]):not([href*="javascript:void(0)"]):not([href*="#"]),body .lsux-button--secondary[href]:not([target="_blank"]):not([href*="javascript:void(0)"]):not([href*="#"])'
@@ -89,13 +87,18 @@ export class LegalshieldService {
     this.locAcceptAllButton = this.page.locator('//button[@aria-label="Accept All"]');
     this.locPreFooterNavigation = this.page.locator('body .footer_top-wrapper a');
   }
-
+  
   navigateToUrl = async (url: string): Promise<void> => {
     await this.page.goto(url);
     await this.page.waitForLoadState('load');
     // if (process.env.USE_PROD == 'true') {
     //   await this.closePromotionDialog();
     // }
+  };
+
+  assertPDFViewerIsVisible = async (): Promise<void> => {
+    await this.page.waitForSelector('.pdf-viewer', { state: 'visible' });
+    expect.soft(this.page.locator('.pdf-viewer')).toBeVisible();
   };
 
   closePromotionDialog = async (): Promise<void> => {
@@ -105,6 +108,20 @@ export class LegalshieldService {
   clickAcceptAllButton = async (): Promise<void> => {
     await this.locAcceptAllButton.waitFor({ state: 'visible' });
     await this.locAcceptAllButton.click();
+  };
+
+  blockKetchConsentBannerFromDisplaying = async (): Promise<void> => {
+    await this.page.waitForLoadState('load'); 
+    await this.page.addStyleTag({
+      content: `
+        #ketch-banner {
+          display: none !important;
+          visibility: hidden !important;
+          opacity: 0 !important;
+          pointer-events: none !important;
+        }
+      `,
+    });
   };
 
   navigateToLegalshieldPricingAndCoveragePage = async (market: string, language: string): Promise<void> => {
@@ -196,9 +213,8 @@ export class LegalshieldService {
       const cartProductShortCodeLocator = this.page.locator(`//div[@id="container"]//span[@data-product-shortcode="${productShortCode}"]`);
       await clickLocatorWithRetry(addToCartLocator,cartProductShortCodeLocator);
       await this.configurePlan(productShortCode);
-      // await this.clickAcceptAllButton();
-      await this.embeddedCartComponent.clickContinueShoppingButton();;
-    }).toPass({ intervals: [0.3] });    
+      await this.embeddedCartComponent.clickContinueShoppingButton();
+    }).toPass({ intervals: [0.3] });
   };
 
   configurePlan = async (productShortCode: string): Promise<void> => {

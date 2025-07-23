@@ -13,7 +13,6 @@ const config: PlaywrightTestConfig = {
         ...devices['Desktop Chrome'],
         launchOptions: {
           args: ['--remote-debugging-port=9222'],
-          slowMo: 500,
           // slowMo: 500,
         },
         screenshot: 'on',

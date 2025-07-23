@@ -20,15 +20,16 @@ export class HeaderComponent {
 
   clickMenuLink = async (parentLink: string, childLink: string): Promise<void> => {
     const parentLinkLocator = this.locNavigationContainer.locator(`//div[contains(text(),"${parentLink}")]`);
-    const childLinkLocator = this.locNavigationContainer.locator(`//div[contains(text(),"${childLink}")]`);
-    await clickLocatorWithRetry(parentLinkLocator, this.locOpenNavMenu);
-    await parentLinkLocator.click();
-    if (childLink !== '') {
-      await childLinkLocator.click();
+    const childLinkLocator = this.locNavigationContainer.locator(`//a[@href="${childLink}"]`);
+    // some links do not require two clicks
+    if (parentLink !== '') {
+      await clickLocatorWithRetry(parentLinkLocator, this.locOpenNavMenu);
     }
+    await childLinkLocator.click();
   };
 
   assertHeaderIsVisible = async (): Promise<void> => {
+    await this.locHeader.waitFor({ state: 'visible' });
     expect.soft(this.locHeader).toBeVisible();
   };
 }
