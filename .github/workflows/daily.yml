@@ -17,7 +17,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Run Playwright tests
-        run: USE_UAT=true npx playwright test --grep @regression --workers=4
+        run: USE_UAT=true npx playwright test --grep @regression --workers 1
       - name: Upload test results
         uses: actions/upload-artifact@v4
         if: ${{ always() }}
