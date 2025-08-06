@@ -84,7 +84,7 @@ export class LegalshieldService {
     this.locEmailCaptureSection = this.page.locator('body #section-email_capture');
     this.locCartBox = this.page.locator('.cart-box');
     this.locPromotionDialogCloseButton = this.page.locator('//div[contains(@class,"ub-emb-iframe-wrapper ub-emb-visible")]//button');
-    this.locAcceptAllButton = this.page.locator('//button[@aria-label="Accept All"]');
+    this.locAcceptAllButton = this.page.locator('//div[@id="ketch-consent-banner"]//button[@aria-label="Continue"]');
     this.locPreFooterNavigation = this.page.locator('body .footer_top-wrapper a');
   }
   

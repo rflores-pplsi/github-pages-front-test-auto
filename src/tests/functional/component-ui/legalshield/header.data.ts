@@ -186,13 +186,13 @@ export const navigationLinks = [
     parentLink: 'Resources',
     href: '/blog/primary-vs-contingent-beneficiary',
     tags: '',
-    disabled: false,
+    disabled: true, //disabled until QAOPS-1260 complete
   },
   {
     testCaseName: 'User can navigate to the Small Business Owners Guide page',
     parentLink: 'Resources',
     href: '/blog/small-business-owners-guide-debt-collection',
     tags: '',
-    disabled: false,
-  }
+    disabled: true,//disabled until QAOPS-1260 complete
+  },
 ];
