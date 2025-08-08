@@ -51,6 +51,7 @@ for (const testCase of legalshieldAssociateBuyNowData.filter((testCase) => testC
             '333333333');
         await officeService.purchasePage.clickContinueButton();    
       });
+
       await test.step(`Click continue again to skip Additional Information Form`, async () => {
         await officeService.purchasePage.skipAdditionalInformationForm(testCase.planDetails);
       });

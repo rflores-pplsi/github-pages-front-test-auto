@@ -17,7 +17,7 @@ test.describe(`LegalShield Footer Links`, () => {
     });
   });
   
-  test(`Customer can use the footer to open the Privacy Policy page in a new Tab @regression1 @legalshield-footer`, async ({
+  test(`Customer can use the footer to open the Privacy Policy page in a new Tab @regression @legalshield-footer`, async ({
     legalshieldService,
   }) => {
     console.log(`Test Case: Customer can use the footer to open the Privacy Policy page in a new Tab}`);

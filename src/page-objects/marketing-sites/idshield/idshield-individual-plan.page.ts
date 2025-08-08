@@ -1,6 +1,7 @@
 import { Page, Locator } from '@playwright/test';
 import UrlsUtils from '../../../utils/urls.utils';
 import { MarketingSitesCartComponent } from '../marketing-sites-cart-component';
+import { clickLocatorWithRetry } from '../../../utils/helpers';
 
 export class IdshieldIndividualPlanPage {
   protected page: Page;
@@ -31,7 +32,8 @@ export class IdshieldIndividualPlanPage {
     let condition = false;
     const buttonLocator = this.page.locator(`//div[contains(@class,"pricing18_content") and contains(.,"${term}")]//a`);
     while (condition == false) {
-      await buttonLocator.click();
+      await clickLocatorWithRetry(buttonLocator, this.page.locator('//*[@id="cart-container"]'));
+      // await buttonLocator.click();
       condition = await this.marketingSiteCartComponent.locCartContainerDiv.isVisible();
     }
   };
@@ -39,7 +41,6 @@ export class IdshieldIndividualPlanPage {
   clickSalesDialogCloseButton = async (): Promise<void> => {
     await this.locSalesDialogBoxCloseButton.click();
   };
-
 
   /**
    *
@@ -61,8 +62,8 @@ export class IdshieldIndividualPlanPage {
         }
     }
     await this.page.goto(`${this.baseUrl}`);
-    if (process.env.USE_PROD == 'true') {
-      await this.clickSalesDialogCloseButton();
-    }
+    // if (process.env.USE_PROD == 'true') {
+    //   await this.clickSalesDialogCloseButton();
+    // }
   };
 }

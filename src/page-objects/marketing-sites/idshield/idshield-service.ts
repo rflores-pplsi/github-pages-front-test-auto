@@ -4,6 +4,7 @@ import { IdshieldIndividualPlanPage } from './idshield-individual-plan.page';
 import { PlanDetails } from '../../../types/types';
 import { MarketingSitesCartComponent } from '../marketing-sites-cart-component';
 import { MarketingFooterComponent } from '../marketing-footer.component';
+import { clickLocatorWithRetry } from '../../../utils/helpers';
 
 export class IdshieldService {
   protected page: Page;
@@ -25,6 +26,7 @@ export class IdshieldService {
   addProductsFromProductDetails = async (planDetails: Array<PlanDetails>): Promise<void> => {
     let counter = planDetails.length;
     for (const plan of planDetails) {
+      console.log(`Adding to cart: ${plan.marketingName} - ${plan.tier.name}`);
       await this.clickLearnMoreButton(plan.marketingName);
       await this.selectTier(plan.tier.name);
     }

@@ -3,7 +3,6 @@ import RegionsUtils from '../../../../../utils/regions.utils';
 import { basicUser } from '../../../../../utils/user.utils';
 import { idshieldData } from './data/idshield.data';
 import { test } from '../../../../../fixtures/frontend-ui.fixture';
-import { CheckoutService } from '../../../../../page-objects/checkout/checkout-service';
 
 for (const testCase of idshieldData.filter((testCase) => testCase.disabled == false)) {
   for (const regionUnderTest of testCase.regions) {
@@ -29,6 +28,8 @@ for (const testCase of idshieldData.filter((testCase) => testCase.disabled == fa
       await test.step(`Choose Account by Email and Login`, async () => {
         if (testCase.userType == 'Existing') {
           await commonCheckoutService.accountPage.enterExistingAccountEmailAndLogin(basicUser.email);
+          await commonLoginService.loginPage.locLoginEmailOrUsernameInput.fill(basicUser.email);
+          await page.getByText('Continue').click();
           await commonLoginService.loginPage.login(basicUser.email, basicUser.password);
         }
         if (testCase.userType == 'New') {
