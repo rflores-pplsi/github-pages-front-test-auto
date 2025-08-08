@@ -28,15 +28,15 @@ RegionsUtils.usStates
         await privacyContinue.click();
       }
 
-      // 2. Dismiss chat widget if present
-      const chatWidget = page.getByRole('button', { name: /open-chat-widget/i });
-      if (await chatWidget.isVisible()) {
-        await chatWidget.click();
-        const minimizeChat = page.getByRole('button', { name: /minimize-chat-widget/i });
-        if (await minimizeChat.isVisible()) {
-          await minimizeChat.click();
-        }
-      }
+      // // 2. Dismiss chat widget if present
+      // const chatWidget = page.getByRole('button', { name: /open-chat-widget/i });
+      // if (await chatWidget.isVisible()) {
+      //   await chatWidget.click();
+      //   const minimizeChat = page.getByRole('button', { name: /minimize-chat-widget/i });
+      //   if (await minimizeChat.isVisible()) {
+      //     await minimizeChat.click();
+      //   }
+      // } // TODO: Pull out and create single test. QAOPS-1264
 
       // 3. Add Advanced product to the cart
       const addAdvanced = page.getByRole('link', { name: /Add to cart Advanced plan/i }).first();
