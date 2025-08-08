@@ -67,7 +67,7 @@ export class FormsPage {
     this.locBusinessNameInput = this.page.getByPlaceholder('Business Name');
     this.locDateOfIncorporationInput = this.page.locator('//input[@name="dateOfIncorporation"]');
     this.locBusinessTaxIdInput = this.page.getByPlaceholder('EIN / TIN');
-    this.locContinueToPaymentButton = this.page.getByRole('button', { name: 'Continue to Payment' });
+    this.locContinueToPaymentButton = this.page.getByRole('button', { name: 'Continue' });
     this.locAccountInformationHeader = this.page.getByRole('heading', { name: 'Account Information' });
     this.locInformationIcon = this.page.getByRole('img', { name: 'info' });
     this.locInformationIconTooltip = this.page.locator('.info-tooltip-text');

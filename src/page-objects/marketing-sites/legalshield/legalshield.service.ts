@@ -91,9 +91,9 @@ export class LegalshieldService {
   navigateToUrl = async (url: string): Promise<void> => {
     await this.page.goto(url);
     await this.page.waitForLoadState('load');
-    // if (process.env.USE_PROD == 'true') {
-    //   await this.closePromotionDialog();
-    // }
+    if (process.env.USE_PROD == 'true') {
+      await this.closePromotionDialog();
+    }
   };
 
   assertPDFViewerIsVisible = async (): Promise<void> => {
