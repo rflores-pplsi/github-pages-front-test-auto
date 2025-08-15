@@ -20,7 +20,7 @@ export class MarketingFooterComponent {
     this.locCopyrightText = this.page.locator('//div[contains(@class,"footer_credit-text")]');
     this.locSoc3Link = this.page.locator('//a[contains(@class,"footer_legal-link") and contains(@href,"SOC")]');
     this.locCodeOfEthicsLink = this.page.locator('//a[contains(@class,"footer_legal-link") and contains(@href,"code-of-ethics")]');
-    this.locPrivacySettingsLink = this.page.locator('#preferenceCenterLink');
+    this.locPrivacySettingsLink = this.page.locator('//a[@id="preferenceCenterLink"]');
   }
 
   clickTermsOfServiceLink = async (): Promise<Page> => {
