@@ -5,11 +5,6 @@ import RegionsUtils from '../../../../utils/regions.utils';
 RegionsUtils.usStates
   .filter((region) => region.name)
   .forEach((regionUnderTestObject) => {
-    if ( regionUnderTestObject.name === 'Delaware' ) {
-      // Skip Delaware as it does not have an Advanced plan contract PDF.
-      // Skipping Delaware until https://legalshield.atlassian.net/browse/QAOPS-1305 is resolved.
-      return;
-    }
     // Functional test for LegalShield Advanced Plan contract PDF
     test(`Advanced plan contract PDF opens and is readable for ${regionUnderTestObject.name} @regression`, async ({ page, context }) => {
       // 1. Navigate to the coverage and pricing page
