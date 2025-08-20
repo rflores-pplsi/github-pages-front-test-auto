@@ -2,6 +2,13 @@ name: Regression Suites - 6am CST Daily
 on:
   schedule:
     - cron: '0 6 * * *'  # Runs every day at 6 AM UTC (12am CST)
+  workflow_dispatch:
+    inputs:
+      run:
+        description: 'Trigger the workflow via API. Set to "true" to run.'
+        required: true
+        default: 'false'
+
 jobs:
   view-contracts:
     name: View Contracts
