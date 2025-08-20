@@ -30,7 +30,7 @@ test('User can click the Terms of Service Link from the Login service and open t
     newPage = await commonFooterComponent.clickTermsOfServiceLink();
   });
   await test.step(`Verify the the Terms of Service opens in a new tab`, async () => {
-    await expect(newPage).toHaveURL(new RegExp('pplsi.com/terms-service/'));
+    await expect(newPage).toHaveURL(new RegExp('legalshield.com/terms-of-service'));
   });
 });
 
@@ -48,7 +48,7 @@ test('User can click the Privacy Policy Link from the Login service and open the
     newPage = await commonFooterComponent.clickPrivacyPolicyLink();
   });
   await test.step(`Verify the the Privacy Policy opens in a new tab`, async () => {
-    await expect(newPage).toHaveURL(new RegExp('pplsi.com/privacy-policy'));
+    await expect(newPage).toHaveURL(new RegExp('legalshield.com/privacy-policy'));
   });
 });
 
@@ -63,6 +63,6 @@ test('User can click the Legal Link from the Login service and open the Legal Di
     newPage = await commonFooterComponent.clickLegalLink();
   });
   await test.step(`Verify the the Legal Disclaimer opens in a new tab`, async () => {
-    await expect(newPage).toHaveURL(new RegExp('pplsi.com/disclaimer/'));
+    await expect(newPage).toHaveURL(new RegExp('legalshield.com/disclaimer'));
   });
 });
