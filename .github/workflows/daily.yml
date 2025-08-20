@@ -23,11 +23,11 @@ jobs:
           LOGIN_PASSWORD_UAT: ${{ secrets.LOGIN_PASSWORD_UAT }}
           LOGIN_USERNAME_UAT: ${{ secrets.LOGIN_USERNAME_UAT }}
         run: USE_UAT=true npx playwright test advanced-plan-contract.spec.ts --workers 1
-      - name: Upload UAT test results
+      - name: Upload view-contracts test results
         uses: actions/upload-artifact@v4
         if: ${{ always() }}
         with:
-          name: uat-test-results
+          name: view-contracts-test-results
           path: test-results
           retention-days: 10
 
@@ -51,11 +51,11 @@ jobs:
           LOGIN_PASSWORD_QA: ${{ secrets.LOGIN_PASSWORD_QA }}
           LOGIN_USERNAME_QA: ${{ secrets.LOGIN_USERNAME_QA }}
         run: USE_QA=true npx playwright test footer.spec.ts --workers 1
-      - name: Upload QA test results
+      - name: Upload footer test results
         uses: actions/upload-artifact@v4
         if: ${{ always() }}
         with:
-          name: qa-test-results
+          name: footer-test-results
           path: test-results
           retention-days: 10
 
@@ -79,11 +79,11 @@ jobs:
           LOGIN_PASSWORD_QA: ${{ secrets.LOGIN_PASSWORD_QA }}
           LOGIN_USERNAME_QA: ${{ secrets.LOGIN_USERNAME_QA }}
         run: USE_QA=true npx playwright test header.spec.ts --workers 1
-      - name: Upload QA test results
+      - name: Upload header test results
         uses: actions/upload-artifact@v4
         if: ${{ always() }}
         with:
-          name: qa-test-results
+          name: header-test-results
           path: test-results
           retention-days: 10
   
@@ -107,10 +107,39 @@ jobs:
           LOGIN_PASSWORD_QA: ${{ secrets.LOGIN_PASSWORD_QA }}
           LOGIN_USERNAME_QA: ${{ secrets.LOGIN_USERNAME_QA }}
         run: USE_QA=true npx playwright test small-business-plan-coverage-pricing.spec.ts --workers 1
-      - name: Upload QA test results
+      - name: Upload SMB test results
         uses: actions/upload-artifact@v4
         if: ${{ always() }}
         with:
-          name: qa-test-results
+          name: smb-test-results
           path: test-results
-          retention-days: 10        
+          retention-days: 10
+          
+  consumer-flow-legalshield:
+    name: Consumer Flow LegalShield
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Configure npm for GitHub Packages
+        run: |
+          echo "@legalshield:registry=https://npm.pkg.github.com/" > .npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_PATOKEN }}" > .npmrc
+      - name: Install dependencies
+        run: npm ci
+      - name: Run Playwright Consumer Flow LegalShield tests
+        env:
+          LOGIN_EMAIL_QA: ${{ secrets.LOGIN_EMAIL_QA }}
+          LOGIN_PASSWORD_QA: ${{ secrets.LOGIN_PASSWORD_QA }}
+          LOGIN_USERNAME_QA: ${{ secrets.LOGIN_USERNAME_QA }}
+        run: USE_QA=true npx playwright test consumer-flow-legalshield.spec.ts --workers 1
+      - name: Upload consumer-flow test results
+        uses: actions/upload-artifact@v4
+        if: ${{ always() }}
+        with:
+          name: consumer-flow-test-results
+          path: test-results
+          retention-days: 10          
+
