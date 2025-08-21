@@ -39,8 +39,8 @@ RegionsUtils.usStates
       // } // TODO: Pull out and create single test. QAOPS-1264
 
       // 3. Add Advanced product to the cart
-      const addAdvanced = page.getByRole('link', { name: /Add to cart Advanced plan/i }).first();
-      await addAdvanced.click();
+      await page.locator('div').filter({ hasText: /^\$39\.95\/mo\.Add to cart$/ }).getByLabel('Add to cart Advanced plan').click();
+      const page1Promise = page.waitForEvent('popup');
 
       // 4. Locate the Advanced product in the cart drawer
       // Drilldown: Find the cart drawer by navigating from the nav[role="navigation"] to the product title
@@ -48,6 +48,8 @@ RegionsUtils.usStates
       await expect(cartDrawer).toBeVisible({ timeout: 10000 });
 
       // 5. Click on View Contract
+      // This will open the contract PDF in a new tab and
+      // Wait for the new tab to open
       const [pdfPage] = await Promise.all([context.waitForEvent('page'), page.getByRole('link', { name: /View Contract/i }).click()]);
 
       // 6. Ensure a readable PDF is opened in another tab
