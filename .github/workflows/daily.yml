@@ -41,6 +41,7 @@ jobs:
   footer-regression:
     name: Footer Regression
     runs-on: ubuntu-latest
+    needs: view-contracts
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -69,6 +70,7 @@ jobs:
   header-regression:
     name: Header Regression
     runs-on: ubuntu-latest
+    needs: footer-regression
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -97,6 +99,7 @@ jobs:
   smb-regression:
     name: SMB Regression
     runs-on: ubuntu-latest
+    needs: header-regression
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -125,6 +128,7 @@ jobs:
   consumer-flow-legalshield:
     name: Consumer Flow LegalShield
     runs-on: ubuntu-latest
+    needs: smb-regression
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
