@@ -6,7 +6,7 @@ RegionsUtils.usStates
   .filter((region) => region.name)
   .forEach((regionUnderTestObject) => {
     // Functional test for LegalShield Advanced Plan contract PDF
-    test(`Advanced plan contract PDF opens and is readable for ${regionUnderTestObject.name} @regression`, async ({ page, context }) => {
+    test(`Advanced plan contract PDF opens and is readable for ${regionUnderTestObject.name} @view-contracts`, async ({ page, context }) => {
       // 1. Navigate to the coverage and pricing page
       await page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/personal-plan/coverage-and-pricing?regionChange=true`);
 

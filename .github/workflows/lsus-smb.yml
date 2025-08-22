@@ -1,0 +1,39 @@
+name: Small Business Suite - 6am CST Daily
+on:
+  schedule:
+    - cron: '0 6 * * *'  # Runs every day at 6 AM UTC (12am CST)
+  workflow_dispatch:
+    inputs:
+      run:
+        description: 'Trigger the workflow via API. Set to "true" to run.'
+        required: true
+        default: 'false'
+
+jobs:
+  smb-lsus:
+    name: SMB Regression
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Configure npm for GitHub Packages
+        run: |
+          echo "@legalshield:registry=https://npm.pkg.github.com/" > .npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GH_PATOKEN }}" > .npmrc
+      - name: Install dependencies
+        run: npm ci
+      - name: Run Playwright SMB Regression tests
+        env:
+          LOGIN_EMAIL_QA: ${{ secrets.LOGIN_EMAIL_QA }}
+          LOGIN_PASSWORD_QA: ${{ secrets.LOGIN_PASSWORD_QA }}
+          LOGIN_USERNAME_QA: ${{ secrets.LOGIN_USERNAME_QA }}
+        run: USE_UAT=true npx playwright test --grep @smb-pricing --workers 1
+      - name: Upload SMB test results
+        uses: actions/upload-artifact@v4
+        if: ${{ always() }}
+        with:
+          name: smb-test-results
+          path: test-results
+          retention-days: 10

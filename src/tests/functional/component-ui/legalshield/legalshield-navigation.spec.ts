@@ -12,7 +12,7 @@ test.beforeEach(async ({ legalshieldService }) => {
 
 test.describe('LegalShield Header Navigation Links', () => {
   for (const testCase of navigationLinks.filter((testCase) => testCase.disabled == false)) {
-    test(`${testCase.testCaseName} ${testCase.tags} @regression @legalshield-header`, async ({ page, legalshieldService }) => {
+    test(`${testCase.testCaseName} ${testCase.tags} @lsus-header @legalshield-header`, async ({ page, legalshieldService }) => {
       console.log(`Test Case: ${testCase.testCaseName}`);
       await test.step(`WHEN: a user clicks on the ${testCase.parentLink} ${testCase.href} link`, async () => {
           await legalshieldService.headerComponent.clickMenuLink(testCase.parentLink, testCase.href);
