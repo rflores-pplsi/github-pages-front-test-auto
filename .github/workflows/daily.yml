@@ -87,7 +87,7 @@ jobs:
           LOGIN_EMAIL_QA: ${{ secrets.LOGIN_EMAIL_QA }}
           LOGIN_PASSWORD_QA: ${{ secrets.LOGIN_PASSWORD_QA }}
           LOGIN_USERNAME_QA: ${{ secrets.LOGIN_USERNAME_QA }}
-        run: USE_UAT=true npx playwright test header.spec.ts --workers 1
+        run: USE_UAT=true npx playwright test legalshield-navigation.spec.ts --workers 1
       - name: Upload header test results
         uses: actions/upload-artifact@v4
         if: ${{ always() }}
