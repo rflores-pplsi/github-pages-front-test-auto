@@ -67,7 +67,7 @@ test.describe(`LegalShield Footer Links`, () => {
     });
   });
 
-  test(`Customer can use the footer to open the Legal Disclaimer page in a new Tab @regression @legalshield-footer`, async ({ page, legalshieldService }) => {
+  test(`Customer can use the footer to open the Legal Disclaimer page in a new Tab @lsus-footer @legalshield-footer`, async ({ page, legalshieldService }) => {
     console.log('Test Case: Customer can use the footer to open the Legal Disclaimer page in a new Tab');
     let newPage: Page;
     await test.step(`WHEN: a user clicks the Disclaimer Link`, async () => {

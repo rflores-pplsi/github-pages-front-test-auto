@@ -5,7 +5,7 @@ import { test } from '../../../../../fixtures/frontend-ui.fixture';
 
 for (const testCase of legalshieldData.filter((testCase) => testCase.disabled == false)) {
   for (const regionUnderTest of testCase.regions) {
-    test(`Legalshield(${testCase.testCaseName}, ${regionUnderTest}) @legalshield-consumerflow @e2e ${testCase.tags}`, async ({ 
+    test(`Legalshield(${testCase.testCaseName}, ${regionUnderTest}) @lsus-consumer-flow @legalshield-consumerflow @e2e ${testCase.tags}`, async ({ 
       legalshieldService,
       checkoutService, 
     }) => {

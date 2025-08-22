@@ -9,7 +9,7 @@ const plans = [
   { name: 'Pro', shortcode: 'PRO', price: '$169.00', modalQuestions: true }
 ];
 
-test.describe('Coverage & Pricing Add to Cart for SMB @regression', () => {
+test.describe('Coverage & Pricing Add to Cart for SMB @smb-pricing', () => {
   for (const plan of plans) {
     test(`Add ${plan.name} plan to cart and verify product shortcode`, async ({ page }) => {
       await page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/coverage-pricing`);
