@@ -5,7 +5,7 @@ import { test } from '../../../../../fixtures/frontend-ui.fixture';
 
 for (const testCase of legalshieldData.filter((testCase) => testCase.disabled == false)) {
   for (const regionUnderTest of testCase.regions) {
-    test(`Legalshield(${testCase.testCaseName}, ${regionUnderTest}) @legalshield-consumerflow @e2e ${testCase.tags}`, async ({ 
+    test(`Legalshield(${testCase.testCaseName}, ${regionUnderTest}) @lsus-consumer-flow @legalshield-consumerflow @e2e ${testCase.tags}`, async ({ 
       legalshieldService,
       checkoutService, 
     }) => {
@@ -13,11 +13,10 @@ for (const testCase of legalshieldData.filter((testCase) => testCase.disabled ==
       console.log(`Test Case: Legalshield - Consumer Flow (${testCase.testCaseName}, ${regionUnderTest}) `);
       const regionInfo = RegionsUtils.usStates.filter((region) => region.name == regionUnderTest)[0];
       await test.step(`Navigate to legalshield.com for ${testCase.market}-${testCase.language}`, async () => {
+         await legalshieldService.blockKetchConsentBannerFromDisplaying();
          await legalshieldService.navigateToLegalshieldPricingAndCoveragePage(testCase.market, testCase.language);
+         await legalshieldService.clickAcceptAllButton();
       }); 
-      await test.step(`Accept All Cookies`, async () => {
-        await legalshieldService.clickAcceptAllButton();
-      });  
       await test.step(`Add Products: ${testCase.productDetails} and proceed to checkout`, async () => {
         await legalshieldService.addProductsFromProductDetails(testCase.productDetails, regionInfo.abbrv);
       });

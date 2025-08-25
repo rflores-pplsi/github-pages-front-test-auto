@@ -84,7 +84,7 @@ export class LegalshieldService {
     this.locEmailCaptureSection = this.page.locator('body #section-email_capture');
     this.locCartBox = this.page.locator('.cart-box');
     this.locPromotionDialogCloseButton = this.page.locator('//div[contains(@class,"ub-emb-iframe-wrapper ub-emb-visible")]//button');
-    this.locAcceptAllButton = this.page.locator('//div[@id="ketch-consent-banner"]//button[@aria-label="Continue"]');
+    this.locAcceptAllButton = this.page.locator('#ketch-banner-button-primary');
     this.locPreFooterNavigation = this.page.locator('body .footer_top-wrapper a');
   }
   
@@ -111,18 +111,23 @@ export class LegalshieldService {
   };
 
   blockKetchConsentBannerFromDisplaying = async (): Promise<void> => {
-    await this.page.waitForLoadState('load'); 
-    await this.page.addStyleTag({
-      content: `
-        #ketch-banner {
-          display: none !important;
-          visibility: hidden !important;
-          opacity: 0 !important;
-          pointer-events: none !important;
-        }
-      `,
-    });
-  };
+  // Inject script before page loads to immediately hide banner when it appears
+  await this.page.addInitScript(() => {
+    // Function to hide the banner
+    const hideBanner = () => {
+      const banner = document.querySelector('#ketch-banner, #ketch-consent-banner') as HTMLElement | null;
+      if (banner) {
+        banner.style.display = 'none';
+        banner.style.visibility = 'hidden';
+        banner.style.opacity = '0';
+        banner.style.pointerEvents = 'none';
+      }
+    };
+
+    // Hide immediately if already present
+    hideBanner();
+  });
+};
 
   navigateToLegalshieldPricingAndCoveragePage = async (market: string, language: string): Promise<void> => {
     let url = ''; // Add default value for url
