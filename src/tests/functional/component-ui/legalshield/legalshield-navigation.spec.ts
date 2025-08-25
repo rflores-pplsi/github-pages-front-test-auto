@@ -7,6 +7,7 @@ test.beforeEach(async ({ legalshieldService }) => {
   await test.step('GIVEN: a user is on a page with the legalshield header', async () => {
     await legalshieldService.navigateToUrl(UrlsUtils.legalshieldService.baseUrl);
     await legalshieldService.blockKetchConsentBannerFromDisplaying();
+    await legalshieldService.legalshieldPage.page.setViewportSize({ width: 1920, height: 1080 });
   });
 });
 
