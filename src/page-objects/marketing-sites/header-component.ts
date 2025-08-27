@@ -12,7 +12,7 @@ export class HeaderComponent {
   constructor(page: Page) {
     this.page = page;
     this.locNavigationContainer = this.page.getByRole('navigation');
-    this.locHeader = this.page.locator('//h1').first();
+    this.locHeader = this.page.locator('h1').first(); // built in visibility check.
     this.locOpenNavMenu = this.page.locator('//nav[contains(@class, "w--open")]');
     this.locShoppingCartIcon = this.page.locator('//div[@data-minicart-element="cart-icon"]');
     this.locShoppingCartItemAddedNotification = this.page.locator('//div[contains(@class,"lsdsFixedHeader")]//div[contains(@class,"notification")]');
@@ -26,10 +26,5 @@ export class HeaderComponent {
       await clickLocatorWithRetry(parentLinkLocator, this.locOpenNavMenu);
     }
     await childLinkLocator.click();
-  };
-
-  assertHeaderIsVisible = async (): Promise<void> => {
-    await this.locHeader.waitFor({ state: 'visible' });
-    expect.soft(this.locHeader).toBeVisible();
   };
 }
