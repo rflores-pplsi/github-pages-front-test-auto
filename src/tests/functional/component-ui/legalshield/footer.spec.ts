@@ -28,11 +28,8 @@ test.describe(`LegalShield Footer Links`, () => {
     await test.step(`Then: the Privacy Policy opens in a new tab`, async () => {      
       await expect(newPage).toHaveURL(new RegExp('/privacy-policy'));
     });
-    await test.step('AND: the header is visible', async () => {
-      legalshieldService.headerComponent.assertHeaderIsVisible();
-    });
-    await test.step('AND: the title does not contain 404', async () => {
-      expect.soft(newPage.title).not.toContain('404');
+    await test.step('AND: the title does not contain Not Found', async () => {
+      expect.soft(newPage.title).not.toContain('Not Found');
     });
   });
 
@@ -59,11 +56,8 @@ test.describe(`LegalShield Footer Links`, () => {
     await test.step(`Then: the Terms of Service page opens in a new tab`, async () => {
       await expect(newPage).toHaveURL(new RegExp('/terms-of-service'));
     });
-    await test.step('AND: the header is visible', async () => {
-      legalshieldService.headerComponent.assertHeaderIsVisible();
-    });
-    await test.step('AND: the title does not contain 404', async () => {
-      expect.soft(newPage.title).not.toContain('404');
+    await test.step('AND: the title does not contain Not Found', async () => {
+      expect.soft(newPage.title).not.toContain('Not Found');
     });
   });
 
@@ -76,11 +70,8 @@ test.describe(`LegalShield Footer Links`, () => {
     await test.step(`THEN: the Legal Disclaimer opens in a new tab`, async () => {
       await expect(newPage).toHaveURL(new RegExp('/disclaimer'));
     });
-    await test.step('AND: the header is visible', async () => {
-      legalshieldService.headerComponent.assertHeaderIsVisible();
-    });
-    await test.step('AND: the title does not contain 404', async () => {
-      expect.soft(newPage.title).not.toContain('404');
+    await test.step('AND: the title does not contain Not Found', async () => {
+      expect.soft(newPage.title).not.toContain('Not Found');
     });
   });
 

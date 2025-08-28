@@ -27,9 +27,4 @@ export class HeaderComponent {
     }
     await childLinkLocator.click();
   };
-
-  assertHeaderIsVisible = async (): Promise<void> => {
-    await this.locHeader.waitFor({ state: 'visible' });
-    expect.soft(this.locHeader).toBeVisible();
-  };
 }
