@@ -47,6 +47,7 @@ export class LegalshieldService {
   readonly locPreFooterNavigation: Locator;
   private locPromotionDialogCloseButton: Locator;
   private locAcceptAllButton: Locator;
+  private locKetchBanner: Locator;
 
   constructor(page: Page, context: BrowserContext) {
     this.page = page;
@@ -86,6 +87,7 @@ export class LegalshieldService {
     this.locPromotionDialogCloseButton = this.page.locator('//div[contains(@class,"ub-emb-iframe-wrapper ub-emb-visible")]//button');
     this.locAcceptAllButton = this.page.locator('#ketch-banner-button-primary');
     this.locPreFooterNavigation = this.page.locator('body .footer_top-wrapper a');
+    this.locKetchBanner = this.page.locator('#ketch-banner');
   }
   
   navigateToUrl = async (url: string): Promise<void> => {
@@ -111,23 +113,26 @@ export class LegalshieldService {
   };
 
   blockKetchConsentBannerFromDisplaying = async (): Promise<void> => {
-  // Inject script before page loads to immediately hide banner when it appears
-  await this.page.addInitScript(() => {
-    // Function to hide the banner
-    const hideBanner = () => {
-      const banner = document.querySelector('#ketch-banner, #ketch-consent-banner') as HTMLElement | null;
-      if (banner) {
-        banner.style.display = 'none';
-        banner.style.visibility = 'hidden';
-        banner.style.opacity = '0';
-        banner.style.pointerEvents = 'none';
-      }
-    };
+    await this.page.locator('#ketch-banner').waitFor({ state: 'visible' });
+    // dismiss banner with clicking of Continue button
+    await this.locAcceptAllButton.click();
+    // Inject script before page loads to immediately hide banner when it appears
+    await this.page.addInitScript(() => {
+      // Function to hide the banner
+      const hideBanner = () => {
+        const banner = document.querySelector('#ketch-banner') as HTMLElement | null;
+        if (banner) {
+          banner.style.display = 'none';
+          banner.style.visibility = 'hidden';
+          banner.style.opacity = '0';
+          banner.style.pointerEvents = 'none';
+        }
+      };
 
-    // Hide immediately if already present
-    hideBanner();
-  });
-};
+      // Hide immediately if already present
+      hideBanner();
+    });
+  };
 
   navigateToLegalshieldPricingAndCoveragePage = async (market: string, language: string): Promise<void> => {
     let url = ''; // Add default value for url
