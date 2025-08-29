@@ -113,15 +113,14 @@ export class LegalshieldService {
   };
 
   blockKetchConsentBannerFromDisplaying = async (): Promise<void> => {
-    if ( await this.locKetchBanner.isVisible().catch(() => false) ) {
-      // dismiss banner with clicking of Continue button
-      await this.locAcceptAllButton.click();
-    }
+    await this.page.locator('#ketch-banner').waitFor({ state: 'visible' });
+    // dismiss banner with clicking of Continue button
+    await this.locAcceptAllButton.click();
     // Inject script before page loads to immediately hide banner when it appears
     await this.page.addInitScript(() => {
       // Function to hide the banner
       const hideBanner = () => {
-        const banner = document.querySelector('#ketch-banner, #ketch-consent-banner') as HTMLElement | null;
+        const banner = document.querySelector('#ketch-banner') as HTMLElement | null;
         if (banner) {
           banner.style.display = 'none';
           banner.style.visibility = 'hidden';
