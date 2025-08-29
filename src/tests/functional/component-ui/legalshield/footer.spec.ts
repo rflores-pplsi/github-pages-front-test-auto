@@ -10,14 +10,14 @@ test.describe(`LegalShield Footer Links`, () => {
     });
   });
 
-  test(`Customer can see the copyright text in the footer for @regression @legalshield-footer`, async ({ page, legalshieldService }) => {
+  test(`Customer can see the copyright text in the footer for  @lsus-footer @regression @legalshield-footer`, async ({ page, legalshieldService }) => {
     console.log(`Test Case: Customer can see the copyright text in the footer`);
     await test.step(`THEN: the copyright text is visible`, async () => {
       await expect(legalshieldService.marketingFooterComponent.locCopyrightText).toBeVisible();
     });
   });
   
-  test(`Customer can use the footer to open the Privacy Policy page in a new Tab @regression @legalshield-footer`, async ({
+  test(`Customer can use the footer to open the Privacy Policy page in a new Tab  @lsus-footer @regression @legalshield-footer`, async ({
     legalshieldService,
   }) => {
     console.log(`Test Case: Customer can use the footer to open the Privacy Policy page in a new Tab}`);
@@ -33,7 +33,7 @@ test.describe(`LegalShield Footer Links`, () => {
     });
   });
 
-  test(`Customer can use the footer to open the Privacy Settings overlay in a new Tab @regression @legalshield-footer`, async ({
+  test(`Customer can use the footer to open the Privacy Settings overlay in a new Tab @lsus-footer @regression @legalshield-footer`, async ({
     legalshieldService,
   }) => {
     console.log(`Test Case: Customer can use the footer to open the Privacy Settings overlay in a new Tab`);
@@ -45,7 +45,7 @@ test.describe(`LegalShield Footer Links`, () => {
     });
   });
 
-  test(`Customer can use the footer to open the Terms of Service page in a new Tab @regression @legalshield-footer`, async ({
+  test(`Customer can use the footer to open the Terms of Service page in a new Tab @lsus-footer @regression @legalshield-footer`, async ({
     legalshieldService,
   }) => {
     console.log(`Test Case: Customer can use the footer to open the Terms of Service page in a new Tab`);
@@ -75,7 +75,7 @@ test.describe(`LegalShield Footer Links`, () => {
     });
   });
 
-  test(`Customer can use the footer to open the SOC3 report in a new Tab @regression @legalshield-footer`, async ({ legalshieldService, isHeadless }) => {
+  test(`Customer can use the footer to open the SOC3 report in a new Tab @lsus-footer @regression @legalshield-footer`, async ({ legalshieldService, isHeadless }) => {
     console.log(`Test Case: Customer can use the footer to open the SOC3 report in a new Tab`);
     await test.step(`When: a user clicks the SOC3 link THEN: it opens in new tab with h1 displayed and no 404 in title`, async () => {
       await legalshieldService.marketingFooterComponent.clickSoc3linkAndVerify(isHeadless);
