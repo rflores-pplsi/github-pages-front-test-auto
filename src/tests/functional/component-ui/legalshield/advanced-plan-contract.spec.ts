@@ -11,7 +11,9 @@ RegionsUtils.usStates
       await page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/personal-plan/coverage-and-pricing?regionChange=true`);
 
       test.step(`Select region ${regionUnderTestObject.abbrv} from popup selector and reload page`, async () => {
+        // wait regionSelector to be visible
         const regionSelector = page.locator('select[name="locationModalRegion"]');
+        await regionSelector.waitFor({ state: 'visible' });
         await regionSelector.selectOption(regionUnderTestObject.abbrv);
         // click button with Update Region text
         await page.getByRole('button', { name: 'Update Region' }).click();
