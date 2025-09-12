@@ -14,13 +14,13 @@ export class MarketingFooterComponent {
   constructor(context: BrowserContext, page: Page) {
     this.page = page;
     this.context = context;
-    this.locTermsOfServiceLink = this.page.locator('//a[contains(@class,"footer_legal-link") and contains(@href,"terms-of-service")]');
-    this.locPrivacyPolicyLink = this.page.locator('//a[contains(@class,"footer_legal-link") and contains(@href,"privacy-policy")]');
-    this.locDisclaimerLink = this.page.locator('//a[contains(@class,"footer_legal-link") and contains(@href,"disclaimer")]');
-    this.locCopyrightText = this.page.locator('//div[contains(@class,"footer_credit-text")]');
-    this.locSoc3Link = this.page.locator('//a[contains(@class,"footer_legal-link") and contains(@href,"SOC")]');
+    this.locTermsOfServiceLink = this.page.getByRole('link', { name: 'Terms of Service' });
+    this.locPrivacyPolicyLink = this.page.getByRole('link', { name: 'Privacy Policy' });
+    this.locDisclaimerLink = this.page.getByRole('link', { name: 'Disclaimer' });
+    this.locCopyrightText = this.page.getByText('© 2025 PPLSI');
+    this.locSoc3Link = this.page.getByRole('link', { name: 'SOC3' });
     this.locCodeOfEthicsLink = this.page.locator('//a[contains(@class,"footer_legal-link") and contains(@href,"code-of-ethics")]');
-    this.locPrivacySettingsLink = this.page.locator('//a[@id="preferenceCenterLink"]');
+    this.locPrivacySettingsLink = this.page.getByRole('link', { name: 'Privacy Settings' });
   }
 
   clickTermsOfServiceLink = async (): Promise<Page> => {

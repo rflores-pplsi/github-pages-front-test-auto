@@ -6,7 +6,7 @@ test.describe(`LegalShield Footer Links`, () => {
   test.beforeEach(async ({ page, legalshieldService }) => {
     await test.step('GIVEN: a user is on a page with the legalshield footer', async () => {
       await page.goto(UrlsUtils.marketingSitesUrls.legalShieldUSUrl);
-      await legalshieldService.blockKetchConsentBannerFromDisplaying();
+      await legalshieldService.clickAcceptAllButton();
     });
   });
 
