@@ -113,26 +113,23 @@ export class LegalshieldService {
   };
 
   blockKetchConsentBannerFromDisplaying = async (): Promise<void> => {
-    await this.page.locator('#ketch-banner').waitFor({ state: 'visible' });
-    // dismiss banner with clicking of Continue button
-    await this.locAcceptAllButton.click();
-    // Inject script before page loads to immediately hide banner when it appears
-    await this.page.addInitScript(() => {
-      // Function to hide the banner
-      const hideBanner = () => {
-        const banner = document.querySelector('#ketch-banner') as HTMLElement | null;
-        if (banner) {
-          banner.style.display = 'none';
-          banner.style.visibility = 'hidden';
-          banner.style.opacity = '0';
-          banner.style.pointerEvents = 'none';
-        }
-      };
+  // Inject script before page loads to immediately hide banner when it appears
+  await this.page.addInitScript(() => {
+    // Function to hide the banner
+    const hideBanner = () => {
+      const banner = document.querySelector('#ketch-banner, #ketch-consent-banner') as HTMLElement | null;
+      if (banner) {
+        banner.style.display = 'none';
+        banner.style.visibility = 'hidden';
+        banner.style.opacity = '0';
+        banner.style.pointerEvents = 'none';
+      }
+    };
 
-      // Hide immediately if already present
-      hideBanner();
-    });
-  };
+    // Hide immediately if already present
+    hideBanner();
+  });
+};
 
   navigateToLegalshieldPricingAndCoveragePage = async (market: string, language: string): Promise<void> => {
     let url = ''; // Add default value for url

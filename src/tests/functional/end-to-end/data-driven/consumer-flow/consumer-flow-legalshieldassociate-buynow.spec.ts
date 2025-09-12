@@ -19,6 +19,9 @@ for (const testCase of legalshieldAssociateBuyNowData.filter((testCase) => testC
       await test.step(`Navigate to legalshieldassociate.com/BuyNow`, async () => {
         await legalshieldAssociateService.buyNowPage.navigateToBuyNowPage('cartb8basic');
       });
+      await test.step('Click Accept All', async () => {
+        await legalshieldService.clickAcceptAllButton();
+      });
       await test.step(`Change Region`, async () => {
         await legalshieldService.setCookie('region', regionInfo.abbrv);
       });
@@ -41,7 +44,7 @@ for (const testCase of legalshieldAssociateBuyNowData.filter((testCase) => testC
         await officeService.purchasePage.fillPersonalInfoForm(
             basicUser.email,
             'Test',
-            'Tester',
+            'PplsiTest',
             '5555555555',
             'Mobile',
             regionInfo.validAddress.street,
@@ -63,8 +66,9 @@ for (const testCase of legalshieldAssociateBuyNowData.filter((testCase) => testC
       } else {
         await test.step(`Fill out Bank Draft Form and Continue`, async () => {
           await officeService.purchasePage.clickCreditCardBankDraftToggle();
+          // TODO: remove after finding a way to explicitly wait
+          await page.waitForTimeout(5000);
           await officeService.purchasePage.fillBankDraftForm('00000011', '103000648', 'Test Tester');
-          await page.waitForTimeout(3000);
           await officeService.purchasePage.clickPaymentContinueButton();
         });
         await test.step(`Click Submit Button`, async () => {
@@ -135,7 +139,7 @@ for (const testCase of legalshieldAssociateBuyNowCanadaData.filter((testCase) =>
           await page.waitForTimeout(3000);
           await commonCheckoutService.personalInfoPage.fillAllFields(
             'Test',
-            'Tester',
+            'PplsiTest',
             '5555555555',
             'Business',
             regionInfo.validAddress.street,

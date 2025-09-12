@@ -1,4 +1,3 @@
-import { expect } from '@playwright/test';
 import RegionsUtils from '../../../../../utils/regions.utils';
 import { basicUser } from '../../../../../utils/user.utils';
 import { legalshieldAssociateData } from './data/legalshieldassociate.data';
@@ -19,7 +18,10 @@ for (const testCase of legalshieldAssociateData.filter((testCase) => testCase.di
       await test.step(`Navigate to legalshieldassociate home page`, async () => {
         await legalshieldAssociateService.homePage.navigateToHomePage();
       });
-       await test.step(`Change Region`, async () => {
+      await test.step('Accept All Cookies', async () => {
+        await legalshieldService.clickAcceptAllButton();
+      });
+      await test.step(`Change Region`, async () => {
         await legalshieldService.setCookie('region', regionInfo.abbrv);
       });
       await test.step(`Select Market`, async () => {
@@ -41,7 +43,7 @@ for (const testCase of legalshieldAssociateData.filter((testCase) => testCase.di
         await officeService.purchasePage.fillPersonalInfoForm(
             basicUser.email,
             'Test',
-            'Tester',
+            'PplsiTest',
             '5555555555',
             'Mobile',
             regionInfo.validAddress.street,
@@ -54,26 +56,19 @@ for (const testCase of legalshieldAssociateData.filter((testCase) => testCase.di
       await test.step(`Click continue again to skip Additional Information Form`, async () => {
         await officeService.purchasePage.skipAdditionalInformationForm(testCase.planDetails);
       });
-      if (process.env.USE_PROD == 'true' && testCase.prodPurchase == false) {
-        console.log('* Production: Stop test at personal info page *');
-        await test.step(`Assert checkoutV3 rendered`, async () => {
-          await officeService.purchasePage.assertPurchasePageReached();
-        });
-      } else {
-        await test.step(`Fill out Bank Draft Form and Continue`, async () => {
-          await officeService.purchasePage.clickCreditCardBankDraftToggle();
-          //TODO: revisit this wait and find an explicit one if possible
-          await page.waitForTimeout(500);
-          await officeService.purchasePage.fillBankDraftForm('00000011', '103000648', 'Test Tester');
-          await officeService.purchasePage.clickPaymentContinueButton();
-        });
-        await test.step(`Click Submit Button`, async () => {
-          await officeService.purchasePage.clickSubmitButton();
-        });
-        await test.step(`Assert Payment Successful Message is Visible`, async () => {
-          await officeService.postPurchasePage.assertPaymentSuccessfulMessageIsVisible();
-        });
-      }
+      await test.step(`Fill out Bank Draft Form and Continue`, async () => {
+        await officeService.purchasePage.clickCreditCardBankDraftToggle();
+        //TODO: revisit this wait and find an explicit one if possible
+        await page.waitForTimeout(500);
+        await officeService.purchasePage.fillBankDraftForm('00000011', '103000648', 'Test Tester');
+        await officeService.purchasePage.clickPaymentContinueButton();
+      });
+      await test.step(`Click Submit Button`, async () => {
+        await officeService.purchasePage.clickSubmitButton();
+      });
+      await test.step(`Assert Payment Successful Message is Visible`, async () => {
+        await officeService.postPurchasePage.assertPaymentSuccessfulMessageIsVisible();
+      });
     });
   }
 }

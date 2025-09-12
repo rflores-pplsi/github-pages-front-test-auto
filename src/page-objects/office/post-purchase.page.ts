@@ -4,7 +4,7 @@ export class PostPurchasePage {
   private locPaymentSuccessfulMessage: Locator;
   
   constructor(private page: Page) {
-    this.locPaymentSuccessfulMessage = this.page.locator('input[name="email"]');
+    this.locPaymentSuccessfulMessage = this.page.getByText('Your payment was successful!');
   }
   // #region Navigation
   // #endregion Navigation
@@ -19,12 +19,8 @@ export class PostPurchasePage {
   // }
 
   async assertPaymentSuccessfulMessageIsVisible(): Promise<void> {
-  await this.page.waitForURL(/\/post-purchase/);
-  if(!await this.locPaymentSuccessfulMessage.isVisible()){ 
-
-  } else {
-    await this.page.pause();
+    await this.page.waitForURL(/\/post-purchase/);
+    await expect(this.locPaymentSuccessfulMessage).toBeVisible();
   }
-}
   // #endregion Assertions
 }

@@ -26,7 +26,6 @@ export class IdshieldService {
   addProductsFromProductDetails = async (planDetails: Array<PlanDetails>): Promise<void> => {
     let counter = planDetails.length;
     for (const plan of planDetails) {
-      console.log(`Adding to cart: ${plan.marketingName} - ${plan.tier.name}`);
       await this.clickLearnMoreButton(plan.marketingName);
       await this.selectTier(plan.tier.name);
     }

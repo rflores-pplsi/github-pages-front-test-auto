@@ -27,7 +27,6 @@ export class PurchasePage {
   private locDateOfIncorporationInput: Locator;
   private locTaxIdInput: Locator;
 
-
   constructor(private page: Page) {
     this.locEmailAddressInput = this.page.locator('input[name="email"]');
     this.locFirstNameInput = this.page.locator('input[name="firstName"]');
@@ -144,13 +143,13 @@ export class PurchasePage {
     }
   };
 
-
   async clickContinueButton(): Promise<void> {
     await this.locContinueButton.click();
   };
 
   async clickCreditCardBankDraftToggle(): Promise<void> {
     await clickLocatorWithRetry(this.locBankDraftToggle,this.locBankNameInput);
+    await this.page.waitForLoadState();
   };
 
   async fillAccountNumberInput(accountNumber: string): Promise<void> {

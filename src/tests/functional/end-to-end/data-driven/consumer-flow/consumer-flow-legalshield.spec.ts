@@ -46,7 +46,7 @@ for (const testCase of legalshieldData.filter((testCase) => testCase.disabled ==
       await test.step(`Fill out Account Information Form`, async () => {
         await legalshieldService.embeddedCartComponent.submitAccountInformationForm(
           'Test',
-          'Tester',            
+          'PplsiTest',            
           regionInfo.validAddress.street,
           regionInfo.validAddress.city,
           regionInfo.validAddress.postalCode,
@@ -54,13 +54,7 @@ for (const testCase of legalshieldData.filter((testCase) => testCase.disabled ==
           'Mobile',
           '10101990',
           '3333');
-      }); 
-      if (process.env.USE_PROD == 'true' && testCase.prodPurchase == false) {
-        console.log('* Production: Stop test at personal info page *');
-        await test.step(`Assert Continue to Payment Button`, async () => {
-          await checkoutService.formsPage.assertContinueToPaymentButtonVisible();
-        });
-      } else {
+      });
         await test.step(`Click Continue to Payment`, async () => {
           await legalshieldService.embeddedCartComponent.clickContinueButton();
         }); 
@@ -73,8 +67,7 @@ for (const testCase of legalshieldData.filter((testCase) => testCase.disabled ==
         });
         await test.step(`Verify Payment Successful Message`, async () => {
           await checkoutService.confirmationPage.assertPaymentSuccessfulMessage();
-        });  
-      }
+        });
     });
   } 
 }

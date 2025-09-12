@@ -44,7 +44,7 @@ for (const testCase of idshieldData.filter((testCase) => testCase.disabled == fa
           await page.waitForTimeout(1000);
           await commonCheckoutService.personalInfoPage.fillAllFields(
             'Test',
-            'Tester',
+            'PplsiTest',
             '5555555555',
             'Business',
             regionInfo.validAddress.street,
@@ -64,40 +64,33 @@ for (const testCase of idshieldData.filter((testCase) => testCase.disabled == fa
             await commonCheckoutService.personalInfoPage.fillBusinessInformationFields('Testers Inc', '10', '10', '2021', '945433337');
           }
         });
-        if (process.env.USE_PROD == 'true') {
-        console.log('* Production: Stop test at personal info page *');
-          await test.step(`Assert Accounts Page URL`, async () => {
-            await expect(commonCheckoutService.personalInfoPage.locSaveAndContinueButton).toBeVisible();
-          });
-        } else {
-          await test.step(`Verify Order Total in Order Summary`, async () => {
-            //TODO: update data sheet to lsa standard
-            // expect(await commonCheckoutService.personalInfoPage.orderSummaryComponent.locTotalContainer.innerText()).toContain(testCase.termTotal);
-          });
-          await test.step(`Click Save and Continue and wait for Payment page`, async () => {
-            await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
-          });
-          await test.step(`Verify Order Total in Order Summary`, async () => {
-            //TODO: update data sheet to lsa standard
-            // expect(await commonCheckoutService.paymentPage.orderSummaryComponent.locTotalContainer.innerText()).toContain(testCase.termTotal);
-          });
-          await test.step(`Click Bank Draft Tab`, async () => {
-            await commonCheckoutService.paymentPage.clickBankDraftToggle();
-          });
-          await test.step(`Fill Bank Draft Form and Submit`, async () => {
-            await page.waitForTimeout(500);
-            await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates('0000000', '000000000', 'Tester');
-          });
-          await test.step('Click Purchase Button', async () => {
-            await commonCheckoutService.paymentPage.bankDraftComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
-          });
-          await test.step(`Click on the Let's Go button`, async () => {
-            await commonCheckoutService.confirmationPage.locLetsGoButton.click();
-          });
-          await test.step(`Assert Accounts Page URL`, async () => {
-            await expect(page).toHaveURL(new RegExp('accounts'));
-          });
-        }
-    });
+        await test.step(`Verify Order Total in Order Summary`, async () => {
+          //TODO: update data sheet to lsa standard
+          // expect(await commonCheckoutService.personalInfoPage.orderSummaryComponent.locTotalContainer.innerText()).toContain(testCase.termTotal);
+        });
+        await test.step(`Click Save and Continue and wait for Payment page`, async () => {
+          await commonCheckoutService.personalInfoPage.clickSaveAndContinueAndWaitForPaymentPageToLoad();
+        });
+        await test.step(`Verify Order Total in Order Summary`, async () => {
+          //TODO: update data sheet to lsa standard
+          // expect(await commonCheckoutService.paymentPage.orderSummaryComponent.locTotalContainer.innerText()).toContain(testCase.termTotal);
+        });
+        await test.step(`Click Bank Draft Tab`, async () => {
+          await commonCheckoutService.paymentPage.clickBankDraftToggle();
+        });
+        await test.step(`Fill Bank Draft Form and Submit`, async () => {
+          await page.waitForTimeout(500);
+          await commonCheckoutService.paymentPage.bankDraftComponent.completeBankDraftFormUnitedStates('0000000', '000000000', 'Tester');
+        });
+        await test.step('Click Purchase Button', async () => {
+          await commonCheckoutService.paymentPage.bankDraftComponent.clickPurchaseButtonAndWaitForConfirmationPageToLoad();
+        });
+        await test.step(`Click on the Let's Go button`, async () => {
+          await commonCheckoutService.confirmationPage.locLetsGoButton.click();
+        });
+        await test.step(`Assert Accounts Page URL`, async () => {
+          await expect(page).toHaveURL(new RegExp('accounts'));
+        });
+      });
   }
 }

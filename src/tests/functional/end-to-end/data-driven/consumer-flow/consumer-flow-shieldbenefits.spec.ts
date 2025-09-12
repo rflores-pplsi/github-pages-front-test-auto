@@ -13,6 +13,7 @@ for (const testCase of selfPayData.filter((testCase) => testCase.disabled == fal
       commonCheckoutService,
       commonLoginService,
       shieldBenefitsService,
+      legalshieldService
     }) => {
       console.log(`Test Case: ShieldBenefits (${testCase.testCaseName}, ${regionUnderTest}) -> Checkout -> Accounts`);
       test.setTimeout(120000);
@@ -29,6 +30,9 @@ for (const testCase of selfPayData.filter((testCase) => testCase.disabled == fal
       await test.step(`Click Enroll Now for Plan: ${testCase.productName} with Tier: ${testCase.tierName}`, async () => {
         await shieldBenefitsService.shieldBenefitsLegalEnrollmentPage.locBeginEnrollmentButton.click();
       });
+      await test.step('Click Accept All button', async () => {
+        await legalshieldService.clickAcceptAllButton();
+      });
       await test.step(`Choose Account by Email and Login`, async () => {
         if (testCase.userType == 'Existing') {
           await commonCheckoutService.accountPage.enterExistingAccountEmailAndLogin(basicUser.email);
@@ -40,18 +44,12 @@ for (const testCase of selfPayData.filter((testCase) => testCase.disabled == fal
           await commonCheckoutService.accountPage.enterRandomEmailAndNewPasswordAndLogin();
         }
       });
-      if (process.env.USE_PROD == 'true' && testCase.prodPurchase == false) {
-        console.log('* Production: Stop test at personal info page *');
-        await test.step(`Assert checkoutV3 rendered`, async () => {
-          await expect(commonCheckoutService.personalInfoPage.locSaveAndContinueButton).toBeVisible();     
-        });
-      } else {
         await test.step(`Fill all required fields on personal info ${regionInfo.name}`, async () => {
           //TODO: remove after finding a way to explicitly wait
           await page.waitForTimeout(1000);
           await commonCheckoutService.personalInfoPage.fillAllFields(
             'Test',
-            'Tester',
+            'PplsiTest',
             '5555555555',
             'Business',
             regionInfo.validAddress.street,
@@ -91,7 +89,6 @@ for (const testCase of selfPayData.filter((testCase) => testCase.disabled == fal
           await commonCheckoutService.confirmationPage.locConfirmationScreenContainer.waitFor();
           await expect(commonCheckoutService.confirmationPage.locConfirmationScreenContainer).toBeVisible();
         });
-      }
     });
   }
 }
