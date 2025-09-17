@@ -2,7 +2,7 @@ import { ICreditCardData } from '../interfaces/checkout-interfaces';
 
 export function getDefaultCreditCardData(customCreditCardData?:object): ICreditCardData {
   const defaultCreditCardData: ICreditCardData = {
-    cardNumber: '4444333322221111',
+    cardNumber: '4615148128520000',
     expirationDate: '12/25',
     cvv: '123',
     cardHolderName: 'Test User',

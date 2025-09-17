@@ -31,9 +31,8 @@ export class CartComponent {
     } else {
     await this.locCheckoutButton.click();
     }
-    await this.page.waitForURL(new RegExp('office'));
+    await this.page.waitForURL(new RegExp('purchase'));
   };
-
 
   // #endregion Actions
 

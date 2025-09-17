@@ -15,7 +15,7 @@ export default class DataUtils {
           },
         },
         cc: {
-          cn: '4444333322221111',
+          cn: '4615148128520000',
           cvv: '111',
           exp: '1 / 23',
           name: 'Tester',
@@ -88,7 +88,7 @@ export default class DataUtils {
           postalCode: '20147',
         },
         cc: {
-          cn: '4444333322221111',
+          cn: '4615148128520000',
           cvv: '111',
           exp: '01/23',
           name: 'Tester',

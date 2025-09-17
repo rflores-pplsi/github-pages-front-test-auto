@@ -10,7 +10,7 @@ for (const testCase of legalshieldAssociateBuyNowData.filter((testCase) => testC
     test(`Legalshield Associates (buynow) - Consumer Flow (${testCase.testCaseName}, ${regionUnderTest}) @legalshieldassociates-buynow-consumerflow @e2e ${testCase.tag}`, async ({
       page,
       legalshieldService,
-      officeService,
+      purchaseService: officeService,
       legalshieldAssociateService, 
     }) => {
       console.log(`Test Case: Legalshield Associates Buynow - Consumer Flow (${testCase.testCaseName}, ${regionUnderTest})`);

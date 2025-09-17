@@ -647,3 +647,42 @@ export const legalshieldAssociateData = [
     userType: 'New',
   },
 ];
+
+export const legalshieldAssociateCanadaData = [
+  {
+    disabled: false,
+    market: 'Canada - English',
+    paymentMethod: 'bank draft',
+    planDetails: [
+      {
+        associateRegistrationType: 'NA',
+        cost: '$29.95',
+        marketingName: 'Legal Plan',
+        name: 'Basic',
+        oneTimeFee: 'NA',
+        shortCode: 'LPUS21',
+        supplements: [
+          { cost: '$14.95', name: 'Home Business Supplement' },
+          { cost: '$14.95', name: 'Business Plus Supplement' },
+          {
+            cost: '$14.95',
+            name: 'Trial Defense Supplement',
+          },
+          {
+            cost: '$14.95',
+            name: 'Ride Share & Delivery Drivers Supplement',
+          },
+        ],
+        term: 'Monthly',
+        tier: { cost: '$0.00', name: 'Basic' },
+        type: 'LegalShield',
+      },
+    ],
+    prodPurchase: false,
+    regions: ['Alberta'],
+    tag: '@smoke',
+    termTotal: '$119.70',
+    testCaseName: 'Legal Plan Family, Basic - All Supplements',
+    userType: 'New',
+  },
+];

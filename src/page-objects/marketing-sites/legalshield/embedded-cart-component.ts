@@ -1,9 +1,9 @@
 import { expect, FrameLocator, Locator, Page } from '@playwright/test';
 import { CommonLoginService } from '@legalshield/frontend-automation-commons';
 import { ProductDetails } from '../../../types/types';
-import { IBankDraftDataForUS, ICreditCardData } from '../../../interfaces/checkout-interfaces';
+import { IBankDraftDataForUS, ICreditCardData, IBankDraftDataForCanada } from '../../../interfaces/checkout-interfaces';
 import { getDefaultCreditCardData } from '../../../utils/credit-card-info-utils';
-import { getDefaultBankDraftData } from '../../../utils/bank-draft-info-utils';
+import { getDefaultBankDraftData, getDefaultBankDraftDataCanada } from '../../../utils/bank-draft-info-utils';
 import { clickLocatorWithRetry } from '../../../utils/helpers';
 
 export class EmbeddedCartComponent {
@@ -41,6 +41,8 @@ export class EmbeddedCartComponent {
   private readonly locCreditCardPaymentZipCodeInput: Locator;
   private readonly locBankDraftAccountNumberInput: Locator;
   private readonly locBankDraftRoutingNumberInput: Locator;
+  private readonly locBankDraftTransitNumberInput: Locator;
+  private readonly locBankDraftInstitutionNumberInput: Locator;
   private readonly locBankDraftAccountHolderNameInput: Locator;
   private readonly locPurchaseButton: Locator;
 
@@ -79,6 +81,8 @@ export class EmbeddedCartComponent {
     this.locCreditCardPaymentZipCodeInput = this.locPaymentIframe.getByPlaceholder('Billing Postal Code');
     this.locBankDraftAccountNumberInput = this.locPaymentIframe.getByPlaceholder('Account Number');
     this.locBankDraftRoutingNumberInput = this.locPaymentIframe.getByPlaceholder('Routing Number');
+    this.locBankDraftTransitNumberInput = this.locPaymentIframe.getByPlaceholder('Transit Number');
+    this.locBankDraftInstitutionNumberInput = this.locPaymentIframe.getByPlaceholder('Institution Number'); 
     this.locBankDraftAccountHolderNameInput = this.locPaymentIframe.getByPlaceholder('Account Holder Name');
     this.locPurchaseButton = this.page.getByTestId('drawer-button');
   };
@@ -276,6 +280,15 @@ export class EmbeddedCartComponent {
     await this.locBankDraftToggle.click();
     await this.locBankDraftAccountNumberInput.fill(testDataBankDraft.accountNumber);
     await this.locBankDraftRoutingNumberInput.fill(testDataBankDraft.routingNumber);
+    await this.locBankDraftAccountHolderNameInput.fill(testDataBankDraft.accountHolderName);
+  }
+
+  async fillPaymentInfoFormWithCanadianBankDraft(customBankDraftData?: object): Promise<void> {
+    const testDataBankDraft: IBankDraftDataForCanada = getDefaultBankDraftDataCanada(customBankDraftData); 
+    await this.locBankDraftToggle.click();
+    await this.locBankDraftAccountNumberInput.fill(testDataBankDraft.accountNumber);
+    await this.locBankDraftTransitNumberInput.fill(testDataBankDraft.transitNumber);
+    await this.locBankDraftInstitutionNumberInput.fill(testDataBankDraft.institutionNumber);
     await this.locBankDraftAccountHolderNameInput.fill(testDataBankDraft.accountHolderName);
   }
   async clickPurchaseButton(): Promise<void> {

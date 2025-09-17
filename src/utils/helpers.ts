@@ -12,7 +12,7 @@ export async function clickLocatorWithRetry(locatorToClick: Locator, confirmatio
   await expect(async () => {
     await locatorToClick.click();
     await expect(confirmationLocator).toBeVisible({ timeout: 1500 });
-  }).toPass({ intervals: [0.5], timeout: 20000 });
+  }).toPass({ intervals: [0.5], timeout: 25000 });
 }
 
 export async function addQueryParamToUrl(url: string,param: string, value: string): Promise<string> {

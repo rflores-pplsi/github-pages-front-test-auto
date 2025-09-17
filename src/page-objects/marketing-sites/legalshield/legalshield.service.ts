@@ -184,6 +184,9 @@ export class LegalshieldService {
           await this.setCookie('pplsi-region', region);
           await this.addSmallBusinessPlan(product.shortCode);
           break;
+        case 'Individuals & Family':
+          await this.addIndividualsAndFamilyPlan(product.shortCode);
+          break;
         default:
           break;
       }
@@ -192,6 +195,10 @@ export class LegalshieldService {
       }
       counter--;
     }
+  };
+
+  addIndividualsAndFamilyPlan = async (productShortCode: string): Promise<void> => {
+    await this.addPlanUsingShortCode(productShortCode);
   };
 
   addLegalPlansOrSupplements = async (productShortCode: string, term: string): Promise<void> => {

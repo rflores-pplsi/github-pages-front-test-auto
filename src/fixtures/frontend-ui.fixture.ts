@@ -12,7 +12,7 @@ import { GlobalFooterComponent } from '../page-objects/global-components/global-
 import { GlobalHeaderComponent } from '../page-objects/global-components/global-header.component';
 import { AssociateOfficeService } from '../page-objects/associate-office/associate-office.service';
 import { AccountService } from '../page-objects/account/account.service';
-import { OfficeService } from '../page-objects/office/office.service';
+import { PurchaseService } from '../page-objects/purchase/purchase.service';
 
 export type FrontendUIFixture = {
   idshieldService: IdshieldService;
@@ -29,7 +29,7 @@ export type FrontendUIFixture = {
   newCheckoutService: NewCheckoutService;
   associateOfficeService: AssociateOfficeService;
   accountService: AccountService;
-  officeService: OfficeService;
+  purchaseService: PurchaseService;
   isHeadless: boolean;
 };
 
@@ -96,8 +96,8 @@ export const test = base.extend<FrontendUIFixture>({
   accountService: async ({ page }, use) => {
     await use(new AccountService(page));
   },
-  officeService: async ({ page }, use) => {
-    await use(new OfficeService(page));
+  purchaseService: async ({ page }, use) => {
+    await use(new PurchaseService(page));
   },
 
   isHeadless: async ({ browser }, use) => {

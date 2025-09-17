@@ -21,7 +21,7 @@ export const idshieldData = [
     regions: ['Texas'],
     tags: '@smoke',
     termTotal: '$14.95',
-    testCaseName: 'IDShield Individual, 1B',
+    testCaseName: 'Customer can purchase an Individual IDShield plan monthly plan',
     userType: 'Existing',
   },
   {
@@ -103,9 +103,9 @@ export const idshieldData = [
 
 export const idshieldCanadaData = [
   {
-    disabled: true,
+    disabled: false,
     language: 'English',
-    market: 'United States',
+    market: 'Canada',
     paymentMethod: 'bank draft',
     planDetails: [
       {
@@ -121,10 +121,10 @@ export const idshieldCanadaData = [
         type: 'LegalShield',
       },
     ],
-    regions: ['Colorado'],
+    regions: ['Ontario'],
     tags: '@smoke',
     termTotal: '$14.95',
-    testCaseName: 'IDShield Individual, 1B',
+    testCaseName: 'Customer can purchase an Individual IDShield plan monthly plan',
     userType: 'Existing',
   },
 ];

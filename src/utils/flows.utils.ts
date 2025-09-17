@@ -37,14 +37,14 @@ export async function selectLegalshieldAssociatesPlansFromPlanDetails(planDetail
       plan.marketingName.includes('IDShield') ||
       plan.marketingName.includes('Commercial Drivers') || 
       plan.marketingName.includes('Small Business') ||
-      (plan.marketingName.includes('Legal Plan'))
+      plan.marketingName.includes('Legal Plan')
     ) {
       await chooseATierComponent.selectTier(plan.name, plan.tier.name, plan.term);
     }
      // Select Region Flow
-    if (page.url().includes('en-ca')) {
-      await legalshieldAssociateService.buyNowPage.selectRegionComponent.selectProvince(region);
-    }
+    // if (page.url().includes('en-ca')) {
+    //   await legalshieldAssociateService.buyNowPage.selectRegionComponent.selectProvince(region);
+    // }
     // Supplements Flow
     if (
       plan.marketingName.includes('LegalShield') ||

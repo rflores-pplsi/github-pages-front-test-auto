@@ -33,6 +33,10 @@ export class HomePage {
   navigateToHomePage = async (): Promise<void> => {
     await this.page.goto(`https://cartb1all.${UrlsUtils.legalshieldAssociateService.baseUrlNoSubdomain}`);
   };
+
+  navigateToCanadianHomePage = async (): Promise<void> => {
+    await this.page.goto(`https://cartb1all.${UrlsUtils.legalshieldAssociateService.baseUrlNoSubdomain}/en-ca`);
+  };
   // #endregion Navigation
 
   // #region Actions

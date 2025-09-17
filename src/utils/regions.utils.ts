@@ -1360,5 +1360,13 @@ export default class RegionsUtils {
     }
     return regionInfo;
   }
+
+  static getProvinceInfo(provinceName: string) {
+    const provinceInfo = this.caProvinces.find((province) => province.name == provinceName);
+    if (!provinceInfo) {
+      throw new Error(`Province not found: ${provinceName}`);
+    }
+    return provinceInfo;
+  }     
 }
 

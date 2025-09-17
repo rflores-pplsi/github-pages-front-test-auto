@@ -1,12 +1,12 @@
 export const legalshieldData = [
   {
     disabled: false,
-    testCaseName: 'Customer can purchase a monthly plan',
+    testCaseName: 'Customer can purchase a Basic monthly plan',
     tags: '@smoke @regression',
     prodPurchase: false,
     language: 'en',
     market: 'US',
-    regions: ['Colorado'],
+    regions: ['Texas'],
     term: 'Monthly',
     productDetails: [{ cost: '$29.95', marketingName: 'Basic', name: 'BASIC LEGAL PLAN', shortCode: 'LP24D1', term: 'Monthly', type: 'LegalShield' }],
     userType: 'Existing',
@@ -15,7 +15,7 @@ export const legalshieldData = [
   },
   {
     disabled: false,
-    testCaseName: 'Customer can purchase an annual plan',
+    testCaseName: 'Customer can purchase an annual Basic plan',
     tags: '@regression',
     prodPurchase: false,
     language: 'en',
@@ -314,4 +314,21 @@ export const archivedData = [
   testCaseName: 'Small Business Legal Pro + Legal Plan + All Supplements, Existing User',
   userType: 'Existing',
 },
+];
+
+export const legalshieldCanadaData = [
+  {
+    disabled: false,
+    testCaseName: 'Customer can purchase a monthly plan',
+    tags: '@smoke',
+    prodPurchase: false,
+    language: 'en',
+    market: 'CA',
+    regions: ['Ontario'],
+    term: 'Monthly',
+    productDetails: [{ cost: '$49.95', marketingName: 'Individuals & Family', name: 'Legal Plan 2024', shortCode: 'CA24', term: 'Monthly', type: 'LegalShield' }],
+    userType: 'Existing',
+    termTotal: '$49.95',
+    totalDueToday: '$49.95',
+  },
 ];

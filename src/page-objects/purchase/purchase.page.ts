@@ -18,6 +18,8 @@ export class PurchasePage {
   private locInnerPaymentIframe: FrameLocator;
   private locBankDraftToggle: Locator;
   private locAccountNumberInput: Locator;
+  private locTransitNumberInput: Locator;
+  private locInstitutionNumberInput: Locator;
   private locRoutingNumberInput: Locator;
   private locAccountHolderNameInput: Locator;
   private locBankNameInput: Locator;
@@ -44,6 +46,8 @@ export class PurchasePage {
     this.locInnerPaymentIframe = this.locOuterPaymentIframe.frameLocator('//iframe[@id="paymentFrame"]');
     this.locBankDraftToggle = this.locOuterPaymentIframe.locator('//div[@id="toggle"]//a');
     this.locAccountNumberInput = this.locInnerPaymentIframe.locator('input[name="account_number"]');
+    this.locTransitNumberInput = this.locInnerPaymentIframe.locator('input[name="transit_number"]');
+    this.locInstitutionNumberInput = this.locInnerPaymentIframe.locator('input[name="institution_number"]');
     this.locRoutingNumberInput = this.locInnerPaymentIframe.locator('input[name="routing_number"]');
     this.locAccountHolderNameInput = this.locInnerPaymentIframe.locator('input[name="accountholder_name"]');
     this.locBankNameInput = this.locInnerPaymentIframe.locator('input[name="bank_name"]');
@@ -164,6 +168,14 @@ export class PurchasePage {
     await this.locAccountHolderNameInput.fill(accountHolderName);
   };
 
+  async fillTransitNumberInput(transitNumber: string): Promise<void> {
+    await this.locTransitNumberInput.fill(transitNumber);
+  };
+  
+  async fillInstitutionNumberInput(institutionNumber: string): Promise<void> {
+    await this.locInstitutionNumberInput.fill(institutionNumber);
+  };
+
   async fillBankNameInput(bankName: string): Promise<void> {
     await this.locBankNameInput.fill(bankName);
   };
@@ -181,6 +193,23 @@ export class PurchasePage {
     await this.fillRoutingNumberInput(routingNumber);
     await this.fillAccountHolderNameInput(accountHolderName);
   };
+
+  async fillCanadianBankDraftForm(
+    accountNumber: string,
+    routingNumber: string,
+    accountHolderName: string,
+  ): Promise<void> {
+    await this.fillAccountNumberInput(accountNumber);
+    await this.fillRoutingNumberInput(routingNumber);
+    await this.fillAccountHolderNameInput(accountHolderName);
+  };
+
+  async fillPaymentInfoFormWithCanadianBankDraft(accountNumber: string, transitNumber: string, institutionNumber: string, accountHolderName: string): Promise<void> {
+      await this.fillAccountNumberInput(accountNumber);
+      await this.fillTransitNumberInput(transitNumber);
+      await this.fillInstitutionNumberInput(institutionNumber);
+      await this.fillAccountHolderNameInput(accountHolderName);
+    }
 
   async clickSubmitButton(): Promise<void> {
     return this.locSubmitButton.click();
@@ -204,6 +233,7 @@ export class PurchasePage {
     await this.fillDateOfIncorporationInput(dateOfIncorporation);
     await this.fillTaxIdInput(taxId);
   };
+  
   // #endregion Actions
 
   // #region Assertions
