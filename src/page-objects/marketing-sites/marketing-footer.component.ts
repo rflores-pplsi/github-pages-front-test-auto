@@ -60,14 +60,14 @@ export class MarketingFooterComponent {
         this.page.waitForEvent('download'),
         this.clickSoc3Link(),
       ]);
-      expect.soft(download.suggestedFilename()).toContain('SOC-3');
+      expect.soft(download.suggestedFilename()).toContain('SOC_3');
     } else {
       // Headed mode, open in new tab
       const [newPage] = await Promise.all([
         this.page.context().waitForEvent('page'),
         this.clickSoc3Link(),
       ]);
-      expect.soft(newPage).toHaveURL(/SOC-3/);
+      expect.soft(newPage).toHaveURL(/SOC_3/);
       expect.soft(newPage.title()).not.toContain('404');
     }
   };
