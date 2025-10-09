@@ -1,7 +1,7 @@
 import { Page, Locator } from '@playwright/test';
 import UrlsUtils from '../../../utils/urls.utils';
 import { MarketingSitesCartComponent } from '../marketing-sites-cart-component';
-import { clickLocatorWithRetry } from '../../../utils/helpers';
+import { addQueryParamToUrl, clickLocatorWithRetry } from '../../../utils/helpers';
 
 export class IdshieldIndividualPlanPage {
   protected page: Page;
@@ -61,9 +61,7 @@ export class IdshieldIndividualPlanPage {
           this.baseUrl = `${UrlsUtils.idShieldService.baseUrlNoTopLevelDomain}.ca`;
         }
     }
-    await this.page.goto(`${this.baseUrl}`);
-    // if (process.env.USE_PROD == 'true') {
-    //   await this.clickSalesDialogCloseButton();
-    // }
+    const url = await addQueryParamToUrl(this.baseUrl, 'regionChange', 'true');
+    await this.page.goto(`${url}`);
   };
 }

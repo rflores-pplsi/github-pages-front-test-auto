@@ -48,6 +48,9 @@ export class LegalshieldService {
   private locPromotionDialogCloseButton: Locator;
   private locAcceptAllButton: Locator;
   private locKetchBanner: Locator;
+  private locUMBContainer: Locator;
+  private locSelectRegionDropdown: Locator;
+  readonly locUpdateRegionButton: Locator;
 
   constructor(page: Page, context: BrowserContext) {
     this.page = page;
@@ -88,14 +91,14 @@ export class LegalshieldService {
     this.locAcceptAllButton = this.page.locator('#ketch-banner-button-primary');
     this.locPreFooterNavigation = this.page.locator('body .footer_top-wrapper a');
     this.locKetchBanner = this.page.locator('#ketch-banner');
+    this.locUMBContainer = this.page.locator('//div[contains(@class,"ub-emb-container")]');
+    this.locSelectRegionDropdown = this.page.getByRole('combobox');
+    this.locUpdateRegionButton = this.page.getByRole('button', { name: 'Update Region' });
   }
   
   navigateToUrl = async (url: string): Promise<void> => {
     await this.page.goto(url);
     await this.page.waitForLoadState('load');
-    if (process.env.USE_PROD == 'true') {
-      await this.closePromotionDialog();
-    }
   };
 
   assertPDFViewerIsVisible = async (): Promise<void> => {
@@ -131,6 +134,50 @@ export class LegalshieldService {
   });
 };
 
+removeUMBContainer = async (): Promise<void> => {
+  await this.locUMBContainer.evaluate((element) => element.remove());
+};
+
+  blockPromotionalIframeFromDisplaying = async (): Promise<void> => {
+    // Inject script before page loads to prevent promotional iframe
+    await this.page.addInitScript(() => {
+      // Block iframe creation and hide existing ones
+      const blockPromoIframe = () => {
+        // Hide any existing promotional iframes
+        const promoIframes = document.querySelectorAll('iframe.ub-emb-iframe, iframe[src*="ubembed.com"], iframe[src*="unbounce.com"]');
+        promoIframes.forEach((iframe) => {
+          const iframeEl = iframe as HTMLElement;
+          iframeEl.style.display = 'none';
+          iframeEl.style.visibility = 'hidden';
+          iframeEl.style.opacity = '0';
+          iframeEl.style.pointerEvents = 'none';
+          iframeEl.remove(); // Completely remove it
+        });
+        
+        // Hide wrapper containers
+        const wrappers = document.querySelectorAll('.ub-emb-iframe-wrapper, [class*="ub-emb"]');
+        wrappers.forEach((wrapper) => {
+          const wrapperEl = wrapper as HTMLElement;
+          wrapperEl.style.display = 'none';
+          wrapperEl.remove();
+        });
+      };
+
+      // Run immediately
+      blockPromoIframe();
+      
+      // Watch for dynamically added iframes
+      const observer = new MutationObserver(() => {
+        blockPromoIframe();
+      });
+      
+      observer.observe(document.body, { 
+        childList: true, 
+        subtree: true 
+      });
+    });
+  };
+
   navigateToLegalshieldPricingAndCoveragePage = async (market: string, language: string): Promise<void> => {
     let url = ''; // Add default value for url
     switch (`${language}-${market}`) {
@@ -144,8 +191,9 @@ export class LegalshieldService {
         url = `${UrlsUtils.marketingSitesUrls.legalShieldCAUrl}/personal-plan/coverage-and-pricing`;
         break;
     }
+    url = await addQueryParamToUrl(url, 'regionChange', 'true');
     await this.navigateToUrl(url);
-  };
+    };
   /**
    *
    *
@@ -164,8 +212,6 @@ export class LegalshieldService {
         case 'Trial Defense Supplement':
         case 'Gun Owners Supplement':
         case 'Ride Share and Delivery Supplement':
-        // await this.addExperienceQueryParam(experience);
-        await this.setCookie('pplsi-region', region);
           if (product.term == 'Annual') {
             await this.legalshieldCoverageAndPricingPage.clickAnnuallyToggle();
           } else {
@@ -179,10 +225,7 @@ export class LegalshieldService {
         case 'Essentials Plan':
         case 'Plus Plan':
         case 'Pro Plan':
-          await this.navigateToUrl(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/coverage-pricing`);
-          // await this.addExperienceQueryParam(experience);
-          await this.setCookie('pplsi-region', region);
-          await this.addSmallBusinessPlan(product.shortCode);
+          await this.navigateToUrl(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/coverage-pricing`);          await this.addSmallBusinessPlan(product.shortCode);
           break;
         case 'Individuals & Family':
           await this.addIndividualsAndFamilyPlan(product.shortCode);
@@ -247,7 +290,12 @@ export class LegalshieldService {
     await this.page.goto(urlWithQueryParam);
     await this.page.waitForLoadState('load');
   };
-  
+
+  selectRegionFromDropdown = async (regionName: string): Promise<void> => {
+    await this.locSelectRegionDropdown.selectOption({ label: regionName });
+    await this.locUpdateRegionButton.click();
+  };
+
   clickAllLinksAndVerifyExpectedUrlAndTitle = async (links: Locator, expectedUrlAndTitleArray: PageUrlAndTitleArray): Promise<void> => {
     const count = await links.count();
     for (let i = 0; i < count; i++) {

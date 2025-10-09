@@ -1,7 +1,7 @@
 import { expect } from '@playwright/test';
 import { test } from '../../../fixtures/frontend-ui.fixture';
 
-test('Groups Affiliated (Agent: 12345, Primerica, en-US, New York) -> Checkout Service @smoke ', async ({ page, groupsAffiliatedService }) => {
+test('Groups Affiliated (Agent: 12345, Primerica, en-US, New York) -> Checkout Service @smoke ', async ({ legalshieldService, groupsAffiliatedService }) => {
   console.log('Test Case: Groups Affiliated (Agent: 12345, Primerica, en-US, New York) -> Classic Checkout Service');
   test.slow();
   await test.step(`Navigate to primerica Affiliated groups page`, async () => {
@@ -9,6 +9,9 @@ test('Groups Affiliated (Agent: 12345, Primerica, en-US, New York) -> Checkout S
   });
   await test.step(`Enter Agent ID`, async () => {
     await groupsAffiliatedService.groupsAffiliatedPage.fillAgentId('12345');
+  });
+  await test.step(`Accept All`, async () => {
+    await legalshieldService.clickAcceptAllButton();
   });
   await test.step(`Click Continue to Enrollment button`, async () => {
     await groupsAffiliatedService.groupsAffiliatedPage.locContinueToEnrollmentButton.click();

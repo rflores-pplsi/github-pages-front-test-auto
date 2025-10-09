@@ -148,7 +148,8 @@ export class PurchasePage {
   };
 
   async clickContinueButton(): Promise<void> {
-    await this.locContinueButton.click();
+    // await clickLocatorWithRetry(this.locContinueButton,this.locEmailAddressInput);
+        await this.locContinueButton.click();
   };
 
   async clickCreditCardBankDraftToggle(): Promise<void> {

@@ -48,7 +48,8 @@ for (const testCase of legalshieldAssociateData.filter((testCase) => testCase.di
             regionInfo.validAddress.postalCode,
             '10101990',
             '333333333');
-        await officeService.purchasePage.clickContinueButton();    
+        await officeService.purchasePage.clickContinueButton();  
+          
       });
       await test.step(`Click continue again to skip Additional Information Form`, async () => {
         await officeService.purchasePage.skipAdditionalInformationForm(testCase.planDetails);

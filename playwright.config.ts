@@ -22,7 +22,7 @@ const config: PlaywrightTestConfig = {
     },
   ],
   reporter: [['dot'], ['html', { open: 'always', outputFolder: 'playwright-report' }], ['allure-playwright'], ['./pplsi-reporter.ts']],
-  retries: 2,
+  retries: 0,
   // setting workers to '1' disables parallel running, workers can also be set at runtime in the command line
   workers: 1,
 };

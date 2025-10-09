@@ -19,9 +19,12 @@ for (const testCase of idshieldData.filter((testCase) => testCase.disabled == fa
       await test.step(`Navigate to idshield for ${testCase.market}-${testCase.language}`, async () => {
         await idshieldService.idshieldIndividualPlanPage.navigateToIdshieldPage(testCase.market, testCase.language);
       });
-      await test.step(`Force geo-location`, async () => {
-        await legalshieldService.setCookie('region', regionInfo.abbrv);
-      });
+      await test.step('Select Region', async () => {
+        await idshieldService.selectRegionFromDropdown(regionInfo.name);
+      }); 
+      await test.step('Click accept all cookies', async () => {
+        await legalshieldService.clickAcceptAllButton();
+      }); 
       await test.step(`Add Products: ${testCase.planDetails}`, async () => {
         await idshieldService.addProductsFromProductDetails(testCase.planDetails);
       });
@@ -110,9 +113,12 @@ for (const testCase of idshieldCanadaData.filter((testCase) => testCase.disabled
       await test.step(`Navigate to idshield for ${testCase.market}-${testCase.language}`, async () => {
         await idshieldService.idshieldIndividualPlanPage.navigateToIdshieldPage(testCase.market, testCase.language);
       });
-      await test.step(`Force geo-location`, async () => {
-        await legalshieldService.setCookie('region', regionInfo.abbrv);
-      });
+      await test.step('Click accept all cookies', async () => {
+        await legalshieldService.clickAcceptAllButton();
+      }); 
+      await test.step('Select Region', async () => {
+        await idshieldService.selectRegionFromDropdown(regionInfo.name);
+      }); 
       await test.step(`Add Products: ${testCase.planDetails}`, async () => {
         await idshieldService.addProductsFromProductDetails(testCase.planDetails);
       });
