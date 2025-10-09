@@ -143,13 +143,12 @@ export class PurchasePage {
         }
     }
     if (foundNonIndividualTier) {
-        await this.locContinueButton.click();
+      await this.locContinueButton.click();
     }
   };
 
   async clickContinueButton(): Promise<void> {
-    // await clickLocatorWithRetry(this.locContinueButton,this.locEmailAddressInput);
-        await this.locContinueButton.click();
+    await this.locContinueButton.click();
   };
 
   async clickCreditCardBankDraftToggle(): Promise<void> {

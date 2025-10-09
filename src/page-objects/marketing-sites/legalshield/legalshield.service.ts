@@ -138,62 +138,22 @@ removeUMBContainer = async (): Promise<void> => {
   await this.locUMBContainer.evaluate((element) => element.remove());
 };
 
-  blockPromotionalIframeFromDisplaying = async (): Promise<void> => {
-    // Inject script before page loads to prevent promotional iframe
-    await this.page.addInitScript(() => {
-      // Block iframe creation and hide existing ones
-      const blockPromoIframe = () => {
-        // Hide any existing promotional iframes
-        const promoIframes = document.querySelectorAll('iframe.ub-emb-iframe, iframe[src*="ubembed.com"], iframe[src*="unbounce.com"]');
-        promoIframes.forEach((iframe) => {
-          const iframeEl = iframe as HTMLElement;
-          iframeEl.style.display = 'none';
-          iframeEl.style.visibility = 'hidden';
-          iframeEl.style.opacity = '0';
-          iframeEl.style.pointerEvents = 'none';
-          iframeEl.remove(); // Completely remove it
-        });
-        
-        // Hide wrapper containers
-        const wrappers = document.querySelectorAll('.ub-emb-iframe-wrapper, [class*="ub-emb"]');
-        wrappers.forEach((wrapper) => {
-          const wrapperEl = wrapper as HTMLElement;
-          wrapperEl.style.display = 'none';
-          wrapperEl.remove();
-        });
-      };
-
-      // Run immediately
-      blockPromoIframe();
-      
-      // Watch for dynamically added iframes
-      const observer = new MutationObserver(() => {
-        blockPromoIframe();
-      });
-      
-      observer.observe(document.body, { 
-        childList: true, 
-        subtree: true 
-      });
-    });
-  };
-
-  navigateToLegalshieldPricingAndCoveragePage = async (market: string, language: string): Promise<void> => {
-    let url = ''; // Add default value for url
-    switch (`${language}-${market}`) {
-      case 'en-US':
-        url = `${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/personal-plan/coverage-and-pricing/`;
-        break;
-      case 'es-US':
-        url = `${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/es/plan-personal/cobertura-y-precios/`;
-        break;
-      case 'en-CA':
-        url = `${UrlsUtils.marketingSitesUrls.legalShieldCAUrl}/personal-plan/coverage-and-pricing`;
-        break;
+navigateToLegalshieldPricingAndCoveragePage = async (market: string, language: string): Promise<void> => {
+  let url = ''; // Add default value for url
+  switch (`${language}-${market}`) {
+    case 'en-US':
+      url = `${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/personal-plan/coverage-and-pricing/`;
+      break;
+    case 'es-US':
+      url = `${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/es/plan-personal/cobertura-y-precios/`;
+      break;
+    case 'en-CA':
+      url = `${UrlsUtils.marketingSitesUrls.legalShieldCAUrl}/personal-plan/coverage-and-pricing`;
+      break;
     }
     url = await addQueryParamToUrl(url, 'regionChange', 'true');
     await this.navigateToUrl(url);
-    };
+  };
   /**
    *
    *
@@ -225,7 +185,8 @@ removeUMBContainer = async (): Promise<void> => {
         case 'Essentials Plan':
         case 'Plus Plan':
         case 'Pro Plan':
-          await this.navigateToUrl(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/coverage-pricing`);          await this.addSmallBusinessPlan(product.shortCode);
+          await this.navigateToUrl(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/coverage-pricing`);
+          await this.addSmallBusinessPlan(product.shortCode);
           break;
         case 'Individuals & Family':
           await this.addIndividualsAndFamilyPlan(product.shortCode);

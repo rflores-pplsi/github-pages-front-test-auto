@@ -23,7 +23,7 @@ export class IdshieldService {
     this.idshieldIndividualPlanPage = new IdshieldIndividualPlanPage(page);
     this.marketingSitesCartComponent = new MarketingSitesCartComponent(page);
     this.marketingFooterComponent = new MarketingFooterComponent(context, page);
-    // I couldn't get the locator to work with getByRole or getByLabel, so using a CSS selector for now
+    // codegen did not find any getBy that worked, nor did I, so using a CSS selector for now until testid can be added
     this.locSelectRegionDropdown = this.page.locator('select[name="locationModalRegion"]');
     this.locUpdateRegionButton = this.page.getByRole('button', { name: 'Update Region' });
     this.locClosePromotionalDialogButton = this.page.getByRole('button', { name: '×' });
@@ -34,13 +34,12 @@ export class IdshieldService {
     for (const plan of planDetails) {
       await this.clickLearnMoreButton(plan.marketingName);
       await this.selectTier(plan.tier.name);
-
       if (process.env.USE_PROD == 'true' && !this.page.url().includes('/en-ca'))  {
         await this.closePromotionalDialog();
       }
     }
     if (counter == 1) {
-      // find explicit wait      
+      // Unable to find workable explicit wait, and needed an increase for the checkout button to be clickable     
       await this.page.waitForTimeout(1000);
       await this.marketingSitesCartComponent.locCheckoutButton.click();
     } else {
@@ -61,6 +60,7 @@ export class IdshieldService {
   };
 
   selectRegionFromDropdown = async (regionName: string): Promise<void> => {
+    // Unable to find workable explicit wait
     await this.page.waitForTimeout(1000);
     await this.locSelectRegionDropdown.selectOption({ label: regionName });
     await this.locUpdateRegionButton.click();

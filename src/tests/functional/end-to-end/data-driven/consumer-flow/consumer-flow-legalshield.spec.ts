@@ -101,7 +101,7 @@ for (const testCase of legalshieldCanadaData.filter((testCase) => testCase.disab
       }); 
       await test.step('Click accept all cookies', async () => {
         await legalshieldService.clickAcceptAllButton();
-      });  
+      });
       await test.step(`Add Products: ${testCase.productDetails} and proceed to checkout`, async () => {
         await legalshieldService.addProductsFromProductDetails(testCase.productDetails, regionInfo.abbrv);
       });
