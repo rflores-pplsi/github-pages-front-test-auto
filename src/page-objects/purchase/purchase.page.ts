@@ -143,7 +143,7 @@ export class PurchasePage {
         }
     }
     if (foundNonIndividualTier) {
-        await this.locContinueButton.click();
+      await this.locContinueButton.click();
     }
   };
 

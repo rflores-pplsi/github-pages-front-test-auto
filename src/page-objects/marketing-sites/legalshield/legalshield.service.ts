@@ -48,6 +48,9 @@ export class LegalshieldService {
   private locPromotionDialogCloseButton: Locator;
   private locAcceptAllButton: Locator;
   private locKetchBanner: Locator;
+  private locUMBContainer: Locator;
+  private locSelectRegionDropdown: Locator;
+  readonly locUpdateRegionButton: Locator;
 
   constructor(page: Page, context: BrowserContext) {
     this.page = page;
@@ -88,14 +91,14 @@ export class LegalshieldService {
     this.locAcceptAllButton = this.page.locator('#ketch-banner-button-primary');
     this.locPreFooterNavigation = this.page.locator('body .footer_top-wrapper a');
     this.locKetchBanner = this.page.locator('#ketch-banner');
+    this.locUMBContainer = this.page.locator('//div[contains(@class,"ub-emb-container")]');
+    this.locSelectRegionDropdown = this.page.getByRole('combobox');
+    this.locUpdateRegionButton = this.page.getByRole('button', { name: 'Update Region' });
   }
   
   navigateToUrl = async (url: string): Promise<void> => {
     await this.page.goto(url);
     await this.page.waitForLoadState('load');
-    if (process.env.USE_PROD == 'true') {
-      await this.closePromotionDialog();
-    }
   };
 
   assertPDFViewerIsVisible = async (): Promise<void> => {
@@ -131,19 +134,24 @@ export class LegalshieldService {
   });
 };
 
-  navigateToLegalshieldPricingAndCoveragePage = async (market: string, language: string): Promise<void> => {
-    let url = ''; // Add default value for url
-    switch (`${language}-${market}`) {
-      case 'en-US':
-        url = `${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/personal-plan/coverage-and-pricing/`;
-        break;
-      case 'es-US':
-        url = `${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/es/plan-personal/cobertura-y-precios/`;
-        break;
-      case 'en-CA':
-        url = `${UrlsUtils.marketingSitesUrls.legalShieldCAUrl}/personal-plan/coverage-and-pricing`;
-        break;
+removeUMBContainer = async (): Promise<void> => {
+  await this.locUMBContainer.evaluate((element) => element.remove());
+};
+
+navigateToLegalshieldPricingAndCoveragePage = async (market: string, language: string): Promise<void> => {
+  let url = ''; // Add default value for url
+  switch (`${language}-${market}`) {
+    case 'en-US':
+      url = `${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/personal-plan/coverage-and-pricing/`;
+      break;
+    case 'es-US':
+      url = `${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/es/plan-personal/cobertura-y-precios/`;
+      break;
+    case 'en-CA':
+      url = `${UrlsUtils.marketingSitesUrls.legalShieldCAUrl}/personal-plan/coverage-and-pricing`;
+      break;
     }
+    url = await addQueryParamToUrl(url, 'regionChange', 'true');
     await this.navigateToUrl(url);
   };
   /**
@@ -164,8 +172,6 @@ export class LegalshieldService {
         case 'Trial Defense Supplement':
         case 'Gun Owners Supplement':
         case 'Ride Share and Delivery Supplement':
-        // await this.addExperienceQueryParam(experience);
-        await this.setCookie('pplsi-region', region);
           if (product.term == 'Annual') {
             await this.legalshieldCoverageAndPricingPage.clickAnnuallyToggle();
           } else {
@@ -180,8 +186,6 @@ export class LegalshieldService {
         case 'Plus Plan':
         case 'Pro Plan':
           await this.navigateToUrl(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/coverage-pricing`);
-          // await this.addExperienceQueryParam(experience);
-          await this.setCookie('pplsi-region', region);
           await this.addSmallBusinessPlan(product.shortCode);
           break;
         case 'Individuals & Family':
@@ -247,7 +251,12 @@ export class LegalshieldService {
     await this.page.goto(urlWithQueryParam);
     await this.page.waitForLoadState('load');
   };
-  
+
+  selectRegionFromDropdown = async (regionName: string): Promise<void> => {
+    await this.locSelectRegionDropdown.selectOption({ label: regionName });
+    await this.locUpdateRegionButton.click();
+  };
+
   clickAllLinksAndVerifyExpectedUrlAndTitle = async (links: Locator, expectedUrlAndTitleArray: PageUrlAndTitleArray): Promise<void> => {
     const count = await links.count();
     for (let i = 0; i < count; i++) {

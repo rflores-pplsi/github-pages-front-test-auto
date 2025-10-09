@@ -1,10 +1,9 @@
-import { Page, BrowserContext } from '@playwright/test';
+import { Page, BrowserContext, Locator } from '@playwright/test';
 import { IdshieldPage } from './idshield.page';
 import { IdshieldIndividualPlanPage } from './idshield-individual-plan.page';
 import { PlanDetails } from '../../../types/types';
 import { MarketingSitesCartComponent } from '../marketing-sites-cart-component';
 import { MarketingFooterComponent } from '../marketing-footer.component';
-import { clickLocatorWithRetry } from '../../../utils/helpers';
 
 export class IdshieldService {
   protected page: Page;
@@ -13,6 +12,9 @@ export class IdshieldService {
   readonly idshieldIndividualPlanPage: IdshieldIndividualPlanPage;
   readonly marketingSitesCartComponent: MarketingSitesCartComponent;
   readonly marketingFooterComponent: MarketingFooterComponent;
+  readonly locSelectRegionDropdown: Locator;
+  readonly locUpdateRegionButton: Locator;
+  readonly locClosePromotionalDialogButton: Locator;
 
   constructor(page: Page, context: BrowserContext) {
     this.page = page;
@@ -21,6 +23,10 @@ export class IdshieldService {
     this.idshieldIndividualPlanPage = new IdshieldIndividualPlanPage(page);
     this.marketingSitesCartComponent = new MarketingSitesCartComponent(page);
     this.marketingFooterComponent = new MarketingFooterComponent(context, page);
+    // codegen did not find any getBy that worked, nor did I, so using a CSS selector for now until testid can be added
+    this.locSelectRegionDropdown = this.page.locator('select[name="locationModalRegion"]');
+    this.locUpdateRegionButton = this.page.getByRole('button', { name: 'Update Region' });
+    this.locClosePromotionalDialogButton = this.page.getByRole('button', { name: '×' });
   }
 
   addProductsFromProductDetails = async (planDetails: Array<PlanDetails>): Promise<void> => {
@@ -28,9 +34,13 @@ export class IdshieldService {
     for (const plan of planDetails) {
       await this.clickLearnMoreButton(plan.marketingName);
       await this.selectTier(plan.tier.name);
+      if (process.env.USE_PROD == 'true' && !this.page.url().includes('/en-ca'))  {
+        await this.closePromotionalDialog();
+      }
     }
     if (counter == 1) {
-      await this.page.waitForTimeout(500);
+      // Unable to find workable explicit wait, and needed an increase for the checkout button to be clickable     
+      await this.page.waitForTimeout(1000);
       await this.marketingSitesCartComponent.locCheckoutButton.click();
     } else {
       await this.marketingSitesCartComponent.locContinueShoppingLink.click();
@@ -47,5 +57,16 @@ export class IdshieldService {
 
   selectTier = async (tier: string): Promise<void> => {
     await this.idshieldIndividualPlanPage.clickSignUpButton(tier);
+  };
+
+  selectRegionFromDropdown = async (regionName: string): Promise<void> => {
+    // Unable to find workable explicit wait
+    await this.page.waitForTimeout(1000);
+    await this.locSelectRegionDropdown.selectOption({ label: regionName });
+    await this.locUpdateRegionButton.click();
+  };
+
+  closePromotionalDialog = async (): Promise<void> => {
+    await this.locClosePromotionalDialogButton.click();
   };
 }

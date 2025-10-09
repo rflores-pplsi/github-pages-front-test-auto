@@ -7,7 +7,7 @@ for (const testCase of legalshieldData.filter((testCase) => testCase.disabled ==
   for (const regionUnderTest of testCase.regions) {
     test(`Legalshield - US (${testCase.testCaseName}, ${regionUnderTest}) @lsus-consumer-flow @legalshield-consumerflow @e2e ${testCase.tags}`, async ({
       legalshieldService,
-      checkoutService, 
+      checkoutService,
     }) => {
       test.slow();
       console.log(`Test Case: Legalshield - US (${testCase.testCaseName}, ${regionUnderTest}) `);
@@ -15,9 +15,13 @@ for (const testCase of legalshieldData.filter((testCase) => testCase.disabled ==
       await test.step(`Navigate to legalshield.com for ${testCase.market}-${testCase.language}`, async () => {
          await legalshieldService.navigateToLegalshieldPricingAndCoveragePage(testCase.market, testCase.language);
       });
-      await test.step(`Force geo-location`, async () => {
-        await legalshieldService.setCookie('region', regionInfo.abbrv);
+      await test.step('Block Promotional Iframe', async () => {
+        // removing container prevents iframe from loading in prod, and has no adverse affects in other environments
+        await legalshieldService.removeUMBContainer();
       });
+      await test.step('Select Region', async () => {
+        await legalshieldService.selectRegionFromDropdown(regionInfo.name);
+      }); 
       await test.step('Click accept all cookies', async () => {
         await legalshieldService.clickAcceptAllButton();
       }); 
@@ -88,12 +92,16 @@ for (const testCase of legalshieldCanadaData.filter((testCase) => testCase.disab
       await test.step(`Navigate to legalshield.com for ${testCase.market}-${testCase.language}`, async () => {
          await legalshieldService.navigateToLegalshieldPricingAndCoveragePage(testCase.market, testCase.language);
       }); 
-      await test.step(`Force geo-location`, async () => {
-        await legalshieldService.setCookie('region', regionInfo.abbrv);
+      await test.step('Block Promotional Iframe', async () => {
+        // removing container prevents iframe from loading in prod, and has no adverse affects in other environments
+        await legalshieldService.removeUMBContainer();
       });
+      await test.step('Select Region', async () => {
+        await legalshieldService.selectRegionFromDropdown(regionInfo.name);
+      }); 
       await test.step('Click accept all cookies', async () => {
         await legalshieldService.clickAcceptAllButton();
-      }); 
+      });
       await test.step(`Add Products: ${testCase.productDetails} and proceed to checkout`, async () => {
         await legalshieldService.addProductsFromProductDetails(testCase.productDetails, regionInfo.abbrv);
       });
