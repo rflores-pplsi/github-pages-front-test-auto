@@ -56,7 +56,7 @@ for (const testCase of legalshieldAssociateData.filter((testCase) => testCase.di
       await test.step(`Fill out Bank Draft Form and Continue`, async () => {
         await officeService.purchasePage.clickCreditCardBankDraftToggle();
         //TODO: revisit this wait and find an explicit one if possible
-        await page.waitForTimeout(500);
+        await page.waitForTimeout(1000);
         await officeService.purchasePage.fillBankDraftForm('00000011', '103000648', 'Test Tester');
         await officeService.purchasePage.clickPaymentContinueButton();
       });
@@ -64,7 +64,7 @@ for (const testCase of legalshieldAssociateData.filter((testCase) => testCase.di
         await officeService.purchasePage.clickSubmitButton();
       });
       await test.step(`Assert Payment Successful Message is Visible`, async () => {
-        await officeService.postPurchasePage.assertPaymentSuccessfulMessageIsVisible();
+        await officeService.postPurchasePage.assertPaymentSuccessfulMessageIsVisible();        
       });
     });
   }
@@ -130,7 +130,7 @@ for (const testCase of legalshieldAssociateCanadaData.filter((testCase) => testC
         await purchaseService.purchasePage.clickSubmitButton();
       });
       await test.step(`Assert Payment Successful Message is Visible`, async () => {
-        await purchaseService.postPurchasePage.assertPaymentSuccessfulMessageIsVisible();
+        await purchaseService.postPurchasePage.assertPaymentSuccessfulMessageIsVisible();        
       });
     });
   }
