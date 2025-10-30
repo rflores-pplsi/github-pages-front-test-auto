@@ -97,7 +97,10 @@ for (const testCase of legalshieldCanadaData.filter((testCase) => testCase.disab
       }); 
       await test.step('Block Promotional Iframe', async () => {
         // removing container prevents iframe from loading in prod, and has no adverse affects in other environments
-        await legalshieldService.removeUMBContainer();
+        if (process.env.USE_PROD == 'true') {
+          console.log('Removing UMB container to block promotional iframe in PROD');
+          await legalshieldService.removeUMBContainer();
+        }
       });
       await test.step('Select Region', async () => {
         await legalshieldService.selectRegionFromDropdown(regionInfo.name);
