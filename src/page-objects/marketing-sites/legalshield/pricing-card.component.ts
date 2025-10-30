@@ -1,4 +1,5 @@
 import { Locator, Page } from '@playwright/test';
+import { clickLocatorWithRetry } from '../../../utils/helpers';
 
 export class PricingCardComponent {
   readonly page: Page;
@@ -18,5 +19,11 @@ export class PricingCardComponent {
     // Updated selector: find <a> with aria-label starting 'Add to cart' and containing plan name
     const addToCartLocator = this.page.locator(`a[aria-label^='Add to cart'][aria-label*='${planName.toUpperCase()}']`).first();
     await addToCartLocator.click();
+  };
+
+  clickAddToCartWithRetry = async (productShortCode: string, term: string, planName: string): Promise<void> => {
+    const addToCartLocator = this.page.locator(`a[aria-label^='Add to cart'][aria-label*='${planName.toUpperCase()}']`).first();
+    const confirmationLocator = this.page.getByRole('heading', { name: 'Small Business Legal Plan' });
+    await clickLocatorWithRetry(addToCartLocator, confirmationLocator);
   };
 }

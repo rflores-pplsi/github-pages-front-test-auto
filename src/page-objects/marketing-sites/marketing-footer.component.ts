@@ -3,6 +3,7 @@ import { Page, Locator, BrowserContext, expect } from '@playwright/test';
 export class MarketingFooterComponent {
   protected page: Page;
   readonly context: BrowserContext;
+  readonly footerContainer: Locator;
   readonly locTermsOfServiceLink: Locator;
   readonly locPrivacyPolicyLink: Locator;
   readonly locDisclaimerLink: Locator;
@@ -14,11 +15,12 @@ export class MarketingFooterComponent {
   constructor(context: BrowserContext, page: Page) {
     this.page = page;
     this.context = context;
-    this.locTermsOfServiceLink = this.page.getByRole('link', { name: 'Terms of Service' });
-    this.locPrivacyPolicyLink = this.page.getByRole('link', { name: 'Privacy Policy' });
-    this.locDisclaimerLink = this.page.getByRole('link', { name: 'Disclaimer' });
-    this.locCopyrightText = this.page.getByText('© 2025 PPLSI');
-    this.locSoc3Link = this.page.getByRole('link', { name: 'SOC3' });
+    this.footerContainer = this.page.locator('footer');
+    this.locTermsOfServiceLink = this.footerContainer.getByRole('link', { name: 'Terms of Service' });
+    this.locPrivacyPolicyLink = this.footerContainer.getByRole('link', { name: 'Privacy Policy' });
+    this.locDisclaimerLink = this.footerContainer.getByRole('link', { name: 'Disclaimer' });
+    this.locCopyrightText = this.footerContainer.getByText('© 2025 PPLSI');
+    this.locSoc3Link = this.footerContainer.getByRole('link', { name: 'SOC3' });
     this.locCodeOfEthicsLink = this.page.locator('//a[contains(@class,"footer_legal-link") and contains(@href,"code-of-ethics")]');
     this.locPrivacySettingsLink = this.page.getByRole('link', { name: 'Privacy Settings' });
   }

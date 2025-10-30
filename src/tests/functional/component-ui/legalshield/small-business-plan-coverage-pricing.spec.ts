@@ -14,7 +14,7 @@ test.describe('Coverage & Pricing Add to Cart for SMB @smb-pricing', () => {
     test(`Add ${plan.name} plan to cart and verify product shortcode`, async ({ page }) => {
       await page.goto(`${UrlsUtils.marketingSitesUrls.legalShieldUSUrl}/business-plan/coverage-pricing`);
       const pricingCard = new PricingCardComponent(page);
-      await pricingCard.clickAddToCartButton(plan.shortcode, 'Monthly', plan.name);
+      await pricingCard.clickAddToCartWithRetry(plan.shortcode, 'Monthly', plan.name);
       if (plan.modalQuestions) {
         // Wait for modal to appear
         const modal = page.locator('[role="dialog"], .modal, .cart-modal, [aria-modal="true"]');

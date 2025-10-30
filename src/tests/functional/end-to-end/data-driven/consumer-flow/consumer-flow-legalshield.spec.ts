@@ -10,14 +10,17 @@ for (const testCase of legalshieldData.filter((testCase) => testCase.disabled ==
       checkoutService,
     }) => {
       test.slow();
-      console.log(`Test Case: Legalshield - US (${testCase.testCaseName}, ${regionUnderTest}) `);
+      console.log(`Test Case: Legalshield - US (${testCase.testCaseName}, ${regionUnderTest})`);
       const regionInfo = RegionsUtils.usStates.filter((region) => region.name == regionUnderTest)[0];
       await test.step(`Navigate to legalshield.com for ${testCase.market}-${testCase.language}`, async () => {
          await legalshieldService.navigateToLegalshieldPricingAndCoveragePage(testCase.market, testCase.language);
       });
       await test.step('Block Promotional Iframe', async () => {
         // removing container prevents iframe from loading in prod, and has no adverse affects in other environments
-        await legalshieldService.removeUMBContainer();
+        if (process.env.USE_PROD == 'true') {
+          console.log('Removing UMB container to block promotional iframe in PROD');
+          await legalshieldService.removeUMBContainer();
+        }
       });
       await test.step('Select Region', async () => {
         await legalshieldService.selectRegionFromDropdown(regionInfo.name);

@@ -17,21 +17,21 @@ test.describe(`LegalShield Footer Links`, () => {
     });
   });
   
-  // test(`Customer can use the footer to open the Privacy Policy page in a new Tab  @lsus-footer @regression @legalshield-footer`, async ({
-  //   legalshieldService,
-  // }) => {
-  //   console.log(`Test Case: Customer can use the footer to open the Privacy Policy page in a new Tab}`);
-  //   let newPage: Page;
-  //   await test.step(`When: a user clicks on the Privacy Policy Link`, async () => {
-  //     newPage = await legalshieldService.marketingFooterComponent.clickPrivacyPolicyLink();
-  //   });
-  //   await test.step(`Then: the Privacy Policy opens in a new tab`, async () => {      
-  //     await expect(newPage).toHaveURL(new RegExp('/privacy-policy'));
-  //   });
-  //   await test.step('AND: the title does not contain Not Found', async () => {
-  //     expect.soft(newPage.title).not.toContain('Not Found');
-  //   });
-  // });
+  test(`Customer can use the footer to open the Privacy Policy page in a new Tab  @lsus-footer @regression @legalshield-footer`, async ({
+    legalshieldService,
+  }) => {
+    console.log(`Test Case: Customer can use the footer to open the Privacy Policy page in a new Tab}`);
+    let newPage: Page;
+    await test.step(`When: a user clicks on the Privacy Policy Link`, async () => {
+      newPage = await legalshieldService.marketingFooterComponent.clickPrivacyPolicyLink();
+    });
+    await test.step(`Then: the Privacy Policy opens in a new tab`, async () => {      
+      await expect(newPage).toHaveURL(new RegExp('/privacy-policy'));
+    });
+    await test.step('AND: the title does not contain Not Found', async () => {
+      expect.soft(newPage.title).not.toContain('Not Found');
+    });
+  });
 
   test(`Customer can use the footer to open the Privacy Settings overlay in a new Tab @lsus-footer @regression @legalshield-footer`, async ({
     legalshieldService,

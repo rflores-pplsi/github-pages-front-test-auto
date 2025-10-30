@@ -111,8 +111,13 @@ export class LegalshieldService {
   };
 
   clickAcceptAllButton = async (): Promise<void> => {
-    await this.locAcceptAllButton.waitFor({ state: 'visible' });
-    await this.locAcceptAllButton.click();
+    try {
+      await this.locAcceptAllButton.waitFor({ state: 'visible', timeout: 4000 });
+      await this.locAcceptAllButton.click();
+    } catch (error) {
+      // Button not found within timeout, continue without error
+      console.log('Accept All button not found, continuing...');
+    }
   };
 
   blockKetchConsentBannerFromDisplaying = async (): Promise<void> => {
