@@ -112,7 +112,7 @@ export class LegalshieldService {
 
   clickAcceptAllButton = async (): Promise<void> => {
     try {
-      await this.locAcceptAllButton.waitFor({ state: 'visible', timeout: 4000 });
+      await this.locAcceptAllButton.waitFor({ state: 'visible', timeout: 10000 });
       await this.locAcceptAllButton.click();
     } catch (error) {
       // Button not found within timeout, continue without error
