@@ -17,7 +17,7 @@ test.describe('Coverage & Pricing Add to Cart for SMB @smb-pricing', () => {
       await pricingCard.clickAddToCartWithRetry(plan.shortcode, 'Monthly', plan.name);
       if (plan.modalQuestions) {
         // Wait for modal to appear
-        const modal = page.locator('[role="dialog"], .modal, .cart-modal, [aria-modal="true"]');
+        const modal = page.getByRole('heading', { name: 'Small Business Legal Plan' });
         await modal.waitFor({ state: 'visible', timeout: 10000 });
         // Handle modal qualifying questions for each plan
         // Always click "No" for qualifying questions
