@@ -26,7 +26,7 @@ export class IdshieldService {
     // codegen did not find any getBy that worked, nor did I, so using a CSS selector for now until testid can be added
     this.locSelectRegionDropdown = this.page.locator('select[name="locationModalRegion"]');
     this.locUpdateRegionButton = this.page.getByRole('button', { name: 'Update Region' });
-    this.locClosePromotionalDialogButton = this.page.getByRole('button', { name: '×' });
+    this.locClosePromotionalDialogButton = this.page.getByTitle('Close');
   }
 
   addProductsFromProductDetails = async (planDetails: Array<PlanDetails>): Promise<void> => {
