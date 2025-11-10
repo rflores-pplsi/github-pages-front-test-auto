@@ -1,4 +1,5 @@
 import { Page, Locator, BrowserContext, expect } from '@playwright/test';
+import { clickLocatorWithRetry } from '../../utils/helpers';
 
 export class MarketingFooterComponent {
   protected page: Page;
@@ -51,7 +52,8 @@ export class MarketingFooterComponent {
   };
 
   clickPrivacySettingsLink = async (): Promise<void> => {
-    await this.locPrivacySettingsLink.click();
+    const confirmationLocator = this.page.locator('//h1[text()="Privacy Center"]');
+    await clickLocatorWithRetry(this.locPrivacySettingsLink,confirmationLocator);
   };
 
   clickSoc3linkAndVerify = async (isHeadless: boolean): Promise<void> => {
