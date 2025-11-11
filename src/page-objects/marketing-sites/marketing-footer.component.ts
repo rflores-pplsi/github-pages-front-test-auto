@@ -52,10 +52,14 @@ export class MarketingFooterComponent {
   };
 
   clickPrivacySettingsLink = async (): Promise<void> => {
-    // Wait for page to be fully loaded and hydrated before clicking
-    await this.page.waitForLoadState('networkidle');
-    const confirmationLocator = this.page.locator('//h1[text()="Privacy Center"]');
+    // Wait for Ketch privacy script to be loaded and initialized
+    await this.page.waitForFunction(() => {
+      return typeof (window as any).ketch !== 'undefined';
+    }, { timeout: 10000 });
+    
+    const confirmationLocator = this.page.locator('#ketch-preferences');
     await clickLocatorWithRetry(this.locPrivacySettingsLink, confirmationLocator);
+    
   };
 
   clickSoc3linkAndVerify = async (isHeadless: boolean): Promise<void> => {
