@@ -11,7 +11,7 @@ import { expect, Locator } from '@playwright/test';
 export async function clickLocatorWithRetry(locatorToClick: Locator, confirmationLocator: Locator): Promise<void> {
   await expect(async () => {
     await locatorToClick.click();
-    await expect(confirmationLocator).toBeVisible({ timeout: 1500 });
+    await expect(confirmationLocator).toBeVisible({ timeout: 5000 });
   }).toPass({ intervals: [0.5], timeout: 25000 });
 }
 

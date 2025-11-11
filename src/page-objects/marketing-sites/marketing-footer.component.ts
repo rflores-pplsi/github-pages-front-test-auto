@@ -23,7 +23,7 @@ export class MarketingFooterComponent {
     this.locCopyrightText = this.footerContainer.getByText('© 2025 PPLSI');
     this.locSoc3Link = this.footerContainer.getByRole('link', { name: 'SOC3' });
     this.locCodeOfEthicsLink = this.page.locator('//a[contains(@class,"footer_legal-link") and contains(@href,"code-of-ethics")]');
-    this.locPrivacySettingsLink = this.page.getByRole('link', { name: 'Privacy Settings' });
+    this.locPrivacySettingsLink = this.page.locator('#preferenceCenterLink');
   }
 
   clickTermsOfServiceLink = async (): Promise<Page> => {
@@ -52,8 +52,10 @@ export class MarketingFooterComponent {
   };
 
   clickPrivacySettingsLink = async (): Promise<void> => {
+    // Wait for page to be fully loaded and hydrated before clicking
+    await this.page.waitForLoadState('networkidle');
     const confirmationLocator = this.page.locator('//h1[text()="Privacy Center"]');
-    await clickLocatorWithRetry(this.locPrivacySettingsLink,confirmationLocator);
+    await clickLocatorWithRetry(this.locPrivacySettingsLink, confirmationLocator);
   };
 
   clickSoc3linkAndVerify = async (isHeadless: boolean): Promise<void> => {
