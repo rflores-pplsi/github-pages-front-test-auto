@@ -1,7 +1,7 @@
-name: LSUS Consumer Flow Suite - 6am CST Daily
+name: LSUS Consumer Flow Suite - Hourly
 on:
   schedule:
-    - cron: '0 6 * * *'  # Runs every day at 6 AM UTC (12am CST)
+    - cron: '0 * * * *'  # Runs every hour at the top of the hour
   workflow_dispatch:
     inputs:
       run:
