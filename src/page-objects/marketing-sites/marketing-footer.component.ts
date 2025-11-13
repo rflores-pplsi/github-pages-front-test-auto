@@ -52,14 +52,10 @@ export class MarketingFooterComponent {
   };
 
   clickPrivacySettingsLink = async (): Promise<void> => {
-    // Wait for Ketch privacy script to be loaded and initialized
-    await this.page.waitForFunction(() => {
-      return typeof (window as any).ketch !== 'undefined';
-    }, { timeout: 10000 });
-    
+    // Give time for page to load and third-party scripts to initialize
+    await this.page.waitForTimeout(1000);
     const confirmationLocator = this.page.locator('#ketch-preferences');
     await clickLocatorWithRetry(this.locPrivacySettingsLink, confirmationLocator);
-    
   };
 
   clickSoc3linkAndVerify = async (isHeadless: boolean): Promise<void> => {
