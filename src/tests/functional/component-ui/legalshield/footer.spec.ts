@@ -37,6 +37,7 @@ test.describe(`LegalShield Footer Links`, () => {
     legalshieldService,
   }) => {
     console.log(`Test Case: Customer can use the footer to open the Privacy Settings overlay in a new Tab`);
+    test.slow();
     await test.step(`When: a user clicks on the Privacy Settings Link`, async () => {
       await legalshieldService.marketingFooterComponent.clickPrivacySettingsLink();
     });

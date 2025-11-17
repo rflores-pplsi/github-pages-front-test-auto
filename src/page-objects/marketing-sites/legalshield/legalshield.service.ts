@@ -112,11 +112,14 @@ export class LegalshieldService {
 
   clickAcceptAllButton = async (): Promise<void> => {
     try {
-      await this.locAcceptAllButton.waitFor({ state: 'visible', timeout: 10000 });
-      await this.locAcceptAllButton.click();
+      // Wait for Ketch to load and initialize
+      await this.page.waitForFunction(
+        () => typeof (window as any).ketch !== 'undefined',
+        { timeout: 10000 }
+      );
+      await this.locAcceptAllButton.click({ timeout: 5000 });
     } catch (error) {
-      // Button not found within timeout, continue without error
-      console.log('Accept All button not found, continuing...');
+      console.log('Accept All button not found or Ketch failed to load, continuing...');
     }
   };
 

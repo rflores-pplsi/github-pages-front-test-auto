@@ -52,8 +52,24 @@ export class MarketingFooterComponent {
   };
 
   clickPrivacySettingsLink = async (): Promise<void> => {
-    // Give time for page to load and third-party scripts to initialize
-    await this.page.waitForTimeout(1000);
+    // Ensure Ketch is still loaded (might have unloaded after Accept All)
+    try {
+      await this.page.waitForFunction(
+        () => typeof (window as any).ketch !== 'undefined',
+        { timeout: 5000 }
+      );
+    } catch {
+      await this.page.reload({ waitUntil: 'load' });
+      await this.page.waitForFunction(
+        () => typeof (window as any).ketch !== 'undefined',
+        { timeout: 10000 }
+      );
+    }
+    
+    // Wait for handler to be attached
+    await this.page.waitForTimeout(2000);
+    
+    // Click and verify overlay appears
     const confirmationLocator = this.page.locator('#ketch-preferences');
     await clickLocatorWithRetry(this.locPrivacySettingsLink, confirmationLocator);
   };
