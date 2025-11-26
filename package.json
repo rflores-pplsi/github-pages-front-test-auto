@@ -45,6 +45,7 @@
     "playwright-ctrf-json-reporter": "^0.0.26",
     "playwright-lighthouse": "^2.2.2",
     "prettier": "^2.8.8",
+    "teams-ctrf": "^0.0.6",
     "ts-retry": "^4.1.0",
     "typescript": "^4.9.5"
   },
