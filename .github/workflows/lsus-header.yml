@@ -40,10 +40,14 @@ jobs:
         with:
           report-path: './ctrf/*.json'
           summary-delta-report: true
+          insights-report: true
+          flaky-rate-report: true
+          fail-rate-report: true
+          slowest-report: true
           upload-artifact: true
         if: always()
       - name: Send Playwright Report to Teams
         env:
           TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
-        run: npx teams-ctrf results ./ctrf/*.json --useAdaptiveCard
+        run: npx teams-ctrf results ctrf/ctrf-report.json --useAdaptiveCard
         if: always()
