@@ -21,7 +21,15 @@ const config: PlaywrightTestConfig = {
       },
     },
   ],
-  reporter: [['dot'], ['html', { open: 'always', outputFolder: 'playwright-report' }], ['allure-playwright'], ['playwright-ctrf-json-reporter']],
+  reporter: [
+    ['dot'],
+    ['html', 
+      { open: 'always',
+        outputFolder: 'playwright-report' }
+    ],
+    ['allure-playwright'],
+    ['playwright-ctrf-json-reporter'],
+  ],
   retries: 2,
   // setting workers to '1' disables parallel running, workers can also be set at runtime in the command line
   workers: 1,
