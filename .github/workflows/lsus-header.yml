@@ -49,5 +49,5 @@ jobs:
       - name: Send Playwright Report to Teams
         env:
           TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
-        run: npx teams-ctrf results ./ctrf/*.json --useAdaptiveCard
+        run: npx teams-ctrf results ctrf/ctrf-report.json --useAdaptiveCard
         if: always()
