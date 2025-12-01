@@ -32,6 +32,8 @@ jobs:
           LOGIN_EMAIL_QA: ${{ secrets.LOGIN_EMAIL_QA }}
           LOGIN_PASSWORD_QA: ${{ secrets.LOGIN_PASSWORD_QA }}
           LOGIN_USERNAME_QA: ${{ secrets.LOGIN_USERNAME_QA }}
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          GITHUB_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: USE_UAT=true npx playwright test --grep @lsus-header --workers 1
       - name: Publish Test Report
         uses: ctrf-io/github-test-reporter@v1
@@ -49,5 +51,5 @@ jobs:
       - name: Send Playwright Report to Teams
         env:
           TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
-        run: npx teams-ctrf results ctrf/ctrf-report.json --useAdaptiveCard
+        run: npx teams-ctrf results ctrf/ctrf-report.json --useAdaptiveCard --onFailOnly
         if: always()
