@@ -30,6 +30,12 @@ jobs:
           LOGIN_PASSWORD_QA: ${{ secrets.LOGIN_PASSWORD_QA }}
           LOGIN_USERNAME_QA: ${{ secrets.LOGIN_USERNAME_QA }}
         run: USE_UAT=true npx playwright test --grep @smb-pricing --workers 1
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: smb-test-results
+          path: test-results
+          retention-days: 10
       - name: Publish Test Report
         uses: ctrf-io/github-test-reporter@v1
         env:
