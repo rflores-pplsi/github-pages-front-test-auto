@@ -28,7 +28,11 @@ const config: PlaywrightTestConfig = {
         outputFolder: 'playwright-report' }
     ],
     ['allure-playwright'],
-    ['playwright-ctrf-json-reporter'],
+    ['playwright-ctrf-json-reporter', {
+      buildName: 'LegalShield Frontend Automation',
+      buildNumber: process.env.GITHUB_RUN_ID || `local-${Date.now()}`,
+      buildUrl: process.env.GITHUB_RUN_URL || 'local',
+    }],
   ],
   retries: 2,
   // setting workers to '1' disables parallel running, workers can also be set at runtime in the command line
