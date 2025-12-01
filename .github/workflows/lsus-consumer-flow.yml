@@ -30,10 +30,21 @@ jobs:
           LOGIN_PASSWORD_UAT: ${{ secrets.LOGIN_PASSWORD_UAT }}
           LOGIN_USERNAME_UAT: ${{ secrets.LOGIN_USERNAME_UAT }}
         run: USE_UAT=true npx playwright test --grep @lsus-consumer-flow --workers 1 --retries 2
-      - name: Upload consumer-flow test results
-        uses: actions/upload-artifact@v4
-        if: ${{ always() }}
+      - name: Publish Test Report
+        uses: ctrf-io/github-test-reporter@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_PATOKEN }}
         with:
-          name: consumer-flow-test-results
-          path: test-results
-          retention-days: 10
+          report-path: './ctrf/*.json'
+          summary-delta-report: true
+          insights-report: true
+          flaky-rate-report: true
+          fail-rate-report: true
+          slowest-report: true
+          upload-artifact: true
+        if: always()
+      - name: Send Playwright Report to Teams
+        env:
+          TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
+        run: npx teams-ctrf results ctrf/ctrf-report.json --useAdaptiveCard --onFailOnly
+        if: always()
