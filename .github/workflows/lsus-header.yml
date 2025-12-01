@@ -35,6 +35,12 @@ jobs:
           GITHUB_RUN_ID: ${{ github.run_id }}
           GITHUB_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: USE_UAT=true npx playwright test --grep @lsus-header --workers 1
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        with:
+          name: header-test-results
+          path: test-results
+          retention-days: 10
       - name: Publish Test Report
         uses: ctrf-io/github-test-reporter@v1
         env:
