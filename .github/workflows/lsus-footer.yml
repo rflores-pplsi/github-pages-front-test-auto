@@ -30,8 +30,9 @@ jobs:
           LOGIN_PASSWORD_QA: ${{ secrets.LOGIN_PASSWORD_QA }}
           LOGIN_USERNAME_QA: ${{ secrets.LOGIN_USERNAME_QA }}
         run: USE_UAT=true npx playwright test --grep @lsus-footer --workers 1
-      - name: Upload test results
+      - name: Upload footer test results
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: footer-test-results
           path: test-results

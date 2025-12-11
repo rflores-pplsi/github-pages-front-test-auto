@@ -30,8 +30,9 @@ jobs:
           LOGIN_PASSWORD_UAT: ${{ secrets.LOGIN_PASSWORD_UAT }}
           LOGIN_USERNAME_UAT: ${{ secrets.LOGIN_USERNAME_UAT }}
         run: USE_UAT=true npx playwright test --grep @lsus-consumer-flow --workers 1 --retries 2
-      - name: Upload test results
+      - name: Upload consumer-flow-test-results
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: consumer-flow-test-results
           path: test-results
