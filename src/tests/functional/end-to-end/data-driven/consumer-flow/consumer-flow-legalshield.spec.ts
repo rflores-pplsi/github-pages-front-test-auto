@@ -15,13 +15,14 @@ for (const testCase of legalshieldData.filter((testCase) => testCase.disabled ==
       await test.step(`Navigate to legalshield.com for ${testCase.market}-${testCase.language}`, async () => {
          await legalshieldService.navigateToLegalshieldPricingAndCoveragePage(testCase.market, testCase.language);
       });
-      await test.step('Block Promotional Iframe', async () => {
-        // removing container prevents iframe from loading in prod, and has no adverse affects in other environments
-        if (process.env.USE_PROD == 'true') {
-          console.log('Removing UMB container to block promotional iframe in PROD');
-          await legalshieldService.removeUMBContainer();
-        }
-      });
+      // Disabling while Promotional Banner not displaying
+      // await test.step('Block Promotional Iframe', async () => {
+      //   // removing container prevents iframe from loading in prod, and has no adverse affects in other environments
+      //   if (process.env.USE_PROD == 'true') {
+      //     console.log('Removing UMB container to block promotional iframe in PROD');
+      //     await legalshieldService.removeUMBContainer();
+      //   }
+      // });
       await test.step('Select Region', async () => {
         await legalshieldService.selectRegionFromDropdown(regionInfo.name);
       }); 
@@ -95,13 +96,14 @@ for (const testCase of legalshieldCanadaData.filter((testCase) => testCase.disab
       await test.step(`Navigate to legalshield.com for ${testCase.market}-${testCase.language}`, async () => {
          await legalshieldService.navigateToLegalshieldPricingAndCoveragePage(testCase.market, testCase.language);
       }); 
-      await test.step('Block Promotional Iframe', async () => {
-        // removing container prevents iframe from loading in prod, and has no adverse affects in other environments
-        if (process.env.USE_PROD == 'true') {
-          console.log('Removing UMB container to block promotional iframe in PROD');
-          await legalshieldService.removeUMBContainer();
-        }
-      });
+      // Disabling while Promotional Banner not displaying
+      // await test.step('Block Promotional Iframe', async () => {
+      //   // removing container prevents iframe from loading in prod, and has no adverse affects in other environments
+      //   if (process.env.USE_PROD == 'true') {
+      //     console.log('Removing UMB container to block promotional iframe in PROD');
+      //     await legalshieldService.removeUMBContainer();
+      //   }
+      // });
       await test.step('Select Region', async () => {
         await legalshieldService.selectRegionFromDropdown(regionInfo.name);
       }); 
