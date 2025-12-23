@@ -1,5 +1,18 @@
 [
   {
+    "runId": "20467027995",
+    "timestamp": "2025-12-23T17:33:15.969Z",
+    "suite": "Consumer Flow Suite",
+    "branch": "main",
+    "status": "failure",
+    "passed": 1,
+    "failed": 4,
+    "skipped": 0,
+    "total": 5,
+    "duration": 1163736,
+    "url": "./reports/20467027995/"
+  },
+  {
     "runId": "20465775366",
     "timestamp": "2025-12-23T16:34:01.507Z",
     "suite": "Consumer Flow Suite",
