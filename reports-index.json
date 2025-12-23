@@ -1,5 +1,18 @@
 [
   {
+    "runId": "20473790673",
+    "timestamp": "2025-12-23T23:36:12.139Z",
+    "suite": "Small Business Suite",
+    "branch": "main",
+    "status": "success",
+    "passed": 3,
+    "failed": 0,
+    "skipped": 0,
+    "total": 3,
+    "duration": 15772,
+    "url": "./reports/20473790673/"
+  },
+  {
     "runId": "20473646122",
     "timestamp": "2025-12-23T23:31:06.830Z",
     "suite": "Consumer Flow Suite",
