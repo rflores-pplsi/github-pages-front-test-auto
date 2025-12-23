@@ -13,6 +13,9 @@ jobs:
   smb-lsus:
     name: SMB Regression
     runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -55,3 +58,50 @@ jobs:
           TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
         run: npx teams-ctrf results ctrf/ctrf-report.json --useAdaptiveCard --onFailOnly
         if: always()
+      - name: Upload Playwright Report to Artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report-${{ github.run_id }}
+          path: playwright-report
+          retention-days: 30
+      - name: Checkout gh-pages branch to get existing reports index
+        uses: actions/checkout@v4
+        if: always()
+        with:
+          ref: gh-pages
+          path: gh-pages-content
+      - name: Update reports index
+        if: always()
+        env:
+          GITHUB_RUN_ID: ${{ github.run_id }}
+          TEST_SUITE: "Small Business Suite"
+          GITHUB_REF_NAME: ${{ github.ref_name }}
+          TEST_STATUS: ${{ job.status }}
+        run: |
+          if [ -f gh-pages-content/reports-index.json ]; then
+            cp gh-pages-content/reports-index.json .
+            echo "Copied existing reports index"
+          else
+            echo "No existing reports index found, creating new one"
+            echo "[]" > reports-index.json
+          fi
+          node scripts/update-reports-index.js
+          mkdir -p gh-pages-deploy
+          cp reports-index.json gh-pages-deploy/
+          cp github-pages/index.html gh-pages-deploy/
+      - name: Deploy Playwright Report to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./playwright-report
+          destination_dir: reports/${{ github.run_id }}
+          keep_files: true
+      - name: Deploy Dashboard to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: always()
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./gh-pages-deploy
+          keep_files: true
