@@ -13,6 +13,10 @@ on:
         default: ''
         type: string
 
+concurrency:
+  group: github-pages-deployment
+  cancel-in-progress: false
+
 jobs:
   test-run:
     name: Test Run

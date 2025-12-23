@@ -9,6 +9,10 @@ on:
         required: true
         default: 'false'
 
+concurrency:
+  group: github-pages-deployment
+  cancel-in-progress: false
+
 jobs:
   header-regression:
     name: Header Regression
