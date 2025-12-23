@@ -1,5 +1,18 @@
 [
   {
+    "runId": "20464538295",
+    "timestamp": "2025-12-23T15:22:21.744Z",
+    "suite": "Header Navigation",
+    "branch": "main",
+    "status": "success",
+    "passed": 26,
+    "failed": 0,
+    "skipped": 0,
+    "total": 26,
+    "duration": 123188,
+    "url": "./reports/20464538295/"
+  },
+  {
     "runId": "20464378359",
     "timestamp": "2025-12-23T15:16:04.826Z",
     "suite": "Footer Suite",
