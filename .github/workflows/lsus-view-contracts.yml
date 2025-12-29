@@ -9,17 +9,13 @@ on:
         required: true
         default: 'false'
 
-concurrency:
-  group: github-pages-deployment
-  cancel-in-progress: false
-
 jobs:
   view-contracts:
     name: View Contracts
     runs-on: ubuntu-latest
     permissions:
       actions: read
-      contents: write
+      contents: read
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -69,20 +65,50 @@ jobs:
           name: playwright-report-${{ github.run_id }}
           path: playwright-report
           retention-days: 30
+      - name: Upload CTRF Report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ctrf-report-${{ github.run_id }}
+          path: ctrf/ctrf-report.json
+          retention-days: 30
+  
+  deploy-to-github-pages:
+    name: Deploy to GitHub Pages
+    needs: view-contracts
+    if: always()
+    runs-on: ubuntu-latest
+    concurrency:
+      group: github-pages-deployment
+      cancel-in-progress: false
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download Playwright Report
+        uses: actions/download-artifact@v4
+        with:
+          name: playwright-report-${{ github.run_id }}
+          path: playwright-report
+      - name: Download CTRF Report
+        uses: actions/download-artifact@v4
+        continue-on-error: true
+        with:
+          name: ctrf-report-${{ github.run_id }}
+          path: ctrf
       - name: Checkout gh-pages branch to get existing reports index
         uses: actions/checkout@v4
-        if: always()
         with:
           ref: gh-pages
           path: gh-pages-content
       - name: Update reports index
-        if: always()
         env:
           GITHUB_RUN_ID: ${{ github.run_id }}
           TEST_SUITE: "View Contracts Suite"
           GITHUB_REF_NAME: ${{ github.ref_name }}
-          TEST_STATUS: ${{ job.status }}
+          TEST_STATUS: ${{ needs.view-contracts.result }}
         run: |
+          # Copy existing reports-index.json if it exists
           if [ -f gh-pages-content/reports-index.json ]; then
             cp gh-pages-content/reports-index.json .
             echo "Copied existing reports index"
@@ -90,13 +116,16 @@ jobs:
             echo "No existing reports index found, creating new one"
             echo "[]" > reports-index.json
           fi
+          
+          # Run the update script
           node scripts/update-reports-index.js
+          
+          # Prepare deployment directory
           mkdir -p gh-pages-deploy
           cp reports-index.json gh-pages-deploy/
           cp github-pages/index.html gh-pages-deploy/
       - name: Deploy Playwright Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
-        if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./playwright-report
@@ -104,7 +133,6 @@ jobs:
           keep_files: true
       - name: Deploy Dashboard to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
-        if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./gh-pages-deploy
