@@ -23,6 +23,22 @@ jobs:
       contents: write
       actions: read
     steps:
+      - name: Free Disk Space (Ubuntu)
+        uses: jlumbroso/free-disk-space@main
+        with:
+          tool-cache: true
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: true
+          docker-images: true
+          swap-storage: true
+      
+      - name: Check disk space before
+        run: |
+          echo "Disk space before cleanup:"
+          df -h
+      
       - uses: actions/checkout@v4
       
       - name: Download all artifacts from completed workflow
@@ -32,6 +48,13 @@ jobs:
           run-id: ${{ github.event.workflow_run.id }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path: artifacts
+      
+      - name: Check disk space after download
+        run: |
+          echo "Disk space after artifact download:"
+          df -h
+          echo "Artifact contents:"
+          du -sh artifacts/* || echo "No artifacts"
       
       - name: List downloaded artifacts
         run: |
@@ -67,6 +90,11 @@ jobs:
             mkdir -p ctrf
             cp "$CTRF_FILE" ctrf/ctrf-report.json
           fi
+          
+          # Clean up artifacts to free space
+          rm -rf artifacts
+          echo "Cleaned up artifacts directory"
+          df -h
       
       - name: Update reports index
         env:
@@ -91,6 +119,11 @@ jobs:
           mkdir -p gh-pages-deploy
           cp reports-index.json gh-pages-deploy/
           cp github-pages/index.html gh-pages-deploy/
+          
+          # Clean up gh-pages-content to free space
+          rm -rf gh-pages-content
+          echo "Cleaned up gh-pages-content"
+          df -h
       
       - name: Deploy Playwright Report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
