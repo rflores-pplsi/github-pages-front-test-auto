@@ -1,5 +1,18 @@
 [
   {
+    "runId": "20762497129",
+    "timestamp": "2026-01-06T21:31:28.553Z",
+    "suite": "Small Business Suite - Hourly",
+    "branch": "main",
+    "status": "success",
+    "passed": 3,
+    "failed": 0,
+    "skipped": 0,
+    "total": 3,
+    "duration": 16596,
+    "url": "./reports/20762497129/"
+  },
+  {
     "runId": "20761254259",
     "timestamp": "2026-01-06T21:10:44.187Z",
     "suite": "LSUS Consumer Flow Suite - Hourly",
