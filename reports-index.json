@@ -1,5 +1,18 @@
 [
   {
+    "runId": "20810334248",
+    "timestamp": "2026-01-08T08:35:15.065Z",
+    "suite": "LSUS Footer Suite - Hourly",
+    "branch": "main",
+    "status": "failure",
+    "passed": 5,
+    "failed": 1,
+    "skipped": 0,
+    "total": 6,
+    "duration": 152436,
+    "url": "./reports/20810334248/"
+  },
+  {
     "runId": "20809286134",
     "timestamp": "2026-01-08T08:00:30.471Z",
     "suite": "LSUS Consumer Flow Suite - Hourly",
@@ -1285,18 +1298,5 @@
     "total": 6,
     "duration": 152734,
     "url": "./reports/20464378359/"
-  },
-  {
-    "runId": "20463122007",
-    "timestamp": "2025-12-23T14:24:13.960Z",
-    "suite": "Header Navigation",
-    "branch": "main",
-    "status": "success",
-    "passed": 26,
-    "failed": 0,
-    "skipped": 0,
-    "total": 26,
-    "duration": 304560,
-    "url": "./reports/20463122007/"
   }
 ]
