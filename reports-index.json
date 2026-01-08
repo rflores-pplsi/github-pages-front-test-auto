@@ -1,5 +1,18 @@
 [
   {
+    "runId": "20802647199",
+    "timestamp": "2026-01-08T01:59:50.131Z",
+    "suite": "Small Business Suite - Hourly",
+    "branch": "main",
+    "status": "success",
+    "passed": 3,
+    "failed": 0,
+    "skipped": 0,
+    "total": 3,
+    "duration": 14876,
+    "url": "./reports/20802647199/"
+  },
+  {
     "runId": "20802359903",
     "timestamp": "2026-01-08T01:40:30.966Z",
     "suite": "Header Navigation Suite - Hourly",
