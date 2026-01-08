@@ -1,5 +1,18 @@
 [
   {
+    "runId": "20802059755",
+    "timestamp": "2026-01-08T01:22:18.508Z",
+    "suite": "LSUS Consumer Flow Suite - Hourly",
+    "branch": "main",
+    "status": "failure",
+    "passed": 1,
+    "failed": 4,
+    "skipped": 0,
+    "total": 5,
+    "duration": 1166654,
+    "url": "./reports/20802059755/"
+  },
+  {
     "runId": "20801744276",
     "timestamp": "2026-01-08T01:05:25.132Z",
     "suite": "LSUS Footer Suite - Hourly",
