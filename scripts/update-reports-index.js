@@ -82,10 +82,18 @@ function updateReportsIndex() {
     // Add new report at the beginning
     reportsIndex.unshift(newReport);
     
-    // Keep only last 100 reports to prevent file from growing too large
-    if (reportsIndex.length > 100) {
-        reportsIndex = reportsIndex.slice(0, 100);
-        console.log('Trimmed to 100 most recent reports');
+    // Filter out reports older than 5 days
+    const FIVE_DAYS_MS = 5 * 24 * 60 * 60 * 1000;
+    const cutoffDate = Date.now() - FIVE_DAYS_MS;
+    reportsIndex = reportsIndex.filter(r => {
+        const reportDate = new Date(r.timestamp).getTime();
+        return reportDate > cutoffDate;
+    });
+    
+    // Keep only last 50 reports as a safety limit
+    if (reportsIndex.length > 50) {
+        reportsIndex = reportsIndex.slice(0, 50);
+        console.log('Trimmed to 50 most recent reports');
     }
     
     // Save updated index

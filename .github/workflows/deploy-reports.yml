@@ -40,6 +40,16 @@ jobs:
           df -h
       
       - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            scripts
+            github-pages
+      
+      - name: Clean up after checkout
+        run: |
+          # Only keep what we need
+          rm -rf .git
+          df -h
       
       - name: Download all artifacts from completed workflow
         uses: actions/download-artifact@v4
@@ -67,6 +77,31 @@ jobs:
         with:
           ref: gh-pages
           path: gh-pages-content
+      
+      - name: Clean up old reports (older than 5 days)
+        run: |
+          cd gh-pages-content/reports || exit 0
+          
+          # Calculate cutoff date (5 days ago)
+          CUTOFF_DATE=$(date -d '5 days ago' +%s 2>/dev/null || date -v-5d +%s)
+          
+          echo "Cleaning up reports older than 5 days..."
+          
+          # Loop through report directories
+          for dir in */; do
+            if [ -d "$dir" ]; then
+              # Get the last modified time of the directory
+              DIR_TIME=$(stat -c %Y "$dir" 2>/dev/null || stat -f %m "$dir")
+              
+              if [ "$DIR_TIME" -lt "$CUTOFF_DATE" ]; then
+                echo "Removing old report: $dir"
+                rm -rf "$dir"
+              fi
+            fi
+          done
+          
+          cd ../..
+          df -h
       
       - name: Prepare deployment
         run: |

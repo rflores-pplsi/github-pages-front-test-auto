@@ -23,6 +23,8 @@ jobs:
           sudo rm -rf /opt/ghc
           sudo rm -rf "/usr/local/share/boost"
           sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+          sudo docker system prune -af || true
+          sudo apt-get clean || true
           df -h
       
       - uses: actions/checkout@v4

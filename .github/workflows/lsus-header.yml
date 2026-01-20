@@ -23,6 +23,8 @@ jobs:
           sudo rm -rf /opt/ghc
           sudo rm -rf "/usr/local/share/boost"
           sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+          sudo docker system prune -af || true
+          sudo apt-get clean || true
           df -h
       
       - uses: actions/checkout@v4
@@ -42,7 +44,7 @@ jobs:
           LOGIN_USERNAME_QA: ${{ secrets.LOGIN_USERNAME_QA }}
           GITHUB_RUN_ID: ${{ github.run_id }}
           GITHUB_RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-        run: USE_UAT=true npx playwright test --grep @lsus-header --workers 1
+        run: USE_UAT=true npx playwright test --grep @lsus-header --workers 1 --config-override '{"use":{"video":"off","trace":"retain-on-failure"}}'
       - name: Upload header test results
         uses: actions/upload-artifact@v4
         if: always()
@@ -68,17 +70,23 @@ jobs:
           TEAMS_WEBHOOK_URL: ${{ secrets.TEAMS_WEBHOOK_URL }}
         run: npx teams-ctrf results ctrf/ctrf-report.json --useAdaptiveCard --onFailOnly
         if: always()
+      - name: Clean up to save space
+        if: always()
+        run: |
+          rm -rf node_modules
+          rm -rf test-results
+          df -h
       - name: Upload Playwright Report to Artifact
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: playwright-report-${{ github.run_id }}
           path: playwright-report
-          retention-days: 30
+          retention-days: 7
       - name: Upload CTRF Report
         uses: actions/upload-artifact@v4
         if: always()
         with:
           name: ctrf-report-${{ github.run_id }}
           path: ctrf/ctrf-report.json
-          retention-days: 30
+          retention-days: 7

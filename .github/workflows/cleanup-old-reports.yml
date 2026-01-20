@@ -1,0 +1,111 @@
+name: Cleanup Old Reports (Manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      days_to_keep:
+        description: 'Number of days of reports to keep'
+        required: true
+        default: '5'
+        type: string
+
+jobs:
+  cleanup:
+    name: Clean up old reports
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout gh-pages branch
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          fetch-depth: 0
+      
+      - name: Clean up old reports
+        run: |
+          if [ ! -d "reports" ]; then
+            echo "No reports directory found"
+            exit 0
+          fi
+          
+          cd reports
+          
+          # Calculate cutoff date
+          DAYS=${{ inputs.days_to_keep }}
+          CUTOFF_DATE=$(date -d "$DAYS days ago" +%s 2>/dev/null || date -v-${DAYS}d +%s)
+          
+          echo "Cleaning up reports older than $DAYS days..."
+          echo "Cutoff timestamp: $CUTOFF_DATE"
+          
+          REMOVED_COUNT=0
+          KEPT_COUNT=0
+          
+          # Loop through report directories
+          for dir in */; do
+            if [ -d "$dir" ]; then
+              # Get the last modified time of the directory
+              DIR_TIME=$(stat -c %Y "$dir" 2>/dev/null || stat -f %m "$dir")
+              DIR_NAME="${dir%/}"
+              
+              if [ "$DIR_TIME" -lt "$CUTOFF_DATE" ]; then
+                echo "Removing: $DIR_NAME (last modified: $(date -d @$DIR_TIME 2>/dev/null || date -r $DIR_TIME))"
+                rm -rf "$dir"
+                REMOVED_COUNT=$((REMOVED_COUNT + 1))
+              else
+                echo "Keeping: $DIR_NAME (last modified: $(date -d @$DIR_TIME 2>/dev/null || date -r $DIR_TIME))"
+                KEPT_COUNT=$((KEPT_COUNT + 1))
+              fi
+            fi
+          done
+          
+          echo ""
+          echo "Summary:"
+          echo "- Removed: $REMOVED_COUNT reports"
+          echo "- Kept: $KEPT_COUNT reports"
+          
+          cd ..
+          
+          # Also clean up the reports-index.json
+          if [ -f "reports-index.json" ]; then
+            echo "Updating reports-index.json..."
+            # Create a temporary Node.js script to filter the index
+            cat > filter-index.js << 'EOF'
+const fs = require('fs');
+const DAYS = parseInt(process.env.DAYS_TO_KEEP || '5');
+const CUTOFF_MS = Date.now() - (DAYS * 24 * 60 * 60 * 1000);
+
+let index = JSON.parse(fs.readFileSync('reports-index.json', 'utf8'));
+const originalLength = index.length;
+
+index = index.filter(r => {
+  const timestamp = new Date(r.timestamp).getTime();
+  return timestamp > CUTOFF_MS;
+});
+
+fs.writeFileSync('reports-index.json', JSON.stringify(index, null, 2));
+console.log(`Reports index: ${originalLength} -> ${index.length} entries`);
+EOF
+            
+            DAYS_TO_KEEP=$DAYS node filter-index.js
+            rm filter-index.js
+          fi
+      
+      - name: Commit and push cleanup
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          
+          if git diff --quiet && git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git add -A
+            git commit -m "Clean up reports older than ${{ inputs.days_to_keep }} days"
+            git push origin gh-pages
+            echo "Cleanup complete and pushed to gh-pages"
+          fi
+      
+      - name: Summary
+        run: |
+          echo "✅ Cleanup complete!"
+          echo "Reports older than ${{ inputs.days_to_keep }} days have been removed."
