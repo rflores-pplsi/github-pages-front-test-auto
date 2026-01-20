@@ -16,11 +16,27 @@ jobs:
     permissions:
       contents: write
     steps:
-      - name: Checkout gh-pages branch
+      - name: Free Disk Space
+        uses: jlumbroso/free-disk-space@main
+        with:
+          tool-cache: true
+          android: true
+          dotnet: true
+          haskell: true
+          large-packages: true
+          docker-images: true
+          swap-storage: true
+
+      - name: Checkout gh-pages branch (sparse)
         uses: actions/checkout@v4
         with:
           ref: gh-pages
           fetch-depth: 0
+          sparse-checkout: |
+            reports
+            reports-index.json
+            index.html
+          sparse-checkout-cone-mode: false
       
       - name: Clean up old reports
         run: |
