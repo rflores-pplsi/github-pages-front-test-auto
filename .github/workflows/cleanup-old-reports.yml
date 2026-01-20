@@ -69,26 +69,22 @@ jobs:
           # Also clean up the reports-index.json
           if [ -f "reports-index.json" ]; then
             echo "Updating reports-index.json..."
-            # Create a temporary Node.js script to filter the index
-            cat > filter-index.js << 'EOF'
-const fs = require('fs');
-const DAYS = parseInt(process.env.DAYS_TO_KEEP || '5');
-const CUTOFF_MS = Date.now() - (DAYS * 24 * 60 * 60 * 1000);
-
-let index = JSON.parse(fs.readFileSync('reports-index.json', 'utf8'));
-const originalLength = index.length;
-
-index = index.filter(r => {
-  const timestamp = new Date(r.timestamp).getTime();
-  return timestamp > CUTOFF_MS;
-});
-
-fs.writeFileSync('reports-index.json', JSON.stringify(index, null, 2));
-console.log(`Reports index: ${originalLength} -> ${index.length} entries`);
-EOF
-            
-            DAYS_TO_KEEP=$DAYS node filter-index.js
-            rm filter-index.js
+            node -e "
+              const fs = require('fs');
+              const DAYS = parseInt(process.env.DAYS_TO_KEEP || '5');
+              const CUTOFF_MS = Date.now() - (DAYS * 24 * 60 * 60 * 1000);
+              
+              let index = JSON.parse(fs.readFileSync('reports-index.json', 'utf8'));
+              const originalLength = index.length;
+              
+              index = index.filter(r => {
+                const timestamp = new Date(r.timestamp).getTime();
+                return timestamp > CUTOFF_MS;
+              });
+              
+              fs.writeFileSync('reports-index.json', JSON.stringify(index, null, 2));
+              console.log(\`Reports index: \${originalLength} -> \${index.length} entries\`);
+            "
           fi
       
       - name: Commit and push cleanup
