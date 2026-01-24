@@ -1,5 +1,18 @@
 [
   {
+    "runId": "21309293689",
+    "timestamp": "2026-01-24T05:28:54.644Z",
+    "suite": "Small Business Suite - Hourly",
+    "branch": "main",
+    "status": "failure",
+    "passed": 0,
+    "failed": 0,
+    "skipped": 0,
+    "total": 0,
+    "duration": 0,
+    "url": "./reports/21309293689/"
+  },
+  {
     "runId": "21308783663",
     "timestamp": "2026-01-24T04:46:11.405Z",
     "suite": "LSUS Footer Suite - Hourly",
