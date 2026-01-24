@@ -1,5 +1,18 @@
 [
   {
+    "runId": "21317253798",
+    "timestamp": "2026-01-24T16:07:44.085Z",
+    "suite": "Small Business Suite - Hourly",
+    "branch": "main",
+    "status": "failure",
+    "passed": 0,
+    "failed": 0,
+    "skipped": 0,
+    "total": 0,
+    "duration": 0,
+    "url": "./reports/21317253798/"
+  },
+  {
     "runId": "21316480281",
     "timestamp": "2026-01-24T15:24:43.671Z",
     "suite": "Small Business Suite - Hourly",
