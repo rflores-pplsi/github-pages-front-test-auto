@@ -1,5 +1,18 @@
 [
   {
+    "runId": "26441593395",
+    "timestamp": "2026-05-26T09:01:36.923Z",
+    "suite": "View Contract Suite - Hourly",
+    "branch": "main",
+    "status": "failure",
+    "passed": 0,
+    "failed": 0,
+    "skipped": 0,
+    "total": 0,
+    "duration": 0,
+    "url": "./reports/26441593395/"
+  },
+  {
     "runId": "26441138166",
     "timestamp": "2026-05-26T08:39:31.689Z",
     "suite": "LSUS Consumer Flow Suite - Hourly",
@@ -635,18 +648,5 @@
     "total": 0,
     "duration": 0,
     "url": "./reports/26374868695/"
-  },
-  {
-    "runId": "26373840910",
-    "timestamp": "2026-05-24T22:15:13.797Z",
-    "suite": "Small Business Suite - Hourly",
-    "branch": "main",
-    "status": "failure",
-    "passed": 0,
-    "failed": 0,
-    "skipped": 0,
-    "total": 0,
-    "duration": 0,
-    "url": "./reports/26373840910/"
   }
 ]
