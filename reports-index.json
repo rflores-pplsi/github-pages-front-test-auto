@@ -1,5 +1,18 @@
 [
   {
+    "runId": "27943973440",
+    "timestamp": "2026-06-22T09:57:18.163Z",
+    "suite": "View Contract Suite - Hourly",
+    "branch": "main",
+    "status": "failure",
+    "passed": 0,
+    "failed": 0,
+    "skipped": 0,
+    "total": 0,
+    "duration": 0,
+    "url": "./reports/27943973440/"
+  },
+  {
     "runId": "27933925557",
     "timestamp": "2026-06-22T06:48:48.748Z",
     "suite": "Header Navigation Suite - Hourly",
@@ -635,18 +648,5 @@
     "total": 0,
     "duration": 0,
     "url": "./reports/27881006668/"
-  },
-  {
-    "runId": "27879628837",
-    "timestamp": "2026-06-20T18:32:26.018Z",
-    "suite": "Small Business Suite - Hourly",
-    "branch": "main",
-    "status": "failure",
-    "passed": 0,
-    "failed": 0,
-    "skipped": 0,
-    "total": 0,
-    "duration": 0,
-    "url": "./reports/27879628837/"
   }
 ]
