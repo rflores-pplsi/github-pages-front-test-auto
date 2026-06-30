@@ -1,5 +1,18 @@
 [
   {
+    "runId": "28450707398",
+    "timestamp": "2026-06-30T14:20:14.011Z",
+    "suite": "View Contract Suite - Hourly",
+    "branch": "main",
+    "status": "failure",
+    "passed": 0,
+    "failed": 0,
+    "skipped": 0,
+    "total": 0,
+    "duration": 0,
+    "url": "./reports/28450707398/"
+  },
+  {
     "runId": "28446400920",
     "timestamp": "2026-06-30T13:31:35.240Z",
     "suite": "LSUS Footer Suite - Hourly",
@@ -635,18 +648,5 @@
     "total": 0,
     "duration": 0,
     "url": "./reports/28340403686/"
-  },
-  {
-    "runId": "28339179866",
-    "timestamp": "2026-06-28T23:20:56.522Z",
-    "suite": "View Contract Suite - Hourly",
-    "branch": "main",
-    "status": "failure",
-    "passed": 0,
-    "failed": 0,
-    "skipped": 0,
-    "total": 0,
-    "duration": 0,
-    "url": "./reports/28339179866/"
   }
 ]
